@@ -1,0 +1,56 @@
+<ion-view>
+    <ion-pane ng-controller="LoginController">
+        <ion-content id="login-pane">
+            <div class="logo-container">
+                <img src="img/openning@2x.png">
+            </div>
+            <div class="login-form">
+                <div class="user-input">
+                    <label class="item item-input">
+                        <input id="input-account" type="text" placeholder="{{ 'input.account' | translate }}"
+                               ng-model="user.account"/>
+                    </label>
+                    <label class="item item-input">
+                        <input id="input-password" ng-class="{empty: user.password.length == 0}" type="password"
+                               placeholder="{{ 'input.password' | translate }}" ng-model="user.password">
+                    </label>
+                </div>
+                <div class="login-input">
+                    <button id="login-button"
+                            class="button button-block button-positive"
+                            ng-bind="'input.login' | translate" ng-click="login()" ng-disabled="logging">
+                    </button>
+                </div>
+                <div class="light-gray-text-panel" ng-bind="'text.or' | translate">
+                </div>
+                <div class="social-panel">
+                    <div class="row">
+                        <div class="col" ng-click="facebook_login()">
+                            <button id="facebook-button">Facebook</button>
+                        </div>
+                        <div class="col" ng-click="google_login()">
+                            <button id="google-button">Google</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="light-gray-text-panel padding-vertical tip-text">享有個人化的體驗，註冊只需幾秒鐘</div>
+                <div class="pass-input">
+                    <button id="pass-button"
+                            class="button button-block button-dark"
+                            ng-bind="'input.pass_login' | translate" ng-click="pass_login()" ng-disabled="logging">
+                    </button>
+                </div>
+            </div>
+        </ion-content>
+        <ion-footer-bar id="login-footer" align-title="left" class="bar-stable">
+            <div class="row">
+                <div class="col">
+                    <button ng-click="forgotpassword()">忘記密碼</button>
+                </div>
+                <div class="col">
+                    <button>註冊新帳號</button>
+                </div>
+            </div>
+        </ion-footer-bar>
+    </ion-pane>
+</ion-view>

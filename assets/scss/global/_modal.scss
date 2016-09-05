@@ -1,0 +1,43 @@
+// Controls
+// -----------------------------------------------------------------
+.modal-box {
+    background-color: transparent;
+    border-radius: 10px;
+    bottom: 5%;
+    //box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    height: 450px !important;
+    left: 5%;
+    min-height: 0 !important;
+    right: 5%;
+    top: 25%;
+    width: 90%;
+}
+
+.modal-backdrop-bg {
+    background-color: #000;
+    opacity: 0.7;
+    transition: opacity 300ms ease-in-out 0s;
+}
+
+// Effects
+// -----------------------------------------------------------------
+.fade-in {
+    -webkit-transform: scale(0.0);
+    transform: scale(0.0);
+    opacity: 0;
+}
+.fade-in.ng-enter, .fade-in > .ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 250ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 250ms;
+}
+.fade-in.ng-enter-active,
+.fade-in > .ng-enter-active {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 1;
+}
+
+.fade-in.ng-leave, .fade-in > .ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}

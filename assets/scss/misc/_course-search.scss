@@ -1,0 +1,76 @@
+.course-search {
+    .pane-content {
+        background-color: $stable;
+
+    }
+    .list {
+        .item {
+            background-color: $positive;
+
+            .item-input-wrapper {
+                background-color: $light;
+
+                .item-input-keyword {
+                    width: 98%;
+                }
+            }
+
+            .button-search {
+                color: $light;
+            }
+        }
+    }
+
+    .card {
+        .item {
+            .row {
+                .course-no {
+                    font-size: $text-size-small;
+                }
+                .course-title {
+                    top: -7px;
+                    position: relative;
+                }
+                .course-date {
+                    background-color: $light;
+                    text-align: center;
+                    font-size: $text-size-small;
+                    border-radius: 25px;
+                    line-height: 14px;
+                    border: 2px solid $light-gray-color;
+                    height: 50px;
+
+                    div {
+                        margin-top: 2px;
+
+                        &.year {
+                            font-size: $text-size-small;
+                        }
+                        &.date {
+                            font-size: $text-size-medium;
+                        }
+                        &.weekday {
+                            font-size: $text-size-small;
+                        }
+                    }
+                }
+                .special-price-mark {
+                    font-size: $text-size-small + 1;
+                    background: $assertive;
+                    color: $light;
+                    padding: 3px;
+                    margin-top: 3px;
+                    display: inline-block;
+                }
+                .course-price {
+                    font-size: $text-size-medium + 6;
+                    font-style: italic;
+                    color: $gray-color;
+                }
+                .course-keep-img {
+                    width: 32px;
+                }
+            }
+        }
+    }
+}

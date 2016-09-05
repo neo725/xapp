@@ -1,0 +1,247 @@
+<ion-view class="dashboard" ng-controller="DashboardController">
+    <ion-nav-buttons side="center">
+        <button class="button button-icon icon ion-person" ng-click="goMemberDashboard()"></button>
+        <h1 class="title">大學聯網</h1>
+        <button class="button button-icon icon ion-android-cart"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header" padding="false" ng-class="{'pane-content': true}">
+        <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController" ng-show="studyCardVisible">
+            <ion-slide-box does-continue="true">
+                <ion-slide>
+                    <div class="box">
+                        <div class="card-progress">
+                            <div class="progress">
+                                <img src="img/rainbowgb@2x.png" />
+                                <div class="progress-value">
+                                    100
+                                    <div class="progress-text-percent">
+                                        %
+                                    </div>
+                                    <div class="progress-text">
+                                        課程完成度
+                                    </div>
+                                    <div class="progress-teacher">
+                                        賴素綢 老師
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <div class="row">
+                                <div class="col">
+                                    <h4>韓文k4語文班保證班保證班</h4>
+                                </div>
+                            </div>
+                            <div class="row text-item">
+                                <div class="col item-image-icon">
+                                    <img src="img/calendar@2x.png" />
+                                </div>
+                                <div class="col col-80 col-text-left">
+                                    2016/3/6 ~ 2016/5/20
+                                </div>
+                            </div>
+                            <div class="row text-item">
+                                <div class="col item-image-icon">
+                                    <img src="img/location@2x.png" />
+                                </div>
+                                <div class="col col-80 col-text-left">
+                                    大夏館 建國分部
+                                </div>
+                            </div>
+                            <div class="row text-item">
+                                <div class="col">
+                                    <div class="row text-item">
+                                        <div class="col">
+                                            下次上課時間
+                                        </div>
+                                    </div>
+                                    <div class="row text-item text-blue class-time">
+                                        <div class="col">
+                                            <!--<ion-badge item-center></ion-badge>-->
+                                            <span class="badge badge-positive keyword" style="color:#fff !important">六</span>
+                                        </div>
+                                        <div class="col class-time-range">
+                                            <div>19:00</div>
+                                            <div>|</div>
+                                            <div>22:00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            下次上課教室
+                                        </div>
+                                    </div>
+                                    <div class="row text-blue">
+                                        <div class="col">
+                                            <h2>B304</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+        </div ng-if>
+        <div class="search-slides slides" ng-controller="SearchSlideController">
+            <ion-slide-box does-continue="true" ng-class="{'guest-slider': !studyCardVisible}">
+                <ion-slide ng-repeat="cover in covers">
+                    <div class="box cover" ng-style="{'background-image': 'url(' + cover.img + ')', 'height': '100%'}">
+                        <div class="search-header-container">
+                            <div class="search-header">
+                                <h4>{{cover.title}}</h4>
+                                <p>{{cover.content}}</p>
+                            </div>
+                        </div>
+                        <div class="search-box">
+                            <div class="row">
+                                <div class="col key">
+                                    搜尋 關鍵字
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col value padding-left underline">
+                                    <img src="img/tag@2x.png" class="small-img" /> <div class="keyword">{{cover.keyword}}</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="search-box2">
+                                        <div class="row">
+                                            <div class="col border-right">
+                                                <div class="row">
+                                                    <div class="col key">
+                                                        希望上課時間
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col value" ng-click="modalWeekday.show()">
+                                                        {{weekday}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col key">
+                                                        希望上課地點
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col value" ng-click="modalLocation.show()">
+                                                        {{location}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row row-search">
+                                            <div class="col">
+                                                <button class="button button-block button-blue"
+                                                        ng-click="searchCourse(cover.keyword)">
+                                                    搜出好課
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="extend-info">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row">
+                                        <span class="badge badge-light keyword">延伸<br />閱讀</span>
+                                    </div>
+                                </div>
+                                <div class="col col-80 text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            {{cover.article}}<br /><i class="icon ion-ios-person-outline"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+        <div class="tabs tabs-light tabs-icon-top icon-tabs-bar">
+            <a class="tab-item">
+                <img src="img/class@2x.png" /> 課程分類
+            </a>
+            <a class="tab-item">
+                <img src="img/ebook@2x.png" /> 新識力
+            </a>
+            <a class="tab-item">
+                <img src="img/map@2x.png" /> 交通資訊
+            </a>
+        </div>
+    </ion-content>
+    <script id="templates/modal-weekday.html" type="text/ng-template">
+        <ion-modal-view class="modal-box weekday-box" ng-controller="DashboardWeekdayController">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <div class="row">
+                    <div class="col">
+                        平日
+                    </div>
+                    <div class="col">
+                        週末
+                    </div>
+                </div>
+            </ion-header-bar>
+            <ion-content class="padding">
+                <div class="row">
+                    <div class="col">
+                        <ion-checkbox ng-model="weekdays.monday">星期一</ion-checkbox>
+                        <ion-checkbox ng-model="weekdays.tuesday">星期二</ion-checkbox>
+                        <ion-checkbox ng-model="weekdays.wednesday">星期三</ion-checkbox>
+                        <ion-checkbox ng-model="weekdays.thursday">星期四</ion-checkbox>
+                        <ion-checkbox ng-model="weekdays.friday">星期五</ion-checkbox>
+                    </div>
+                    <div class="col">
+                        <ion-checkbox ng-model="weekdays.saturday">星期六</ion-checkbox>
+                        <ion-checkbox ng-model="weekdays.sunday">星期日</ion-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ion-checkbox ng-model="everyday" ng-click="everydayClick(everyday)">時間不拘</ion-checkbox>
+                    </div>
+                </div>
+                <button class="button button-full button-positive" ng-click="weekdayConfirmClick()">確定</button>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+    <script id="templates/modal-location.html" type="text/ng-template">
+        <ion-modal-view class="modal-box location-box">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <div class="row">
+                    <div class="col">
+                        請選擇上課地點
+                    </div>
+                </div>
+            </ion-header-bar>
+            <ion-content class="padding">
+                <ion-list>
+                    <ion-checkbox><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台北</div></ion-checkbox>
+                    <ion-checkbox><div class="text-item">建國本部 (大夏館)</div></ion-checkbox>
+                    <ion-checkbox><div class="text-item">忠孝分部 (忠孝館)</div></ion-checkbox>
+                    <ion-checkbox><div class="text-item">延平分部 (大新館)</div></ion-checkbox>
+                    <ion-checkbox><div class="text-item">大安館</div></ion-checkbox>
+                </ion-list>
+                <ion-list>
+                    <ion-checkbox><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台中</div></ion-checkbox>
+                </ion-list>
+                <ion-list>
+                    <ion-checkbox><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">高雄</div></ion-checkbox>
+                </ion-list>
+                <ion-list>
+                    <ion-checkbox><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">地點不拘</div></ion-checkbox>
+                </ion-list>
+                <button class="button button-full button-positive" ng-click="locationConfirmClick()">確定</button>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>

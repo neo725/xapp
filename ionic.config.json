@@ -1,0 +1,11 @@
+{
+  "name": "sceapp",
+  "app_id": "",
+  "defaultBrowser": "chrome",
+  "proxies": [
+    {
+      "path": "/SceAppApi/api",
+      "proxyUrl": "http://test.sce.pccu.edu.tw/SceAppApi/api"
+    }
+  ]
+}

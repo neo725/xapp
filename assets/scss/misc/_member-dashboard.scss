@@ -1,0 +1,99 @@
+.member-dashboard {
+    .pane-content {
+        .bg {
+            height: 160px;
+            background-image: url('../img/membersbg@2x.jpg');
+            background-repeat: no-repeat;
+            //background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+
+            .item-avatar {
+                position: absolute;
+                top: 133px;
+
+                .img-avatar {
+                    max-width: 90px;
+                    max-height: 90px;
+                    border: 1px solid $white-color;
+                    margin-left: -10px;
+                }
+                h2, h3 {
+                    margin-left: 28px;
+                    margin-top: 40px;
+                    img {
+                        width: 16px;
+                    }
+                }
+                p {
+                    margin-left: 28px;
+                    margin-top: -6px;
+                    color: $light-gray-color;
+                }
+            }
+        }
+        .content {
+            top: 66px;
+
+            .col {
+                text-align: center;
+
+                &.col-1 {
+                    padding-top: 20px;
+                    padding-left: 20px;
+                }
+                &.col-2 {
+                    padding-top: 20px;
+                    padding-right: 20px;
+                }
+                &.col-3 {
+                    padding-top: 20px;
+                    padding-left: 20px;
+                    padding-bottom: 20px;
+                }
+                &.col-4 {
+                    padding-top: 20px;
+                    padding-right: 20px;
+                    padding-bottom: 20px;
+                }
+                .item-img {
+                    width: 50px;
+                }
+                p {
+                    color: $gray-color;
+                }
+            }
+
+            .border-right {
+                border-right: 1px solid $border-color;
+            }
+            .border-top {
+                border-top: 1px solid $border-color;
+            }
+        }
+    }
+}
+
+.function-box {
+    &.modal-box {
+        top: 30%;
+        height: 176px !important;
+
+        .col {
+            text-align: center;
+            padding: 10px;
+        }
+        .list {
+            border: 0;
+
+            .item {
+                text-align: center;
+                border-bottom: 1px solid $border-color;
+                margin-bottom: 1px;
+            }
+            .item:last-child {
+                border-bottom: 0;
+            }
+        }
+    }
+}

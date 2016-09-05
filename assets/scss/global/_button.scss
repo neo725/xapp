@@ -1,0 +1,11 @@
+.button {
+    &.button-positive {
+        background-color: $blue-color;
+        border: none;
+    }
+    &.button-positive.activated {
+        background-color: $dark-blue-color;
+        border: none;
+        color: rgba(255, 255, 255, 0.7)
+    }
+}
