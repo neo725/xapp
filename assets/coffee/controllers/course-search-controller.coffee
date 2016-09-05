@@ -1,7 +1,7 @@
 module.exports = ['$scope', '$stateParams', '$log', 'navigation', 'modal', 'api'
     ($scope, $stateParams, $log, navigation, modal, api) ->
         $scope.keyword = $stateParams.keyword
-        $scope.keep_image_name = 'heart-outline@2x.png'
+        #$scope.keep_image_name = 'heart-outline@2x.png'
 
         $scope.goBack = () ->
             navigation.slide 'home.dashboard', {}, 'right'
@@ -35,12 +35,14 @@ module.exports = ['$scope', '$stateParams', '$log', 'navigation', 'modal', 'api'
                 hideLoading()
                 modal.showMessage '', 'message.error'
 
+            weekdays = _.join(JSON.parse(window.localStorage.getItem('weekdays'), ','))
+            locations = _.join(JSON.parse(window.localStorage.getItem('locations'), ','))
+
             data =
                 'perpage': 20
                 'query': keyword
-                #'wday': '一,二,三,四,五,六,日'
-                'wday': '一,二'
-                'loc': '建國,忠孝,延平,大安'
+                'wday': weekdays
+                'loc': locations
 
             modal.showLoading '', 'message.searching'
             api.searchCourse(data, onSuccess, onError)

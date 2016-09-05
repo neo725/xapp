@@ -21,7 +21,7 @@ module.exports = [
         api.getCover(onSuccess, onError)
 
         $scope.getWeekday = () ->
-            weekdays = [] || window.localStorage.getItem('weekdays')
+            weekdays = JSON.parse(window.localStorage.getItem('weekdays')) || []
             if weekdays.length == 0
                 weekdays = ['一', '二', '三', '四', '五', '六', '日']
             window.localStorage.setItem('weekdays', JSON.stringify(weekdays))
@@ -31,7 +31,7 @@ module.exports = [
         $scope.getWeekday()
 
         $scope.getLocation = () ->
-            locations = [] || window.localStorage.getItem('locations')
+            locations = JSON.parse(window.localStorage.getItem('locations')) || []
             if locations.length == 0
                 locations = ['建國', '忠孝', '延平', '大安', '台中', '高雄']
             window.localStorage.setItem('locations', JSON.stringify(locations))
@@ -56,9 +56,15 @@ module.exports = [
 
         # weekday modal controller
         # ------------------------------------------------
-        $scope.weekdayConfirmClick = () ->
-            $scope.modalWeekday.hide()
+#        $scope.weekdayConfirmClick = () ->
+#            $scope.modalWeekday.hide()
+        $scope.$on('weekdayConfirm', () ->
+            $scope.getWeekday()
+        )
 
-        $scope.locationConfirmClick = () ->
-            $scope.modalLocation.hide()
+#        $scope.locationConfirmClick = () ->
+#            $scope.modalLocation.hide()
+        $scope.$on('locationConfirm', () ->
+            $scope.getLocation()
+        )
 ]

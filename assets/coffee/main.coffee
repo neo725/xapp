@@ -26,6 +26,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 .controller('StudyCardSlideController', require('./controllers/studycardslide-controller'))
 .controller('SearchSlideController', require('./controllers/searchslide-controller'))
 .controller('DashboardWeekdayController', require('./controllers/dashboard-weekday-controller'))
+.controller('DashboardLocationController', require('./controllers/dashboard-location-controller'))
 .controller('MemberDashboardController', require('./controllers/member-dashboard-controller'))
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
 .config(['$httpProvider', ($httpProvider) ->

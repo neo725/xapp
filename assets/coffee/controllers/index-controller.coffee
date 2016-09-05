@@ -53,7 +53,7 @@ module.exports = [
                         $log.info response
                     onError = () ->
                         $cordovaToast.show('token register error', 'long', 'top')
-                    api.registerToken(token, onSuccess, (->))
+                    api.registerToken(token, onSuccess, onError)
                 , ((err) ->)
             )
             FCMPlugin.onNotification(

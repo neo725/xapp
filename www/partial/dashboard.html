@@ -215,7 +215,7 @@
         </ion-modal-view>
     </script>
     <script id="templates/modal-location.html" type="text/ng-template">
-        <ion-modal-view class="modal-box location-box">
+        <ion-modal-view class="modal-box location-box" ng-controller="DashboardLocationController">
             <ion-header-bar class="bar bar-header bar-positive">
                 <div class="row">
                     <div class="col">
@@ -225,20 +225,20 @@
             </ion-header-bar>
             <ion-content class="padding">
                 <ion-list>
-                    <ion-checkbox><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台北</div></ion-checkbox>
-                    <ion-checkbox><div class="text-item">建國本部 (大夏館)</div></ion-checkbox>
-                    <ion-checkbox><div class="text-item">忠孝分部 (忠孝館)</div></ion-checkbox>
-                    <ion-checkbox><div class="text-item">延平分部 (大新館)</div></ion-checkbox>
-                    <ion-checkbox><div class="text-item">大安館</div></ion-checkbox>
+                    <ion-checkbox ng-model="taipei" ng-click="taipeiClick(taipei)"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台北</div></ion-checkbox>
+                    <ion-checkbox ng-model="locations.loc1"><div class="text-item">建國本部 (大夏館)</div></ion-checkbox>
+                    <ion-checkbox ng-model="locations.loc2"><div class="text-item">忠孝分部 (忠孝館)</div></ion-checkbox>
+                    <ion-checkbox ng-model="locations.loc3"><div class="text-item">延平分部 (大新館)</div></ion-checkbox>
+                    <ion-checkbox ng-model="locations.loc4"><div class="text-item">大安館</div></ion-checkbox>
                 </ion-list>
                 <ion-list>
-                    <ion-checkbox><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台中</div></ion-checkbox>
+                    <ion-checkbox ng-model="locations.loc5"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台中</div></ion-checkbox>
                 </ion-list>
                 <ion-list>
-                    <ion-checkbox><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">高雄</div></ion-checkbox>
+                    <ion-checkbox ng-model="locations.loc6"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">高雄</div></ion-checkbox>
                 </ion-list>
                 <ion-list>
-                    <ion-checkbox><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">地點不拘</div></ion-checkbox>
+                    <ion-checkbox ng-model="everywhere" ng-click="everywhereClick(everywhere)"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">地點不拘</div></ion-checkbox>
                 </ion-list>
                 <button class="button button-full button-positive" ng-click="locationConfirmClick()">確定</button>
             </ion-content>

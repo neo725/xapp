@@ -5,7 +5,7 @@ module.exports = ['$scope', '$log', ($scope, $log) ->
             wednesday: false,
             thursday: false,
             friday: false,
-            staturday: false,
+            saturday: false,
             sunday: false
         }
         weekdays = JSON.parse(window.localStorage.getItem('weekdays'))
@@ -26,7 +26,37 @@ module.exports = ['$scope', '$log', ($scope, $log) ->
         $scope.everyday = true
 
         $scope.everydayClick = (val) ->
-            $log.info val
+            $scope.weekdays = {
+                monday: val,
+                tuesday: val,
+                wednesday: val,
+                thursday: val,
+                friday: val,
+                saturday: val,
+                sunday: val
+            }
+
+
+        $scope.weekdayConfirmClick = () ->
+            $log.info $scope.weekdays
+            weekdays = []
+            if $scope.weekdays.monday
+                weekdays.push '一'
+            if $scope.weekdays.tuesday
+                weekdays.push '二'
+            if $scope.weekdays.wednesday
+                weekdays.push '三'
+            if $scope.weekdays.thursday
+                weekdays.push '四'
+            if $scope.weekdays.friday
+                weekdays.push '五'
+            if $scope.weekdays.staturday
+                weekdays.push '六'
+            if $scope.weekdays.sunday
+                weekdays.push '日'
+            window.localStorage.setItem('weekdays', JSON.stringify(weekdays))
+            $scope.$emit('weekdayConfirm')
+            $scope.modalWeekday.hide()
 
         return
 ]

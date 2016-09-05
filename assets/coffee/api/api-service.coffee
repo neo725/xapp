@@ -7,7 +7,7 @@ module.exports = ['$http', ($http) ->
             .success(onSuccess)
             .error(onError)
 
-        registerToken: (token) ->
+        registerToken: (token, onSuccess, onError) ->
             data = {
                 'deviceName': '',
                 'deviceToken': token,
