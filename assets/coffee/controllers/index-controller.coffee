@@ -63,11 +63,7 @@ module.exports = [
                     else
                         $log.info '2 :' + data
 
-                    $cordovaBadge.registerPermission((granted) ->
-                        console.log('Permission has been granted: ' + granted)
-                        if granted
-                            $cordovaBadge.set 10
-                    )
+                    $cordovaBadge.set 10
 
                 , (msg) ->
                     $log.info 'onNotification callback successfully registered: ' + msg

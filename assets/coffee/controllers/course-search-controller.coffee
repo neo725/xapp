@@ -1,5 +1,9 @@
-module.exports = ['$scope', '$stateParams', '$log', 'navigation', 'modal', 'api'
-    ($scope, $stateParams, $log, navigation, modal, api) ->
+module.exports = [
+    '$scope', '$stateParams', '$log', '$cordovaToast', '$timeout', 'navigation', 'modal', 'api'
+    ($scope, $stateParams, $log, $cordovaToast, $timeout, navigation, modal, api) ->
+        loadTimes = 0
+        $scope.noMoreItemsAvailable = false
+
         $scope.keyword = $stateParams.keyword
         #$scope.keep_image_name = 'heart-outline@2x.png'
 
@@ -7,6 +11,16 @@ module.exports = ['$scope', '$stateParams', '$log', 'navigation', 'modal', 'api'
             navigation.slide 'home.dashboard', {}, 'right'
 
         $scope.keywordFocus = () ->
+
+        $scope.loadMore = () ->
+            $cordovaToast.show('load more', 'long', 'top')
+            loadTimes += 1
+            if loadTimes == 3
+                $scope.noMoreItemsAvailable = true;
+            $timeout () ->
+
+                $scope.$broadcast('scroll.infiniteScrollComplete')
+            , 3000
 
         $scope.goSearch = (keyword) ->
             $scope.courses = []

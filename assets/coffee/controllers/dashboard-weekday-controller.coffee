@@ -1,4 +1,8 @@
+constants = require('../common/constants')
+
 module.exports = ['$scope', '$log', ($scope, $log) ->
+        def_weekdays = constants.WEEKDAYS
+
         $scope.weekdays = {
             monday: false,
             tuesday: false,
@@ -9,19 +13,19 @@ module.exports = ['$scope', '$log', ($scope, $log) ->
             sunday: false
         }
         weekdays = JSON.parse(window.localStorage.getItem('weekdays'))
-        if _.indexOf(weekdays, '一') > -1
+        if _.indexOf(weekdays, def_weekdays[0]) > -1
             $scope.weekdays.monday = true
-        if _.indexOf(weekdays, '二') > -1
+        if _.indexOf(weekdays, def_weekdays[1]) > -1
             $scope.weekdays.tuesday = true
-        if _.indexOf(weekdays, '三') > -1
+        if _.indexOf(weekdays, def_weekdays[2]) > -1
             $scope.weekdays.wednesday = true
-        if _.indexOf(weekdays, '四') > -1
+        if _.indexOf(weekdays, def_weekdays[3]) > -1
             $scope.weekdays.thursday = true
-        if _.indexOf(weekdays, '五') > -1
+        if _.indexOf(weekdays, def_weekdays[4]) > -1
             $scope.weekdays.friday = true
-        if _.indexOf(weekdays, '六') > -1
+        if _.indexOf(weekdays, def_weekdays[5]) > -1
             $scope.weekdays.saturday = true
-        if _.indexOf(weekdays, '日') > -1
+        if _.indexOf(weekdays, def_weekdays[6]) > -1
             $scope.weekdays.sunday = true
         $scope.everyday = true
 
@@ -41,19 +45,19 @@ module.exports = ['$scope', '$log', ($scope, $log) ->
             $log.info $scope.weekdays
             weekdays = []
             if $scope.weekdays.monday
-                weekdays.push '一'
+                weekdays.push def_weekdays[0]
             if $scope.weekdays.tuesday
-                weekdays.push '二'
+                weekdays.push def_weekdays[1]
             if $scope.weekdays.wednesday
-                weekdays.push '三'
+                weekdays.push def_weekdays[2]
             if $scope.weekdays.thursday
-                weekdays.push '四'
+                weekdays.push def_weekdays[3]
             if $scope.weekdays.friday
-                weekdays.push '五'
-            if $scope.weekdays.staturday
-                weekdays.push '六'
+                weekdays.push def_weekdays[4]
+            if $scope.weekdays.saturday
+                weekdays.push def_weekdays[5]
             if $scope.weekdays.sunday
-                weekdays.push '日'
+                weekdays.push def_weekdays[6]
             window.localStorage.setItem('weekdays', JSON.stringify(weekdays))
             $scope.$emit('weekdayConfirm')
             $scope.modalWeekday.hide()

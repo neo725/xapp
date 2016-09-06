@@ -1,5 +1,7 @@
+constants = require('../common/constants')
+
 module.exports = ['$scope', '$log', ($scope, $log) ->
-    def_locations = ['建國', '忠孝', '延平', '大安', '台中', '高雄']
+    def_locations = constants.LOCATIONS
     $scope.locations = {
         loc1: false,
         loc2: false,

@@ -10,3 +10,7 @@ module.exports =
 
     DEFAULT_LOCALE: 'zh-Hant'
 
+    WEEKDAYS: ['一', '二', '三', '四', '五', '六', '日']
+
+    LOCATIONS: ['建國', '忠孝', '延平', '大安', '台中', '高雄']
+

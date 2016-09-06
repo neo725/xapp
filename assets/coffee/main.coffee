@@ -48,6 +48,9 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
     ##      none
     $ionicConfigProvider.views.transition('none')
 
+    # http://scottbolinger.com/4-ways-to-make-your-ionic-app-feel-native/
+    $ionicConfigProvider.scrolling.jsScrolling(false)
+
     $stateProvider
     .state 'login',
         url: '/login'
@@ -116,7 +119,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
             }
         }
 
-    $urlRouterProvider.otherwise "/"
+    $urlRouterProvider.otherwise "/login"
 )
 .config(($translateProvider) ->
     for language of resources
