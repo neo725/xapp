@@ -15,7 +15,7 @@
                 </button>
             </div>
         </div>
-        <div class="card" ng-repeat="course in courses">
+        <div class="card" ng-repeat="course in courses" ng-click="switchToCourseInfo(course.Prod_Id)">
             <div class="item item-text-wrap">
                 <div class="row">
                     <div class="col course-no">{{course.Prod_Id}}</div>

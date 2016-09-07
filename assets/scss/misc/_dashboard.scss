@@ -23,7 +23,7 @@
                         top: -90px;
 
                         font-size: $text-size-medium + 30;
-                        color: $text-blue-color;
+                        color: $positive;
 
                         .progress-text-percent {
                             position: relative;
@@ -86,19 +86,9 @@
                     }
                     &.class-time {
                         margin-top: 2px;
+
                         div.class-time-range {
                             line-height: 12px;
-                        }
-                        .badge {
-                            border-radius: 30px;
-                            background-color: $text-blue-color;
-                            height: 30px;
-                            padding-top: 8px;
-                        }
-                    }
-                    .text-blue {
-                        div, span, h1, h2, h3, h4, h5 {
-                            color: $text-blue-color !important;
                             font-weight: bold;
                         }
                     }
@@ -174,10 +164,6 @@
                     .underline {
                         border-bottom: 1px solid $border-color;
                     }
-
-                    .border-right {
-                        border-right: 1px solid $border-color;
-                    }
                 }
 
                 .search-box2 {
@@ -186,7 +172,7 @@
                         line-height: 14px;
                     }
                     .button-blue {
-                        background-color: $text-blue-color;
+                        background-color: $positive;
                         color: $white-color;
                     }
                 }

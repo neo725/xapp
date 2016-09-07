@@ -9,13 +9,13 @@ module.exports = ['$http', ($http) ->
 
         registerToken: (token, onSuccess, onError) ->
             data = {
-                'deviceName': '',
+                'deviceName': 'android',
                 'deviceToken': token,
                 'deviceType': 'android'
             }
             $http.post('/api/device', data)
-                .success(onSuccess)
-                .error(onError)
+            .success(onSuccess)
+            .error(onError)
 
         logout: (token, onSuccess, onError) ->
             $http.delete("/api/tokens/#{token}")

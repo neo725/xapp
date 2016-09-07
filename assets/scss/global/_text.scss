@@ -6,9 +6,40 @@
 .text-size-medium {
     font-size:  $text-size-medium;
 }
+.text-s-size {
+    font-size: $text-size-small;
+}
+.text-m-size {
+    font-size: $text-size-small + 6;
+}
+.text-l-size {
+    font-size: $text-size-small + 24;
+}
 
 // Color
 // --------------------------------------------
-.text-blue {
-    color:      #0E6FB6 !important;
+.text-positive {
+    color:      $positive !important;
+}
+.text-white {
+    color:      $white-color !important;
+}
+.text-gray {
+    color:      $gray-color !important;
+}
+
+
+// Position
+// --------------------------------------------
+.text-align-center {
+    text-align: center;
+}
+
+// padding
+// --------------------------------------------
+.text-padding-top-s {
+    padding-top: 6px;
+}
+.text-padding-top-m {
+    padding-top: 12px;
 }

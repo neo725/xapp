@@ -29,6 +29,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 .controller('DashboardLocationController', require('./controllers/dashboard-location-controller'))
 .controller('MemberDashboardController', require('./controllers/member-dashboard-controller'))
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
+.controller('CourseInfoController', require('./controllers/course-info-controller'))
 .config(['$httpProvider', ($httpProvider) ->
     $httpProvider.defaults.useXDomain = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
@@ -52,11 +53,13 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
     $ionicConfigProvider.scrolling.jsScrolling(false)
 
     $stateProvider
+
+    ## misc (before login)
     .state 'login',
         url: '/login'
         templateUrl: 'partial/login.html'
 
-
+    ## main (before login)
     .state 'main',
         url: '/main'
         abstract: true
@@ -70,7 +73,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
             }
         }
 
-
+    ## home
     .state 'home',
         url: '/home'
         abstract: true
@@ -101,7 +104,15 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
             }
         }
 
+    .state 'home.course.info',
+        url: '/info/:prod_id'
+        views: {
+            'courseContent': {
+                templateUrl: 'partial/course/info.html'
+            }
+        }
 
+    ## Member
     .state 'home.member',
         url: '/member'
         abstract: true

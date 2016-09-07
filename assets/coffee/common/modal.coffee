@@ -12,7 +12,9 @@ module.exports = ['$ionicPlatform', '$timeout', '$ionicModal', '$ionicLoading', 
         hideLoadingSpinner = ->
             $ionicPlatform.ready ->
                 if window.plugins
-                    window.plugins.spinnerDialog.hide()
+                    $timeout(() ->
+                        window.plugins.spinnerDialog.hide()
+                    )
 
         generateModel = (scope, templateId, onSuccess) ->
             $ionicModal.fromTemplateUrl(templateId, onSuccess,

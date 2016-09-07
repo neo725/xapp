@@ -1,4 +1,4 @@
-module.exports = ['$ionicPlatform', ($ionicPlatform) ->
+module.exports = ['$ionicPlatform', '$timeout', ($ionicPlatform, $timeout) ->
     $ionicPlatform.ready () ->
         if window.cordova and window.cordova.plugins.Keyboard
 # Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -22,5 +22,9 @@ module.exports = ['$ionicPlatform', ($ionicPlatform) ->
             window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0
             window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0
 
+        if navigator.splashscreen
+            $timeout(() ->
+                navigator.splashscreen.hide()
+            , 100)
         return
 ]

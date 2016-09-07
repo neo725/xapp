@@ -1,0 +1,119 @@
+.course-info {
+    .course-info-content {
+        // header image
+        .header-image-container {
+            height: 140px;
+
+            .header-image {
+                height: 100%;
+                width:100%;
+                background-position: center;
+                background-size: cover;
+            }
+        }
+
+        // course-info
+        .course-info {
+            .prod-id {
+                color: $dark;
+                background-color: $stable;
+                padding: 2px 5px 2px 5px;
+                display: inline-table;
+            }
+
+            .title {
+                color: $light-gray-color;
+                font-weight: bold;
+            }
+            .course-detail {
+
+                .col {
+                    padding: 0;
+                }
+
+                .class-time {
+                    padding: 0;
+
+                    .col {
+                        padding: 0;
+
+                        .badge {
+                            margin-top: 10px;
+                        }
+                    }
+                }
+
+                .no-padding {
+                    &.row {
+                        padding: 0;
+
+                        .col {
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+
+            .card-container {
+                background-color: $stable;
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+        }
+    }
+
+    .footer {
+        height: 60px;
+        padding: 0;
+
+        .price-help {
+            background-color: $assertive;
+            color: $light;
+            font-size: 11px;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin: 5px;
+            margin-top: 10px;
+        }
+        h1.title {
+            margin-left: -5px;
+            margin-top: 8px;
+        }
+        .price-prefix {
+            font-size: 11px;
+        }
+        .price {
+            font-size: 28px;
+        }
+        .add-favorite {
+            width: 50px;
+            padding: 8px;
+            padding-top: 12px;
+            margin-right: 5px;
+
+            img {
+                width: 36px;
+            }
+        }
+        .add-cart {
+            width: 100px;
+            background-color: $positive;
+            color: $light;
+            padding-top: 6px;
+
+            img {
+                width: 30px;
+            }
+            .text {
+                font-size: $text-size-small;
+            }
+        }
+
+        &.bar .title + .buttons {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}

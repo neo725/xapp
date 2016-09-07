@@ -1,6 +1,6 @@
 module.exports = [
-    '$scope', '$stateParams', '$log', '$cordovaToast', '$timeout', 'navigation', 'modal', 'api'
-    ($scope, $stateParams, $log, $cordovaToast, $timeout, navigation, modal, api) ->
+    '$scope', '$stateParams', '$log', '$window', '$cordovaToast', '$timeout', 'navigation', 'modal', 'api'
+    ($scope, $stateParams, $log, $window, $cordovaToast, $timeout, navigation, modal, api) ->
         loadTimes = 0
         $scope.noMoreItemsAvailable = false
 
@@ -12,8 +12,12 @@ module.exports = [
 
         $scope.keywordFocus = () ->
 
+        $scope.switchToCourseInfo = (prod_id) ->
+            navigation.slide 'home.course.info', {prod_id: prod_id}, 'left'
+
         $scope.loadMore = () ->
-            $cordovaToast.show('load more', 'long', 'top')
+#            if $window.plugins
+#                $cordovaToast.show('load more', 'long', 'top')
             loadTimes += 1
             if loadTimes == 3
                 $scope.noMoreItemsAvailable = true;

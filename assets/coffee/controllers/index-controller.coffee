@@ -50,18 +50,16 @@ module.exports = [
                 (token) ->
                     $log.info token
                     onSuccess = (response) ->
-                        $log.info response
-                    onError = () ->
-                        $cordovaToast.show('token register error', 'long', 'top')
+                        $cordovaToast.show('Notification token registered', 'long', 'top')
+                    onError = (error) ->
+                        $cordovaToast.show('Error Registering  notification token', 'long', 'top')
+                        $log.info error
                     api.registerToken(token, onSuccess, onError)
                 , ((err) ->)
             )
             FCMPlugin.onNotification(
                 (data) ->
-                    if data.wasTapped
-                        $log.info 'tapped : ' + data
-                    else
-                        $log.info '2 :' + data
+                    $cordovaToast.show('You got new notification', 'long', 'top')
 
                     $cordovaBadge.set 10
 
@@ -75,7 +73,7 @@ module.exports = [
 #            , (err) ->
 #                $log.info 'no permission'
 #            )
-            $cordovaToast.show('Here is a message', 'long', 'top')
+            #$cordovaToast.show('Here is a message', 'long', 'top')
         )
 
 #        $rootScope.$on('network.none', ->

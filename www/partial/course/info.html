@@ -1,0 +1,113 @@
+<ion-view class="course-info" ng-controller="CourseInfoController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <h1 class="title">{{course.title}}</h1>
+    </ion-nav-title>
+    <ion-content class="course-info-content" padding="false">
+        <div class="header-image-container">
+            <div class="header-image"  ng-style="{'background-image': 'url(' + course.header_image + ')', 'height': '100%'}"></div>
+        </div>
+        <div class="course-info">
+            <div class="row">
+                <div class="col">
+                    <span class="prod-id">8M08_A4090</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="title">{{course.title}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row course-detail text-align-center">
+                        <div class="col border-right">
+                            <div class="text-gray">上課地點</div>
+                            <div class="badge badge-positive badge-m-size">建國</div>
+                        </div>
+                        <div class="col border-right">
+                            <div class="text-gray">上課時數</div>
+                            <div class="text-positive text-l-size text-padding-top-m">36</div>
+                        </div>
+                        <div class="col border-right">
+                            <div class="text-gray">上課時段</div>
+                            <div class="row text-item class-time">
+                                <div class="col">
+                                    <!--<ion-badge item-center></ion-badge>-->
+                                    <span class="badge badge-positive badge-s-size">六</span>
+                                </div>
+                                <div class="col class-time-range">
+                                    <div class="text-positive">
+                                        <div>19:00</div>
+                                        <div>|</div>
+                                        <div>22:00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-gray">起訖日期</div>
+                            <div class="row no-padding">
+                                <div class="col">
+                                    <div class="text-positive">
+                                        <div>2016/04/18</div>
+                                        <div>|</div>
+                                        <div>2016/04/18</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container shadow-inline-top">
+                <div class="card">
+                    <div class="item item-text-wrap">
+                        <div class="title">This is a basic Card which contains an item that has wrapping text.</div>
+                        <div class="text-m-size">This is a basic Card which contains an item that has wrapping text.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="item item-text-wrap">
+                        <div class="title">This is a basic Card which contains an item that has wrapping text.</div>
+                        <div class="text-m-size">This is a basic Card which contains an item that has wrapping text.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="item item-text-wrap">
+                        <div class="title">This is a basic Card which contains an item that has wrapping text.</div>
+                        <div class="text-m-size">This is a basic Card which contains an item that has wrapping text.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="item item-text-wrap">
+                        <div class="title">This is a basic Card which contains an item that has wrapping text.</div>
+                        <div class="text-m-size">This is a basic Card which contains an item that has wrapping text.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="footer bar-light shadow-outline-top">
+        <div class="price-help-container">
+            <div class="price-help">最惠價<br />說　明</div>
+        </div>
+        <h1 class="title">
+            <span class="price-prefix">NT</span>
+            <span class="price">$1,814</span>
+        </h1>
+        <div class="buttons text-align-center">
+            <div class="add-favorite"><img ng-src="img/{{favorite_icon}}"></div>
+            <div class="add-cart">
+                <div class="object">
+                    <img src="img/shoppingcar@2x.png">
+                </div>
+                <div class="object">
+                    <div class="text">放入購物車</div>
+                </div>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
