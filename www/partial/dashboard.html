@@ -5,7 +5,8 @@
         <button class="button button-icon icon ion-android-cart"></button>
     </ion-nav-buttons>
     <ion-content class="has-header" padding="false" ng-class="{'pane-content': true}">
-        <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController" ng-show="true || studyCardVisible">
+        <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController"
+             ng-show="studyCardVisible" x-ng-show="true || studyCardVisible">
             <ion-slide-box does-continue="true">
                 <ion-slide>
                     <div class="box">

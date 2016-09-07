@@ -99,7 +99,7 @@
 
     .search-slides {
         .slider {
-            height: 373px;
+            height: 420px;
 
             .cover {
                 height: 100%;
@@ -114,7 +114,7 @@
 
                 p {
                     color: $white-color;
-                    height: 40px;
+                    height: 30px;
                 }
 
                 .search-header-container {
@@ -192,9 +192,8 @@
                     > .row {
                         color: #fff;
                         width: 94%;
-                        margin: 0 auto;
                         border-top: 1px solid #fff;
-                        margin-top: 10px;
+                        margin: 2px auto 0;
                     }
                     .badge {
                         position: absolute;
@@ -239,8 +238,8 @@
     .icon-tabs-bar {
         position: static;
         padding-top: 10px;
-        margin-bottom: 0;
-        height: 65px;
+        padding-bottom: 10px;
+        height: 75px;
 
         .tab-item {
             img {
