@@ -23,8 +23,10 @@ exports.apiInterceptor = ['$rootScope', '$log', '$q', ($rootScope, $log, $q) ->
 #                canceler.resolve('network.none')
 #                $rootScope.$broadcast('network.none')
 
-        token = window.localStorage.getItem('token')
-        if token != null
-            config.headers['token'] = token
-        config || $q.when(config)
+            token = window.localStorage.getItem('token')
+            if token != null
+                config.headers['token'] = token
+            config || $q.when(config)
+
+        return config
 ]

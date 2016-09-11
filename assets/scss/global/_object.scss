@@ -42,3 +42,22 @@
 .border-top {
     border-top: 1px solid $border-color;
 }
+
+// Object : shopping-cart
+// --------------------------------------------------
+.bar button.button-icon-cart {
+    padding-right: 10px;
+}
+.cart-badge-container {
+    position: absolute;
+    z-index: 99;
+    right: 0;
+
+    .cart-badge {
+        border-radius: 20px !important;
+        height: 20px !important;
+        padding-top: 3px !important;
+        font-size: 14px;
+        font-weight: normal;
+    }
+}

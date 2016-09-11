@@ -2,12 +2,18 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
     </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-android-cart button-icon-cart"></button>
+        <div class="cart-badge-container">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{cart.length}}</div>
+        </div>
+    </ion-nav-buttons>
     <ion-nav-title>
-        <h1 class="title">{{course.title}}</h1>
+        <h1 class="title">{{course.Prod_Name}}</h1>
     </ion-nav-title>
     <ion-content class="course-info-content" padding="false">
         <div class="header-image-container">
-            <div class="header-image"  ng-style="{'background-image': 'url(' + course.header_image + ')', 'height': '100%'}"></div>
+            <div class="header-image"  ng-style="{'background-image': 'url(' + course.Prod_ImgUrl + ')', 'height': '100%'}"></div>
         </div>
         <div class="course-info">
             <div class="row">
@@ -17,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h4 class="title">{{course.title}}</h4>
+                    <h4 class="title">{{course.Prod_Name}}</h4>
                 </div>
             </div>
             <div class="row">
@@ -99,10 +105,10 @@
             <span class="price">$1,814</span>
         </h1>
         <div class="buttons text-align-center">
-            <div class="add-favorite"><img ng-src="img/{{favorite_icon}}"></div>
-            <div class="add-cart">
+            <div class="add-favorite"><img ng-src="img/{{favorite_icon}}" ng-click="addOrRemoveFromWish(course)"></div>
+            <div class="add-cart" ng-click="addToCart(course)">
                 <div class="object">
-                    <img src="img/shoppingcar@2x.png">
+                    <img src="img/cart-add@2x.png">
                 </div>
                 <div class="object">
                     <div class="text">放入購物車</div>

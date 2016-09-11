@@ -1,0 +1,43 @@
+.course-catelogs {
+    .course-catelogs-content {
+        .notice-block {
+            //border: $dark-blue-color 1px solid;
+            background-color: $blue-color;
+            padding: 5px 10px;
+            margin: 20px;
+            margin-bottom: 0;
+            color: $positive;
+            border-radius: 5px;
+            line-height: 30px;
+        }
+        .list {
+            > .item {
+                white-space: initial;
+            }
+            .item {
+                border: none;
+
+                .item.item-toggle {
+                    font-size: 18px;
+                    border: none;
+                }
+                .title {
+                    margin-left: 15px;
+                    font-size: 15px;
+                    width: 240px;
+                    word-break: normal;
+
+                    .sub-item {
+
+                        &:after {
+                            content: ', '
+                        }
+                        &:last-child:after {
+                            content: ''
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

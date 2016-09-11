@@ -27,5 +27,9 @@ module.exports = ->
         'no_network': '网络尚未就绪或未知的网络类型'
         'loading_cover': '封面故事資料載入中...'
         'searching': '搜索中...'
+        'favorite_added': '已經將課程加入考慮清單'
+        'favorite_removed': '已經將課程從考慮清單中移除'
+        'already_exists_in_cart': '課程已經在購物車中'
+        'course_add_to_cart_success': '課程加入購物車完成'
     }
     'logging': '登录中...'

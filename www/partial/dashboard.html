@@ -1,9 +1,16 @@
 <ion-view class="dashboard" ng-controller="DashboardController">
-    <ion-nav-buttons side="center">
+    <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-person" ng-click="goMemberDashboard()"></button>
-        <h1 class="title">大學聯網</h1>
-        <button class="button button-icon icon ion-android-cart"></button>
     </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-android-cart"></button>
+        <div class="cart-badge-container">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{cart.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <h1 class="title">大學聯網</h1>
+    </ion-nav-title>
     <ion-content class="has-header" padding="false" ng-class="{'pane-content': true}">
         <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController"
              ng-show="studyCardVisible" x-ng-show="true || studyCardVisible">
@@ -171,7 +178,7 @@
             </ion-slide-box>
         </div>
         <div class="tabs tabs-light tabs-icon-top icon-tabs-bar">
-            <a class="tab-item">
+            <a class="tab-item" ng-click="goCatelogs()">
                 <img src="img/class@2x.png" /> 課程分類
             </a>
             <a class="tab-item">

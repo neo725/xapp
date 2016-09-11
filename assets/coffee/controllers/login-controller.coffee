@@ -30,6 +30,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
                 window.localStorage.setItem('is_guest', false)
                 resetLoginButton()
                 navigation.flip 'home.dashboard', {}, 'left'
+                $rootScope.callFCMGetToken()
 
             onError = (response) ->
                 modal.hideLoading()
@@ -41,7 +42,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
 #                            template: translation['errors.login_failed'],
 #                            okText: translation['popup.ok']
 #                        })
-#
+#                       # TODO: move navigator.notification to plugins.notification
                         if navigator.notification
                             navigator.notification.alert(
                                 translation['errors.login_failed'],
@@ -69,6 +70,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
                 window.localStorage.setItem('is_guest', true)
                 resetLoginButton()
                 navigation.flip 'home.dashboard', {}, 'left'
+                $rootScope.callFCMGetToken()
 
             onError = (response) ->
                 modal.hideLoading()

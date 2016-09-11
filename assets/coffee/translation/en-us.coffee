@@ -27,5 +27,9 @@ module.exports = ->
         'no_network': 'Network not ready or unknown'
         'loading_cover': 'loading cover data...'
         'searching': 'Searching...'
+        'favorite_added': 'Favorite added'
+        'favorite_removed': 'Favorite removed'
+        'already_exists_in_cart': 'Course already in your shopping cart'
+        'course_add_to_cart_success': 'Course add to cart success'
     }
     'logging': 'Logging...'

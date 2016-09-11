@@ -30,6 +30,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 .controller('MemberDashboardController', require('./controllers/member-dashboard-controller'))
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
 .controller('CourseInfoController', require('./controllers/course-info-controller'))
+.controller('CourseCatelogsController', require('./controllers/course-catelogs-controller'))
 .config(['$httpProvider', ($httpProvider) ->
     $httpProvider.defaults.useXDomain = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
@@ -105,10 +106,18 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
         }
 
     .state 'home.course.info',
-        url: '/info/:prod_id'
+        url: '/info/:shop_id/:prod_id'
         views: {
             'courseContent': {
                 templateUrl: 'partial/course/info.html'
+            }
+        }
+
+    .state 'home.course.catelogs',
+        url: '/catelogs'
+        views: {
+            'courseContent': {
+                templateUrl: 'partial/course/catelogs.html'
             }
         }
 
@@ -136,4 +145,4 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
     for language of resources
         $translateProvider.translations(language, resources[language])
 )
-.run(require('./common/platformReady'))
+.run(require('./common/platform-ready'))

@@ -7,12 +7,12 @@ module.exports = ['$http', ($http) ->
             .success(onSuccess)
             .error(onError)
 
-        registerToken: (token, onSuccess, onError) ->
-            data = {
-                'deviceName': 'android',
+        registerToken: (uuid, token, onSuccess, onError) ->
+            data =
+                'deviceName': uuid,
                 'deviceToken': token,
                 'deviceType': 'android'
-            }
+
             $http.post('/api/device', data)
             .success(onSuccess)
             .error(onError)
@@ -38,6 +38,55 @@ module.exports = ['$http', ($http) ->
             .success(onSuccess)
             .error(onError)
 
+        addToWish: (shop_id, prod_id, onSuccess, onError) ->
+            data =
+                'shopid': shop_id
+                'courseList': prod_id
+            $http.post('/api/cart/wish', data)
+                .success(onSuccess)
+                .error(onError)
+
+        addToCart: (shop_id, prod_id, onSuccess, onError) ->
+            data =
+                'shopid': shop_id
+                'courseList': prod_id
+            $http.post('/api/cart/shop', data)
+                .success(onSuccess)
+                .error(onError)
+
+        removeFromWish: (shop_id, prod_id, onSuccess, onError) ->
+            data =
+                'shopid': shop_id
+                'courseList': prod_id
+            $http({
+                'url': '/api/cart/wish'
+                'method': 'DELETE'
+                'data': data
+                'headers':
+                    'Content-Type': 'application/json;charset=utf-8'
+            }).then(onSuccess, onError)
+
+        removeFromCart: (shop_id, prod_id, onSuccess, onError) ->
+            data =
+                'shopid': shop_id
+                'courseList': prod_id
+            $http({
+                'url': '/api/cart/shop'
+                'method': 'DELETE'
+                'data': data
+                'headers':
+                    'Content-Type': 'application/json;charset=utf-8'
+            }).then(onSuccess, onError)
+
+        getCourse: (shop_id, prod_id, onSuccess, onError) ->
+            $http.get("/api/courses/#{prod_id}?shopid=#{shop_id}")
+                .success(onSuccess)
+                .error(onError)
+
+        getAllCatelogs: (shop_id, onSuccess, onError) ->
+            $http.get("/api/catalogs/all?shopid=#{shop_id}")
+                .success(onSuccess)
+                .error(onError)
     }
 
 ]

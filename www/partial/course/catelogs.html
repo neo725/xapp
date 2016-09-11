@@ -1,0 +1,30 @@
+<ion-view class="course-catelogs" ng-controller="CourseCatelogsController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-down" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear"> 儲存設定</button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <h1 class="title">課程分類</h1>
+    </ion-nav-title>
+    <ion-content class="course-catelogs-content">
+        <div class="notice-block">
+            您可以勾選你有興趣的分類
+        </div>
+        <ion-list>
+            <ion-item class="item" ng-repeat="catelog in catelogs">
+                <div class="item item-toggle toggle-small"
+                     toggle-class="toggle-positive">
+                    <div><span>{{catelog.Cata_Name}}</span></div>
+                    <label class="toggle toggle-positive disable-user-behavior">
+                        <input type="checkbox"><div class="track"><div class="handle"></div></div>
+                    </label>
+                </div>
+                <div class="title">
+                    <span class="sub-item" ng-repeat="subitem in catelog.subCataList">{{subitem.Cata_Name}}</span>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
