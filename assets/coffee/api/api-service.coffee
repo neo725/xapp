@@ -14,29 +14,29 @@ module.exports = ['$http', ($http) ->
                 'deviceType': 'android'
 
             $http.post('/api/device', data)
-            .success(onSuccess)
-            .error(onError)
+                .success(onSuccess)
+                .error(onError)
 
         logout: (token, onSuccess, onError) ->
             $http.delete("/api/tokens/#{token}")
-            .success(onSuccess)
-            .error(onError)
+                .success(onSuccess)
+                .error(onError)
 
         getStudyCards: (onSuccess, onError) ->
             $http.get('/api/studyCards')
-            .success(onSuccess)
-            .error(onError)
+                .success(onSuccess)
+                .error(onError)
 
         getCover: (onSuccess, onError) ->
             $http.get('/api/cover')
-            .success(onSuccess)
-            .error(onError)
+                .success(onSuccess)
+                .error(onError)
 
         searchCourse: (data, onSuccess, onError) ->
             qs = jQuery.param(data)
             $http.get("/api/courses/search?#{qs}")
-            .success(onSuccess)
-            .error(onError)
+                .success(onSuccess)
+                .error(onError)
 
         addToWish: (shop_id, prod_id, onSuccess, onError) ->
             data =
