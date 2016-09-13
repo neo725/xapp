@@ -5,6 +5,6 @@ module.exports = ['$scope', 'modal', 'navigation', 'api', ($scope, modal, naviga
     $scope.goMemberDashboard = ->
         navigation.slide 'home.member.dashboard', {}, 'left'
 
-    $scope.goCatelogs = ->
-        navigation.slide 'home.course.catelogs', {}, 'up'
+    $scope.goCatalogs = ->
+        navigation.slide 'home.course.catalogs', {}, 'up'
 ]

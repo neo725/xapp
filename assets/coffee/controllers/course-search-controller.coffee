@@ -1,14 +1,39 @@
 module.exports = [
-    '$scope', '$stateParams', '$log', '$timeout', '$translate', 'plugins', 'navigation', 'modal', 'api'
-    ($scope, $stateParams, $log, $timeout, $translate, plugins, navigation, modal, api) ->
+    '$rootScope', '$scope', '$stateParams', '$log', '$timeout', '$interpolate', '$translate', '$ionicHistory', 'plugins', 'navigation', 'modal', 'api'
+    ($rootScope, $scope, $stateParams, $log, $timeout, $interpolate, $translate, $ionicHistory, plugins, navigation, modal, api) ->
         loadTimes = 0
         $scope.noMoreItemsAvailable = false
-
         $scope.keyword = $stateParams.keyword
 
+        backView = $ionicHistory.backView()
+        stateName = null
+
+        if backView
+            stateName = backView.stateName
+
+        if stateName == 'home.dashboard'
+            $scope.noMoreItemsAvailable = false
+
+            $translate(['title.search_course', 'input.input_keyword']).then (translation) ->
+                $scope.pageTitle = translation['title.search_course']
+                $scope.placeholderKeyword = translation['input.input_keyword']
+
+        if stateName == 'home.course.catalogs'
+            $scope.noMoreItemsAvailable = true
+
+            catalog = $rootScope.container.catalog
+            params =
+                catalog_name: catalog.catalog_name
+                catalog_id: catalog.catalog_id
+            $translate(['title.search_course_in_catalogs', 'input.input_keyword_in_catalogs'], params).then (translation) ->
+                $scope.pageTitle = translation['title.search_course_in_catalogs']
+                $scope.placeholderKeyword = translation['input.input_keyword_in_catalogs']
 
         $scope.goBack = () ->
-            navigation.slide 'home.dashboard', {}, 'right'
+            if backView
+                navigation.slide backView.stateName, {}, 'right'
+            else
+                navigation.slide 'home.dashboard', {}, 'right'
 
         $scope.keywordFocus = () ->
 
@@ -72,27 +97,45 @@ module.exports = [
 
             onError = () ->
                 hideLoading()
-                modal.showMessage '', 'message.error'
+                modal.showMessage '', 'errors.request_failed'
 
-            weekdays = _.join(JSON.parse(window.localStorage.getItem('weekdays'), ','))
-            locations = _.join(JSON.parse(window.localStorage.getItem('locations'), ','))
+            backView = $ionicHistory.backView()
+            data = {}
 
-            data =
-                'perpage': 20
-                'query': keyword
-                'wday': weekdays
-                'loc': locations
+            if not backView
+                navigation.slide 'home.dashboard', {}, 'right'
+
+            if backView.stateName == 'home.dashboard'
+                weekdays = _.join(JSON.parse(window.localStorage.getItem('weekdays'), ','))
+                locations = _.join(JSON.parse(window.localStorage.getItem('locations'), ','))
+
+                data =
+                    'perpage': 20
+                    'query': keyword
+                    'wday': weekdays
+                    'loc': locations
+
+            if backView.stateName == 'home.course.catalogs'
+                catalog = $rootScope.container.catalog
+                data =
+                    'perpage': 20
+                    'query': keyword
+                    'cate': catalog.catalog_id
 
             modal.showLoading '', 'message.searching'
             api.searchCourse(data, onSuccess, onError)
 
-        $scope.goSearch($stateParams.keyword)
+        if $stateParams.keyword
+            $scope.goSearch($stateParams.keyword)
 
         $scope.$on('$ionicView.enter', ->
             $log.info '$ionicView.enter'
-            data = window.localStorage.getItem('favorite_changed')
-            if data
-                data = JSON.parse(data)
+            #data = window.localStorage.getItem('favorite_changed')
+
+            #if data
+                #data = JSON.parse(data)
+            if $rootScope.container.favorite_changed
+                data = $rootScope.container.favorite_changed
 
                 $.each($scope.courses, (index, item) ->
                     if item.Prod_Id == data.prod_id
@@ -102,6 +145,7 @@ module.exports = [
                         else
                             item.keep_image_name = 'heart-outline@2x.png'
                 )
-                window.localStorage.removeItem('favorite_changed')
+                #window.localStorage.removeItem('favorite_changed')
+                delete $rootScope.container['favorite_changed']
         )
 ]

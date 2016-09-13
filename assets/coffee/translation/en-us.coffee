@@ -5,6 +5,8 @@ module.exports = ->
         'login': 'Login'
         'pass': '略過'
         'pass_login': '略過登入'
+        'input_keyword': '請搜尋關鍵字'
+        'input_keyword_in_catalogs': '在 {{ catalog_name }} 中搜尋課程，請輸入關鍵字'
     }
     'text': {
         'or': 'or'
@@ -20,8 +22,10 @@ module.exports = ->
         'not_keep': 'Not Keep'
     }
     'message': {
+        'logging': '登录中...'
         'test_title': 'test title'
         'test_message': 'test message'
+        'data_loading': 'Data loading...'
         'success': 'Data loading success'
         'error': 'Data loading error'
         'no_network': 'Network not ready or unknown'
@@ -32,4 +36,7 @@ module.exports = ->
         'already_exists_in_cart': 'Course already in your shopping cart'
         'course_add_to_cart_success': 'Course add to cart success'
     }
-    'logging': 'Logging...'
+    'title': {
+        'searchCourse': '搜尋結果'
+        'searchCourseInCatalogs': '搜尋課程'
+    }

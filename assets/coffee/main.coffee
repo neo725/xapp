@@ -1,6 +1,8 @@
 require('angular')
 require('ionic')
 require('angular-translate')
+require('ionic-native-transitions')
+require('angular-svg-round-progressbar')
 
 
 resources = require('./translation/index')()
@@ -11,7 +13,7 @@ directives = require('./common/directives')
 # ngCordova install and setup
 # http://ngcordova.com/docs/install/
 
-angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
+angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-native-transitions', 'angular-svg-round-progressbar'])
 .service('navigation', require('./common/navigation-service'))
 .factory('modal', require('./common/modal'))
 .factory('plugins', require('./common/plugins'))
@@ -30,7 +32,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 .controller('MemberDashboardController', require('./controllers/member-dashboard-controller'))
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
 .controller('CourseInfoController', require('./controllers/course-info-controller'))
-.controller('CourseCatelogsController', require('./controllers/course-catelogs-controller'))
+.controller('CourseCatalogsController', require('./controllers/course-catalogs-controller'))
 .config(['$httpProvider', ($httpProvider) ->
     $httpProvider.defaults.useXDomain = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
@@ -40,7 +42,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
 
     $httpProvider.interceptors.push(httpInterceptors.apiInterceptor)
 ])
-.config(($stateProvider, $urlRouterProvider, $ionicConfigProvider) ->
+.config(($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicNativeTransitionsProvider) ->
     ## http://ionicframework.com/docs/api/provider/$ionicConfigProvider/
     ## views.transition(transition)
     ## transition :
@@ -113,11 +115,11 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
             }
         }
 
-    .state 'home.course.catelogs',
-        url: '/catelogs'
+    .state 'home.course.catalogs',
+        url: '/catalogs'
         views: {
             'courseContent': {
-                templateUrl: 'partial/course/catelogs.html'
+                templateUrl: 'partial/course/catalogs.html'
             }
         }
 
@@ -138,6 +140,8 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate'])
                 templateUrl: 'partial/member/dashboard.html'
             }
         }
+
+    $ionicNativeTransitionsProvider.enable true
 
     $urlRouterProvider.otherwise "/login"
 )

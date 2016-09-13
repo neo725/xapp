@@ -1,0 +1,10 @@
+.list {
+    margin-top: 10px;
+    .item {
+        &.activated {
+            .item {
+                background-color: inherit;
+            }
+        }
+    }
+}

@@ -1,8 +1,9 @@
-.course-catelogs {
-    .course-catelogs-content {
+.course-catalogs {
+
+    .course-catalogs-content {
         .notice-block {
             //border: $dark-blue-color 1px solid;
-            background-color: $blue-color;
+            background-color: $light-blue-color;
             padding: 5px 10px;
             margin: 20px;
             margin-bottom: 0;
@@ -30,7 +31,7 @@
                     .sub-item {
 
                         &:after {
-                            content: ', '
+                            content: '．'
                         }
                         &:last-child:after {
                             content: ''

@@ -45,6 +45,10 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                     path: 'www/lib/ionic/js/ionic.bundle.js',
                     exports: 'ionic'
                 },
+                'ionic-native-transitions': {
+                    path: 'node_modules/ionic-native-transitions/dist/ionic-native-transitions.js',
+                    exports: null
+                },
                 'lodash': {
                     path: 'www/lib/lodash/dist/lodash.min.js',
                     exports: '_'
@@ -52,6 +56,13 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                 'moment': {
                     path: 'www/lib/moment/min/moment-with-locales.js',
                     exports: 'moment'
+                },
+                'angular-svg-round-progressbar': {
+                    path: 'www/lib/angular-svg-round-progressbar/build/roundProgress.js',
+                    exports: null,
+                    depends: {
+                        angular: 'angular'
+                    }
                 }
             }
         }))
@@ -64,7 +75,7 @@ gulp.task('appjs', ['coffeeifyjs'], function () {
         .pipe(browserify({
             insertGlobals: false,
             debug: debug,
-            external: ['jquery', 'angular', 'angular-translate', 'ionic', 'lodash', 'moment']
+            external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'lodash', 'moment', 'angular-svg-round-progressbar']
         }))
         .pipe(gif(!debug, uglify()))
         .pipe(gulp.dest('www/js'));

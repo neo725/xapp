@@ -1,3 +1,4 @@
+constants = require('../common/constants')
 
 module.exports = [
     '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$log', 'api', 'modal', 'navigation',
@@ -23,7 +24,7 @@ module.exports = [
         $scope.getWeekday = () ->
             weekdays = JSON.parse(window.localStorage.getItem('weekdays')) || []
             if weekdays.length == 0
-                weekdays = ['一', '二', '三', '四', '五', '六', '日']
+                weekdays = constants.WEEKDAYS
             window.localStorage.setItem('weekdays', JSON.stringify(weekdays))
             weekdays = JSON.parse(window.localStorage.getItem('weekdays'))
             $scope.weekday = _.join(weekdays, '，')
@@ -33,7 +34,7 @@ module.exports = [
         $scope.getLocation = () ->
             locations = JSON.parse(window.localStorage.getItem('locations')) || []
             if locations.length == 0
-                locations = ['建國', '忠孝', '延平', '大安', '台中', '高雄']
+                locations = constants.LOCATIONS
             window.localStorage.setItem('locations', JSON.stringify(locations))
             locations = JSON.parse(window.localStorage.getItem('locations'))
             $scope.location = _.join(locations, '，')

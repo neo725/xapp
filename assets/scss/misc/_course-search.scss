@@ -5,6 +5,8 @@
 
     }
     .list {
+        margin-top: 0;
+
         .item {
             background-color: $positive;
 
@@ -38,10 +40,11 @@
                     background-color: $light;
                     text-align: center;
                     font-size: $text-size-small;
-                    border-radius: 25px;
+                    border-radius: 30px;
                     line-height: 14px;
                     border: 2px solid $light-gray-color;
-                    height: 50px;
+                    height: 55px;
+                    padding-top: 2px;
 
                     div {
                         margin-top: 2px;
@@ -63,7 +66,7 @@
                     color: $light;
                     padding: 3px;
                     margin-top: 3px;
-                    margin-left: 8px;
+                    margin-left: 12px;
                     display: inline-block;
                 }
                 .course-price {

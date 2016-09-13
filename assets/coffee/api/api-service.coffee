@@ -83,7 +83,7 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        getAllCatelogs: (shop_id, onSuccess, onError) ->
+        getAllCatalogs: (shop_id, onSuccess, onError) ->
             $http.get("/api/catalogs/all?shopid=#{shop_id}")
                 .success(onSuccess)
                 .error(onError)

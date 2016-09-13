@@ -1,4 +1,4 @@
-<ion-view class="course-catelogs" ng-controller="CourseCatelogsController">
+<ion-view class="course-catalogs" ng-controller="CourseCatalogsController">
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-down" ng-click="goBack()"></button>
     </ion-nav-buttons>
@@ -8,21 +8,21 @@
     <ion-nav-title>
         <h1 class="title">課程分類</h1>
     </ion-nav-title>
-    <ion-content class="course-catelogs-content">
+    <ion-content class="course-catalogs-content">
         <div class="notice-block">
-            您可以勾選你有興趣的分類
+            您可以勾選有興趣的分類，或點選一個分類項目進行指定分類的課程搜尋
         </div>
         <ion-list>
-            <ion-item class="item" ng-repeat="catelog in catelogs">
+            <ion-item class="item" ng-repeat="catalog in catalogs" ng-click="goCatalogsSearch(catalog)">
                 <div class="item item-toggle toggle-small"
                      toggle-class="toggle-positive">
-                    <div><span>{{catelog.Cata_Name}}</span></div>
-                    <label class="toggle toggle-positive disable-user-behavior">
+                    <div><span>{{catalog.Cata_Name}}</span></div>
+                    <label class="toggle toggle-positive disable-user-behavior" ng-click="stopPropagation($event)">
                         <input type="checkbox"><div class="track"><div class="handle"></div></div>
                     </label>
                 </div>
                 <div class="title">
-                    <span class="sub-item" ng-repeat="subitem in catelog.subCataList">{{subitem.Cata_Name}}</span>
+                    <span class="sub-item" ng-repeat="subitem in catalog.subCataList">{{subitem.Cata_Name}}</span>
                 </div>
             </ion-item>
         </ion-list>

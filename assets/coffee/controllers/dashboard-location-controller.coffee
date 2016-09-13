@@ -65,6 +65,7 @@ module.exports = ['$scope', '$log', ($scope, $log) ->
         if $scope.locations.loc6
             locations.push def_locations[5]
 
+        # TODO : move locations from localStorage to $rootScope
         window.localStorage.setItem('locations', JSON.stringify(locations))
         $scope.$emit('locationConfirm')
         $scope.modalLocation.hide()

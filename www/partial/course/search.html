@@ -9,13 +9,13 @@
         </div>
     </ion-nav-buttons>
     <ion-nav-title>
-        <h1 class="title">搜尋結果</h1>
+        <h1 class="title">{{ pageTitle }}</h1>
     </ion-nav-title>
     <ion-content class="has-header" padding="false" ng-class="{'pane-content': true}">
         <div class="list">
             <div class="item item-input-inset">
                 <label class="item-input-wrapper">
-                    <input type="text" placeholder="搜尋關鍵字" class="item-input-keyword" ng-model="keyword">
+                    <input type="text" placeholder="{{ placeholderKeyword }}" class="item-input-keyword" ng-model="keyword">
                 </label>
                 <button class="button button-small button-clear button-search" ng-click="goSearch(keyword)">
                     搜尋

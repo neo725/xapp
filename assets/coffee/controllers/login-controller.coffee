@@ -51,7 +51,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
                                 translation['pop.ok']
                             )
 
-            $translate('logging').then (text) ->
+            $translate('message.logging').then (text) ->
                 $('#login-button').text(text)
 
             $scope.logging = true
@@ -85,7 +85,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
                                 translation['pop.ok']
                             )
 
-            $translate('logging').then (text) ->
+            $translate('message.logging').then (text) ->
                 $('#pass-button').text(text)
 
             $scope.logging = true
