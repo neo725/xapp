@@ -4,8 +4,8 @@ constants = require('../common/constants')
 # http://ngcordova.com/docs/plugins/globalization/
 
 module.exports = [
-    '$rootScope', '$state', '$translate', '$log', '$ionicNativeTransitions', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'modal', 'api'
-    ($rootScope, $state, $translate, $log, $ionicNativeTransitions, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, modal, api) ->
+    '$rootScope', '$translate', '$log', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'navigation', 'modal', 'api'
+    ($rootScope, $translate, $log, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, navigation, modal, api) ->
         $rootScope.container = {}
 
         $translate.use constants.DEFAULT_LOCALE
@@ -27,23 +27,16 @@ module.exports = [
             )
 
         checkDefaultState = () ->
-            $log.info 'checkDefaultState'
+            $log.info 'index-controller -> checkDefaultState'
             #window.localStorage.removeItem("token")
             token = window.localStorage.getItem('token')
 
             if token == null or token == "null"
-                #$state.go 'login'
-                $ionicNativeTransitions.stateGo 'login', {}, {},
-                        "type": "flip",
-                        "direction": "left", # 'left|right|up|down', default 'left' (which is like 'next')
-                    "duration": 1500, # in milliseconds (ms), default 400
+                navigation.flip 'login', {}, 'left'
             else
                 $rootScope.callFCMGetToken()
-                #$state.go 'home.dashboard'
-                $ionicNativeTransitions.stateGo 'home.dashboard', {}, {},
-                    "type": "flip",
-                    "direction": "left", # 'left|right|up|down', default 'left' (which is like 'next')
-                    "duration": 1500, # in milliseconds (ms), default 400
+
+                navigation.flip 'home.dashboard', {}, 'left'
 
         $ionicPlatform.ready(->
 
@@ -83,8 +76,6 @@ module.exports = [
                 , (err) ->
                     $log.info 'Error registering onNotification callback: ' + err
             )
-
-            #$cordovaToast.show('Here is a message', 'long', 'top')
         )
 
 #        $rootScope.$on('network.none', ->

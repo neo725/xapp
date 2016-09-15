@@ -41,7 +41,6 @@ module.exports = [
                 api.removeFromWish course.Shop_Id, course.Prod_Id, onSuccess, onError
 
         $scope.addToCart = (course) ->
-            $log.info 'addToCart'
             onSuccess = ->
                 cart = $rootScope.cart || []
                 cart.push course

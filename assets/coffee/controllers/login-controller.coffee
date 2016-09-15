@@ -1,5 +1,5 @@
-module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopup', '$translate', '$state', '$log', 'modal', 'api', 'navigation'
-    ($rootScope, $scope, $timeout, $ionicModal, $ionicPopup, $translate, $state, $log, modal, api, navigation) ->
+module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate', '$state', '$log', 'modal', 'api', 'navigation'
+    ($rootScope, $scope, $timeout, $ionicModal, $translate, $state, $log, modal, api, navigation) ->
         # dev mode
         $scope.user = {
             account: 'thchang@sce.pccu.edu.tw',
@@ -10,11 +10,11 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
         if $rootScope.modalFunction
             $rootScope.modalFunction.hide()
 
-        clearField = (field) ->
-            $scope.user[field] = ''
-            $timeout(->
-                $("#input-#{field}").focus()
-            )
+#        clearField = (field) ->
+#            $scope.user[field] = ''
+#            $timeout(->
+#                $("#input-#{field}").focus()
+#            )
 
         $scope.forgotpassword = ->
             navigation.slide 'main.forgotpassword', {}, 'up'
@@ -29,6 +29,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
                 window.localStorage.setItem("token", response.token_string)
                 window.localStorage.setItem('is_guest', false)
                 resetLoginButton()
+
                 navigation.flip 'home.dashboard', {}, 'left'
                 $rootScope.callFCMGetToken()
 
@@ -37,11 +38,6 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
                 resetLoginButton()
                 if response
                     $translate(['errors.login_failed', 'popup.ok']).then (translation) ->
-                        #ionicPopup version
-#                        alertPopup = $ionicPopup.alert({
-#                            template: translation['errors.login_failed'],
-#                            okText: translation['popup.ok']
-#                        })
 #                       # TODO: move navigator.notification to plugins.notification
                         if navigator.notification
                             navigator.notification.alert(
@@ -55,7 +51,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
                 $('#login-button').text(text)
 
             $scope.logging = true
-            modal.showLoading '', 'logging'
+            modal.showLoading '', 'message.logging'
 
             data =
                 id: $scope.user.account
@@ -69,27 +65,28 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
                 window.localStorage.setItem("token", response.token_string)
                 window.localStorage.setItem('is_guest', true)
                 resetLoginButton()
+
                 navigation.flip 'home.dashboard', {}, 'left'
                 $rootScope.callFCMGetToken()
 
-            onError = (response) ->
+            onError = () ->
                 modal.hideLoading()
                 resetLoginButton()
-                if response
-                    $translate(['errors.login_failed', 'popup.ok']).then (translation) ->
-                        if navigator.notification
-                            navigator.notification.alert(
-                                translation['errors.login_failed'],
-                                (->),
-                                '',
-                                translation['pop.ok']
-                            )
+
+                $translate(['errors.login_failed', 'popup.ok']).then (translation) ->
+                    if navigator.notification
+                        navigator.notification.alert(
+                            translation['errors.login_failed'],
+                            (->),
+                            '',
+                            translation['pop.ok']
+                        )
 
             $translate('message.logging').then (text) ->
                 $('#pass-button').text(text)
 
             $scope.logging = true
-            modal.showLoading '', 'logging'
+            modal.showLoading '', 'message.logging'
 
             data =
                 id: 'guest'
@@ -98,5 +95,9 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$ionicPopu
 
             api.login(data, onSuccess, onError)
 
+        checkDefaultState = ->
+            $log.info 'login-controller -> checkDefaultState...'
+
         resetLoginButton()
+        checkDefaultState()
 ]
