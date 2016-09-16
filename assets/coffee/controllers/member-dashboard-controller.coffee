@@ -12,6 +12,9 @@ module.exports = [
             onSuccess = ->
                 window.localStorage.removeItem("token")
                 window.localStorage.removeItem("is_guest")
+                delete $rootScope['cart']
+                delete $rootScope['wish']
+
                 navigation.flip('login', {}, 'right')
             onError = ->
                 modal.showMessage 'errors.request_failed'

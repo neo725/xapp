@@ -7,6 +7,8 @@ module.exports = [
     '$rootScope', '$translate', '$log', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'navigation', 'modal', 'api'
     ($rootScope, $translate, $log, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, navigation, modal, api) ->
 
+        $rootScope.ready = false
+
         $translate.use constants.DEFAULT_LOCALE
 
         $rootScope.callFCMGetToken = () ->
@@ -25,6 +27,16 @@ module.exports = [
             , ((err) ->)
             )
 
+        $rootScope.loadCart = ->
+            onSuccess = (response) ->
+                $rootScope.cart = response.list
+            api.getCartList(1, 500, onSuccess, (->))
+
+        $rootScope.loadWish = ->
+            onSuccess = (response) ->
+                $rootScope.wish = response.list
+            api.getWishList(1, 500, onSuccess, (->))
+
         checkDefaultState = () ->
             $log.info 'index-controller -> checkDefaultState'
             #window.localStorage.removeItem("token")
@@ -34,7 +46,8 @@ module.exports = [
                 navigation.flip 'login', {}, 'left'
             else
                 $rootScope.callFCMGetToken()
-
+                $rootScope.loadCart()
+                $rootScope.loadWish()
                 navigation.flip 'home.dashboard', {}, 'left'
 
         $ionicPlatform.ready(->
@@ -74,6 +87,7 @@ module.exports = [
                 , (err) ->
                     $log.info 'Error registering onNotification callback: ' + err
             )
+            $rootScope.ready = true
         )
 
 #        $rootScope.$on('network.none', ->
@@ -83,7 +97,8 @@ module.exports = [
             modal.showMessage('message.no_network')
         , false)
         document.addEventListener('online', () ->
-            checkDefaultState()
+            if $rootScope.ready
+                checkDefaultState()
         , false)
 
 ]
