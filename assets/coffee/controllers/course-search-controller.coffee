@@ -21,7 +21,7 @@ module.exports = [
         if stateName == 'home.course.catalogs'
             $scope.noMoreItemsAvailable = true
 
-            catalog = $rootScope.container.catalog
+            catalog = $rootScope.catalog
             params =
                 catalog_name: catalog.catalog_name
                 catalog_id: catalog.catalog_id
@@ -116,7 +116,7 @@ module.exports = [
                     'loc': locations
 
             if backView.stateName == 'home.course.catalogs'
-                catalog = $rootScope.container.catalog
+                catalog = $rootScope.catalog
                 data =
                     'perpage': 20
                     'query': keyword
@@ -134,8 +134,8 @@ module.exports = [
 
             #if data
                 #data = JSON.parse(data)
-            if $rootScope.container.favorite_changed
-                data = $rootScope.container.favorite_changed
+            if $rootScope.favorite_changed
+                data = $rootScope.favorite_changed
 
                 $.each($scope.courses, (index, item) ->
                     if item.Prod_Id == data.prod_id
@@ -146,6 +146,6 @@ module.exports = [
                             item.keep_image_name = 'heart-outline@2x.png'
                 )
                 #window.localStorage.removeItem('favorite_changed')
-                delete $rootScope.container['favorite_changed']
+                delete $rootScope['favorite_changed']
         )
 ]

@@ -30,7 +30,7 @@ module.exports = [
                     is_favorite: course.isFavorite
 
                 #window.localStorage.setItem('favorite_changed', JSON.stringify(data))
-                $rootScope.container.favorite_changed = data
+                $rootScope.favorite_changed = data
 
             onError = (error) ->
                 $log.info error

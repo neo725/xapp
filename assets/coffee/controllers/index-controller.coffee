@@ -6,7 +6,6 @@ constants = require('../common/constants')
 module.exports = [
     '$rootScope', '$translate', '$log', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'navigation', 'modal', 'api'
     ($rootScope, $translate, $log, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, navigation, modal, api) ->
-        $rootScope.container = {}
 
         $translate.use constants.DEFAULT_LOCALE
 
@@ -39,7 +38,6 @@ module.exports = [
                 navigation.flip 'home.dashboard', {}, 'left'
 
         $ionicPlatform.ready(->
-
             # lock the device orientation
             if window.screen.lockOrientation
                 window.screen.lockOrientation('portrait-primary')

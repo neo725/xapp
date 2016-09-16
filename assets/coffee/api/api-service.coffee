@@ -92,6 +92,11 @@ module.exports = ['$http', ($http) ->
             $http.get("/api/cart/wish?page=#{page}&perpage=#{perpage}")
                 .success(onSuccess)
                 .error(onError)
+
+        getCartList: (page, perpage, onSuccess, onError) ->
+            $http.get("/api/cart/shop?page=#{page}&perpage=#{perpage}")
+                .success(onSuccess)
+                .error(onError)
     }
 
 ]

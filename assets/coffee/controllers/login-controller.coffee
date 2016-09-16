@@ -24,11 +24,17 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 $('#login-button').text(text)
             $scope.logging = false
 
+        loadCart = ->
+            onSuccess = (response) ->
+                $rootScope.cart = response.list
+            api.getCartList(1, 500, onSuccess, (->))
+
         $scope.login = ->
             onSuccess = (response) ->
                 window.localStorage.setItem("token", response.token_string)
                 window.localStorage.setItem('is_guest', false)
                 resetLoginButton()
+                loadCart()
 
                 navigation.flip 'home.dashboard', {}, 'left'
                 $rootScope.callFCMGetToken()

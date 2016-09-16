@@ -10,7 +10,7 @@ module.exports = [
 
         $scope.goCatalogsSearch = (catalog) ->
             $log.info catalog
-            $rootScope.container.catalog = {
+            $rootScope.catalog = {
                 'catalog_name': catalog.Cata_Name
                 'catalog_id': catalog.Cata_Id
             }
