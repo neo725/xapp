@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9092e5d-513c-4c4f-8273-f73d5c04a967" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partial/member/dashboard.html" afterPath="$PROJECT_DIR$/www/partial/member/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partial/member/wish.html" afterPath="$PROJECT_DIR$/www/partial/member/wish.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee" />
     </list>
     <ignored path="sceapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index-controller.coffee" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index-controller.coffee" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="71" column="63" selection-start-line="71" selection-start-column="63" selection-end-line="71" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.45730338">
+              <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -55,10 +53,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wish.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wish.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/partial/member/wish.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24418604">
+            <state vertical-scroll-proportion="-7.0">
               <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
               <folding />
             </state>
@@ -149,11 +147,11 @@
         <option value="$PROJECT_DIR$/www/partial/course/info.html" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/home-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/member-dashboard-controller.coffee" />
-        <option value="$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/login-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/member-wish-list-controller.coffee" />
         <option value="$PROJECT_DIR$/www/partial/member/dashboard.html" />
         <option value="$PROJECT_DIR$/www/partial/member/wish.html" />
+        <option value="$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee" />
       </list>
     </option>
   </component>
@@ -482,7 +480,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -862,14 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="71" column="63" selection-start-line="71" selection-start-column="63" selection-end-line="71" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/login-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -904,8 +894,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/partial/member/wish.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24418604">
+        <state vertical-scroll-proportion="-7.0">
           <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45730338">
+          <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
           <folding />
         </state>
       </provider>

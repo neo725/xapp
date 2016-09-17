@@ -7,7 +7,7 @@ module.exports = [
     '$rootScope', '$translate', '$log', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'navigation', 'modal', 'api'
     ($rootScope, $translate, $log, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, navigation, modal, api) ->
 
-        $rootScope.ready = false
+        network_offline = false
 
         $translate.use constants.DEFAULT_LOCALE
 
@@ -87,7 +87,6 @@ module.exports = [
                 , (err) ->
                     $log.info 'Error registering onNotification callback: ' + err
             )
-            $rootScope.ready = true
         )
 
 #        $rootScope.$on('network.none', ->
@@ -95,10 +94,12 @@ module.exports = [
 #        )
         document.addEventListener('offline', () ->
             modal.showMessage('message.no_network')
+            network_offline = true
         , false)
         document.addEventListener('online', () ->
-            if $rootScope.ready
+            if network_offline
                 checkDefaultState()
+                network_offline = false
         , false)
 
 ]
