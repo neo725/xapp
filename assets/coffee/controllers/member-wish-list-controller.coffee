@@ -18,6 +18,9 @@ module.exports = [
 
             api.removeFromWish course.Shop_Id, course.Prod_Id, onSuccess, onError
 
+        $scope.switchToCourseInfo = (shop_id, prod_id) ->
+            navigation.slide 'home.course.info', {shop_id: shop_id, prod_id: prod_id}, 'left'
+
         loadFavoriteCourses = ->
             onSuccess = (response) ->
                 $scope.courses = response.list
