@@ -1,0 +1,76 @@
+.member-order-list {
+    .tabs-top.tabs-striped.tabs-light {
+        .tab-item {
+            &.tab-item-active, &.activated {
+                border-bottom-width: 4px !important;
+
+                &.tab-active-1 {
+                    border-color: $tab-color-1 !important;
+                }
+                &.tab-active-2 {
+                    border-color: $tab-color-2 !important;
+                }
+                &.tab-active-3 {
+                    border-color: $tab-color-3 !important;
+                }
+
+                .badge {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .tab-content {
+        padding: 50px 0 0 0;
+        background-color: $stable;
+        overflow-y: scroll;
+
+        .item {
+            padding: 10px;
+
+            .refunds {
+                padding-top: 5px;
+                padding-left: 5px;
+            }
+
+            .prod_title {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .price-block {
+                padding-top: 10px;
+
+                .col {
+                    padding: 0;
+                }
+                .image-mark {
+                    position: absolute;
+                    img {
+                        width: 32px;
+                    }
+                }
+                .payment-mark {
+                    position: absolute;
+                    margin-left: 39px;
+                    margin-top: 4px;
+                }
+                .price-mark {
+                    font-style: italic;
+                    font-size: $text-size-medium;
+                    margin-top: 3px;
+
+                    .price {
+                        font-size: $text-size-medium + 5;
+                    }
+                }
+            }
+        }
+
+        .bg-tab-color-1 {
+            background-color: $tab-color-1 !important;
+        }
+    }
+}

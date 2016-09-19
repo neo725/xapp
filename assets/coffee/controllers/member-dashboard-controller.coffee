@@ -8,6 +8,9 @@ module.exports = [
         $scope.goWishList = ->
             navigation.slide 'home.member.wish', {}, 'left'
 
+        $scope.goOrderList = ->
+            navigation.slide 'home.member.order', {}, 'left'
+
         $scope.logout = ->
             onSuccess = ->
                 window.localStorage.removeItem("token")

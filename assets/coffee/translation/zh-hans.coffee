@@ -36,6 +36,11 @@ module.exports = ->
         'already_exists_in_cart': '課程已經在購物車中'
         'course_add_to_cart_success': '課程加入購物車完成'
     }
+    'tab': {
+        'payed': '已繳費'
+        'wait_for_pay': '待繳費'
+        'return_pay': '退費紀錄'
+    }
     'title': {
         'search_course': '搜尋結果'
         'search_course_in_catalogs': '搜尋課程'

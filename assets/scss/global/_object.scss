@@ -4,6 +4,9 @@
     background-color: $positive !important;
     color: $white-color !important;
 }
+.bg-stable {
+    background-color: $stable !important;
+}
 
 // Size
 // ------------------------------------------------
@@ -41,6 +44,12 @@
 }
 .border-top {
     border-top: 1px solid $border-color;
+}
+
+// Effect : Padding
+// --------------------------------------------------
+.padding-3 {
+    padding: 3px;
 }
 
 // Object : shopping-cart
