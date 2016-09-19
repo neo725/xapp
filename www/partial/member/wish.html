@@ -1,14 +1,17 @@
 <ion-view class="member-wish-list" ng-controller="MemberWishListController">
-    <ion-nav-buttons side="left">
-        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
-        <h1 class="title">考慮清單</h1>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-android-cart button-icon-cart"></button>
-        <div class="cart-badge-container" ng-show="cart.length > 0">
-            <div class="badge badge-assertive badge-s-size cart-badge">{{cart.length}}</div>
-        </div>
-    </ion-nav-buttons>
+    <ion-header-bar>
+        <ion-nav-buttons side="left">
+            <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+        </ion-nav-buttons>
+        <ion-nav-title>考慮清單</ion-nav-title>
+        <!--<h1 class="title"></h1>-->
+        <ion-nav-buttons side="right">
+            <button class="button button-icon icon ion-android-cart button-icon-cart"></button>
+            <div class="cart-badge-container" ng-show="cart.length > 0">
+                <div class="badge badge-assertive badge-s-size cart-badge">{{cart.length}}</div>
+            </div>
+        </ion-nav-buttons>
+    </ion-header-bar>
     <ion-content padding="true">
         <div class="card" ng-repeat="course in courses" ng-click="switchToCourseInfo(course.Shop_Id, course.Prod_Id)">
             <div class="item item-text-wrap">
