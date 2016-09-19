@@ -1,11 +1,24 @@
 module.exports = [
-    '$scope', 'navigation', 'api', ($scope, navigation, api) ->
+    '$scope', '$log', 'navigation', 'api', ($scope, $log, navigation, api) ->
         $scope.courses = []
 
         $scope.goBack = ->
             navigation.slide 'home.member.dashboard', {}, 'right'
 
-        loadCourse = ->
+        $scope.removeFromWish = (course, $event) ->
+            $event.stopPropagation()
+            onSuccess = () ->
+                _.remove($scope.courses, {Prod_Id: course.Prod_Id})
+
+                $translate('message.favorite_removed').then (text) ->
+                    plugins.toast.show(text, 'long', 'top')
+
+            onError = (error) ->
+                $log.info error
+
+            api.removeFromWish course.Shop_Id, course.Prod_Id, onSuccess, onError
+
+        loadFavoriteCourses = ->
             onSuccess = (response) ->
                 $scope.courses = response.list
 
@@ -23,5 +36,5 @@ module.exports = [
 
             api.getWishList(1, 500, onSuccess, onError)
 
-        loadCourse()
+        loadFavoriteCourses()
 ]
