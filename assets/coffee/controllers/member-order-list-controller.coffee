@@ -6,4 +6,8 @@ module.exports = [
         $scope.wantRefunds = ($event) ->
             $event.stopPropagation()
             $cordovaToast.show('refund...', 'long', 'top')
+
+        $scope.wantCancel = ($event) ->
+            $event.stopPropagation()
+            $cordovaToast.show('cancel...', 'long', 'top')
 ]
