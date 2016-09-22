@@ -3,8 +3,8 @@
         <button class="button button-icon icon ion-person" ng-click="goMemberDashboard()"></button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-android-cart"></button>
-        <div class="cart-badge-container" ng-show="cart.length > 0">
+        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+        <div class="cart-badge-container" ng-show="cart.length > 0" ng-click="goCart()">
             <div class="badge badge-assertive badge-s-size cart-badge">{{cart.length}}</div>
         </div>
     </ion-nav-buttons>

@@ -32,6 +32,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .controller('MemberDashboardController', require('./controllers/member-dashboard-controller'))
 .controller('MemberWishListController', require('./controllers/member-wish-list-controller'))
 .controller('MemberOrderListController', require('./controllers/member-order-list-controller'))
+.controller('MemberCartListController', require('./controllers/member-cart-list-controller'))
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
 .controller('CourseInfoController', require('./controllers/course-info-controller'))
 .controller('CourseCatalogsController', require('./controllers/course-catalogs-controller'))
@@ -156,6 +157,31 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
         views: {
             'memberContent': {
                 templateUrl: 'partial/member/order.html'
+            }
+        }
+
+    .state 'home.member.cart',
+        url: '/cart'
+        abstract: true
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/cart.html'
+            }
+        }
+
+    .state 'home.member.cart.step1',
+        url: '/1'
+        views: {
+            'cartContent': {
+                templateUrl: 'partial/member/cart-1.html'
+            }
+        }
+
+    .state 'home.member.cart.step2',
+        url: '/2'
+        views: {
+            'cartContent': {
+                templateUrl: 'partial/member/cart-2.html'
             }
         }
 

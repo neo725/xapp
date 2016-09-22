@@ -5,6 +5,9 @@ module.exports = [
         $scope.goBack = ->
             navigation.slide 'home.dashboard', {}, 'right'
 
+        $scope.goCart = ->
+            navigation.slide 'home.member.cart.step1', {}, 'top'
+
         $scope.goWishList = ->
             navigation.slide 'home.member.wish', {}, 'left'
 

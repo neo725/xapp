@@ -1,0 +1,50 @@
+<ion-view>
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>購物車</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-android-delete" ng-click="goClearAll()">清空</button>
+    </ion-nav-buttons>
+    <ion-content class="step-1-content" scroll="false">
+        <div class="header">
+            <div class="text text-left" ng-show="items.length > 0">您有 {{ items.length }} 樣商品在購物車裡</div>
+            <div class="text text-left" ng-show="items.length == 0">您沒有任何商品在購物車裡</div>
+        </div>
+        <div class="content-container">
+            <div class="content">
+                <ion-list>
+                    <ion-item ng-repeat="item in items"
+                              item="item"
+                              href="#/item/{{item.id}}" class="item-remove-animate">
+                        Item {{ item.id }}
+                        <ion-option-button class="ion-android-delete"
+                                           ng-click="onItemDelete(item)">
+                            Delete
+                        </ion-option-button>
+                    </ion-item>
+                </ion-list>
+                <div class="list-price text-right">
+                    應付金額
+                    <span class="price">{{totalPrice | currency:undefined:0}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div>請選擇繳費方式</div>
+            <div class="row">
+                <div class="col">
+                    <ion-radio ng-model="choice" ng-value="'CreditCard'">線上刷卡</ion-radio>
+                </div>
+                <div class="col">
+                    <ion-radio ng-model="choice" ng-value="'ATM'">ATM 轉帳</ion-radio>
+                </div>
+            </div>
+            <div class="row">
+                <button class="button button-block button-positive" ng-disabled="items.length == 0">
+                    下一步
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

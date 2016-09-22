@@ -4,8 +4,8 @@
         <h1 class="title">會員功能</h1>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-android-cart button-icon-cart"></button>
-        <div class="cart-badge-container" ng-show="cart.length > 0">
+        <button class="button button-icon icon ion-android-cart button-icon-cart" ng-click="goCart()"></button>
+        <div class="cart-badge-container" ng-show="cart.length > 0" ng-click="goCart()">
             <div class="badge badge-assertive badge-s-size cart-badge">{{cart.length}}</div>
         </div>
     </ion-nav-buttons>
@@ -52,7 +52,7 @@
     </ion-content>
     <script id="templates/modal-function.html" type="text/ng-template">
         <ion-modal-view class="modal-box function-box">
-            <ion-content class="padding">
+            <ion-content class="padding" scroll="false">
                 <div class="list">
                     <a class="item" href="#">
                         <p>編輯帳號</p>
