@@ -42,15 +42,15 @@ module.exports = [
 
         $scope.addToCart = (course) ->
             onSuccess = ->
-                cart = $rootScope.cart || []
+                cart = $rootScope.carts || []
                 cart.push course
-                $rootScope.cart = cart
+                $rootScope.carts = cart
                 $translate('message.course_add_to_cart_success').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
             onError = ->
                 $log.info 'error'
 
-            if _.find($rootScope.cart, {'Prod_Id': course.Prod_Id})
+            if _.find($rootScope.carts, {'Prod_Id': course.Prod_Id})
                 $translate('message.already_exists_in_cart').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
             else

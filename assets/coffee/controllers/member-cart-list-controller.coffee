@@ -1,5 +1,6 @@
 module.exports = [
-    '$scope', '$ionicHistory', '$state', 'navigation', ($scope, $ionicHistory, $state, navigation) ->
+    '$rootScope', '$scope', '$ionicHistory', '$state', 'navigation',
+    ($rootScope, $scope, $ionicHistory, $state, navigation) ->
         $scope.shouldShowDelete = false
 
         $scope.goBack = ->
@@ -9,6 +10,12 @@ module.exports = [
                 navigation.slide(backView.stateName, backView.stateParams, 'right')
             else
                 navigation.slide('home.dashboard', {}, 'right')
+
+        $scope.goStep2 = ->
+            navigation.slide('home.member.cart.step2', {}, 'left')
+
+        $scope.goShowDelete = ->
+            $scope.shouldShowDelete = not $scope.shouldShowDelete
 
         $scope.goClearAll = ->
             $scope.items = []
@@ -34,31 +41,19 @@ module.exports = [
 
         $scope.choice = 'CreditCard'
 
-        items = [
-            { id: 1, price: 1000 }
-            { id: 2, price: 1000 }
-            { id: 3, price: 1000 }
-            { id: 4, price: 1000 }
-            { id: 5, price: 1000 }
-            { id: 6, price: 1000 }
-            { id: 7, price: 1000 }
-            { id: 8, price: 1000 }
-            { id: 9, price: 1000 }
-            { id: 10, price: 1000 }
-        ]
-        $scope.items = items
+        $scope.carts = $rootScope.carts || []
 
         updateTotalPrice = ->
             totalPrice = 0
-            _($scope.items).forEach (item) ->
-                totalPrice += item.price
+            _($scope.carts).forEach (cart) ->
+                totalPrice += cart.Prod_Price
             $scope.totalPrice = totalPrice
 
-        watchItems = ->
-            return $scope.items.length
-        onItemChanges = (newValue, oldValue) ->
+        watchCarts = ->
+            return $scope.carts.length
+        onCartsChanges = () ->
             updateTotalPrice()
-        $scope.$watch watchItems, onItemChanges
+        $scope.$watch watchCarts, onCartsChanges
 
         # content height adjust
         document.addEventListener("deviceready", () ->

@@ -4,24 +4,28 @@
     </ion-nav-buttons>
     <ion-nav-title>購物車</ion-nav-title>
     <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-minus-circled" ng-click="goShowDelete()"></button>
         <button class="button button-icon icon ion-android-delete" ng-click="goClearAll()">清空</button>
     </ion-nav-buttons>
     <ion-content class="step-1-content" scroll="false">
         <div class="header">
-            <div class="text text-left" ng-show="items.length > 0">您有 {{ items.length }} 樣商品在購物車裡</div>
-            <div class="text text-left" ng-show="items.length == 0">您沒有任何商品在購物車裡</div>
+            <div class="text text-left" ng-show="carts.length > 0">您有 {{ carts.length }} 樣商品在購物車裡</div>
+            <div class="text text-left" ng-show="carts.length == 0">您沒有任何商品在購物車裡</div>
         </div>
         <div class="content-container">
             <div class="content">
-                <ion-list>
-                    <ion-item ng-repeat="item in items"
-                              item="item"
-                              href="#/item/{{item.id}}" class="item-remove-animate">
-                        Item {{ item.id }}
+                <ion-list show-delete="shouldShowDelete">
+                    <ion-item ng-repeat="cart in carts"
+                              item="cart"
+                              href="#/course/info/{{cart.Prod_Id}}" class="item-remove-animate">
+                        {{ cart.Prod_Name }}
                         <ion-option-button class="ion-android-delete"
                                            ng-click="onItemDelete(item)">
                             Delete
                         </ion-option-button>
+                        <ion-delete-button class="ion-minus-circled"
+                                           ng-click="items.splice($index, 1)">
+                        </ion-delete-button>
                     </ion-item>
                 </ion-list>
                 <div class="list-price text-right">
@@ -41,7 +45,7 @@
                 </div>
             </div>
             <div class="row">
-                <button class="button button-block button-positive" ng-disabled="items.length == 0">
+                <button class="button button-block button-positive" ng-disabled="items.length == 0" ng-click="goStep2()">
                     下一步
                 </button>
             </div>

@@ -29,7 +29,7 @@ module.exports = [
 
         $rootScope.loadCart = ->
             onSuccess = (response) ->
-                $rootScope.cart = response.list
+                $rootScope.carts = response.list
             api.getCartList(1, 500, onSuccess, (->))
 
         $rootScope.loadWish = ->
