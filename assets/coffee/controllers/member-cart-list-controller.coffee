@@ -23,25 +23,37 @@ module.exports = [
         $scope.onItemDelete = (item) ->
             $scope.items.splice($scope.items.indexOf(item), 1)
 
-        current_step = $state.current.url
+        updateStepStatus = ->
+            current_step = $state.current.url
 
-        step = {
-            s1:
-                current: current_step == '/1'
-                finish: current_step == '/2' or current_step == '/3'
-            s2:
-                current: current_step == '/2'
-                finish: current_step == '/3'
-            s3:
-                current: current_step == '/3'
-                finish: false
-        }
+            step = {
+                s1:
+                    current: current_step == '/1'
+                    finish: current_step == '/2' or current_step == '/3'
+                s2:
+                    current: current_step == '/2'
+                    finish: current_step == '/3'
+                s3:
+                    current: current_step == '/3'
+                    finish: false
+            }
 
-        $scope.step = step
+            $scope.step = step
+
+        watchCurrentUrl = ->
+            return $state.current.url
+        $scope.$watch watchCurrentUrl, updateStepStatus
 
         $scope.choice = 'CreditCard'
 
-        $scope.carts = $rootScope.carts || []
+        fakeCarts = [
+            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 1', Prod_Price: 1000, Shop_Id: 'MS' }
+            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 2', Prod_Price: 1000, Shop_Id: 'MS' }
+            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 3', Prod_Price: 1000, Shop_Id: 'MS' }
+            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 4', Prod_Price: 1000, Shop_Id: 'MS' }
+        ]
+
+        $scope.carts = $rootScope.carts || fakeCarts
 
         updateTotalPrice = ->
             totalPrice = 0

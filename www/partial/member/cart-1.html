@@ -17,8 +17,12 @@
                 <ion-list show-delete="shouldShowDelete">
                     <ion-item ng-repeat="cart in carts"
                               item="cart"
-                              href="#/course/info/{{cart.Prod_Id}}" class="item-remove-animate">
+                              href="#/home/course/info/{{cart.Shop_Id}}/{{cart.Prod_Id}}" class="item-remove-animate">
                         {{ cart.Prod_Name }}
+                        <div class="price-container">
+                            <span class="price">{{cart.Prod_Price | currency:undefined:0}}</span>
+                            <i class="ion-ios-arrow-right"></i>
+                        </div>
                         <ion-option-button class="ion-android-delete"
                                            ng-click="onItemDelete(item)">
                             Delete

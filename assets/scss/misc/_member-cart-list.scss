@@ -96,6 +96,24 @@
 
             .list {
                 margin-top: 0;
+
+                .item-content {
+                    .price-container {
+                        position: absolute;
+                        right: 10px;
+                        top: 0.9em;
+                        width: 5em;
+
+                        .price {
+                            position: absolute;
+                            top: 2px;
+                        }
+                        i {
+                            margin-left: 60px;
+                            font-size: 1.5em;
+                        }
+                    }
+                }
             }
             .list-price {
                 padding: 10px 25px;
