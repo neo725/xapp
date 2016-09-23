@@ -7,7 +7,7 @@
     font-size:  $text-size-medium;
 }
 .text-s-size {
-    font-size: $text-size-small;
+    font-size: $text-size-small !important;
 }
 .text-m-size {
     font-size: $text-size-small + 6;

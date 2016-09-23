@@ -159,4 +159,42 @@
             }
         }
     }
+
+    .step-2-content {
+        .list {
+            margin-top: 0;
+
+            .item {
+                padding-left: 40px;
+                border-left: 0;
+                border-right: 0;
+
+                &:first-child {
+                    border-top: 0;
+                }
+                &:last-child {
+                    border-bottom: 0;
+                }
+
+                &.indent-item {
+                    padding-left: 15px;
+                }
+                &.tip-text {
+                    overflow: visible;
+                    white-space: normal;
+                }
+
+                input {
+                    background-color: $stable;
+                }
+
+                .required {
+                    &:before {
+                        content: '* ';
+                        color: $assertive;
+                    }
+                }
+            }
+        }
+    }
 }
