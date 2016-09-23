@@ -1,7 +1,8 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$state', 'navigation',
-    ($rootScope, $scope, $ionicHistory, $state, navigation) ->
+    '$rootScope', '$scope', '$ionicHistory', '$state', 'navigation', 'modal',
+    ($rootScope, $scope, $ionicHistory, $state, navigation, modal) ->
         $scope.shouldShowDelete = false
+        $scope.pay = {}
 
         $scope.goBack = ->
             backView = $ionicHistory.backView()
@@ -12,6 +13,7 @@ module.exports = [
                 navigation.slide('home.dashboard', {}, 'right')
 
         $scope.goStep2 = ->
+            $scope.pay.type = $scope.choice
             navigation.slide('home.member.cart.step2', {}, 'left')
 
         $scope.goShowDelete = ->
@@ -22,6 +24,15 @@ module.exports = [
 
         $scope.onItemDelete = (item) ->
             $scope.items.splice($scope.items.indexOf(item), 1)
+
+        $scope.checkPayTypeIsCreditCard = ->
+            return $scope.pay.type == 'CreditCard'
+
+        $scope.submitForm = (form) ->
+            pay_type = $scope.pay.type
+            if not form.$valid
+                modal.showLongMessage 'errors.form_validate_error'
+                return
 
         updateStepStatus = ->
             current_step = $state.current.url

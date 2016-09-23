@@ -25,7 +25,6 @@
                         </div>
                         <ion-option-button class="ion-android-delete"
                                            ng-click="onItemDelete(item)">
-                            Delete
                         </ion-option-button>
                         <ion-delete-button class="ion-minus-circled"
                                            ng-click="items.splice($index, 1)">
@@ -49,7 +48,7 @@
                 </div>
             </div>
             <div class="row">
-                <button class="button button-block button-positive" ng-disabled="items.length == 0" ng-click="goStep2()">
+                <button class="button button-block button-positive" ng-disabled="carts.length == 0" ng-click="goStep2()">
                     下一步
                 </button>
             </div>

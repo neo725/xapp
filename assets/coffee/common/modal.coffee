@@ -24,13 +24,17 @@ module.exports = ['$ionicPlatform', '$timeout', '$ionicModal', '$ionicLoading', 
                     'backdropClickToClose': false
                 })
 
-        showMessage = (message) ->
+        showMessage = (message, timeout) ->
+            timeout = timeout || 3000
             $translate(message).then (text) ->
                 $ionicLoading.show({
                     template: text,
                     noBackdrop: true,
-                    duration: 3000
+                    duration: timeout
                 })
+
+        showLongMessage = (message) ->
+            showMessage(message, 5000)
 
         showTopMessage = (message, params) ->
             $translate(message, params).then (text) ->
@@ -77,6 +81,7 @@ module.exports = ['$ionicPlatform', '$timeout', '$ionicModal', '$ionicLoading', 
             hideLoading: hideLoadingSpinner
             generate: generateModel
             showMessage: showMessage
+            showLongMessage: showLongMessage
             showTopMessage: showTopMessage
             showConfirm: showConfirm
             checkNetwork: checkNetwork

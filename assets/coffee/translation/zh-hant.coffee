@@ -14,6 +14,7 @@ module.exports = ->
     'errors': {
         'login_failed': '登入失敗'
         'request_failed': '向伺服器要求失敗'
+        'form_validate_error': '畫面上有欄位未完成輸入或是格式有誤，請檢查標記為紅色的欄位資料是否正確'
     }
     'popup': {
         'ok': '確 定'
