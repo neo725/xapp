@@ -167,9 +167,16 @@
     }
 
     .step-2-content {
+        .has-error {
+            input {
+                border-bottom: 2px solid $error;
+            }
+        }
+
         .credit-form {
             background-color: $stable;
             padding: 10px;
+            padding-bottom: 20px;
 
             input {
                 float: left;
@@ -194,7 +201,7 @@
                 margin-top: 8px;
             }
             .cvc-label {
-                margin-top: 17px;
+                margin-top: 20px;
                 margin-left: 5px;
             }
 
@@ -206,11 +213,14 @@
                 }
             }
             .expire-date {
-                margin-left: 5px;
-                margin-top: 12px;
 
-                &:first-child {
-                    margin-left: 12px;
+                input {
+                    margin-left: 5px;
+                    margin-top: 12px;
+
+                    &.expire-month {
+                        margin-left: 12px;
+                    }
                 }
             }
             .card-cvc {
@@ -229,7 +239,7 @@
             margin-top: 0;
 
             .item {
-                padding-left: 40px;
+                padding-left: 30px;
                 border-left: 0;
                 border-right: 0;
 
@@ -250,6 +260,7 @@
 
                 input {
                     background-color: $stable;
+                    padding-left: 10px;
                 }
 
                 .required {
@@ -257,12 +268,6 @@
                         content: '* ';
                         color: $assertive;
                     }
-                }
-            }
-
-            .has-error {
-                input {
-                    border-bottom: 2px solid $error;
                 }
             }
         }

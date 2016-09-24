@@ -47,3 +47,19 @@ exports.goNative = ['$ionicGesture', '$ionicPlatform', '$log',
                             , (->), (->)
             , element
 ]
+
+exports.ngNext = ['$timeout',
+    ($timeout) ->
+        restrict: 'A'
+        link: (scope, elem, attrs) ->
+            nextLength = parseInt(attrs.ngNextLength)
+            scope.$watch(attrs.ngModel, (value) ->
+                if value == undefined
+                    return
+                value = value.toString()
+                if value.length == nextLength
+                    $timeout(->
+                        $("input[name='#{attrs.ngNext}']").focus()
+                    )
+            )
+]

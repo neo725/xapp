@@ -3,6 +3,7 @@ module.exports = [
     ($rootScope, $scope, $ionicHistory, $state, navigation, modal) ->
         $scope.shouldShowDelete = false
         $scope.pay = {}
+        $scope.card = {}
 
         $scope.goBack = ->
             backView = $ionicHistory.backView()
@@ -12,8 +13,8 @@ module.exports = [
             else
                 navigation.slide('home.dashboard', {}, 'right')
 
-        $scope.goStep2 = ->
-            $scope.pay.type = $scope.choice
+        $scope.goStep2 = (pay_type) ->
+            $scope.pay.type = pay_type
             navigation.slide('home.member.cart.step2', {}, 'left')
 
         $scope.goShowDelete = ->
@@ -28,11 +29,32 @@ module.exports = [
         $scope.checkPayTypeIsCreditCard = ->
             return $scope.pay.type == 'CreditCard'
 
+        $scope.checkCardType = ->
+            patternVisa = /^4\d{0,3}$/g
+            patternMaster = /^5[1-5]\d{0,2}$/g
+            number = $scope.card.number_part1
+            if patternVisa.exec(number)
+                return 'visa'
+            if patternMaster.exec(number)
+                return 'master'
+            return ''
+
         $scope.submitForm = (form) ->
             pay_type = $scope.pay.type
             if not form.$valid
                 modal.showLongMessage 'errors.form_validate_error'
                 return
+            if pay_type == 'CreditCard' and not checkIsCardAccept()
+                modal.showLongMessage 'errors.credit_card_not_acceptable'
+                return
+
+            navigation.slide('home.member.cart.step3', {}, 'left')
+
+        $scope.returnToDashboard = ->
+            navigation.slide('home.dashboard', {}, 'right')
+
+        checkIsCardAccept = ->
+            return $scope.checkCardType not ''
 
         updateStepStatus = ->
             current_step = $state.current.url

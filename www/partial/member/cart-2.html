@@ -5,36 +5,98 @@
     <ion-nav-title>購物車</ion-nav-title>
     <ion-content class="step-2-content" padding="true">
         <form name="paymentForm" novalidate ng-submit="submitForm(paymentForm)">
-            <div class="card credit-form" ng-if="true || checkPayTypeIsCreditCard()">
+            <div class="card credit-form" ng-if="checkPayTypeIsCreditCard()">
                 <div class="row">
                     <div class="col col-33 col-offset-67 text-right">
-                        <img src="img/visa-card.png" class="card-logo" />
+                        <img src="img/visa-card.png" class="card-logo" ng-show="checkCardType() == 'visa'" />
+                        <img src="img/master-card.png" class="card-logo" ng-show="checkCardType() == 'master'" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-25 text-right label">信用卡卡號</div>
                     <div class="col-75">
-                        <input type="number" maxlength="4" class="number-4 card-number">
-                        <input type="number" maxlength="4" class="number-4 card-number">
-                        <input type="number" maxlength="4" class="number-4 card-number">
-                        <input type="number" maxlength="4" class="number-4 card-number">
+                        <label ng-class="{ 'has-error' : paymentForm.card_part1.$invalid}">
+                            <input type="number" name="card_part1"
+                                   class="number-4 card-number"
+                                   ng-model="card.number_part1"
+                                   ng-next="card_part2" ng-next-length="4"
+                                   maxlength="4" min="1" max="9999"
+                                   ng-minlength="4" ng-maxlength="4"
+                                   required>
+                        </label>
+                        <label ng-class="{ 'has-error' : paymentForm.card_part2.$invalid}">
+                            <input type="number" name="card_part2"
+                                   class="number-4 card-number"
+                                   ng-model="card.number_part2"
+                                   ng-next="card_part3" ng-next-length="4"
+                                   maxlength="4" min="1" max="9999"
+                                   ng-minlength="4" ng-maxlength="4"
+                                   required>
+                        </label>
+                        <label ng-class="{ 'has-error' : paymentForm.card_part3.$invalid}">
+                            <input type="number" name="card_part3"
+                                   class="number-4 card-number"
+                                   ng-model="card.number_part3"
+                                   ng-next="card_part4" ng-next-length="4"
+                                   maxlength="4" min="1" max="9999"
+                                   ng-minlength="4" ng-maxlength="4"
+                                   required>
+                        </label>
+                        <label ng-class="{ 'has-error' : paymentForm.card_part4.$invalid}">
+                            <input type="number" name="card_part4"
+                                   class="number-4 card-number"
+                                   ng-model="card.number_part4"
+                                   ng-next="card_expire_month" ng-next-length="4"
+                                   maxlength="4" min="1" max="9999"
+                                   ng-minlength="4" ng-maxlength="4"
+                                   required>
+                        </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-25 text-right label">有效日期 (MM/YY)</div>
-                    <div class="col-25">
-                        <input type="number" maxlength="2" class="number-2 expire-date expire-month">
-                        <input type="number" maxlength="2" class="number-2 expire-date expire-year">
+                    <div class="col-25 expire-date">
+                        <label ng-class="{ 'has-error' : paymentForm.card_expire_month.$invalid}">
+                            <input type="number" name="card_expire_month"
+                                   class="number-2 expire-month"
+                                   ng-model="card.expire_month"
+                                   ng-next="card_expire_year" ng-next-length="2"
+                                   maxlength="2" min="1" max="12"
+                                   ng-minlength="2" ng-maxlength="2"
+                                   required>
+                        </label>
+                        <label ng-class="{ 'has-error' : paymentForm.card_expire_year.$invalid}">
+                            <input type="number" name="card_expire_year"
+                                   class="number-2 expire-year"
+                                   ng-model="card.expire_year"
+                                   ng-next="card_cvc" ng-next-length="2"
+                                   maxlength="2" min="16" max="99"
+                                   ng-minlength="1" ng-maxlength="2"
+                                   required>
+                        </label>
                     </div>
-                    <div class="col-25 cvc-label">背面末 3 碼</div>
+                    <div class="col-33 cvc-label">卡片背面末 3 碼</div>
                     <div class="col-25">
-                        <input type="number" maxlength="2" class="number-3 card-cvc">
+                        <label ng-class="{ 'has-error' : paymentForm.card_cvc.$invalid}">
+                            <input type="number" name="card_cvc"
+                                   class="number-3 card-cvc"
+                                   ng-model="card.cvc"
+                                   ng-next="card_holder" ng-next-length="3"
+                                   maxlength="2" min="1" max="999"
+                                   ng-minlength="3" ng-maxlength="3"
+                                   required>
+                        </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-25 text-right holder-label">持卡人姓名</div>
                     <div class="col-75">
-                        <input type="text" class="card-holder">
+                        <label ng-class="{ 'has-error' : paymentForm.card_holder.$invalid}">
+                            <input type="text" name="card_holder"
+                                   class="card-holder"
+                                   ng-model="card.holder"
+                                   required>
+                        </label>
                     </div>
                 </div>
             </div>

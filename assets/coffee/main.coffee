@@ -19,6 +19,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .factory('plugins', require('./common/plugins'))
 .factory('api', require('./api/api-service'))
 .directive('goNative', directives.goNative)
+.directive('ngNext', directives.ngNext)
 .controller('IndexController', require('./controllers/index-controller'))
 .controller('LoginController', require('./controllers/login-controller'))
 .controller('MainController', require('./controllers/main-controller'))
@@ -182,6 +183,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
         views: {
             'cartContent': {
                 templateUrl: 'partial/member/cart-2.html'
+            }
+        }
+
+    .state 'home.member.cart.step3',
+        url: '/3'
+        views: {
+            'cartContent': {
+                templateUrl: 'partial/member/cart-3.html'
             }
         }
 

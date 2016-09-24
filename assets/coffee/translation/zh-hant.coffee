@@ -15,6 +15,7 @@ module.exports = ->
         'login_failed': '登入失敗'
         'request_failed': '向伺服器要求失敗'
         'form_validate_error': '畫面上有欄位未完成輸入或是格式有誤，請檢查標記為紅色的欄位資料是否正確'
+        'credit_card_not_acceptable': '目前無法支援您的信用卡卡別，請使用 VISA 或 Master 卡'
     }
     'popup': {
         'ok': '確 定'
