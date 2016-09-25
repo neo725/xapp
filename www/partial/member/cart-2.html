@@ -60,7 +60,7 @@
                             <input type="number" name="card_expire_month"
                                    class="number-2 expire-month"
                                    ng-model="card.expire_month"
-                                   ng-next="card_expire_year" ng-next-length="2"
+                                   ng-next="card_expire_year" ng-next-length="2" ng-next-autofill="0" ng-next-autofill-length="2"
                                    maxlength="2" min="1" max="12"
                                    ng-minlength="2" ng-maxlength="2"
                                    required>
@@ -82,7 +82,7 @@
                                    class="number-3 card-cvc"
                                    ng-model="card.cvc"
                                    ng-next="card_holder" ng-next-length="3"
-                                   maxlength="2" min="1" max="999"
+                                   maxlength="3" min="1" max="999"
                                    ng-minlength="3" ng-maxlength="3"
                                    required>
                         </label>

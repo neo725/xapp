@@ -53,10 +53,23 @@ exports.ngNext = ['$timeout',
         restrict: 'A'
         link: (scope, elem, attrs) ->
             nextLength = parseInt(attrs.ngNextLength)
+            autofill = attrs.ngNextAutofill
+            autofill_length = attrs.ngNextAutofillLength
+
             scope.$watch(attrs.ngModel, (value) ->
                 if value == undefined
                     return
                 value = value.toString()
+
+                pad = ''
+
+                if autofill_length
+                    autofill_length = parseInt(autofill_length)
+                    pad += autofill for i in [0...autofill_length]
+
+                    if value.length < autofill_length
+                        value = pad.substring(0, pad.length - value.length) + value
+
                 if value.length == nextLength
                     $timeout(->
                         $("input[name='#{attrs.ngNext}']").focus()
