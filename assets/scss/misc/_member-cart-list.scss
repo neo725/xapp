@@ -69,6 +69,10 @@
     }
 
     .step-1-content {
+        ion-content {
+            top: 74px;
+            bottom: 144px;
+        }
         .header {
             height: 47px;
             padding: 0 25px;
@@ -87,48 +91,40 @@
             }
         }
 
-        .content-container {
-            //padding: 10px 25px;
-            overflow-x: hidden;
-            overflow-y: scroll;
-            min-height: 280px;
-            height: 49%;
+        .list {
+            margin-top: 0;
 
-            .list {
-                margin-top: 0;
+            .item-content {
+                .price-container {
+                    position: absolute;
+                    right: 10px;
+                    top: 0.9em;
+                    width: 5em;
 
-                .item-content {
-                    .price-container {
+                    .price {
                         position: absolute;
-                        right: 10px;
-                        top: 0.9em;
-                        width: 5em;
-
-                        .price {
-                            position: absolute;
-                            top: 2px;
-                        }
-                        i {
-                            margin-left: 60px;
-                            font-size: 1.5em;
-                        }
+                        top: 2px;
                     }
-                }
-
-                .item-options {
-                    ion-option-button {
-                        font-size: 2em;
+                    i {
+                        margin-left: 60px;
+                        font-size: 1.5em;
                     }
                 }
             }
-            .list-price {
-                padding: 10px 25px;
 
-                .price {
-                    font-style: italic;
-                    color: $assertive;
-                    font-size: $text-size-medium + 16;
+            .item-options {
+                ion-option-button {
+                    font-size: 2em;
                 }
+            }
+        }
+        .list-price {
+            padding: 10px 25px;
+
+            .price {
+                font-style: italic;
+                color: $assertive;
+                font-size: $text-size-medium + 16;
             }
         }
 
@@ -138,7 +134,11 @@
             height: 145px;
             padding: 5px;
             background-color: $stable;
-            bottom: 78px;
+            bottom: 0px;
+
+            .footer-container {
+                width: 100%;
+            }
 
             .item-radio {
                 border: 0 solid;
@@ -167,6 +167,7 @@
     }
 
     .step-2-content {
+        top: 74px;
         .has-error {
             input {
                 border-bottom: 2px solid $error;
