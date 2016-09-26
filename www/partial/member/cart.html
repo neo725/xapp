@@ -2,7 +2,7 @@
     <ion-nav-bar class="bar-light nav-header" align-title="center">
     </ion-nav-bar>
     <ion-content scroll="true">
-        <div class="cart-step-bar">
+        <ion-header-bar class="cart-step-bar">
             <div class="line"></div>
             <div class="step step-1" ng-class="{'current': step.s1.current, 'ion-checkmark-round': step.s1.finish, 'finish': step.s1.finish}">
                 <span ng-hide="step.s1.finish">1</span></div>
@@ -10,7 +10,7 @@
                 <span ng-hide="step.s2.finish">2</span></div>
             <div class="step step-3" ng-class="{'current': step.s3.current, 'ion-checkmark-round': step.s3.finish, 'finish': step.s3.finish}">
                 <span ng-hide="step.s3.finish">3</span></div>
-        </div>
+        </ion-header-bar>
         <ion-nav-view name="cartContent"></ion-nav-view>
     </ion-content>
 </ion-view>
