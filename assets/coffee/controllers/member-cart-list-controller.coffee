@@ -125,12 +125,12 @@ module.exports = [
             updateTotalPrice()
         $scope.$watch watchCarts, onCartsChanges
 
-        # content height adjust
-        document.addEventListener("deviceready", () ->
-            content_height = $('.view-container').height() - 335
-            console.log content_height
-            container = $('.content-container')
-            console.log container.height
-            container.height(content_height)
-        , false)
+#         #content height adjust
+#        document.addEventListener("deviceready", () ->
+#            content_height = $('.view-container').height() - 335
+#            console.log content_height
+#            container = $('.content-container')
+#            console.log container.height
+#            container.height(content_height)
+#        , false)
 ]
