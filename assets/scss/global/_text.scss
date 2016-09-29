@@ -1,19 +1,13 @@
 // Size
 // --------------------------------------------
-.text-size-small {
-    font-size:  $text-size-small;
-}
-.text-size-medium {
-    font-size:  $text-size-medium;
-}
 .text-s-size {
     font-size: $text-size-small !important;
 }
 .text-m-size {
-    font-size: $text-size-small + 6;
+    font-size: $text-size-medium !important;
 }
 .text-l-size {
-    font-size: $text-size-small + 24;
+    font-size: $text-size-large !important;
 }
 
 // Color
