@@ -1,11 +1,11 @@
-<ion-view>
+<ion-view class="step-2-content">
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
     </ion-nav-buttons>
     <ion-nav-title>購物車</ion-nav-title>
-    <ion-content class="step-2-content" padding="true">
+    <ion-content padding="true">
         <form name="paymentForm" novalidate ng-submit="submitForm(paymentForm)">
-            <div class="title-row">
+            <div class="title-row" ng-if="checkPayTypeIsCreditCard()">
                 您的信用卡資料
             </div>
             <div class="card credit-form" ng-if="checkPayTypeIsCreditCard()">
@@ -117,10 +117,10 @@
                     <span class="input-label required">性別</span>
                     <div class="row gender-row">
                         <div class="col col-33">
-                            <ion-radio ng-model="gender" ng-value="'Male'" required>男</ion-radio>
+                            <ion-radio ng-model="user.gender" ng-value="'Male'" required>男</ion-radio>
                         </div>
                         <div class="col col-33">
-                            <ion-radio ng-model="gender" ng-value="'Female'" required>女</ion-radio>
+                            <ion-radio ng-model="user.gender" ng-value="'Female'" required>女</ion-radio>
                         </div>
                     </div>
                 </div>
@@ -143,7 +143,10 @@
                             required>
                 </label>
                 <div class="item text-m-size tip-text">
-                    為本部課程異動或詳細課程解說資訊聯繫，聯絡資料務必填寫清楚，若填寫欄位前方以『*』註記，請務必正確填寫
+                    <div class="row">
+                        <div class="col col-25"><img src="img/attention@2x.png" /></div>
+                        <div class="col">為本部課程異動或詳細課程解說資訊聯繫，聯絡資料務必填寫清楚，若填寫欄位前方以『*』註記，請務必正確填寫</div>
+                    </div>
                 </div>
             </div>
             <div>

@@ -1,12 +1,17 @@
 module.exports = ->
     plugins = {
         statusBar: {isVisible: true, show: (->), hide: (->)}
+
         transitions: {flip: ->}
 
         device:
             model: 'iPhone5,1'
+
         toast:
             'show': (->)
+
+        notification:
+            'confirm': (->)
     }
 
     ionic.Platform.ready(->
@@ -17,6 +22,8 @@ module.exports = ->
 
             plugins.toast = window.plugins.toast
 
+        if navigator and navigator.notification
+            plugins.notification = navigator.notification
 
         #  plugins.transitions = nativetransitions
 

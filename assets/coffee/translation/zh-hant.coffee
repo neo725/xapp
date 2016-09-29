@@ -5,7 +5,7 @@ module.exports = ->
         'login': '登 入'
         'pass': '略 過'
         'pass_login': '略過登入'
-        'input_keyword': '請搜尋關鍵字'
+        'input_keyword': '請輸入搜尋關鍵字'
         'input_keyword_in_catalogs': '在 {{ catalog_name }} 中搜尋課程，請輸入關鍵字'
     }
     'text': {
@@ -37,6 +37,9 @@ module.exports = ->
         'favorite_removed': '已經將課程從考慮清單中移除'
         'already_exists_in_cart': '課程已經在購物車中'
         'course_add_to_cart_success': '課程加入購物車完成'
+        'clear_cart_confirm': '確定要清空購物車裡的所有商品?'
+        'remove_item_from_cart_confirm': '確定要從購物車刪除商品 {{ item_name }}?'
+        'submit_cart_confirm': '確定要結帳了嗎?'
     }
     'tab': {
         'payed': '已繳費'
@@ -46,4 +49,7 @@ module.exports = ->
     'title': {
         'search_course': '搜尋結果'
         'search_course_in_catalogs': '搜尋課程'
+        'clear_cart': '清空購物車'
+        'remove_item_from_cart': '刪除商品'
+        'submit_cart': '結帳確認'
     }

@@ -23,10 +23,10 @@
                             <i class="ion-ios-arrow-right"></i>
                         </div>
                         <ion-option-button class="ion-android-delete"
-                                           ng-click="onItemDelete(item)">
+                                           ng-click="onItemDelete(cart)">
                         </ion-option-button>
                         <ion-delete-button class="ion-minus-circled"
-                                           ng-click="items.splice($index, 1)">
+                                           ng-click="onItemDelete(cart)">
                         </ion-delete-button>
                     </ion-item>
                 </ion-list>

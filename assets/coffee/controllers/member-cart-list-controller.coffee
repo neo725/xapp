@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$state', 'navigation', 'modal',
-    ($rootScope, $scope, $ionicHistory, $state, navigation, modal) ->
+    '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'navigation', 'modal', 'plugins',
+    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, navigation, modal, plugins) ->
         $scope.shouldShowDelete = false
         $scope.pay = {}
         $scope.card = {}
@@ -42,10 +42,36 @@ module.exports = [
             $scope.shouldShowDelete = not $scope.shouldShowDelete
 
         $scope.goClearAll = ->
-            $scope.items = []
+            confirmCallback = (buttonIndex) ->
+                if buttonIndex == 1
+                    $timeout(
+                        $scope.carts = []
+                    )
+            $translate(['title.clear_cart', 'message.clear_cart_confirm', 'popup.ok', 'popup.cancel']).then (translator) ->
+                plugins.notification.confirm(
+                    translator['message.clear_cart_confirm'],
+                    confirmCallback,
+                    translator['title.clear_cart'],
+                    [translator['popup.ok'], translator['popup.cancel']]
+                )
 
         $scope.onItemDelete = (item) ->
-            $scope.items.splice($scope.items.indexOf(item), 1)
+            confirmCallback = (buttonIndex) ->
+                if buttonIndex == 1
+                    $timeout(
+                        $scope.carts.splice($scope.carts.indexOf(item), 1)
+                    )
+            params =
+                item_name: item.Prod_Name
+
+            $translate(['title.remove_item_from_cart', 'message.remove_item_from_cart_confirm',
+                'popup.ok', 'popup.cancel'], params).then (translator) ->
+                    plugins.notification.confirm(
+                        translator['message.remove_item_from_cart_confirm'],
+                        confirmCallback,
+                        translator['title.remove_item_from_cart'],
+                        [translator['popup.ok'], translator['popup.cancel']]
+                    )
 
         $scope.checkPayTypeIsCreditCard = ->
             return $scope.pay.type == 'CreditCard'
@@ -69,13 +95,24 @@ module.exports = [
                 modal.showLongMessage 'errors.credit_card_not_acceptable'
                 return
 
-            navigation.slide('home.member.cart.step3', {}, 'left')
+            confirmCallback = (buttonIndex) ->
+                if buttonIndex == 1
+                    $scope.carts = []
+                    navigation.slide('home.member.cart.step3', {}, 'left')
+
+            $translate(['title.submit_cart', 'message.submit_cart_confirm', 'popup.ok', 'popup.cancel']).then (translator) ->
+                plugins.notification.confirm(
+                    translator['message.submit_cart_confirm'],
+                    confirmCallback,
+                    translator['title.submit_cart'],
+                    [translator['popup.ok'], translator['popup.cancel']]
+                )
 
         $scope.returnToDashboard = ->
             navigation.slide('home.dashboard', {}, 'right')
 
         checkIsCardAccept = ->
-            return $scope.checkCardType not ''
+            return '' != $scope.checkCardType()
 
         updateStepStatus = ->
             current_step = $state.current.url
@@ -124,6 +161,15 @@ module.exports = [
         onCartsChanges = () ->
             updateTotalPrice()
         $scope.$watch watchCarts, onCartsChanges
+
+        $scope.$on('$ionicView.enter', (evt, data) ->
+            stateName = data.stateName
+            cartIsEmpty = $scope.carts.length == 0
+
+            if cartIsEmpty
+                if stateName not in ['home.member.cart.step1', 'home.member.cart.step3']
+                    navigation.slide('home.member.cart.step1', {}, 'right')
+        )
 
 #         #content height adjust
 #        document.addEventListener("deviceready", () ->

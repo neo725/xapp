@@ -71,7 +71,7 @@
     .step-1-content {
         ion-content {
             top: 74px;
-            bottom: 164px;
+            bottom: 160px;
         }
         .header {
             height: 47px;
@@ -115,6 +115,8 @@
             .item-options {
                 ion-option-button {
                     font-size: 2em;
+                    background-color: $assertive;
+                    color: $light;
                 }
             }
         }
@@ -132,7 +134,7 @@
     .step-2-content {
         ion-content {
             top: 74px;
-            bottom: 84px;
+            bottom: 2px;
         }
 
         .has-error {
@@ -143,8 +145,7 @@
 
         .title-row {
             font-size: $text-size-medium;
-            padding-left: 15px;
-            padding-bottom: 13px;
+            padding: 16px 16px 13px 15px;
             margin-bottom: 8px;
             border-bottom: 1px solid $stable;
         }
@@ -233,6 +234,11 @@
                 &.tip-text {
                     overflow: visible;
                     white-space: normal;
+                    color: $assertive;
+
+                    img {
+                        width: 60px;
+                  }
                 }
                 .gender-row {
                     .item {
