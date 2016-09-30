@@ -2,26 +2,30 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-clear"> 儲存設定</button>
+    <ion-nav-buttons side="right" ng-cloak>
+        <button class="button button-icon icon ion-upload" ng-show="mode == 'Setting'" ng-click="saveSetting()">儲存</button>
+        <button class="button button-clear" ng-show="mode == 'List'" ng-click="goSetting()">設定</button>
     </ion-nav-buttons>
     <ion-nav-title>
-        <h1 class="title">課程分類</h1>
+        <h4 class="title">課程分類</h4>
     </ion-nav-title>
     <ion-content class="course-catalogs-content">
         <div class="notice-block">
             您可以勾選有興趣的分類，或點選一個分類項目進行指定分類的課程搜尋
         </div>
         <ion-list>
-            <ion-item class="item" ng-repeat="catalog in catalogs" ng-click="goCatalogsSearch(catalog)">
+            <ion-item class="item" ng-repeat="catalog in visibleCatalogs" ng-click="goCatalogsSearch(catalog)">
                 <div class="item item-toggle toggle-small"
                      toggle-class="toggle-positive">
                     <div><span>{{catalog.Cata_Name}}</span></div>
-                    <label class="toggle toggle-positive disable-user-behavior" ng-click="stopPropagation($event)">
-                        <input type="checkbox"><div class="track"><div class="handle"></div></div>
+                    <label class="toggle toggle-positive disable-user-behavior"
+                           ng-show="mode == 'Setting'"
+                           ng-click="toggleCatalogItem(catalog.Cata_Id, $event)">
+                        <input type="checkbox" ng-checked="checkCatalogIsChecked(catalog.Cata_Id)">
+                        <div class="track"><div class="handle"></div></div>
                     </label>
                 </div>
-                <div class="title">
+                <div ng-class="{ 'title': mode == 'Setting', 'full-title': mode == 'List' }">
                     <span class="sub-item" ng-repeat="subitem in catalog.subCataList">{{subitem.Cata_Name}}</span>
                 </div>
             </ion-item>

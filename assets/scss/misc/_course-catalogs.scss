@@ -22,7 +22,7 @@
                     font-size: 18px;
                     border: none;
                 }
-                .title {
+                .title, .full-title {
                     margin-left: 15px;
                     font-size: 15px;
                     width: 240px;
@@ -37,6 +37,9 @@
                             content: ''
                         }
                     }
+                }
+                .full-title {
+                    width: 90%;
                 }
             }
         }

@@ -83,8 +83,22 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getUserCatalogs: (shop_id, onSuccess, onError) ->
+            $http.get("/api/catalogs?shopid=#{shop_id}")
+                .success(onSuccess)
+                .error(onError)
+
         getAllCatalogs: (shop_id, onSuccess, onError) ->
             $http.get("/api/catalogs/all?shopid=#{shop_id}")
+                .success(onSuccess)
+                .error(onError)
+
+        saveCatalogsSetting: (shop_id, catalogs, onSuccess, onError) ->
+            data = {
+                cataloglist: _.join(catalogs, ','),
+                shopid: shop_id
+            }
+            $http.post('/api/catalogs', data)
                 .success(onSuccess)
                 .error(onError)
 
