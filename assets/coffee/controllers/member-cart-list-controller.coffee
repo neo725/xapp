@@ -1,6 +1,7 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'navigation', 'modal', 'plugins',
-    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, navigation, modal, plugins) ->
+    '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal', 'plugins',
+    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins) ->
+        $scope.carts = []
         $scope.shouldShowDelete = false
         $scope.pay = {}
         $scope.card = {}
@@ -148,7 +149,14 @@ module.exports = [
             { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 8', Prod_Price: 1000, Shop_Id: 'MS' }
         ]
 
-        $scope.carts = $rootScope.carts || fakeCarts
+        onSuccess = (response) ->
+            $rootScope.carts = response.list
+            $scope.carts = $rootScope.carts || fakeCarts
+            modal.hideLoading()
+        onError = () ->
+            modal.hideLoading()
+        modal.showLoading('', 'message.data_loading')
+        api.getCartList(1, 500, onSuccess, onError)
 
         updateTotalPrice = ->
             totalPrice = 0
@@ -170,13 +178,4 @@ module.exports = [
                 if stateName not in ['home.member.cart.step1', 'home.member.cart.step3']
                     navigation.slide('home.member.cart.step1', {}, 'right')
         )
-
-#         #content height adjust
-#        document.addEventListener("deviceready", () ->
-#            content_height = $('.view-container').height() - 335
-#            console.log content_height
-#            container = $('.content-container')
-#            console.log container.height
-#            container.height(content_height)
-#        , false)
 ]
