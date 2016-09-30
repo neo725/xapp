@@ -45,9 +45,16 @@ module.exports = [
         $scope.goClearAll = ->
             confirmCallback = (buttonIndex) ->
                 if buttonIndex == 1
-                    $timeout(
-                        $scope.carts = []
-                    )
+                    onSuccess = () ->
+                        $timeout(
+                            $scope.carts = []
+                            $rootScope.carts = []
+                        )
+                    onError = () ->
+                        modal.showLongMessage 'errors.request_failed'
+
+                    api.clearFromCart 'MS', onSuccess, onError
+
             $translate(['title.clear_cart', 'message.clear_cart_confirm', 'popup.ok', 'popup.cancel']).then (translator) ->
                 plugins.notification.confirm(
                     translator['message.clear_cart_confirm'],
@@ -59,9 +66,13 @@ module.exports = [
         $scope.onItemDelete = (item) ->
             confirmCallback = (buttonIndex) ->
                 if buttonIndex == 1
-                    $timeout(
-                        $scope.carts.splice($scope.carts.indexOf(item), 1)
-                    )
+                    onSuccess = () ->
+                        $timeout(
+                            $scope.carts.splice($scope.carts.indexOf(item), 1)
+                        )
+                    onError = () ->
+                        modal.showLongMessage 'errors.request_failed'
+                    api.removeFromCart 'MS', item.Prod_Id, onSuccess, onError
             params =
                 item_name: item.Prod_Name
 
@@ -98,8 +109,32 @@ module.exports = [
 
             confirmCallback = (buttonIndex) ->
                 if buttonIndex == 1
-                    $scope.carts = []
-                    navigation.slide('home.member.cart.step3', {}, 'left')
+                    # create order
+                    onSuccess = (response) ->
+                        onSuccess = () ->
+                            # clear cart if success
+                            $scope.carts = []
+                            $rootScope.carts = []
+
+                            modal.hideLoading()
+                            # go to step 3
+                            navigation.slide('home.member.cart.step3', {}, 'left')
+
+                        onError = (error, status_code) ->
+                            modal.hideLoading()
+                            modal.showLongMessage 'errors.request_failed'
+
+                        api.clearFromCart 'MS', onSuccess, onError
+
+                    onError = (error, status_code) ->
+                        modal.hideLoading()
+                        modal.showLongMessage 'errors.request_failed'
+
+                    courses = _.map($scope.carts, 'Prod_Id')
+                    courses = _.join(courses, ',')
+
+                    modal.showLoading '', 'message.creating_order'
+                    api.createOrder('MS', courses, onSuccess, onError)
 
             $translate(['title.submit_cart', 'message.submit_cart_confirm', 'popup.ok', 'popup.cancel']).then (translator) ->
                 plugins.notification.confirm(
@@ -149,14 +184,15 @@ module.exports = [
             { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 8', Prod_Price: 1000, Shop_Id: 'MS' }
         ]
 
-        onSuccess = (response) ->
-            $rootScope.carts = response.list
-            $scope.carts = $rootScope.carts || fakeCarts
-            modal.hideLoading()
-        onError = () ->
-            modal.hideLoading()
-        modal.showLoading('', 'message.data_loading')
-        api.getCartList(1, 500, onSuccess, onError)
+        loadCartList = () ->
+            onSuccess = (response) ->
+                $rootScope.carts = response.list
+                $scope.carts = $rootScope.carts || fakeCarts
+                modal.hideLoading()
+            onError = () ->
+                modal.hideLoading()
+            modal.showLoading('', 'message.data_loading')
+            api.getCartList(1, 500, onSuccess, onError)
 
         updateTotalPrice = ->
             totalPrice = 0
@@ -169,6 +205,8 @@ module.exports = [
         onCartsChanges = () ->
             updateTotalPrice()
         $scope.$watch watchCarts, onCartsChanges
+
+        loadCartList()
 
         $scope.$on('$ionicView.enter', (evt, data) ->
             stateName = data.stateName

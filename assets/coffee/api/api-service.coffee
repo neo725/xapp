@@ -4,8 +4,8 @@ module.exports = ['$http', ($http) ->
     api = {
         login: (user, onSuccess, onError) ->
             $http.post('/api/tokens', user)
-            .success(onSuccess)
-            .error(onError)
+                .success(onSuccess)
+                .error(onError)
 
         registerToken: (uuid, token, onSuccess, onError) ->
             data =
@@ -78,6 +78,14 @@ module.exports = ['$http', ($http) ->
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)
 
+        clearFromCart: (shop_id, onSuccess, onError) ->
+            data =
+                'shopid': shop_id
+                'courseList': ''
+            $http.put("/api/cart/shop", data)
+                .success(onSuccess)
+                .error(onError)
+
         getCourse: (shop_id, prod_id, onSuccess, onError) ->
             $http.get("/api/courses/#{prod_id}?shopid=#{shop_id}")
                 .success(onSuccess)
@@ -109,6 +117,15 @@ module.exports = ['$http', ($http) ->
 
         getCartList: (page, perpage, onSuccess, onError) ->
             $http.get("/api/cart/shop?page=#{page}&perpage=#{perpage}")
+                .success(onSuccess)
+                .error(onError)
+
+        createOrder: (shop_id, courses, onSuccess, onError) ->
+            data =
+                'courses': courses
+                'shopid': shop_id
+                'payway': 0
+            $http.post("/api/order", data)
                 .success(onSuccess)
                 .error(onError)
     }
