@@ -2,6 +2,8 @@
     background-color: $white-color;
 
     .studycard-slides {
+        background-color: $stable;
+
         .slider {
             height: 200px;
 
@@ -9,12 +11,19 @@
                 position: absolute;
                 width: 40%;
                 height: 100%;
+                left: 8px;
 
                 .progress {
                     margin-top: 20px;
 
                     img {
                         width: 130px;
+                    }
+
+                    .round-progress {
+                        position: absolute;
+                        top: 20px;
+                        left: 3px;
                     }
 
                     .progress-value {

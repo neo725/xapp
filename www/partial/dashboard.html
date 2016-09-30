@@ -15,13 +15,25 @@
         <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController"
              ng-show="studyCardVisible" x-ng-show="true || studyCardVisible">
             <ion-slide-box does-continue="true">
-                <ion-slide>
-                    <div class="box">
+                <ion-slide ng-repeat="card in studyCards">
+                    <div class="box" ng-init="progress = getPercentage(card.progress)">
                         <div class="card-progress">
                             <div class="progress">
-                                <img src="img/rainbowgb@2x.png" />
+                                <img src="img/rainbowgb@2x.png" ng-show="progress < 100" />
+                                <img src="img/complete@2x.png" ng-show="progress == 100" />
+                                <div class="round-progress">
+                                    <round-progress
+                                        max="100"
+                                        current="100 - progress"
+                                        color="#eeeeee"
+                                        bgcolor="transparent"
+                                        radius="{{ radius*1.515 }}"
+                                        clockwise="clockwise"
+                                        stroke="{{ stroke*1.6 }}"
+                                        offset="inherit"></round-progress>
+                                </div>
                                 <div class="progress-value">
-                                    100
+                                    {{ getPercentage(card.progress) }}
                                     <div class="progress-text-percent">
                                         %
                                     </div>
@@ -29,7 +41,7 @@
                                         課程完成度
                                     </div>
                                     <div class="progress-teacher">
-                                        賴素綢 老師
+                                        {{ card.Prod_ClsSir}}
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +49,7 @@
                         <div class="card-info">
                             <div class="row">
                                 <div class="col">
-                                    <h4>韓文k4語文班保證班保證班</h4>
+                                    <h4>{{ card.Prod_Name }}</h4>
                                 </div>
                             </div>
                             <div class="row text-item">
@@ -45,7 +57,7 @@
                                     <img src="img/calendar@2x.png" />
                                 </div>
                                 <div class="col col-80 col-text-left">
-                                    2016/3/6 ~ 2016/5/20
+                                    {{ getDatePart(card.Prod_ClsOpenDate) }} ~ {{ getDatePart(card.Prod_ClsEndDate) }}
                                 </div>
                             </div>
                             <div class="row text-item">
@@ -53,10 +65,15 @@
                                     <img src="img/location@2x.png" />
                                 </div>
                                 <div class="col col-80 col-text-left">
-                                    大夏館 建國分部
+                                    {{ getLocationFullName(card.Prod_ClsLocation) }}
                                 </div>
                             </div>
-                            <div class="row text-item">
+                            <div class="row" ng-show="progress == 100">
+                                <div class="col">
+                                    <button class="button button-block button-small button-positive">填寫課程評價</button>
+                                </div>
+                            </div>
+                            <div class="row text-item" ng-show="progress < 100">
                                 <div class="col">
                                     <div class="row text-item">
                                         <div class="col">
@@ -66,13 +83,14 @@
                                     <div class="row text-item class-time">
                                         <div class="col">
                                             <!--<ion-badge item-center></ion-badge>-->
-                                            <span class="badge badge-positive badge-s-size">六</span>
+                                            <span class="badge badge-positive badge-s-size">
+                                                {{ getWeekdayName(card.nextStartTime) }}</span>
                                         </div>
                                         <div class="col class-time-range">
                                             <div class="text-positive">
-                                                <div>19:00</div>
+                                                <div>{{ getTimePart(card.nextStartTime) }}</div>
                                                 <div>|</div>
-                                                <div>22:00</div>
+                                                <div>{{ getTimePart(card.nextEndTime) }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +103,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <h2 class="text-positive">B304</h2>
+                                            <h2 class="text-positive">{{ card.RoomId }}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +112,7 @@
                     </div>
                 </ion-slide>
             </ion-slide-box>
-        </div ng-if>
+        </div>
         <div class="search-slides slides" ng-controller="SearchSlideController">
             <ion-slide-box does-continue="true" ng-class="{'guest-slider': !studyCardVisible}">
                 <ion-slide ng-repeat="cover in covers">
