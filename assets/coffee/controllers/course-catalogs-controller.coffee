@@ -13,8 +13,8 @@ module.exports = [
 
         $scope.saveSetting = ->
             onSuccess = (response) ->
-                loadAllCatalogs('MS')
                 $scope.mode = 'List'
+                loadAllCatalogs('MS')
             onError = (->)
 
             api.saveCatalogsSetting('MS', choiceCatalogs, onSuccess, onError)
@@ -30,6 +30,8 @@ module.exports = [
         $scope.checkCatalogIsChecked = (catalog_id) ->
             catalogs = $scope.user_catalogs || []
             index = _.findIndex(catalogs, { 'Cata_Id': catalog_id })
+            if index > -1 and _.indexOf(choiceCatalogs, catalog_id) == -1
+                choiceCatalogs.push catalog_id
             return index > -1
 
         $scope.goCatalogsSearch = (catalog) ->
@@ -66,7 +68,7 @@ module.exports = [
                     $scope.user_catalogs = []
                     $scope.visibleCatalogs = $scope.catalogs
 
-            api.getUserCatalogs('MS', onSuccess, onError)
+            api.getUserCatalogs(shop_id, onSuccess, onError)
 
         loadAllCatalogs('MS')
 ]

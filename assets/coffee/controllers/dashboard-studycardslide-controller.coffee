@@ -3,7 +3,9 @@ constants = require('../common/constants')
 module.exports = [
     '$rootScope', '$scope', '$ionicSlideBoxDelegate', '$log', 'api', 'modal',
     ($rootScope, $scope, $ionicSlideBoxDelegate, $log, api, modal) ->
-
+        # angular svg round progressbar
+        # repo : https://github.com/crisbeto/angular-svg-round-progressbar
+        # demo : http://crisbeto.github.io/angular-svg-round-progressbar/
         $scope.current = 50
         $scope.radius = 43
         $scope.stroke = 4

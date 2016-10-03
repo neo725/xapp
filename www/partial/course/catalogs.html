@@ -2,12 +2,12 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right" ng-cloak>
+    <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-upload" ng-show="mode == 'Setting'" ng-click="saveSetting()">儲存</button>
         <button class="button button-clear" ng-show="mode == 'List'" ng-click="goSetting()">設定</button>
     </ion-nav-buttons>
-    <ion-nav-title>
-        <h4 class="title">課程分類</h4>
+    <ion-nav-title class="catalog-view-title">
+        <span>課程分類</span>
     </ion-nav-title>
     <ion-content class="course-catalogs-content">
         <div class="notice-block">
