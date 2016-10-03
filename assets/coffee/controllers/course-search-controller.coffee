@@ -129,7 +129,7 @@ module.exports = [
             $scope.goSearch($stateParams.keyword)
 
         $scope.$on('$ionicView.enter', ->
-            $log.info '$ionicView.enter'
+            #$log.info '$ionicView.enter'
             #data = window.localStorage.getItem('favorite_changed')
 
             #if data

@@ -13,30 +13,29 @@
             <div class="text text-left" ng-show="carts.length == 0">您沒有任何商品在購物車裡</div>
         </div>
         <div class="content">
-                <ion-list show-delete="shouldShowDelete">
-                    <ion-item ng-repeat="cart in carts"
-                              item="cart"
-                              href="#/home/course/info/{{cart.Shop_Id}}/{{cart.Prod_Id}}" class="item-remove-animate">
-                        {{ cart.Prod_Name }}
-                        <div class="price-container">
-                            <span class="price">{{cart.Prod_Price | currency:undefined:0}}</span>
-                            <i class="ion-ios-arrow-right"></i>
-                        </div>
-                        <ion-option-button class="ion-android-delete"
-                                           ng-click="onItemDelete(cart)">
-                        </ion-option-button>
-                        <ion-delete-button class="ion-minus-circled"
-                                           ng-click="onItemDelete(cart)">
-                        </ion-delete-button>
-                    </ion-item>
-                </ion-list>
-                <div class="list-price text-right">
-                    應付金額
-                    <span class="price">{{totalPrice | currency:undefined:0}}</span>
-                </div>
+            <ion-list show-delete="shouldShowDelete">
+                <ion-item ng-repeat="cart in carts"
+                          item="cart"
+                          href="#/home/course/info/{{cart.Shop_Id}}/{{cart.Prod_Id}}" class="item-remove-animate">
+                    {{ cart.Prod_Name }}
+                    <div class="price-container">
+                        <span class="price">{{cart.Prod_Price | currency:undefined:0}}</span>
+                        <i class="ion-ios-arrow-right"></i>
+                    </div>
+                    <ion-option-button class="ion-android-delete"
+                                       ng-click="onItemDelete(cart)">
+                    </ion-option-button>
+                    <ion-delete-button class="ion-minus-circled"
+                                       ng-click="onItemDelete(cart)">
+                    </ion-delete-button>
+                </ion-item>
+            </ion-list>
+            <div class="list-price text-right">
+                應付金額
+                <span class="price">{{totalPrice | currency:undefined:0}}</span>
             </div>
+        </div>
     </ion-content>
-    <!--<div class="footer">-->
     <ion-footer-bar class="footer">
         <div class="footer-container">
             <div class="row">
