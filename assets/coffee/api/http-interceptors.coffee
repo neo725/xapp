@@ -8,14 +8,17 @@ exports.apiInterceptor = ['$rootScope', '$log', '$q', ($rootScope, $log, $q) ->
 #        check device is real in fake on dev mode only
         isRealDevice = ua.indexOf('SM-G900P') == -1
 
-        isApiRequest = /^\/api\//.test(config.url)
+        isPayRequest = /(^http:|https:)\/\/[-a-zA-Z0-9\/.]{2,100}\/api\/pay/gi.test(config.url)
+        isApiRequest = isPayRequest or /^\/api\//.test(config.url)
+
         api_endpoint = "#{constants.API_URL.browser}"
 
         if isRealDevice
             api_endpoint = "#{constants.API_URL.device}"
 
         if isApiRequest
-            config.url = "#{api_endpoint}#{config.url}"
+            if not isPayRequest
+                config.url = "#{api_endpoint}#{config.url}"
             canceler = $q.defer()
             config.timeout = canceler.promise
             # remark under code because Connection is undefined, i don't know why

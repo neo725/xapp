@@ -79,9 +79,9 @@ module.exports = ['$ionicPlatform', '$timeout', '$ionicModal', '$ionicLoading', 
         return {
             showLoading: showLoadingSpinner
             hideLoading: hideLoadingSpinner
-            generate: generateModel
             showMessage: showMessage
             showLongMessage: showLongMessage
+            generate: generateModel
             showTopMessage: showTopMessage
             showConfirm: showConfirm
             checkNetwork: checkNetwork

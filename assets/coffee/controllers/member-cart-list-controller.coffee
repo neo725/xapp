@@ -7,15 +7,15 @@ module.exports = [
         $scope.card = {}
         $scope.user = {}
 
-        fake_card =
-            number_part1: 5178
-            number_part2: 1234
-            number_part3: 1212
-            number_part4: 4000
-            expire_month: 8
-            expire_year: 18
-            cvc: 123
-            holder: 'Neo'
+#        fake_card =
+#            number_part1: 5178
+#            number_part2: 1234
+#            number_part3: 1212
+#            number_part4: 4000
+#            expire_month: 8
+#            expire_year: 18
+#            cvc: 123
+#            holder: 'Neo'
 
         fake_user =
             username: 'Neo'
@@ -24,7 +24,7 @@ module.exports = [
             phone: '0986716086'
             userid: 'A123456789'
 
-        $scope.card = fake_card
+#        $scope.card = fake_card
         $scope.user = fake_user
 
         $scope.goBack = ->
@@ -107,28 +107,93 @@ module.exports = [
                 modal.showLongMessage 'errors.credit_card_not_acceptable'
                 return
 
+            clearCart = (success) ->
+                onSuccess = () ->
+                    # clear cart if success
+                    $scope.carts = []
+                    $rootScope.carts = []
+
+                    modal.hideLoading()
+                    (success or (->))()
+
+                onError = (error, status_code) ->
+                    modal.hideLoading()
+                    modal.showLongMessage 'errors.request_failed'
+
+                api.clearFromCart 'MS', onSuccess, onError
+
+            formatAccount = (account) ->
+                return account.substr(0, 4) + '-' +
+                        account.substr(4, 4) + '-' +
+                        account.substr(8, 4) + '-' +
+                        account.substr(12, 4)
+
+            payByATM = (order_no, success, error) ->
+                onSuccess = (response) ->
+                    bank = {}
+                    bank.no = response.bankNo
+                    bank.account = formatAccount(response.account)
+                    bank.amount = response.amount
+                    $scope.bank = bank
+
+                    (success || (->))()
+                api.createATMPayment(order_no, onSuccess, error)
+
+            collectCreditCardInfo = ->
+                pad = (numeric, size) ->
+                    str = '000' + numeric
+                    return str.substr(str.length - size)
+
+                getCardNumber = () ->
+                    return pad($scope.card.number_part1, 4) +
+                            pad($scope.card.number_part2, 4) +
+                            pad($scope.card.number_part3, 4) +
+                            pad($scope.card.number_part4, 4)
+
+                getCardExpire = () ->
+                    return pad($scope.card.expire_year + 2000, 4) +
+                            pad($scope.card.expire_month, 2)
+                card = {}
+                card.number = getCardNumber()
+                card.expire = getCardExpire()
+                card.cvc = pad($scope.card.cvc, 3)
+
+                return card
+
+            payByCreditCard = (order_no, success, error) ->
+                card = collectCreditCardInfo()
+
+                api.createCreditCardPayment(order_no, card.number, card.expire, card.cvc, success, error)
+
+            createPayment = (pay_type, order_no, success) ->
+                error = ->
+                    modal.hideLoading()
+                    modal.showMessage('errors.payment_create_failed')
+
+                if pay_type == 'ATM'
+                    payByATM(order_no, success, error)
+
+                if pay_type == 'CreditCard'
+                    payByCreditCard(order_no, success, error)
+
             confirmCallback = (buttonIndex) ->
                 if buttonIndex == 1
                     # create order
                     onSuccess = (response) ->
-                        onSuccess = () ->
-                            # clear cart if success
-                            $scope.carts = []
-                            $rootScope.carts = []
-
+                        order_no = response.result
+                        # pay_type = ATM or CreditCard
+                        createPayment(pay_type, order_no, ->
                             modal.hideLoading()
-                            # go to step 3
+#                            clearCart(->
+#                                # go to step 3
+#                                navigation.slide('home.member.cart.step3', {}, 'left')
+#                            )
                             navigation.slide('home.member.cart.step3', {}, 'left')
-
-                        onError = (error, status_code) ->
-                            modal.hideLoading()
-                            modal.showLongMessage 'errors.request_failed'
-
-                        api.clearFromCart 'MS', onSuccess, onError
+                        )
 
                     onError = (error, status_code) ->
                         modal.hideLoading()
-                        modal.showLongMessage 'errors.request_failed'
+                        modal.showMessage 'errors.request_failed'
 
                     courses = _.map($scope.carts, 'Prod_Id')
                     courses = _.join(courses, ',')

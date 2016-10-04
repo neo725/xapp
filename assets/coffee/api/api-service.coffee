@@ -1,4 +1,5 @@
 _ = require('lodash')
+constants = require('../common/constants')
 
 module.exports = ['$http', ($http) ->
     api = {
@@ -126,6 +127,26 @@ module.exports = ['$http', ($http) ->
                 'shopid': shop_id
                 'payway': 0
             $http.post("/api/order", data)
+                .success(onSuccess)
+                .error(onError)
+
+        # Payment (please always stay code below in bottom of this file)
+        createATMPayment: (order_no, onSuccess, onError) ->
+            api_url = constants.API_URL.atm
+            data =
+                'orderNo': order_no
+            $http.post("#{api_url}/api/pay", data)
+                .success(onSuccess)
+                .error(onError)
+
+        createCreditCardPayment: (order_no, card_no, expire, cvc, onSuccess, onError) ->
+            api_url = constants.API_URL.creditcard
+            data =
+                'orderNo': order_no
+                'cardNo': card_no
+                'expire': expire
+                'cvc': cvc
+            $http.post("#{api_url}/api/pay", data)
                 .success(onSuccess)
                 .error(onError)
     }

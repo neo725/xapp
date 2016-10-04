@@ -4,7 +4,7 @@
     </ion-nav-buttons>
     <ion-nav-title>購物車</ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-minus-circled" ng-click="goShowDelete()"></button>
+        <button class="button button-icon icon ion-minus-circled" ng-click="goShowDelete()" ng-show="false"></button>
         <button class="button button-icon icon ion-android-delete" ng-click="goClearAll()">清空</button>
     </ion-nav-buttons>
     <ion-content scroll="true">
@@ -32,7 +32,7 @@
             </ion-list>
             <div class="list-price text-right">
                 應付金額
-                <span class="price">{{totalPrice | currency:undefined:0}}</span>
+                <span class="price">{{ totalPrice | currency:undefined:0 }}</span>
             </div>
         </div>
     </ion-content>

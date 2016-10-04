@@ -6,6 +6,8 @@ module.exports =
     API_URL: {
         'browser': 'http://localhost:8100/SceAppApi'
         'device': 'http://test.sce.pccu.edu.tw/SceAppApi'
+        'atm': 'http://140.137.200.233/AtmWebApi'
+        'creditcard': 'http://140.137.200.233/CCardWebAPI'
     }
 
     DEFAULT_LOCALE: 'zh-Hant'
@@ -14,7 +16,7 @@ module.exports =
 
     LOCATIONS: ['建國', '忠孝', '延平', '大安', '台中', '高雄']
 
-    LOCATIONS_MAP: [
+    LOCATIONS_MAPPING: [
         {
             'name': '建國'
             'full_name': '大夏館 建國分部'
