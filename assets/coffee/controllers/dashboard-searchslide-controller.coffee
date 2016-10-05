@@ -9,10 +9,10 @@ module.exports = [
 
         onSuccess = (response) ->
             modal.hideLoading()
-            #modal.showMessage 'message.success'
-            $scope.covers = response.list
-            #$log.info $scope.covers
-            $ionicSlideBoxDelegate.update()
+            list = response.list
+            $scope.covers = list
+
+            #$ionicSlideBoxDelegate.update()
 
         onError = (response) ->
             modal.hideLoading()

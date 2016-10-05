@@ -31,10 +31,11 @@ module.exports = [
             return value
 
         onSuccess = (response) ->
-            #modal.showMessage 'message.success'
-            $scope.studyCards = response.list
-            $scope.studyCardVisible = response.list.length > 0
-            #$rootScope.studyCardVisible = true
+            list = response.list
+
+            $scope.studyCards = list
+            $scope.studyCardVisible = list.length > 0
+
             $ionicSlideBoxDelegate.update()
 
         onError = (response) ->

@@ -238,21 +238,10 @@ module.exports = [
 
         $scope.choice = 'CreditCard'
 
-        fakeCarts = [
-            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 1', Prod_Price: 1000, Shop_Id: 'MS' }
-            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 2', Prod_Price: 1000, Shop_Id: 'MS' }
-            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 3', Prod_Price: 1000, Shop_Id: 'MS' }
-            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 4', Prod_Price: 1000, Shop_Id: 'MS' }
-            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 5', Prod_Price: 1000, Shop_Id: 'MS' }
-            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 6', Prod_Price: 1000, Shop_Id: 'MS' }
-            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 7', Prod_Price: 1000, Shop_Id: 'MS' }
-            { Prod_Id: '8X53_A5030', Prod_Name: '測試課程 8', Prod_Price: 1000, Shop_Id: 'MS' }
-        ]
-
         loadCartList = () ->
             onSuccess = (response) ->
                 $rootScope.carts = response.list
-                $scope.carts = $rootScope.carts || fakeCarts
+                $scope.carts = $rootScope.carts
                 modal.hideLoading()
             onError = () ->
                 modal.hideLoading()

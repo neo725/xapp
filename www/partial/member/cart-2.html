@@ -23,6 +23,7 @@
                                    class="number-4 card-number"
                                    ng-model="card.number_part1"
                                    ng-next="card_part2" ng-next-length="4"
+                                   ng-next-autofill="0" ng-next-autofill-length="4"
                                    maxlength="4" min="1" max="9999"
                                    ng-minlength="4" ng-maxlength="4"
                                    required>
@@ -32,6 +33,7 @@
                                    class="number-4 card-number"
                                    ng-model="card.number_part2"
                                    ng-next="card_part3" ng-next-length="4"
+                                   ng-next-autofill="0" ng-next-autofill-length="4"
                                    maxlength="4" min="1" max="9999"
                                    ng-minlength="4" ng-maxlength="4"
                                    required>
@@ -41,6 +43,7 @@
                                    class="number-4 card-number"
                                    ng-model="card.number_part3"
                                    ng-next="card_part4" ng-next-length="4"
+                                   ng-next-autofill="0" ng-next-autofill-length="4"
                                    maxlength="4" min="1" max="9999"
                                    ng-minlength="4" ng-maxlength="4"
                                    required>
@@ -50,6 +53,7 @@
                                    class="number-4 card-number"
                                    ng-model="card.number_part4"
                                    ng-next="card_expire_month" ng-next-length="4"
+                                   ng-next-autofill="0" ng-next-autofill-length="4"
                                    maxlength="4" min="1" max="9999"
                                    ng-minlength="4" ng-maxlength="4"
                                    required>
@@ -63,9 +67,9 @@
                             <input type="number" name="card_expire_month"
                                    class="number-2 expire-month"
                                    ng-model="card.expire_month"
-                                   ng-next="card_expire_year" ng-next-length="2" ng-next-autofill="0" ng-next-autofill-length="2"
+                                   ng-next="card_expire_year" ng-next-length="2"
                                    maxlength="2" min="1" max="12"
-                                   ng-minlength="1" ng-maxlength="2"
+                                   ng-minlength="2" ng-maxlength="2"
                                    required>
                         </label>
                         <label ng-class="{ 'has-error' : paymentForm.card_expire_year.$invalid}">
@@ -74,7 +78,7 @@
                                    ng-model="card.expire_year"
                                    ng-next="card_cvc" ng-next-length="2"
                                    maxlength="2" min="16" max="99"
-                                   ng-minlength="1" ng-maxlength="2"
+                                   ng-minlength="2" ng-maxlength="2"
                                    required>
                         </label>
                     </div>
@@ -85,6 +89,7 @@
                                    class="number-3 card-cvc"
                                    ng-model="card.cvc"
                                    ng-next="card_holder" ng-next-length="3"
+                                   ng-next-autofill="0" ng-next-autofill-length="3"
                                    maxlength="3" min="1" max="999"
                                    ng-minlength="3" ng-maxlength="3"
                                    required>
@@ -107,7 +112,7 @@
                 <div class="item indent-item">
                     您的聯絡資料
                 </div>
-                <label class="item item-input" ng-class="{ 'has-error' : paymentForm.username.$invalid}">
+                <label class="item item-input" ng-class="{ 'has-error' : paymentForm.username.$invalid }">
                     <span class="input-label required">姓名</span>
                     <input type="text" name="username"
                            ng-model="user.username"
