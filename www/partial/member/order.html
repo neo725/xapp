@@ -4,17 +4,17 @@
     </ion-nav-buttons>
     <ion-nav-title>訂單管理</ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-android-cart button-icon-cart"></button>
-        <div class="cart-badge-container" ng-show="carts.length > 0">
+        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
             <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
         </div>
     </ion-nav-buttons>
     <ion-content>
         <ion-tabs class="tabs-light">
 
-            <ion-tab class="tab-active-1" title="{{'tab.payed' | translate}}" badge="3" badge-style="badge-assertive">
+            <ion-tab class="tab-active-1" title="{{'tab.payed' | translate}}" badge="0" badge-style="badge-assertive">
                 <div class="tab-content">
-                    <div class="card">
+                    <div class="card" ng-repeat="order in payed_list">
                         <div class="item item-text-wrap">
                             <div class="row header-row">
                                 <div class="col col-30 text-s-size">
@@ -54,9 +54,9 @@
                 </div>
             </ion-tab>
 
-            <ion-tab class="tab-active-2" title="{{'tab.wait_for_pay' | translate}}" badge="4" badge-style="badge-assertive">
+            <ion-tab class="tab-active-2" title="{{'tab.wait_for_pay' | translate}}" badge="0" badge-style="badge-assertive">
                 <div class="tab-content">
-                    <div class="card">
+                    <div class="card" ng-repeat="order in waiting_list">
                         <div class="item item-text-wrap">
                             <div class="row header-row">
                                 <div class="col col-30 text-s-size">
@@ -96,9 +96,9 @@
                 </div>
             </ion-tab>
 
-            <ion-tab class="tab-active-3" title="{{'tab.return_pay' | translate}}" badge="5" badge-style="badge-assertive">
+            <ion-tab class="tab-active-3" title="{{'tab.return_pay' | translate}}" badge="0" badge-style="badge-assertive">
                 <div class="tab-content">
-                    <div class="card">
+                    <div class="card" ng-repeat="order in refund_list">
                         <div class="item item-text-wrap">
                             <div class="row header-row">
                                 <div class="col text-s-size">
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" ng-hide="true">
                         <div class="item item-text-wrap">
                             <div class="row header-row">
                                 <div class="col text-s-size">

@@ -130,6 +130,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getOrders: (status, page, perpage, onSuccess, onError) ->
+            $http.get("/api/order?status=#{status}&page=#{page}&perpage=#{perpage}")
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

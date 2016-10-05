@@ -21,15 +21,17 @@
                             ng-bind="'input.login' | translate" ng-click="login()" ng-disabled="logging">
                     </button>
                 </div>
-                <div class="light-gray-text-panel" ng-bind="'text.or' | translate">
-                </div>
-                <div class="social-panel">
-                    <div class="row">
-                        <div class="col" ng-click="facebook_login()">
-                            <button id="facebook-button">Facebook</button>
-                        </div>
-                        <div class="col" ng-click="google_login()">
-                            <button id="google-button">Google</button>
+                <div class="social-login" ng-hide="true">
+                    <div class="light-gray-text-panel" ng-bind="'text.or' | translate">
+                    </div>
+                    <div class="social-panel">
+                        <div class="row">
+                            <div class="col" ng-click="facebook_login()">
+                                <button id="facebook-button">Facebook</button>
+                            </div>
+                            <div class="col" ng-click="google_login()">
+                                <button id="google-button">Google</button>
+                            </div>
                         </div>
                     </div>
                 </div>

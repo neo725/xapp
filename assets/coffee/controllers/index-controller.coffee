@@ -16,15 +16,17 @@ module.exports = [
             # Keep in mind the function will return null if the token has not been established yet.
             FCMPlugin.getToken(
                 (token) ->
-                    $log.info token
-                    onSuccess = (response) ->
-                        $cordovaToast.show('Notification token registered', 'long', 'top')
-                    onError = (error) ->
+                    #$log.info token
+#                    onSuccess = (response) ->
+#                        $cordovaToast.show('Notification token registered', 'long', 'top')
+                    onSuccess = (->)
+                    onError = (error, status) ->
                         $cordovaToast.show('Error Registering  notification token', 'long', 'top')
+                        $log.info status
                         $log.info error
                     uuid = $cordovaDevice.getUUID()
                     api.registerToken(uuid, token, onSuccess, onError)
-            , ((err) ->)
+                , ((err) ->)
             )
 
         $rootScope.loadCart = ->

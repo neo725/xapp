@@ -10,5 +10,8 @@ module.exports = [
             if token == null or token == "null"
                 navigation.flip 'login', {}, 'left'
 
+        $rootScope.goCart = ->
+            navigation.slide 'home.member.cart.step1', {}, 'left'
+
         checkLoginState()
 ]
