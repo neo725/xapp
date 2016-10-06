@@ -15,10 +15,10 @@
             <ion-tab class="tab-active-1" title="{{'tab.payed' | translate}}" badge="0" badge-style="badge-assertive">
                 <div class="tab-content">
                     <div class="card" ng-repeat="order in payed_list">
-                        <div class="item item-text-wrap">
+                        <div class="item item-text-wrap" ng-init="main = order.orderMain">
                             <div class="row header-row">
                                 <div class="col col-30 text-s-size">
-                                    <span class="bg-stable padding-3">8M08_A4090</span></div>
+                                    <span class="bg-stable padding-3">{{ main.No }}</span></div>
                                 <div class="col col-50 text-s-size text-light-gray">2016/12/31 01:05 訂單成立</div>
                                 <div class="col text-right text-s-size">
                                     <span class="bg-tab-color-1 text-white padding-3 refunds" ng-click="wantRefunds($event)">
@@ -44,7 +44,7 @@
                                             <div class="payment-mark">信用卡付款成功</div>
                                         </div>
                                         <div class="col col-34 text-right price-mark">
-                                            NT<span class="price">$99,999</span>
+                                            NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
                                         </div>
                                     </div>
                                 </div>
