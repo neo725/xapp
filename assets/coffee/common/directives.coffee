@@ -76,3 +76,23 @@ exports.ngNext = ['$timeout',
                     )
             )
 ]
+
+exports.customVerify = () ->
+    require: 'ngModel'
+    scope:
+        customVerify: '='
+    link: (scope, elem, attrs, ctrl) ->
+        scope.$watch () ->
+            if scope.customVerify or ctrl.$viewValue
+                combined = scope.customVerify + '_' + ctrl.$viewValue
+            return combined
+        , (value) ->
+            if value
+                ctrl.$parsers.unshift (viewValue) ->
+                    origin = scope.customVerify
+                    if origin != viewValue
+                        ctrl.$setValidity("customVerify", false)
+                        return undefined
+                    else
+                        ctrl.$setValidity("customVerify", true)
+                        return viewValue

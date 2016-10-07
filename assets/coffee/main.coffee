@@ -20,10 +20,12 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .factory('api', require('./api/api-service'))
 .directive('goNative', directives.goNative)
 .directive('ngNext', directives.ngNext)
+.directive('customVerify', directives.customVerify)
 .controller('IndexController', require('./controllers/index-controller'))
 .controller('LoginController', require('./controllers/login-controller'))
 .controller('MainController', require('./controllers/main-controller'))
 .controller('ForgotPasswordController', require('./controllers/forgotpassword-controller'))
+.controller('RegisterController', require('./controllers/register-controller'))
 .controller('HomeController', require('./controllers/home-controller'))
 .controller('DashboardController', require('./controllers/dashboard-controller'))
 .controller('StudyCardSlideController', require('./controllers/dashboard-studycardslide-controller'))
@@ -77,6 +79,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
         views: {
             'mainContent': {
                 templateUrl: 'partial/forgotpassword.html'
+            }
+        }
+
+    .state 'main.register',
+        url: '/register'
+        views: {
+            'mainContent': {
+                templateUrl: 'partial/register.html'
             }
         }
 

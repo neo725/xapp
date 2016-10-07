@@ -1,0 +1,81 @@
+<ion-view class="register-pane" ng-controller="RegisterController">
+    <ion-nav-title>
+        註冊新帳號
+    </ion-nav-title>
+    <ion-content padding="true">
+        <div class="pane-content">
+            <div>
+                <img class="pane-logo" src="img/registered01@2x.png">
+            </div>
+            <p class="text-line-1 text-center">{{ '為自己註冊一個新帳戶吧！' }}</p>
+            <form name="registerForm" class="form register-form" novalidate ng-submit="submitForm(registerForm)">
+                <div class="list">
+                    <label class="item item-input item-floating-label"
+                           ng-class="{ 'has-error' : registerForm.username.$invalid }">
+                        <span class="input-label">姓名</span>
+                        <span class="input-label">姓名2</span>
+                        <input type="text" name="username"
+                               placeholder="姓名"
+                               ng-model="user.username"
+                               required>
+                    </label>
+                    <label class="item item-input item-floating-label"
+                           ng-class="{ 'has-error' : registerForm.account.$invalid }">
+                        <span class="input-label">帳號</span>
+                        <input type="text" name="account"
+                               placeholder="帳號"
+                               ng-model="user.account"
+                               required>
+                    </label>
+                    <label class="item item-input item-floating-label"
+                           ng-class="{ 'has-error' : registerForm.email.$invalid }">
+                        <span class="input-label">Email</span>
+                        <input type="email" name="email"
+                               placeholder="Email"
+                               ng-model="user.email"
+                               required>
+                    </label>
+                    <label class="item item-input item-floating-label"
+                           ng-class="{ 'has-error' : registerForm.email_confirm.$invalid }">
+                        <span class="input-label">確認 Email</span>
+                        <input type="email" name="email_confirm"
+                               placeholder="確認 Email"
+                               ng-model="user.email_confirm"
+                               data-custom-verify="user.email"
+                               required>
+                    </label>
+                    <label class="item item-input item-floating-label"
+                           ng-class="{ 'has-error' : registerForm.password.$invalid }">
+                        <span class="input-label">密碼</span>
+                        <input type="password" name="password"
+                               placeholder="密碼"
+                               ng-model="user.password"
+                               required>
+                    </label>
+                    <label class="item item-input item-floating-label"
+                           ng-class="{ 'has-error' : registerForm.password_confirm.$invalid }">
+                        <span class="input-label">確認密碼</span>
+                        <input type="password" name="password_confirm"
+                               placeholder="確認密碼"
+                               ng-model="user.password_confirm"
+                               data-custom-verify="user.password"
+                               required>
+                    </label>
+                    <label class="item item-input item-floating-label"
+                           ng-class="{ 'has-error' : registerForm.mobile.$invalid }">
+                        <span class="input-label">手機</span>
+                        <input type="text" name="mobile"
+                               placeholder="手機"
+                               ng-model="user.mobile"
+                               pattern="[\d]{4}[-]{0,1}[\d]{3}[-]{0,1}[\d]{3}"
+                               required>
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col"><button class="button button-block button-dark" ng-click="goBack()">取消</button></div>
+                    <div class="col col-67"><button class="button button-block button-positive">送出</button></div>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

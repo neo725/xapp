@@ -1,0 +1,47 @@
+.register-pane {
+    .pane-content {
+        margin: 0 auto;
+        width: 80%;
+
+        img.pane-logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+            width: 50%;
+        }
+
+        .text-line-1 {
+            color: $blue-color;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .register-form {
+
+            &.ng-submitted {
+                .item.has-error {
+                    border-bottom: 2px solid $error;
+                }
+            }
+            .item {
+                border-left: 0 none;
+                border-right: 0 none;
+                border-top: 0;
+                border-bottom: 1px solid $stable;
+
+                &:first-child {
+                    border-top: 0 none;
+                }
+
+                &.item-floating-label {
+                    .input-label.has-input {
+                        color: $blue-color;
+                    }
+                }
+            }
+        }
+    }
+}
