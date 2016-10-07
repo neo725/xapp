@@ -11,12 +11,11 @@
             <form name="registerForm" class="form register-form" novalidate ng-submit="submitForm(registerForm)">
                 <div class="list">
                     <label class="item item-input item-floating-label"
-                           ng-class="{ 'has-error' : registerForm.username.$invalid }">
+                           ng-class="{ 'has-error' : registerForm.name.$invalid }">
                         <span class="input-label">姓名</span>
-                        <span class="input-label">姓名2</span>
-                        <input type="text" name="username"
+                        <input type="text" name="name"
                                placeholder="姓名"
-                               ng-model="user.username"
+                               ng-model="user.name"
                                required>
                     </label>
                     <label class="item item-input item-floating-label"
@@ -73,7 +72,7 @@
                 </div>
                 <div class="row">
                     <div class="col"><button class="button button-block button-dark" ng-click="goBack()">取消</button></div>
-                    <div class="col col-67"><button class="button button-block button-positive">送出</button></div>
+                    <div class="col col-67"><button class="button button-block button-positive">確認</button></div>
                 </div>
             </form>
         </div>

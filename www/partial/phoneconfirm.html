@@ -1,0 +1,30 @@
+<ion-view class="phone-confirm-pane" ng-controller="PhoneConfirmController">
+    <ion-nav-title>
+        身分驗證
+    </ion-nav-title>
+    <ion-content padding="true">
+        <div class="pane-content">
+            <div>
+                <img class="pane-logo" src="img/registered02@2x.png">
+            </div>
+            <p class="text-line-1 text-center">{{ '驗證碼已傳送至' }}</p>
+            <h3 class="text-center">{{ maskNumber(mobile) }}</h3>
+            <form name="phoneConfirmForm" class="form phone-confirm-form" novalidate ng-submit="submitForm(phoneConfirmForm)">
+                <div class="list">
+                    <label class="item item-input item-floating-label"
+                           ng-class="{ 'has-error' : phoneConfirmForm.verify_code.$invalid }">
+                        <span class="input-label">{{ '驗證碼' }}</span>
+                        <input type="text" name="verify_code"
+                               placeholder="{{ '請輸入驗證碼' }}"
+                               ng-model="verify_code"
+                               required>
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col"><button class="button button-block button-dark" ng-click="goBack()">取消</button></div>
+                    <div class="col col-67"><button class="button button-block button-positive">送出</button></div>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

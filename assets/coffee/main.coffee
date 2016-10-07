@@ -26,6 +26,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .controller('MainController', require('./controllers/main-controller'))
 .controller('ForgotPasswordController', require('./controllers/forgotpassword-controller'))
 .controller('RegisterController', require('./controllers/register-controller'))
+.controller('PhoneConfirmController', require('./controllers/phoneconfirm-controller'))
 .controller('HomeController', require('./controllers/home-controller'))
 .controller('DashboardController', require('./controllers/dashboard-controller'))
 .controller('StudyCardSlideController', require('./controllers/dashboard-studycardslide-controller'))
@@ -87,6 +88,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
         views: {
             'mainContent': {
                 templateUrl: 'partial/register.html'
+            }
+        }
+
+    .state 'main.phoneconfirm',
+        url: '/phoneconfirm'
+        views: {
+            'mainContent': {
+                templateUrl: 'partial/phoneconfirm.html'
             }
         }
 
