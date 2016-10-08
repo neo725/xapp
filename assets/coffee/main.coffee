@@ -1,10 +1,3 @@
-require('angular')
-require('ionic')
-require('angular-translate')
-require('ionic-native-transitions')
-require('angular-svg-round-progressbar')
-
-
 resources = require('./translation/index')()
 httpInterceptors = require('./api/http-interceptors')
 directives = require('./common/directives')
@@ -13,7 +6,7 @@ directives = require('./common/directives')
 # ngCordova install and setup
 # http://ngcordova.com/docs/install/
 
-angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-native-transitions', 'angular-svg-round-progressbar'])
+angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-native-transitions', 'ion-affix', 'angular-svg-round-progressbar'])
 .service('navigation', require('./common/navigation-service'))
 .factory('modal', require('./common/modal'))
 .factory('plugins', require('./common/plugins'))
@@ -40,6 +33,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
 .controller('CourseInfoController', require('./controllers/course-info-controller'))
 .controller('CourseCatalogsController', require('./controllers/course-catalogs-controller'))
+.controller('EbookListController', require('./controllers/ebook-list-controller'))
 .config(['$httpProvider', ($httpProvider) ->
     $httpProvider.defaults.useXDomain = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
@@ -143,6 +137,24 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
         views: {
             'courseContent': {
                 templateUrl: 'partial/course/catalogs.html'
+            }
+        }
+
+    ## Ebook
+    .state 'home.ebook',
+        url: '/ebook'
+        abstract: true
+        views: {
+            'homeContent': {
+                templateUrl: 'partial/ebook/index.html'
+            }
+        }
+
+    .state 'home.ebook.list',
+        url: '/list'
+        views: {
+            'bookContent': {
+                templateUrl: 'partial/ebook/list.html'
             }
         }
 

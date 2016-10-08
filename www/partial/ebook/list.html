@@ -1,0 +1,46 @@
+<ion-view class="ebook-list" ng-controller="EbookListController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>新識力</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-tabs class="tabs-light">
+            <ion-tab class="tab-active-1" title="{{ '最新內容' }}" badge="0" badge-style="badge-assertive">
+                <div class="tab-content">
+                    <div class="list">
+                        <div class="item">
+                            <span class="group-title">Group 1</span>
+                        </div>
+                        <div class="item item-list-content">
+                            <div class="list">
+                                <div class="item"><span href="#">item 1</span><i class="ion-ios-arrow-forward"></i></div>
+                                <div class="item"><span href="#">item 1</span><i class="ion-ios-arrow-forward"></i></div>
+                                <div class="item"><span href="#">item 1</span><i class="ion-ios-arrow-forward"></i></div>
+                                <div class="item"><span href="#">item 1</span><i class="ion-ios-arrow-forward"></i></div>
+                                <div class="item"><span href="#">item 1</span><i class="ion-ios-arrow-forward"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-tab>
+
+            <ion-tab class="tab-active-2" title="{{ '專題分類' }}" badge="0" badge-style="badge-assertive">
+                <div class="tab-content">
+                    <h3>tab-2</h3>
+                </div>
+            </ion-tab>
+
+            <ion-tab class="tab-active-3" title="{{ '我的收藏' }}" badge="0" badge-style="badge-assertive">
+                <div class="tab-content">
+                    <h3>tab-3</h3>
+                </div>
+            </ion-tab>
+        </ion-tabs>
+    </ion-content>
+</ion-view>

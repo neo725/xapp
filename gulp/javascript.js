@@ -49,6 +49,13 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                     path: 'node_modules/ionic-native-transitions/dist/ionic-native-transitions.js',
                     exports: null
                 },
+                'ion-affix': {
+                    path: 'www/lib/ion-affix/ion-affix.js',
+                    exports: null,
+                    depends: {
+                        angular: 'angular'
+                    }
+                },
                 'lodash': {
                     path: 'www/lib/lodash/dist/lodash.min.js',
                     exports: '_'
@@ -75,7 +82,8 @@ gulp.task('appjs', ['coffeeifyjs'], function () {
         .pipe(browserify({
             insertGlobals: false,
             debug: debug,
-            external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'lodash', 'moment', 'angular-svg-round-progressbar']
+            external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'ion-affix',
+                'lodash', 'moment', 'angular-svg-round-progressbar']
         }))
         .pipe(gif(!debug, uglify()))
         .pipe(gulp.dest('www/js'));

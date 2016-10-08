@@ -8,4 +8,7 @@ module.exports = [
 
         $scope.goCatalogs = ->
             navigation.slide 'home.course.catalogs', {}, 'up'
+
+        $scope.goEbookList = ->
+            navigation.slide 'home.ebook.list', {}, 'left'
 ]

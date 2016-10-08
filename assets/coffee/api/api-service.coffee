@@ -135,6 +135,12 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getCurrentEbook: (onSuccess, onError) ->
+            $http.get('/api/ebook/current')
+                .success(onSuccess)
+                .error(onError)
+
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm
