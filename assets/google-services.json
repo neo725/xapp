@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "681952404024",
+    "firebase_url": "https://sceapp-fcm-dev.firebaseio.com",
+    "project_id": "sceapp-fcm-dev",
+    "storage_bucket": "sceapp-fcm-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681952404024:android:90942f3d3d4d04e1",
+        "android_client_info": {
+          "package_name": "com.ionicframework.sceapp721500"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681952404024-4s72pmvue06e38iagfr9eu78cehak1l7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY2Rc2EWzNepNmmdoYXkN74SLQpCWJY34"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

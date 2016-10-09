@@ -14,13 +14,22 @@
     }
 
     .tab-content {
-        padding: 60px 10px 0 10px;
+        //padding: 60px 10px 0 10px;
         background-color: $light;
-        overflow-y: scroll;
+        //overflow-y: scroll;
 
-        & > .list {
+        .has-tabs-top {
+            top: 51px;
+        }
+        & .group-list {
+            padding-bottom: 20px;
+
             & > .item {
                 border: 0 none;
+
+                &:first-child {
+                    padding-bottom: 8px;
+                }
 
                 &.item-list-content {
                     padding: 0;
@@ -38,12 +47,28 @@
                     margin-right: 10px;
 
                     .item {
-                        padding: 8px 8px 8px 20px;
+                        padding: 0;
+                        border-left: 0 none;
+                        border-right: 0 none;
+
+                        &:first-child {
+                            border-top: 0 none;
+                        }
+                        &:last-child {
+                            border-bottom: 0 none;
+                        }
+                        .item-content {
+                            padding-top: 8px;
+                            padding-bottom: 8px;
+                            padding-left: 20px;
+                            padding-right: 8px;
+                        }
 
                         i.ion-ios-arrow-right, i.ion-ios-arrow-forward {
                             position: absolute;
                             right: 1em;
                             color: $assertive;
+                            font-size: 1.5em;
                         }
                     }
                 }
