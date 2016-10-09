@@ -135,8 +135,23 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        getCurrentEbook: (onSuccess, onError) ->
+        getCurrentEbooks: (onSuccess, onError) ->
             $http.get('/api/ebook/current')
+                .success(onSuccess)
+                .error(onError)
+
+        getCatalogEbooks: (page, perpage, onSuccess, onError) ->
+            $http.get("/api/ebook/catalogs?page=#{page}&perpage=#{perpage}")
+                .success(onSuccess)
+                .error(onError)
+
+        getCatalogEbook: (yearmonth, catalog_id, onSuccess, onError) ->
+            $http.get("/api/ebook/#{yearmonth}/#{catalog_id}")
+                .success(onSuccess)
+                .error(onError)
+
+        getLocations: (onSuccess, onError) ->
+            $http.get('/api/location')
                 .success(onSuccess)
                 .error(onError)
 

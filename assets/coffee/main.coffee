@@ -34,6 +34,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .controller('CourseInfoController', require('./controllers/course-info-controller'))
 .controller('CourseCatalogsController', require('./controllers/course-catalogs-controller'))
 .controller('EbookListController', require('./controllers/ebook-list-controller'))
+.controller('EbookInfoController', require('./controllers/ebook-info-controller'))
 .config(['$httpProvider', ($httpProvider) ->
     $httpProvider.defaults.useXDomain = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
@@ -155,6 +156,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
         views: {
             'bookContent': {
                 templateUrl: 'partial/ebook/list.html'
+            }
+        }
+
+    .state 'home.ebook.info',
+        url: '/info/:yearmonth/:catalog_id'
+        views: {
+            'bookContent': {
+                templateUrl: 'partial/ebook/info.html'
             }
         }
 

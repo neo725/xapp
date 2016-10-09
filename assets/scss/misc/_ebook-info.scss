@@ -1,0 +1,25 @@
+.ebook-info {
+    .intro, .context {
+        line-height: 1.5em;
+
+        table, td {
+            border: 1px solid $dark;
+        }
+    }
+    .cover-container {
+        height: 150px;
+
+        .cover {
+            height: 100%;
+            background-repeat: no-repeat;
+            //background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+    }
+
+    .title {
+        color: $assertive;
+        font-weight: bold;
+    }
+}

@@ -17,9 +17,23 @@ module.exports = [
             onError = ->
                 modal.hideLoading()
 
-            api.getCurrentEbook(onSuccess, onError)
+            api.getCurrentEbooks(onSuccess, onError)
+
+        loadCatalogEbooks = (page, perpage) ->
+            modal.showLoading('', 'message.data_loading')
+
+            onSuccess = (response) ->
+                modal.hideLoading()
+                $scope.catalogs = response.list
+            onError = ->
+                modal.hideLoading()
+
+            api.getCatalogEbooks(page, perpage, onSuccess, onError)
+
 
         $scope.$on('$ionicView.enter', (evt, data) ->
             loadCurrentEbook()
+            loadCatalogEbooks(1, 5)
+            loadCatalogEbook('201610', 'cover_detail1')
         )
 ]

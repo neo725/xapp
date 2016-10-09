@@ -12,7 +12,7 @@
         <h1 class="title">大學聯網</h1>
     </ion-nav-title>
     <ion-content class="has-header" padding="false" ng-class="{'pane-content': true}">
-        <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController" ng-show="studyCardVisible">
+        <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController" ng-show="studyCardVisible" ng-cloak>
             <ion-slide-box does-continue="true">
                 <ion-slide ng-repeat="card in studyCards">
                     <div class="box" ng-init="progress = getPercentage(card.progress)">
@@ -112,7 +112,7 @@
                 </ion-slide>
             </ion-slide-box>
         </div>
-        <div class="search-slides slides" ng-controller="SearchSlideController">
+        <div class="search-slides slides" ng-controller="SearchSlideController" ng-cloak>
             <ion-slide-box does-continue="true" ng-class="{'guest-slider': !studyCardVisible}">
                 <ion-slide ng-repeat="cover in covers">
                     <div class="box cover" ng-style="{'background-image': 'url(' + cover.img + ')', 'height': '100%'}">
