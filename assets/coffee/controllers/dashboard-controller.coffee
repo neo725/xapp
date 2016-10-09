@@ -11,4 +11,7 @@ module.exports = [
 
         $scope.goEbookList = ->
             navigation.slide 'home.ebook.list', {}, 'left'
+
+        $scope.goLocation = ->
+            navigation.slide 'home.location', {}, 'left'
 ]

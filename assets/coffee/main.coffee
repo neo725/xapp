@@ -35,6 +35,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .controller('CourseCatalogsController', require('./controllers/course-catalogs-controller'))
 .controller('EbookListController', require('./controllers/ebook-list-controller'))
 .controller('EbookInfoController', require('./controllers/ebook-info-controller'))
+.controller('LocationController', require('./controllers/location-controller'))
 .config(['$httpProvider', ($httpProvider) ->
     $httpProvider.defaults.useXDomain = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
@@ -105,6 +106,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
         views: {
             'homeContent': {
                 templateUrl: 'partial/dashboard.html'
+            }
+        }
+
+    .state 'home.location',
+        url: '/location'
+        views: {
+            'homeContent': {
+                templateUrl: 'partial/location.html'
             }
         }
 

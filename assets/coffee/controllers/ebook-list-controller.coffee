@@ -34,6 +34,5 @@ module.exports = [
         $scope.$on('$ionicView.enter', (evt, data) ->
             loadCurrentEbook()
             loadCatalogEbooks(1, 5)
-            loadCatalogEbook('201610', 'cover_detail1')
         )
 ]
