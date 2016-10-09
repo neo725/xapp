@@ -4,9 +4,6 @@ module.exports = [
         yearmonth = $stateParams.yearmonth
         catalog_id = $stateParams.catalog_id
 
-        console.log yearmonth
-        console.log catalog_id
-
         $scope.goBack = ->
             backView = $ionicHistory.backView()
 
@@ -14,6 +11,10 @@ module.exports = [
                 navigation.slide(backView.stateName, backView.stateParams, 'right')
             else
                 navigation.slide('home.dashboard', {}, 'right')
+
+        $scope.addToFavorite = (ebook) ->
+            console.log yearmonth
+            console.log catalog_id
 
         loadCatalogEbook = (yearmonth, catalog_id) ->
             modal.showLoading '', 'message.data_loading'
