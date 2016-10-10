@@ -179,6 +179,10 @@
                     .row {
                         padding: 2px;
                         line-height: 14px;
+
+                        .col.value {
+                            line-height: 1.1em;
+                        }
                     }
                     .button-blue {
                         background-color: $positive;
@@ -276,12 +280,13 @@
     }
 
     .list {
-        border-bottom: 1px solid $border-color;
+        border-bottom: 0 none;
     }
 
     .item {
         border: 0;
-        font-size: $text-size-small + 3;
+        font-size: 1em;
+        padding: 10px 10px 10px 60px;
 
         .item-content {
 
@@ -311,6 +316,6 @@
 
 .location-box {
     &.modal-box {
-        height: 550px !important;
+        height: 500px !important;
     }
 }

@@ -13,7 +13,7 @@
     </ion-nav-title>
     <ion-content class="has-header" padding="false" ng-class="{'pane-content': true}">
         <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController" ng-show="studyCardVisible" ng-cloak>
-            <ion-slide-box does-continue="true">
+            <ion-slide-box does-continue="false">
                 <ion-slide ng-repeat="card in studyCards">
                     <div class="box" ng-init="progress = getPercentage(card.progress)">
                         <div class="card-progress">
@@ -113,7 +113,7 @@
             </ion-slide-box>
         </div>
         <div class="search-slides slides" ng-controller="SearchSlideController" ng-cloak>
-            <ion-slide-box does-continue="true" ng-class="{'guest-slider': !studyCardVisible}">
+            <ion-slide-box does-continue="false" ng-class="{'guest-slider': !studyCardVisible}">
                 <ion-slide ng-repeat="cover in covers">
                     <div class="box cover" ng-style="{'background-image': 'url(' + cover.img + ')', 'height': '100%'}">
                         <div class="search-header-container">
@@ -145,7 +145,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col value" ng-click="modalWeekday.show()">
-                                                        {{weekday}}
+                                                        {{ weekday }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -157,7 +157,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col value" ng-click="modalLocation.show()">
-                                                        {{location}}
+                                                        {{ location }}
                                                     </div>
                                                 </div>
                                             </div>
