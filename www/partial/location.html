@@ -7,7 +7,8 @@
         <div class="location-card-container" ng-repeat="location in locations">
             <div class="location-card" ng-style="{'background-image': 'url(' + location.location_front + ')', 'height': '100%'}">
             </div>
-            <div class="front-card">
+            <div class="front">
+                <div class="bg"></div>
                 <div class="title">{{ location.name }}</div>
             </div>
         </div>

@@ -1,10 +1,15 @@
 .ebook-info {
+    div, p, .title {
+        line-height: 1.7em;
+    }
     .intro, .context {
-        line-height: 1.5em;
 
         table, td {
             border: 1px solid $dark;
         }
+    }
+    .context {
+        margin-bottom: 50px;
     }
     .cover-container {
         height: 150px;
