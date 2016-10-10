@@ -10,6 +10,11 @@ module.exports = [
             else
                 navigation.slide('home.dashboard', {}, 'right')
 
+        $scope.goMap = (address, gps, $event) ->
+            $event.stopPropagation()
+            console.log address
+            console.log gps
+
         loadLocation = ->
             modal.showLoading('', 'message.data_loading')
 

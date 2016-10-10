@@ -96,3 +96,30 @@ exports.customVerify = () ->
                     else
                         ctrl.$setValidity("customVerify", true)
                         return viewValue
+
+exports.toggleVisible = ->
+    restrict: 'A'
+    link: (scope, elem, attrs) ->
+        front = attrs.toggleVisible
+        rear = attrs.toggleVisibleRear
+
+        front_ctrl = $(elem).find('.' + front)
+        rear_ctrl = $(elem).find('.' + rear)
+
+        front_ctrl.show()
+        rear_ctrl.hide()
+
+        elem.bind('click', ->
+            visible = scope.visible
+            if visible is undefined
+                visible = false
+
+            if visible
+                front_ctrl.show()
+                rear_ctrl.hide()
+            else
+                front_ctrl.hide()
+                rear_ctrl.show()
+
+            scope.visible = !visible
+        )

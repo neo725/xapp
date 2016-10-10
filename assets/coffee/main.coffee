@@ -14,6 +14,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .directive('goNative', directives.goNative)
 .directive('ngNext', directives.ngNext)
 .directive('customVerify', directives.customVerify)
+.directive('toggleVisible', directives.toggleVisible)
 .controller('IndexController', require('./controllers/index-controller'))
 .controller('LoginController', require('./controllers/login-controller'))
 .controller('MainController', require('./controllers/main-controller'))
