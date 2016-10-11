@@ -12,6 +12,9 @@ module.exports = [
             else
                 navigation.slide('home.dashboard', {}, 'right')
 
+        $scope.getDatePart = (date) ->
+            return moment(date).format('YYYY/M/DD')
+
         $scope.addOrRemoveFromWish = (course) ->
             onSuccess = () ->
                 if course.isFavorite == 0
