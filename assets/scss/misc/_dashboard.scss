@@ -46,7 +46,7 @@
                             top: -8px;
                             left: 5px;
 
-                            font-size: $text-size-small;
+                            font-size: $text-size-small + 3;
                         }
                         .progress-teacher {
                             position: relative;
@@ -54,7 +54,7 @@
                             left: 5px;
 
                             color: $gray-color;
-                            font-size: $text-size-small;
+                            font-size: $text-size-small + 3;
                         }
                     }
                 }
