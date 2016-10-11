@@ -11,6 +11,7 @@
             .item-avatar {
                 position: absolute;
                 top: 133px;
+                width: 90%;
 
                 .img-avatar {
                     max-width: 90px;
@@ -18,6 +19,7 @@
                     border: 1px solid $white-color;
                     margin-left: -10px;
                 }
+
                 h2, h3 {
                     margin-left: 28px;
                     margin-top: 40px;

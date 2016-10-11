@@ -3,7 +3,10 @@ module.exports = [
     ($rootScope, $scope, $stateParams, $log, $timeout, $interpolate, $translate, $ionicHistory, plugins, navigation, modal, api) ->
         loadTimes = 0
         $scope.noMoreItemsAvailable = false
+        $scope.page = 1
+        $scope.pageSize = 20
         $scope.keyword = $stateParams.keyword
+        $scope.loadingSearch = false
 
         backView = $ionicHistory.backView()
         stateName = null
@@ -41,13 +44,13 @@ module.exports = [
             navigation.slide 'home.course.info', {shop_id: shop_id, prod_id: prod_id}, 'left'
 
         $scope.loadMore = () ->
-            #plugins.toast.show('load more', 'long', 'top')
-            loadTimes += 1
-            if loadTimes == 3
-                $scope.noMoreItemsAvailable = true;
-            $timeout () ->
-                $scope.$broadcast('scroll.infiniteScrollComplete')
-            , 3000
+#            loadTimes += 1
+#            if loadTimes == 3
+#                $scope.noMoreItemsAvailable = true;
+            if not $scope.noMoreItemsAvailable and $scope.page > 1
+                console.log 'loadMore - ' + $scope.page
+                $scope.goSearch($scope.keyword)
+#                $scope.$broadcast('scroll.infiniteScrollComplete')
 
         $scope.addOrRemoveFromWish = (course, $event) ->
             $event.stopPropagation()
@@ -72,15 +75,36 @@ module.exports = [
             else
                 api.removeFromWish course.Shop_Id, course.Prod_Id, onSuccess, onError
 
-        $scope.goSearch = (keyword) ->
-            $scope.courses = []
+        goSearch = (page, pagesize, keyword) ->
+            console.log 'goSearch - ' + page
+            $scope.loadingSearch = true
 
-            hideLoading = () ->
-                modal.hideLoading()
+            if page == 1
+                $scope.courses = []
 
             onSuccess = (response) ->
-                hideLoading()
-                $scope.courses = response.resultList.list
+                modal.hideLoading()
+
+                list = response.resultList.list
+                pagerInfo = response.resultList.pagerInfo
+
+                if page == 1
+                    $scope.courses = list
+                else
+                    i = 0
+                    max = list.length
+                    while i < max
+                        $scope.courses.push list[i]
+                        i++
+
+                is_last_page = (pagerInfo.now_page * pagerInfo.per_page) > pagerInfo.total_rec
+                $scope.noMoreItemsAvailable = is_last_page
+
+                if not is_last_page
+                    $scope.page = $scope.page + 1
+
+                $scope.$broadcast('scroll.infiniteScrollComplete')
+
                 $.each($scope.courses, (index, item) ->
                     # year
                     item.year = moment(item.Prod_ClsOpenDate,"YYYY-MM-DD").year()
@@ -96,13 +120,13 @@ module.exports = [
                 )
 
             onError = () ->
-                hideLoading()
+                modal.hideLoading()
                 modal.showMessage '', 'errors.request_failed'
 
             backView = $ionicHistory.backView()
             data = {}
 
-            if not backView
+            if not backView or backView.stateName == undefined
                 navigation.slide 'home.dashboard', {}, 'right'
 
             if backView.stateName == 'home.dashboard'
@@ -110,7 +134,8 @@ module.exports = [
                 locations = _.join(JSON.parse(window.localStorage.getItem('locations'), ','))
 
                 data =
-                    'perpage': 20
+                    'page': page
+                    'perpage': pagesize
                     'query': keyword
                     'wday': weekdays
                     'loc': locations
@@ -118,12 +143,16 @@ module.exports = [
             if backView.stateName == 'home.course.catalogs'
                 catalog = $rootScope.catalog
                 data =
-                    'perpage': 20
+                    'page': page
+                    'perpage': pagesize
                     'query': keyword
                     'cate': catalog.catalog_id
 
             modal.showLoading '', 'message.searching'
             api.searchCourse(data, onSuccess, onError)
+
+        $scope.goSearch = (keyword) ->
+            goSearch($scope.page, $scope.pageSize, keyword)
 
         if $stateParams.keyword
             $scope.goSearch($stateParams.keyword)
