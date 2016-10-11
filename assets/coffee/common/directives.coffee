@@ -154,5 +154,6 @@ exports.starRating = ->
                     rating: index + 1
                 }
         scope.$watch 'ratingValue', (oldValue, newValue) ->
-            if newValue || newValue == 0
+            newValue = newValue ? newValue : 0
+            if newValue >= 0
                 updateStars()

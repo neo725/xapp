@@ -56,25 +56,25 @@ module.exports = ['$http', ($http) ->
                 .error(onError)
 
         removeFromWish: (shop_id, prod_id, onSuccess, onError) ->
-            data =
-                'shopid': shop_id
-                'courseList': prod_id
+#            data =
+#                'shopid': shop_id
+#                'courseList': prod_id
             $http({
-                'url': '/api/cart/wish'
+                'url': "/api/cart/wish?shopid=#{shop_id}&courseList=#{prod_id}"
                 'method': 'DELETE'
-                'data': data
+#                'data': data
                 'headers':
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)
 
         removeFromCart: (shop_id, prod_id, onSuccess, onError) ->
-            data =
-                'shopid': shop_id
-                'courseList': prod_id
+#            data =
+#                'shopid': shop_id
+#                'courseList': prod_id
             $http({
-                'url': '/api/cart/shop'
+                'url': "/api/cart/shop?shopid=#{shop_id}&courseList=#{prod_id}"
                 'method': 'DELETE'
-                'data': data
+#                'data': data
                 'headers':
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)
@@ -155,6 +155,15 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getSurveyFill: (onSuccess, onError) ->
+            $http.get('/api/queses/fillin')
+                .success(onSuccess)
+                .error(onError)
+
+        postSurveyFill: (data, onSuccess, onError) ->
+            $http.post('/api/queses', data)
+                .success(onSuccess)
+                .error(onError)
 
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->

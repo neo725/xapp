@@ -31,13 +31,25 @@ module.exports = [
             return value
 
         $scope.openFeedback = (card) ->
+            modal.showLoading('', 'message.data_loading')
+
             $rootScope.currentCard = card
-            $scope.modalFeedback.show()
+
+            onSuccess = (response) ->
+                if ($rootScope.resetStarFunction)
+                    $rootScope.resetStarFunction()
+                $rootScope.topics = response.topics
+                modal.hideLoading()
+                $scope.modalFeedback.show()
+            onError = ->
+                modal.hideLoading()
+
+            api.getSurveyFill(onSuccess, onError)
 
         onSuccess = (response) ->
             list = response.list
 
-            $scope.studyCards = list
+            $rootScope.studyCards = list
             $scope.studyCardVisible = list.length > 0
 
             $ionicSlideBoxDelegate.update()

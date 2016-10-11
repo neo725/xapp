@@ -323,7 +323,7 @@
 .feedback-box {
 
     &.modal-box {
-        height: 340px !important;
+        height: 360px !important;
     }
 
     .col {
@@ -339,6 +339,7 @@
         }
         &.col-item-title {
             padding-left: 20px;
+            padding-top: 13px;
         }
     }
     .star-rating {
@@ -349,7 +350,7 @@
         .star {
             padding: 1px;
             color: #ddd;
-            font-size: 20px;
+            font-size: 2em;
             list-style-type: none;
             display: inline-block;
 

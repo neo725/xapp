@@ -1,5 +1,5 @@
 module.exports = [
-    '$scope', '$log', 'navigation', 'api', ($scope, $log, navigation, api) ->
+    '$scope', '$log', '$translate', 'navigation', 'api', ($scope, $log, $translate, navigation, api) ->
         $scope.courses = []
 
         $scope.goBack = ->
