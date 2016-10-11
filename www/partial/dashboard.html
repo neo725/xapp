@@ -69,7 +69,8 @@
                             </div>
                             <div class="row" ng-show="progress == 100">
                                 <div class="col">
-                                    <button class="button button-block button-small button-positive">填寫課程評價</button>
+                                    <button class="button button-block button-small button-positive"
+                                            ng-click="openFeedback(card)">填寫課程評價</button>
                                 </div>
                             </div>
                             <div class="row text-item" ng-show="progress < 100">
@@ -184,7 +185,7 @@
                                 <div class="col col-80 text-left">
                                     <div class="row">
                                         <div class="col">
-                                            {{cover.article}}<br /><i class="icon ion-ios-person-outline"></i>
+                                            {{ cover.article }}<br /><i class="icon ion-ios-person-outline"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -206,6 +207,56 @@
             </a>
         </div>
     </ion-content>
+    <script id="templates/modal-feedback.html" type="text/ng-template">
+        <ion-modal-view class="modal-box feedback-box" ng-controller="DashboardFeedbackController">
+            <ion-content padding="true">
+                <div class="row">
+                    <div class="col title">
+                        <h3>{{ currentCard.Prod_Name }}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-50 col-item-title">
+                        本次課程滿意度
+                    </div>
+                    <div class="col">
+                        <div star-rating ng-model="rating1" max="5" on-rating-select="rateFunction('rating1', rating)"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-50 col-item-title">
+                        老師專業度
+                    </div>
+                    <div class="col">
+                        <div star-rating ng-model="rating2" max="5" on-rating-select="rateFunction('rating2', rating)"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-50 col-item-title">
+                        課程負責人滿意度
+                    </div>
+                    <div class="col">
+                        <div star-rating ng-model="rating3" max="5" on-rating-select="rateFunction('rating3', rating)"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="button button-full button-positive" ng-click="submitFeedback()">提交</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-gray">
+                        <div class="text-center">您的寶貴建議，是我們進步的動力 {{ rating1 }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center text-positive">下次再填</div>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
     <script id="templates/modal-weekday.html" type="text/ng-template">
         <ion-modal-view class="modal-box weekday-box" ng-controller="DashboardWeekdayController">
             <ion-header-bar class="bar bar-header bar-positive">

@@ -1,8 +1,8 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicSlideBoxDelegate', '$log', 'api', 'modal',
-    ($rootScope, $scope, $ionicSlideBoxDelegate, $log, api, modal) ->
+    '$rootScope', '$scope', '$ionicModal', '$ionicSlideBoxDelegate', '$log', 'api', 'modal',
+    ($rootScope, $scope, $ionicModal, $ionicSlideBoxDelegate, $log, api, modal) ->
         # angular svg round progressbar
         # repo : https://github.com/crisbeto/angular-svg-round-progressbar
         # demo : http://crisbeto.github.io/angular-svg-round-progressbar/
@@ -30,6 +30,10 @@ module.exports = [
                 return item['full_name']
             return value
 
+        $scope.openFeedback = (card) ->
+            $rootScope.currentCard = card
+            $scope.modalFeedback.show()
+
         onSuccess = (response) ->
             list = response.list
 
@@ -43,4 +47,11 @@ module.exports = [
             #modal.showMessage 'message.error'
 
         api.getStudyCards(onSuccess, onError)
+
+        $ionicModal.fromTemplateUrl('templates/modal-feedback.html',
+            scope: $scope
+            animation: 'fade-in'
+        ).then((modal) ->
+            $scope.modalFeedback = modal
+        )
 ]

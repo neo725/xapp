@@ -319,3 +319,47 @@
         height: 500px !important;
     }
 }
+
+.feedback-box {
+
+    &.modal-box {
+        height: 340px !important;
+    }
+
+    .col {
+        &.title {
+            white-space: nowrap;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+
+            text-align: center;
+
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        &.col-item-title {
+            padding-left: 20px;
+        }
+    }
+    .star-rating {
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+
+        .star {
+            padding: 1px;
+            color: #ddd;
+            font-size: 20px;
+            list-style-type: none;
+            display: inline-block;
+
+            &.filled {
+                color: #FCD815;
+            }
+        }
+
+        &.readonly .star.filled {
+            color: #FCD815;
+        }
+    }
+}

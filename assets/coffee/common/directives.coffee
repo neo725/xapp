@@ -123,3 +123,36 @@ exports.toggleVisible = ->
 
             scope.visible = !visible
         )
+
+exports.starRating = ->
+    restrict: 'A'
+    template: '<ul class="star-rating" ng-class="{readonly: readonly}">' +
+              '  <li ng-repeat="star in stars" class="star" ng-class="{filled: star.filled}" ng-click="toggle($index)">' +
+              '    <i class="ion-android-star"></i>' +
+              '  </li>' +
+              '</ul>'
+    require: '?ngModel'
+    scope:
+        ratingValue: '=ngModel'
+        max: '=?'
+        onRatingSelect: '&?'
+        readonly: '=?'
+    link: (scope, element, attrs, ngModel) ->
+        if scope.max == undefined
+            scope.max = 5
+        updateStars = ->
+            scope.stars = []
+            i = 0
+            while i < scope.max
+                scope.stars.push filled: i < scope.ratingValue
+                i++
+            return
+        scope.toggle = (index) ->
+            if scope.readonly == undefined || scope.readonly == false
+                scope.ratingValue = index + 1
+                scope.onRatingSelect {
+                    rating: index + 1
+                }
+        scope.$watch 'ratingValue', (oldValue, newValue) ->
+            if newValue || newValue == 0
+                updateStars()
