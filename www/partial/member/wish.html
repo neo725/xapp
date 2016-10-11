@@ -4,8 +4,8 @@
     </ion-nav-buttons>
     <ion-nav-title>考慮清單</ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-android-cart button-icon-cart"></button>
-        <div class="cart-badge-container" ng-show="carts.length > 0">
+        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
             <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
         </div>
     </ion-nav-buttons>
