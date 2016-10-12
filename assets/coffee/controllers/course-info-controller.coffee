@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$stateParams', '$log', '$ionicHistory', '$translate', 'navigation', 'api', 'plugins'
-    ($rootScope, $scope, $stateParams, $log, $ionicHistory, $translate, navigation, api, plugins) ->
+    '$rootScope', '$scope', '$stateParams', '$log', '$ionicHistory', '$translate', 'navigation', 'modal', 'api', 'plugins'
+    ($rootScope, $scope, $stateParams, $log, $ionicHistory, $translate, navigation, modal, api, plugins) ->
         shop_id = $stateParams.shop_id
         prod_id = $stateParams.prod_id
 
@@ -59,15 +59,22 @@ module.exports = [
             else
                 api.addToCart course.Shop_Id, course.Prod_Id, onSuccess, onError
 
+        $scope.getTimePart = (part, time) ->
+            weekday_part = time.split(' ')
+            console.log weekday_part
+
         getCourse = (shop_id, prod_id) ->
             onSuccess = (response) ->
+                modal.hideLoading()
                 $scope.course = response
                 if $scope.course.isFavorite == 0
                     $scope.favorite_icon = 'heart-outline@2x.png'
                 else
                     $scope.favorite_icon = 'heart@2x.png'
-            onError = (->)
+            onError = ->
+                modal.hideLoading()
 
+            modal.showLoading('', 'message.data_loading')
             api.getCourse shop_id, prod_id, onSuccess, onError
 
         getCourse shop_id, prod_id
