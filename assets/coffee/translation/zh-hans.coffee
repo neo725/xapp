@@ -42,6 +42,7 @@ module.exports = ->
         'remove_item_from_cart_confirm': '確定要從購物車刪除商品 {{ item_name }}?'
         'submit_cart_confirm': '確定要結帳了嗎?'
         'creating_order': '建立訂單資料中...'
+        'data_updating': '資料更新中...'
     }
     'tab': {
         'payed': '已繳費'

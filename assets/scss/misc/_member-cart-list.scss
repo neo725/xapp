@@ -138,9 +138,11 @@
             bottom: 2px;
         }
 
-        .has-error {
-            input {
-                border-bottom: 2px solid $error;
+        .ng-submitted {
+            .has-error {
+                input {
+                    border-bottom: 2px solid $error;
+                }
             }
         }
 
@@ -214,6 +216,15 @@
             }
         }
 
+        .ng-submitted {
+            .list {
+                .item {
+                    &.ng-invalid {
+                        border-bottom: 2px solid $error;
+                    }
+                }
+            }
+        }
         .list {
             margin-top: 0;
 
@@ -244,10 +255,6 @@
                 .gender-row {
                     .item {
                         padding-left: 0;
-
-                        &.ng-invalid {
-                            border-bottom: 2px solid $error;
-                        }
 
                         .item-content {
                             padding-left: 0;

@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h4 class="title">{{ course.Prod_Name }}</h4>
+                    <h4 class="title">{{ course.Prod_Name }} {{ course.Prod_SubName }}</h4>
                 </div>
             </div>
             <div class="row">
@@ -101,10 +101,10 @@
         </div>
         <h1 class="title">
             <span class="price-prefix">NT</span>
-            <span class="price">$1,814</span>
+            <span class="price">{{ course.Prod_Price | currency:undefined:0 }}</span>
         </h1>
         <div class="buttons text-center">
-            <div class="add-favorite"><img ng-src="img/{{favorite_icon}}" ng-click="addOrRemoveFromWish(course)"></div>
+            <div class="add-favorite"><img ng-src="img/{{ favorite_icon }}" ng-click="addOrRemoveFromWish(course)"></div>
             <div class="add-cart" ng-click="addToCart(course)">
                 <div class="object">
                     <img src="img/cart-add@2x.png">

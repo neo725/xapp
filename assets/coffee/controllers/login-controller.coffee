@@ -2,7 +2,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
     ($rootScope, $scope, $timeout, $ionicModal, $translate, $state, $log, modal, api, navigation) ->
         # dev mode
         $scope.user = {
-            account: 'thchang@sce.pccu.edu.tw',
+            account: 'sceapp',
             password: '1234'
         }
         $scope.logging = false
@@ -35,6 +35,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 resetLoginButton()
                 $rootScope.loadCart()
                 $rootScope.loadWish()
+                $rootScope.getMemberData((->), (->))
 
                 navigation.flip 'home.dashboard', {}, 'left'
                 $rootScope.callFCMGetToken()

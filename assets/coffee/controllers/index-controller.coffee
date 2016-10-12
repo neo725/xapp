@@ -39,6 +39,26 @@ module.exports = [
                 $rootScope.wish = response.list
             api.getWishList(1, 500, onSuccess, (->))
 
+        $rootScope.getMemberData = (success, error) ->
+            onSuccess = (response) ->
+                modal.hideLoading()
+                data =
+                    memb_name: response.Memb_Name
+                    memb_email: response.Memb_EMail
+                    memb_mobile: response.Memb_Mobile
+                    memb_ident: response.Memb_Ident
+
+                $rootScope.member = data
+
+                (success || (->))(data)
+
+            onError = ->
+                modal.hideLoading()
+                error()
+
+            modal.showLoading('', 'message.data_loading')
+            api.getMemberData(onSuccess, onError)
+
         checkDefaultState = () ->
             $log.info 'index-controller -> checkDefaultState'
             #window.localStorage.removeItem("token")
@@ -50,6 +70,7 @@ module.exports = [
                 $rootScope.callFCMGetToken()
                 $rootScope.loadCart()
                 $rootScope.loadWish()
+                $rootScope.getMemberData((->), (->))
                 navigation.flip 'home.dashboard', {}, 'left'
 
         $ionicPlatform.ready(->

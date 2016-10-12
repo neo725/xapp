@@ -17,15 +17,15 @@ module.exports = [
 #            cvc: 123
 #            holder: 'Neo'
 
-        fake_user =
-            username: 'Neo'
-            gender: 'Male'
-            email: 'thchang@sce.pccu.edu.tw'
-            phone: '0986716086'
-            userid: 'A123456789'
+#        fake_user =
+#            username: 'Neo'
+#            gender: 'Male'
+#            email: 'thchang@sce.pccu.edu.tw'
+#            phone: '0986716086'
+#            userid: 'A123456789'
 
 #        $scope.card = fake_card
-        $scope.user = fake_user
+#        $scope.user = fake_user
 
         $scope.goBack = ->
             backView = $ionicHistory.backView()
@@ -184,11 +184,10 @@ module.exports = [
                         # pay_type = ATM or CreditCard
                         createPayment(pay_type, order_no, ->
                             modal.hideLoading()
-#                            clearCart(->
-#                                # go to step 3
-#                                navigation.slide('home.member.cart.step3', {}, 'left')
-#                            )
-                            navigation.slide('home.member.cart.step3', {}, 'left')
+                            clearCart(->
+                                # go to step 3
+                                navigation.slide('home.member.cart.step3', {}, 'left')
+                            )
                         )
 
                     onError = (error, status_code) ->
@@ -201,13 +200,34 @@ module.exports = [
                     modal.showLoading '', 'message.creating_order'
                     api.createOrder('MS', courses, onSuccess, onError)
 
-            $translate(['title.submit_cart', 'message.submit_cart_confirm', 'popup.ok', 'popup.cancel']).then (translator) ->
-                plugins.notification.confirm(
-                    translator['message.submit_cart_confirm'],
-                    confirmCallback,
-                    translator['title.submit_cart'],
-                    [translator['popup.ok'], translator['popup.cancel']]
-                )
+            checkMemberDataUpdate = (func) ->
+                user = $scope.user
+
+                onSuccess = () ->
+                    modal.hideLoading()
+                    func()
+                onError = () ->
+                    modal.hideLoading()
+
+                data =
+                    name: user.memb_name
+                    ident: user.memb_ident
+                    tel: user.memb_mobile
+                    mail: user.memb_email
+
+                modal.showLoading('', 'message.data_updating')
+                api.updateMemberData(data, onSuccess, onError)
+
+            func = ->
+                $translate(['title.submit_cart', 'message.submit_cart_confirm', 'popup.ok', 'popup.cancel']).then (translator) ->
+                    plugins.notification.confirm(
+                        translator['message.submit_cart_confirm'],
+                        confirmCallback,
+                        translator['title.submit_cart'],
+                        [translator['popup.ok'], translator['popup.cancel']]
+                    )
+
+            checkMemberDataUpdate(func)
 
         $scope.returnToDashboard = ->
             navigation.slide('home.dashboard', {}, 'right')
@@ -265,6 +285,11 @@ module.exports = [
         $scope.$on('$ionicView.enter', (evt, data) ->
             stateName = data.stateName
             cartIsEmpty = $scope.carts.length == 0
+
+            if stateName == 'home.member.cart.step2'
+                success = (data) ->
+                    $scope.user = data
+                $rootScope.getMemberData(success, (->))
 
             if cartIsEmpty
                 if stateName not in ['home.member.cart.step1', 'home.member.cart.step3']

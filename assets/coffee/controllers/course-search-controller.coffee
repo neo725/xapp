@@ -126,8 +126,9 @@ module.exports = [
             backView = $ionicHistory.backView()
             data = {}
 
-            if not backView or backView.stateName == undefined
+            if backView is null or backView == undefined or backView.stateName == undefined
                 navigation.slide 'home.dashboard', {}, 'right'
+                return
 
             if backView.stateName == 'home.dashboard'
                 weekdays = _.join(JSON.parse(window.localStorage.getItem('weekdays'), ','))
