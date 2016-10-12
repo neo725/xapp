@@ -44,12 +44,9 @@ module.exports = [
             navigation.slide 'home.course.info', {shop_id: shop_id, prod_id: prod_id}, 'left'
 
         $scope.loadMore = () ->
-#            loadTimes += 1
-#            if loadTimes == 3
-#                $scope.noMoreItemsAvailable = true;
             if not $scope.noMoreItemsAvailable and $scope.page > 1
                 console.log 'loadMore - ' + $scope.page
-                $scope.goSearch($scope.keyword)
+                goSearch($scope.page, $scope.pageSize, $scope.keyword)
 #                $scope.$broadcast('scroll.infiniteScrollComplete')
 
         $scope.addOrRemoveFromWish = (course, $event) ->
@@ -153,6 +150,8 @@ module.exports = [
             api.searchCourse(data, onSuccess, onError)
 
         $scope.goSearch = (keyword) ->
+            $scope.page = 1
+
             goSearch($scope.page, $scope.pageSize, keyword)
 
         if $stateParams.keyword
