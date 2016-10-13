@@ -53,15 +53,30 @@
                                 <div class="col line-star-col">
                                     <div class="row no-padding color-1 star-text-row">
                                         <div class="col">課程滿意度</div>
-                                        <div class="col">*****</div>
+                                        <div class="col">
+                                            <div star-rating ng-model="rating[0]"
+                                                 readonly="true"
+                                                 max="5"
+                                                 on-rating-select="rateFunction($index, rating)"></div>
+                                        </div>
                                     </div>
                                     <div class="row no-padding color-2 star-text-row">
                                         <div class="col">老師專業度</div>
-                                        <div class="col">*****</div>
+                                        <div class="col">
+                                            <div star-rating ng-model="rating[1]"
+                                                 readonly="true"
+                                                 max="5"
+                                                 on-rating-select="rateFunction($index, rating)"></div>
+                                        </div>
                                     </div>
                                     <div class="row no-padding color-3 star-text-row">
                                         <div class="col">專員滿意度</div>
-                                        <div class="col">*****</div>
+                                        <div class="col">
+                                            <div star-rating ng-model="rating[2]"
+                                                 readonly="true"
+                                                 max="5"
+                                                 on-rating-select="rateFunction($index, rating)"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

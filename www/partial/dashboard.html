@@ -121,8 +121,8 @@
                     <div class="box cover" ng-style="{'background-image': 'url(' + cover.img + ')', 'height': '100%'}">
                         <div class="search-header-container">
                             <div class="search-header">
-                                <h4>{{cover.title}}</h4>
-                                <p>{{cover.content}}</p>
+                                <h4 ng-bind="cover.title"></h4>
+                                <p ng-bind="cover.content"></p>
                             </div>
                         </div>
                         <div class="search-box">
@@ -133,7 +133,7 @@
                             </div>
                             <div class="row">
                                 <div class="col value padding-left underline">
-                                    <img src="img/tag@2x.png" class="small-img" /> <div class="keyword">{{cover.keyword}}</div>
+                                    <img src="img/tag@2x.png" class="small-img" /> <div class="keyword" ng-bind="cover.keyword"></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -159,9 +159,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col value" ng-click="modalLocation.show()">
-                                                        {{ location }}
-                                                    </div>
+                                                    <div class="col value"
+                                                         ng-bind="location"
+                                                         ng-click="modalLocation.show()"></div>
                                                 </div>
                                             </div>
                                         </div>

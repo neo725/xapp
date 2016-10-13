@@ -4,6 +4,8 @@ module.exports = [
         $scope.radius = 35
         $scope.stroke = 1
 
+        $scope.rating = [5, 4, 3]
+
 
         $scope.goBack = ->
             navigation.slide 'home.member.dashboard', {}, 'right'

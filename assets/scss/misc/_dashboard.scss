@@ -346,25 +346,26 @@
             padding-top: 13px;
         }
     }
-    .star-rating {
-        margin: 0;
-        padding: 0;
+}
+
+.star-rating {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+
+    .star {
+        padding: 1px;
+        color: #ddd;
+        font-size: 2em;
+        list-style-type: none;
         display: inline-block;
 
-        .star {
-            padding: 1px;
-            color: #ddd;
-            font-size: 2em;
-            list-style-type: none;
-            display: inline-block;
-
-            &.filled {
-                color: #FCD815;
-            }
-        }
-
-        &.readonly .star.filled {
+        &.filled {
             color: #FCD815;
         }
+    }
+
+    &.readonly .star.filled {
+        color: #FCD815;
     }
 }

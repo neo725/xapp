@@ -1,6 +1,6 @@
 
 module.exports = [
-    '$scope', 'modal', 'navigation', ($scope, modal, navigation) ->
+    '$scope', '$ionicPlatform', 'modal', 'navigation', ($scope, $ionicPlatform, modal, navigation) ->
         modal.hideLoading()
 
         $scope.goMemberDashboard = ->
@@ -14,4 +14,19 @@ module.exports = [
 
         $scope.goLocation = ->
             navigation.slide 'home.location', {}, 'left'
+
+        document.addEventListener('deviceready', () ->
+            console.log 'device ready...'
+        , false)
+
+        $ionicPlatform.ready(->
+            console.log 'ionicPlatform ready...'
+        )
+
+        $scope.$on('$ionicView.enter', ->
+            console.log '$ionicView.enter'
+        )
+        $scope.$on('$ionicView.afterEnter', ->
+            console.log '$ionicView.afterEnter'
+        )
 ]

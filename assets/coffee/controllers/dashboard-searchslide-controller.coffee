@@ -1,8 +1,8 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$log', 'api', 'modal', 'navigation',
-    ($scope, $ionicSlideBoxDelegate, $ionicModal, $log, api, modal, navigation) ->
+    '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', 'api', 'modal', 'navigation',
+    ($scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, api, modal, navigation) ->
 
         $scope.searchCourse = (keyword) ->
             navigation.slide 'home.course.search', {keyword: keyword}, 'left'
@@ -12,12 +12,16 @@ module.exports = [
             list = response.list
             $scope.covers = list
 
-            #$ionicSlideBoxDelegate.update()
+            $timeout(->
+                $('.search-slides').show()
+                $ionicSlideBoxDelegate.update()
+            , 1000)
 
         onError = (response) ->
             modal.hideLoading()
             modal.showMessage 'message.error'
 
+        $('.search-slides').hide()
         modal.showLoading '', 'message.loading_cover'
         api.getCover(onSuccess, onError)
 

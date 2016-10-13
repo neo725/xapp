@@ -4,8 +4,8 @@ constants = require('../common/constants')
 # http://ngcordova.com/docs/plugins/globalization/
 
 module.exports = [
-    '$rootScope', '$translate', '$log', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'navigation', 'modal', 'api'
-    ($rootScope, $translate, $log, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, navigation, modal, api) ->
+    '$rootScope', '$scope', '$translate', '$log', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'navigation', 'modal', 'api'
+    ($rootScope, $scope, $translate, $log, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, navigation, modal, api) ->
 
         network_offline = false
 
@@ -125,4 +125,5 @@ module.exports = [
                 network_offline = false
         , false)
 
+        return
 ]
