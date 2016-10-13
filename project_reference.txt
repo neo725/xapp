@@ -1,0 +1,23 @@
+shprink/ionic-native-transitions
+https://github.com/shprink/ionic-native-transitions
+
+apache/cordova-plugin-dialogs
+https://github.com/apache/cordova-plugin-dialogs
+
+Paldom/SpinnerDialog
+https://github.com/Paldom/SpinnerDialog
+
+Cordova Config.xml
+https://cordova.apache.org/docs/en/latest/config_ref/
+
+ion-affix : Sticky affix elements for Ionic framework
+http://www.aliok.com.tr/projects/2015-04-17-ion-affix.html
+
+CSS3 // 3D Flip Cards
+https://css3playground.com/3d-flip-cards/
+
+cordova-plugin-dialogs
+https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-dialogs/index.html
+
+icon font for Ionic Framework
+http://ionicons.com/

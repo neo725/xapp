@@ -155,6 +155,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getSurveys: (onSuccess, onError) ->
+            $http.get('/api/queses')
+                .success(onSuccess)
+                .error(onError)
+
         getSurveyFill: (onSuccess, onError) ->
             $http.get('/api/queses/fillin')
                 .success(onSuccess)
@@ -172,6 +177,11 @@ module.exports = ['$http', ($http) ->
 
         updateMemberData: (data, onSuccess, onError) ->
             $http.put('/api/members', data)
+                .success(onSuccess)
+                .error(onError)
+
+        getFinishCourses: (page, perpage, onSuccess, onError) ->
+            $http.get("/api/studyCards/finish?page=#{page}&perpage=#{perpage}")
                 .success(onSuccess)
                 .error(onError)
 

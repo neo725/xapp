@@ -1,0 +1,113 @@
+<ion-view class="finished-course-list" ng-controller="MemberFinishListController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>已完成的課程</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <div class="course-container">
+            <div class="card course">
+                <div class="item item-text-wrap">
+                    <div class="row">
+                        <div class="col col-40">
+                            <div class="progress-wrapper">
+                                <round-progress
+                                    max="5"
+                                    current="5"
+                                    color="#2B61AC"
+                                    bgcolor="transparent"
+                                    radius="{{ radius*1.515 }}"
+                                    stroke="{{ stroke*1.6 }}">
+                                    <round-progress
+                                        max="5"
+                                        current="4"
+                                        color="#B63882"
+                                        bgcolor="transparent"
+                                        radius="{{ radius*1.515 }}"
+                                        stroke="{{ stroke*1.6 }}"
+                                        offset="10">
+                                        <round-progress
+                                            max="5"
+                                            current="3"
+                                            color="#F2D000"
+                                            bgcolor="transparent"
+                                            radius="{{ radius*1.515 }}"
+                                            stroke="{{ stroke*1.6 }}"
+                                            offset="20"></round-progress>
+                                    </round-progress>
+                                </round-progress>
+                            </div>
+                        </div>
+                        <div class="col no-padding">
+                            <div class="row no-padding">
+                                <div class="col no-padding">
+                                    藍帶美食-泰美味 假日班精華首次開課！【酸辣蝦湯+月亮蝦餅】
+                                </div>
+                            </div>
+                            <div class="row line-star-row no-padding">
+                                <div class="col line-star-col">
+                                    <div class="row no-padding color-1 star-text-row">
+                                        <div class="col">課程滿意度</div>
+                                        <div class="col">*****</div>
+                                    </div>
+                                    <div class="row no-padding color-2 star-text-row">
+                                        <div class="col">老師專業度</div>
+                                        <div class="col">*****</div>
+                                    </div>
+                                    <div class="row no-padding color-3 star-text-row">
+                                        <div class="col">專員滿意度</div>
+                                        <div class="col">*****</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-padding bottom-table">
+                        <div class="col col-33 no-padding">
+                            <div class="row no-padding">
+                                <div class="col col-th">
+                                    {{ '本次授課老師' }}
+                                </div>
+                            </div>
+                            <div class="row no-padding">
+                                <div class="col col-td color-1">
+                                    {{ '李真雅' }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-33 no-padding">
+                            <div class="row no-padding">
+                                <div class="col col-th">
+                                    {{ '本次學習時數' }}
+                                </div>
+                            </div>
+                            <div class="row no-padding">
+                                <div class="col col-td color-1">
+                                    <span>{{ '424' }}</span>
+                                    <span class="small">{{ '小時' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col no-padding">
+                            <div class="row no-padding">
+                                <div class="col col-th">
+                                    {{ '更多延伸學習' }}
+                                </div>
+                            </div>
+                            <div class="row no-padding">
+                                <div class="col col-td color-1 col-link">
+                                    <i class="ion-link"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
