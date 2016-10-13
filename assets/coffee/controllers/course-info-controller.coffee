@@ -59,9 +59,18 @@ module.exports = [
             else
                 api.addToCart course.Shop_Id, course.Prod_Id, onSuccess, onError
 
-        $scope.getTimePart = (part, time) ->
-            weekday_part = time.split(' ')
-            console.log weekday_part
+        $scope.getTimePart = (part, time_value) ->
+            if time_value
+                weekday_part = time_value.split(' ')
+                time_part = weekday_part[1].split('~')
+                switch part
+                    when 'weekday'
+                        return weekday_part[0]
+                    when 'start'
+                        return time_part[0]
+                    when 'end'
+                        return time_part[1]
+            return ''
 
         getCourse = (shop_id, prod_id) ->
             onSuccess = (response) ->
