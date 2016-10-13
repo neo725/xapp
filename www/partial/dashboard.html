@@ -18,8 +18,10 @@
                     <div class="box" ng-init="progress = getPercentage(card.progress)">
                         <div class="card-progress">
                             <div class="progress">
-                                <img src="img/rainbowgb@2x.png" ng-show="progress < 100" />
-                                <img src="img/complete@2x.png" ng-show="progress == 100" />
+                                <div class="round-progress-image">
+                                    <img src="img/rainbowgb@2x.png" ng-show="progress < 100" />
+                                    <img src="img/complete@2x.png" ng-show="progress == 100" />
+                                </div>
                                 <div class="round-progress">
                                     <round-progress
                                         max="100"
@@ -28,11 +30,11 @@
                                         bgcolor="transparent"
                                         radius="{{ radius*1.515 }}"
                                         clockwise="clockwise"
-                                        stroke="{{ stroke*1.6 }}"
+                                        stroke="{{ stroke*1.7 }}"
                                         offset="inherit"></round-progress>
                                 </div>
                                 <div class="progress-value">
-                                    {{ getPercentage(card.progress) }}
+                                    <div class="progress-text-percent-value" ng-bind="getPercentage(card.progress)"></div>
                                     <div class="progress-text-percent">
                                         %
                                     </div>
