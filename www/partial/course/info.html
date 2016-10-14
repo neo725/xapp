@@ -44,7 +44,7 @@
                                     <span class="badge badge-positive badge-s-size">{{ getTimePart('weekday', course.Prod_ClsTime) }}</span>
                                 </div>
                                 <div class="col class-time-range">
-                                    <div class="text-positive">
+                                    <div class="class-time-value text-positive">
                                         <div>{{ getTimePart('start', course.Prod_ClsTime) }}</div>
                                         <div>|</div>
                                         <div>{{ getTimePart('end', course.Prod_ClsTime) }}</div>
@@ -70,26 +70,26 @@
             <div class="card-container shadow-inline-top">
                 <div class="card">
                     <div class="item item-text-wrap">
-                        <div class="title">This is a basic Card which contains an item that has wrapping text.</div>
-                        <div class="text-m-size">This is a basic Card which contains an item that has wrapping text.</div>
+                        <div class="title">課程介紹</div>
+                        <div class="content" ng-bind-html="parseHTML(desc.Intro)"></div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="item item-text-wrap">
-                        <div class="title">This is a basic Card which contains an item that has wrapping text.</div>
-                        <div class="text-m-size">This is a basic Card which contains an item that has wrapping text.</div>
+                        <div class="title">師資說明</div>
+                        <div class="content" ng-bind-html="parseHTML(desc.SirMemo)"></div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="item item-text-wrap">
-                        <div class="title">This is a basic Card which contains an item that has wrapping text.</div>
-                        <div class="text-m-size">This is a basic Card which contains an item that has wrapping text.</div>
+                        <div class="title">適合對象</div>
+                        <div class="content" ng-bind-html="parseHTML(desc.Target)"></div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="item item-text-wrap">
-                        <div class="title">This is a basic Card which contains an item that has wrapping text.</div>
-                        <div class="text-m-size">This is a basic Card which contains an item that has wrapping text.</div>
+                        <div class="title">優惠 / 其他</div>
+                        <div class="content" ng-bind-html="parseHTML(desc.Benefits)"></div>
                     </div>
                 </div>
             </div>

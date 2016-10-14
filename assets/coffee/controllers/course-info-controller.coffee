@@ -72,10 +72,17 @@ module.exports = [
                         return time_part[1]
             return ''
 
+        $scope.parseHTML = (str) ->
+            if str
+                return str.replace(/(?:\r\n|\r|\n)/g, '<br />')
+            return str
+
         getCourse = (shop_id, prod_id) ->
             onSuccess = (response) ->
                 modal.hideLoading()
                 $scope.course = response
+                $scope.desc = $scope.course.xmlDiscription.Discription
+
                 if $scope.course.isFavorite == 0
                     $scope.favorite_icon = 'heart-outline@2x.png'
                 else
