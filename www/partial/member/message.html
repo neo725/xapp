@@ -1,0 +1,72 @@
+<ion-view class="member-message" ng-controller="MemberMessageController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>學習訊息</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-content padding="true">
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="header">
+                    <div class="column col-image">
+                        <img src="img/member-03-01@2x.png" />
+                    </div>
+                    <div class="column col-title">
+                        優惠訊息
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="message-wrapper color-1">
+                        <div class="message">
+                            <div class="message-dot color-font">
+                                <i class="ion-record"></i>
+                                <div class="message-dot-mask"></div>
+                            </div>
+                            <div class="message-div">
+                                <div class="row">
+                                    <div class="col col-25 color-bg col-left">
+                                        <div class="year">2016</div>
+                                        <div class="date">04.28</div>
+                                        <div class="weekday">THU</div>
+                                    </div>
+                                    <div class="col col-66 col-right">
+                                        <div class="text">優惠訊息通知</div>
+                                    </div>
+                                    <div class="col col-icon">
+                                        <i class="ion-ios-arrow-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message">
+                            <div class="message-dot color-font">
+                                <i class="ion-record"></i>
+                                <div class="message-dot-mask" style="display: block"></div>
+                            </div>
+                            <div class="message-div">
+                                <div class="row">
+                                    <div class="col col-25 color-bg col-left">
+                                        <div class="year">2016</div>
+                                        <div class="date">04.28</div>
+                                        <div class="weekday">THU</div>
+                                    </div>
+                                    <div class="col col-66 col-right">
+                                        <div class="text">優惠訊息通知XXXXXXXXXXXXXXXX</div>
+                                    </div>
+                                    <div class="col col-icon">
+                                        <i class="ion-ios-arrow-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -21,3 +21,6 @@ https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-dialogs/index
 
 icon font for Ionic Framework
 http://ionicons.com/
+
+IonicOAuthService
+https://github.com/DhouseIn/DemoIonicOAuthService

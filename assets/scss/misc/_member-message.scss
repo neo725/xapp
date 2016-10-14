@@ -1,0 +1,127 @@
+.member-message {
+
+    &.pane {
+        background-color: $stable;
+    }
+    .card {
+        .item {
+            .column {
+                height: 50px;
+                position: absolute;
+
+                line-height: 50px;
+            }
+            .header {
+
+                .col-image {
+                    img {
+                        width: 50px;
+                    }
+                }
+                .col-title {
+                    left: 80px;
+                }
+            }
+            .content {
+                margin-top: 50px;
+                padding-left: 23px;
+
+                .message-wrapper {
+                    padding-left: 30px;
+                    border-left-width: 3px;
+
+                    &.color-1 {
+                        border-left: thick solid $message-color-1;
+
+                        .color-font {
+                            color: $message-color-1;
+                        }
+                        .color-bg {
+                            background-color: $message-color-1;
+                            color: $light;
+                        }
+                    }
+                    &.color-2 {
+                        border-left: thick solid $message-color-2;
+
+                        .color-font {
+                            color: $message-color-2;
+                        }
+                        .color-bg {
+                            background-color: $message-color-2;
+                        }
+                    }
+
+                    .message {
+                        margin-bottom: 20px;
+
+                        .message-dot {
+                            position: absolute;
+                            height: 60px;
+                            line-height: 65px;
+                            left: 19px;
+
+                            .message-dot-mask {
+                                position: relative;
+                                background-color: #ffffff;
+                                width: 5px;
+                                height: 21px;
+                                top: -26px;
+                                left: 4px;
+                                display: none;
+                            }
+                        }
+                        .message-div {
+                            height: 60px;
+                            line-height: 60px;
+                            border: 1px solid $stable;
+
+                            .row {
+                                padding: 0;
+
+                                .col {
+                                    height: 58px;
+                                    line-height: 0.9em;
+                                    padding: 0;
+                                    font-size: 1.2em;
+
+                                    &.col-left {
+                                        padding: 3px 8px;
+                                    }
+                                    &.col-right {
+                                        line-height: 2.8em;
+                                        display: list-item;
+                                        vertical-align: middle;
+                                        padding-left: 5px;
+                                        margin-top: 1px;
+                                    }
+                                    &.col-icon {
+                                        font-size: 1.5em;
+                                        line-height: 2.4em;
+                                    }
+
+                                    .year {
+                                        font-size: 0.7em;
+                                    }
+                                    .weekday {
+                                        font-size: 0.5em;
+                                    }
+                                    .text {
+                                        //line-height: 1.2em;
+                                        //display: inline-block;
+                                        vertical-align: middle;
+
+                                        text-overflow: ellipsis;
+                                        white-space: nowrap;
+                                        overflow-x: hidden;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -14,6 +14,9 @@ module.exports = [
         $scope.goFinishList = ->
             navigation.slide 'home.member.finish', {}, 'left'
 
+        $scope.goMessageList = ->
+            navigation.slide 'home.member.message', {}, 'left'
+
         $scope.logout = ->
             onSuccess = ->
                 window.localStorage.removeItem("token")
