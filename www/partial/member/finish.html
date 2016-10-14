@@ -11,21 +11,21 @@
     </ion-nav-buttons>
     <ion-content class="has-header">
         <div class="course-container">
-            <div class="card course">
+            <div class="card course" ng-repeat="course in courses">
                 <div class="item item-text-wrap">
                     <div class="row">
                         <div class="col col-40">
                             <div class="progress-wrapper">
                                 <round-progress
                                     max="5"
-                                    current="5"
+                                    current="course.ques_topics[0].ans_value"
                                     color="#2B61AC"
                                     bgcolor="transparent"
                                     radius="{{ radius*1.515 }}"
                                     stroke="{{ stroke*1.6 }}">
                                     <round-progress
                                         max="5"
-                                        current="4"
+                                        current="course.ques_topics[1].ans_value"
                                         color="#B63882"
                                         bgcolor="transparent"
                                         radius="{{ radius*1.515 }}"
@@ -33,7 +33,7 @@
                                         offset="10">
                                         <round-progress
                                             max="5"
-                                            current="3"
+                                            current="course.ques_topics[2].ans_value"
                                             color="#F2D000"
                                             bgcolor="transparent"
                                             radius="{{ radius*1.515 }}"
@@ -41,12 +41,19 @@
                                             offset="20"></round-progress>
                                     </round-progress>
                                 </round-progress>
+                                <div class="progress-icon-label-wrapper" ng-hide="false">
+                                    <div class="progress-icon-label">
+                                        <div class="icon"><img src="img/completing-like@2x.png" /></div>
+                                        <div class="label">本次評分</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col no-padding">
                             <div class="row no-padding">
                                 <div class="col no-padding">
-                                    藍帶美食-泰美味 假日班精華首次開課！【酸辣蝦湯+月亮蝦餅】
+                                    <span ng-bind="course.Prod_Name"></span>
+                                    <span ng-bind="course.Prod_SubName"></span>
                                 </div>
                             </div>
                             <div class="row line-star-row no-padding">
@@ -54,7 +61,7 @@
                                     <div class="row no-padding color-1 star-text-row">
                                         <div class="col">課程滿意度</div>
                                         <div class="col">
-                                            <div star-rating ng-model="rating[0]"
+                                            <div star-rating ng-model="course.ques_topics[0].ans_value"
                                                  readonly="true"
                                                  max="5"
                                                  on-rating-select="rateFunction($index, rating)"></div>
@@ -63,7 +70,7 @@
                                     <div class="row no-padding color-2 star-text-row">
                                         <div class="col">老師專業度</div>
                                         <div class="col">
-                                            <div star-rating ng-model="rating[1]"
+                                            <div star-rating ng-model="course.ques_topics[1].ans_value"
                                                  readonly="true"
                                                  max="5"
                                                  on-rating-select="rateFunction($index, rating)"></div>
@@ -72,7 +79,7 @@
                                     <div class="row no-padding color-3 star-text-row">
                                         <div class="col">專員滿意度</div>
                                         <div class="col">
-                                            <div star-rating ng-model="rating[2]"
+                                            <div star-rating ng-model="course.ques_topics[2].ans_value"
                                                  readonly="true"
                                                  max="5"
                                                  on-rating-select="rateFunction($index, rating)"></div>
@@ -91,7 +98,7 @@
                             </div>
                             <div class="row no-padding">
                                 <div class="col col-td color-1">
-                                    {{ '李真雅' }}
+                                    <span ng-bind="course.Prod_ClsSir"></span>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +110,7 @@
                             </div>
                             <div class="row no-padding">
                                 <div class="col col-td color-1">
-                                    <span>{{ '424' }}</span>
+                                    <span ng-bind="course.Prod_ClsHours"></span>
                                     <span class="small">{{ '小時' }}</span>
                                 </div>
                             </div>

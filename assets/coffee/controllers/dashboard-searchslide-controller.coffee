@@ -3,10 +3,6 @@ constants = require('../common/constants')
 module.exports = [
     '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', 'api', 'modal', 'navigation',
     ($scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, api, modal, navigation) ->
-
-        $scope.searchCourse = (keyword) ->
-            navigation.slide 'home.course.search', {keyword: keyword}, 'left'
-
         onSuccess = (response) ->
             modal.hideLoading()
             list = response.list
@@ -25,6 +21,11 @@ module.exports = [
         modal.showLoading '', 'message.loading_cover'
         api.getCover(onSuccess, onError)
 
+        $scope.searchCourse = (keyword) ->
+            navigation.slide 'home.course.search', {keyword: keyword}, 'left'
+
+        # modal controller
+        # ------------------------------------------------
         $scope.getWeekday = () ->
             weekdays = JSON.parse(window.localStorage.getItem('weekdays')) || []
             if weekdays.length == 0
@@ -59,8 +60,6 @@ module.exports = [
             $scope.modalLocation = modal
         )
 
-        # weekday modal controller
-        # ------------------------------------------------
 #        $scope.weekdayConfirmClick = () ->
 #            $scope.modalWeekday.hide()
         $scope.$on('weekdayConfirm', () ->

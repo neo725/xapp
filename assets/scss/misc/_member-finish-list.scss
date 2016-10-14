@@ -1,5 +1,7 @@
 .finished-course-list {
-    background-color: $stable;
+    &.pane {
+        background-color: $stable;
+    }
 
     .course-container {
         .item {
@@ -32,6 +34,22 @@
                 top: 10px;
                 left: -10px;
                 position: relative;
+
+                .progress-icon-label-wrapper {
+                    position: absolute;
+                    text-align: center;
+                    left: 28px;
+                    top: 32px;
+
+                    .progress-icon-label {
+                        font-size: 0.8em;
+                        color: $light-gray-color;
+
+                        .icon img {
+                            width: 16px;
+                        }
+                    }
+                }
             }
             .star-text-row {
                 .col:first-child {
@@ -50,6 +68,7 @@
                 }
                 .col-td {
                     font-size: 1.5em;
+                    line-height: 1.1em;
                 }
                 .col-link {
                     -ms-transform: rotate(315deg); /* IE 9 */

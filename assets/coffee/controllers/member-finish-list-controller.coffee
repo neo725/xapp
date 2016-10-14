@@ -12,6 +12,23 @@ module.exports = [
 
         loadSurveyList = (course_list) ->
             onSuccess = (response) ->
+                list = response.list
+                i = 0
+                while i < course_list.length
+                    prod_id = course_list[i].Prod_Id
+                    ques_index = _(list).findIndex({ 'classId': prod_id })
+                    if ques_index == -1
+                        continue
+                    if list[ques_index].quesList == undefined or list[ques_index].quesList.length == 0
+                        continue
+                    ques = list[ques_index].quesList[0]
+                    topics = ques.topics
+                    course_list[i].ques_topics = topics
+                    i++
+
+                $scope.courses = course_list
+                console.log $scope.courses
+
                 modal.hideLoading()
             onError = ->
                 modal.hideLoading()
@@ -19,10 +36,10 @@ module.exports = [
             api.getSurveys(onSuccess, onError)
 
         loadCourseList = (success_fn) ->
+            modal.showLoading('', 'message.data_loading')
             onSuccess = (response) ->
                 list = response.list
 
-                console.log list
                 ((success_fn) || (->))(list)
             onError = ->
                 modal.hideLoading()
