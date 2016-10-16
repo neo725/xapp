@@ -185,6 +185,17 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getMessageList: (page, perpage, type, onSuccess, onError) ->
+            url = "/api/message?nowpage=#{page}&perpage=#{perpage}&type=#{type}"
+            $http.get(url)
+                .success(onSuccess)
+                .error(onError)
+
+        getMessage: (messageId, onSuccess, onError) ->
+            $http.get("/api/message/#{messageId}")
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

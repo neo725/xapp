@@ -22,22 +22,22 @@
                 </div>
                 <div class="content">
                     <div class="message-wrapper color-1">
-                        <div class="message">
+                        <div class="message" ng-repeat="message in list_promo">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
-                                <div class="message-dot-mask"></div>
+                                <div class="message-dot-mask" ng-class="{ 'show': $index == list_promo.length - 1}"></div>
                             </div>
                             <div class="message-div">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
-                                        <div class="date-text">
-                                            <div class="year">2016</div>
-                                            <div class="date">04.28</div>
-                                            <div class="weekday">THU</div>
+                                        <div class="date-text" ng-init="date = formatDate(message.create_time)">
+                                            <div class="year" ng-bind="date.year"></div>
+                                            <div class="date" ng-bind="date.date"></div>
+                                            <div class="weekday" ng-bind="date.weekday"></div>
                                         </div>
                                     </div>
                                     <div class="col col-66 col-right">
-                                        <div class="text">優惠訊息通知</div>
+                                        <div class="text" ng-bind="message.m_title"></div>
                                     </div>
                                     <div class="col col-icon color-font">
                                         <i class="ion-ios-arrow-right"></i>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="message image">
+                        <div class="message image" ng-hide="true">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
                                 <div class="message-dot-mask"></div>
@@ -65,30 +65,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="message">
-                            <div class="message-dot color-font">
-                                <i class="ion-record"></i>
-                                <div class="message-dot-mask"></div>
-                            </div>
-                            <div class="message-div">
-                                <div class="row">
-                                    <div class="col col-25 color-bg col-left">
-                                        <div class="date-text">
-                                            <div class="year">2016</div>
-                                            <div class="date">04.28</div>
-                                            <div class="weekday">THU</div>
-                                        </div>
-                                    </div>
-                                    <div class="col col-66 col-right">
-                                        <div class="text">優惠訊息通知XXXXXXXXXXXXXXXX</div>
-                                    </div>
-                                    <div class="col col-icon color-font">
-                                        <i class="ion-ios-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message image">
+                        <div class="message image" ng-hide="true">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
                                 <div class="message-dot-mask show" message-dot-mask="message"></div>
@@ -111,6 +88,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="card">
             <div class="item item-text-wrap">
                 <div class="header">
                     <div class="column col-image">
@@ -191,6 +170,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="card">
             <div class="item item-text-wrap">
                 <div class="header">
                     <div class="column col-image">
