@@ -1,26 +1,44 @@
-shprink/ionic-native-transitions
+* shprink/ionic-native-transitions
 https://github.com/shprink/ionic-native-transitions
 
-apache/cordova-plugin-dialogs
+* apache/cordova-plugin-dialogs
 https://github.com/apache/cordova-plugin-dialogs
 
-Paldom/SpinnerDialog
+* Paldom/SpinnerDialog
 https://github.com/Paldom/SpinnerDialog
 
-Cordova Config.xml
+* Cordova Config.xml
 https://cordova.apache.org/docs/en/latest/config_ref/
 
-ion-affix : Sticky affix elements for Ionic framework
+* ion-affix : Sticky affix elements for Ionic framework
 http://www.aliok.com.tr/projects/2015-04-17-ion-affix.html
 
-CSS3 // 3D Flip Cards
+* CSS3 // 3D Flip Cards
 https://css3playground.com/3d-flip-cards/
 
-cordova-plugin-dialogs
+* cordova-plugin-dialogs
 https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-dialogs/index.html
 
-icon font for Ionic Framework
+* icon font for Ionic Framework
 http://ionicons.com/
 
-IonicOAuthService
+* IonicOAuthService
 https://github.com/DhouseIn/DemoIonicOAuthService
+
+* Add Font Awesome to your Ionic project
+http://robferguson.org/2015/01/06/add-font-awesome-to-your-ionic-project/
+
+* Add Facebook Native Login to your Ionic App
+https://ionicthemes.com/tutorials/about/native-facebook-login-with-ionic-framework
+
+* Launch Navigator Cordova/Phonegap Plugin
+https://github.com/dpa99c/phonegap-launch-navigator
+
+* cordova-plugin-camera
+https://www.npmjs.com/package/cordova-plugin-camera
+
+* Cordova Plugins
+https://cordova.apache.org/plugins/?platforms=cordova-android&sortBy=Downloads
+
+* Flat Icon - 226,576 vector icons grouped in 3,767 packs
+http://www.flaticon.com/

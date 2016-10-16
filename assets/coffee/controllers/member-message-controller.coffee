@@ -9,4 +9,7 @@ module.exports = [
                 navigation.slide(backView.stateName, backView.stateParams, 'right')
             else
                 navigation.slide('home.dashboard', {}, 'right')
+
+        # message type :
+        # promo/course/order
 ]
