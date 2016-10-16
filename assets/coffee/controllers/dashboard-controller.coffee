@@ -1,10 +1,16 @@
 
 module.exports = [
-    '$scope', '$ionicPlatform', 'modal', 'navigation', ($scope, $ionicPlatform, modal, navigation) ->
+    '$rootScope', '$scope', '$ionicPlatform', 'modal', 'navigation',
+    ($rootScope, $scope, $ionicPlatform, modal, navigation) ->
         modal.hideLoading()
 
         $scope.goMemberDashboard = ->
-            navigation.slide 'home.member.dashboard', {}, 'left'
+            is_guest = window.localStorage.getItem('is_guest') == 'true'
+
+            if is_guest
+                return $rootScope.logout()
+            else
+                navigation.slide 'home.member.dashboard', {}, 'left'
 
         $scope.goCatalogs = ->
             navigation.slide 'home.course.catalogs', {}, 'up'

@@ -21,7 +21,7 @@ module.exports = [
 #                        $cordovaToast.show('Notification token registered', 'long', 'top')
                     onSuccess = (->)
                     onError = (error, status) ->
-                        $cordovaToast.show('Error Registering  notification token', 'long', 'top')
+                        $cordovaToast.show('Error Registering notification token', 'long', 'top')
                         $log.info status
                         $log.info error
                     uuid = $cordovaDevice.getUUID()

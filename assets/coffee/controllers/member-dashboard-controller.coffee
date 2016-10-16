@@ -17,20 +17,6 @@ module.exports = [
         $scope.goMessageList = ->
             navigation.slide 'home.member.message', {}, 'left'
 
-        $scope.logout = ->
-            onSuccess = ->
-                window.localStorage.removeItem("token")
-                window.localStorage.removeItem("is_guest")
-                delete $rootScope['cart']
-                delete $rootScope['wish']
-
-                navigation.flip('login', {}, 'right')
-            onError = ->
-                modal.showMessage 'errors.request_failed'
-
-            token = window.localStorage.getItem('token')
-            api.logout(token, onSuccess, onError)
-
         # version number record in config.xml that under project root
         document.addEventListener('deviceready', () ->
             $cordovaAppVersion.getVersionNumber().then (version)->
