@@ -124,6 +124,26 @@ exports.toggleVisible = ->
             scope.visible = !visible
         )
 
+exports.messageDotMask = ->
+    restrict: 'A'
+    link: (scope, element, attrs) ->
+
+        findParentCtrl = (jqElement, className) ->
+            tagName = jqElement.prop("tagName")
+            if jqElement.hasClass(className)
+                return jqElement
+            if tagName == 'BODY'
+                return undefined
+            parentCtrl = jqElement.parent()
+
+            return findParentCtrl(parentCtrl, className)
+
+        messageCtrl = findParentCtrl($(element), attrs.messageDotMask)
+
+        if messageCtrl
+            $(element).height(messageCtrl.height() - 39)
+
+
 exports.starRating = ->
     restrict: 'A'
     template: '<ul class="star-rating" ng-class="{readonly: readonly}">' +

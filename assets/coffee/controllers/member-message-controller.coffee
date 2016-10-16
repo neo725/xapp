@@ -1,6 +1,7 @@
 module.exports = [
     '$scope', '$ionicHistory', 'navigation',
     ($scope, $ionicHistory, navigation) ->
+        $scope.message = {}
 
         $scope.goBack = () ->
             backView = $ionicHistory.backView()
@@ -12,4 +13,5 @@ module.exports = [
 
         # message type :
         # promo/course/order
+        $scope.message.img = 'img/membersbg@2x.jpg'
 ]
