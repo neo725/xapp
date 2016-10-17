@@ -22,7 +22,9 @@
                 </div>
                 <div class="content">
                     <div class="message-wrapper color-1">
-                        <div class="message" ng-repeat="message in list_promo">
+                        <div class="message" ng-repeat="message in list_promo"
+                             ng-init="image_type = message.back_img != null"
+                             ng-class="{ 'image': image_type }">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
                                 <div class="message-dot-mask" ng-class="{ 'show': $index == list_promo.length - 1}"></div>
@@ -36,10 +38,13 @@
                                             <div class="weekday" ng-bind="date.weekday"></div>
                                         </div>
                                     </div>
-                                    <div class="col col-66 col-right">
-                                        <div class="text" ng-bind="message.m_title"></div>
+                                    <div class="col col-right" ng-class="{ 'col-66': !image_type }">
+                                        <div class="text" ng-bind="message.m_title" ng-hide="image_type"></div>
+                                        <div class="image"
+                                             ng-if="image_type"
+                                             ng-style="{'background-image': 'url(' + message.back_img + ')'}"></div>
                                     </div>
-                                    <div class="col col-icon color-font">
+                                    <div class="col col-icon color-font" ng-hide="image_type">
                                         <i class="ion-ios-arrow-right"></i>
                                     </div>
                                 </div>
@@ -101,67 +106,29 @@
                 </div>
                 <div class="content">
                     <div class="message-wrapper color-2">
-                        <div class="message">
+                        <div class="message" ng-repeat="message in list_course"
+                             ng-init="image_type = message.back_img != null"
+                             ng-class="{ 'image': image_type }">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
-                                <div class="message-dot-mask"></div>
+                                <div class="message-dot-mask" ng-class="{ 'show': $index == list_course.length - 1}"></div>
                             </div>
                             <div class="message-div">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
-                                        <div class="date-text">
-                                            <div class="year">2016</div>
-                                            <div class="date">04.28</div>
-                                            <div class="weekday">THU</div>
+                                        <div class="date-text" ng-init="date = formatDate(message.create_time)">
+                                            <div class="year" ng-bind="date.year"></div>
+                                            <div class="date" ng-bind="date.date"></div>
+                                            <div class="weekday" ng-bind="date.weekday"></div>
                                         </div>
                                     </div>
-                                    <div class="col col-66 col-right">
-                                        <div class="text">優惠訊息通知</div>
+                                    <div class="col col-right" ng-class="{ 'col-66': !image_type }">
+                                        <div class="text" ng-bind="message.m_title" ng-hide="image_type"></div>
+                                        <div class="image"
+                                             ng-if="image_type"
+                                             ng-style="{'background-image': 'url(' + message.back_img + ')'}"></div>
                                     </div>
-                                    <div class="col col-icon color-font">
-                                        <i class="ion-ios-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message image">
-                            <div class="message-dot color-font">
-                                <i class="ion-record"></i>
-                                <div class="message-dot-mask"></div>
-                            </div>
-                            <div class="message-div">
-                                <div class="row">
-                                    <div class="col col-25 col-left">
-                                        <div class="date-text color-bg">
-                                            <div class="year">2016</div>
-                                            <div class="date">04.28</div>
-                                            <div class="weekday">THU</div>
-                                        </div>
-                                    </div>
-                                    <div class="col col-right">
-                                        <div class="image" ng-style="{'background-image': 'url(' + message.img + ')'}"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="message-dot color-font">
-                                <i class="ion-record"></i>
-                                <div class="message-dot-mask show"></div>
-                            </div>
-                            <div class="message-div">
-                                <div class="row">
-                                    <div class="col col-25 color-bg col-left">
-                                        <div class="date-text">
-                                            <div class="year">2016</div>
-                                            <div class="date">04.28</div>
-                                            <div class="weekday">THU</div>
-                                        </div>
-                                    </div>
-                                    <div class="col col-66 col-right">
-                                        <div class="text">優惠訊息通知XXXXXXXXXXXXXXXX</div>
-                                    </div>
-                                    <div class="col col-icon color-font">
+                                    <div class="col col-icon color-font" ng-hide="image_type">
                                         <i class="ion-ios-arrow-right"></i>
                                     </div>
                                 </div>
@@ -183,45 +150,30 @@
                 </div>
                 <div class="content">
                     <div class="message-wrapper color-3">
-                        <div class="message">
+                        <div class="message" ng-repeat="message in list_order"
+                             ng-init="image_type = message.back_img != null"
+                             ng-class="{ 'image': image_type }">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
-                                <div class="message-dot-mask"></div>
+                                <div class="message-dot-mask" ng-class="{ 'show': $index == list_order.length - 1}"></div>
                             </div>
                             <div class="message-div">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
-                                        <div class="date-text">
-                                            <div class="year">2016</div>
-                                            <div class="date">04.28</div>
-                                            <div class="weekday">THU</div>
+                                        <div class="date-text" ng-init="date = formatDate(message.create_time)">
+                                            <div class="year" ng-bind="date.year"></div>
+                                            <div class="date" ng-bind="date.date"></div>
+                                            <div class="weekday" ng-bind="date.weekday"></div>
                                         </div>
                                     </div>
-                                    <div class="col col-66 col-right">
-                                        <div class="text">優惠訊息通知</div>
+                                    <div class="col col-right" ng-class="{ 'col-66': !image_type }">
+                                        <div class="text" ng-bind="message.m_title" ng-hide="image_type"></div>
+                                        <div class="image"
+                                             ng-if="image_type"
+                                             ng-style="{'background-image': 'url(' + message.back_img + ')'}"></div>
                                     </div>
-                                    <div class="col col-icon color-font">
+                                    <div class="col col-icon color-font" ng-hide="image_type">
                                         <i class="ion-ios-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message image">
-                            <div class="message-dot color-font">
-                                <i class="ion-record"></i>
-                                <div class="message-dot-mask show" message-dot-mask="message"></div>
-                            </div>
-                            <div class="message-div">
-                                <div class="row">
-                                    <div class="col col-25 col-left">
-                                        <div class="date-text color-bg">
-                                            <div class="year">2016</div>
-                                            <div class="date">04.28</div>
-                                            <div class="weekday">THU</div>
-                                        </div>
-                                    </div>
-                                    <div class="col col-right">
-                                        <div class="image" ng-style="{'background-image': 'url(' + message.img + ')'}"></div>
                                     </div>
                                 </div>
                             </div>

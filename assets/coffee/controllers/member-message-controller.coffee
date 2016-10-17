@@ -1,7 +1,6 @@
 module.exports = [
     '$scope', '$ionicHistory', 'navigation', 'modal', 'api'
     ($scope, $ionicHistory, navigation, modal, api) ->
-        $scope.message = {}
 
         $scope.goBack = () ->
             backView = $ionicHistory.backView()
@@ -25,7 +24,7 @@ module.exports = [
 
         # message type :
         # promo/course/order
-        $scope.message.img = 'img/membersbg@2x.jpg'
+#        $scope.message.img = 'img/membersbg@2x.jpg'
 
         loadMessageList = (perpage, type) ->
             modal.showLoading('', 'message.data_loading')
