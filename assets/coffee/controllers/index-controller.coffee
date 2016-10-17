@@ -12,6 +12,9 @@ module.exports = [
         $translate.use constants.DEFAULT_LOCALE
 
         $rootScope.callFCMGetToken = () ->
+            if typeof FCMPlugin == 'undefined'
+                return
+
             # Google FCM
             # Keep in mind the function will return null if the token has not been established yet.
             FCMPlugin.getToken(
@@ -32,14 +35,28 @@ module.exports = [
         $rootScope.loadCart = ->
             onSuccess = (response) ->
                 $rootScope.carts = response.list
-            api.getCartList(1, 500, onSuccess, (->))
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                console.log status_code
+                console.log error
+
+            modal.showLoading('', 'message.data_loading')
+            api.getCartList(1, 500, onSuccess, onError)
 
         $rootScope.loadWish = ->
             onSuccess = (response) ->
+                modal.hideLoading()
                 $rootScope.wish = response.list
-            api.getWishList(1, 500, onSuccess, (->))
 
-        $rootScope.getMemberData = (success, error) ->
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                console.log status_code
+                console.log error
+
+            modal.showLoading('', 'message.data_loading')
+            api.getWishList(1, 500, onSuccess, onError)
+
+        $rootScope.getMemberData = (successFn, errorFn) ->
             onSuccess = (response) ->
                 modal.hideLoading()
                 data =
@@ -47,33 +64,45 @@ module.exports = [
                     memb_email: response.Memb_EMail
                     memb_mobile: response.Memb_Mobile
                     memb_ident: response.Memb_Ident
+                    memb_status: response.Memb_Status
 
                 $rootScope.member = data
 
-                (success || (->))(data)
+                if $rootScope.member and $rootScope.member.memb_status == 'wait'
+                    $rootScope.token_temp = window.localStorage.getItem("token")
+                    window.localStorage.removeItem("token")
 
-            onError = ->
+                    navigation.slide 'main.phoneconfirm', {}, 'left'
+                else
+                    (successFn || (->))(data)
+
+            onError = (error, status_code) ->
                 modal.hideLoading()
-                error()
+                errorFn(error, status_code)
 
             modal.showLoading('', 'message.data_loading')
             api.getMemberData(onSuccess, onError)
 
         checkDefaultState = () ->
             $log.info 'index-controller -> checkDefaultState'
-            #window.localStorage.removeItem("token")
+
             token = window.localStorage.getItem('token')
 
             if token == null or token == "null"
                 navigation.flip 'login', {}, 'left'
             else
-                $rootScope.callFCMGetToken()
-                $rootScope.loadCart()
-                $rootScope.loadWish()
-                $rootScope.getMemberData((->), (->))
-                navigation.flip 'home.dashboard', {}, 'left'
+                onSuccess = () ->
+                    $rootScope.loadCart()
+                    $rootScope.loadWish()
+                    $rootScope.callFCMGetToken()
+
+                    navigation.flip 'home.dashboard', {}, 'left'
+
+                $rootScope.getMemberData(onSuccess, (->))
 
         $ionicPlatform.ready(->
+            console.log 'index-controller -> $ionicPlatform.ready'
+
             # lock the device orientation
             if window.screen.lockOrientation
                 window.screen.lockOrientation('portrait-primary')
@@ -97,19 +126,24 @@ module.exports = [
             else
                 $translate.use(constants.DEFAULT_LOCALE)
 
-            checkDefaultState()
 
-            FCMPlugin.onNotification(
-                (data) ->
-                    $cordovaToast.show('You got new notification', 'long', 'top')
+            if typeof FCMPlugin != 'undefined'
+                FCMPlugin.onNotification(
+                    (data) ->
+                        $cordovaToast.show('You got new notification', 'long', 'top')
 
-                    $cordovaBadge.set 10
+                        $cordovaBadge.set 10
 
-                , (msg) ->
-                    $log.info 'onNotification callback successfully registered: ' + msg
-                , (err) ->
-                    $log.info 'Error registering onNotification callback: ' + err
-            )
+                    , (msg) ->
+                        $log.info 'onNotification callback successfully registered: ' + msg
+                    , (err) ->
+                        $log.info 'Error registering onNotification callback: ' + err
+                )
+        )
+
+        $scope.$on('$ionicView.enter', (evt, data) ->
+            console.log 'index-controller -> $ionicView.enter'
+#            checkDefaultState()
         )
 
 #        $rootScope.$on('network.none', ->

@@ -19,9 +19,6 @@ module.exports = [
                 modal.showMessage 'errors.form_validate_error'
                 return
 
-            $scope.user.mobile = $scope.user.mobile.replace(new RegExp('-', 'g'), '')
-            $rootScope.user = $scope.user
-
             # register
             onSuccess = (response) ->
                 modal.hideLoading()
@@ -29,7 +26,17 @@ module.exports = [
                 # login
                 onSuccess = (response) ->
                     modal.hideLoading()
-                    navigation.slide 'main.phoneconfirm', {}, 'left'
+                    window.localStorage.setItem("token", response.token_string)
+                    window.localStorage.setItem('is_guest', false)
+
+                    onSuccess = ->
+                        navigation.slide 'main.phoneconfirm', {}, 'left'
+                    onError = (error, status_code) ->
+                        console.log status_code
+                        console.log error
+
+                    $rootScope.getMemberData(onSuccess, onError)
+
                 onError = (error, status_code) ->
                     console.log 'login'
                     console.log status_code
@@ -39,7 +46,7 @@ module.exports = [
                     modal.showMessage 'errors.request_failed'
 
                 data =
-                    id: $scope.user.account
+                    id: $scope.user.email
                     pw: $scope.user.password
                     device: ''
 
@@ -53,6 +60,7 @@ module.exports = [
                 modal.hideLoading()
                 modal.showMessage 'errors.request_failed'
 
+            $scope.user.mobile = $scope.user.mobile.replace(new RegExp('-', 'g'), '')
             data = {
                 email: $scope.user.email
                 name: $scope.user.name

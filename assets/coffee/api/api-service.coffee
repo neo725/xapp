@@ -196,8 +196,13 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        sendSMS: (onSuccess, onError) ->
-            $http.get('/api/members/validphone')
+        sendValidPhone: (membid, onSuccess, onError) ->
+            $http.get("/api/members/validphone?membid=#{membid}")
+                .success(onSuccess)
+                .error(onError)
+
+        postPhoneValid: (data, onSuccess, onError) ->
+            $http.post('/api/members/validphone', data)
                 .success(onSuccess)
                 .error(onError)
 

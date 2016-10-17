@@ -1,5 +1,6 @@
 module.exports = [
-    '$rootScope', '$ionicHistory', '$log', 'navigation', 'api', ($rootScope, $ionicHistory, $log, navigation, api) ->
+    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'api',
+    ($rootScope, $scope, $ionicHistory, $log, navigation, api) ->
         $log.info 'HomeController in'
 
         checkLoginState = () ->
@@ -24,6 +25,7 @@ module.exports = [
                 window.localStorage.removeItem("is_guest")
                 delete $rootScope['cart']
                 delete $rootScope['wish']
+                delete $rootScope['member']
 
                 navigation.flip('login', {}, 'right')
             onError = ->
@@ -33,4 +35,8 @@ module.exports = [
             api.logout(token, onSuccess, onError)
 
         checkLoginState()
+
+        $scope.$on('$ionicView.enter', (evt, data) ->
+            console.log 'home-controller -> $ionicView.enter'
+        )
 ]

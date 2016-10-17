@@ -1,5 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', 'navigation', 'modal', ($rootScope, $scope, navigation, modal) ->
+    '$rootScope', '$scope', 'navigation', 'modal', 'api'
+    ($rootScope, $scope, navigation, modal, api) ->
         $scope.goBack = () ->
             navigation.slide 'login', {}, 'down'
 
@@ -8,17 +9,48 @@ module.exports = [
                 modal.showMessage 'errors.form_validate_error'
                 return
 
-            console.log form
+            onSuccess = (response) ->
+                modal.hideLoading()
+                console.log response
+
+                modal.showMessage 'message.phone_valid_pass'
+
+                window.localStorage.setItem("token", $rootScope.token_temp)
+                navigation.slide 'login', {}, 'down'
+
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                switch error
+                    when 'no match valid' then modal.showMessage('errors.phone_valid_error')
+
+                console.log status_code
+                console.log error
+
+            data = {
+                'validcode': form.verify_code.$modelValue
+                'membid': $rootScope.member.memb_email
+            }
+            api.postPhoneValid(data, onSuccess, onError)
+
 
         $scope.maskNumber = (number) ->
             return "#{number.substring(0, 4)}***#{number.substring(number.length - 3, number.length)}"
 
-        sendVerifyCode = (number) ->
-            return number
+        sendVerifyCode = (member_email, number) ->
+            onSuccess = (response) ->
+                modal.hideLoading()
+                console.log response
 
-        if $rootScope.user
-            $scope.mobile = $rootScope.user.mobile
-            return sendVerifyCode($scope.mobile)
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                console.log status_code
+                console.log error
 
-        navigation.slide 'login', {}, 'down'
+            api.sendValidPhone(encodeURIComponent(member_email), onSuccess, onError)
+
+        if $rootScope.member
+            $scope.mobile = $rootScope.member.memb_mobile
+            return sendVerifyCode($rootScope.member.memb_email, $scope.mobile)
+        else
+            navigation.slide 'login', {}, 'down'
 ]

@@ -17,6 +17,7 @@ module.exports = ->
         'form_validate_error': '畫面上有欄位未完成輸入或是格式有誤，請檢查標記為紅色的欄位資料是否正確'
         'credit_card_not_acceptable': '目前無法支援您的信用卡卡別，請使用 VISA 或 Master 卡'
         'payment_create_failed': '付款無法完成，請重新進行結帳'
+        'phone_valid_error': '驗證發生錯誤，請確認輸入為正確的驗證碼，或是嘗試重新發送'
     }
     'popup': {
         'ok': 'OK'
@@ -43,6 +44,7 @@ module.exports = ->
         'submit_cart_confirm': '確定要結帳了嗎?'
         'creating_order': '建立訂單資料中...'
         'data_updating': '資料更新中...'
+        'phone_valid_pass': '驗證成功'
     }
     'tab': {
         'payed': '已繳費'

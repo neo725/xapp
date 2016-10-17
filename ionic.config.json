@@ -5,7 +5,7 @@
   "proxies": [
     {
       "path": "/SceAppApi/api",
-      "proxyUrl": "http://test.sce.pccu.edu.tw/SceAppApi/api"
+      "proxyUrl": "http://sceapi.sce.pccu.edu.tw/SceAppApi/api"
     }
   ]
 }

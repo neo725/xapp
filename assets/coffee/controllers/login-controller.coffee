@@ -32,13 +32,17 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 modal.hideLoading()
                 window.localStorage.setItem("token", response.token_string)
                 window.localStorage.setItem('is_guest', false)
-                resetLoginButton()
-                $rootScope.loadCart()
-                $rootScope.loadWish()
-                $rootScope.getMemberData((->), (->))
 
-                navigation.flip 'home.dashboard', {}, 'left'
-                $rootScope.callFCMGetToken()
+                resetLoginButton()
+
+                onSuccess = () ->
+                    $rootScope.loadCart()
+                    $rootScope.loadWish()
+                    $rootScope.callFCMGetToken()
+
+                    navigation.flip 'home.dashboard', {}, 'left'
+
+                $rootScope.getMemberData(onSuccess, (->))
 
             onError = (response) ->
                 modal.hideLoading()
@@ -107,6 +111,20 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
 
         checkDefaultState = ->
             $log.info 'login-controller -> checkDefaultState...'
+
+            token = window.localStorage.getItem('token')
+
+            if token == null or token == "null"
+                navigation.flip 'login', {}, 'left'
+            else
+                onSuccess = () ->
+                    $rootScope.loadCart()
+                    $rootScope.loadWish()
+                    $rootScope.callFCMGetToken()
+
+                    navigation.flip 'home.dashboard', {}, 'left'
+
+                $rootScope.getMemberData(onSuccess, (->))
 
         resetLoginButton()
         checkDefaultState()
