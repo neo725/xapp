@@ -1,6 +1,10 @@
 module.exports = [
     '$rootScope', '$scope', '$ionicModal', '$state', 'navigation', 'modal', 'api'
     ($rootScope, $scope, $ionicModal, $state, navigation, modal, api) ->
+        $scope.user = {
+            name: ''
+            email: ''
+        }
 
         $scope.goBack = () ->
             navigation.slide 'login', {}, 'down'
@@ -26,8 +30,8 @@ module.exports = [
                 modal.showMessage 'errors.request_failed'
 
             data = {
-                email: $scope.email
-                name: $scope.name
+                email: $scope.user.email
+                name: $scope.user.name
             }
 
             modal.showLoading '', 'message.data_loading'
