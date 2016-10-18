@@ -22,16 +22,25 @@ module.exports = [
         $scope.toggleCatalogItem = (catalog_id, $event) ->
             $event.stopPropagation()
             index = _.indexOf(choiceCatalogs, catalog_id)
+            #console.log 'course-catalogs-controller -> toggleCatalogItem, index = ' + index
             if index == -1
                 choiceCatalogs.push catalog_id
             else
                 choiceCatalogs.splice(index, 1)
 
+            index = _.findIndex($scope.user_catalogs, { 'Cata_Id': catalog_id })
+            #console.log 'course-catalogs-controller -> toggleCatalogItem, $scope.user_catalogs.index = ' + index
+            if index > -1
+                $scope.user_catalogs.splice(index, 1)
+                #console.log 'course-catalogs-controller -> toggleCatalogItem, $scope.user_catalogs.splice.index = ' + index
+
         $scope.checkCatalogIsChecked = (catalog_id) ->
             catalogs = $scope.user_catalogs || []
             index = _.findIndex(catalogs, { 'Cata_Id': catalog_id })
+            #console.log 'course-catalogs-controller -> checkCatalogIsChecked, $scope.user_catalogs.index = ' + index
             if index > -1 and _.indexOf(choiceCatalogs, catalog_id) == -1
                 choiceCatalogs.push catalog_id
+                #console.log 'course-catalogs-controller -> checkCatalogIsChecked, choiceCatalogs.push ' + catalog_id
             return index > -1
 
         $scope.goCatalogsSearch = (catalog) ->
@@ -43,6 +52,7 @@ module.exports = [
             navigation.slide 'home.course.search', {}, 'left'
 
         loadAllCatalogs = (shop_id) ->
+            console.log 'course-catalogs-controller -> loadAllCatalogs'
             modal.showLoading('', 'message.data_loading')
 
             onSuccess = (response) ->

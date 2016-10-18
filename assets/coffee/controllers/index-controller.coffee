@@ -57,6 +57,7 @@ module.exports = [
             api.getWishList(1, 500, onSuccess, onError)
 
         $rootScope.getMemberData = (successFn, errorFn) ->
+            console.log 'index-controller -> getMemberData'
             onSuccess = (response) ->
                 modal.hideLoading()
                 data =
@@ -65,6 +66,9 @@ module.exports = [
                     memb_mobile: response.Memb_Mobile
                     memb_ident: response.Memb_Ident
                     memb_status: response.Memb_Status
+
+                console.log 'data :'
+                console.log data
 
                 $rootScope.member = data
 
@@ -83,10 +87,11 @@ module.exports = [
             modal.showLoading('', 'message.data_loading')
             api.getMemberData(onSuccess, onError)
 
-        checkDefaultState = () ->
+        checkDefaultState = (token, redirectToDashboard = true) ->
             $log.info 'index-controller -> checkDefaultState'
 
-            token = window.localStorage.getItem('token')
+            if token == undefined
+                token = window.localStorage.getItem('token')
 
             if token == null or token == "null"
                 navigation.flip 'login', {}, 'left'
@@ -96,7 +101,8 @@ module.exports = [
                     $rootScope.loadWish()
                     $rootScope.callFCMGetToken()
 
-                    navigation.flip 'home.dashboard', {}, 'left'
+                    if redirectToDashboard
+                        navigation.flip 'home.dashboard', {}, 'left'
 
                 $rootScope.getMemberData(onSuccess, (->))
 
@@ -143,7 +149,9 @@ module.exports = [
 
         $scope.$on('$ionicView.enter', (evt, data) ->
             console.log 'index-controller -> $ionicView.enter'
-#            checkDefaultState()
+            token = window.localStorage.getItem('token')
+            if $rootScope.member == undefined and token
+                checkDefaultState(token, false)
         )
 
 #        $rootScope.$on('network.none', ->
