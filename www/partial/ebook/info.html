@@ -1,17 +1,19 @@
 <ion-view class="ebook-info" ng-controller="EbookInfoController">
-    <ion-nav-buttons side="left">
-        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
-    </ion-nav-buttons>
-    <ion-nav-title>{{ ebook.title }}</ion-nav-title>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-android-star" ng-click="addToFavorite(ebook)"></button>
-    </ion-nav-buttons>
+    <ion-nav-bar class="ebook-info-header">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+        </ion-nav-buttons>
+        <ion-nav-title>{{ ebook.title }}</ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon icon ion-android-star" ng-click="addToFavorite(ebook)"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
     <ion-content padding="true">
         <div class="intro" data-ng-bind-html="ebook.safe_intro"></div>
         <div class="cover-container">
             <div class="cover" ng-style="{'background-image': 'url(' + ebook.cover_img1 + ')', 'height': '100%'}"></div>
         </div>
-        <h4 class="title">{{ ebook.title }}</h4>
+        <h4 class="ebook-title">{{ ebook.title }}</h4>
         <div class="context" data-ng-bind-html="ebook.safe_context"></div>
     </ion-content>
 </ion-view>
