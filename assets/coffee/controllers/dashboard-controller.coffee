@@ -22,17 +22,17 @@ module.exports = [
             navigation.slide 'home.location', {}, 'left'
 
         document.addEventListener('deviceready', () ->
-            console.log 'device ready...'
+            console.log 'dashboard-controller -> device ready...'
         , false)
 
         $ionicPlatform.ready(->
-            console.log 'ionicPlatform ready...'
+            console.log 'dashboard-controller -> ionicPlatform ready...'
         )
 
         $scope.$on('$ionicView.enter', ->
-            console.log '$ionicView.enter'
+            console.log 'dashboard-controller -> $ionicView.enter'
         )
         $scope.$on('$ionicView.afterEnter', ->
-            console.log '$ionicView.afterEnter'
+            console.log 'dashboard-controller -> $ionicView.afterEnter'
         )
 ]

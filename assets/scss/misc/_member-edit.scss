@@ -1,0 +1,27 @@
+.member-edit-view {
+    .edit-content {
+
+        .avatar-col {
+            text-align: center;
+
+            img {
+                width: 80px;
+            }
+        }
+        .item {
+            border: 0;
+
+            &.item-input-thin {
+                padding-left: 0;
+            }
+            &.item-input-wide {
+                .input-label {
+                    width: 20%;
+                }
+            }
+            input {
+                background-color: $stable;
+            }
+        }
+    }
+}

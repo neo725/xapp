@@ -17,6 +17,11 @@ module.exports = [
         $scope.goMessageList = ->
             navigation.slide 'home.member.message', {}, 'left'
 
+        $scope.goEdit = ->
+            $scope.modalFunction.hide()
+            navigation.slide 'home.member.edit', {}, 'left'
+
+
         # version number record in config.xml that under project root
         document.addEventListener('deviceready', () ->
             $cordovaAppVersion.getVersionNumber().then (version)->
@@ -27,6 +32,7 @@ module.exports = [
             scope: $scope
             animation: 'slide-in-up'
         ).then((modal) ->
-            $rootScope.modalFunction = modal
+#            $rootScope.modalFunction = modal
+            $scope.modalFunction = modal
         )
 ]

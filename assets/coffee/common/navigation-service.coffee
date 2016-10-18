@@ -1,17 +1,25 @@
-module.exports = ['$state', ($state) ->
+module.exports = ['$state', '$timeout', ($state, $timeout) ->
     goSlide =
         (view, data, direction) ->
-            $state.go view, data
+            $timeout(
+                $state.go view, data
+            )
+
             if window.plugins
-                window.plugins.nativepagetransitions.slide
+                options =
                     'direction': direction
+                window.plugins.nativepagetransitions.slide options
 
     goFlip =
         (view, data, direction) ->
-            $state.go view, data
+            $timeout(->
+                $state.go view, data
+            )
+
             if window.plugins
-                window.plugins.nativepagetransitions.flip
+                options =
                     'direction': direction
+                window.plugins.nativepagetransitions.flip options
 
     return {
         slide: goSlide

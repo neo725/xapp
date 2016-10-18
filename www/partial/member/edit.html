@@ -1,0 +1,47 @@
+<ion-view class="member-edit-view" ng-controller="MemberEditController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>編輯帳號</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-content padding="true">
+        <div class="edit-content list">
+            <div class="row">
+                <div class="col col-34">
+                    <div class="row">
+                        <div class="col avatar-col">
+                            <img src="img/member-pic@2x.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <label class="item item-input item-input-thin">
+                        <span class="input-label">Nickname</span>
+                        <input type="text">
+                    </label>
+                    <label class="item item-input item-input-thin">
+                        <span class="input-label">Telphone</span>
+                        <input type="text">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="item item-input item-input-wide">
+                        <span class="input-label">Email</span>
+                        <input type="text">
+                    </label>
+                    <label class="item item-input item-input-wide">
+                        <span class="input-label">住址</span>
+                        <input type="text">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

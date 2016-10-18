@@ -36,6 +36,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .controller('MemberFinishListController', require('./controllers/member-finish-list-controller'))
 .controller('MemberCartListController', require('./controllers/member-cart-list-controller'))
 .controller('MemberMessageController', require('./controllers/member-message-controller'))
+.controller('MemberEditController', require('./controllers/member-edit-controller'))
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
 .controller('CourseInfoController', require('./controllers/course-info-controller'))
 .controller('CourseCatalogsController', require('./controllers/course-catalogs-controller'))
@@ -229,6 +230,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
         views: {
             'memberContent': {
                 templateUrl: 'partial/member/message.html'
+            }
+        }
+
+    .state 'home.member.edit',
+        url: '/edit'
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/edit.html'
             }
         }
 
