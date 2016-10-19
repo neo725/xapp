@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     yargs = require('yargs').argv;
 
 
-var debug = yargs.debug ? yargs.debug : true;
+var debug = (yargs.debug == 'false') ? false : true;
+gutil.log('>> javascript.debug=' + debug);
 
 gulp.task('javascript', function(){
     sequence(['vendorjs', 'appjs']);
@@ -24,7 +25,8 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
     return gulp.src(['assets/build/coffeeify/js/vendor.js'])
         .pipe(browserify({
             insertGlobals: false,
-            debug: debug,
+            //debug: debug,
+            debug: false,
             shim: {
                 'jquery': {
                     path: 'www/lib/jquery/dist/jquery.js',
@@ -73,7 +75,8 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                 }
             }
         }))
-        .pipe(gif(!debug, uglify()))
+        //.pipe(gif(!debug, uglify()))
+        .pipe(uglify())
         .pipe(gulp.dest('www/js'));
 });
 

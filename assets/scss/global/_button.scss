@@ -14,10 +14,10 @@
 .bar {
     .buttons {
         .button {
-            color: $button-color;
+            color: $button-color !important;
 
             &.button-clear {
-                color: $button-color;
+                color: $button-color !important;
             }
         }
     }

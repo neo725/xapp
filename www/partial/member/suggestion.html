@@ -1,0 +1,56 @@
+<ion-view class="member-suggestion" ng-controller="MemberSuggestionController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>意見信箱</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-content padding="true" class="content-pane">
+        <div class="content content-chinese">
+            如您對我們提供的課程、服務有任何的疑問或建議，請留下您寶貴的意見。<br />
+            我們將儘速回覆您，謝謝！！(<span class="required">號</span>為必填欄位)
+        </div>
+        <div class="content content-english">
+            If you have questions about our courses or service, please leave your comments below.<br />
+            We will respond to you as soon as possible. Thank you!
+        </div>
+        <div class="list">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label required">您的姓名 Your Name</span>
+                <input type="text">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label required">您的聯絡電話 Your Telephone Number</span>
+                <input type="text">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label required">您的電子郵件 Your E-mail</span>
+                <input type="text">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label required">您的意見類別 Category of Opinion</span>
+                <select>
+                    <option value="支持與鼓勵 (Encouragement)">支持與鼓勵 (Encouragement)</option>
+                    <option value="意見反應 (Suggestion)">意見反應 (Suggestion)</option>
+                </select>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label required">回覆方式 How to Reply to You?</span>
+                <select>
+                    <option value="不須回覆 (No need to reply)">不須回覆 (No need to reply)</option>
+                    <option value="僅以 Email 回覆 (By email)">僅以 Email 回覆 (By email)</option>
+                    <option value="專人 24 小時內致電 (回電時間為工作日 10:00~19:00)(By phone)">專人 24 小時內致電 (回電時間為工作日 10:00~19:00)(By phone)</option>
+                </select>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label required">您的意見 Your Opinion</span>
+                <textarea class="opinion" rows="5" cols="20"></textarea>
+            </label>
+        </div>
+        <button class="button button-full button-positive">確定送出</button>
+    </ion-content>
+</ion-view>

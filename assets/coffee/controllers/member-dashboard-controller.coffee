@@ -21,6 +21,9 @@ module.exports = [
             $scope.modalFunction.hide()
             navigation.slide 'home.member.edit', {}, 'up'
 
+        $scope.goSuggest = ->
+            $scope.modalFunction.hide()
+            navigation.slide 'home.member.suggestion', {}, 'up'
 
         # version number record in config.xml that under project root
         document.addEventListener('deviceready', () ->

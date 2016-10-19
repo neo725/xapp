@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     yargs = require('yargs').argv;
 
 
-var debug = yargs.debug ? yargs.debug : true;
+var debug = (yargs.debug == 'false') ? false : true;
 
 gulp.task("css", function () {
     sequence("css:tocss", "css:minify");

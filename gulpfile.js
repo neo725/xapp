@@ -8,8 +8,8 @@ var gulp = require('gulp'),
 
 requireDir('./gulp');
 
-var debug = yargs.debug ? yargs.debug : true;
-gutil.log('>> debug=' + debug);
+//var debug = yargs.debug ? yargs.debug : true;
+//gutil.log('>> debug=' + debug);
 
 gulp.task('clean', function () {
     return gulp.src(['www/css', 'www/js', 'www/img', 'assets/dist', 'assets/build'], {read: false})

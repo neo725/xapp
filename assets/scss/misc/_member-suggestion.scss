@@ -1,0 +1,36 @@
+.member-suggestion {
+    .title {
+        color: $assertive;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .content-pane {
+
+        .content {
+            line-height: 1.5em;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .required {
+            &:before {
+                content: '* ';
+                color: $assertive;
+            }
+        }
+    }
+    .list {
+        .item {
+            border-left: 0 none;
+            border-right: 0 none;
+            border-top: 0 none;
+
+            select {
+                display: block;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                max-width: 90%;
+            }
+        }
+    }
+}

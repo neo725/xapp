@@ -42,3 +42,6 @@ https://cordova.apache.org/plugins/?platforms=cordova-android&sortBy=Downloads
 
 * Flat Icon - 226,576 vector icons grouped in 3,767 packs
 http://www.flaticon.com/
+
+* Popover Support Lands in Ionic
+http://blog.ionic.io/popover-support-landed/
