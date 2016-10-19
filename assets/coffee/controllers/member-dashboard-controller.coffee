@@ -19,7 +19,7 @@ module.exports = [
 
         $scope.goEdit = ->
             $scope.modalFunction.hide()
-            navigation.slide 'home.member.edit', {}, 'left'
+            navigation.slide 'home.member.edit', {}, 'up'
 
 
         # version number record in config.xml that under project root

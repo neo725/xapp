@@ -8,11 +8,22 @@
                 width: 80px;
             }
         }
+        // .list .item.item-input.item-input-thin input[type="text"]
         .item {
             border: 0;
 
+            &.item-input {
+                input[type="text"] {
+                    padding-right: 20px;
+                    padding-left: 10px;
+                }
+            }
             &.item-input-thin {
                 padding-left: 0;
+
+                .input-label {
+                    width: 22%;
+                }
             }
             &.item-input-wide {
                 .input-label {
@@ -20,6 +31,31 @@
                 }
             }
             input {
+                background-color: $stable;
+            }
+        }
+
+        .border-top {
+            .item {
+                border-top: 1px solid $border-color;
+            }
+        }
+        .border-bottom {
+            .item {
+                border-bottom: 1px solid $border-color;
+            }
+        }
+    }
+}
+.change-password-box {
+    &.modal-box {
+        top: 30%;
+        height: 262px !important;
+
+        .item {
+            padding-left: 30px;
+
+            input[type="password"] {
                 background-color: $stable;
             }
         }

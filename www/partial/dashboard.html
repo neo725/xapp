@@ -211,7 +211,7 @@
     </ion-content>
     <script id="templates/modal-feedback.html" type="text/ng-template">
         <ion-modal-view class="modal-box feedback-box" ng-controller="DashboardFeedbackController">
-            <ion-content padding="true">
+            <ion-content padding="true" scroll="false">
                 <div class="row">
                     <div class="col title">
                         <h3>{{ currentCard.Prod_Name }}</h3>
@@ -257,7 +257,7 @@
                     </div>
                 </div>
             </ion-header-bar>
-            <ion-content class="padding">
+            <ion-content class="padding" scroll="false">
                 <div class="row">
                     <div class="col">
                         <ion-checkbox ng-model="weekdays.monday">星期一</ion-checkbox>
@@ -289,7 +289,7 @@
                     </div>
                 </div>
             </ion-header-bar>
-            <ion-content class="padding">
+            <ion-content class="padding" scroll="false">
                 <ion-list>
                     <ion-checkbox ng-model="taipei" ng-click="taipeiClick(locations_taipei)"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台北</div></ion-checkbox>
                     <ion-checkbox ng-model="locations.loc1"><div class="text-item">建國本部 (大夏館)</div></ion-checkbox>

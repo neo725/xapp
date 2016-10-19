@@ -5,7 +5,7 @@ module.exports = [
         choiceCatalogs = []
 
         $scope.goBack = ->
-            navigation.slide('home.dashboard', {}, 'down')
+            navigation.slide('home.dashboard', {}, 'right')
 
         $scope.goSetting = ->
             $scope.visibleCatalogs = $scope.catalogs

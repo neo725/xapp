@@ -13,7 +13,7 @@ module.exports = [
                 navigation.slide 'home.member.dashboard', {}, 'left'
 
         $scope.goCatalogs = ->
-            navigation.slide 'home.course.catalogs', {}, 'up'
+            navigation.slide 'home.course.catalogs', {}, 'left'
 
         $scope.goEbookList = ->
             navigation.slide 'home.ebook.list', {}, 'left'

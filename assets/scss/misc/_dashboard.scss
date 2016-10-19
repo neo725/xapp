@@ -263,20 +263,36 @@
         }
     }
 
+
     .icon-tabs-bar {
         position: static;
         padding-top: 10px;
         padding-bottom: 10px;
-        height: 70px;
+        height: 72px;
 
-        .tab-item {
-            img {
-                display: block;
-                width: 32px;
-                margin: 0 auto;
-                padding-bottom: 5px;
+        &.tabs-icon-top {
+            &.tabs {
+                // .tabs-icon-top.tabs .tab-item
+                .tab-item {
+                    font-size: 12px;
+
+                    img {
+                        display: block;
+                        width: 32px;
+                        margin: 0 auto;
+                        padding-bottom: 5px;
+                    }
+                }
             }
         }
+        //.tab-item {
+        //    img {
+        //        display: block;
+        //        width: 32px;
+        //        margin: 0 auto;
+        //        padding-bottom: 5px;
+        //    }
+        //}
     }
 }
 
