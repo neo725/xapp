@@ -7,3 +7,4 @@ plugins/
 www/img/*
 www/js/*
 assets/build/*
+www/css
