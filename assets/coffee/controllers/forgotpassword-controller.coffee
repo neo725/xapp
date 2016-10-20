@@ -15,7 +15,14 @@ module.exports = [
 
         $scope.submitForm = (form) ->
             if not form.$valid
-                modal.showMessage 'errors.form_validate_error'
+                #modal.showMessage 'errors.form_validate_error'
+                $translate(['title.forget_password', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
+                    plugins.notification.alert(
+                        translator['errors.form_validate_error'],
+                        (->),
+                        translator['title.forget_password'],
+                        translator['popup.ok']
+                    )
                 return
 
             onSuccess = (response) ->

@@ -60,4 +60,7 @@ module.exports = ->
         'remove_item_from_cart': '刪除商品'
         'submit_cart': '結帳確認'
         'suggestion': '意見信箱'
+        'forget_password': '忘記密碼'
+        'phone_confirm': '身分驗證'
+        'register_member': '註冊新會員'
     }
