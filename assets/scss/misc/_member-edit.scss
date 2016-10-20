@@ -30,19 +30,16 @@
                     width: 20%;
                 }
             }
+            &.border-top {
+                border-top: 1px solid $border-color;
+                margin-top: 1px;
+            }
+            &.border-bottom {
+                border-bottom: 1px solid $border-color;
+                margin-bottom: 1px;
+            }
             input {
                 background-color: $stable;
-            }
-        }
-
-        .border-top {
-            .item {
-                border-top: 1px solid $border-color;
-            }
-        }
-        .border-bottom {
-            .item {
-                border-bottom: 1px solid $border-color;
             }
         }
     }

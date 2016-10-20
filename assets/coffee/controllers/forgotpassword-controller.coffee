@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$state', 'navigation', 'modal', 'api'
-    ($rootScope, $scope, $ionicModal, $state, navigation, modal, api) ->
+    '$rootScope', '$scope', '$ionicModal', '$state', '$translate', 'navigation', 'modal', 'api', 'plugins'
+    ($rootScope, $scope, $ionicModal, $state, $translate, navigation, modal, api, plugins) ->
         $scope.user = {
             name: ''
             email: ''

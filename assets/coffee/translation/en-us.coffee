@@ -63,4 +63,5 @@ module.exports = ->
         'forget_password': '忘記密碼'
         'phone_confirm': '身分驗證'
         'register_member': '註冊新會員'
+        'cart': '購物車'
     }

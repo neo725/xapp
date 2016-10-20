@@ -101,10 +101,24 @@ module.exports = [
         $scope.submitForm = (form) ->
             pay_type = $scope.pay.type
             if not form.$valid
-                modal.showLongMessage 'errors.form_validate_error'
+                #modal.showLongMessage 'errors.form_validate_error'
+                $translate(['title.cart', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
+                    plugins.notification.alert(
+                        translator['errors.form_validate_error'],
+                        (->),
+                        translator['title.cart'],
+                        translator['popup.ok']
+                    )
                 return
             if pay_type == 'CreditCard' and not checkIsCardAccept()
-                modal.showLongMessage 'errors.credit_card_not_acceptable'
+                #modal.showLongMessage 'errors.credit_card_not_acceptable'
+                $translate(['title.cart', 'errors.credit_card_not_acceptable', 'popup.ok']).then (translator) ->
+                    plugins.notification.alert(
+                        translator['errors.credit_card_not_acceptable'],
+                        (->),
+                        translator['title.cart'],
+                        translator['popup.ok']
+                    )
                 return
 
             clearCart = (success) ->

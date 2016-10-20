@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', 'navigation', 'modal', 'api'
-    ($rootScope, $scope, navigation, modal, api) ->
+    '$rootScope', '$scope', '$translate', 'navigation', 'modal', 'api', 'plugins'
+    ($rootScope, $scope, $translate, navigation, modal, api, plugins) ->
         $scope.goBack = () ->
             navigation.slide 'login', {}, 'down'
 
