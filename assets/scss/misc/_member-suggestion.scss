@@ -12,10 +12,17 @@
             margin-bottom: 20px;
             font-size: 1.1em;
         }
-        .required {
+        span.required {
             &:before {
                 content: '* ';
                 color: $assertive;
+            }
+        }
+        form {
+            &.ng-submitted {
+                .item.has-error {
+                    border-bottom: 2px solid $error;
+                }
             }
         }
     }

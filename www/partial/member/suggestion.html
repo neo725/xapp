@@ -18,39 +18,38 @@
             If you have questions about our courses or service, please leave your comments below.<br />
             We will respond to you as soon as possible. Thank you!
         </div>
-        <div class="list">
-            <label class="item item-input item-stacked-label">
-                <span class="input-label required">您的姓名 Your Name</span>
-                <input type="text">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label required">您的聯絡電話 Your Telephone Number</span>
-                <input type="text">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label required">您的電子郵件 Your E-mail</span>
-                <input type="text">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label required">您的意見類別 Category of Opinion</span>
-                <select>
-                    <option value="支持與鼓勵 (Encouragement)">支持與鼓勵 (Encouragement)</option>
-                    <option value="意見反應 (Suggestion)">意見反應 (Suggestion)</option>
-                </select>
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label required">回覆方式 How to Reply to You?</span>
-                <select>
-                    <option value="不須回覆 (No need to reply)">不須回覆 (No need to reply)</option>
-                    <option value="僅以 Email 回覆 (By email)">僅以 Email 回覆 (By email)</option>
-                    <option value="專人 24 小時內致電 (回電時間為工作日 10:00~19:00)(By phone)">專人 24 小時內致電 (回電時間為工作日 10:00~19:00)(By phone)</option>
-                </select>
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label required">您的意見 Your Opinion</span>
-                <textarea class="opinion" rows="5" cols="20"></textarea>
-            </label>
-        </div>
-        <button class="button button-full button-positive">確定送出</button>
+        <form name="suggestionForm" novalidate ng-submit="submitForm(suggestionForm)">
+            <div class="list">
+                <label class="item item-input item-stacked-label" ng-class="{ 'has-error' : suggestionForm.username.$invalid}">
+                    <span class="input-label required">您的姓名 Your Name</span>
+                    <input type="text" name="username" ng-model="suggestion.username" required>
+                </label>
+                <label class="item item-input item-stacked-label" ng-class="{ 'has-error' : suggestionForm.telphone.$invalid}">
+                    <span class="input-label required">您的聯絡電話 Your Telephone Number</span>
+                    <input type="text" name="telphone" ng-model="suggestion.telphone" required>
+                </label>
+                <label class="item item-input item-stacked-label" ng-class="{ 'has-error' : suggestionForm.email.$invalid}">
+                    <span class="input-label required">您的電子郵件 Your E-mail</span>
+                    <input type="email" name="email" ng-model="suggestion.email" required>
+                </label>
+                <label class="item item-input item-stacked-label" ng-class="{ 'has-error' : suggestionForm.type.$invalid}">
+                    <span class="input-label required">您的意見類別 Category of Opinion</span>
+                    <select name="type" ng-model="suggestion.type" ng-options="opt for opt in type_opts" required>
+                        <option></option>
+                    </select>
+                </label>
+                <label class="item item-input item-stacked-label" ng-class="{ 'has-error' : suggestionForm.reply.$invalid}">
+                    <span class="input-label required">回覆方式 How to Reply to You?</span>
+                    <select name="reply" ng-model="suggestion.reply" ng-options="opt for opt in reply_opts" required>
+                        <option></option>
+                    </select>
+                </label>
+                <label class="item item-input item-stacked-label" ng-class="{ 'has-error' : suggestionForm.opinion.$invalid}">
+                    <span class="input-label required">您的意見 Your Opinion</span>
+                    <textarea name="opinion" class="opinion" rows="5" cols="20" ng-model="suggestion.opinion" required></textarea>
+                </label>
+            </div>
+            <button class="button button-full button-positive">確定送出</button>
+        </form>
     </ion-content>
 </ion-view>

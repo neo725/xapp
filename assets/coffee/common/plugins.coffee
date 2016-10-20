@@ -11,6 +11,7 @@ module.exports = ->
             'show': (->)
 
         notification:
+            'alert': (->)
             'confirm': (->)
     }
 

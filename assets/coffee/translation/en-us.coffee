@@ -45,6 +45,8 @@ module.exports = ->
         'creating_order': '建立訂單資料中...'
         'data_updating': '資料更新中...'
         'phone_valid_pass': '驗證成功'
+        'post_suggestion': '意見發送中...'
+        'suggestion_sended': '您的意見已送出'
     }
     'tab': {
         'payed': '已繳費'
@@ -57,4 +59,5 @@ module.exports = ->
         'clear_cart': 'Clear cart'
         'remove_item_from_cart': '刪除商品'
         'submit_cart': '結帳確認'
+        'suggestion': '意見信箱'
     }
