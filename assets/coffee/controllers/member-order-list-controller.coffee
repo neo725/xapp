@@ -18,17 +18,17 @@ module.exports = [
             onSuccess = (response) ->
                 modal.hideLoading()
                 switch status
-                    when '10' then $scope.payed_list = response.list
-                    when '20' then $scope.waiting_list = response.list
-                    when '30' then $scope.refund_list = response.list
+                    when '01' then $scope.payed_list = response.list
+                    when '02' then $scope.waiting_list = response.list
+                    when '03' then $scope.refund_list = response.list
             onError = ->
                 modal.hideLoading()
 
             api.getOrders(status, 1, 500, onSuccess, onError)
 
         $scope.$on('$ionicView.enter', (evt, data) ->
-            loadOrders('10')
-            loadOrders('20')
-            loadOrders('30')
+            loadOrders('01')
+            loadOrders('02')
+            loadOrders('03')
         )
 ]
