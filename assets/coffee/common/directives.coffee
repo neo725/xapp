@@ -88,6 +88,13 @@ exports.customVerify = () ->
             return combined
         , (value) ->
             if value
+                if value.indexOf('undefined') > -1
+                    ctrl.$setValidity("customVerify", false)
+                    return undefined
+                underline_pos = value.indexOf('_')
+                if (underline_pos == 0 or underline_pos == value.length - 1)
+                    ctrl.$setValidity("customVerify", false)
+                    return undefined
                 ctrl.$parsers.unshift (viewValue) ->
                     origin = scope.customVerify
                     if origin != viewValue

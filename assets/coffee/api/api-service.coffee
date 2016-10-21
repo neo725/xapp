@@ -221,6 +221,21 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        updatePassword: (data, onSuccess, onError) ->
+            $http.post('/api/members/password', data)
+                .success(onSuccess)
+                .error(onError)
+
+        getUserSetting: (key, onSuccess, onError) ->
+            $http.get("/api/usersetting/#{key}")
+                .success(onSuccess)
+                .error(onError)
+
+        postUserSetting: (key, value, onSuccess, onError) ->
+            $http.post("/api/usersetting/#{key}", value)
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

@@ -8,6 +8,15 @@
                 width: 80px;
             }
         }
+        .ng-submitted {
+            .item {
+                &.has-error {
+                    input {
+                        background-color: $light-error-color;
+                    }
+                }
+            }
+        }
         // .list .item.item-input.item-input-thin input[type="text"]
         .item {
             border: 0;
@@ -38,6 +47,7 @@
                 border-bottom: 1px solid $border-color;
                 margin-bottom: 1px;
             }
+
             input {
                 background-color: $stable;
             }

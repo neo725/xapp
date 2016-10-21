@@ -18,6 +18,8 @@ module.exports = ->
         'credit_card_not_acceptable': '目前無法支援您的信用卡卡別，請使用 VISA 或 Master 卡'
         'payment_create_failed': '付款無法完成，請重新進行結帳'
         'phone_valid_error': '驗證發生錯誤，請確認輸入為正確的驗證碼，或是嘗試重新發送'
+        'current_password_error': '目前的密碼不正確，無法完成密碼變更'
+        'data_save_error': '儲存資料未完成'
     }
     'popup': {
         'ok': '确 定'
@@ -47,6 +49,8 @@ module.exports = ->
         'phone_valid_pass': '驗證成功'
         'post_suggestion': '意見發送中...'
         'suggestion_sended': '您的意見已送出'
+        'data_saving': '資料儲存中...'
+        'data_saved': '資料儲存完成'
     }
     'tab': {
         'payed': '已繳費'
@@ -64,4 +68,5 @@ module.exports = ->
         'phone_confirm': '身分驗證'
         'register_member': '註冊新會員'
         'cart': '購物車'
+        'member_edit': '編輯帳號'
     }

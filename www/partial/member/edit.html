@@ -4,70 +4,88 @@
     </ion-nav-buttons>
     <ion-nav-title>編輯帳號</ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-android-done" ng-click="goBack()"></button>
+        <button class="button button-icon icon ion-android-done" ng-click="doSubmit($event)"></button>
     </ion-nav-buttons>
     <ion-content padding="true">
         <div class="edit-content list">
-            <div class="row">
-                <div class="col col-34">
-                    <div class="row">
-                        <div class="col avatar-col">
-                            <img src="img/member-pic@2x.png" />
+            <form name="editForm" novalidate ng-submit="submitForm(editForm)">
+                <div class="row">
+                    <div class="col col-34">
+                        <div class="row">
+                            <div class="col avatar-col">
+                                <img src="img/member-pic@2x.png" />
+                            </div>
                         </div>
                     </div>
+                    <div class="col">
+                        <label class="item item-input item-input-thin"
+                               ng-class="{ 'has-error' : editForm.username.$invalid}">
+                            <span class="input-label">暱稱</span>
+                            <input type="text" name="username"
+                                   ng-model="user.memb_name"
+                                   required>
+                        </label>
+                        <label class="item item-input item-input-thin"
+                               ng-class="{ 'has-error' : editForm.mobile.$invalid}">
+                            <span class="input-label">電話</span>
+                            <input type="text" name="mobile"
+                                   ng-model="user.memb_mobile"
+                                   required>
+                        </label>
+                    </div>
                 </div>
-                <div class="col">
-                    <label class="item item-input item-input-thin">
-                        <span class="input-label">暱稱</span>
-                        <input type="text">
-                    </label>
-                    <label class="item item-input item-input-thin">
-                        <span class="input-label">電話</span>
-                        <input type="text">
-                    </label>
+                <div class="row">
+                    <div class="col">
+                        <label class="item item-input item-input-wide">
+                            <span class="input-label">Email</span>
+                            <input type="email" name="email"
+                                   ng-model="user.memb_email"
+                                   ng-class="{ 'has-error' : editForm.email.$invalid}"
+                                   required>
+                        </label>
+                        <label class="item item-input item-input-wide">
+                            <span class="input-label">住址</span>
+                            <input type="text">
+                        </label>
+                        <ion-list>
+                            <ion-item class="border-top border-bottom">
+                                修改目前密碼
+                            </ion-item>
+                        </ion-list>
+                        <label class="item item-input">
+                            <span class="input-label">目前密碼</span>
+                            <input type="password" ng-model="setting.current_password">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">新密碼</span>
+                            <input type="password" name="password"
+                                   ng-model="setting.new_password">
+                        </label>
+                        <label class="item item-input"
+                               ng-class="{ 'has-error' : editForm.password_confirm.$invalid}">
+                            <span class="input-label">確認新密碼</span>
+                            <input type="password" name="password_confirm"
+                                   ng-model="setting.confirm_new_password"
+                                   data-custom-verify="setting.new_password">
+                        </label>
+                        <ion-list>
+                            <ion-item class="border-top border-bottom">
+                                <div class="item-toggle toggle-small"
+                                     toggle-class="toggle-positive"
+                                     ng-click="toggleNotification($event)">
+                                    <div><span>{{ '通知課程學習相關資訊' }}</span></div>
+                                    <label class="toggle toggle-positive disable-user-behavior"
+                                           ng-click="toggleNotification($event)">
+                                        <input type="checkbox" ng-checked="checkNotificationIsChecked()">
+                                        <div class="track"><div class="handle"></div></div>
+                                    </label>
+                                </div>
+                            </ion-item>
+                        </ion-list>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label class="item item-input item-input-wide">
-                        <span class="input-label">Email</span>
-                        <input type="text">
-                    </label>
-                    <label class="item item-input item-input-wide">
-                        <span class="input-label">住址</span>
-                        <input type="text">
-                    </label>
-                    <ion-list>
-                        <ion-item class="border-top border-bottom">
-                            修改目前密碼
-                        </ion-item>
-                    </ion-list>
-                    <label class="item item-input">
-                        <span class="input-label">目前密碼</span>
-                        <input type="text">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">新密碼</span>
-                        <input type="text">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">確認新密碼</span>
-                        <input type="text">
-                    </label>
-                    <ion-list>
-                        <ion-item class="border-top border-bottom">
-                            <div class="item-toggle toggle-small"
-                                 toggle-class="toggle-positive">
-                                <div><span>{{ '通知課程學習相關資訊' }}</span></div>
-                                <label class="toggle toggle-positive disable-user-behavior">
-                                    <input type="checkbox">
-                                    <div class="track"><div class="handle"></div></div>
-                                </label>
-                            </div>
-                        </ion-item>
-                    </ion-list>
-                </div>
-            </div>
+                <button id="submitButton" class="button button-full button-positive" ng-hide="true">確定送出</button>
+            </form>
         </div>
     </ion-content>
     <script id="templates/modal-change-password.html" type="text/ng-template">

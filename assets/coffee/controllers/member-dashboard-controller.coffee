@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$ionicModal', '$cordovaAppVersion', '$log', 'modal', 'navigation', 'api',
-    ($rootScope, $scope, $ionicHistory, $ionicModal, $cordovaAppVersion, $log, modal, navigation, api) ->
+    '$rootScope', '$scope', '$ionicHistory', '$ionicModal', '$cordovaAppVersion', '$timeout', 'modal', 'navigation', 'api',
+    ($rootScope, $scope, $ionicHistory, $ionicModal, $cordovaAppVersion, $timeout, modal, navigation, api) ->
 
         $scope.goBack = ->
             navigation.slide 'home.dashboard', {}, 'right'
@@ -19,11 +19,15 @@ module.exports = [
 
         $scope.goEdit = ->
             $scope.modalFunction.hide()
-            navigation.slide 'home.member.edit', {}, 'up'
+            $timeout(->
+                navigation.slide 'home.member.edit', {}, 'up'
+            )
 
         $scope.goSuggest = ->
             $scope.modalFunction.hide()
-            navigation.slide 'home.member.suggestion', {}, 'up'
+            $timeout(->
+                navigation.slide 'home.member.suggestion', {}, 'up'
+            )
 
         # version number record in config.xml that under project root
         document.addEventListener('deviceready', () ->
@@ -35,7 +39,6 @@ module.exports = [
             scope: $scope
             animation: 'slide-in-up'
         ).then((modal) ->
-#            $rootScope.modalFunction = modal
             $scope.modalFunction = modal
         )
 ]
