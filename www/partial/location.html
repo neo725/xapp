@@ -6,24 +6,34 @@
     <ion-content>
         <div class="location-card-container" ng-repeat="location in locations" toggle-visible="front" toggle-visible-rear="rear">
             <div class="location-card front-card" ng-style="{'background-image': 'url(' + location.location_front + ')', 'height': '100%'}">
+                <div class="card-backdrop"></div>
             </div>
             <div class="front">
-                <div class="bg"></div>
                 <div class="title">{{ location.name }}</div>
                 <div class="map">
                     <div class="text" ng-click="goMap(location.address, location.gps, $event)">MAP</div>
                 </div>
             </div>
             <div class="rear">
-                <div class="bg"></div>
                 <div class="text-line">
                     <div class="row">
                         <div class="col">{{ '諮詢報名時間(國定假日除外)' }}</div>
                     </div>
-                    <div>&nbsp;</div>
+                    <div class="row">
+                        <div class="col col-33">週一至週五</div>
+                        <div class="col">09:00-21:00</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-33">週一至週五</div>
+                        <div class="col">09:00-21:00</div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-33">週一至週五</div>
+                        <div class="col">09:00-21:00</div>
+                    </div>
                     <div class="row">
                         <div class="col col-20">{{ '電話 : ' }}</div>
-                        <div class="col">{{ location.tel }}</div>
+                        <div class="col"><a ng-href="{{ 'tel:' + location.tel }}">{{ location.tel }}</a></div>
                     </div>
                     <div class="row">
                         <div class="col col-20">{{ '地址 : ' }}</div>
