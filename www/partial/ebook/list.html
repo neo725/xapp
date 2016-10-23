@@ -34,7 +34,7 @@
             </ion-tab>
 
             <ion-tab class="tab-active-2" title="{{ '專題分類' }}" badge="0" badge-style="badge-assertive">
-                <ion-nav-view name="tab-tab1">
+                <ion-nav-view name="tab-tab2">
                     <ion-content>
                         <div class="group-list" ng-repeat="catalog in catalogs">
                             <div class="item">
@@ -56,9 +56,18 @@
             </ion-tab>
 
             <ion-tab class="tab-active-3" title="{{ '我的收藏' }}" badge="0" badge-style="badge-assertive">
-                <div class="tab-content">
-                    <h3>tab-3</h3>
-                </div>
+                <ion-nav-view name="tab-tab2">
+                    <ion-content>
+                        <div class="list">
+                            <div class="item" ng-repeat="article in favorites" ng-init="para = parseUrlToPara(article.web_url)">
+                                <a href="#/home/ebook/info/{{ para.apply }}/{{ para.catalog_id }}" class="item-content">
+                                    <span href="#/home/ebook/list">{{ article.title }}</span>
+                                    <i class="ion-ios-arrow-forward"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </ion-content>
+                </ion-nav-view>
             </ion-tab>
         </ion-tabs>
     </ion-content>

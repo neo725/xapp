@@ -236,6 +236,19 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getMyFavoriteEbooks: (page, perpage, onSuccess, onError) ->
+            $http.get("/api/ebook/my?page=#{page}&perpage=#{perpage}")
+                .success(onSuccess)
+                .error(onError)
+
+        addEbookFavorite: (yearmonth, catalog_id, onSuccess, onError) ->
+            data =
+                yearmonth: yearmonth
+                catalog: catalog_id
+            $http.post('/api/ebook/my', data)
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

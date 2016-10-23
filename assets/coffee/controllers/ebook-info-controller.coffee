@@ -1,6 +1,6 @@
 module.exports = [
-    '$scope', '$stateParams', '$ionicHistory', '$sce', 'navigation', 'modal', 'api',
-    ($scope, $stateParams, $ionicHistory, $sce, navigation, modal, api) ->
+    '$scope', '$stateParams', '$ionicHistory', '$sce', '$translate', 'navigation', 'modal', 'plugins', 'api',
+    ($scope, $stateParams, $ionicHistory, $sce, $translate, navigation, modal, plugins, api) ->
         yearmonth = $stateParams.yearmonth
         catalog_id = $stateParams.catalog_id
 
@@ -13,8 +13,19 @@ module.exports = [
                 navigation.slide('home.dashboard', {}, 'right')
 
         $scope.addToFavorite = (ebook) ->
-            console.log yearmonth
-            console.log catalog_id
+            modal.showLoading '', 'message.processing'
+
+            onSuccess = (response) ->
+                console.log response
+                modal.hideLoading()
+                $translate('message.success_to_add_favorite_ebook').then (text) ->
+                    plugins.toast.show(text, 'long', 'top')
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                console.log error
+                console.log status_code
+
+            api.addEbookFavorite(yearmonth, catalog_id, onSuccess, onError)
 
         loadCatalogEbook = (yearmonth, catalog_id) ->
             modal.showLoading '', 'message.data_loading'

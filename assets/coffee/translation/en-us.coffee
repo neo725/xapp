@@ -51,6 +51,8 @@ module.exports = ->
         'suggestion_sended': '您的意見已送出'
         'data_saving': '資料儲存中...'
         'data_saved': '資料儲存完成'
+        'processing': '處理中...'
+        'success_to_add_favorite_ebook': '文章加入收藏成功'
     }
     'tab': {
         'payed': '已繳費'
