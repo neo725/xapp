@@ -5,9 +5,14 @@ module.exports = ['$ionicPlatform', '$timeout', '$ionicModal', '$ionicLoading', 
                 $translate([title, message]).then (translation) ->
                     if window.plugins
                         window.plugins.spinnerDialog.show(
-                            translation[title],
+                            translation[title]
                             translation[message]
                         )
+#                        window.plugins.spinnerDialog.show(
+#                            translation[title],
+#                            translation[message],
+#                            true
+#                        )
 
         hideLoadingSpinner = ->
             $ionicPlatform.ready ->

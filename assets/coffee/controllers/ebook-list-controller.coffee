@@ -1,5 +1,6 @@
 module.exports = [
-    '$scope', '$ionicHistory', 'navigation', 'modal', 'api', ($scope, $ionicHistory, navigation, modal, api) ->
+    '$scope', '$ionicHistory', '$translate', 'navigation', 'modal', 'plugins', 'api',
+    ($scope, $ionicHistory, $translate, navigation, modal, plugins, api) ->
         $scope.goBack = () ->
             backView = $ionicHistory.backView()
 
@@ -21,6 +22,26 @@ module.exports = [
                 para.apply = match[1]
 
             return para
+
+        $scope.onItemDelete = (ebook) ->
+            para = $scope.parseUrlToPara(ebook.web_url)
+
+            modal.showLoading '', 'message.processing'
+
+            onSuccess = (response) ->
+                console.log response
+                modal.hideLoading()
+                $translate('message.success_to_delete_favorite_ebook').then (text) ->
+                    plugins.toast.show(text, 'long', 'top')
+                index = _.findIndex($scope.favorites, { 'web_url': ebook.web_url })
+                if index > -1
+                    $scope.favorites.splice(index, 1)
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                console.log error
+                console.log status_code
+
+            api.deleteFavoriteEbook(para.apply, para.catalog_id, onSuccess, onError)
 
         loadCurrentEbook = () ->
             modal.showLoading('', 'message.data_loading')
@@ -58,9 +79,9 @@ module.exports = [
             api.getMyFavoriteEbooks(page, perpage, onSuccess, onError)
 
 
+        loadCurrentEbook()
+        loadCatalogEbooks(1, 5)
         $scope.$on('$ionicView.enter', (evt, data) ->
-            loadCurrentEbook()
-            loadCatalogEbooks(1, 5)
             loadFavoriteEbooks(1, 500)
         )
 ]

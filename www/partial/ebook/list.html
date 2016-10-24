@@ -56,16 +56,20 @@
             </ion-tab>
 
             <ion-tab class="tab-active-3" title="{{ '我的收藏' }}" badge="0" badge-style="badge-assertive">
-                <ion-nav-view name="tab-tab2">
-                    <ion-content>
-                        <div class="list">
-                            <div class="item" ng-repeat="article in favorites" ng-init="para = parseUrlToPara(article.web_url)">
-                                <a href="#/home/ebook/info/{{ para.apply }}/{{ para.catalog_id }}" class="item-content">
-                                    <span href="#/home/ebook/list">{{ article.title }}</span>
-                                    <i class="ion-ios-arrow-forward"></i>
-                                </a>
-                            </div>
-                        </div>
+                <ion-nav-view name="tab-tab3">
+                    <ion-content class="tab-tab3">
+                        <ion-list>
+                            <ion-item ng-repeat="article in favorites"
+                                      class="item-remove-animate"
+                                      item="article"
+                                      href="#/home/ebook/info/{{ para.apply }}/{{ para.catalog_id }}"
+                                      ng-init="para = parseUrlToPara(article.web_url)">
+                                <span>{{ article.title }}</span>
+                                <i class="ion-ios-arrow-forward"></i>
+                                <ion-option-button class="ion-android-delete"
+                                                   ng-click="onItemDelete(article)">
+                                </ion-option-button>
+                        </ion-list>
                     </ion-content>
                 </ion-nav-view>
             </ion-tab>

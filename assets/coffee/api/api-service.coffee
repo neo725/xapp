@@ -249,6 +249,15 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        deleteFavoriteEbook: (yearmonth, catalog_id, onSuccess, onError) ->
+            $http({
+                'url': "/api/ebook/my?yearmonth=#{yearmonth}&catalog=#{catalog_id}"
+                'method': 'DELETE'
+#                'data': data
+                'headers':
+                    'Content-Type': 'application/json;charset=utf-8'
+            }).then(onSuccess, onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

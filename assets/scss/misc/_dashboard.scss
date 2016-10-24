@@ -178,8 +178,9 @@
                     .keyword {
                         position: absolute;
                         margin-top: -3px;
-                        display: inline-table;
+                        display: inline-block;
                         margin-left: 5px;
+                        width: 50%;
                     }
                     .row-search {
                         height: 48px;

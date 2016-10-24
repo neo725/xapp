@@ -53,6 +53,7 @@ module.exports = ->
         'data_saved': '資料儲存完成'
         'processing': '處理中...'
         'success_to_add_favorite_ebook': '文章加入收藏成功'
+        'success_to_delete_favorite_ebook': '刪除文章收藏成功'
     }
     'tab': {
         'payed': '已繳費'
