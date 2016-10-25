@@ -4,8 +4,8 @@ constants = require('../common/constants')
 # http://ngcordova.com/docs/plugins/globalization/
 
 module.exports = [
-    '$rootScope', '$scope', '$translate', '$log', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'navigation', 'modal', 'api'
-    ($rootScope, $scope, $translate, $log, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, navigation, modal, api) ->
+    '$rootScope', '$scope', '$translate', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'navigation', 'modal', 'api'
+    ($rootScope, $scope, $translate, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, navigation, modal, api) ->
 
         network_offline = false
 
@@ -19,14 +19,14 @@ module.exports = [
             # Keep in mind the function will return null if the token has not been established yet.
             FCMPlugin.getToken(
                 (token) ->
-                    #$log.info token
+                    console.log 'FCM token : ' + token
 #                    onSuccess = (response) ->
 #                        $cordovaToast.show('Notification token registered', 'long', 'top')
                     onSuccess = (->)
                     onError = (error, status) ->
                         $cordovaToast.show('Error Registering notification token', 'long', 'top')
-                        $log.info status
-                        $log.info error
+                        console.log status
+                        console.log error
                     uuid = $cordovaDevice.getUUID()
                     api.registerToken(uuid, token, onSuccess, onError)
                 , ((err) ->)
@@ -88,7 +88,7 @@ module.exports = [
             api.getMemberData(onSuccess, onError)
 
         checkDefaultState = (token, redirectToDashboard = true) ->
-            $log.info 'index-controller -> checkDefaultState'
+            console.log 'index-controller -> checkDefaultState'
 
             if token == undefined
                 token = window.localStorage.getItem('token')
@@ -137,13 +137,13 @@ module.exports = [
                 FCMPlugin.onNotification(
                     (data) ->
                         $cordovaToast.show('You got new notification', 'long', 'top')
-
-                        $cordovaBadge.set 10
+                        console.log data
+                        #$cordovaBadge.set 10
 
                     , (msg) ->
-                        $log.info 'onNotification callback successfully registered: ' + msg
+                        console.log 'onNotification callback successfully registered: ' + msg
                     , (err) ->
-                        $log.info 'Error registering onNotification callback: ' + err
+                        console.log 'Error registering onNotification callback: ' + err
                 )
         )
 

@@ -1,5 +1,5 @@
-module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate', '$state', '$log', 'modal', 'api', 'navigation'
-    ($rootScope, $scope, $timeout, $ionicModal, $translate, $state, $log, modal, api, navigation) ->
+module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate', '$state', '$log', '$firebaseAuth', 'modal', 'api', 'navigation'
+    ($rootScope, $scope, $timeout, $ionicModal, $translate, $state, $log, $firebaseAuth, modal, api, navigation) ->
         # dev mode
         $scope.user = {
             account: 'sceapp',
@@ -108,6 +108,12 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 device: ''
 
             api.login(data, onSuccess, onError)
+
+        $scope.facebook_login = () ->
+            console.log 'facebook_login'
+
+        $scope.google_login = () ->
+            console.log 'google_login'
 
         checkDefaultState = ->
             $log.info 'login-controller -> checkDefaultState...'
