@@ -11,6 +11,9 @@
             <div class="front">
                 <div class="title">{{ location.name }}</div>
                 <div class="map">
+                    <a ng-href="geo:{{ parseGPS(location.gps) }}" ng-if="false">
+                        <div class="text" ng-click="goMap(location.address, location.gps, $event)">MAP</div>
+                    </a>
                     <div class="text" ng-click="goMap(location.address, location.gps, $event)">MAP</div>
                 </div>
             </div>
