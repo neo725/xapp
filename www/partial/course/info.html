@@ -114,7 +114,7 @@
         </div>
     </ion-content>
     <ion-footer-bar align-title="left" class="footer bar-light shadow-outline-top">
-        <div class="price-help-container">
+        <div class="price-help-container" ng-click="showPriceModal()">
             <div class="price-help">最惠價<br />說　明</div>
         </div>
         <h1 class="title">
@@ -133,4 +133,24 @@
             </div>
         </div>
     </ion-footer-bar>
+    <script id="templates/modal-price-list.html" type="text/ng-template">
+        <ion-modal-view class="modal-box price-list-box" fit-size=".price-container" fit-size-append="20">
+            <ion-content class="padding" scroll="false">
+                <div class="price-container">
+                    <div class="row" ng-repeat="price in priceList">
+                        <div class="col price-item" ng-class="{ 'current': course.isCanBuy }">
+                            <div class="price-item-name">
+                                <span class="label" ng-bind="price.Pric_Name"></span>
+                                <span ng-bind="price.Pric_Discription"></span>
+                            </div>
+                            <div>
+                                <span class="price-label">NT</span>
+                                <span class="price-value">{{ price.Pric_Price | currency:undefined:0 }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
 </ion-view>

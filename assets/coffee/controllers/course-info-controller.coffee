@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$stateParams', '$log', '$ionicHistory', '$translate', 'navigation', 'modal', 'api', 'plugins'
-    ($rootScope, $scope, $stateParams, $log, $ionicHistory, $translate, navigation, modal, api, plugins) ->
+    '$rootScope', '$scope', '$stateParams', '$ionicModal', '$log', '$ionicHistory', '$translate', 'navigation', 'modal', 'api', 'plugins'
+    ($rootScope, $scope, $stateParams, $ionicModal, $log, $ionicHistory, $translate, navigation, modal, api, plugins) ->
         shop_id = $stateParams.shop_id
         prod_id = $stateParams.prod_id
 
@@ -77,11 +77,16 @@ module.exports = [
                 return str.replace(/(?:\r\n|\r|\n)/g, '<br />')
             return str
 
+        $scope.showPriceModal = () ->
+            if $scope.course.priceList
+                $scope.modalPriceList.show()
+
         getCourse = (shop_id, prod_id) ->
             onSuccess = (response) ->
                 modal.hideLoading()
                 $scope.course = response
                 $scope.desc = $scope.course.xmlDiscription.Discription
+                $rootScope.priceList = $scope.course.priceList
 
                 if $scope.course.isFavorite == 0
                     $scope.favorite_icon = 'heart-outline@2x.png'
@@ -94,4 +99,11 @@ module.exports = [
             api.getCourse shop_id, prod_id, onSuccess, onError
 
         getCourse shop_id, prod_id
+
+        $ionicModal.fromTemplateUrl('templates/modal-price-list.html',
+            scope: $scope
+            animation: 'slide-in-up'
+        ).then((modal) ->
+            $scope.modalPriceList = modal
+        )
 ]

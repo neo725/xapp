@@ -18,6 +18,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .directive('toggleVisible', directives.toggleVisible)
 .directive('starRating', directives.starRating)
 .directive('messageDotMask', directives.messageDotMask)
+.directive('fitSize', directives.fitSize)
 .controller('IndexController', require('./controllers/index-controller'))
 .controller('LoginController', require('./controllers/login-controller'))
 .controller('MainController', require('./controllers/main-controller'))

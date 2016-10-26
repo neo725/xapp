@@ -1,3 +1,6 @@
+$price-item-color: #868687;
+$price-current-item-color: #BE1421;
+
 .course-info {
     .course-info-content {
         // header image
@@ -139,4 +142,39 @@
             right: 0;
         }
     }
+}
+
+.price-list-box {
+    &.modal-box {
+        top: 30%;
+        min-height: 100px !important;
+    }
+    .price-item {
+        color: $price-item-color;
+
+        &.current {
+            color: $price-current-item-color;
+
+            .price-item-name {
+                .label {
+                    background-color: $price-current-item-color;
+                }
+            }
+        }
+        .price-item-name {
+            margin-bottom: 8px;
+
+            .label {
+                background-color: $price-item-color;
+                color: $light;
+                padding: 3px 5px;
+                display: inline-block;
+            }
+        }
+
+        .price-value {
+            font-size: 2em;
+        }
+    }
+
 }

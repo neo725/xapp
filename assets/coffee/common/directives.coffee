@@ -150,6 +150,26 @@ exports.messageDotMask = ->
         if messageCtrl
             $(element).height(messageCtrl.height() - 39)
 
+exports.fitSize = ->
+    restrict: 'A'
+    link: (scope, element, attrs) ->
+        fit_size = attrs.fitSize
+        fit_size_append = attrs.fitSizeAppend || 0
+
+        if fit_size_append
+            fit_size_append = parseInt(fit_size_append)
+
+        targetElement = $(element).find(fit_size)
+
+        scope.$watch () ->
+            height = targetElement.outerHeight()
+            return height
+        , (value) ->
+            console.log 'watch : ' + value
+            if value > 0
+                height = value + fit_size_append
+
+                $(element).attr('style', "height: #{height}px !important")
 
 exports.starRating = ->
     restrict: 'A'
