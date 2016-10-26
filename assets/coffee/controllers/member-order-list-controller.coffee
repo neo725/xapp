@@ -12,6 +12,9 @@ module.exports = [
             $event.stopPropagation()
             $cordovaToast.show('cancel...', 'long', 'top')
 
+        $scope.formatDateTime = (datetime) ->
+            return moment(datetime).format('YYYY/M/DD H:mm')
+
         loadOrders = (status) ->
             modal.showLoading('', 'message.data_loading')
 
