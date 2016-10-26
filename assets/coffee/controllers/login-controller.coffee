@@ -1,5 +1,5 @@
-module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate', '$state', '$log', '$firebaseAuth', 'modal', 'api', 'navigation'
-    ($rootScope, $scope, $timeout, $ionicModal, $translate, $state, $log, $firebaseAuth, modal, api, navigation) ->
+module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate', '$state', '$log', 'modal', 'api', 'navigation'
+    ($rootScope, $scope, $timeout, $ionicModal, $translate, $state, $log, modal, api, navigation) ->
         # dev mode
         $scope.user = {
             account: 'sceapp',

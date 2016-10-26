@@ -6,7 +6,8 @@ directives = require('./common/directives')
 # ngCordova install and setup
 # http://ngcordova.com/docs/install/
 
-angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-native-transitions', 'ion-affix', 'angular-svg-round-progressbar', 'firebase'])
+angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-native-transitions', 'ion-affix',
+    'angular-svg-round-progressbar'])
 .service('navigation', require('./common/navigation-service'))
 .factory('modal', require('./common/modal'))
 .factory('plugins', require('./common/plugins'))

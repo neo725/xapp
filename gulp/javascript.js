@@ -72,17 +72,6 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                     depends: {
                         angular: 'angular'
                     }
-                },
-                'firebase': {
-                    path: 'www/lib/firebase/firebase.js',
-                    exports: null
-                },
-                'angularfire': {
-                    path: 'www/lib/angularfire/dist/angularfire.min.js',
-                    exports: null,
-                    depends: {
-                        angular: 'angular'
-                    }
                 }
             }
         }))
@@ -97,7 +86,7 @@ gulp.task('appjs', ['coffeeifyjs'], function () {
             insertGlobals: false,
             debug: debug,
             external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'ion-affix',
-                'lodash', 'moment', 'angular-svg-round-progressbar', 'firebase']
+                'lodash', 'moment', 'angular-svg-round-progressbar']
         }))
         .pipe(gif(!debug, uglify()))
         .pipe(gulp.dest('www/js'));
