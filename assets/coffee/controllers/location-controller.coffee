@@ -15,6 +15,10 @@ module.exports = [
             console.log address
             console.log gps
 
+        $scope.goPhoneCall = (number, $event) ->
+            $event.stopPropagation()
+            console.log number
+
         loadLocation = ->
             modal.showLoading('', 'message.data_loading')
 

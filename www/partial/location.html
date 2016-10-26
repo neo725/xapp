@@ -33,7 +33,10 @@
                     </div>
                     <div class="row">
                         <div class="col col-20">{{ '電話 : ' }}</div>
-                        <div class="col"><a ng-href="{{ 'tel:' + location.tel }}">{{ location.tel }}</a></div>
+                        <div class="col">
+                            <a ng-href="tel:{{ location.tel }}"
+                               ng-click="goPhoneCall(location.tel, $event)">{{ location.tel }}</a>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col col-20">{{ '地址 : ' }}</div>
