@@ -215,6 +215,10 @@
                     width: 100%;
                     bottom: 0;
 
+                    a {
+                        color: $light;
+                        text-decoration: none;
+                    }
                     .row {
                         padding: 0;
                     }
