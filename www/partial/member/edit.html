@@ -68,6 +68,40 @@
                                    ng-model="setting.confirm_new_password"
                                    data-custom-verify="setting.new_password">
                         </label>
+                        <ion-list class="creditcard-list">
+                            <ion-item class="border-top border-bottom">
+                                您的卡片
+                            </ion-item>
+                            <ion-item class="item-remove-animate creditcard-item">
+                                <div class="row">
+                                    <div class="col col-25 card-logo">
+                                        <img src="img/visa-card.png" />
+                                    </div>
+                                    <div class="col card-number">
+                                        <span>5148</span><span class="mask-card-number">···· ····</span><span>1701</span>
+                                    </div>
+                                </div>
+                                <ion-option-button class="ion-android-delete"
+                                                   ng-click="onItemDelete()">
+                                </ion-option-button>
+                            </ion-item>
+                            <ion-item class="item-remove-animate creditcard-item">
+                                <div class="row">
+                                    <div class="col col-25 card-logo">
+                                        <img src="img/master-card.png" />
+                                    </div>
+                                    <div class="col card-number">
+                                        <span>5148</span><span class="mask-card-number">···· ····</span><span>1701</span>
+                                    </div>
+                                </div>
+                                <ion-option-button class="ion-android-delete"
+                                                   ng-click="onItemDelete()">
+                                </ion-option-button>
+                            </ion-item>
+                            <ion-item class="new-item" ng-click="showNewCard()" ng-if="false">
+                                <i class="ion-plus"></i> 新增付款方式
+                            </ion-item>
+                        </ion-list>
                         <ion-list>
                             <ion-item class="border-top border-bottom">
                                 <div class="item-toggle toggle-small"
@@ -88,22 +122,53 @@
             </form>
         </div>
     </ion-content>
-    <script id="templates/modal-change-password.html" type="text/ng-template">
-        <ion-modal-view class="modal-box change-password-box">
+    <script id="templates/modal-new-card.html" type="text/ng-template">
+        <ion-modal-view class="modal-box new-card-box">
             <ion-content class="padding" scroll="false">
-                <div class="list">
-                    <label class="item item-input">
-                        <span class="input-label">舊密碼</span>
-                        <input type="password">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">新密碼</span>
-                        <input type="password">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">確認新密碼</span>
-                        <input type="password">
-                    </label>
+                <div class="row">
+                    <div class="col-25 text-right label">信用卡卡號</div>
+                    <div class="col-75">
+                        <label ng-class="{ 'has-error' : paymentForm.card_part1.$invalid}">
+                            <input type="number" name="card_part1"
+                                   class="number-4 card-number"
+                                   ng-model="card.number_part1"
+                                   ng-next="card_part2" ng-next-length="4"
+                                   ng-next-autofill="0" ng-next-autofill-length="4"
+                                   maxlength="4" min="1" max="9999"
+                                   ng-minlength="4" ng-maxlength="4"
+                                   required>
+                        </label>
+                        <label ng-class="{ 'has-error' : paymentForm.card_part2.$invalid}">
+                            <input type="number" name="card_part2"
+                                   class="number-4 card-number"
+                                   ng-model="card.number_part2"
+                                   ng-next="card_part3" ng-next-length="4"
+                                   ng-next-autofill="0" ng-next-autofill-length="4"
+                                   maxlength="4" min="1" max="9999"
+                                   ng-minlength="4" ng-maxlength="4"
+                                   required>
+                        </label>
+                        <label ng-class="{ 'has-error' : paymentForm.card_part3.$invalid}">
+                            <input type="number" name="card_part3"
+                                   class="number-4 card-number"
+                                   ng-model="card.number_part3"
+                                   ng-next="card_part4" ng-next-length="4"
+                                   ng-next-autofill="0" ng-next-autofill-length="4"
+                                   maxlength="4" min="1" max="9999"
+                                   ng-minlength="4" ng-maxlength="4"
+                                   required>
+                        </label>
+                        <label ng-class="{ 'has-error' : paymentForm.card_part4.$invalid}">
+                            <input type="number" name="card_part4"
+                                   class="number-4 card-number"
+                                   ng-model="card.number_part4"
+                                   ng-next="card_expire_month" ng-next-length="4"
+                                   ng-next-autofill="0" ng-next-autofill-length="4"
+                                   maxlength="4" min="1" max="9999"
+                                   ng-minlength="4" ng-maxlength="4"
+                                   required>
+                        </label>
+                    </div>
                 </div>
                 <button class="button button-full button-positive" ng-click="changePasswordConfirmClick()">確定</button>
             </ion-content>

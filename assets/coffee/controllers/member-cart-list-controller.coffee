@@ -1,3 +1,5 @@
+constants = require('../common/constants')
+
 module.exports = [
     '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal', 'plugins',
     ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins) ->
@@ -37,6 +39,13 @@ module.exports = [
 
         $scope.goStep2 = (pay_type) ->
             $scope.pay.type = pay_type
+
+            if $scope.checkPayTypeIsCreditCard()
+                # get card setting in localstorage
+                saved_card = JSON.parse(window.localStorage.getItem('saved_card')) || {}
+                if saved_card.card
+                    $scope.card = saved_card.card
+
             navigation.slide('home.member.cart.step2', {}, 'left')
 
         $scope.goShowDelete = ->

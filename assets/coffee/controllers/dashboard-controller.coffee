@@ -1,7 +1,7 @@
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicPlatform', 'modal', 'navigation',
-    ($rootScope, $scope, $ionicPlatform, modal, navigation) ->
+    '$rootScope', '$scope', '$ionicPlatform', '$window', 'modal', 'navigation',
+    ($rootScope, $scope, $ionicPlatform, $window, modal, navigation) ->
         modal.hideLoading()
 
         $scope.goMemberDashboard = ->
@@ -35,4 +35,9 @@ module.exports = [
         $scope.$on('$ionicView.afterEnter', ->
             console.log 'dashboard-controller -> $ionicView.afterEnter'
         )
+
+        $scope.$watch ->
+            return $window.innerHeight
+        , (value) ->
+            console.log 'window height : ' + value
 ]

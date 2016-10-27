@@ -155,10 +155,10 @@
 
         .credit-form {
             background-color: $stable;
-            padding-bottom: 20px;
+            //padding-bottom: 20px;
             margin-top: 0;
 
-            input {
+            input[type="text"], input[type="number"] {
                 float: left;
                 padding: 5px;
 
@@ -182,14 +182,14 @@
             }
             .cvc-label {
                 margin-top: 20px;
-                margin-left: 5px;
+                //margin-left: 5px;
             }
 
             .card-number {
                 margin-left: 5px;
 
                 &:first-child {
-                    margin-left: 12px;
+                    margin-left: 8px;
                 }
             }
             .expire-date {
@@ -199,12 +199,13 @@
                     margin-top: 12px;
 
                     &.expire-month {
-                        margin-left: 12px;
+                        margin-left: 8px;
                     }
                 }
             }
             .card-cvc {
                 margin-top: 12px;
+                margin-left: 8px;
             }
             .holder-label {
                 margin-top: 16px;
@@ -213,6 +214,17 @@
                 margin-left: 12px;
                 margin-top: 10px;
                 width: 90%;
+            }
+            .save-card-check {
+                margin-top: 12px;
+
+                * {
+                    font-size: 14px;
+                }
+                .item-checkbox {
+                    background-color: $stable;
+                    padding-left: 45px;
+                }
             }
         }
 
@@ -230,8 +242,6 @@
 
             .item {
                 padding-left: 30px;
-                border-left: 0;
-                border-right: 0;
 
                 &:first-child {
                     border-top: 0;
@@ -239,7 +249,15 @@
                 &:last-child {
                     border-bottom: 0;
                 }
-
+                &.no-border {
+                    border: 0;
+                }
+                &.border-bottom {
+                    border-bottom: 1px solid $border-color;
+                    border-left: 0;
+                    border-right: 0;
+                    margin-bottom: 1px;
+                }
                 &.indent-item {
                     padding-left: 15px;
                 }

@@ -49,6 +49,9 @@ module.exports = [
 
             updateMember()
 
+        $scope.showNewCard = ->
+            $scope.modalNewCard.show()
+
         updatePassword = (saving_passed) ->
             finish = (passed) ->
                 modal.hideLoading()
@@ -169,10 +172,10 @@ module.exports = [
             loadData()
         )
 
-        $ionicModal.fromTemplateUrl('templates/modal-change-password.html',
+        $ionicModal.fromTemplateUrl('templates/modal-new-card.html',
             scope: $scope
             animation: 'slide-in-up'
         ).then((modal) ->
-            $scope.modalChangePassword = modal
+            $scope.modalNewCard = modal
         )
 ]

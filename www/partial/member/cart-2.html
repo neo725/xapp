@@ -16,8 +16,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-25 text-right label">信用卡卡號</div>
-                    <div class="col-75">
+                    <div class="col-33 text-right label">信用卡卡號</div>
+                    <div class="col-66">
                         <label ng-class="{ 'has-error' : paymentForm.card_part1.$invalid}">
                             <input type="number" name="card_part1"
                                    class="number-4 card-number"
@@ -61,8 +61,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-25 text-right label">有效日期 (MM/YY)</div>
-                    <div class="col-25 expire-date">
+                    <div class="col-33 text-right label">有效日期<br />(MM/YY)</div>
+                    <div class="col-66 expire-date">
                         <label ng-class="{ 'has-error' : paymentForm.card_expire_month.$invalid}">
                             <input type="number" name="card_expire_month"
                                    class="number-2 expire-month"
@@ -82,8 +82,8 @@
                                    required>
                         </label>
                     </div>
-                    <div class="col-33 cvc-label">卡片背面末 3 碼</div>
-                    <div class="col-25">
+                    <div class="col-33 cvc-label" ng-if="false">卡片背面末 3 碼</div>
+                    <div class="col-25" ng-if="false">
                         <label ng-class="{ 'has-error' : paymentForm.card_cvc.$invalid}">
                             <input type="number" name="card_cvc"
                                    class="number-3 card-cvc"
@@ -97,6 +97,23 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-33 cvc-label text-right label">
+                        卡片背面末 3 碼
+                    </div>
+                    <div class="col-66">
+                        <label ng-class="{ 'has-error' : paymentForm.card_cvc.$invalid}">
+                            <input type="number" name="card_cvc"
+                                   class="number-3 card-cvc"
+                                   ng-model="card.cvc"
+                                   ng-next="card_holder" ng-next-length="3"
+                                   ng-next-autofill="0" ng-next-autofill-length="3"
+                                   maxlength="3" min="1" max="999"
+                                   ng-minlength="3" ng-maxlength="3"
+                                   required>
+                        </label>
+                    </div>
+                </div>
+                <div class="row" ng-if="false">
                     <div class="col-25 text-right holder-label">持卡人姓名</div>
                     <div class="col-75">
                         <label ng-class="{ 'has-error' : paymentForm.card_holder.$invalid}">
@@ -107,12 +124,17 @@
                         </label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-75 col-offset-25 save-card-check">
+                        <ion-checkbox ng-model="filter.red">記住此張卡片資訊，下次使用</ion-checkbox>
+                    </div>
+                </div>
             </div>
             <div class="list">
-                <div class="item indent-item">
+                <div class="item indent-item border-bottom">
                     您的聯絡資料
                 </div>
-                <label class="item item-input" ng-class="{ 'has-error' : paymentForm.username.$invalid }">
+                <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.username.$invalid }">
                     <span class="input-label required">姓名</span>
                     <input type="text" name="username"
                            ng-model="user.memb_name"
@@ -129,25 +151,25 @@
                         </div>
                     </div>
                 </div>-->
-                <label class="item item-input" ng-class="{ 'has-error' : paymentForm.email.$invalid}">
+                <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.email.$invalid}">
                     <span class="input-label required">E-Mail</span>
                     <input type="email" name="email"
                             ng-model="user.memb_email"
                             required>
                 </label>
-                <label class="item item-input" ng-class="{ 'has-error' : paymentForm.phone.$invalid}">
+                <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.phone.$invalid}">
                     <span class="input-label required">連絡電話</span>
                     <input type="text" name="phone"
                             ng-model="user.memb_mobile"
                             required>
                 </label>
-                <label class="item item-input" ng-class="{ 'has-error' : paymentForm.userid.$invalid}">
+                <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.userid.$invalid}">
                     <span class="input-label required">身分證字號</span>
                     <input type="text" name="userid"
                             ng-model="user.memb_ident"
                             required>
                 </label>
-                <div class="item text-m-size tip-text">
+                <div class="item text-m-size tip-text no-border">
                     <div class="row">
                         <div class="col col-25"><img src="img/attention@2x.png" /></div>
                         <div class="col">為本部課程異動或詳細課程解說資訊聯繫，聯絡資料務必填寫清楚，若填寫欄位前方以『*』註記，請務必正確填寫</div>

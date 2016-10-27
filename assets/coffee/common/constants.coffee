@@ -16,6 +16,15 @@ module.exports =
 
     DEFAULT_NOTIFICATION_SETTING: 't'
 
+    DEFAULT_CARD:
+        'card':
+            'number_part1': ''
+            'number_part2': ''
+            'number_part3': ''
+            'number_part4': ''
+            'expire_month': ''
+            'expire_year': ''
+
     WEEKDAYS: ['一', '二', '三', '四', '五', '六', '日']
 
     LOCATIONS: ['建國', '忠孝', '延平', '大安', '台中', '高雄']

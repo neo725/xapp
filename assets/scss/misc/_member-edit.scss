@@ -52,9 +52,52 @@
                 background-color: $stable;
             }
         }
+        .creditcard-list {
+
+            .creditcard-item {
+
+                .item-content {
+                    padding-top: 1px;
+                    padding-bottom: 1px;
+
+                    .card-logo {
+                        margin-top: auto;
+
+                        img {
+                            width: 30px;
+                        }
+                    }
+
+                    .card-number {
+                        span {
+                            display: inline-table;
+                        }
+                        .mask-card-number {
+                            font-size: 2em;
+                            position: relative;
+                            top: 4px;
+                            margin-left: 6px;
+                            margin-right: 6px;
+                        }
+                    }
+                }
+
+                .item-options {
+                    ion-option-button {
+                        font-size: 2em;
+                        background-color: $assertive;
+                        color: $light;
+                    }
+                }
+            }
+
+            .new-item {
+                color: #1664C0;
+            }
+        }
     }
 }
-.change-password-box {
+.new-card-box {
     &.modal-box {
         top: 30%;
         height: 262px !important;
@@ -62,8 +105,23 @@
         .item {
             padding-left: 30px;
 
-            input[type="password"] {
+            input {
                 background-color: $stable;
+            }
+        }
+
+        input {
+            float: left;
+            padding: 5px;
+
+            &.number-2 {
+                width: 30px;
+            }
+            &.number-3 {
+                width: 35px;
+            }
+            &.number-4 {
+                width: 45px;
             }
         }
     }
