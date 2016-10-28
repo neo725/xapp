@@ -72,20 +72,23 @@
                             <ion-item class="border-top border-bottom">
                                 您的卡片
                             </ion-item>
-                            <ion-item class="item-remove-animate creditcard-item">
+                            <ion-item class="item-remove-animate creditcard-item" ng-repeat="card in cards">
                                 <div class="row">
                                     <div class="col col-25 card-logo">
-                                        <img src="img/visa-card.png" />
+                                        <img src="img/visa-card.png" ng-if="checkCardType(card.number_part1) == 'visa'" />
+                                        <img src="img/master-card.png" ng-if="checkCardType(card.number_part1) == 'master'" />
                                     </div>
                                     <div class="col card-number">
-                                        <span>5148</span><span class="mask-card-number">···· ····</span><span>1701</span>
+                                        <span ng-bind="card.number_part1"></span>
+                                        <span class="mask-card-number">···· ····</span>
+                                        <span ng-bind="card.number_part4"></span>
                                     </div>
                                 </div>
                                 <ion-option-button class="ion-android-delete"
-                                                   ng-click="onItemDelete()">
+                                                   ng-click="onItemDelete(card)">
                                 </ion-option-button>
                             </ion-item>
-                            <ion-item class="item-remove-animate creditcard-item">
+                            <ion-item class="item-remove-animate creditcard-item" ng-if="false">
                                 <div class="row">
                                     <div class="col col-25 card-logo">
                                         <img src="img/master-card.png" />
@@ -97,6 +100,9 @@
                                 <ion-option-button class="ion-android-delete"
                                                    ng-click="onItemDelete()">
                                 </ion-option-button>
+                            </ion-item>
+                            <ion-item ng-if="cards.length == 0">
+                                <span class="text-gray">尚未設定付款信用卡</span>
                             </ion-item>
                             <ion-item class="new-item" ng-click="showNewCard()" ng-if="false">
                                 <i class="ion-plus"></i> 新增付款方式

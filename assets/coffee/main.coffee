@@ -9,6 +9,7 @@ directives = require('./common/directives')
 angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-native-transitions', 'ion-affix',
     'angular-svg-round-progressbar'])
 .service('navigation', require('./common/navigation-service'))
+.service('util', require('./common/util-service'))
 .factory('modal', require('./common/modal'))
 .factory('plugins', require('./common/plugins'))
 .factory('api', require('./api/api-service'))

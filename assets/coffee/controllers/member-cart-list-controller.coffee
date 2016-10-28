@@ -1,10 +1,11 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal', 'plugins',
-    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins) ->
-        $scope.carts = []
+    '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal', 'plugins', 'util',
+    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins, util) ->
         $scope.shouldShowDelete = false
+        $scope.shouldSaveCard = false
+        $scope.carts = []
         $scope.pay = {}
         $scope.card = {}
         $scope.user = {}
@@ -45,6 +46,7 @@ module.exports = [
                 saved_card = JSON.parse(window.localStorage.getItem('saved_card')) || {}
                 if saved_card.card
                     $scope.card = saved_card.card
+                    $scope.shouldSaveCard = true
 
             navigation.slide('home.member.cart.step2', {}, 'left')
 
@@ -98,17 +100,14 @@ module.exports = [
             return $scope.pay.type == 'CreditCard'
 
         $scope.checkCardType = ->
-            patternVisa = /^4\d{0,3}$/g
-            patternMaster = /^5[1-5]\d{0,2}$/g
-            number = $scope.card.number_part1
-            if patternVisa.exec(number)
-                return 'visa'
-            if patternMaster.exec(number)
-                return 'master'
-            return ''
+            return util.checkCardType($scope.card.number_part1)
 
         $scope.submitForm = (form) ->
             pay_type = $scope.pay.type
+            shouldSaveCard = form.shouldSaveCard.$modelValue
+
+            console.log shouldSaveCard
+
             if not form.$valid
                 #modal.showLongMessage 'errors.form_validate_error'
                 $translate(['title.cart', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
@@ -129,6 +128,10 @@ module.exports = [
                         translator['popup.ok']
                     )
                 return
+
+            pad = (numeric, size) ->
+                str = '000' + numeric
+                return str.substr(str.length - size)
 
             clearCart = (success) ->
                 onSuccess = () ->
@@ -163,10 +166,6 @@ module.exports = [
                 api.createATMPayment(order_no, onSuccess, error)
 
             collectCreditCardInfo = ->
-                pad = (numeric, size) ->
-                    str = '000' + numeric
-                    return str.substr(str.length - size)
-
                 getCardNumber = () ->
                     return pad($scope.card.number_part1, 4) +
                             pad($scope.card.number_part2, 4) +
@@ -186,12 +185,33 @@ module.exports = [
             payByCreditCard = (order_no, success, error) ->
                 card = collectCreditCardInfo()
 
+                if false and $scope.shouldSaveCard
+                    saved_card =
+                        'card':
+                            'number_part1': $scope.card.number_part1
+                            'number_part2': $scope.card.number_part2
+                            'number_part3': $scope.card.number_part3
+                            'number_part4': $scope.card.number_part4
+                            'expire_month': $scope.card.expire_month
+                            'expire_year': $scope.card.expire_year
+
+                    window.localStorage.setItem('saved_card', JSON.stringify(saved_card))
+                else
+                    window.localStorage.removeItem('saved_card')
+
                 api.createCreditCardPayment(order_no, card.number, card.expire, card.cvc, success, error)
 
             createPayment = (pay_type, order_no, success) ->
                 error = ->
                     modal.hideLoading()
-                    modal.showMessage('errors.payment_create_failed')
+                    #modal.showMessage('errors.payment_create_failed')
+                    $translate(['title.submit_cart', 'errors.payment_create_failed', 'popup.ok']).then (translator) ->
+                        plugins.notification.alert(
+                            translator['errors.payment_create_failed'],
+                            (->),
+                            translator['title.submit_cart'],
+                            translator['popup.ok']
+                        )
 
                 if pay_type == 'ATM'
                     payByATM(order_no, success, error)
@@ -220,8 +240,12 @@ module.exports = [
                     courses = _.map($scope.carts, 'Prod_Id')
                     courses = _.join(courses, ',')
 
+                    pay_way = 10
+                    switch pay_type
+                        when 'ATM' then pay_way = 10
+                        when 'CreditCard' then pay_way = 1
                     modal.showLoading '', 'message.creating_order'
-                    api.createOrder('MS', courses, onSuccess, onError)
+                    api.createOrder('MS', courses, pay_way, onSuccess, onError)
 
             checkMemberDataUpdate = (func) ->
                 user = $scope.user
@@ -242,6 +266,21 @@ module.exports = [
                 api.updateMemberData(data, onSuccess, onError)
 
             func = ->
+                if pay_type == 'CreditCard'
+                    if shouldSaveCard
+                        saved_card =
+                            'card':
+                                'number_part1': pad($scope.card.number_part1, 4)
+                                'number_part2': pad($scope.card.number_part2, 4)
+                                'number_part3': pad($scope.card.number_part3, 4)
+                                'number_part4': pad($scope.card.number_part4, 4)
+                                'expire_month': $scope.card.expire_month
+                                'expire_year': $scope.card.expire_year
+
+                        window.localStorage.setItem('saved_card', JSON.stringify(saved_card))
+                    else
+                        window.localStorage.removeItem('saved_card')
+
                 $translate(['title.submit_cart', 'message.submit_cart_confirm', 'popup.ok', 'popup.cancel']).then (translator) ->
                     plugins.notification.confirm(
                         translator['message.submit_cart_confirm'],

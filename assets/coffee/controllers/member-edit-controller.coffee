@@ -1,8 +1,8 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$timeout', '$translate', 'navigation', 'modal', 'plugins', 'api',
-    ($rootScope, $scope, $ionicModal, $timeout, $translate, navigation, modal, plugins, api) ->
+    '$rootScope', '$scope', '$ionicModal', '$timeout', '$translate', 'navigation', 'modal', 'plugins', 'api', 'util',
+    ($rootScope, $scope, $ionicModal, $timeout, $translate, navigation, modal, plugins, api, util) ->
         $scope.user = {}
         $scope.setting = {}
         $scope.setting.notify = constants.DEFAULT_NOTIFICATION_SETTING
@@ -49,8 +49,22 @@ module.exports = [
 
             updateMember()
 
+        $scope.checkCardType = (number) ->
+            return util.checkCardType(number)
+
         $scope.showNewCard = ->
             $scope.modalNewCard.show()
+
+        $scope.onItemDelete = (card) ->
+            $scope.cards.splice($scope.cards.indexOf(card), 1)
+
+            cards = [JSON.parse(window.localStorage.getItem('saved_card'))]
+            cards.splice(cards.indexOf(card))
+
+            if cards.length == 0
+                window.localStorage.removeItem('saved_card')
+            else
+                window.localStorage.setItem('saved_card', JSON.stringify(cards[0]))
 
         updatePassword = (saving_passed) ->
             finish = (passed) ->
@@ -138,6 +152,12 @@ module.exports = [
             api.updateMemberData(data, onSuccess, onError)
 
         loadData = ->
+            saved_card = JSON.parse(window.localStorage.getItem('saved_card')) || {}
+            if saved_card.card
+                $scope.cards = [saved_card.card]
+            else
+                $scope.cards = []
+
             resetPasswordField = ->
                 $scope.setting.current_password = ''
                 $scope.setting.new_password = ''

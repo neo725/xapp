@@ -121,11 +121,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        createOrder: (shop_id, courses, onSuccess, onError) ->
+        createOrder: (shop_id, courses, payway, onSuccess, onError) ->
             data =
                 'courses': courses
                 'shopid': shop_id
-                'payway': 0
+                'payway': payway
             $http.post("/api/order", data)
                 .success(onSuccess)
                 .error(onError)
