@@ -4,8 +4,9 @@
         background-color: $stable;
 
     }
-    .list {
+    .list.header {
         margin-top: 0;
+        margin-bottom: 0;
 
         .item {
             background-color: $positive;
@@ -18,10 +19,14 @@
                 }
             }
 
-            .button-search {
+            .button-search, .button-options {
                 color: $light;
             }
         }
+    }
+
+    .has-subheader {
+        margin-top: -16px;
     }
 
     .card {

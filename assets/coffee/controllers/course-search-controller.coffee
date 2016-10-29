@@ -1,7 +1,9 @@
 module.exports = [
-    '$rootScope', '$scope', '$stateParams', '$log', '$timeout', '$interpolate', '$translate', '$ionicHistory', 'plugins', 'navigation', 'modal', 'api'
-    ($rootScope, $scope, $stateParams, $log, $timeout, $interpolate, $translate, $ionicHistory, plugins, navigation, modal, api) ->
-        loadTimes = 0
+    '$rootScope', '$scope', '$stateParams', '$log', '$timeout', '$interpolate', '$translate', '$ionicHistory', '$ionicPopover',
+    'plugins', 'navigation', 'modal', 'api'
+    ($rootScope, $scope, $stateParams, $log, $timeout, $interpolate, $translate, $ionicHistory, $ionicPopover,
+        plugins, navigation, modal, api) ->
+
         $scope.noMoreItemsAvailable = false
         $scope.page = 1
         $scope.pageSize = 20
@@ -71,6 +73,9 @@ module.exports = [
                 api.addToWish course.Shop_Id, course.Prod_Id, onSuccess, onError
             else
                 api.removeFromWish course.Shop_Id, course.Prod_Id, onSuccess, onError
+
+        $scope.setOptions = ($event) ->
+            $scope.popover.show($event)
 
         goSearch = (page, pagesize, keyword) ->
             console.log 'goSearch - ' + page
@@ -156,6 +161,12 @@ module.exports = [
 
         if $stateParams.keyword
             $scope.goSearch($stateParams.keyword)
+
+        $ionicPopover.fromTemplateUrl('templates/popover.html',
+            scope: $scope
+        ).then((popover) ->
+            $scope.popover = popover
+        )
 
         $scope.$on('$ionicView.enter', ->
             #$log.info '$ionicView.enter'

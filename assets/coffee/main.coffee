@@ -20,6 +20,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'pascalprecht.translate', 'ionic-na
 .directive('starRating', directives.starRating)
 .directive('messageDotMask', directives.messageDotMask)
 .directive('fitSize', directives.fitSize)
+.directive('customPopOver', directives.customPopOver)
 .controller('IndexController', require('./controllers/index-controller'))
 .controller('LoginController', require('./controllers/login-controller'))
 .controller('MainController', require('./controllers/main-controller'))
