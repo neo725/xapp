@@ -187,7 +187,7 @@ exports.customPopOver = ['$timeout', ($timeout) ->
 
             if value > 0 and previousTop != value
                 $timeout(
-                    value = custom_pop_over
+                    value += custom_pop_over
                     $element.data('set-top', value)
                     $element.css({'top': value + 'px'})
                 , 500)

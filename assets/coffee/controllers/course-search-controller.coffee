@@ -82,7 +82,7 @@ module.exports = [
             else
                 api.removeFromWish course.Shop_Id, course.Prod_Id, onSuccess, onError
 
-        $scope.setOptions = ($event) ->
+        $scope.showOptions = ($event) ->
             $scope.popover.show($event)
 
         $scope.setOrder = (value) ->
@@ -95,7 +95,7 @@ module.exports = [
         $scope.show_order_tab = () ->
             $timeout(->
                 $('.popover-condition').removeClass('large')
-            , 500)
+            )
 
         $scope.show_filter_tab = () ->
             $timeout(->
