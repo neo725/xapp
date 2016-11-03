@@ -17,8 +17,11 @@
                 <label class="item-input-wrapper">
                     <input type="text" placeholder="{{ placeholderKeyword }}" class="item-input-keyword" ng-model="keyword">
                 </label>
-                <button class="button button-icon icon ion-android-search button-search" ng-click="goSearch(keyword)"></button>
-                <button class="button button-icon icon ion-android-options button-options" ng-click="setOptions($event)"></button>
+                <button class="button button-icon icon ion-android-search button-search"
+                        ng-click="goSearch(keyword)"></button>
+                <button class="button button-icon icon ion-android-options button-options"
+                        ng-if="option_visible"
+                        ng-click="setOptions($event)"></button>
             </div>
         </div>
         <ion-content class="has-subheader" padding="false" scroll="true">
@@ -68,25 +71,84 @@
         </ion-content>
     </ion-content>
     <script id="templates/popover.html" type="text/ng-template">
-        <ion-popover-view custom-pop-over="list" custom-pop-over-width="98%">
-            <ion-content>
-                <div class="list">
-                    <a class="item" href="http://learn.ionicframework.com/" target="_blank">
-                        Learn Ionic
-                    </a>
-                    <a class="item" href="http://ionicframework.com/docs/" target="_blank">
-                        Documentation
-                    </a>
-                    <a class="item" href="http://showcase.ionicframework.com/" target="_blank">
-                        Showcase
-                    </a>
-                    <a class="item" href="http://ionicframework.com/submit-issue/" target="_blank">
-                        Submit an Issue
-                    </a>
-                    <a class="item" href="https://github.com/driftyco/ionic" target="_blank">
-                        Github Repo
-                    </a>
-                </div>
+        <ion-popover-view custom-pop-over="30" custom-pop-over-width="98%" class="popover-condition">
+            <ion-content class="popover-condition-content" scroll="false">
+                <ion-tabs class="tabs-light">
+                    <ion-tab class="tab-active-1" title="排序" on-select="show_order_tab()">
+                        <ion-nav-view name="tab-tab1">
+                            <ion-content class="tab-1" scroll="false" padding="true">
+                                <ion-list>
+                                    <ion-item class="item" ng-click="setOrder('start')">
+                                        最新上架
+                                        <i class="ion-checkmark" ng-if="order == 'start'"></i>
+                                    </ion-item>
+                                    <ion-item class="item" ng-click="setOrder('price')">
+                                        課程價格由低至高
+                                        <i class="ion-checkmark" ng-if="order == 'price'"></i>
+                                    </ion-item>
+                                    <ion-item class="item" ng-click="setOrder('priced')">
+                                        課程價格由高至低
+                                        <i class="ion-checkmark" ng-if="order == 'priced'"></i>
+                                    </ion-item>
+                                </ion-list>
+                            </ion-content>
+                        </ion-nav-view>
+                    </ion-tab>
+                    <ion-tab class="tab-active-2" title="篩選" on-select="show_filter_tab()">
+                        <ion-nav-view name="tab-tab2">
+                            <ion-content scroll="false" padding="true">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="label">預估金額</div>
+                                        <div class="range-slider">
+                                            <input type="text" id="price-range" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="label">上課地點</div>
+                                        <div class="row">
+                                            <div class="col col-33">
+                                                <div class="location"
+                                                     ng-class="{ 'current': checkLocation('台北') }"
+                                                     ng-click="toggleLocation('台北')">台北</div></div>
+                                            <div class="col col-33">
+                                                <div class="location"
+                                                     ng-class="{ 'current': checkLocation('台中') }"
+                                                     ng-click="toggleLocation('台中')">台中</div></div>
+                                            <div class="col col-33">
+                                                <div class="location"
+                                                     ng-class="{ 'current': checkLocation('高雄') }"
+                                                     ng-click="toggleLocation('高雄')">高雄</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="label">上課時間</div>
+                                        <div>
+                                            <span class="weekday"
+                                                  ng-repeat="day in filter.weekdays"
+                                                  ng-class="{ 'current': checkWeekday(day) }"
+                                                  ng-click="toggleWeekday(day)">周{{ day }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-50 text-center">
+                                        <button class="button button-block button-stable" ng-click="cancelPopover()">
+                                            取消
+                                        </button></div>
+                                    <div class="col col-50 text-center">
+                                        <button class="button button-block button-stable" ng-click="submitPopover()">
+                                            送出
+                                        </button></div>
+                                </div>
+                            </ion-content>
+                        </ion-nav-view>
+                    </ion-tab>
+                </ion-tabs>
             </ion-content>
         </ion-popover-view>
     </script>

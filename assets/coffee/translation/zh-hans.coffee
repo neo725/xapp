@@ -6,7 +6,7 @@ module.exports = ->
         'pass': '略 過'
         'pass_login': '略過登入'
         'input_keyword': '請輸入搜尋關鍵字'
-        'input_keyword_in_catalogs': '在 {{ catalog_name }} 中搜尋課程，請輸入關鍵字'
+        'input_keyword_in_catalogs': '在 {{ catalog_name }} 中搜尋'
     }
     'text': {
         'or': '或'

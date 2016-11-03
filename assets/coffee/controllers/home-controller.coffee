@@ -21,6 +21,8 @@ module.exports = [
 
         $rootScope.logout = ->
             onSuccess = ->
+                console.log $rootScope.modalFunction
+
                 window.localStorage.removeItem("token")
                 window.localStorage.removeItem("is_guest")
                 delete $rootScope['cart']

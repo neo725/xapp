@@ -29,6 +29,10 @@ module.exports = [
                 navigation.slide 'home.member.suggestion', {}, 'up'
             )
 
+        $scope.logout = ->
+            $scope.modalFunction.hide()
+            $rootScope.logout()
+
         # version number record in config.xml that under project root
         document.addEventListener('deviceready', () ->
             $cordovaAppVersion.getVersionNumber().then (version)->

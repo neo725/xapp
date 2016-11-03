@@ -174,21 +174,24 @@ exports.fitSize = ->
 exports.customPopOver = ['$timeout', ($timeout) ->
     restrict: 'A'
     link: (scope, element, attrs) ->
-        custom_pop_over = attrs.customPopOver
+        $element = $(element)
+        custom_pop_over = parseInt(attrs.customPopOver)
         custom_pop_over_width = attrs.customPopOverWidth
 
-        $(element).width(custom_pop_over_width)
+        $element.width(custom_pop_over_width)
 
         scope.$watch () ->
-            return $(element).is(':visible')
+            return $element.position().top
         , (value) ->
-            console.log 'visible : ' + value
-            top = $(element).position().top
-            $timeout(
-                $(element).css({'top': (top + 30) + 'px'})
-            , 500)
-]
+            previousTop = $element.data('set-top')
 
+            if value > 0 and previousTop != value
+                $timeout(
+                    value = custom_pop_over
+                    $element.data('set-top', value)
+                    $element.css({'top': value + 'px'})
+                , 500)
+]
 exports.starRating = ->
     restrict: 'A'
     template: '<ul class="star-rating" ng-class="{readonly: readonly}">' +

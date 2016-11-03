@@ -4,6 +4,14 @@ module.exports = [
     ($rootScope, $scope, $stateParams, $log, $timeout, $interpolate, $translate, $ionicHistory, $ionicPopover,
         plugins, navigation, modal, api) ->
 
+        $scope.option_visible = false
+        $scope.order = 'start'
+
+        $scope.filter = {}
+        $scope.filter.location = []
+        $scope.filter.weekdays = ['一', '二', '三', '四', '五', '六', '日']
+        $scope.filter.weekday = []
+
         $scope.noMoreItemsAvailable = false
         $scope.page = 1
         $scope.pageSize = 20
@@ -47,7 +55,7 @@ module.exports = [
 
         $scope.loadMore = () ->
             if not $scope.noMoreItemsAvailable and $scope.page > 1
-                console.log 'loadMore - ' + $scope.page
+                #console.log 'loadMore - ' + $scope.page
                 goSearch($scope.page, $scope.pageSize, $scope.keyword)
 #                $scope.$broadcast('scroll.infiniteScrollComplete')
 
@@ -77,8 +85,102 @@ module.exports = [
         $scope.setOptions = ($event) ->
             $scope.popover.show($event)
 
+        $scope.setOrder = (value) ->
+            $scope.order = value
+            $scope.goSearch($stateParams.keyword)
+            $timeout(->
+                $scope.popover.hide()
+            )
+
+        $scope.show_order_tab = () ->
+            $timeout(->
+                $('.popover-condition').removeClass('large')
+            , 500)
+
+        $scope.show_filter_tab = () ->
+            $timeout(->
+                $('.popover-condition').addClass('large')
+
+                $('#price-range').ionRangeSlider(
+                    min: 0
+                    max: 50000
+                    from: 0
+                    to: 50000
+                    type: 'double'
+                    prefix: "$"
+                    grid: false
+                    grid_num: 10
+                    step: 1000
+                )
+            )
+
+        $scope.toggleLocation = (value) ->
+            index = _.indexOf($scope.filter.location, value)
+            if index == -1
+                $scope.filter.location.push value
+            else
+                $scope.filter.location.splice index, 1
+
+        $scope.checkLocation = (value) ->
+            index = _.indexOf($scope.filter.location, value)
+            if index == -1
+                return false
+            return true
+
+        $scope.toggleWeekday = (value) ->
+            index = _.indexOf($scope.filter.weekday, value)
+            if index == -1
+                $scope.filter.weekday.push value
+            else
+                $scope.filter.weekday.splice index, 1
+
+        $scope.checkWeekday = (value) ->
+            index = _.indexOf($scope.filter.weekday, value)
+            if index == -1
+                return false
+            return true
+
+        $scope.cancelPopover = ->
+            $scope.popover.hide()
+
+        $scope.submitPopover = ->
+            price_range = $('#price-range').data('ionRangeSlider')
+            if price_range.result.from == price_range.result.min
+                delete $scope.filter['lmoney']
+            else
+                $scope.filter.lmoney = price_range.result.from
+            if price_range.result.to == price_range.result.max
+                delete $scope.filter['umoney']
+            else
+                $scope.filter.umoney = price_range.result.to
+
+            # location
+            pushItem = (array, value) ->
+                if _.indexOf(array, value) == -1
+                    array.push(value)
+                array
+            popItem = (array, value) ->
+                index = _.indexOf(array, value)
+                if index != -1
+                    array.splice(index, 1)
+                array
+            if _.indexOf($scope.filter.location, '台北') != -1
+                $scope.filter.location = pushItem($scope.filter.location, '建國')
+                $scope.filter.location = pushItem($scope.filter.location, '忠孝')
+                $scope.filter.location = pushItem($scope.filter.location, '延平')
+                $scope.filter.location = pushItem($scope.filter.location, '大安')
+            else
+                $scope.filter.location = popItem($scope.filter.location, '建國')
+                $scope.filter.location = popItem($scope.filter.location, '忠孝')
+                $scope.filter.location = popItem($scope.filter.location, '延平')
+                $scope.filter.location = popItem($scope.filter.location, '大安')
+
+            $scope.goSearch($stateParams.keyword)
+
+            $scope.popover.hide()
+
         goSearch = (page, pagesize, keyword) ->
-            console.log 'goSearch - ' + page
+            #console.log 'goSearch - ' + page
             $scope.loadingSearch = true
 
             if page == 1
@@ -133,15 +235,20 @@ module.exports = [
                 return
 
             if backView.stateName == 'home.dashboard'
-                weekdays = _.join(JSON.parse(window.localStorage.getItem('weekdays'), ','))
-                locations = _.join(JSON.parse(window.localStorage.getItem('locations'), ','))
+                #weekdays = _.join(JSON.parse(window.localStorage.getItem('weekdays'), ','))
+                #locations = _.join(JSON.parse(window.localStorage.getItem('locations'), ','))
 
                 data =
                     'page': page
                     'perpage': pagesize
                     'query': keyword
-                    'wday': weekdays
-                    'loc': locations
+                    'wday': _.join($scope.filter.weekday, ',')
+                    'loc': _.join($scope.filter.location, ',')
+                    'order': $scope.order
+                if $scope.filter.lmoney
+                    data.lmoney = $scope.filter.lmoney
+                if $scope.filter.umoney
+                    data.umoney = $scope.filter.umoney
 
             if backView.stateName == 'home.course.catalogs'
                 catalog = $rootScope.catalog
@@ -149,7 +256,8 @@ module.exports = [
                     'page': page
                     'perpage': pagesize
                     'query': keyword
-                    'cate': catalog.catalog_id
+                    'cata': catalog.catalog_id
+                    'order': $scope.order
 
             modal.showLoading '', 'message.searching'
             api.searchCourse(data, onSuccess, onError)
@@ -159,8 +267,22 @@ module.exports = [
 
             goSearch($scope.page, $scope.pageSize, keyword)
 
-        if $stateParams.keyword
-            $scope.goSearch($stateParams.keyword)
+        # start
+        $scope.filter.weekday = JSON.parse(window.localStorage.getItem('weekdays'))
+        $scope.filter.location = JSON.parse(window.localStorage.getItem('locations'))
+
+        location_taipei = true
+        location_taipei &= _.indexOf($scope.filter.location, '建國') != -1
+        location_taipei &= _.indexOf($scope.filter.location, '忠孝') != -1
+        location_taipei &= _.indexOf($scope.filter.location, '延平') != -1
+        location_taipei &= _.indexOf($scope.filter.location, '大安') != -1
+
+        if location_taipei
+            $scope.filter.location.push '台北'
+
+        console.log $scope.filter
+
+        $scope.goSearch($stateParams.keyword)
 
         $ionicPopover.fromTemplateUrl('templates/popover.html',
             scope: $scope
@@ -187,5 +309,11 @@ module.exports = [
                 )
                 #window.localStorage.removeItem('favorite_changed')
                 delete $rootScope['favorite_changed']
+
+            backView = $ionicHistory.backView()
+            if backView.stateName == 'home.dashboard'
+                $scope.option_visible = true
+            else
+                $scope.option_visible = false
         )
 ]

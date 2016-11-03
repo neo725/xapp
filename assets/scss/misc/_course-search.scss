@@ -11,6 +11,11 @@
         .item {
             background-color: $positive;
 
+            &.item-input-inset {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
             .item-input-wrapper {
                 background-color: $light;
 
@@ -21,12 +26,16 @@
 
             .button-search, .button-options {
                 color: $light;
+
+                &:before {
+                    font-size: 24px;
+                }
             }
         }
     }
 
     .has-subheader {
-        margin-top: -16px;
+        margin-top: -37px;
     }
 
     .card {
@@ -85,4 +94,66 @@
             }
         }
     }
+}
+
+.popover.popover-condition {
+    height: 255px;
+
+    &.large {
+        height: 390px;
+    }
+
+    .popover-condition-content {
+        .tabs-top > .tabs {
+            top: 0;
+        }
+        .has-tabs-top {
+            top: 44px;
+        }
+        .label {
+            color: $gray-color;
+        }
+
+        .range-slider {
+            position: relative;
+            height: 65px;
+        }
+        .location {
+            height: 30px;
+            border: 2px solid $stable;
+            border-radius: 20px;
+            text-align: center;
+            padding-top: 2px;
+
+            &.current {
+                border-color: $positive;
+            }
+        }
+        .weekday {
+            background-color: $stable;
+            margin-right: 5px;
+            padding: 3px 5px;
+            margin-top: 5px;
+            display: inline-block;
+
+            &.current {
+                background-color: $positive;
+                color: $light;
+            }
+        }
+
+        .tab-1 {
+            .item {
+                i {
+                    right: 5px;
+                    position: absolute;
+                }
+            }
+        }
+    }
+}
+
+.platform-android .popover-backdrop, .platform-android .popover-backdrop.active {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    top: 92px;
 }
