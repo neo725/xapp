@@ -258,6 +258,15 @@ module.exports = ['$http', ($http) ->
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)
 
+        postSocialLogin: (provider, token, onSuccess, onError) ->
+            data =
+                provider: provider
+                accesstoken: token
+                device: 'android'
+            $http.post('/api/tokens/oauth', data)
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

@@ -1,12 +1,14 @@
 module.exports =
     # on mobile
-    #API_URL: 'http://test.sce.pccu.edu.tw/SceAppApi'
+    #API_URL:
+    # http://test.sce.pccu.edu.tw/SceAppApi
+    # http://sceapi.sce.pccu.edu.tw/SceAppApi
     # dev mode (chrome)
     #API_URL: 'http://localhost:8100/SceAppApi'
     API_URL: {
         'browser': 'http://localhost:8100/SceAppApi'
         'browser_ssl': 'http://localhost:8100/SceAppApi'
-        'device': 'http://sceapi.sce.pccu.edu.tw/SceAppApi'
+        'device': 'http://test.sce.pccu.edu.tw/SceAppApi'
         'device_ssl': 'http://sceapi.sce.pccu.edu.tw/SceAppApi'
         'atm': 'http://140.137.200.233/AtmWebApi'
         'creditcard': 'http://140.137.200.233/CCardWebAPI'

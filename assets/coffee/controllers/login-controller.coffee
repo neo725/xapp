@@ -113,10 +113,10 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             #console.log 'facebook_login'
             appId = '138411713543'
             redirectUrl = 'http://localhost/callback'
-            $cordovaOauth.facebook(appId, ['email', 'public_profile'], { redirect_uri: redirectUrl })
+            $cordovaOauth.facebook(appId, ['email'], { redirect_uri: redirectUrl })
                 .then((result) ->
                     token = result.access_token
-                    console.log token
+                    loginBySocial 'facebook', token
                 )
 
         $scope.google_login = () ->
@@ -126,8 +126,40 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             $cordovaOauth.google(appId, ['email'], { redirect_uri: redirectUrl })
                 .then((result) ->
                     token = result.access_token
-                    console.log token
+                    loginBySocial 'google', token
                 )
+
+        loginBySocial = (provider, token) ->
+            onSuccess = (response) ->
+                modal.hideLoading()
+                window.localStorage.setItem("token", response.token_string)
+                window.localStorage.setItem('is_guest', false)
+
+                resetLoginButton()
+
+                onSuccess = () ->
+                    $rootScope.loadCart()
+                    $rootScope.loadWish()
+                    $rootScope.callFCMGetToken()
+
+                    navigation.flip 'home.dashboard', {}, 'left'
+
+                $rootScope.getMemberData(onSuccess, (->))
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                resetLoginButton()
+
+                $translate(['errors.login_failed', 'popup.ok']).then (translation) ->
+                    if navigator.notification
+                        navigator.notification.alert(
+                            translation['errors.login_failed'],
+                            (->),
+                            '',
+                            translation['pop.ok']
+                        )
+
+            modal.showLoading '', 'message.logging'
+            api.postSocialLogin provider, token, onSuccess, onError
 
         checkDefaultState = ->
             console.log 'login-controller -> checkDefaultState...'
