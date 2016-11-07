@@ -79,8 +79,8 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                 }
             }
         }))
-        .pipe(gif(!debug, uglify()))
-        //.pipe(uglify())
+        //.pipe(gif(!debug, uglify()))
+        .pipe(uglify())
         .pipe(gulp.dest('www/js'));
 });
 

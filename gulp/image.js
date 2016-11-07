@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     spritesmith = require('gulp.spritesmith'),
     sequence = require('run-sequence'),
+    rename = require('gulp-rename'),
     yargs = require('yargs').argv;
 
 
@@ -14,7 +15,8 @@ gulp.task('image', function(){
 gulp.task('image:assets', function () {
     // fav icon
     /*gulp.src(['assets/images/favicon.ico']).pipe(gulp.dest('www/img'));*/
-    return gulp.src('assets/images/assets/*')
+
+    return gulp.src('assets/images/assets/**/*')
         .pipe(gulp.dest('www/img'));
 });
 

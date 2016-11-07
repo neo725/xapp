@@ -18,6 +18,9 @@
             .item {
                 border: none;
 
+                .catalog-image {
+                    width: 64px;
+                }
                 .item.item-toggle {
                     font-size: 18px;
                     border: none;

@@ -15,18 +15,25 @@
         </div>
         <ion-list>
             <ion-item class="item" ng-repeat="catalog in visibleCatalogs" ng-click="goCatalogsSearch(catalog)">
-                <div class="item item-toggle toggle-small"
-                     toggle-class="toggle-positive">
-                    <div><span>{{catalog.Cata_Name}}</span></div>
-                    <label class="toggle toggle-positive disable-user-behavior"
-                           ng-show="mode == 'Setting'"
-                           ng-click="toggleCatalogItem(catalog.Cata_Id, $event)">
-                        <input type="checkbox" ng-checked="checkCatalogIsChecked(catalog.Cata_Id)">
-                        <div class="track"><div class="handle"></div></div>
-                    </label>
-                </div>
-                <div ng-class="{ 'title': mode == 'Setting', 'full-title': mode == 'List' }">
-                    <span class="sub-item" ng-repeat="subitem in catalog.subCataList">{{subitem.Cata_Name}}</span>
+                <div class="row">
+                    <div class="col col-20">
+                        <img src="img/catalogs/i-c-{{ catalog.Cata_SubDomain }}.png" class="catalog-image" />
+                    </div>
+                    <div class="col">
+                        <div class="item item-toggle toggle-small"
+                             toggle-class="toggle-positive">
+                            <div><span>{{catalog.Cata_Name}}</span></div>
+                            <label class="toggle toggle-positive disable-user-behavior"
+                                   ng-show="mode == 'Setting'"
+                                   ng-click="toggleCatalogItem(catalog.Cata_Id, $event)">
+                                <input type="checkbox" ng-checked="checkCatalogIsChecked(catalog.Cata_Id)">
+                                <div class="track"><div class="handle"></div></div>
+                            </label>
+                        </div>
+                        <div ng-class="{ 'title': mode == 'Setting', 'full-title': mode == 'List' }">
+                            <span class="sub-item" ng-repeat="subitem in catalog.subCataList">{{subitem.Cata_Name}}</span>
+                        </div>
+                    </div>
                 </div>
             </ion-item>
         </ion-list>
