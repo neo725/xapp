@@ -267,6 +267,22 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        cancelOrder: (order_no, onSuccess, onError) ->
+            $http({
+                'url': "/api/order/#{order_no}"
+                'method': 'DELETE'
+                'headers':
+                    'Content-Type': 'application/json;charset=utf-8'
+            }).then(onSuccess, onError)
+
+        refundOrder: (order_no, onSuccess, onError) ->
+            $http({
+                'url': "/api/order/#{order_no}"
+                'method': 'DELETE'
+                'headers':
+                    'Content-Type': 'application/json;charset=utf-8'
+            }).then(onSuccess, onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

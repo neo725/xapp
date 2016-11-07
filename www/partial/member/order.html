@@ -22,7 +22,7 @@
                                 <div class="col col-50 text-s-size text-light-gray">
                                     {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
                                 <div class="col text-right text-s-size">
-                                    <span class="bg-tab-color-1 text-white padding-3 refunds" ng-click="wantRefunds($event)">
+                                    <span class="bg-tab-color-1 text-white padding-3 refunds" ng-click="wantRefunds($index, main.No, $event)">
                                         我要退費</span></div>
                             </div>
                             <div class="data-row-container">
@@ -36,7 +36,7 @@
                                     <div class="row price-block border-top">
                                         <div class="col col-66 text-positive">
                                             <div class="image-mark"><img src="img/order-form-ss@2x.png" /></div>
-                                            <div class="payment-mark">信用卡付款成功</div>
+                                            <div class="payment-mark">{{ main.Payway }}</div>
                                         </div>
                                         <div class="col col-34 text-right price-mark">
                                             NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
@@ -59,29 +59,19 @@
                                 <div class="col col-50 text-s-size text-light-gray">
                                     {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
                                 <div class="col text-right text-s-size">
-                                    <span class="bg-tab-color-2 text-white padding-3 refunds" ng-click="wantCancel($event)">
+                                    <span class="bg-tab-color-2 text-white padding-3 refunds" ng-click="wantCancel($index, main.No, $event)">
                                         取消訂單</span></div>
                             </div>
-                            <div class="data-row-container">
-                                <div class="row">
-                                    <div class="col col-75 title prod_title">我的素描創作集 This is a basic Card which contains an item that has wrapping text.</div>
-                                    <div class="col col-25 text-right">$99,999</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-75 title prod_title">我的素描創作集 This is a basic Card which contains an item that has wrapping text.</div>
-                                    <div class="col col-25 text-right">$99,999</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-75 title prod_title">我的素描創作集 This is a basic Card which contains an item that has wrapping text.</div>
-                                    <div class="col col-25 text-right">$99,999</div>
-                                </div>
+                            <div class="row" ng-repeat="detail in order.orderDetail">
+                                <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
+                                <div class="col col-25 text-right">{{ detail.Amount | currency:undefined:0 }}</div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="row price-block border-top">
                                         <div class="col col-66 text-assertive">
                                             <div class="image-mark"><img src="img/order-form-st@2x.png" /></div>
-                                            <div class="payment-mark">款項作業處理中</div>
+                                            <div class="payment-mark">{{ main.Payway }}</div>
                                         </div>
                                         <div class="col col-34 text-right price-mark">
                                             NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
@@ -105,64 +95,19 @@
                                     {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
                                 <div class="col text-right text-s-size"></div>
                             </div>
-                            <div class="data-row-container">
-                                <div class="row">
-                                    <div class="col col-75 title prod_title">我的素描創作集 This is a basic Card which contains an item that has wrapping text.</div>
-                                    <div class="col col-25 text-right">$99,999</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-75 title prod_title">我的素描創作集 This is a basic Card which contains an item that has wrapping text.</div>
-                                    <div class="col col-25 text-right">$99,999</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-75 title prod_title">我的素描創作集 This is a basic Card which contains an item that has wrapping text.</div>
-                                    <div class="col col-25 text-right">$99,999</div>
-                                </div>
+                            <div class="row" ng-repeat="detail in order.orderDetail">
+                                <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
+                                <div class="col col-25 text-right">{{ detail.Amount | currency:undefined:0 }}</div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="row price-block border-top">
                                         <div class="col col-66 text-positive">
                                             <div class="image-mark"><img src="img/order-form-rs@2x.png" /></div>
-                                            <div class="payment-mark">退款成功</div>
+                                            <div class="payment-mark">{{ main.Payway }}</div>
                                         </div>
                                         <div class="col col-34 text-right price-mark">
                                             NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" ng-hide="true">
-                        <div class="item item-text-wrap">
-                            <div class="row header-row">
-                                <div class="col text-s-size">
-                                    <span class="bg-stable padding-3">096096096096</span></div>
-                                <div class="col col-50 text-s-size text-light-gray">2016/12/31 01:05 訂單成立</div>
-                                <div class="col text-right text-s-size"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col col-75 title prod_title">我的素描創作集 This is a basic Card which contains an item that has wrapping text.</div>
-                                <div class="col col-25 text-right">$99,999</div>
-                            </div>
-                            <div class="row">
-                                <div class="col col-75 title prod_title">我的素描創作集 This is a basic Card which contains an item that has wrapping text.</div>
-                                <div class="col col-25 text-right">$99,999</div>
-                            </div>
-                            <div class="row">
-                                <div class="col col-75 title prod_title">我的素描創作集 This is a basic Card which contains an item that has wrapping text.</div>
-                                <div class="col col-25 text-right">$99,999</div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row price-block border-top">
-                                        <div class="col col-66 text-assertive">
-                                            <div class="image-mark"><img src="img/order-form-w@2x.png" /></div>
-                                            <div class="payment-mark">作業處理中</div>
-                                        </div>
-                                        <div class="col col-34 text-right price-mark">
-                                            NT<span class="price">$99,999</span>
                                         </div>
                                     </div>
                                 </div>

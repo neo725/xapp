@@ -54,6 +54,8 @@ module.exports = ->
         'processing': '處理中...'
         'success_to_add_favorite_ebook': '文章加入收藏成功'
         'success_to_delete_favorite_ebook': '刪除文章收藏成功'
+        'cancel_order_confirm': '確定要取消訂單?'
+        'refund_order_confirm': '確定要執行訂單退費?'
     }
     'tab': {
         'payed': '已繳費'
@@ -72,4 +74,6 @@ module.exports = ->
         'register_member': '註冊新會員'
         'cart': '購物車'
         'member_edit': '編輯帳號'
+        'cancel_order': '取消訂單'
+        'refund_order': '訂單退費'
     }

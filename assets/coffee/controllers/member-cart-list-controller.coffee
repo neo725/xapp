@@ -104,12 +104,8 @@ module.exports = [
 
         $scope.submitForm = (form) ->
             pay_type = $scope.pay.type
-            shouldSaveCard = form.shouldSaveCard.$modelValue
-
-            console.log shouldSaveCard
 
             if not form.$valid
-                #modal.showLongMessage 'errors.form_validate_error'
                 $translate(['title.cart', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
                     plugins.notification.alert(
                         translator['errors.form_validate_error'],
@@ -119,7 +115,6 @@ module.exports = [
                     )
                 return
             if pay_type == 'CreditCard' and not checkIsCardAccept()
-                #modal.showLongMessage 'errors.credit_card_not_acceptable'
                 $translate(['title.cart', 'errors.credit_card_not_acceptable', 'popup.ok']).then (translator) ->
                     plugins.notification.alert(
                         translator['errors.credit_card_not_acceptable'],
@@ -185,26 +180,11 @@ module.exports = [
             payByCreditCard = (order_no, success, error) ->
                 card = collectCreditCardInfo()
 
-                if false and $scope.shouldSaveCard
-                    saved_card =
-                        'card':
-                            'number_part1': $scope.card.number_part1
-                            'number_part2': $scope.card.number_part2
-                            'number_part3': $scope.card.number_part3
-                            'number_part4': $scope.card.number_part4
-                            'expire_month': $scope.card.expire_month
-                            'expire_year': $scope.card.expire_year
-
-                    window.localStorage.setItem('saved_card', JSON.stringify(saved_card))
-                else
-                    window.localStorage.removeItem('saved_card')
-
                 api.createCreditCardPayment(order_no, card.number, card.expire, card.cvc, success, error)
 
             createPayment = (pay_type, order_no, success) ->
                 error = ->
                     modal.hideLoading()
-                    #modal.showMessage('errors.payment_create_failed')
                     $translate(['title.submit_cart', 'errors.payment_create_failed', 'popup.ok']).then (translator) ->
                         plugins.notification.alert(
                             translator['errors.payment_create_failed'],
@@ -267,6 +247,8 @@ module.exports = [
 
             func = ->
                 if pay_type == 'CreditCard'
+                    shouldSaveCard = form.shouldSaveCard.$modelValue
+
                     if shouldSaveCard
                         saved_card =
                             'card':

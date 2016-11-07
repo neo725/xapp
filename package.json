@@ -1,6 +1,6 @@
 {
     "name": "sceapp",
-    "version": "0.0.633",
+    "version": "0.0.641",
     "description": "scemobile: An Ionic project",
     "dependencies": {
         "angular-translate": "^2.11.0",
