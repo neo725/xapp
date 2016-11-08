@@ -24,7 +24,7 @@
                 }
             }
 
-            .button-search, .button-options {
+            .button-search, .button-options, .button-history {
                 color: $light;
 
                 &:before {
@@ -96,8 +96,46 @@
     }
 }
 
+.popover.popover-history {
+    height: 220px;
+    left: 0 !important;
+    top: 124px !important;
+    width: 100% !important;
+
+    .popover-history-content {
+        .list {
+            padding-bottom: 10px;
+        }
+        .row {
+            & + .row {
+                margin-top: 5px;
+            }
+
+            i {
+                position: absolute;
+                right: 1em;
+                font-size: 1.5em;
+                margin-top: -3px;
+            }
+
+            .item-image {
+                width: 24px;
+            }
+            .item-text {
+                overflow: hidden;
+                padding-right: 40px;
+                padding-top: 2px;
+                padding-left: 5px;
+                color: $light-gray-color;
+            }
+        }
+    }
+}
 .popover.popover-condition {
     height: 255px;
+    left: 0 !important;
+    top: 124px !important;
+    width: 100% !important;
 
     &.large {
         height: 390px;

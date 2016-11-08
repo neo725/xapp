@@ -15,13 +15,18 @@
         <div class="list header">
             <div class="item item-input-inset">
                 <label class="item-input-wrapper">
-                    <input type="text" placeholder="{{ placeholderKeyword }}" class="item-input-keyword" ng-model="keyword">
+                    <input type="text"
+                           placeholder="{{ placeholderKeyword }}"
+                           class="item-input-keyword"
+                           ng-model="keyword">
                 </label>
                 <button class="button button-icon icon ion-android-search button-search"
                         ng-click="goSearch(keyword)"></button>
                 <button class="button button-icon icon ion-android-options button-options"
                         ng-if="option_visible"
                         ng-click="showOptions($event)"></button>
+                <button class="button button-icon icon ion-clock button-history"
+                        ng-click="showHistory($event)"></button>
             </div>
         </div>
         <ion-content class="has-subheader" padding="false" scroll="true">
@@ -70,8 +75,25 @@
             </ion-infinite-scroll>
         </ion-content>
     </ion-content>
+    <script id="templates/popover-history.html" type="text/ng-template">
+        <ion-popover-view class="popover-history">
+            <ion-content class="popover-history-content" scroll="false">
+                <ion-list>
+                    <ion-item class="row" ng-click="hideHistory()" ng-repeat="history in historyList">
+                        <div class="col-10"><img src="img/history.png" class="item-image" /></div>
+                        <div class="col-90 item-content item-text">
+                            <span ng-bind="history.query"></span>
+                            <span ng-bind="arrangeLocation(history.loc)"></span>
+                            <span ng-bind="arrangeWeekday(history.wday)"></span>
+                            <i class="ion-ios-arrow-forward"></i>
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-popover-view>
+    </script>
     <script id="templates/popover.html" type="text/ng-template">
-        <ion-popover-view custom-pop-over="30" custom-pop-over-width="98%" class="popover-condition">
+        <ion-popover-view class="popover-condition">
             <ion-content class="popover-condition-content" scroll="false">
                 <ion-tabs class="tabs-light">
                     <ion-tab class="tab-active-1" title="排序" on-select="show_order_tab()">

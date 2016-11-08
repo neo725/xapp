@@ -85,6 +85,12 @@ module.exports = [
         $scope.showOptions = ($event) ->
             $scope.popover.show($event)
 
+        $scope.showHistory = ($event) ->
+            $scope.popoverHistory.show($event)
+
+        $scope.hideHistory = ->
+            $scope.popoverHistory.hide()
+
         $scope.setOrder = (value) ->
             $scope.order = value
             $scope.goSearch($stateParams.keyword)
@@ -159,11 +165,7 @@ module.exports = [
                 if _.indexOf(array, value) == -1
                     array.push(value)
                 array
-            popItem = (array, value) ->
-                index = _.indexOf(array, value)
-                if index != -1
-                    array.splice(index, 1)
-                array
+
             if _.indexOf($scope.filter.location, '台北') != -1
                 $scope.filter.location = pushItem($scope.filter.location, '建國')
                 $scope.filter.location = pushItem($scope.filter.location, '忠孝')
@@ -178,6 +180,68 @@ module.exports = [
             $scope.goSearch($stateParams.keyword)
 
             $scope.popover.hide()
+
+        $scope.arrangeLocation = (loc) ->
+            location = loc.split(',')
+
+            location_taipei = true
+            location_taipei &= _.indexOf(location, '建國') != -1
+            location_taipei &= _.indexOf(location, '忠孝') != -1
+            location_taipei &= _.indexOf(location, '延平') != -1
+            location_taipei &= _.indexOf(location, '大安') != -1
+
+            if location_taipei
+                location = popItem(location, '建國')
+                location = popItem(location, '忠孝')
+                location = popItem(location, '延平')
+                location = popItem(location, '大安')
+                if _.indexOf(location, '台北') == -1
+                    location.splice(0, 0, '台北')
+
+            index = _.indexOf(location, '台北')
+            if index != -1 and index != 0
+                location = popItem(location, '台北')
+                location.splice(0, 0, '台北')
+
+            return location.join(',')
+
+        $scope.arrangeWeekday = (wday) ->
+            weekdays = wday.split(',')
+
+            weekday_all = true
+            weekday_all &= _.indexOf(weekdays, '一') != -1
+            weekday_all &= _.indexOf(weekdays, '二') != -1
+            weekday_all &= _.indexOf(weekdays, '三') != -1
+            weekday_all &= _.indexOf(weekdays, '四') != -1
+            weekday_all &= _.indexOf(weekdays, '五') != -1
+            weekday_all &= _.indexOf(weekdays, '六') != -1
+            weekday_all &= _.indexOf(weekdays, '日') != -1
+
+            if weekday_all
+                return '時間不拘'
+
+            return weekdays.join(',')
+
+        popItem = (array, value) ->
+            index = _.indexOf(array, value)
+            if index != -1
+                array.splice(index, 1)
+            array
+
+        loadHistory = (success) ->
+            onSuccess = (response) ->
+                modal.hideLoading()
+                max_splice_length = 5
+                list = response.historyList.list
+                if Array.isArray(list)
+                    if max_splice_length > list.length
+                        max_splice_length = list.length
+                    $scope.historyList = list.splice(0, max_splice_length)
+            onError = () ->
+                modal.hideLoading()
+
+            modal.showLoading '', 'message.data_loading'
+            api.searchCourse({ 'page': 1, 'perpage': 20 }, onSuccess, onError)
 
         goSearch = (page, pagesize, keyword) ->
             #console.log 'goSearch - ' + page
@@ -280,14 +344,19 @@ module.exports = [
         if location_taipei
             $scope.filter.location.push '台北'
 
-        console.log $scope.filter
-
+        #console.log $scope.filter
+        loadHistory(->)
         $scope.goSearch($stateParams.keyword)
 
         $ionicPopover.fromTemplateUrl('templates/popover.html',
             scope: $scope
         ).then((popover) ->
             $scope.popover = popover
+        )
+        $ionicPopover.fromTemplateUrl('templates/popover-history.html',
+            scope: $scope
+        ).then((popover) ->
+            $scope.popoverHistory = popover
         )
 
         $scope.$on('$ionicView.enter', ->
