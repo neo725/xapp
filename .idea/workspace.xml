@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9092e5d-513c-4c4f-8273-f73d5c04a967" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/common/directives.coffee" afterPath="$PROJECT_DIR$/assets/coffee/common/directives.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/course-search-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/course-search-controller.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/main.coffee" afterPath="$PROJECT_DIR$/assets/coffee/main.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/scss/misc/_course-search.scss" afterPath="$PROJECT_DIR$/assets/scss/misc/_course-search.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partial/course/search.html" afterPath="$PROJECT_DIR$/www/partial/course/search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/translation/en-us.coffee" afterPath="$PROJECT_DIR$/assets/coffee/translation/en-us.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/translation/zh-hans.coffee" afterPath="$PROJECT_DIR$/assets/coffee/translation/zh-hans.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/translation/zh-hant.coffee" afterPath="$PROJECT_DIR$/assets/coffee/translation/zh-hant.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/scss/misc/_dashboard.scss" afterPath="$PROJECT_DIR$/assets/scss/misc/_dashboard.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/scss/misc/_member-cart-list.scss" afterPath="$PROJECT_DIR$/assets/scss/misc/_member-cart-list.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partial/dashboard.html" afterPath="$PROJECT_DIR$/www/partial/dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partial/login.html" afterPath="$PROJECT_DIR$/www/partial/login.html" />
     </list>
     <ignored path="sceapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,41 +40,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="directives.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/coffee/common/directives.coffee">
+      <file leaf-file-name="_member-cart-list.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/scss/misc/_member-cart-list.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+            <state vertical-scroll-proportion="-4.9">
+              <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/partial/course/search.html">
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/partial/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56325823">
-              <caret line="88" column="30" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+            <state vertical-scroll-proportion="-7.9333334">
+              <caret line="152" column="66" selection-start-line="152" selection-start-column="59" selection-end-line="152" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="course-search-controller.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/course-search-controller.coffee">
+      <file leaf-file-name="dashboard-searchslide-controller.coffee" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.633333">
-              <caret line="207" column="29" selection-start-line="207" selection-start-column="15" selection-end-line="207" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_course-search.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/scss/misc/_course-search.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.5333333">
-              <caret line="117" column="33" selection-start-line="117" selection-start-column="33" selection-end-line="117" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.031301484">
+              <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -99,26 +89,21 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/www/partial/ebook/info.html" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/ebook-info-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/common/modal.coffee" />
         <option value="$PROJECT_DIR$/assets/scss/misc/_ebook-list.scss" />
         <option value="$PROJECT_DIR$/www/partial/ebook/list.html" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/ebook-list-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee" />
-        <option value="$PROJECT_DIR$/www/partial/login.html" />
         <option value="$PROJECT_DIR$/assets/scss/misc/_course-info.scss" />
         <option value="$PROJECT_DIR$/www/partial/course/info.html" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/course-info-controller.coffee" />
-        <option value="$PROJECT_DIR$/www/partial/dashboard.html" />
-        <option value="$PROJECT_DIR$/assets/scss/misc/_dashboard.scss" />
         <option value="$PROJECT_DIR$/assets/scss/misc/_member-order-list.scss" />
         <option value="$PROJECT_DIR$/assets/scss/misc/_location.scss" />
         <option value="$PROJECT_DIR$/www/partial/location.html" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/location-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/scss/misc/_member-edit.scss" />
-        <option value="$PROJECT_DIR$/assets/scss/misc/_member-cart-list.scss" />
         <option value="$PROJECT_DIR$/assets/coffee/common/util-service.coffee" />
         <option value="$PROJECT_DIR$/www/partial/member/cart-2.html" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/member-edit-controller.coffee" />
@@ -134,9 +119,6 @@
         <option value="$PROJECT_DIR$/assets/coffee/common/constants.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/member-cart-list-controller.coffee" />
         <option value="$PROJECT_DIR$/www/partial/member/order.html" />
-        <option value="$PROJECT_DIR$/assets/coffee/translation/zh-hant.coffee" />
-        <option value="$PROJECT_DIR$/assets/coffee/translation/zh-hans.coffee" />
-        <option value="$PROJECT_DIR$/assets/coffee/translation/en-us.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/api/api-service.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/member-order-list-controller.coffee" />
         <option value="$PROJECT_DIR$/gulp/javascript.js" />
@@ -150,6 +132,14 @@
         <option value="$PROJECT_DIR$/assets/scss/misc/_course-search.scss" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/course-search-controller.coffee" />
         <option value="$PROJECT_DIR$/www/partial/course/search.html" />
+        <option value="$PROJECT_DIR$/assets/coffee/translation/zh-hant.coffee" />
+        <option value="$PROJECT_DIR$/assets/coffee/translation/zh-hans.coffee" />
+        <option value="$PROJECT_DIR$/assets/coffee/translation/en-us.coffee" />
+        <option value="$PROJECT_DIR$/www/partial/login.html" />
+        <option value="$PROJECT_DIR$/assets/scss/misc/_dashboard.scss" />
+        <option value="$PROJECT_DIR$/www/partial/dashboard.html" />
+        <option value="$PROJECT_DIR$/assets/scss/misc/_member-cart-list.scss" />
+        <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee" />
       </list>
     </option>
   </component>
@@ -167,8 +157,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="1920" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -271,6 +260,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sceapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -311,7 +332,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="translation" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -434,7 +455,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="1920" y="0" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -478,55 +499,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7844575">
-          <caret line="41" column="50" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/member/cart-1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0">
-          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/misc/_member-edit.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.633333">
-          <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/misc/_member-cart-list.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.9">
-          <caret line="258" column="39" selection-start-line="258" selection-start-column="39" selection-end-line="258" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="77" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/common/util-service.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="41.166668">
-          <caret line="191" column="44" selection-start-line="191" selection-start-column="44" selection-end-line="191" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-edit-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -688,27 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/common/constants.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32967034">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/translation/zh-hans.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8681319">
-          <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/translation/en-us.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18053375">
-          <caret line="57" column="44" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/api/api-service.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -796,30 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/common/directives.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/translation/zh-hant.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="21" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/global/_settings.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.6">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/scss/misc/_course-search.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.5333333">
@@ -840,6 +767,110 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.56325823">
           <caret line="88" column="30" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/common/directives.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.85714287">
+          <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/translation/zh-hans.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0989011">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/translation/en-us.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0989011">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/translation/zh-hant.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partial/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24217463">
+          <caret line="10" column="59" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/misc/_dashboard.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.7">
+          <caret line="186" column="51" selection-start-line="186" selection-start-column="51" selection-end-line="186" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/global/_settings.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.6">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/misc/_member-cart-list.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.9">
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.049423393">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-weekday-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1868132">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partial/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.9333334">
+          <caret line="152" column="66" selection-start-line="152" selection-start-column="59" selection-end-line="152" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/common/constants.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33281004">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.031301484">
+          <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
           <folding />
         </state>
       </provider>

@@ -32,7 +32,27 @@ module.exports = [
                 weekdays = constants.WEEKDAYS
             window.localStorage.setItem('weekdays', JSON.stringify(weekdays))
             weekdays = JSON.parse(window.localStorage.getItem('weekdays'))
-            $scope.weekday = _.join(weekdays, '，')
+            totalCount = 0
+            totalCount += 1 if _.indexOf(weekdays, '一') != -1
+            totalCount += 1 if _.indexOf(weekdays, '二') != -1
+            totalCount += 1 if _.indexOf(weekdays, '三') != -1
+            totalCount += 1 if _.indexOf(weekdays, '四') != -1
+            totalCount += 1 if _.indexOf(weekdays, '五') != -1
+            totalCount += 1 if _.indexOf(weekdays, '六') != -1
+            totalCount += 1 if _.indexOf(weekdays, '日') != -1
+
+            if totalCount == 7
+                $scope.weekday = '時間不拘'
+            else if totalCount > 3
+                weekdays.splice(1, totalCount - 3)
+                new_weekdays = []
+                new_weekdays.push weekdays[0]
+                new_weekdays.push '...'
+                new_weekdays.push weekdays[weekdays.length - 2]
+                new_weekdays.push weekdays[weekdays.length - 1]
+                $scope.weekday = _.join(new_weekdays, '，')
+            else
+                $scope.weekday = _.join(weekdays, '，')
 
         $scope.getWeekday()
 

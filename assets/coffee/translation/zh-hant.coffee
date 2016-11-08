@@ -1,6 +1,7 @@
 module.exports = ->
     'input': {
         'account': '使用者帳號'
+        'email': '使用者電子郵件'
         'password': '密碼'
         'login': '登 入'
         'pass': '略 過'

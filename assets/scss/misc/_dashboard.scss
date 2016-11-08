@@ -171,9 +171,22 @@
                     }
                     .value {
                         font-size: $text-size-medium;
-                    }
-                    .small-img {
-                        width: 16px;
+                        padding: 0 5px;
+
+                        .value-col {
+                            display: inline-block;
+
+                            input[type="text"] {
+                                margin-top: -5px;
+                                margin-left: 20px;
+                            }
+
+                            .small-img {
+                                width: 16px;
+                                margin-top: -12px;
+                                position: absolute;
+                            }
+                        }
                     }
                     .keyword {
                         position: absolute;
