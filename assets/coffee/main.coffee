@@ -44,6 +44,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
 .controller('CourseInfoController', require('./controllers/course-info-controller'))
 .controller('CourseCatalogsController', require('./controllers/course-catalogs-controller'))
+.controller('CourseExtendController', require('./controllers/course-extend-controller'))
 .controller('EbookListController', require('./controllers/ebook-list-controller'))
 .controller('EbookInfoController', require('./controllers/ebook-info-controller'))
 .controller('LocationController', require('./controllers/location-controller'))
@@ -158,6 +159,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'courseContent': {
                 templateUrl: 'partial/course/catalogs.html'
+            }
+        }
+
+    .state 'home.course.extend',
+        url: '/extend/:course_id'
+        views: {
+            'courseContent': {
+                templateUrl: 'partial/course/extend.html'
             }
         }
 

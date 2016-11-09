@@ -10,6 +10,9 @@ module.exports = [
         $scope.goBack = ->
             navigation.slide 'home.member.dashboard', {}, 'right'
 
+        $scope.goExtend = (prod_id) ->
+            navigation.slide 'home.course.extend', { 'course_id': prod_id }, 'left'
+
         loadSurveyList = (course_list) ->
             onSuccess = (response) ->
                 list = response.list

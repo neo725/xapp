@@ -39,6 +39,12 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        loadCourseExtend: (course_id, data, onSuccess, onError) ->
+            qs = jQuery.param(data)
+            $http.get("/api/courses/#{course_id}/extend?#{qs}")
+                .success(onSuccess)
+                .error(onError)
+
         addToWish: (shop_id, prod_id, onSuccess, onError) ->
             data =
                 'shopid': shop_id

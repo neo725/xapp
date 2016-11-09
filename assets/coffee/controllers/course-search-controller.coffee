@@ -57,7 +57,6 @@ module.exports = [
             if not $scope.noMoreItemsAvailable and $scope.page > 1
                 #console.log 'loadMore - ' + $scope.page
                 goSearch($scope.page, $scope.pageSize, $scope.keyword)
-#                $scope.$broadcast('scroll.infiniteScrollComplete')
 
         $scope.addOrRemoveFromWish = (course, $event) ->
             $event.stopPropagation()

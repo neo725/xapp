@@ -2,7 +2,6 @@
 
     .pane-content {
         background-color: $stable;
-
     }
     .list.header {
         margin-top: 0;
@@ -24,6 +23,11 @@
                 }
             }
 
+            .button-options {
+                -webkit-transform: rotate(90deg);
+                -moz-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
             .button-search, .button-options, .button-history {
                 color: $light;
 
@@ -45,6 +49,10 @@
             .row {
                 .course-no {
                     font-size: $text-size-small;
+
+                    .course-no-span {
+                        background-color: $stable;
+                    }
                 }
                 .course-title {
                     top: -7px;

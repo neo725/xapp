@@ -38,7 +38,7 @@ module.exports = [
                 i++
             data = {
                 'class_id': $scope.currentCard.Prod_Id
-                'answer': topics
+                'answers': topics
             }
 
             onSuccess = ->
