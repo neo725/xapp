@@ -10,6 +10,7 @@ module.exports = [
         $scope.radius = 43
         $scope.stroke = 4
         $scope.clockwise = false
+        $scope.studyCardVisible = false
 
         $scope.getDatePart = (date) ->
             return moment(date).format('YYYY/M/DD')

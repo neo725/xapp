@@ -62,7 +62,24 @@ module.exports = [
                 locations = constants.LOCATIONS
             window.localStorage.setItem('locations', JSON.stringify(locations))
             locations = JSON.parse(window.localStorage.getItem('locations'))
-            $scope.location = _.join(locations, '，')
+            totalCount = 0
+            totalCount += 1 if _.indexOf(locations, '建國') != -1
+            totalCount += 1 if _.indexOf(locations, '忠孝') != -1
+            totalCount += 1 if _.indexOf(locations, '延平') != -1
+            totalCount += 1 if _.indexOf(locations, '大安') != -1
+            totalCount += 1 if _.indexOf(locations, '台中') != -1
+            totalCount += 1 if _.indexOf(locations, '高雄') != -1
+
+            if totalCount == 6
+                $scope.location = '地點不拘'
+            else if totalCount > 2
+                new_locations = []
+                new_locations.push locations[0]
+                new_locations.push locations[1]
+                new_locations.push '...'
+                $scope.location = _.join(new_locations, '，')
+            else
+                $scope.location = _.join(location, '，')
 
         $scope.getLocation()
 
