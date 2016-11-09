@@ -34,6 +34,7 @@ module.exports = [
 
         $rootScope.loadCart = ->
             onSuccess = (response) ->
+                modal.hideLoading()
                 $rootScope.carts = response.list
             onError = (error, status_code) ->
                 modal.hideLoading()

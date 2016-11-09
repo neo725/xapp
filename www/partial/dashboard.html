@@ -115,7 +115,7 @@
                 </ion-slide>
             </ion-slide-box>
         </div>
-        <div class="search-slides slides" ng-controller="SearchSlideController" ng-cloak>
+        <div class="search-slides slides" ng-controller="SearchSlideController" ng-class="{ 'guest-slides': !studyCardVisible}" ng-cloak>
             <ion-slide-box does-continue="false">
                 <ion-slide ng-repeat="cover in covers">
                     <div class="box cover" ng-style="{'background-image': 'url(' + cover.img + ')', 'height': '100%'}">
@@ -180,22 +180,22 @@
                             </div>
                         </div>
                         <div class="extend-info">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row">
-                                        <span class="badge badge-light keyword">延伸<br />閱讀</span>
+                            <a href="#/home/ebook/info/current/{{ cover.url }}">
+                                <div class="row border-row">
+                                    <div class="col">
+                                        <div class="row">
+                                            <span class="badge badge-light keyword">延伸<br />閱讀</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col col-80 text-left">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="#/home/ebook/info/current/{{ cover.url }}">
+                                    <div class="col col-80 text-left">
+                                        <div class="row">
+                                            <div class="col">
                                                 {{ cover.article }}<br /><i class="icon ion-ios-person-outline"></i>
-                                            </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </ion-slide>

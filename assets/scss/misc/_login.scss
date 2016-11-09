@@ -2,8 +2,9 @@
     .logo-container {
         width: 100%;
         display: inline-block;
-        top: -25px;
+        top: -33px;
         position: relative;
+        z-index: 99;
 
         img {
             max-width: 100%;
@@ -15,7 +16,7 @@
         width: 80%;
         margin: 0 auto;
         position: relative;
-        top: -30px;
+        top: -53px;
 
         .col {
             padding: 0;

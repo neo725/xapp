@@ -10,7 +10,7 @@ module.exports = [
         $scope.radius = 43
         $scope.stroke = 4
         $scope.clockwise = false
-        $scope.studyCardVisible = false
+        $rootScope.studyCardVisible = false
 
         $scope.getDatePart = (date) ->
             return moment(date).format('YYYY/M/DD')
@@ -51,12 +51,12 @@ module.exports = [
             list = response.list
 
             $rootScope.studyCards = list
-            $scope.studyCardVisible = list.length > 0
+            $rootScope.studyCardVisible = list.length > 0
 
             $ionicSlideBoxDelegate.update()
 
         onError = (response) ->
-            $scope.studyCardVisible = false
+            $rootScope.studyCardVisible = false
             #modal.showMessage 'message.error'
 
         api.getStudyCards(onSuccess, onError)

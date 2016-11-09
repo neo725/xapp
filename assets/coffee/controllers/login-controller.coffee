@@ -36,6 +36,8 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 resetLoginButton()
 
                 onSuccess = () ->
+                    modal.hideLoading()
+
                     $rootScope.loadCart()
                     $rootScope.loadWish()
                     $rootScope.callFCMGetToken()
@@ -73,6 +75,8 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
 
         $scope.pass_login = ->
             onSuccess = (response) ->
+                modal.hideLoading()
+
                 window.localStorage.setItem("token", response.token_string)
                 window.localStorage.setItem('is_guest', true)
                 resetLoginButton()
@@ -100,7 +104,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 $('#pass-button').text(text)
 
             $scope.logging = true
-            modal.showLoading '', 'message.logging'
+            modal.showLoading '', 'message.data_loading'
 
             data =
                 id: 'guest'

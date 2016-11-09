@@ -37,6 +37,10 @@ module.exports = [
         )
 
         $scope.$watch ->
+            return $window.innerWidth
+        , (value) ->
+            console.log 'window width : ' + value
+        $scope.$watch ->
             return $window.innerHeight
         , (value) ->
             console.log 'window height : ' + value
