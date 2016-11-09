@@ -54,6 +54,13 @@
                     display: inline-block;
                 }
             }
+            .info-icon {
+                position: absolute;
+                top: 128px;
+                width: 100%;
+                text-align: right;
+                right: -32px;
+            }
         }
         .rear {
             position: relative;
