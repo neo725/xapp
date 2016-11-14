@@ -1,9 +1,13 @@
 <ion-view class="dashboard" ng-controller="DashboardController">
     <ion-nav-buttons side="left">
-        <button class="button button-icon icon ion-person" ng-click="goMemberDashboard()"></button>
+        <button class="button button-icon icon sprite-icon" ng-click="goMemberDashboard()">
+            <i class="sprite-icon-member"></i>
+        </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+        <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
+            <i class="sprite-icon-shoppingcar-o-2x"></i>
+        </button>
         <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
             <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
         </div>

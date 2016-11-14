@@ -25,7 +25,7 @@ gulp.task('sprite', function () {
         .pipe(spritesmith({
             imgName: 'sprite.png',
             cssName: '_sprite.scss',
-            imgPath: '../www/img/sprite.png',
+            imgPath: '../img/sprite.png',
             algorithm: 'top-down'
         }));
 
