@@ -16,7 +16,7 @@ $price-current-item-color: #BE1421;
         }
 
         // course-info
-        .course-info {
+        .course-info-detail {
             .prod-id {
                 color: $dark;
                 background-color: $stable;
@@ -73,13 +73,14 @@ $price-current-item-color: #BE1421;
                 .card {
 
                     .item {
-                        font-size: 1em;
+                        font-size: 1.1em;
 
                         .title {
                             margin-bottom: 10px;
                         }
                         .content {
                             padding-left: 8px;
+                            line-height: 1.7em;
                         }
                     }
                 }

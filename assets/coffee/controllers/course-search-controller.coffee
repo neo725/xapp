@@ -181,6 +181,9 @@ module.exports = [
             $scope.popover.hide()
 
         $scope.arrangeLocation = (loc) ->
+            if loc is null
+                return ''
+
             location = loc.split(',')
 
             location_taipei = true
@@ -205,6 +208,9 @@ module.exports = [
             return location.join(',')
 
         $scope.arrangeWeekday = (wday) ->
+            if wday is null
+                return ''
+
             weekdays = wday.split(',')
 
             weekday_all = true

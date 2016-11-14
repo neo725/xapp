@@ -7,14 +7,33 @@
     div, p, .ebook-title {
         line-height: 1.7em;
     }
-    .intro, .context {
+    .ebook-info-content {
+        font-size: 1.1em;
 
-        table, td {
-            border: 1px solid $dark;
+        .intro, .context {
+
+            table, td {
+                border: 1px solid $dark;
+            }
         }
-    }
-    .context {
-        margin-bottom: 50px;
+        .context {
+            margin-bottom: 50px;
+        }
+
+        .add-favorite {
+            position: fixed;
+            right: 15px;
+            bottom: 10px;
+            z-index: 99;
+
+            .button {
+                color: $ebook-main-color;
+
+                &:before {
+                    font-size: 2.5em;
+                }
+            }
+        }
     }
     .cover-container {
         height: 150px;
@@ -29,7 +48,7 @@
     }
 
     .ebook-title {
-        color: $assertive;
+        color: $ebook-main-color;
         font-weight: bold;
     }
 }

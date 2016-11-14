@@ -43,5 +43,7 @@ module.exports = [
 
         $scope.$on('$ionicView.enter', (evt, data) ->
             loadCatalogEbook(yearmonth, catalog_id)
+            #$('.add-favorite').before($('div.scroll'))
+            $('.ebook-info-content').prepend($('.add-favorite'))
         )
 ]

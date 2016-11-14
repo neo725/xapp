@@ -1,21 +1,23 @@
 <ion-view class="course-info" ng-controller="CourseInfoController">
-    <ion-nav-buttons side="left">
-        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
-        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
-            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
-        </div>
-    </ion-nav-buttons>
-    <ion-nav-title>
-        <h1 class="title">{{ course.Prod_Name }}</h1>
-    </ion-nav-title>
+    <ion-nav-bar>
+        <ion-nav-buttons side="left">
+            <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon icon ion-android-cart" ng-click="goCart()"></button>
+            <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+                <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+            </div>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            <h1 class="title">{{ course.Prod_Name }}</h1>
+        </ion-nav-title>
+    </ion-nav-bar>
     <ion-content class="course-info-content" padding="false">
         <div class="header-image-container">
             <div class="header-image"  ng-style="{'background-image': 'url(' + course.Prod_ImgUrl + ')', 'height': '100%'}"></div>
         </div>
-        <div class="course-info">
+        <div class="course-info-detail">
             <div class="row">
                 <div class="col">
                     <span class="prod-id">{{ course.Prod_Id }}</span>
