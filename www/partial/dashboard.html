@@ -23,8 +23,8 @@
                         <div class="card-progress">
                             <div class="progress">
                                 <div class="round-progress-image">
-                                    <img src="img/rainbowgb@2x.png" ng-show="progress < 100" />
-                                    <img src="img/complete@2x.png" ng-show="progress == 100" />
+                                    <img src="img/rainbowgb@2x.png" ng-if="progress < 100" />
+                                    <img src="img/complete@2x.png" ng-if="progress == 100" />
                                 </div>
                                 <div class="round-progress">
                                     <round-progress
@@ -95,7 +95,7 @@
                                         <div class="col class-time-range">
                                             <div class="text-positive">
                                                 <div>{{ getTimePart(card.nextStartTime) }}</div>
-                                                <div>|</div>
+                                                <div class="rotate-90">»</div>
                                                 <div>{{ getTimePart(card.nextEndTime) }}</div>
                                             </div>
                                         </div>

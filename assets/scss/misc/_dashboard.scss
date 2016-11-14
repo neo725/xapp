@@ -116,6 +116,10 @@
                         div.class-time-range {
                             line-height: 12px;
                             font-weight: bold;
+
+                            .rotate-90 {
+                                @include rotate(90deg);
+                            }
                         }
                     }
                 }
