@@ -7,7 +7,7 @@
         <button class="button button-icon icon ion-minus-circled" ng-click="goShowDelete()" ng-show="false"></button>
         <button class="button button-icon icon ion-android-delete" ng-click="goClearAll()">清空</button>
     </ion-nav-buttons>
-    <ion-content scroll="true">
+    <ion-content scroll="true" class="content-pane">
         <div class="header">
             <div class="text text-left" ng-show="carts.length > 0">您有 {{ carts.length }} 樣商品在購物車裡</div>
             <div class="text text-left" ng-show="carts.length == 0">您沒有任何商品在購物車裡</div>
@@ -16,10 +16,10 @@
             <ion-list show-delete="shouldShowDelete">
                 <ion-item ng-repeat="cart in carts"
                           item="cart"
-                          href="#/home/course/info/{{cart.Shop_Id}}/{{cart.Prod_Id}}" class="item-remove-animate">
+                          href="#/home/course/info/{{ cart.Shop_Id }}/{{ cart.Prod_Id }}" class="item-remove-animate">
                     {{ cart.Prod_Name }}
                     <div class="price-container">
-                        <span class="price">{{cart.Prod_Price | currency:undefined:0}}</span>
+                        <span class="price">{{ cart.Prod_Price | currency:undefined:0 }}</span>
                         <i class="ion-ios-arrow-right"></i>
                     </div>
                     <ion-option-button class="ion-android-delete"
@@ -36,12 +36,12 @@
             </div>
         </div>
     </ion-content>
-    <ion-footer-bar class="footer">
+    <ion-footer-bar class="footer no-bg-color">
         <div class="footer-container">
             <div class="row">
                 <div class="col">請選擇繳費方式</div>
             </div>
-            <div class="row">
+            <div class="row pay-type-row">
                 <div class="col">
                     <ion-radio ng-model="choice" ng-value="'CreditCard'">線上刷卡</ion-radio>
                 </div>
@@ -50,8 +50,8 @@
                 </div>
             </div>
             <div>
-                <button class="button button-block button-positive" ng-disabled="carts.length == 0" ng-click="goStep2(choice)">
-                    下一步
+                <button class="button button-block button-black" ng-disabled="carts.length == 0" ng-click="goStep2(choice)">
+                    {{ '前往結帳' }}
                 </button>
             </div>
         </div>
