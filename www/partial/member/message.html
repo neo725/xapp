@@ -19,19 +19,23 @@
                         <img src="img/member-03-01@2x.png" />
                     </div>
                     <div class="column col-title">
-                        優惠訊息
+                        {{ '優惠訊息' }}
+                    </div>
+                    <div class="column col-expand" ng-click="toggleVisible('promo')">
+                        {{ '顯示全部' }}
                     </div>
                 </div>
                 <div class="content">
                     <div class="message-wrapper color-1">
-                        <div class="message" ng-repeat="message in list_promo"
+                        <div class="message" ng-repeat="message in list_promo | limitTo: promo_count"
                              ng-init="image_type = message.back_img != null"
                              ng-class="{ 'image': image_type }">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
-                                <div class="message-dot-mask" ng-class="{ 'show': $index == list_promo.length - 1}"></div>
+                                <div class="message-dot-mask" ng-class="{ 'show': $last}"></div>
+                                <div class="message-dot-text" ng-class="{ 'show': $last}">{{ '歷史訊息' }}</div>
                             </div>
-                            <div class="message-div">
+                            <div class="message-div" ng-click="goMessageInfo(message)">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
                                         <div class="date-text" ng-init="date = formatDate(message.create_time)">
@@ -40,7 +44,7 @@
                                             <div class="weekday" ng-bind="date.weekday"></div>
                                         </div>
                                     </div>
-                                    <div class="col col-right" ng-class="{ 'col-66': !image_type }">
+                                    <div class="col col-right item" ng-class="{ 'col-66': !image_type }">
                                         <div class="text" ng-bind="message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"
@@ -103,19 +107,23 @@
                         <img src="img/member-03-02@2x.png" />
                     </div>
                     <div class="column col-title">
-                        課程異動
+                        {{ '課程異動' }}
+                    </div>
+                    <div class="column col-expand" ng-click="toggleVisible('course')">
+                        {{ '顯示全部' }}
                     </div>
                 </div>
                 <div class="content">
                     <div class="message-wrapper color-2">
-                        <div class="message" ng-repeat="message in list_course"
+                        <div class="message" ng-repeat="message in list_course | limitTo: course_count"
                              ng-init="image_type = message.back_img != null"
                              ng-class="{ 'image': image_type }">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
                                 <div class="message-dot-mask" ng-class="{ 'show': $index == list_course.length - 1}"></div>
+                                <div class="message-dot-text" ng-class="{ 'show': $index == list_course.length - 1}">{{ '歷史訊息' }}</div>
                             </div>
-                            <div class="message-div">
+                            <div class="message-div" ng-click="goMessageInfo(message)">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
                                         <div class="date-text" ng-init="date = formatDate(message.create_time)">
@@ -124,7 +132,7 @@
                                             <div class="weekday" ng-bind="date.weekday"></div>
                                         </div>
                                     </div>
-                                    <div class="col col-right" ng-class="{ 'col-66': !image_type }">
+                                    <div class="col col-right item" ng-class="{ 'col-66': !image_type }">
                                         <div class="text" ng-bind="message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"
@@ -147,19 +155,23 @@
                         <img src="img/member-03-03@2x.png" />
                     </div>
                     <div class="column col-title">
-                        繳費通知
+                        {{ '繳費通知' }}
+                    </div>
+                    <div class="column col-expand" ng-click="toggleVisible('order')">
+                        {{ '顯示全部' }}
                     </div>
                 </div>
                 <div class="content">
                     <div class="message-wrapper color-3">
-                        <div class="message" ng-repeat="message in list_order"
+                        <div class="message" ng-repeat="message in list_order | limitTo: order_count"
                              ng-init="image_type = message.back_img != null"
                              ng-class="{ 'image': image_type }">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
                                 <div class="message-dot-mask" ng-class="{ 'show': $index == list_order.length - 1}"></div>
+                                <div class="message-dot-text" ng-class="{ 'show': $index == list_order.length - 1}">{{ '歷史訊息' }}</div>
                             </div>
-                            <div class="message-div">
+                            <div class="message-div" ng-click="goMessageInfo(message)">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
                                         <div class="date-text" ng-init="date = formatDate(message.create_time)">
@@ -168,7 +180,7 @@
                                             <div class="weekday" ng-bind="date.weekday"></div>
                                         </div>
                                     </div>
-                                    <div class="col col-right" ng-class="{ 'col-66': !image_type }">
+                                    <div class="col col-right item" ng-class="{ 'col-66': !image_type }">
                                         <div class="text" ng-bind="message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"

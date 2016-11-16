@@ -5,7 +5,9 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
+        <button class="button button-icon icon sprite-icon shoppingcar-icon"
+                ng-class="{ 'shopping-cart-has-item': carts.length > 0 }"
+                ng-click="goCart()">
             <i class="sprite-icon-shoppingcar-o-2x"></i>
         </button>
         <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
@@ -125,7 +127,7 @@
                     <div class="box cover" ng-style="{'background-image': 'url(' + cover.img + ')', 'height': '100%'}">
                         <div class="search-header-container">
                             <div class="search-header">
-                                <h4 ng-bind="cover.title"></h4>
+                                <h3 ng-bind="cover.title"></h3>
                                 <p ng-bind="cover.content"></p>
                             </div>
                         </div>
@@ -154,6 +156,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col value" ng-click="modalWeekday.show()">
+                                                        <img src="img/calendar@2x.png" class="small-icon" />
                                                         {{ weekday }}
                                                     </div>
                                                 </div>
@@ -165,9 +168,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col value"
-                                                         ng-bind="location"
-                                                         ng-click="modalLocation.show()"></div>
+                                                    <div class="col value" ng-click="modalLocation.show()">
+                                                        <img src="img/location-wish@2x.png" class="small-icon" />
+                                                        {{ location }}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,14 +191,14 @@
                             <a href="#/home/ebook/info/current/{{ cover.url }}">
                                 <div class="row border-row">
                                     <div class="col">
-                                        <div class="row">
-                                            <span class="badge badge-light keyword">延伸<br />閱讀</span>
+                                        <div class="extend-icon">
+                                            <img src="img/extend@2x.png" />
                                         </div>
                                     </div>
-                                    <div class="col col-80 text-left">
+                                    <div class="col col-90 text-left">
                                         <div class="row">
                                             <div class="col">
-                                                {{ cover.article }}<br /><i class="icon ion-ios-person-outline"></i>
+                                                {{ cover.article }}
                                             </div>
                                         </div>
                                     </div>

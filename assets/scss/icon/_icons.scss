@@ -18,35 +18,40 @@
 @each $sprite in $spritesheet-sprites {
 
     $sprite-name: str-replace(nth($sprite, 10), '@', '-');
+    $sprite-name: str-replace($sprite-name, '_', '-');
+
     .sprite-icon-#{$sprite-name} {
         @include sprite($sprite);
     }
 }
 
-.bar-header {
-    .buttons {
-        .sprite-icon {
-            width: 94px;
-            height: 86px;
-            overflow: hidden;
-            zoom: 0.38;
-            -moz-transform: scale(0.38);
-            -moz-transform-origin: 0 0;
+.bar-header .buttons, .header {
+    .sprite-icon {
+        width: 94px;
+        height: 86px;
+        overflow: hidden;
+        zoom: 0.38;
+        -moz-transform: scale(0.38);
+        -moz-transform-origin: 0 0;
 
-            i {
-                display: inline-block;
-                position: relative;
-            }
+        i {
+            display: inline-block;
+            position: relative;
+        }
 
-            &.shoppingcar-icon {
-                zoom: 0.5;
-                top: -14px;
-                left: 20px;
+        &.shoppingcar-icon {
+            zoom: 0.5;
+            top: -14px;
+            left: 20px;
 
+            &.shopping-cart-has-item {
                 .sprite-icon-shoppingcar-o-2x {
                     top: 13px;
-                    left: -20px;
                 }
+            }
+            .sprite-icon-shoppingcar-o-2x {
+                top: 10px;
+                left: -20px;
             }
         }
     }

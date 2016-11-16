@@ -39,6 +39,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('MemberFinishListController', require('./controllers/member-finish-list-controller'))
 .controller('MemberCartListController', require('./controllers/member-cart-list-controller'))
 .controller('MemberMessageController', require('./controllers/member-message-controller'))
+.controller('MemberMessageInfoController', require('./controllers/member-message-info-controller'))
 .controller('MemberEditController', require('./controllers/member-edit-controller'))
 .controller('MemberSuggestionController', require('./controllers/member-suggestion-controller'))
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
@@ -243,6 +244,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'memberContent': {
                 templateUrl: 'partial/member/message.html'
+            }
+        }
+
+    .state 'home.member.message-info',
+        url: '/message/:type/:message_id'
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/message-info.html'
             }
         }
 

@@ -24,9 +24,11 @@
             }
 
             .button-options {
-                -webkit-transform: rotate(90deg);
-                -moz-transform: rotate(90deg);
-                transform: rotate(90deg);
+                zoom: 0.26;
+            }
+            .button-history {
+                zoom: 0.33;
+                margin-left: 12px;
             }
             .button-search, .button-options, .button-history {
                 color: $light;
@@ -54,28 +56,40 @@
                         background-color: $stable;
                     }
                 }
-                .course-title {
-                    top: -7px;
-                    position: relative;
+                .course-info {
+                    padding-left: 25px;
+
+                    .course-title {
+                        top: -7px;
+                        position: relative;
+                    }
+                    .course-detail {
+                        .small-icon {
+                            width: 16px;
+                            margin-right: 5px;
+                        }
+                    }
                 }
                 .course-date {
                     background-color: $light;
                     text-align: center;
                     font-size: $text-size-small;
-                    border-radius: 30px;
                     line-height: 14px;
                     border: 2px solid $light-gray-color;
-                    height: 55px;
-                    padding-top: 2px;
+                    padding-top: 5px;
+                    position: absolute;
+                    width: 72px;
+                    height: 72px;
+                    border-radius: 72px;
 
                     div {
-                        margin-top: 2px;
+                        margin-top: 5px;
 
                         &.year {
                             font-size: $text-size-small;
                         }
                         &.date {
-                            font-size: $text-size-medium;
+                            font-size: 23px;
                         }
                         &.weekday {
                             font-size: $text-size-small;
@@ -91,11 +105,16 @@
                     margin-left: 12px;
                     display: inline-block;
                 }
-                .course-price {
-                    font-size: $text-size-medium + 6;
-                    font-style: italic;
-                    color: $gray-color;
+                .col-price {
+                    position: relative;
+                    left: -8px;
+
+                    .course-price {
+                        font-size: 30px;
+                        color: $gray-color;
+                    }
                 }
+
                 .course-keep-img {
                     width: 32px;
                 }

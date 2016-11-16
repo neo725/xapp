@@ -11,6 +11,9 @@
 
                 line-height: 50px;
             }
+            .small-column {
+                position: absolute;
+            }
             .header {
 
                 .col-image {
@@ -21,17 +24,22 @@
                 .col-title {
                     left: 80px;
                 }
+                .col-expand {
+                    font-size: 0.8em;
+                    right: 18px;
+                    color: $light-gray-color;
+                }
             }
             .content {
                 margin-top: 50px;
                 padding-left: 23px;
 
                 .message-wrapper {
-                    padding-left: 20px;
-                    border-left-width: 3px;
+                    padding-left: 30px;
+                    border-left-width: 2px;
 
                     &.color-1 {
-                        border-left: thick solid $message-color-1;
+                        border-left: 2px solid $message-color-1;
 
                         .color-font {
                             color: $message-color-1;
@@ -42,7 +50,7 @@
                         }
                     }
                     &.color-2 {
-                        border-left: thick solid $message-color-2;
+                        border-left: 2px solid $message-color-2;
 
                         .color-font {
                             color: $message-color-2;
@@ -53,7 +61,7 @@
                         }
                     }
                     &.color-3 {
-                        border-left: thick solid $message-color-3;
+                        border-left: 2px solid $message-color-3;
 
                         .color-font {
                             color: $message-color-3;
@@ -80,7 +88,7 @@
                             position: absolute;
                             height: 60px;
                             line-height: 65px;
-                            left: 19px;
+                            left: 18px;
 
                             .message-dot-mask {
                                 position: relative;
@@ -95,11 +103,29 @@
                                     display: block;
                                 }
                             }
+                            .message-dot-text {
+                                position: relative;
+                                font-size: 0.8em;
+                                color: $light-gray-color;
+                                background-color: transparent;
+                                top: -70px;
+                                left: -20px;
+                                display: none;
+
+                                &.show {
+                                    display: inline-block;
+                                }
+                            }
                         }
                         .message-div {
                             height: 60px;
                             line-height: 60px;
                             border: 1px solid $stable;
+
+                            .item {
+                                border-bottom-style: none;
+                                border-bottom-width: 0;
+                            }
 
                             .row {
                                 padding: 0;

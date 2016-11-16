@@ -122,6 +122,7 @@ module.exports = [
                             'zh-TW': 'zh-Hant'
                             'zh-Hans': 'zh-Hans'
                             'zh-CN': 'zh-Hans'
+                            'en-US': 'en-US'
                         }
                         if (language.value of languages)
                             $translate.use(languages[language.value])

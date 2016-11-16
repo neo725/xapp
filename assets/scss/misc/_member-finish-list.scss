@@ -22,12 +22,27 @@
             }
             .color-1 {
                 color: #2B61AC;
+                .star-rating {
+                    .star {
+                        color: #2B61AC;
+                    }
+                }
             }
             .color-2 {
                 color: #B63882;
+                .star-rating {
+                    .star {
+                        color: #B63882;
+                    }
+                }
             }
             .color-3 {
                 color: #F2D000;
+                .star-rating {
+                    .star {
+                        color: #F2D000;
+                    }
+                }
             }
 
             .progress-wrapper {
@@ -57,6 +72,15 @@
                 }
             }
             .bottom-table {
+
+                & > .col {
+                    border-right: 1px solid $stable;
+
+                    &:last-child {
+                        border-right-width: 0;
+                        border-right-style: none;
+                    }
+                }
                 .row {
                     .col {
                         text-align: center;

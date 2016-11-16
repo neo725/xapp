@@ -1,0 +1,28 @@
+.message-info {
+    .content-pane {
+        background-color: $stable;
+    }
+    .card {
+        padding: 20px;
+
+        .color1 {
+            color: $message-color-1;
+        }
+        .color2 {
+            color: $message-color-2;
+        }
+        .color3 {
+            color: $message-color-3;
+        }
+        .header {
+            font-size: 2em;
+            line-height: 1.3em;
+            margin-bottom: 25px;
+        }
+        .content {
+            font-size: 1.1em;
+            color: $message-content;
+            line-height: 1.5em;
+        }
+    }
+}

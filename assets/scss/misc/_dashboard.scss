@@ -1,10 +1,3 @@
-.home-header {
-    &.nav-bar-tabs-top {
-        .bar-header {
-            border-bottom: 1px solid $border-color;
-        }
-    }
-}
 .dashboard {
     background-color: $white-color;
 
@@ -144,7 +137,7 @@
                 background-position: center;
                 background-size: cover;
 
-                h4 {
+                h3 {
                     color: $white-color;
                 }
 
@@ -156,13 +149,14 @@
                 }
 
                 .search-header-container {
-                    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0) 81%, rgba(0, 0, 0, 0) 100%); /* FF3.6-15 */
-                    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0) 81%, rgba(0, 0, 0, 0) 100%); /* Chrome10-25,Safari5.1-6 */
-                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0) 81%, rgba(0, 0, 0, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                    background: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 50%, transparent 100%, transparent 100%); /* FF3.6-15 */
+                    background: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 50%, transparent 100%, transparent 100%); /* Chrome10-25,Safari5.1-6 */
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 50%, transparent 100%, transparent 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
                     .search-header {
                         margin-top: 10px;
                         padding: 6px;
+                        padding-top: 16px;
                         width: 90%;
                         margin: 0 auto;
                         text-align: center;
@@ -171,7 +165,8 @@
 
                 .search-box {
                     padding: 0 6px;
-                    background-color: $white-color;
+                    //background-color: $white-color;
+                    background-color: rgba(255, 255, 255, 0.85);
                     color: $gray-color;
                     width: 90%;
                     margin: 0 auto;
@@ -192,6 +187,7 @@
                             input[type="text"] {
                                 margin-top: -5px;
                                 margin-left: 20px;
+                                background-color: rgba(255, 255, 255, 0);
                             }
 
                             .small-img {
@@ -224,6 +220,13 @@
 
                         .col.value {
                             line-height: 1.1em;
+
+                            .small-icon {
+                                width: 16px;
+                                margin-right: 6px;
+                                position: relative;
+                                top: 3px;
+                            }
                         }
                     }
                     .button-blue {
@@ -233,7 +236,7 @@
                 }
 
                 .extend-info {
-                    height: 72px;
+                    height: 65px;
                     background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.56) 81%, rgba(0,0,0,0.56) 100%); /* FF3.6-15 */
                     background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.56) 81%,rgba(0,0,0,0.56) 100%); /* Chrome10-25,Safari5.1-6 */
                     background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.56) 81%,rgba(0,0,0,0.56) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -266,6 +269,15 @@
                         top: 13px;
                         font-size: 8px;
                         line-height: 12px;
+                    }
+                    .extend-icon {
+                        position: relative;
+                        top: -9px;
+                        left: 6px;
+
+                        img {
+                            width: 22px;
+                        }
                     }
                 }
             }
@@ -388,6 +400,7 @@
 
     &.modal-box {
         height: 360px !important;
+        background-color: $light;
     }
 
     .col {

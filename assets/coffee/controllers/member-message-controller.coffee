@@ -22,9 +22,25 @@ module.exports = [
 
             return item
 
+        $scope.goMessageInfo = (message) ->
+            params =
+                'type': message.m_type
+                'message_id': message.messageId
+            navigation.slide 'home.member.message-info', params, 'left'
+
+        $scope.toggleVisible = (type) ->
+            count = $scope[type + '_count']
+            console.log $scope['list_' + type]
+
+            if count == 5
+                count = $scope['list_' + type].length
+            else
+                count = 5
+
+            $scope[type + '_count'] = count
+
         # message type :
         # promo/course/order
-#        $scope.message.img = 'img/membersbg@2x.jpg'
 
         loadMessageList = (perpage, type) ->
             modal.showLoading('', 'message.data_loading')
@@ -32,12 +48,13 @@ module.exports = [
             onSuccess = (response) ->
                 modal.hideLoading()
                 $scope['list_' + type] = response.list
+                $scope[type + '_count'] = 5
             onError = ->
                 modal.hideLoading()
 
             api.getMessageList(1, perpage, type, onSuccess, onError)
 
-        loadMessageList(5, 'promo')
-        loadMessageList(5, 'course')
-        loadMessageList(5, 'order')
+        loadMessageList(500, 'promo')
+        loadMessageList(500, 'course')
+        loadMessageList(500, 'order')
 ]

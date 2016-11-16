@@ -48,7 +48,7 @@ module.exports = [
                 new_weekdays = []
                 new_weekdays.push weekdays[0]
                 new_weekdays.push '...'
-                new_weekdays.push weekdays[weekdays.length - 2]
+                #new_weekdays.push weekdays[weekdays.length - 2]
                 new_weekdays.push weekdays[weekdays.length - 1]
                 $scope.weekday = _.join(new_weekdays, '，')
             else
@@ -75,7 +75,7 @@ module.exports = [
             else if totalCount > 2
                 new_locations = []
                 new_locations.push locations[0]
-                new_locations.push locations[1]
+                #new_locations.push locations[1]
                 new_locations.push '...'
                 $scope.location = _.join(new_locations, '，')
             else

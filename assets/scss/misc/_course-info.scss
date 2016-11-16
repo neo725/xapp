@@ -153,6 +153,7 @@ $price-current-item-color: #BE1421;
     &.modal-box {
         top: 30%;
         min-height: 100px !important;
+        background-color: $light;
     }
     .price-item {
         color: $price-item-color;
