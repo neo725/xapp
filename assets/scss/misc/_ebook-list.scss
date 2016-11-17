@@ -19,7 +19,30 @@
         //overflow-y: scroll;
 
         .has-tabs-top {
-            top: 51px;
+            top: 49px;
+        }
+        .intro {
+            background-color: #F6F6F6;
+
+            .image-block {
+                img {
+                    max-width: 100%;
+                }
+            }
+            .text-block {
+                padding: 5px 25px 10px 25px;
+
+                .title {
+                    color: $ebook-main-color;
+                    margin-bottom: 10px;
+                    font-size: 1.5em;
+                    line-height: 1.2em;
+                }
+                .content {
+                    font-size: 1.1em;
+                    line-height: 1.5em;
+                }
+            }
         }
         & .group-list {
             padding-bottom: 20px;

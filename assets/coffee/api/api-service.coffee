@@ -264,6 +264,11 @@ module.exports = ['$http', ($http) ->
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)
 
+        getEbookIntro: (onSuccess, onError) ->
+            $http.get('/api/ebook/intro')
+                .success(onSuccess)
+                .error(onError)
+
         postSocialLogin: (provider, token, onSuccess, onError) ->
             data =
                 provider: provider

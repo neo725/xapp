@@ -16,6 +16,15 @@
             <ion-tab class="tab-active-1" title="{{ '最新內容' }}" badge="0" badge-style="badge-assertive">
                 <ion-nav-view name="tab-tab1">
                     <ion-content>
+                        <div class="intro">
+                            <div class="image-block" ng-if="intro.imgurl">
+                                <img ng-src="{{ intro.imgurl }}" />
+                            </div>
+                            <div class="text-block">
+                                <div class="title" ng-bind="intro.title"></div>
+                                <div class="content" ng-bind="intro.content"></div>
+                            </div>
+                        </div>
                         <div class="group-list" ng-repeat="ebook in ebooks">
                             <div class="item">
                                 <span class="group-title">{{ ebook.catalog_name }}</span>

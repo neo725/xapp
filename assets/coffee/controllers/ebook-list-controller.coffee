@@ -1,6 +1,8 @@
 module.exports = [
     '$scope', '$ionicHistory', '$translate', 'navigation', 'modal', 'plugins', 'api',
     ($scope, $ionicHistory, $translate, navigation, modal, plugins, api) ->
+        $scope.intro = {}
+
         $scope.goBack = () ->
             backView = $ionicHistory.backView()
 
@@ -43,6 +45,22 @@ module.exports = [
 
             api.deleteFavoriteEbook(para.apply, para.catalog_id, onSuccess, onError)
 
+        loadEbookIntro = () ->
+            modal.showLoading('', 'message.data.loading')
+
+            onSuccess = (response) ->
+                modal.hideLoading()
+                $scope.intro =
+                    title: response.title
+                    imgurl: response.imgurl
+                    content: response.content
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                console.log error
+                console.log status_code
+
+            api.getEbookIntro(onSuccess, onError)
+
         loadCurrentEbook = () ->
             modal.showLoading('', 'message.data_loading')
 
@@ -78,7 +96,7 @@ module.exports = [
 
             api.getMyFavoriteEbooks(page, perpage, onSuccess, onError)
 
-
+        loadEbookIntro()
         loadCurrentEbook()
         loadCatalogEbooks(1, 5)
         $scope.$on('$ionicView.enter', (evt, data) ->
