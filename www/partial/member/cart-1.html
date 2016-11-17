@@ -4,13 +4,14 @@
     </ion-nav-buttons>
     <ion-nav-title>購物車</ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-minus-circled" ng-click="goShowDelete()" ng-show="false"></button>
-        <button class="button button-icon icon ion-android-delete" ng-click="goClearAll()">清空</button>
+        <button class="button button-icon icon ion-minus-circled" ng-click="goShowDelete()" ng-if="false"></button>
+        <button class="button button-icon icon ion-android-delete" ng-click="goClearAll()" ng-if="false">清空</button>
     </ion-nav-buttons>
     <ion-content scroll="true" class="content-pane">
         <div class="header">
-            <div class="text text-left" ng-show="carts.length > 0">您有 {{ carts.length }} 樣商品在購物車裡</div>
-            <div class="text text-left" ng-show="carts.length == 0">您沒有任何商品在購物車裡</div>
+            <div class="text text-left text-gray" ng-show="carts.length > 0">您有 {{ carts.length }} 樣商品在購物車裡</div>
+            <div class="text text-left text-gray" ng-show="carts.length == 0">您沒有任何商品在購物車裡</div>
+            <div class="link text-right" ng-click="goClearAll()">{{ '清空' }}</div>
         </div>
         <div class="content">
             <ion-list show-delete="shouldShowDelete">
@@ -39,14 +40,24 @@
     <ion-footer-bar class="footer no-bg-color">
         <div class="footer-container">
             <div class="row">
-                <div class="col">請選擇繳費方式</div>
+                <div class="col text-gray">請選擇繳費方式</div>
             </div>
             <div class="row pay-type-row">
                 <div class="col">
-                    <ion-radio ng-model="choice" ng-value="'CreditCard'">線上刷卡</ion-radio>
+                    <ion-radio ng-model="choice" ng-value="'CreditCard'" ng-class="{ 'selected': choice == 'CreditCard' }">
+                        <i
+                            ng-class="{ 'ion-android-radio-button-on': choice == 'CreditCard',
+                                        'ion-android-radio-button-off': choice != 'CreditCard' }"></i>
+                        <span class="radio-title">線上刷卡</span>
+                    </ion-radio>
                 </div>
                 <div class="col">
-                    <ion-radio ng-model="choice" ng-value="'ATM'">ATM 轉帳</ion-radio>
+                    <ion-radio class="no-border" ng-model="choice" ng-value="'ATM'" ng-class="{ 'selected': choice == 'ATM' }">
+                        <i
+                            ng-class="{ 'ion-android-radio-button-on': choice == 'ATM',
+                                        'ion-android-radio-button-off': choice != 'ATM' }"></i>
+                        <span class="radio-title">ATM 轉帳</span>
+                    </ion-radio>
                 </div>
             </div>
             <div>

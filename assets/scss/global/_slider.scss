@@ -1,0 +1,15 @@
+// .slides .slider-pager .slider-pager-page:before
+.slides {
+    .slider-pager {
+        .slider-pager-page {
+            font-size: 10px;
+
+            &:before {
+                content: '●';
+            }
+        }
+        i.icon {
+            display: none;
+        }
+    }
+}

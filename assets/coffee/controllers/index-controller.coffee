@@ -4,8 +4,10 @@ constants = require('../common/constants')
 # http://ngcordova.com/docs/plugins/globalization/
 
 module.exports = [
-    '$rootScope', '$scope', '$translate', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast', '$cordovaBadge', 'navigation', 'modal', 'api'
-    ($rootScope, $scope, $translate, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast, $cordovaBadge, navigation, modal, api) ->
+    '$rootScope', '$scope', '$translate', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast',
+    '$cordovaVibration', '$cordovaBadge', 'navigation', 'modal', 'api',
+    ($rootScope, $scope, $translate, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast,
+        $cordovaVibration, $cordovaBadge, navigation, modal, api) ->
 
         network_offline = false
 
@@ -138,6 +140,8 @@ module.exports = [
             if typeof FCMPlugin != 'undefined'
                 FCMPlugin.onNotification(
                     (data) ->
+                        # Vibrate 100ms
+                        $cordovaVibration.vibrate(100)
                         $cordovaToast.show('You got new notification', 'long', 'top')
                         console.log data
                         #$cordovaBadge.set 10
