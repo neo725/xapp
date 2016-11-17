@@ -72,6 +72,82 @@
             }
         }
     }
+
+    .pane-content {
+        background-color: $pane-color;
+        padding-top: 5px;
+
+        .member-info {
+            background-color: $light;
+            margin-top: 10px;
+
+            .edit-button {
+                position: absolute;
+                padding: 5px 10px;
+                right: 6px;
+                top: 6px;
+
+                color: $gray-color;
+                background-color: $pane-color;
+            }
+            .avatars {
+                text-align: center;
+
+                img {
+                    width: 100px;
+                }
+
+                .change-pic {
+                    position: absolute;
+                    display: inline-block;
+                    padding: 10px 10px 6px 10px;
+                    margin-top: 60px;
+                    margin-left: -44px;
+
+                    img {
+                        width: 32px;
+                    }
+                }
+            }
+
+            .detail-col {
+                padding-top: 20px;
+
+                .name-line {
+                    font-size: 0.8em;
+                    margin-bottom: 5px;
+
+                    .gender-title {
+                        position: absolute;
+                        margin-top: 9px;
+                        margin-left: 5px;
+                    }
+                    .name {
+                        font-size: 2.5em;
+                    }
+                }
+                .line {
+                    color: $gray-color;
+                    font-size: 1.1em;
+                }
+            }
+
+            .item-row {
+                border-top: 1px solid $border-color;
+                margin-top: 5px;
+
+                .list {
+                    margin-top: 0;
+
+                    .item {
+                        border-width: 0;
+                        border-style: none;
+                    }
+                }
+            }
+
+        }
+    }
 }
 
 .function-box {

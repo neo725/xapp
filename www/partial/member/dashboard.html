@@ -15,8 +15,8 @@
             <h1 class="title">會員功能</h1>
         </ion-nav-title>
     </ion-nav-bar>
-    <ion-content class="has-header" padding="true" ng-class="{'pane-content': true}">
-        <div class="bg">
+    <ion-content class="has-header" ng-class="{ 'pane-content': true }">
+        <div class="bg" ng-if="false">
             <div class="item-avatar">
                 <img class="img-avatar" src="img/member-pic@2x.png" />
                 <div class="title" ng-click="modalFunction.show()">
@@ -25,28 +25,51 @@
                 </div>
             </div>
         </div>
+        <div class="member-info">
+            <div class="edit-button">
+                編輯
+            </div>
+            <div class="row">
+                <div class="col col-33 avatars">
+                    <img src="img/member-pic@2x.png" />
+                    <div class="change-pic" ng-click="takePicture()">
+                        <img src="img/changepic@2x.png" />
+                    </div>
+                </div>
+                <div class="col detail-col">
+                    <div class="name-line">
+                        <span class="name">蕭家豪</span>
+                        <span class="gender-title">先生</span>
+                    </div>
+                    <div class="line phone-line">
+                        0986123456
+                    </div>
+                    <div class="line email-line">
+                        jasonshaw@sce.pccu.edu.tw
+                    </div>
+                </div>
+            </div>
+            <div class="row item-row">
+                <div class="col">
+                    <ion-list>
+                        <ion-item>
+                            <div class="item-toggle"
+                                 toggle-class="toggle-positive"
+                                 ng-click="toggleNotification($event)">
+                                <div><span>{{ '通知課程學習相關資訊功能' }}</span></div>
+                                <label class="toggle toggle-positive disable-user-behavior"
+                                       ng-click="toggleNotification($event)">
+                                    <input type="checkbox" ng-checked="checkNotificationIsChecked()">
+                                    <div class="track"><div class="handle"></div></div>
+                                </label>
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                </div>
+            </div>
+        </div>
         <div class="content">
-            <div class="row">
-                <div class="col col-1 border-right" ng-click="goWishList()">
-                    <img class="item-img" src="img/member-01@2x.png" />
-                    <p>考慮清單</p>
-                </div>
-                <div class="col col-2" ng-click="goOrderList()">
-                    <img class="item-img" src="img/member-02@2x.png" />
-                    <p>訂單管理</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col col-3 border-top border-right" ng-click="goMessageList()">
-                    <img class="item-img" src="img/member-03@2x.png" />
-                    <p>學習訊息</p>
-                </div>
-                <div class="col col-4 border-top" ng-click="goFinishList()">
-                    <img class="item-img" src="img/member-04@2x.png" />
-                    <p>已完成的課程</p>
-                </div>
-            </div>
-            <button class="button button-block button-dark" ng-click="logout()">
+            <button class="button button-block button-positive" ng-click="logout()">
                 登出
             </button>
             <div class="row">

@@ -29,6 +29,9 @@ module.exports = [
                 navigation.slide 'home.member.suggestion', {}, 'up'
             )
 
+        $scope.takePicture = ->
+            console.log 'take picture...'
+
         $scope.logout = ->
             $scope.modalFunction.hide()
             $rootScope.logout()
