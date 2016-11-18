@@ -5,75 +5,6 @@
 //}
 .member-dashboard {
     .pane-content {
-        .bg {
-            height: 160px;
-            background-image: url('../img/membersbg@2x.jpg');
-            background-repeat: no-repeat;
-            //background-attachment: fixed;
-            background-position: center;
-            background-size: cover;
-
-            .item-avatar {
-                position: absolute;
-                top: 133px;
-                width: 90%;
-
-                .img-avatar {
-                    max-width: 90px;
-                    max-height: 90px;
-                    border: 1px solid $white-color;
-                    margin-left: -10px;
-                }
-
-                h2, h3 {
-                    margin-left: 28px;
-                    margin-top: 40px;
-                    img {
-                        width: 16px;
-                    }
-                }
-                p {
-                    margin-left: 28px;
-                    margin-top: -6px;
-                    color: $light-gray-color;
-                }
-            }
-        }
-        .content {
-            top: 66px;
-
-            .col {
-                text-align: center;
-
-                &.col-1 {
-                    padding-top: 20px;
-                    padding-left: 20px;
-                }
-                &.col-2 {
-                    padding-top: 20px;
-                    padding-right: 20px;
-                }
-                &.col-3 {
-                    padding-top: 20px;
-                    padding-left: 20px;
-                    padding-bottom: 20px;
-                }
-                &.col-4 {
-                    padding-top: 20px;
-                    padding-right: 20px;
-                    padding-bottom: 20px;
-                }
-                .item-img {
-                    width: 50px;
-                }
-                p {
-                    color: $gray-color;
-                }
-            }
-        }
-    }
-
-    .pane-content {
         background-color: $pane-color;
         padding-top: 5px;
 
@@ -88,13 +19,35 @@
                 top: 6px;
 
                 color: $gray-color;
-                background-color: $pane-color;
+                background-color: #f5f5f5;
+
+                font-size: 12px;
             }
             .avatars {
                 text-align: center;
 
-                img {
+                .crop-mask {
                     width: 100px;
+                    height: 100px;
+                    overflow: hidden;
+                    position: relative;
+                    border-radius: 100px;
+
+                    img {
+                        position: absolute;
+                        margin: auto;
+                        min-height: 100%;
+                        min-width: 100%;
+                        //max-height: 100px;
+                        //max-width: 100px;
+
+                        /* For the following settings we set 100%, but it can be higher if needed
+                        See the answer's update */
+                        left: -100%;
+                        right: -100%;
+                        top: -100%;
+                        bottom: -100%;
+                    }
                 }
 
                 .change-pic {
@@ -113,7 +66,7 @@
                 padding-top: 20px;
 
                 .name-line {
-                    font-size: 0.8em;
+                    font-size: 13px;
                     margin-bottom: 5px;
 
                     .gender-title {
@@ -122,12 +75,12 @@
                         margin-left: 5px;
                     }
                     .name {
-                        font-size: 2.5em;
+                        font-size: 28px;
                     }
                 }
                 .line {
-                    color: $gray-color;
-                    font-size: 1.1em;
+                    color: #878786;
+                    font-size: 16px;
                 }
             }
 
@@ -141,10 +94,53 @@
                     .item {
                         border-width: 0;
                         border-style: none;
+
+                        font-size: 18px;
                     }
                 }
             }
 
+        }
+
+        .content {
+            padding: 20px;
+
+            .function-list {
+                .row {
+                    margin-bottom: 20px;
+
+                    .col {
+                        padding: 0;
+                    }
+                }
+                .function-item {
+                    text-align: center;
+
+                    .function-image {
+                        img {
+                            width: 50px;
+                        }
+                    }
+                    .function-title {
+                        font-size: 17px;
+                        color: #575756;
+                    }
+                    .function-count {
+                        font-size: 13px;
+                        color: #575756;
+
+                        .count {
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+            .button {
+                &.button-positive {
+                    font-size: 20px;
+                    background-color: #1d70b7;
+                }
+            }
         }
     }
 }

@@ -26,13 +26,17 @@
             </div>
         </div>
         <div class="member-info">
-            <div class="edit-button">
+            <div class="edit-button" ng-click="goEdit()">
                 編輯
             </div>
             <div class="row">
-                <div class="col col-33 avatars">
-                    <img src="img/member-pic@2x.png" />
-                    <div class="change-pic" ng-click="takePicture()">
+                <div class="col col-33 avatars" ng-click="takePicture()">
+                    <div class="crop-mask">
+                        <img id="guest-avatars2" src="img/member-pic@2x.png" ng-if="false" />
+                        <img id="guest-avatars" src="img/fake-avatars.jpg" ng-if="avatars == undefined" />
+                        <img id="user-avatars" ng-src="{{ 'data:image/jpeg;base64,' + avatars }}" ng-if="avatars != undefined" />
+                    </div>
+                    <div class="change-pic">
                         <img src="img/changepic@2x.png" />
                     </div>
                 </div>
@@ -69,11 +73,44 @@
             </div>
         </div>
         <div class="content">
+            <div class="function-list">
+                <div class="row">
+                    <div class="col function-item" ng-click="goMessageList()">
+                        <div class="function-image"><img src="img/member-03@2x.png" /></div>
+                        <div class="function-title">學習訊息</div>
+                        <div class="function-count">(<span class="count">3</span>)</div>
+                    </div>
+                    <div class="col col-33 function-item" ng-click="goWishList()">
+                        <div class="function-image"><img src="img/member-01@2x.png" /></div>
+                        <div class="function-title">收藏清單</div>
+                        <div class="function-count">(<span class="count">15</span>)</div>
+                    </div>
+                    <div class="col col-33 function-item" ng-click="goOrderList()">
+                        <div class="function-image"><img src="img/member-02@2x.png" /></div>
+                        <div class="function-title">訂單管理</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col function-item" ng-click="goFinishList()">
+                        <div class="function-image"><img src="img/member-04@2x.png" /></div>
+                        <div class="function-title">已完成課程</div>
+                        <div class="function-count">(<span class="count">8</span>)</div>
+                    </div>
+                    <div class="col col-33 function-item" ng-click="goSuggest()">
+                        <div class="function-image"><img src="img/opinionmail@2X.png" /></div>
+                        <div class="function-title">意見信箱</div>
+                    </div>
+                    <div class="col col-33 function-item">
+                        <div class="function-image"><img src="img/payedit@2x.png" /></div>
+                        <div class="function-title">付款設定</div>
+                    </div>
+                </div>
+            </div>
             <button class="button button-block button-positive" ng-click="logout()">
                 登出
             </button>
             <div class="row">
-                <div class="col">
+                <div class="col text-center">
                     App version: {{ app_version }}
                 </div>
             </div>
