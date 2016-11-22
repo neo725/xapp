@@ -76,6 +76,10 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                 'ion.rangeSlider': {
                     path: 'www/lib/ion.rangeSlider/js/ion.rangeSlider.js',
                     exports: null
+                },
+                'jr-crop': {
+                    path: 'www/lib/jr-crop/dist/jr-crop.js',
+                    exports: null
                 }
             }
         }))
@@ -90,7 +94,7 @@ gulp.task('appjs', ['coffeeifyjs'], function () {
             insertGlobals: false,
             debug: debug,
             external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'ion-affix',
-                'lodash', 'moment', 'angular-svg-round-progressbar', 'ion.rangeSlider']
+                'lodash', 'moment', 'angular-svg-round-progressbar', 'ion.rangeSlider', 'jr-crop']
         }))
         .pipe(gif(!debug, uglify()))
         .pipe(gulp.dest('www/js'));

@@ -1,8 +1,10 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$ionicModal', '$cordovaAppVersion', '$cordovaCamera', '$timeout', 'modal', 'navigation', 'api',
-    ($rootScope, $scope, $ionicHistory, $ionicModal, $cordovaAppVersion, $cordovaCamera, $timeout, modal, navigation, api) ->
+    '$rootScope', '$scope', '$ionicHistory', '$ionicModal', '$cordovaAppVersion', '$cordovaCamera', '$timeout', '$jrCrop',
+    'modal', 'navigation', 'api',
+    ($rootScope, $scope, $ionicHistory, $ionicModal, $cordovaAppVersion, $cordovaCamera, $timeout, $jrCrop,
+        modal, navigation, api) ->
         $scope.user = {}
         $scope.notify = constants.DEFAULT_NOTIFICATION_SETTING
 
@@ -38,19 +40,34 @@ module.exports = [
             if $scope.notify == 't'
                 $scope.notify = 'f'
             else
-                $scopeg.notify = 't'
+                $scope.notify = 't'
+            updateSetting()
 
         $scope.checkNotificationIsChecked = ->
             if $scope.notify != 'f'
                 $scope.notify = 't'
             return $scope.notify == 't'
 
+        updateSetting = () ->
+            data =
+                'notify': 't'
+            data.notify = 'f' if $scope.checkNotificationIsChecked() == false
+
+            onSuccess = (response) ->
+                console.log 'updateSetting.success'
+            onError = (error, status_code) ->
+                console.log 'updateSetting.error'
+                console.log error
+                console.log status_code
+
+            api.postUserSetting('notify', "'#{data.notify}'", onSuccess, onError)
+
         $scope.takePicture = ->
             options =
                 quality: 80
                 destinationType: Camera.DestinationType.DATA_URL
                 sourceType: Camera.PictureSourceType.CAMERA
-                allowEdit: false
+                allowEdit: true
                 encodingType: Camera.EncodingType.JPEG
                 targetWidth: 200
                 targetHeight: 200
@@ -58,6 +75,16 @@ module.exports = [
                 correctOrientation: true
 
             $cordovaCamera.getPicture(options).then (imageData) ->
+#                    $jrCrop.crop(
+#                        url: 'data:image/jpeg;base64,' + imageData
+#                        width: 200
+#                        height: 200
+#                        circle: true
+#                    ).then (canvas) ->
+#                        image = canvas.toDataURL()
+#                        console.log image
+#                    , (->)
+
                     $scope.avatars = imageData
                     #$('#user-avatars').attr 'src', 'data:image/jpeg;base64,' + $scope.avatars
                     fixAvatarImage()
