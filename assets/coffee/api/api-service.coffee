@@ -294,6 +294,19 @@ module.exports = ['$http', ($http) ->
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)
 
+        postImage: (key, image_in_base64, onSuccess, onError) ->
+            data =
+                'para': key
+                'data': image_in_base64
+            $http.post('/api/img', data)
+                .success(onSuccess)
+                .error(onError)
+
+        getImageFromUrl: (url, onSuccess, onError) ->
+            $http.get(url)
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

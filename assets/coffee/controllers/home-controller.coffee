@@ -25,6 +25,8 @@ module.exports = [
 
                 window.localStorage.removeItem("token")
                 window.localStorage.removeItem("is_guest")
+                window.localStorage.removeItem("avatar")
+
                 delete $rootScope['cart']
                 delete $rootScope['wish']
                 delete $rootScope['member']

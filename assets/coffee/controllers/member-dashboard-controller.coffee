@@ -47,7 +47,7 @@ module.exports = [
 
         $scope.takePicture = ->
             options =
-                quality: 50
+                quality: 80
                 destinationType: Camera.DestinationType.DATA_URL
                 sourceType: Camera.PictureSourceType.CAMERA
                 allowEdit: false
@@ -59,18 +59,17 @@ module.exports = [
 
             $cordovaCamera.getPicture(options).then (imageData) ->
                     $scope.avatars = imageData
-                    $('#user-avatars').attr 'src', 'data:image/jpeg;base64,' + $scope.avatars
-                    $timeout ->
-                        $avatars = $('#user-avatars');
-                        w = $avatars.width()
-                        h = $avatars.height()
-                        $avatars.css('max-width', '')
-                        $avatars.css('max-height', '')
-                        if h > w
-                            $avatars.css('max-width', '100px')
-                        else
-                            $avatars.css('max-height', '100px')
-                    , 100
+                    #$('#user-avatars').attr 'src', 'data:image/jpeg;base64,' + $scope.avatars
+                    fixAvatarImage()
+                    uploadAvatar = ->
+                        onSuccess = ->
+                            window.localStorage.setItem('avatar', imageData)
+                            modal.hideLoading()
+                        onError = ->
+                            modal.hideLoading()
+                        api.postImage('avatar', imageData, onSuccess, onError)
+                    modal.showLoading('', 'message.data_saving')
+                    uploadAvatar()
                 , (error) ->
                     console.log error
 
@@ -78,30 +77,62 @@ module.exports = [
             $scope.modalFunction.hide()
             $rootScope.logout()
 
+        retriveAvatarImageSize = ->
+            $avatar = $('.avatar-img');
+            width = $avatar.width()
+            height = $avatar.height()
+
+            return width * height
+
+        $scope.$watch ->
+                return retriveAvatarImageSize()
+            , (value) ->
+                fixAvatarImage()
+
+        fixAvatarImage = ->
+            $timeout ->
+                $avatars = $('.avatar-img')
+                $avatars.css('max-width', '')
+                $avatars.css('max-height', '')
+                width = $avatars.width()
+                height = $avatars.height()
+                if width < height
+                    $avatars.css('max-width', '100px')
+                else
+                    $avatars.css('max-height', '100px')
+            , 100
+
+        loadAvatar = ->
+            onSuccess = (response) ->
+                if response
+                    onSuccess = (response) ->
+                        $scope.avatars = response
+                    onError = (error, status_code) ->
+                        delete $scope['avatars']
+
+                    api.getImageFromUrl response.para_value, onSuccess, onError
+                modal.hideLoading()
+            onError = (error, status_code) ->
+                modal.hideLoading()
+
+            modal.showLoading('', 'message.data_loading')
+            api.getUserSetting 'avatar', onSuccess, onError
+
         loadData = ->
-            loadUserSetting = ->
-                onSuccess = (response) ->
-                    if (response != null)
-                        $scope.notify = response.para_value
-                    modal.hideLoading()
-
-                onError = (error, status_code) ->
-                    console.log status_code
-                    console.log error
-                    modal.hideLoading()
-
-                api.getUserSetting 'notify', onSuccess, onError
-
-            onSuccess = (data) ->
-                $scope.user = data
-                loadUserSetting()
+            onSuccess = (response) ->
+                if (response != null)
+                    $scope.notify = response.para_value
+                modal.hideLoading()
+                loadAvatar()
 
             onError = (error, status_code) ->
                 console.log status_code
                 console.log error
-                loadUserSetting()
+                modal.hideLoading()
+                loadAvatar()
 
-            $rootScope.getMemberData(onSuccess, onError)
+            modal.showLoading('', 'message.data_loading')
+            api.getUserSetting 'notify', onSuccess, onError
 
         $scope.$on('$ionicView.enter', ->
             loadData()
