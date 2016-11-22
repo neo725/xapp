@@ -1,13 +1,26 @@
 .member-edit-view {
-    .edit-content {
+    .list {
+        > .item {
+            padding-left: 30px;
+            padding-right: 30px;
 
-        .avatar-col {
-            text-align: center;
+            overflow: visible;
+            text-overflow: initial;
+            white-space: normal;
 
-            img {
-                width: 80px;
+            &:first-child {
+                border-top-width: 0;
+                border-top-style: none;
+            }
+            &:last-child {
+                border-bottom-width: 0;
+                border-bottom-style: none;
             }
         }
+    }
+    .edit-content {
+        font-size: 18px;
+
         .ng-submitted {
             .item {
                 &.has-error {
@@ -17,7 +30,91 @@
                 }
             }
         }
-        // .list .item.item-input.item-input-thin input[type="text"]
+
+        input[type="text"] {
+            padding: 5px;
+        }
+
+        .row {
+            margin-bottom: 16px;
+        }
+
+        .col-name {
+            padding-top: 16px;
+
+            .name-item {
+                margin-right: 10px;
+            }
+        }
+        .col-gender {
+            flex: 0 0 40%;
+            max-width: 40%;
+
+            .gender-item {
+                float: left;
+
+                &:first-child {
+                    padding-right: 10px;
+                }
+                .item {
+                    i {
+                        color: $radio-button-color;
+                    }
+                    &.selected {
+                        i {
+                            color: $radio-button-selected-color;
+                        }
+                    }
+                }
+                .radio-content {
+                    .ion-checkmark {
+                        display: none;
+                    }
+                    .item-content {
+                        padding: 5px;
+                        background-color: $light;
+
+                        i {
+                            font-size: 24px;
+                        }
+                        .radio-title {
+                            position: relative;
+                            top: -4px;
+                        }
+                    }
+                }
+            }
+        }
+        .col-birth {
+            select {
+                border: 0 none;
+                padding: 8px;
+                background-color: $radio-button-color;
+            }
+            .birth-item {
+                margin-right: 10px;
+            }
+        }
+        .col-email {
+            .email-item-value {
+                margin-top: 10px;
+            }
+        }
+        .col-address {
+            .address-item-value {
+                margin-top: 10px;
+
+                input[type="text"] {
+                    border: 1px solid #A4A4A4;
+                    width: 100%;
+                }
+            }
+            .address-item-tips {
+                color: #9C9C9C;
+                font-size: 12px;
+            }
+        }
+
         .item {
             border: 0;
 
@@ -94,6 +191,30 @@
             .new-item {
                 color: #1664C0;
             }
+        }
+    }
+    .row {
+        padding-left: 0;
+        padding-right: 0;
+
+        .col {
+            padding-left: 0;
+            padding-right: 0;
+
+            &.col-right {
+                * {
+                    float: right;
+                }
+            }
+        }
+    }
+    .row {
+        .tip {
+            font-size: 12px;
+            color: #9C9C9C;
+        }
+        .tip-assertive {
+            color: $assertive;
         }
     }
 }

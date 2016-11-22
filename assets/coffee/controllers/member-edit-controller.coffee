@@ -188,7 +188,33 @@ module.exports = [
             resetPasswordField()
             $rootScope.getMemberData(onSuccess, onError)
 
+        init = ->
+            birth_year_opts = []
+            year = new Date().getFullYear()
+            limit_year = year - 100
+            while year > limit_year
+                birth_year_opts.push year
+                year--
+            $scope.birth_year_opts = birth_year_opts
+
+            birth_month_opts = []
+            month = 1
+            limit_month = 12
+            while month <= limit_month
+                birth_month_opts.push month
+                month++
+            $scope.birth_month_opts = birth_month_opts
+
+            birth_day_opts = []
+            day = 1
+            limit_day = 31
+            while day <= limit_day
+                birth_day_opts.push day
+                day++
+            $scope.birth_day_opts = birth_day_opts
+
         $scope.$on('$ionicView.enter', ->
+            init()
             loadData()
         )
 
