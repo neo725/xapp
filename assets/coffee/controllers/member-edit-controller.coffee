@@ -1,33 +1,22 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$timeout', '$translate', 'navigation', 'modal', 'plugins', 'api', 'util',
-    ($rootScope, $scope, $ionicModal, $timeout, $translate, navigation, modal, plugins, api, util) ->
+    '$rootScope', '$scope', '$ionicModal', '$timeout', '$translate', 'navigation', 'modal', 'plugins', 'api',
+    ($rootScope, $scope, $ionicModal, $timeout, $translate, navigation, modal, plugins, api) ->
         $scope.user = {}
-        $scope.setting = {}
-        $scope.setting.notify = constants.DEFAULT_NOTIFICATION_SETTING
+        $scope.notify = constants.DEFAULT_NOTIFICATION_SETTING
 
         $scope.goBack = ->
             navigation.slide 'home.member.dashboard', {}, 'down'
 
-        $scope.changePassword = ($event) ->
-            $event.stopPropagation()
-            $scope.modalChangePassword.show()
+        $scope.goEditIdent = ->
+            navigation.slide 'home.member.edit-ident', {}, 'up'
 
-        $scope.changePasswordConfirmClick = ->
-            $scope.modalChangePassword.hide()
+        $scope.goChangePassword = ->
+            navigation.slide 'home.member.edit-pw-1', {}, 'up'
 
-        $scope.toggleNotification = ($event) ->
-            $event.stopPropagation()
-            if $scope.setting.notify == 't'
-                $scope.setting.notify = 'f'
-            else
-                $scope.setting.notify = 't'
-
-        $scope.checkNotificationIsChecked = ->
-            if $scope.setting.notify != 'f'
-                $scope.setting.notify = 't'
-            return $scope.setting.notify == 't'
+        $scope.goChangeMobile = ->
+            navigation.slide 'home.member.edit-mobile', {}, 'up'
 
         $scope.doSubmit = ($event) ->
             $event.stopPropagation()
@@ -49,84 +38,22 @@ module.exports = [
 
             updateMember()
 
-        $scope.checkCardType = (number) ->
-            return util.checkCardType(number)
-
-        $scope.showNewCard = ->
-            $scope.modalNewCard.show()
-
-        $scope.onItemDelete = (card) ->
-            $scope.cards.splice($scope.cards.indexOf(card), 1)
-
-            cards = [JSON.parse(window.localStorage.getItem('saved_card'))]
-            cards.splice(cards.indexOf(card))
-
-            if cards.length == 0
-                window.localStorage.removeItem('saved_card')
-            else
-                window.localStorage.setItem('saved_card', JSON.stringify(cards[0]))
-
-        updatePassword = (saving_passed) ->
-            finish = (passed) ->
-                modal.hideLoading()
-                if passed
-                    $translate('message.data_saved').then (text) ->
-                        plugins.toast.show(text, 'long', 'top')
-                    $scope.goBack()
-                else
-                    $translate(['title.member_edit', 'errors.setting_save_error', 'popup.ok']).then (translator) ->
-                        plugins.notification.alert(
-                            translator['errors.setting_save_error'],
-                            (->),
-                            translator['title.member_edit'],
-                            translator['popup.ok']
-                        )
-
-            if $scope.setting.confirm_new_password
-                data =
-                    'oldPW': $scope.setting.current_password
-                    'newPW': $scope.setting.confirm_new_password
-                console.log 'updatePassword...'
-                console.log data
-                onSuccess = (response) ->
-                    console.log 'updatePassword.success'
-                    finish(saving_passed)
-                onError = (error, status_code) ->
-                    switch status_code
-                        when 405
-                            $translate(['title.member_edit', 'errors.current_password_error', 'popup.ok']).then (translator) ->
-                                plugins.notification.alert(
-                                    translator['errors.current_password_error'],
-                                    (->),
-                                    translator['title.member_edit'],
-                                    translator['popup.ok']
-                                )
-                    console.log 'updatePassword.error'
-                    console.log error
-                    console.log status_code
-                    finish(saving_passed)
-
-                api.updatePassword(data, onSuccess, onError)
-            else
-                finish(saving_passed)
-
-        updateSetting = (saving_passed) ->
-            data =
-                'notify': 't'
-            data.notify = 'f' if $scope.checkNotificationIsChecked() == false
-
-            console.log 'updateSetting...'
-            console.log data
-            onSuccess = (response) ->
-                console.log 'updateSetting.success'
-                updatePassword(saving_passed and true)
-            onError = (error, status_code) ->
-                console.log 'updateSetting.error'
-                console.log error
-                console.log status_code
-                updatePassword(false)
-
-            api.postUserSetting('notify', "'#{data.notify}'", onSuccess, onError)
+#        $scope.checkCardType = (number) ->
+#            return util.checkCardType(number)
+#
+#        $scope.showNewCard = ->
+#            $scope.modalNewCard.show()
+#
+#        $scope.onItemDelete = (card) ->
+#            $scope.cards.splice($scope.cards.indexOf(card), 1)
+#
+#            cards = [JSON.parse(window.localStorage.getItem('saved_card'))]
+#            cards.splice(cards.indexOf(card))
+#
+#            if cards.length == 0
+#                window.localStorage.removeItem('saved_card')
+#            else
+#                window.localStorage.setItem('saved_card', JSON.stringify(cards[0]))
 
         updateMember = () ->
             modal.showLoading '', 'message.data_saving'
@@ -142,31 +69,24 @@ module.exports = [
             console.log data
             onSuccess = (response) ->
                 console.log 'updateMember.success'
-                updateSetting(true)
             onError = (error, status_code) ->
                 console.log 'updateMember.error'
                 console.log error
                 console.log status_code
-                updateSetting(false)
 
             api.updateMemberData(data, onSuccess, onError)
 
         loadData = ->
-            saved_card = JSON.parse(window.localStorage.getItem('saved_card')) || {}
-            if saved_card.card
-                $scope.cards = [saved_card.card]
-            else
-                $scope.cards = []
-
-            resetPasswordField = ->
-                $scope.setting.current_password = ''
-                $scope.setting.new_password = ''
-                $scope.setting.confirm_new_password = ''
+#            saved_card = JSON.parse(window.localStorage.getItem('saved_card')) || {}
+#            if saved_card.card
+#                $scope.cards = [saved_card.card]
+#            else
+#                $scope.cards = []
 
             loadUserSetting = ->
                 onSuccess = (response) ->
                     if (response != null)
-                        $scope.setting.notify = response.para_value
+                        $scope.notify = response.para_value
                     modal.hideLoading()
 
                 onError = (error, status_code) ->
@@ -185,7 +105,6 @@ module.exports = [
                 console.log error
                 loadUserSetting()
 
-            resetPasswordField()
             $rootScope.getMemberData(onSuccess, onError)
 
         init = ->

@@ -41,6 +41,9 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('MemberMessageController', require('./controllers/member-message-controller'))
 .controller('MemberMessageInfoController', require('./controllers/member-message-info-controller'))
 .controller('MemberEditController', require('./controllers/member-edit-controller'))
+.controller('MemberEditIdentController', require('./controllers/member-edit-ident-controller'))
+.controller('MemberEditPasswordController', require('./controllers/member-edit-pw-controller'))
+.controller('MemberEditMobileController', require('./controllers/member-edit-mobile-controller'))
 .controller('MemberSuggestionController', require('./controllers/member-suggestion-controller'))
 .controller('CourseSearchController', require('./controllers/course-search-controller'))
 .controller('CourseInfoController', require('./controllers/course-info-controller'))
@@ -260,6 +263,38 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'memberContent': {
                 templateUrl: 'partial/member/edit.html'
+            }
+        }
+
+    .state 'home.member.edit-ident',
+        url: '/edit-ident'
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/edit-ident.html'
+            }
+        }
+
+    .state 'home.member.edit-pw-1',
+        url: '/edit-pw/1'
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/edit-pw-1.html'
+            }
+        }
+
+    .state 'home.member.edit-pw-2',
+        url: '/edit-pw/2'
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/edit-pw-2.html'
+            }
+        }
+
+    .state 'home.member.edit-mobile',
+        url: '/edit-mobile'
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/edit-mobile.html'
             }
         }
 

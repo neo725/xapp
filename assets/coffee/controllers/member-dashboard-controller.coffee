@@ -67,10 +67,10 @@ module.exports = [
                 quality: 80
                 destinationType: Camera.DestinationType.DATA_URL
                 sourceType: Camera.PictureSourceType.CAMERA
-                allowEdit: true
+                allowEdit: false
                 encodingType: Camera.EncodingType.JPEG
-                targetWidth: 200
-                targetHeight: 200
+                #targetWidth: 200
+                #targetHeight: 200
                 saveToPhotoAlbum: false
                 correctOrientation: true
 
@@ -85,12 +85,13 @@ module.exports = [
 #                        console.log image
 #                    , (->)
 
-                    $scope.avatars = imageData
+                    #$scope.avatars = imageData
                     #$('#user-avatars').attr 'src', 'data:image/jpeg;base64,' + $scope.avatars
                     fixAvatarImage()
                     uploadAvatar = ->
-                        onSuccess = ->
-                            window.localStorage.setItem('avatar', imageData)
+                        onSuccess = (response) ->
+                            #window.localStorage.setItem('avatar', imageData)
+                            $scope.avatar_url = response.result
                             modal.hideLoading()
                         onError = ->
                             modal.hideLoading()
@@ -132,12 +133,13 @@ module.exports = [
         loadAvatar = ->
             onSuccess = (response) ->
                 if response
-                    onSuccess = (response) ->
-                        $scope.avatars = response
-                    onError = (error, status_code) ->
-                        delete $scope['avatars']
-
-                    api.getImageFromUrl response.para_value, onSuccess, onError
+#                    onSuccess = (response) ->
+#                        $scope.avatars = response
+#                    onError = (error, status_code) ->
+#                        delete $scope['avatars']
+#
+#                    api.getImageFromUrl response.para_value, onSuccess, onError
+                    $scope.avatar_url = response.para_value
                 modal.hideLoading()
             onError = (error, status_code) ->
                 modal.hideLoading()

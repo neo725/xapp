@@ -1,0 +1,34 @@
+<ion-view class="member-edit-mobile" ng-controller="MemberEditMobileController">
+    <ion-nav-title>
+        手機號碼設定
+    </ion-nav-title>
+    <ion-content class="has-header" padding="true">
+        <div class="pane-content">
+            <div>
+                <img class="pane-logo" src="img/my-edit-mobile-change@2x.png">
+            </div>
+            <div class="text-line-1 text-center">
+                <p>{{ '設定中的手機號碼' }}</p>
+            </div>
+            <div class="text-line-2 text-center">
+                <p>{{ '0986716208' }}</p>
+            </div>
+            <form name="editMobileForm" class="form edit-password-form" novalidate ng-submit="submitForm(editMobileForm)">
+                <div class="list">
+                    <label class="item item-input"
+                           ng-class="{ 'has-error' : editMobileForm.mobile.$invalid }">
+                        <span class="input-label">{{ '輸入新手機號碼' }}</span>
+                        <input type="text" name="old_password"
+                               ng-model="user.password"
+                               required>
+                    </label>
+                    <div class="tip tip-assertive">{{ '* 電話號碼的使用目的為確認本人身分及防止他人盜用，並不會公開' }}</div>
+                </div>
+                <div class="row">
+                    <div class="col"><button class="button button-block button-dark" ng-click="goBack()">取消</button></div>
+                    <div class="col col-67"><button class="button button-block button-positive">送出</button></div>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

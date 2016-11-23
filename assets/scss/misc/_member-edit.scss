@@ -1,5 +1,7 @@
 .member-edit-view {
     .list {
+        margin-top: 0;
+
         > .item {
             padding-left: 30px;
             padding-right: 30px;
@@ -204,6 +206,11 @@
             &.col-right {
                 * {
                     float: right;
+                }
+            }
+            &.col-ident {
+                .ident-item {
+                    margin-right: 10px;
                 }
             }
         }

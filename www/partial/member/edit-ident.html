@@ -1,0 +1,39 @@
+<ion-view class="member-edit-ident" ng-controller="MemberEditIdentController">
+    <ion-nav-title>
+        身分證字號設定
+    </ion-nav-title>
+    <ion-content class="has-header" padding="true">
+        <div class="pane-content">
+            <div>
+                <img class="pane-logo" src="img/registered04@2x.png">
+            </div>
+            <div class="text-line-1 text-center">
+                <p>{{ 'ATM 付款需確認身分證字號' }}</p>
+                <p>{{ '請正確填寫，感謝您的支持' }}</p>
+            </div>
+            <form name="editIdentForm" class="form edit-ident-form" novalidate ng-submit="submitForm(editIdentForm)">
+                <div class="list">
+                    <label class="item item-input"
+                           ng-class="{ 'has-error' : editIdentForm.ident.$invalid }">
+                        <span class="input-label">{{ '身分證字號' }}</span>
+                        <input type="text" name="ident"
+                               ng-model="user.ident"
+                               required>
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{ 'has-error' : editIdentForm.ident_confirm.$invalid }">
+                        <span class="input-label">{{ '請再輸入一次' }}</span>
+                        <input type="text" name="ident_confirm"
+                               ng-model="user.ident_confirm"
+                               required>
+                    </label>
+                    <div class="tip tip-assertive">{{ '* ATM 轉帳時必要資訊，儲存後將無法更改。' }}</div>
+                </div>
+                <div class="row">
+                    <div class="col"><button class="button button-block button-dark" ng-click="goBack()">取消</button></div>
+                    <div class="col col-67"><button class="button button-block button-positive">儲存</button></div>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

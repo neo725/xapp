@@ -1,0 +1,31 @@
+<ion-view class="member-edit-pw" ng-controller="MemberEditPasswordController">
+    <ion-nav-title>
+        密碼設定
+    </ion-nav-title>
+    <ion-content class="has-header" padding="true">
+        <div class="pane-content">
+            <div>
+                <img class="pane-logo" src="img/my-edit-pw@2x.png">
+            </div>
+            <div class="text-line-1 text-center">
+                <p>{{ '設定密碼盡量不要使用包含帳號' }}</p>
+                <p>{{ '生日、身分證號、電話等資訊' }}</p>
+            </div>
+            <form name="editPasswordForm" class="form edit-password-form" novalidate ng-submit="submitForm1(editPasswordForm)">
+                <div class="list">
+                    <label class="item item-input"
+                           ng-class="{ 'has-error' : editPasswordForm.old_password.$invalid }">
+                        <span class="input-label">{{ '請輸入舊密碼' }}</span>
+                        <input type="text" name="old_password"
+                               ng-model="user.password"
+                               required>
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col"><button class="button button-block button-dark" ng-click="goBack()">取消</button></div>
+                    <div class="col col-67"><button class="button button-block button-positive" ng-click="goStep2()">下一步</button></div>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

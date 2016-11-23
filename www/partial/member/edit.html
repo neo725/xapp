@@ -35,9 +35,9 @@
                         </div>
                         <div class="row">
                             <div class="col col-birth">
-                        <span class="birth-item">
-                            出生年月日
-                        </span>
+                                <span class="birth-item">
+                                    出生年月日
+                                </span>
                                 <select name="birth_year" ng-model="birth_year" ng-options="opt for opt in birth_year_opts" required>
                                     <option></option>
                                 </select>
@@ -72,6 +72,7 @@
                                 </div>
                             </div>
                         </div>
+                        <button id="submitButton" class="button button-full button-positive" ng-hide="true">確定送出</button>
                     </form>
                     <form name="editForm" novalidate ng-submit="submitForm(editForm)" ng-if="false">
                         <div class="row">
@@ -182,7 +183,7 @@
                                 </ion-list>
                             </div>
                         </div>
-                        <button id="submitButton" class="button button-full button-positive" ng-hide="true">確定送出</button>
+                        <button id="submitButton2" class="button button-full button-positive" ng-hide="true">確定送出</button>
                     </form>
                 </div>
             </div>
@@ -193,9 +194,17 @@
                         <div class="tip tip-assertive">* ATM 轉帳時必要資訊，建立後將無法更改</div>
                     </div>
                     <div class="col col-right">
-                        <button class="button button-positive">
+                        <button class="button button-positive" ng-click="goEditIdent()">
                             尚未設定
                         </button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="row row-ident">
+                    <div class="col col-ident">
+                        <span class="ident-item">身分證字號</span>
+                        <span class="ident-item-value">A123456789</span>
                     </div>
                 </div>
             </div>
@@ -206,7 +215,7 @@
                         <div class="tip">用於保護帳號資訊與登入安全</div>
                     </div>
                     <div class="col col-right">
-                        <button class="button">
+                        <button class="button" ng-click="goChangePassword()">
                             修改
                         </button>
                     </div>
@@ -219,7 +228,7 @@
                         <div class="tip">用於找回密碼與相關訊息聯繫</div>
                     </div>
                     <div class="col col-right">
-                        <button class="button">
+                        <button class="button" ng-click="goChangeMobile()">
                             修改
                         </button>
                     </div>
