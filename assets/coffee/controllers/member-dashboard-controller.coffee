@@ -23,6 +23,9 @@ module.exports = [
         $scope.goMessageList = ->
             navigation.slide 'home.member.message', {}, 'left'
 
+        $scope.goPaymentList = ->
+            navigation.slide 'home.member.payment-list', {}, 'left'
+
         $scope.goEdit = ->
             $scope.modalFunction.hide()
             $timeout(->

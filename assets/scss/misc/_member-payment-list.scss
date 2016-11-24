@@ -1,0 +1,95 @@
+.member-payment-list {
+    .content {
+        padding-top: 20px;
+        padding-left: 20px;
+        font-size: 1.2em;
+
+        > .row {
+            padding-right: 0;
+            > .col {
+                padding-right: 0;
+            }
+        }
+        .list {
+            .item {
+                border-width: 0;
+                border-style: none;
+
+                .item-content {
+                    padding: 15px 0 15px 0;
+                    background-color: $light;
+                }
+                .item-options {
+                    ion-option-button {
+                        font-size: 2em;
+                        background-color: $ebook-main-color;
+                        color: $light;
+                    }
+                }
+            }
+        }
+
+        .card-logo {
+            width: 40px;
+        }
+
+        .card-row {
+            .col-card {
+                display: inline-block;
+                margin-left: 10px;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+                &.col-card-logo {
+                    width: 10%;
+                }
+                &.col-card-type {
+                    width: 10%;
+                }
+                &.col-card-number {
+                    width: 70%;
+
+                    i {
+                        font-size: 12px;
+                        margin-right: 5px;
+                    }
+                }
+                &.col-card-option {
+                    width: 10%;
+                    position: absolute;
+                    top: -4px;
+                    right: 28px;
+
+                    .item {
+                        font-size: 23px;
+
+                        &.selected {
+                            i {
+                                color: $radio-button-selected-color;
+                            }
+                        }
+                    }
+                    .radio-content {
+                        .ion-checkmark {
+                            display: none;
+                        }
+
+                        i {
+                            color: $radio-button-color;
+                        }
+                    }
+                }
+            }
+        }
+
+        .new-card-item {
+            i {
+                font-size: 12px;
+            }
+            span {
+                margin-left: 6px;
+            }
+        }
+    }
+}

@@ -1,0 +1,69 @@
+<ion-view class="member-payment-list" ng-controller="MemberPaymentListController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>{{ '付款設定' }}</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
+            <i class="sprite-icon-shoppingcar-o-2x"></i>
+        </button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="content">
+            <div class="row">
+                <div class="col ">
+                    您的卡片
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ion-list>
+                        <ion-item ng-repeat="card in card_list"
+                                  class="item-remove-animate"
+                                  item="card">
+                            <div class="card-row">
+                                <div class="col-card col-card-logo text-center">
+                                    <img class="card-logo" ng-src="img/visa-card.png" />
+                                </div>
+                                <div class="col-card col-card-type text-center">
+                                    <span ng-bind="'個人'"></span>
+                                </div>
+                                <div class="col-card col-card-number">
+                                    <i class="ion-record"></i>
+                                    <i class="ion-record"></i>
+                                    <i class="ion-record"></i>
+                                    <i class="ion-record"></i>
+                                    <span class="card-number">
+                                        {{ card['card-number-4'] }}
+                                    </span>
+                                </div>
+                                <div class="col-card col-card-option text-center">
+                                    <ion-radio ng-model="card.default"
+                                               ng-value="true"
+                                               ng-class="{ 'selected': card.default == true }">
+                                        <i ng-class="{ 'ion-android-radio-button-on': card.default == true,
+                                                   'ion-android-radio-button-off': card.default == false }"></i>
+                                    </ion-radio>
+                                </div>
+                                <span>{{ article.title }}</span>
+                                <ion-option-button class="ion-android-delete"
+                                                   ng-click="onItemDelete(card)">
+                                </ion-option-button>
+                            </div>
+                    </ion-list>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="new-card-item text-positive">
+                        <i class="ion-plus"></i>
+                        <span>{{ '新增付款方式' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
