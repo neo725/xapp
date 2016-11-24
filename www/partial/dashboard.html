@@ -18,196 +18,17 @@
         <h1 class="title">大學聯網</h1>
     </ion-nav-title>
     <ion-content class="has-header" padding="false" ng-class="{'pane-content': true}">
-        <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController" ng-show="studyCardVisible" ng-cloak>
-            <ion-slide-box does-continue="false">
-                <ion-slide ng-repeat="card in studyCards">
-                    <div class="box" ng-init="progress = getPercentage(card.progress)">
-                        <div class="card-progress">
-                            <div class="progress">
-                                <div class="round-progress-image">
-                                    <img src="img/rainbowgb@2x.png" ng-if="progress < 100" />
-                                    <img src="img/complete@2x.png" ng-if="progress == 100" />
-                                </div>
-                                <div class="round-progress">
-                                    <round-progress
-                                        max="100"
-                                        current="100 - progress"
-                                        color="#eeeeee"
-                                        bgcolor="transparent"
-                                        radius="{{ radius*1.515 }}"
-                                        clockwise="clockwise"
-                                        stroke="{{ stroke*1.7 }}"
-                                        offset="inherit"></round-progress>
-                                </div>
-                                <div class="progress-value">
-                                    <div class="progress-text-percent-value" ng-bind="getPercentage(card.progress)"></div>
-                                    <div class="progress-text-percent">
-                                        %
-                                    </div>
-                                    <div class="progress-text">
-                                        課程完成度
-                                    </div>
-                                    <div class="progress-teacher">
-                                        {{ card.Prod_ClsSir}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <div class="row">
-                                <div class="col">
-                                    <h4>{{ card.Prod_Name }}</h4>
-                                </div>
-                            </div>
-                            <div class="row text-item">
-                                <div class="col item-image-icon">
-                                    <img src="img/calendar@2x.png" />
-                                </div>
-                                <div class="col col-80 col-text-left">
-                                    {{ getDatePart(card.Prod_ClsOpenDate) }} ~ {{ getDatePart(card.Prod_ClsEndDate) }}
-                                </div>
-                            </div>
-                            <div class="row text-item">
-                                <div class="col item-image-icon">
-                                    <img src="img/location@2x.png" />
-                                </div>
-                                <div class="col col-80 col-text-left">
-                                    {{ getLocationFullName(card.Prod_ClsLocation) }}
-                                </div>
-                            </div>
-                            <div class="row" ng-show="progress == 100">
-                                <div class="col">
-                                    <button class="button button-block button-small button-positive"
-                                            ng-click="openFeedback(card)">填寫課程評價</button>
-                                </div>
-                            </div>
-                            <div class="row text-item" ng-show="progress < 100">
-                                <div class="col">
-                                    <div class="row text-item">
-                                        <div class="col">
-                                            下次上課時間
-                                        </div>
-                                    </div>
-                                    <div class="row text-item class-time">
-                                        <div class="col">
-                                            <!--<ion-badge item-center></ion-badge>-->
-                                            <span class="badge badge-positive badge-s-size">
-                                                {{ getWeekdayName(card.nextStartTime) }}</span>
-                                        </div>
-                                        <div class="col class-time-range">
-                                            <div class="text-positive">
-                                                <div>{{ getTimePart(card.nextStartTime) }}</div>
-                                                <div class="rotate-90">»</div>
-                                                <div>{{ getTimePart(card.nextEndTime) }}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col">
-                                            下次上課教室
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <h2 class="text-positive">{{ card.RoomId }}</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ion-slide>
-            </ion-slide-box>
+        <div class="studycard-slides slides padding"
+             ng-controller="StudyCardSlideController"
+             ng-show="studyCardVisible"
+             ng-cloak>
+            <ng-include src="'partial/dashboard-studycard-slides.html'"></ng-include>
         </div>
-        <div class="search-slides slides" ng-controller="SearchSlideController" ng-class="{ 'guest-slides': !studyCardVisible}" ng-cloak>
-            <ion-slide-box does-continue="false">
-                <ion-slide ng-repeat="cover in covers">
-                    <div class="box cover" ng-style="{'background-image': 'url(' + cover.img + ')', 'height': '100%'}">
-                        <div class="search-header-container">
-                            <div class="search-header">
-                                <h3 ng-bind="cover.title"></h3>
-                                <p ng-bind="cover.content"></p>
-                            </div>
-                        </div>
-                        <div class="search-box">
-                            <div class="row">
-                                <div class="col key">
-                                    搜尋 關鍵字
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col value padding-left underline" ng-init="cover.user_keyword = cover.keyword">
-                                    <div class="value-col"><img src="img/tag@2x.png" class="small-img" /></div>
-                                    <div class="value-col"><input type="text" ng-model="cover.user_keyword" /></div>
-                                    <div class="keyword" ng-bind="cover.keyword" ng-if="false"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="search-box2">
-                                        <div class="row">
-                                            <div class="col border-right">
-                                                <div class="row">
-                                                    <div class="col key">
-                                                        希望上課時間
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col value" ng-click="modalWeekday.show()">
-                                                        <img src="img/calendar@2x.png" class="small-icon" />
-                                                        {{ weekday }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="row">
-                                                    <div class="col key">
-                                                        希望上課地點
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col value" ng-click="modalLocation.show()">
-                                                        <img src="img/location-wish@2x.png" class="small-icon" />
-                                                        {{ location }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row row-search">
-                                            <div class="col">
-                                                <button class="button button-block button-blue"
-                                                        ng-click="searchCourse(cover.user_keyword)">
-                                                    搜出好課
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="extend-info">
-                            <a href="#/home/ebook/info/current/{{ cover.url }}">
-                                <div class="row border-row">
-                                    <div class="col">
-                                        <div class="extend-icon">
-                                            <img src="img/extend@2x.png" />
-                                        </div>
-                                    </div>
-                                    <div class="col col-90 text-left">
-                                        <div class="row">
-                                            <div class="col">
-                                                {{ cover.article }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </ion-slide>
-            </ion-slide-box>
+        <div class="search-slides slides"
+             ng-controller="SearchSlideController"
+             ng-class="{ 'guest-slides': !studyCardVisible}"
+             ng-cloak>
+            <ng-include src="'partial/dashboard-search-slides.html'"></ng-include>
         </div>
         <div class="tabs tabs-light tabs-icon-top icon-tabs-bar">
             <a class="tab-item" ng-click="goCatalogs()">
@@ -221,6 +42,42 @@
             </a>
         </div>
     </ion-content>
+    <script id="templates/modal-course-time.html" type="text/ng-template">
+        <ion-modal-view class="modal-box course-time-box" ng-controller="DashboardCourseTimeController">
+            <ion-content padding="true" scroll="false">
+                <div class="text-center course-time-icon">
+                    <img src="img/calendar-add@2x.png" />
+                </div>
+                <div class="text-center course-time-text">
+                    <p>把此次上課日期</p>
+                    <p>加入自己的行事曆吧</p>
+                </div>
+                <div class="text-center course-time-button">
+                    <button class="button button-full button-positive">
+                        加入行事曆
+                    </button>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+    <script id="templates/modal-course-location.html" type="text/ng-template">
+        <ion-modal-view class="modal-box course-location-box" ng-controller="DashboardCourseLocationController">
+            <ion-content padding="true" scroll="false">
+                <div class="text-center course-location-icon">
+                    <img src="img/location-check@2x.png" />
+                </div>
+                <div class="text-center course-location-text">
+                    <p>上課地點：建國分部</p>
+                    <p>地址：台北市建國南路二段231號</p>
+                </div>
+                <div class="text-center course-location-button">
+                    <button class="button button-full button-positive">
+                        前往地圖
+                    </button>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
     <script id="templates/modal-feedback.html" type="text/ng-template">
         <ion-modal-view class="modal-box feedback-box" ng-controller="DashboardFeedbackController">
             <ion-content padding="true" scroll="false">

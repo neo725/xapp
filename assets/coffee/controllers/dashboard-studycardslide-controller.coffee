@@ -47,6 +47,14 @@ module.exports = [
 
             api.getSurveyFill(onSuccess, onError)
 
+        $scope.openCourseTime = (card) ->
+            $rootScope.currentCard = card
+            $scope.modalCourseTime.show()
+
+        $scope.openCourseLocation = (card) ->
+            $rootScope.currentCard = card
+            $scope.modalCourseLocation.show()
+
         onSuccess = (response) ->
             list = response.list
 
@@ -66,5 +74,19 @@ module.exports = [
             animation: 'fade-in'
         ).then((modal) ->
             $scope.modalFeedback = modal
+        )
+
+        $ionicModal.fromTemplateUrl('templates/modal-course-time.html',
+            scope: $scope
+            animation: 'fade-in'
+        ).then((modal) ->
+            $scope.modalCourseTime = modal
+        )
+
+        $ionicModal.fromTemplateUrl('templates/modal-course-location.html',
+            scope: $scope
+            animation: 'fade-in'
+        ).then((modal) ->
+            $scope.modalCourseLocation = modal
         )
 ]

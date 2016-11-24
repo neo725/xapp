@@ -300,7 +300,7 @@
             font-weight: 300;
         }
         .slider-pager {
-            bottom: 2px;
+            bottom: 6px;
 
             i.icon {
                 font-size: 12px;
@@ -390,6 +390,46 @@
     }
 }
 
+.course-time-box {
+    &.modal-box {
+        height: 310px !important;
+        top: 23%;
+    }
+    .scroll-content {
+        padding-top: 30px;
+    }
+    .course-time-icon {
+        img {
+            width: 100px;
+        }
+    }
+    .course-time-text {
+        font-size: 1.2em;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+}
+
+.course-location-box {
+    &.modal-box {
+        height: 340px !important;
+        top: 23%;
+    }
+    .scroll-content {
+        padding-top: 30px;
+    }
+    .course-location-icon {
+        img {
+            width: 100px;
+        }
+    }
+    .course-location-text {
+        font-size: 1.2em;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+}
+
 .location-box {
     &.modal-box {
         height: 500px !important;
@@ -400,7 +440,6 @@
 
     &.modal-box {
         height: 360px !important;
-        background-color: $light;
     }
 
     .col {

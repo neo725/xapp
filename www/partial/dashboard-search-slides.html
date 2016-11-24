@@ -1,0 +1,86 @@
+<ion-slide-box does-continue="false">
+    <ion-slide ng-repeat="cover in covers">
+        <div class="box cover" ng-style="{'background-image': 'url(' + cover.img + ')', 'height': '100%'}">
+            <div class="search-header-container">
+                <div class="search-header">
+                    <h3 ng-bind="cover.title"></h3>
+                    <p ng-bind="cover.content"></p>
+                </div>
+            </div>
+            <div class="search-box">
+                <div class="row">
+                    <div class="col key">
+                        搜尋 關鍵字
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col value padding-left underline" ng-init="cover.user_keyword = cover.keyword">
+                        <div class="value-col"><img src="img/tag@2x.png" class="small-img" /></div>
+                        <div class="value-col"><input type="text" ng-model="cover.user_keyword" /></div>
+                        <div class="keyword" ng-bind="cover.keyword" ng-if="false"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="search-box2">
+                            <div class="row">
+                                <div class="col border-right">
+                                    <div class="row">
+                                        <div class="col key">
+                                            希望上課時間
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col value" ng-click="modalWeekday.show()">
+                                            <img src="img/calendar@2x.png" class="small-icon" />
+                                            {{ weekday }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col key">
+                                            希望上課地點
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col value" ng-click="modalLocation.show()">
+                                            <img src="img/location-wish@2x.png" class="small-icon" />
+                                            {{ location }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-search">
+                                <div class="col">
+                                    <button class="button button-block button-blue"
+                                            ng-click="searchCourse(cover.user_keyword)">
+                                        搜出好課
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="extend-info">
+                <a href="#/home/ebook/info/current/{{ cover.url }}">
+                    <div class="row border-row">
+                        <div class="col">
+                            <div class="extend-icon">
+                                <img src="img/extend@2x.png" />
+                            </div>
+                        </div>
+                        <div class="col col-90 text-left">
+                            <div class="row">
+                                <div class="col">
+                                    {{ cover.article }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </ion-slide>
+</ion-slide-box>

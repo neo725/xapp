@@ -30,6 +30,8 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('DashboardController', require('./controllers/dashboard-controller'))
 .controller('StudyCardSlideController', require('./controllers/dashboard-studycardslide-controller'))
 .controller('SearchSlideController', require('./controllers/dashboard-searchslide-controller'))
+.controller('DashboardCourseTimeController', require('./controllers/dashboard-course-time-controller'))
+.controller('DashboardCourseLocationController', require('./controllers/dashboard-course-location-controller'))
 .controller('DashboardWeekdayController', require('./controllers/dashboard-weekday-controller'))
 .controller('DashboardLocationController', require('./controllers/dashboard-location-controller'))
 .controller('DashboardFeedbackController', require('./controllers/dashboard-feedback-controller'))
