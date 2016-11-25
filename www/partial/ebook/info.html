@@ -5,15 +5,18 @@
         </ion-nav-buttons>
         <ion-nav-title>{{ '新識力' }}</ion-nav-title>
     </ion-nav-bar>
-    <ion-content padding="true" class="ebook-info-content">
+    <ion-content padding="false" class="ebook-info-content">
         <div class="add-favorite">
             <button class="button button-icon icon ion-plus-circled" ng-click="addToFavorite(ebook)"></button>
         </div>
-        <div class="intro" data-ng-bind-html="ebook.safe_intro"></div>
-        <div class="cover-container">
-            <div class="cover" ng-style="{'background-image': 'url(' + ebook.cover_img1 + ')', 'height': '100%'}"></div>
+        <div ng-if="false">
+            <div class="intro" data-ng-bind-html="ebook.safe_intro"></div>
+            <div class="cover-container">
+                <div class="cover" ng-style="{'background-image': 'url(' + ebook.cover_img1 + ')', 'height': '100%'}"></div>
+            </div>
+            <h4 class="ebook-title">{{ ebook.title }}</h4>
+            <div class="context" data-ng-bind-html="ebook.safe_context"></div>
         </div>
-        <h4 class="ebook-title">{{ ebook.title }}</h4>
-        <div class="context" data-ng-bind-html="ebook.safe_context"></div>
+        <div ng-bind-html="ebook.safe_html"></div>
     </ion-content>
 </ion-view>
