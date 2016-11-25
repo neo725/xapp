@@ -17,6 +17,9 @@
             <h4 class="ebook-title">{{ ebook.title }}</h4>
             <div class="context" data-ng-bind-html="ebook.safe_context"></div>
         </div>
-        <div ng-bind-html="ebook.safe_html"></div>
+        <div ng-bind-html="ebook.safe_html" ng-if="false"></div>
+        <div class="container iframe-container">
+            <iframe id="iframe" src="iframe.html" sandbox="allow-same-origin allow-scripts"></iframe>
+        </div>
     </ion-content>
 </ion-view>

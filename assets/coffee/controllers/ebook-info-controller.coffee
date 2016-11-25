@@ -36,6 +36,7 @@ module.exports = [
                 $scope.ebook.safe_intro = $sce.trustAsHtml($scope.ebook.intro)
                 $scope.ebook.safe_context = $sce.trustAsHtml($scope.ebook.context)
                 $scope.ebook.safe_html = $sce.trustAsHtml($scope.ebook.html)
+                console.log $scope.ebook.html
                 modal.hideLoading()
             onError = ->
                 modal.hideLoading()
