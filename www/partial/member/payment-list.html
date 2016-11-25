@@ -12,7 +12,20 @@
         </div>
     </ion-nav-buttons>
     <ion-content>
-        <div class="content">
+        <div class="content no-card-content" ng-if="show_card_list == false">
+            <div class="logo-row text-center">
+                <img src="img/my-creditcard-add.png" />
+            </div>
+            <div class="text-row text-center">
+                <span ng-bind="'尚未設定任何卡片'"></span>
+            </div>
+            <div class="button-row">
+                <button class="button button-full button-positive" ng-click="openNewCardBox()">
+                    {{ '立即新增' }}
+                </button>
+            </div>
+        </div>
+        <div class="content" ng-if="show_card_list == true">
             <div class="row">
                 <div class="col ">
                     您的卡片
@@ -58,7 +71,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <div class="new-card-item text-positive">
+                    <div class="new-card-item text-positive" ng-click="resetCardList()">
                         <i class="ion-plus"></i>
                         <span>{{ '新增付款方式' }}</span>
                     </div>
@@ -66,4 +79,84 @@
             </div>
         </div>
     </ion-content>
+    <script id="templates/modal-new-card.html" type="text/ng-template">
+        <ion-modal-view class="modal-box new-card-box">
+            <ion-content class="padding" scroll="false">
+                <div class="card">
+                    <div class="card-logo text-right">
+                        <img src="img/visa-card.png" />
+                    </div>
+                    <div class="row">
+                        <div class="col col-31 col-padding-top-10">{{ '信用卡卡號' }}</div>
+                        <div class="col col-value">
+                            <label ng-class="{ 'has-error' : paymentForm.card_part1.$invalid}">
+                                <input type="text" name="card_part1"
+                                       class="number-4 card-number"
+                                       ng-model="card.number_part1"
+                                       maxlength="4"
+                                       ng-minlength="4" ng-maxlength="4"
+                                       required>
+                            </label>
+                            <label ng-class="{ 'has-error' : paymentForm.card_part2.$invalid}">
+                                <input type="text" name="card_part2"
+                                       class="number-4 card-number"
+                                       ng-model="card.number_part2"
+                                       maxlength="4"
+                                       ng-minlength="4" ng-maxlength="4"
+                                       required>
+                            </label>
+                            <label ng-class="{ 'has-error' : paymentForm.card_part3.$invalid}">
+                                <input type="text" name="card_part3"
+                                       class="number-4 card-number"
+                                       ng-model="card.number_part3"
+                                       maxlength="4"
+                                       ng-minlength="4" ng-maxlength="4"
+                                       required>
+                            </label>
+                            <label ng-class="{ 'has-error' : paymentForm.card_part4.$invalid}">
+                                <input type="text" name="card_part4"
+                                       class="number-4 card-number"
+                                       ng-model="card.number_part4"
+                                       maxlength="4"
+                                       ng-minlength="4" ng-maxlength="4"
+                                       required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row border-bottom">
+                        <div class="col col-31">{{ '有效日期 (MM/YY)' }}</div>
+                        <div class="col col-value col-padding-top-10">
+                            <label ng-class="{ 'has-error' : paymentForm.card_expire_month.$invalid}">
+                                <input type="text" name="card_expire_month"
+                                       class="number-2 expire-month"
+                                       ng-model="card.expire_month"
+                                       maxlength="2"
+                                       ng-minlength="2" ng-maxlength="2"
+                                       required>
+                            </label>
+                            <label ng-class="{ 'has-error' : paymentForm.card_expire_year.$invalid}">
+                                <input type="text" name="card_expire_year"
+                                       class="number-2 expire-year"
+                                       ng-model="card.expire_year"
+                                       maxlength="2"
+                                       ng-minlength="2" ng-maxlength="2"
+                                       required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card-check text-right" ng-click="toggleCardDefault()">
+                        <i class="ion-android-checkbox-outline-blank">
+                            <i class="ion-android-done" ng-if="card.default"></i>
+                        </i>
+                        {{ '記住此張卡片資訊，下次使用' }}
+                    </div>
+                </div>
+                <div class="button-row">
+                    <button class="button button-full button-positive" ng-click="saveNewCard()">
+                        {{ '儲存' }}
+                    </button>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
 </ion-view>

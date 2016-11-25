@@ -1,0 +1,20 @@
+.row {
+    .col-30 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 30%;
+        -moz-box-flex: 0;
+        -moz-flex: 0 0 30%;
+        -ms-flex: 0 0 30%;
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+    .col-31 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 31%;
+        -moz-box-flex: 0;
+        -moz-flex: 0 0 31%;
+        -ms-flex: 0 0 31%;
+        flex: 0 0 31%;
+        max-width: 31%;
+    }
+}

@@ -10,6 +10,26 @@
                 padding-right: 0;
             }
         }
+
+        &.no-card-content {
+            padding: 50px 20px 0 20px;
+
+            .logo-row {
+                img {
+                    width: 200px;
+                }
+            }
+            .text-row {
+                color: #a3a3a3;
+                font-size: 1.2em;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+            .button-row {
+                margin-top: 40px;
+            }
+        }
+
         .list {
             .item {
                 border-width: 0;
@@ -84,11 +104,86 @@
         }
 
         .new-card-item {
+            float: left;
+            padding: 5px 10px;
+
             i {
                 font-size: 12px;
             }
             span {
                 margin-left: 6px;
+            }
+        }
+    }
+}
+
+.modal-box {
+    &.new-card-box {
+        height: 310px !important;
+        top: 21%;
+        background-color: transparent;
+
+        .card {
+            padding:15px 10px;
+            background-color: #ededed;
+
+            .row {
+                $border-color: #dbdbdb;
+                //$border-color: #ff0000;
+                border-top: 1px solid $border-color;
+                margin-bottom: 6px;
+                padding-top: 5px;
+
+                &.border-bottom {
+                    border-bottom: 1px solid $border-color;
+                }
+                .col-value {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+                .col-padding-top-10 {
+                    padding-top: 10px;
+                }
+            }
+
+            .card-logo {
+                height: 31px;
+                img {
+                    width: 80px;
+                }
+            }
+
+            input[type="text"], input[type="number"] {
+                float: left;
+                padding: 5px;
+                margin-right: 5px;
+
+                &.number-2 {
+                    width: 30px;
+                }
+                &.number-3 {
+                    width: 35px;
+                }
+                &.number-4 {
+                    width: 42px;
+                }
+            }
+
+            .card-check {
+                i {
+                    font-size: 22px;
+                    top: 5px;
+                    position: relative;
+                    margin-right: 5px;
+
+                    &.ion-android-done {
+                        position: absolute;
+                        z-index: 1;
+                        left: 1px;
+                        top: 1px;
+                        color: #C01623;
+                    }
+                }
             }
         }
     }

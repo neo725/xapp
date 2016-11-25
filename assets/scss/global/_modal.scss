@@ -17,6 +17,10 @@
     background-color: #000;
     opacity: 0.7;
     transition: opacity 300ms ease-in-out 0s;
+
+    &.darker-backdrop-bg {
+        opacity: 0.9;
+    }
 }
 
 // Effects
