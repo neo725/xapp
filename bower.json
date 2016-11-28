@@ -1,5 +1,5 @@
 {
-  "name": "HelloIonic",
+  "name": "sceapp",
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.3.1"
@@ -8,8 +8,6 @@
     "firebase": "2.4.2",
     "angularfire": "1.2.0",
     "ng-cordova-oauth": "^0.2.10",
-    "jr-crop": "^1.1.2",
-    "iframe-resizer": "^3.5.5",
-    "ng-iframe-resizer": "^0.0.1"
+    "jr-crop": "^1.1.2"
   }
 }
