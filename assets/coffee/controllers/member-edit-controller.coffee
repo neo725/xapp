@@ -4,7 +4,6 @@ module.exports = [
     '$rootScope', '$scope', '$ionicModal', '$timeout', '$translate', 'navigation', 'modal', 'plugins', 'api',
     ($rootScope, $scope, $ionicModal, $timeout, $translate, navigation, modal, plugins, api) ->
         $scope.user = {}
-        $scope.notify = constants.DEFAULT_NOTIFICATION_SETTING
 
         $scope.goBack = ->
             navigation.slide 'home.member.dashboard', {}, 'down'
@@ -26,6 +25,8 @@ module.exports = [
             )
 
         $scope.submitForm = (form) ->
+            console.log '$scope.user :'
+            console.log $scope.user
             if not form.$valid
                 $translate(['title.member_edit', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
                     plugins.notification.alert(
@@ -36,7 +37,7 @@ module.exports = [
                     )
                 return
 
-            updateMember()
+            #updateMember()
 
 #        $scope.checkCardType = (number) ->
 #            return util.checkCardType(number)
@@ -82,28 +83,17 @@ module.exports = [
 #                $scope.cards = [saved_card.card]
 #            else
 #                $scope.cards = []
-
-            loadUserSetting = ->
-                onSuccess = (response) ->
-                    if (response != null)
-                        $scope.notify = response.para_value
-                    modal.hideLoading()
-
-                onError = (error, status_code) ->
-                    console.log status_code
-                    console.log error
-                    modal.hideLoading()
-
-                api.getUserSetting 'notify', onSuccess, onError
-
             onSuccess = (data) ->
+                birthday = moment(data.memb_birthday, 'YYYY-MM-DD')
+                data.birth_year = birthday.get('year')
+                data.birth_month = parseInt(birthday.format('MM'))
+                data.birth_day = parseInt(birthday.format('DD'))
+
                 $scope.user = data
-                loadUserSetting()
 
             onError = (error, status_code) ->
                 console.log status_code
                 console.log error
-                loadUserSetting()
 
             $rootScope.getMemberData(onSuccess, onError)
 

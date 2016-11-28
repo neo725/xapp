@@ -63,14 +63,21 @@ module.exports = [
             console.log 'index-controller -> getMemberData'
             onSuccess = (response) ->
                 modal.hideLoading()
+
+                console.log 'response :'
+                console.log response
+
                 data =
                     memb_name: response.Memb_Name
                     memb_email: response.Memb_EMail
                     memb_mobile: response.Memb_Mobile
                     memb_ident: response.Memb_Ident
                     memb_status: response.Memb_Status
+                    memb_birthday: response.Memb_BirthDay
+                    memb_address: response.Memb_AddHome
+                    memb_gender: response.Memb_Gender
 
-                console.log 'data :'
+                console.log 'getMemberData :'
                 console.log data
 
                 $rootScope.member = data

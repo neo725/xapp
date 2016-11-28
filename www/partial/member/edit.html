@@ -14,20 +14,20 @@
                         <div class="row">
                             <div class="col col-name">
                                 <span class="name-item">姓名</span>
-                                <span class="name-item-value">蕭家豪</span>
+                                <span class="name-item-value" ng-bind="user.memb_name"></span>
                             </div>
                             <div class="col col-33 col-gender">
                                 <div class="gender-item">
-                                    <ion-radio ng-model="gender" ng-value="'M'" ng-class="{ 'selected': gender == 'M' }">
-                                        <i ng-class="{ 'ion-android-radio-button-on': gender == 'M',
-                                               'ion-android-radio-button-off': gender != 'M' }"></i>
+                                    <ion-radio ng-model="user.memb_gender" ng-value="'M'" ng-class="{ 'selected': user.memb_gender == 'M' }">
+                                        <i ng-class="{ 'ion-android-radio-button-on': user.memb_gender == 'M',
+                                               'ion-android-radio-button-off': user.memb_gender != 'M' }"></i>
                                         <span class="radio-title">男</span>
                                     </ion-radio>
                                 </div>
                                 <div class="gender-item">
-                                    <ion-radio ng-model="gender" ng-value="'F'" ng-class="{ 'selected': gender == 'F' }">
-                                        <i ng-class="{ 'ion-android-radio-button-on': gender == 'F',
-                                               'ion-android-radio-button-off': gender != 'F' }"></i>
+                                    <ion-radio ng-model="user.memb_gender" ng-value="'F'" ng-class="{ 'selected': user.memb_gender == 'F' }">
+                                        <i ng-class="{ 'ion-android-radio-button-on': user.memb_gender == 'F',
+                                               'ion-android-radio-button-off': user.memb_gender != 'F' }"></i>
                                         <span class="radio-title">女</span>
                                     </ion-radio>
                                 </div>
@@ -38,13 +38,13 @@
                                 <span class="birth-item">
                                     出生年月日
                                 </span>
-                                <select name="birth_year" ng-model="birth_year" ng-options="opt for opt in birth_year_opts" required>
+                                <select name="birth_year" ng-model="user.birth_year" ng-options="opt for opt in birth_year_opts" required>
                                     <option></option>
                                 </select>
-                                <select name="birth_month" ng-model="birth_month" ng-options="opt for opt in birth_month_opts" required>
+                                <select name="birth_month" ng-model="user.birth_month" ng-options="opt for opt in birth_month_opts" required>
                                     <option></option>
                                 </select>
-                                <select name="birth_day" ng-model="birth_day" ng-options="opt for opt in birth_day_opts" required>
+                                <select name="birth_day" ng-model="user.birth_day" ng-options="opt for opt in birth_day_opts" required>
                                     <option></option>
                                 </select>
                             </div>
@@ -54,8 +54,7 @@
                                 <div class="email-item">
                                     電子信箱
                                 </div>
-                                <div class="email-item-value">
-                                    ycliang@sce.pccu.edu.tw
+                                <div class="email-item-value" ng-bind="user.memb_email">
                                 </div>
                             </div>
                         </div>
@@ -65,7 +64,7 @@
                                     通訊地址
                                 </div>
                                 <div class="address-item-value">
-                                    <input type="text" name="address" ng-model="address" />
+                                    <input type="text" name="address" ng-model="user.memb_address" />
                                 </div>
                                 <div class="address-item-tips">
                                     為方便活動贈品寄送，請填寫正確通訊資料，謝謝！
@@ -187,7 +186,7 @@
                     </form>
                 </div>
             </div>
-            <div class="item">
+            <div class="item" ng-if="!user.memb_ident">
                 <div class="row row-ident">
                     <div class="col col-66">
                         <div>身分證字號</div>
@@ -200,11 +199,11 @@
                     </div>
                 </div>
             </div>
-            <div class="item">
+            <div class="item" ng-if="user.memb_ident">
                 <div class="row row-ident">
                     <div class="col col-ident">
                         <span class="ident-item">身分證字號</span>
-                        <span class="ident-item-value">A123456789</span>
+                        <span class="ident-item-value" ng-bind="user.memb_ident"></span>
                     </div>
                 </div>
             </div>
@@ -225,6 +224,7 @@
                 <div class="row row-mobile">
                     <div class="col col-66">
                         <div>手機號碼</div>
+                        <div class="number-item" ng-if="user.memb_mobile">0986716208</div>
                         <div class="tip">用於找回密碼與相關訊息聯繫</div>
                     </div>
                     <div class="col col-right">

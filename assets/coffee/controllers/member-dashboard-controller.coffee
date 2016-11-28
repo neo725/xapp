@@ -5,7 +5,8 @@ module.exports = [
     'modal', 'navigation', 'api',
     ($rootScope, $scope, $ionicHistory, $ionicModal, $cordovaAppVersion, $cordovaCamera, $timeout, $jrCrop,
         modal, navigation, api) ->
-        $scope.user = {}
+        #$scope.user = {}
+        $scope.gender_title = ''
         $scope.notify = constants.DEFAULT_NOTIFICATION_SETTING
 
         $scope.goBack = ->
@@ -107,6 +108,14 @@ module.exports = [
         $scope.logout = ->
             $scope.modalFunction.hide()
             $rootScope.logout()
+
+        $scope.getGenderTitle = (gender) ->
+            value = ''
+            switch gender
+                when 'M' or 'm' then value = '先生'
+                when 'F' or 'f' then value = '小姐'
+
+            return value
 
         retriveAvatarImageSize = ->
             $avatar = $('.avatar-img');

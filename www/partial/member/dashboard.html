@@ -43,14 +43,12 @@
                 </div>
                 <div class="col detail-col">
                     <div class="name-line">
-                        <span class="name">蕭家豪</span>
-                        <span class="gender-title">先生</span>
+                        <span class="name" ng-bind="member.memb_name"></span>
+                        <span class="gender-title" ng-bind="getGenderTitle(member.memb_gender)"></span>
                     </div>
-                    <div class="line phone-line">
-                        0986123456
+                    <div class="line phone-line" ng-bind="member.memb_mobile">
                     </div>
-                    <div class="line email-line">
-                        jasonshaw@sce.pccu.edu.tw
+                    <div class="line email-line" ng-bind="member.memb_email">
                     </div>
                 </div>
             </div>
