@@ -213,6 +213,11 @@
                     margin-right: 10px;
                 }
             }
+            .button {
+                &.activated {
+                    border-color: transparent;
+                }
+            }
         }
     }
     .row {
