@@ -1,6 +1,6 @@
 module.exports = [
-    '$scope', '$stateParams', '$ionicHistory', '$sce', '$translate', 'navigation', 'modal', 'plugins', 'api',
-    ($scope, $stateParams, $ionicHistory, $sce, $translate, navigation, modal, plugins, api) ->
+    '$scope', '$stateParams', '$ionicHistory', '$timeout', '$sce', '$translate', 'navigation', 'modal', 'plugins', 'api',
+    ($scope, $stateParams, $ionicHistory, $timeout, $sce, $translate, navigation, modal, plugins, api) ->
         yearmonth = $stateParams.yearmonth
         catalog_id = $stateParams.catalog_id
 
@@ -36,7 +36,22 @@ module.exports = [
                 $scope.ebook.safe_intro = $sce.trustAsHtml($scope.ebook.intro)
                 $scope.ebook.safe_context = $sce.trustAsHtml($scope.ebook.context)
                 $scope.ebook.safe_html = $sce.trustAsHtml($scope.ebook.html)
-                #console.log $scope.ebook.html
+
+                $iframe = $(document.getElementById('iframe'))
+                $iframe.contents().find('html').html($scope.ebook.html)
+
+                loopTimes = 0
+                autoHeight = (maxLookSecs) ->
+                    $timeout ->
+                        loopTimes += 1
+                        height = $iframe.contents().find('html').height()
+                        $iframe.height(height + 'px')
+                        if loopTimes < (maxLookSecs * 10)
+                            autoHeight()
+                    , 100
+
+                autoHeight(5)
+
                 modal.hideLoading()
             onError = ->
                 modal.hideLoading()
