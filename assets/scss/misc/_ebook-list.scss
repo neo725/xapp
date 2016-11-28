@@ -2,6 +2,7 @@
     .tabs-top.tabs-striped.tabs-light {
         .tab-item {
             border-color: $ebook-main-color !important;
+            color: $ebook-tab-color;
 
             &.tab-item-active, &.activated {
                 border-bottom-width: 4px !important;
@@ -85,6 +86,7 @@
                             padding-bottom: 8px;
                             padding-left: 20px;
                             padding-right: 48px;
+                            min-height: 36px;
                         }
 
                         i.ion-ios-arrow-right, i.ion-ios-arrow-forward {
