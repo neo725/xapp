@@ -41,13 +41,13 @@ module.exports = [
                 $iframe.contents().find('html').html($scope.ebook.html)
 
                 loopTimes = 0
-                autoHeight = (maxLookSecs) ->
+                autoHeight = (maxLoopSecs) ->
                     $timeout ->
                         loopTimes += 1
                         height = $iframe.contents().find('html').height()
                         $iframe.height(height + 'px')
-                        if loopTimes < (maxLookSecs * 10)
-                            autoHeight()
+                        if loopTimes < (maxLoopSecs * 10)
+                            autoHeight(maxLoopSecs)
                     , 100
 
                 autoHeight(5)
