@@ -2,10 +2,10 @@
     <ion-slide ng-repeat="card in studyCards">
         <div class="box" ng-init="progress = getPercentage(card.progress)">
             <div class="card-progress">
-                <div class="progress">
+                <div class="progress" ng-init="percent = getPercentage(card.progress)">
                     <div class="round-progress-image">
-                        <img src="img/rainbowgb@2x.png" ng-if="progress < 100" />
-                        <img src="img/complete@2x.png" ng-if="progress == 100" />
+                        <img src="img/rainbowgb@2x.png" ng-if="progress < 100"/>
+                        <img src="img/complete@2x.png" ng-if="progress == 100"/>
                     </div>
                     <div class="round-progress">
                         <round-progress
@@ -18,7 +18,7 @@
                             stroke="{{ stroke*1.7 }}"
                             offset="inherit"></round-progress>
                     </div>
-                    <div class="progress-value">
+                    <div class="progress-value" ng-class="{ 'percent-100': percent == 100, 'percent-2': percent < 100 }">
                         <div class="progress-text-percent-value" ng-bind="getPercentage(card.progress)"></div>
                         <div class="progress-text-percent">
                             %
@@ -40,7 +40,7 @@
                 </div>
                 <div class="row text-item">
                     <div class="col item-image-icon">
-                        <img src="img/calendar@2x.png" />
+                        <img src="img/calendar@2x.png"/>
                     </div>
                     <div class="col col-80 col-text-left">
                         {{ getDatePart(card.Prod_ClsOpenDate) }} ~ {{ getDatePart(card.Prod_ClsEndDate) }}
@@ -48,7 +48,7 @@
                 </div>
                 <div class="row text-item">
                     <div class="col item-image-icon">
-                        <img src="img/location@2x.png" />
+                        <img src="img/location@2x.png"/>
                     </div>
                     <div class="col col-80 col-text-left">
                         {{ getLocationFullName(card.Prod_ClsLocation) }}
@@ -57,7 +57,8 @@
                 <div class="row" ng-show="progress == 100">
                     <div class="col">
                         <button class="button button-block button-small button-positive"
-                                ng-click="openFeedback(card)">填寫課程評價</button>
+                                ng-click="openFeedback(card)">填寫課程評價
+                        </button>
                     </div>
                 </div>
                 <div class="row text-item" ng-show="progress < 100">

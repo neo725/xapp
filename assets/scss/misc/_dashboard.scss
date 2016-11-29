@@ -20,22 +20,26 @@
                         width: 130px;
                     }
 
-                    .round-progress {
-                        position: fixed;
-                        //top: -136px;
-                    }
-
                     .round-progress-image {
-                        position: fixed;
+                        position: absolute;
                         //top: 0;
                     }
 
+                    .round-progress {
+                        position: absolute;
+                        //top: -136px;
+                    }
+
                     .progress-value {
-                        position: fixed;
-                        left: 37px;
+                        position: absolute;
+                        left: 28px;
 
                         font-size: $text-size-medium + 30;
                         color: $positive;
+
+                        &.percent-100 {
+                            left: 22px;
+                        }
 
                         .progress-text-percent-value {
                             position: relative;
