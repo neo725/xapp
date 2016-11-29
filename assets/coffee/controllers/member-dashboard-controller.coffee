@@ -175,9 +175,9 @@ module.exports = [
             modal.showLoading('', 'message.data_loading')
             api.getUserSetting 'notify', onSuccess, onError
 
-        $scope.$on('$ionicView.enter', ->
-            loadData()
-        )
+        #$scope.$on('$ionicView.enter', ->
+        loadData()
+        #)
 
         # version number record in config.xml that under project root
         document.addEventListener('deviceready', () ->

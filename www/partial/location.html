@@ -4,51 +4,26 @@
     </ion-nav-buttons>
     <ion-nav-title>{{ '交通資訊' }}</ion-nav-title>
     <ion-content>
-        <div class="location-card-container" ng-repeat="location in locations" toggle-visible="front" toggle-visible-rear="rear">
-            <div class="location-card front-card" ng-style="{'background-image': 'url(' + location.location_front + ')', 'height': '100%'}">
-                <div class="card-backdrop"></div>
-            </div>
-            <div class="front">
-                <div class="title">{{ location.name }}</div>
-                <div class="map">
-                    <a ng-href="geo:{{ parseGPS(location.gps) }}" ng-if="false">
-                        <div class="text" ng-click="goMap(location.address, location.gps, $event)">MAP</div>
-                    </a>
-                    <div class="text" ng-click="goMap(location.address, location.gps, $event)">MAP</div>
-                </div>
-                <div class="info-icon">
-                    <div class="icon">
-                        <i class="ion-information-circled"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="rear">
-                <div class="text-line">
-                    <div class="row">
-                        <div class="col">{{ '諮詢報名時間(國定假日除外)' }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-33">週一至週五</div>
-                        <div class="col">09:00-21:00</div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-33">週一至週五</div>
-                        <div class="col">09:00-21:00</div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-33">週一至週五</div>
-                        <div class="col">09:00-21:00</div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-20">{{ '電話 : ' }}</div>
-                        <div class="col">
-                            <a ng-href="tel:{{ location.tel }}"
-                               ng-click="goPhoneCall(location.tel, $event)">{{ location.tel }}</a>
+        <div class="location-card-container" ng-repeat="location in locations">
+            <div class="main-map-img"
+                 ng-click="goMap(location.address, location.gps, $event)"><img src="img/main-map-01.png" /></div>
+            <div class="location-card">
+                <div class="title" ng-bind="location.name"></div>
+                <div class="row">
+                    <div class="col col-33 col-status text-center">
+                        <div ng-if="getOpenOrClosed($index)" class="open" ng-click="open()">
+                            <div><img src="img/main-map-open.png" /></div>
+                            <div>開館中</div>
+                        </div>
+                        <div ng-if="!getOpenOrClosed($index)" class="close" ng-click="closed()">
+                            <div><img src="img/main-map-close.png" /></div>
+                            <div>閉館中</div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col col-20">{{ '地址 : ' }}</div>
-                        <div class="col">{{ location.address }}</div>
+                    <div class="col col-info">
+                        <div><img src="img/main-map-time.png" />09:00 - 21:00</div>
+                        <div><img src="img/main-map-location.png" />台北市建國南路二段231號</div>
+                        <div><img src="img/main-map-tel.png" />02-2700-5858</div>
                     </div>
                 </div>
             </div>

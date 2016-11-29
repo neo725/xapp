@@ -1,5 +1,6 @@
 module.exports = [
-    '$scope', '$ionicHistory', 'modal', 'navigation', 'api', ($scope, $ionicHistory, modal, navigation, api) ->
+    '$scope', '$ionicHistory', '$translate', 'modal', 'navigation', 'plugins', 'api',
+    ($scope, $ionicHistory, $translate, modal, navigation, plugins, api) ->
 
 
         $scope.goBack = ->
@@ -24,7 +25,7 @@ module.exports = [
             return "#{location.n},#{location.e}"
 
         $scope.goMap = (address, gps, $event) ->
-            $event.stopPropagation()
+            #$event.stopPropagation()
             #console.log gps
             # gps = N25.02583 E121.53812 >> chien-kuo
             location = $scope.parseGPS(gps)
@@ -38,9 +39,34 @@ module.exports = [
             #console.log address
             #console.log location
 
-        $scope.goPhoneCall = (number, $event) ->
-            $event.stopPropagation()
-            console.log number
+        $scope.goPhoneCall = (number) ->
+            window.open('tel://' + number)
+
+        $scope.open = ->
+            confirmCallback = ->
+                goPhoneCall('886-2-2700-5858')
+
+            $translate(['title.location', 'message.current_is_on_duty', 'popup.ok', 'popup.cancel']).then (translator) ->
+                plugins.notification.confirm(
+                    translator['message.current_is_on_duty'],
+                    confirmCallback,
+                    translator['title.location'],
+                    [translator['popup.ok'], translator['popup.cancel']]
+                )
+
+        $scope.closed = ->
+            $translate(['title.location', 'message.current_is_off_duty', 'popup.ok']).then (translator) ->
+                plugins.notification.confirm(
+                    translator['message.current_is_off_duty'],
+                    (->),
+                    translator['title.location'],
+                    [translator['popup.ok']]
+                )
+
+        $scope.getOpenOrClosed = ($index) ->
+            if $index == 1
+                return false
+            return true
 
         loadLocation = ->
             modal.showLoading('', 'message.data_loading')
