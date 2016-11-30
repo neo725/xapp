@@ -31,9 +31,13 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col value" ng-click="modalWeekday.show()">
+                                        <div class="col value" ng-click="modalWeekday.show()" ng-if="false">
                                             <img src="img/calendar@2x.png" class="small-icon" />
                                             {{ weekday }}
+                                        </div>
+                                        <div class="col value" ng-click="showWeekdayModal(cover)">
+                                            <img src="img/calendar@2x.png" class="small-icon" />
+                                            {{ cover.week }}
                                         </div>
                                     </div>
                                 </div>
@@ -44,9 +48,13 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col value" ng-click="modalLocation.show()">
+                                        <div class="col value" ng-click="modalLocation.show()" ng-if="false">
                                             <img src="img/location-wish@2x.png" class="small-icon" />
                                             {{ location }}
+                                        </div>
+                                        <div class="col value" ng-click="modalLocation.show()">
+                                            <img src="img/location-wish@2x.png" class="small-icon" />
+                                            {{ cover.location }}
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +62,7 @@
                             <div class="row row-search">
                                 <div class="col">
                                     <button class="button button-block button-blue"
-                                            ng-click="searchCourse(cover.user_keyword)">
+                                            ng-click="searchCourse(cover)">
                                         搜出好課
                                     </button>
                                 </div>

@@ -1,6 +1,6 @@
 constants = require('../common/constants')
 
-module.exports = ['$scope', '$log', ($scope, $log) ->
+module.exports = ['$scope', ($scope) ->
         def_weekdays = constants.WEEKDAYS
 
         $scope.weekdays = {
@@ -42,7 +42,6 @@ module.exports = ['$scope', '$log', ($scope, $log) ->
 
 
         $scope.weekdayConfirmClick = () ->
-            $log.info $scope.weekdays
             weekdays = []
             if $scope.weekdays.monday
                 weekdays.push def_weekdays[0]

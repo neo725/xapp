@@ -21,12 +21,22 @@ module.exports = [
         modal.showLoading '', 'message.loading_cover'
         api.getCover(onSuccess, onError)
 
-        $scope.searchCourse = (keyword) ->
-            navigation.slide 'home.course.search', {keyword: keyword}, 'left'
+        $scope.searchCourse = (cover) ->
+            weeks = cover.week.split('、')
+            locations = cover.location.split('、')
+            window.localStorage.setItem('weekdays', JSON.stringify(weeks))
+            window.localStorage.setItem('locations', JSON.stringify(locations))
+
+            navigation.slide 'home.course.search', { keyword: cover.keyword }, 'left'
 
         # modal controller
         # ------------------------------------------------
+        $scope.showWeekdayModal = (cover) ->
+            $scope.currentCover = cover
+            $scope.modalWeekday.show()
+
         $scope.getWeekday = () ->
+            return
             weekdays = JSON.parse(window.localStorage.getItem('weekdays')) || []
             if weekdays.length == 0
                 weekdays = constants.WEEKDAYS
@@ -54,9 +64,10 @@ module.exports = [
             else
                 $scope.weekday = _.join(weekdays, '，')
 
-        $scope.getWeekday()
+        #$scope.getWeekday()
 
         $scope.getLocation = () ->
+            return
             locations = JSON.parse(window.localStorage.getItem('locations')) || []
             if locations.length == 0
                 locations = constants.LOCATIONS
@@ -81,7 +92,7 @@ module.exports = [
             else
                 $scope.location = _.join(location, '，')
 
-        $scope.getLocation()
+        #$scope.getLocation()
 
         $ionicModal.fromTemplateUrl('templates/modal-weekday.html',
             scope: $scope
@@ -97,15 +108,11 @@ module.exports = [
             $scope.modalLocation = modal
         )
 
-#        $scope.weekdayConfirmClick = () ->
-#            $scope.modalWeekday.hide()
         $scope.$on('weekdayConfirm', () ->
-            $scope.getWeekday()
+            #$scope.getWeekday()
         )
 
-#        $scope.locationConfirmClick = () ->
-#            $scope.modalLocation.hide()
         $scope.$on('locationConfirm', () ->
-            $scope.getLocation()
+            #$scope.getLocation()
         )
 ]

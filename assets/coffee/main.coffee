@@ -16,7 +16,6 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .directive('goNative', directives.goNative)
 .directive('ngNext', directives.ngNext)
 .directive('customVerify', directives.customVerify)
-.directive('toggleVisible', directives.toggleVisible)
 .directive('starRating', directives.starRating)
 .directive('messageDotMask', directives.messageDotMask)
 .directive('fitSize', directives.fitSize)
