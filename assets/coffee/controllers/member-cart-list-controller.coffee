@@ -276,6 +276,12 @@ module.exports = [
         $scope.returnToDashboard = ->
             navigation.slide('home.dashboard', {}, 'right')
 
+        $scope.checkIsCartEmpty = ->
+            carts = $scope.carts || []
+            if carts.length == 0
+                return true
+            return false
+
         checkIsCardAccept = ->
             return '' != $scope.checkCardType()
 
@@ -303,6 +309,8 @@ module.exports = [
         $scope.choice = 'CreditCard'
 
         loadCartList = () ->
+            $scope.carts = $rootScope.carts || []
+
             onSuccess = (response) ->
                 $rootScope.carts = response.list
                 $scope.carts = $rootScope.carts

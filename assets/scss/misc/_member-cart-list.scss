@@ -73,6 +73,37 @@
             top: 74px;
             bottom: 160px;
             background-color: $stable;
+
+            &.empty-content-pane {
+                display: none;
+            }
+        }
+        &.empty {
+            ion-content {
+                top: 0;
+                bottom: 0;
+                padding-top: 160px;
+
+                &.content-pane {
+                    display: none;
+                }
+                &.empty-content-pane {
+                    display: initial;
+                }
+                .logo {
+                    img {
+                        width: 48px;
+                    }
+                }
+                .text {
+                    color: #5B5B5B;
+                    font-size: 18px;
+                    margin-top: 10px;
+                }
+            }
+            .footer {
+                display: none;
+            }
         }
         .header {
             height: 47px;
