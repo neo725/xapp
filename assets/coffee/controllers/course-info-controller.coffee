@@ -43,6 +43,14 @@ module.exports = [
             else
                 api.removeFromWish course.Shop_Id, course.Prod_Id, onSuccess, onError
 
+        $scope.checkIsInCart = (course) ->
+            if not course
+                return false
+            carts = $rootScope.carts || []
+            if _.find(carts, { 'Prod_Id': course.Prod_Id })
+                return true
+            return false
+
         $scope.addToCart = (course) ->
             onSuccess = ->
                 cart = $rootScope.carts || []

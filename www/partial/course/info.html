@@ -127,12 +127,20 @@
         </h1>
         <div class="buttons text-center">
             <div class="add-favorite"><img ng-src="img/{{ favorite_icon }}" ng-click="addOrRemoveFromWish(course)"></div>
-            <div class="add-cart" ng-click="addToCart(course)">
-                <div class="object">
+            <div class="cart-button add-cart" ng-click="addToCart(course)" ng-if="!checkIsInCart(course)">
+                <div>
                     <img src="img/cart-add@2x.png">
                 </div>
-                <div class="object">
+                <div>
                     <div class="text">放入購物車</div>
+                </div>
+            </div>
+            <div class="cart-button already-in-cart" ng-if="checkIsInCart(course)">
+                <div>
+                    <img src="img/cart-already-add@2x.png">
+                </div>
+                <div>
+                    <div class="text">已放入購物車</div>
                 </div>
             </div>
         </div>

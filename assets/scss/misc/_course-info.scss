@@ -126,10 +126,8 @@ $price-current-item-color: #BE1421;
                 width: 36px;
             }
         }
-        .add-cart {
+        .cart-button {
             width: 100px;
-            background-color: $positive;
-            color: $light;
             padding-top: 8px;
 
             img {
@@ -137,6 +135,15 @@ $price-current-item-color: #BE1421;
             }
             .text {
                 font-size: $text-size-small;
+            }
+
+            &.add-cart {
+                background-color: $positive;
+                color: $light;
+            }
+            &.already-in-cart {
+                background-color: #dadad9;
+                color: #6f6f6e;
             }
         }
 

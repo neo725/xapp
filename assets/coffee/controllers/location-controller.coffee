@@ -40,11 +40,11 @@ module.exports = [
             #console.log location
 
         $scope.goPhoneCall = (number) ->
-            window.open('tel://' + number)
+            window.open('tel:' + number, '_system')
 
         $scope.open = ->
             confirmCallback = ->
-                goPhoneCall('886-2-2700-5858')
+                $scope.goPhoneCall('886-2-2700-5858')
 
             $translate(['title.location', 'message.current_is_on_duty', 'popup.ok', 'popup.cancel']).then (translator) ->
                 plugins.notification.confirm(
