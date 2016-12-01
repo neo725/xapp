@@ -22,8 +22,8 @@ module.exports = [
         api.getCover(onSuccess, onError)
 
         $scope.searchCourse = (cover) ->
-            weeks = cover.week.split('、')
-            locations = cover.location.split('、')
+            weeks = cover.week.split(',')
+            locations = cover.location.split(',')
             window.localStorage.setItem('weekdays', JSON.stringify(weeks))
             window.localStorage.setItem('locations', JSON.stringify(locations))
 
@@ -42,7 +42,7 @@ module.exports = [
             $scope.modalLocation.show()
 
         $scope.parseWeekday = (weekdays) ->
-            weekdays = weekdays.split('、')
+            weekdays = weekdays.split(',')
             if weekdays.length == 0
                 weekdays = constants.WEEKDAYS
             totalCount = 0
@@ -68,7 +68,7 @@ module.exports = [
                 return _.join(weekdays, ', ')
 
         $scope.parseLocation = (locations) ->
-            locations = locations.split('、')
+            locations = locations.split(',')
             if locations.length == 0
                 locations = constants.LOCATIONS
             totalCount = 0

@@ -71,11 +71,11 @@ module.exports = ['$scope', ($scope) ->
         if locations.length == 0
             locations = def_locations
 
-        $scope.currentCover.location = locations.join('、')
+        $scope.currentCover.location = locations.join(',')
         $scope.modalLocation.hide()
 
     $scope.$on('location:show', (event, args) ->
-        locations = args.location.split('、')
+        locations = args.location.split(',')
         if _.indexOf(locations, def_locations[0]) > -1
             $scope.locations.loc1 = true
         if _.indexOf(locations, def_locations[1]) > -1

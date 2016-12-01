@@ -57,11 +57,11 @@ module.exports = ['$scope',
             if weekdays.length == 0
                 weekdays = def_weekdays
 
-            $scope.currentCover.week = weekdays.join('、')
+            $scope.currentCover.week = weekdays.join(',')
             $scope.modalWeekday.hide()
 
         $scope.$on('weekday:show', (event, args) ->
-            weekdays = args.week.split('、')
+            weekdays = args.week.split(',')
             if _.indexOf(weekdays, def_weekdays[0]) > -1
                 $scope.weekdays.monday = true
             if _.indexOf(weekdays, def_weekdays[1]) > -1

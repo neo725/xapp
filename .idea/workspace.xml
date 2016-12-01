@@ -5,11 +5,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-location-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-location-controller.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-weekday-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-weekday-controller.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/scss/misc/_dashboard.scss" afterPath="$PROJECT_DIR$/assets/scss/misc/_dashboard.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partial/dashboard-search-slides.html" afterPath="$PROJECT_DIR$/www/partial/dashboard-search-slides.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partial/dashboard.html" afterPath="$PROJECT_DIR$/www/partial/dashboard.html" />
     </list>
     <ignored path="sceapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,64 +37,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/partial/dashboard.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.7">
-              <caret line="175" column="127" selection-start-line="175" selection-start-column="127" selection-end-line="175" selection-end-column="127" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard-search-slides.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/partial/dashboard-search-slides.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.2">
-              <caret line="56" column="79" selection-start-line="56" selection-start-column="79" selection-end-line="56" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="dashboard-searchslide-controller.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.866667">
-              <caret line="40" column="53" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard-location-controller.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-location-controller.coffee">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="76" column="48" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="48" />
+              <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard-weekday-controller.coffee" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dashboard-weekday-controller.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-weekday-controller.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39306358">
-              <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_dashboard.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/scss/misc/_dashboard.scss">
+      <file leaf-file-name="dashboard-location-controller.coffee" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-location-controller.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.1">
-              <caret line="213" column="45" selection-start-line="213" selection-start-column="45" selection-end-line="213" selection-end-column="45" />
-              <folding>
-                <element signature="e#72#3617#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.48410404">
+              <caret line="77" column="42" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,8 +135,8 @@
         <option value="$PROJECT_DIR$/www/partial/dashboard-search-slides.html" />
         <option value="$PROJECT_DIR$/www/partial/dashboard.html" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee" />
-        <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-location-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-weekday-controller.coffee" />
+        <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-location-controller.coffee" />
       </list>
     </option>
   </component>
@@ -714,14 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/global/_settings.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.6">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-dashboard-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8787879">
@@ -889,24 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/scss/misc/_dashboard.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.1">
-          <caret line="213" column="45" selection-start-line="213" selection-start-column="45" selection-end-line="213" selection-end-column="45" />
-          <folding>
-            <element signature="e#72#3617#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/dashboard-search-slides.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.2">
-          <caret line="56" column="79" selection-start-line="56" selection-start-column="79" selection-end-line="56" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/common/constants.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33236995">
@@ -915,34 +854,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/partial/dashboard-search-slides.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82477343">
+          <caret line="56" column="79" selection-start-line="56" selection-start-column="79" selection-end-line="56" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/partial/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.7">
+        <state vertical-scroll-proportion="0.73101264">
           <caret line="175" column="127" selection-start-line="175" selection-start-column="127" selection-end-line="175" selection-end-column="127" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/misc/_dashboard.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7296072">
+          <caret line="213" column="45" selection-start-line="213" selection-start-column="45" selection-end-line="213" selection-end-column="45" />
+          <folding>
+            <element signature="e#72#3617#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/global/_settings.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.6">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.866667">
-          <caret line="40" column="53" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-location-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="48" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="48" />
+          <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-weekday-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39306358">
-          <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-location-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48410404">
+          <caret line="77" column="42" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
           <folding />
         </state>
       </provider>
