@@ -37,7 +37,7 @@ module.exports = [
                     )
                 return
 
-            #updateMember()
+            updateMember()
 
 #        $scope.checkCardType = (number) ->
 #            return util.checkCardType(number)
@@ -60,18 +60,19 @@ module.exports = [
             modal.showLoading '', 'message.data_saving'
 
             data = {
-                'name': $scope.user.memb_name
-                'tel': $scope.user.memb_mobile
-                'mail': $scope.user.memb_email
-                'ident': $scope.user.memb_ident
+                'gender': $scope.user.memb_gender
+                'birth': "#{$scope.user.birth_year}-#{$scope.user.birth_month}-#{$scope.user.birth_day}"
+                'address': $scope.user.memb_address
             }
 
-            console.log 'updateMember...'
-            console.log data
             onSuccess = (response) ->
-                console.log 'updateMember.success'
+                modal.hideLoading()
+                $translate('message.data_saved').then (text) ->
+                    plugins.toast.show(text, 'long', 'top')
             onError = (error, status_code) ->
-                console.log 'updateMember.error'
+                modal.hideLoading()
+                $translate('message.data_save_error').then (text) ->
+                    plugins.toast.show(text, 'long', 'top')
                 console.log error
                 console.log status_code
 
