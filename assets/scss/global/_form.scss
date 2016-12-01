@@ -1,14 +1,35 @@
-.item-input {
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-    border-bottom: 1px solid $blue-color;
-    padding: 0;
-    margin-bottom: 1px;
+.form {
+    .item {
+        .has-error-icon {
+            display: none;
+        }
+    }
+    &.ng-submitted {
+        .item {
+            &.has-error, .has-error {
+                .has-error-icon {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .item-input {
+        border-top: 0;
+        border-right: 0;
+        border-left: 0;
+        border-bottom: 1px solid $blue-color;
+        padding: 0;
+        margin-bottom: 1px;
 
-    &.blue-input {
+        &.blue-input {
+            input {
+                color: $blue-color;
+            }
+        }
+
         input {
-            color: $blue-color;
+            font-size: 16px;
+            padding-right: 35px;
         }
     }
 }

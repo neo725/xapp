@@ -1,6 +1,6 @@
 <ion-view class="member-edit-ident" ng-controller="MemberEditIdentController">
     <ion-nav-title>
-        身分證字號設定
+        {{ 'title.member_ident_edit' | translate }}
     </ion-nav-title>
     <ion-content class="has-header" padding="true">
         <div class="pane-content">
@@ -19,6 +19,9 @@
                         <input type="text" name="ident"
                                ng-model="user.ident"
                                required>
+                        <span class="sprite-icon has-error-icon">
+                            <i class="sprite-icon-order-form-st-2x"></i>
+                        </span>
                     </label>
                     <label class="item item-input"
                            ng-class="{ 'has-error' : editIdentForm.ident_confirm.$invalid }">
@@ -26,6 +29,9 @@
                         <input type="text" name="ident_confirm"
                                ng-model="user.ident_confirm"
                                required>
+                        <span class="sprite-icon has-error-icon">
+                            <i class="sprite-icon-order-form-st-2x"></i>
+                        </span>
                     </label>
                     <div class="tip tip-assertive">{{ '* ATM 轉帳時必要資訊，儲存後將無法更改。' }}</div>
                 </div>

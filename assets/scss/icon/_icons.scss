@@ -56,3 +56,22 @@
         }
     }
 }
+
+.item-input {
+    .sprite-icon {
+        width: 80px;
+        height: 86px;
+        overflow: hidden;
+        zoom: 0.3;
+        -moz-transform: scale(0.3);
+        -moz-transform-origin: 0 0;
+        position: absolute;
+        padding-top: 12px;
+        right: 0;
+
+        i {
+            display: inline-block;
+            position: relative;
+        }
+    }
+}
