@@ -30,14 +30,14 @@
                                             希望上課時間
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row row-weekday">
                                         <div class="col value" ng-click="modalWeekday.show()" ng-if="false">
                                             <img src="img/calendar@2x.png" class="small-icon" />
                                             {{ weekday }}
                                         </div>
                                         <div class="col value" ng-click="showWeekdayModal(cover)">
                                             <img src="img/calendar@2x.png" class="small-icon" />
-                                            {{ cover.week }}
+                                            {{ parseWeekday(cover.week) }}
                                         </div>
                                     </div>
                                 </div>
@@ -47,14 +47,14 @@
                                             希望上課地點
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row row-location">
                                         <div class="col value" ng-click="modalLocation.show()" ng-if="false">
                                             <img src="img/location-wish@2x.png" class="small-icon" />
                                             {{ location }}
                                         </div>
-                                        <div class="col value" ng-click="modalLocation.show()">
+                                        <div class="col value" ng-click="showLocationModal(cover)">
                                             <img src="img/location-wish@2x.png" class="small-icon" />
-                                            {{ cover.location }}
+                                            {{ parseLocation(cover.location) }}
                                         </div>
                                     </div>
                                 </div>

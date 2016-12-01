@@ -33,15 +33,18 @@ module.exports = [
         # ------------------------------------------------
         $scope.showWeekdayModal = (cover) ->
             $scope.currentCover = cover
+            $scope.$broadcast('weekday:show', cover)
             $scope.modalWeekday.show()
 
-        $scope.getWeekday = () ->
-            return
-            weekdays = JSON.parse(window.localStorage.getItem('weekdays')) || []
+        $scope.showLocationModal = (cover) ->
+            $scope.currentCover = cover
+            $scope.$broadcast('location:show', cover)
+            $scope.modalLocation.show()
+
+        $scope.parseWeekday = (weekdays) ->
+            weekdays = weekdays.split('、')
             if weekdays.length == 0
                 weekdays = constants.WEEKDAYS
-            window.localStorage.setItem('weekdays', JSON.stringify(weekdays))
-            weekdays = JSON.parse(window.localStorage.getItem('weekdays'))
             totalCount = 0
             totalCount += 1 if _.indexOf(weekdays, '一') != -1
             totalCount += 1 if _.indexOf(weekdays, '二') != -1
@@ -52,7 +55,7 @@ module.exports = [
             totalCount += 1 if _.indexOf(weekdays, '日') != -1
 
             if totalCount == 7
-                $scope.weekday = '時間不拘'
+                return '時間不拘'
             else if totalCount > 3
                 weekdays.splice(1, totalCount - 3)
                 new_weekdays = []
@@ -60,19 +63,14 @@ module.exports = [
                 new_weekdays.push '...'
                 #new_weekdays.push weekdays[weekdays.length - 2]
                 new_weekdays.push weekdays[weekdays.length - 1]
-                $scope.weekday = _.join(new_weekdays, '，')
+                return _.join(new_weekdays, ', ')
             else
-                $scope.weekday = _.join(weekdays, '，')
+                return _.join(weekdays, ', ')
 
-        #$scope.getWeekday()
-
-        $scope.getLocation = () ->
-            return
-            locations = JSON.parse(window.localStorage.getItem('locations')) || []
+        $scope.parseLocation = (locations) ->
+            locations = locations.split('、')
             if locations.length == 0
                 locations = constants.LOCATIONS
-            window.localStorage.setItem('locations', JSON.stringify(locations))
-            locations = JSON.parse(window.localStorage.getItem('locations'))
             totalCount = 0
             totalCount += 1 if _.indexOf(locations, '建國') != -1
             totalCount += 1 if _.indexOf(locations, '忠孝') != -1
@@ -82,17 +80,15 @@ module.exports = [
             totalCount += 1 if _.indexOf(locations, '高雄') != -1
 
             if totalCount == 6
-                $scope.location = '地點不拘'
+                return '地點不拘'
             else if totalCount > 2
                 new_locations = []
                 new_locations.push locations[0]
                 #new_locations.push locations[1]
                 new_locations.push '...'
-                $scope.location = _.join(new_locations, '，')
+                return _.join(new_locations, ', ')
             else
-                $scope.location = _.join(location, '，')
-
-        #$scope.getLocation()
+                return _.join(locations, ', ')
 
         $ionicModal.fromTemplateUrl('templates/modal-weekday.html',
             scope: $scope
@@ -106,13 +102,5 @@ module.exports = [
             animation: 'fade-in'
         ).then((modal) ->
             $scope.modalLocation = modal
-        )
-
-        $scope.$on('weekdayConfirm', () ->
-            #$scope.getWeekday()
-        )
-
-        $scope.$on('locationConfirm', () ->
-            #$scope.getLocation()
         )
 ]

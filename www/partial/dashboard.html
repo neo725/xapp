@@ -1,24 +1,22 @@
 <ion-view class="dashboard" ng-controller="DashboardController">
-    <ion-nav-bar>
-        <ion-nav-buttons side="left">
-            <button class="button button-icon icon sprite-icon" ng-click="goMemberDashboard()">
-                <i class="sprite-icon-member"></i>
-            </button>
-        </ion-nav-buttons>
-        <ion-nav-buttons side="right">
-            <button class="button button-icon icon sprite-icon shoppingcar-icon"
-                    ng-class="{ 'shopping-cart-has-item': carts.length > 0 }"
-                    ng-click="goCart()">
-                <i class="sprite-icon-shoppingcar-o-2x"></i>
-            </button>
-            <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
-                <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
-            </div>
-        </ion-nav-buttons>
-        <ion-nav-title>
-            <h1 class="title">大學聯網</h1>
-        </ion-nav-title>
-    </ion-nav-bar>
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon sprite-icon" ng-click="goMemberDashboard()">
+            <i class="sprite-icon-member"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon sprite-icon shoppingcar-icon"
+                ng-class="{ 'shopping-cart-has-item': carts.length > 0 }"
+                ng-click="goCart()">
+            <i class="sprite-icon-shoppingcar-o-2x"></i>
+        </button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <h1 class="title">大學聯網</h1>
+    </ion-nav-title>
     <ion-content class="has-header" padding="false" ng-class="{'pane-content': true}">
         <div class="studycard-slides slides padding"
              ng-controller="StudyCardSlideController"
@@ -144,7 +142,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <ion-checkbox ng-model="everyday" ng-click="everydayClick(everyday)">時間不拘</ion-checkbox>
+                        <ion-checkbox ng-checked="checkIsEverydayChecked()" ng-click="everydayClick(!checkIsEverydayChecked())">時間不拘</ion-checkbox>
                     </div>
                 </div>
                 <button class="button button-full button-positive" ng-click="weekdayConfirmClick()">確定</button>
@@ -162,7 +160,7 @@
             </ion-header-bar>
             <ion-content class="padding" scroll="false">
                 <ion-list>
-                    <ion-checkbox ng-model="taipei" ng-click="taipeiClick(locations_taipei)"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台北</div></ion-checkbox>
+                    <ion-checkbox ng-checked="checkIsTaipeiChecked()" ng-click="taipeiClick(!checkIsTaipeiChecked())"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台北</div></ion-checkbox>
                     <ion-checkbox ng-model="locations.loc1"><div class="text-item">建國本部 (大夏館)</div></ion-checkbox>
                     <ion-checkbox ng-model="locations.loc2"><div class="text-item">忠孝分部 (忠孝館)</div></ion-checkbox>
                     <ion-checkbox ng-model="locations.loc3"><div class="text-item">延平分部 (大新館)</div></ion-checkbox>
@@ -175,7 +173,7 @@
                     <ion-checkbox ng-model="locations.loc6"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">高雄</div></ion-checkbox>
                 </ion-list>
                 <ion-list>
-                    <ion-checkbox ng-model="everywhere" ng-click="everywhereClick(everywhere)"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">地點不拘</div></ion-checkbox>
+                    <ion-checkbox ng-checked="checkIsEverywhereChecked()" ng-click="everywhereClick(!checkIsEverywhereChecked())"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">地點不拘</div></ion-checkbox>
                 </ion-list>
                 <button class="button button-full button-positive" ng-click="locationConfirmClick()">確定</button>
             </ion-content>

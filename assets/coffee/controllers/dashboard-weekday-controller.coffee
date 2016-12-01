@@ -1,6 +1,7 @@
 constants = require('../common/constants')
 
-module.exports = ['$scope', ($scope) ->
+module.exports = ['$scope',
+    ($scope) ->
         def_weekdays = constants.WEEKDAYS
 
         $scope.weekdays = {
@@ -12,22 +13,18 @@ module.exports = ['$scope', ($scope) ->
             saturday: false,
             sunday: false
         }
-        weekdays = JSON.parse(window.localStorage.getItem('weekdays'))
-        if _.indexOf(weekdays, def_weekdays[0]) > -1
-            $scope.weekdays.monday = true
-        if _.indexOf(weekdays, def_weekdays[1]) > -1
-            $scope.weekdays.tuesday = true
-        if _.indexOf(weekdays, def_weekdays[2]) > -1
-            $scope.weekdays.wednesday = true
-        if _.indexOf(weekdays, def_weekdays[3]) > -1
-            $scope.weekdays.thursday = true
-        if _.indexOf(weekdays, def_weekdays[4]) > -1
-            $scope.weekdays.friday = true
-        if _.indexOf(weekdays, def_weekdays[5]) > -1
-            $scope.weekdays.saturday = true
-        if _.indexOf(weekdays, def_weekdays[6]) > -1
-            $scope.weekdays.sunday = true
-        $scope.everyday = true
+
+        $scope.checkIsEverydayChecked = () ->
+            checked = true
+            checked &= $scope.weekdays.monday
+            checked &= $scope.weekdays.tuesday
+            checked &= $scope.weekdays.wednesday
+            checked &= $scope.weekdays.thursday
+            checked &= $scope.weekdays.friday
+            checked &= $scope.weekdays.saturday
+            checked &= $scope.weekdays.sunday
+
+            return checked
 
         $scope.everydayClick = (val) ->
             $scope.weekdays = {
@@ -39,7 +36,6 @@ module.exports = ['$scope', ($scope) ->
                 saturday: val,
                 sunday: val
             }
-
 
         $scope.weekdayConfirmClick = () ->
             weekdays = []
@@ -57,9 +53,30 @@ module.exports = ['$scope', ($scope) ->
                 weekdays.push def_weekdays[5]
             if $scope.weekdays.sunday
                 weekdays.push def_weekdays[6]
-            window.localStorage.setItem('weekdays', JSON.stringify(weekdays))
-            $scope.$emit('weekdayConfirm')
+
+            if weekdays.length == 0
+                weekdays = def_weekdays
+
+            $scope.currentCover.week = weekdays.join('、')
             $scope.modalWeekday.hide()
+
+        $scope.$on('weekday:show', (event, args) ->
+            weekdays = args.week.split('、')
+            if _.indexOf(weekdays, def_weekdays[0]) > -1
+                $scope.weekdays.monday = true
+            if _.indexOf(weekdays, def_weekdays[1]) > -1
+                $scope.weekdays.tuesday = true
+            if _.indexOf(weekdays, def_weekdays[2]) > -1
+                $scope.weekdays.wednesday = true
+            if _.indexOf(weekdays, def_weekdays[3]) > -1
+                $scope.weekdays.thursday = true
+            if _.indexOf(weekdays, def_weekdays[4]) > -1
+                $scope.weekdays.friday = true
+            if _.indexOf(weekdays, def_weekdays[5]) > -1
+                $scope.weekdays.saturday = true
+            if _.indexOf(weekdays, def_weekdays[6]) > -1
+                $scope.weekdays.sunday = true
+        )
 
         return
 ]
