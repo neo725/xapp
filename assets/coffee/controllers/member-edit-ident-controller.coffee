@@ -13,11 +13,11 @@ module.exports = [
 
         $scope.submitForm = (form) ->
             if not form.$valid
-                $translate(['title.member_edit', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
+                $translate(['title.member_ident_edit', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
                     plugins.notification.alert(
                         translator['errors.form_validate_error'],
                         (->),
-                        translator['title.member_edit'],
+                        translator['title.member_ident_edit'],
                         translator['popup.ok']
                     )
                 return

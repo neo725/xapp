@@ -81,4 +81,5 @@ module.exports = ->
         'refund_order': '訂單退費'
         'location': '交通資訊'
         'member_ident_edit': '身分證字號設定'
+        'member_mobile_edit': '手機號碼設定'
     }

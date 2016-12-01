@@ -11,16 +11,19 @@
                 <p>{{ '設定中的手機號碼' }}</p>
             </div>
             <div class="text-line-2 text-center">
-                <p>{{ '0986716208' }}</p>
+                <p ng-bind="member.memb_mobile"></p>
             </div>
             <form name="editMobileForm" class="form edit-password-form" novalidate ng-submit="submitForm(editMobileForm)">
                 <div class="list">
                     <label class="item item-input"
                            ng-class="{ 'has-error' : editMobileForm.mobile.$invalid }">
                         <span class="input-label">{{ '輸入新手機號碼' }}</span>
-                        <input type="text" name="old_password"
-                               ng-model="user.password"
+                        <input type="text" name="mobile"
+                               ng-model="user.memb_mobile"
                                required>
+                        <span class="sprite-icon has-error-icon">
+                            <i class="sprite-icon-order-form-st-2x"></i>
+                        </span>
                     </label>
                     <div class="tip tip-assertive">{{ '* 電話號碼的使用目的為確認本人身分及防止他人盜用，並不會公開' }}</div>
                 </div>
