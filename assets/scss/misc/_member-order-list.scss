@@ -26,8 +26,38 @@
         background-color: $stable;
         overflow-y: scroll;
 
+        .ticket {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-bottom: 10px;
+
+            &:first-child {
+                margin-top: 10px;
+            }
+
+            .ticket-top {
+                background-image: url(../img/note-bg-top@2x.png);
+                background-size: 100%;
+                background-repeat: repeat-x;
+                height: 12px;
+            }
+            .ticket-mid {
+                background-image: url(../img/note-bg-mid@2x.png);
+                background-size: 100%;
+                background-repeat: no-repeat;
+                height: 17px;
+            }
+            .ticket-bottom {
+                background-image: url(../img/note-bg-bot@2x.png);
+                background-size: 100%;
+                background-repeat: repeat-x;
+                height: 13px;
+            }
+        }
+
         .item {
-            padding: 10px;
+            padding: 5px;
+            border-width: 0;
 
             .header-row {
                 > .col {
@@ -50,7 +80,8 @@
             }
 
             .price-block {
-                padding-top: 10px;
+                padding-left: 10px;
+                padding-right: 10px;
 
                 .col {
                     padding: 0;

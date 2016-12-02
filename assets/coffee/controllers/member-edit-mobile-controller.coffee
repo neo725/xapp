@@ -1,15 +1,11 @@
 module.exports = [
-    '$scope', '$ionicHistory', '$translate', 'navigation', 'plugins', 'modal', 'api',
-    ($scope, $ionicHistory, $translate, navigation, plugins, modal, api) ->
+    '$scope', '$translate', 'navigation', 'plugins', 'modal', 'api',
+    ($scope, $translate, navigation, plugins, modal, api) ->
         $scope.user = {}
 
-        $scope.goBack = () ->
-            backView = $ionicHistory.backView()
-
-            if backView
-                navigation.slide(backView.stateName, backView.stateParams, 'down')
-            else
-                navigation.slide('home.dashboard', {}, 'down')
+        $scope.goBack = ($event) ->
+            $event.preventDefault()
+            navigation.slide('home.member.edit', {}, 'down')
 
         $scope.submitForm = (form) ->
             if not form.$valid
@@ -30,7 +26,7 @@ module.exports = [
 
             onSuccess = (response) ->
                 modal.hideLoading()
-                $scope.goBack()
+                $scope.goBack({ 'preventDefault': (->) })
                 $translate('message.data_saved').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
             onError = (error, status_code) ->
@@ -41,4 +37,6 @@ module.exports = [
                 console.log status_code
 
             api.updateMemberData(data, onSuccess, onError)
+
+        return
 ]

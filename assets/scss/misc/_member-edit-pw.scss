@@ -21,12 +21,12 @@
         }
 
         .form {
-            &.ng-submitted {
-                .item.has-error {
-                    margin-top: 1px;
-                    border-bottom: 2px solid $error;
-                }
-            }
+            //&.ng-submitted {
+            //    .item.has-error {
+            //        margin-top: 1px;
+            //        border-bottom: 2px solid $error;
+            //    }
+            //}
             .item-input {
                 border-bottom-color: #dddddd;
                 margin-top: 10px;

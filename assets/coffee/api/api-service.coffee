@@ -227,7 +227,10 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        updatePassword: (data, onSuccess, onError) ->
+        updatePassword: (old_password, new_password, onSuccess, onError) ->
+            data =
+                oldPW: old_password
+                newPW: new_password
             $http.post('/api/members/password', data)
                 .success(onSuccess)
                 .error(onError)
@@ -304,6 +307,11 @@ module.exports = ['$http', ($http) ->
 
         getImageFromUrl: (url, onSuccess, onError) ->
             $http.get(url)
+                .success(onSuccess)
+                .error(onError)
+
+        verifyPassword: (password, onSuccess, onError) ->
+            $http.post('/api/members/password/ckeck', password)
                 .success(onSuccess)
                 .error(onError)
 

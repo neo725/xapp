@@ -13,7 +13,7 @@ module.exports = ['$ionicPlatform', '$timeout', ($ionicPlatform, $timeout) ->
         if window.plugins and window.plugins.nativepagetransitions
             # nativetransition
             # then override any default you want
-            window.plugins.nativepagetransitions.globalOptions.duration = 500
+            window.plugins.nativepagetransitions.globalOptions.duration = 300
             window.plugins.nativepagetransitions.globalOptions.iosdelay = 0
             window.plugins.nativepagetransitions.globalOptions.androiddelay = 100
             window.plugins.nativepagetransitions.globalOptions.winphonedelay = 0

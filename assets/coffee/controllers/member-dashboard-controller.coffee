@@ -71,10 +71,10 @@ module.exports = [
                 quality: 80
                 destinationType: Camera.DestinationType.DATA_URL
                 sourceType: Camera.PictureSourceType.CAMERA
-                allowEdit: false
+                allowEdit: true
                 encodingType: Camera.EncodingType.JPEG
-                #targetWidth: 200
-                #targetHeight: 200
+                targetWidth: 200
+                targetHeight: 200
                 saveToPhotoAlbum: false
                 correctOrientation: true
 

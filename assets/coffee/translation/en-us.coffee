@@ -21,6 +21,7 @@ module.exports = ->
         'phone_valid_error': '驗證發生錯誤，請確認輸入為正確的驗證碼，或是嘗試重新發送'
         'current_password_error': '目前的密碼不正確，無法完成密碼變更'
         'data_save_error': '儲存資料未完成'
+        'verify_failed': '驗證失敗'
     }
     'popup': {
         'ok': 'OK'
@@ -59,6 +60,8 @@ module.exports = ->
         'refund_order_confirm': '確定要執行訂單退費?'
         'current_is_on_duty': '撥打服務專線 02-2700-5858'
         'current_is_off_duty': '目前為閉館時段'
+        'verifying': '驗證中...'
+        'password_saved': '密碼設定完成'
     }
     'tab': {
         'payed': '已繳費'
@@ -82,4 +85,5 @@ module.exports = ->
         'location': '交通資訊'
         'member_ident_edit': '身分證字號設定'
         'member_mobile_edit': '手機號碼設定'
+        'member_password_edit': '密碼設定'
     }

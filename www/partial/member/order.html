@@ -16,8 +16,9 @@
 
             <ion-tab class="tab-active-1" title="{{'tab.payed' | translate}}" badge="0" badge-style="badge-assertive">
                 <div class="tab-content">
-                    <div class="card" ng-repeat="order in payed_list">
-                        <div class="item item-text-wrap" ng-init="main = order.orderMain">
+                    <div class="ticket" ng-repeat="order in payed_list" ng-init="main = order.orderMain">
+                        <div class="ticket-top"></div>
+                        <div class="item item-text-wrap">
                             <div class="row header-row">
                                 <div class="col col-30 text-s-size">
                                     <span class="bg-stable padding-3">{{ main.No }}</span></div>
@@ -33,28 +34,29 @@
                                     <div class="col col-25 text-right">{{ detail.Amount | currency:undefined:0 }}</div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row price-block border-top">
-                                        <div class="col col-66 text-positive">
-                                            <div class="image-mark"><img src="img/order-form-ss@2x.png" /></div>
-                                            <div class="payment-mark">{{ main.Payway }}</div>
-                                        </div>
-                                        <div class="col col-34 text-right price-mark">
-                                            NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="ticket-mid"></div>
+                        <div class="item item-text-wrap">
+                            <div class="row price-block">
+                                <div class="col col-66 text-positive">
+                                    <div class="image-mark"><img src="img/order-form-ss@2x.png" /></div>
+                                    <div class="payment-mark">{{ main.Payway }}</div>
+                                </div>
+                                <div class="col col-34 text-right price-mark">
+                                    NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="ticket-bottom"></div>
                     </div>
                 </div>
             </ion-tab>
 
             <ion-tab class="tab-active-2" title="{{'tab.wait_for_pay' | translate}}" badge="0" badge-style="badge-assertive">
                 <div class="tab-content">
-                    <div class="card" ng-repeat="order in waiting_list">
-                        <div class="item item-text-wrap" ng-init="main = order.orderMain">
+                    <div class="ticket" ng-repeat="order in waiting_list" ng-init="main = order.orderMain">
+                        <div class="ticket-top"></div>
+                        <div class="item item-text-wrap">
                             <div class="row header-row">
                                 <div class="col col-30 text-s-size">
                                     <span class="bg-stable padding-3">{{ main.No }}</span></div>
@@ -68,28 +70,29 @@
                                 <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
                                 <div class="col col-25 text-right">{{ detail.Amount | currency:undefined:0 }}</div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row price-block border-top">
-                                        <div class="col col-66 text-assertive">
-                                            <div class="image-mark"><img src="img/order-form-st@2x.png" /></div>
-                                            <div class="payment-mark">{{ main.Payway }}</div>
-                                        </div>
-                                        <div class="col col-34 text-right price-mark">
-                                            NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="ticket-mid"></div>
+                        <div class="item item-text-wrap">
+                            <div class="row price-block">
+                                <div class="col col-66 text-assertive">
+                                    <div class="image-mark"><img src="img/order-form-st@2x.png" /></div>
+                                    <div class="payment-mark">{{ main.Payway }}</div>
+                                </div>
+                                <div class="col col-34 text-right price-mark">
+                                    NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="ticket-bottom"></div>
                     </div>
                 </div>
             </ion-tab>
 
             <ion-tab class="tab-active-3" title="{{'tab.return_pay' | translate}}" badge="0" badge-style="badge-assertive">
                 <div class="tab-content">
-                    <div class="card" ng-repeat="order in refund_list">
-                        <div class="item item-text-wrap" ng-init="main = order.orderMain">
+                    <div class="ticket" ng-repeat="order in refund_list" ng-init="main = order.orderMain">
+                        <div class="ticket-top"></div>
+                        <div class="item item-text-wrap">
                             <div class="row header-row">
                                 <div class="col text-s-size">
                                     <span class="bg-stable padding-3">{{ main.No }}</span></div>
@@ -101,20 +104,20 @@
                                 <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
                                 <div class="col col-25 text-right">{{ detail.Amount | currency:undefined:0 }}</div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row price-block border-top">
-                                        <div class="col col-66 text-positive">
-                                            <div class="image-mark"><img src="img/order-form-rs@2x.png" /></div>
-                                            <div class="payment-mark">{{ main.Payway }}</div>
-                                        </div>
-                                        <div class="col col-34 text-right price-mark">
-                                            NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="ticket-mid"></div>
+                        <div class="item item-text-wrap">
+                            <div class="row price-block">
+                                <div class="col col-66 text-positive">
+                                    <div class="image-mark"><img src="img/order-form-rs@2x.png" /></div>
+                                    <div class="payment-mark">{{ main.Payway }}</div>
+                                </div>
+                                <div class="col col-34 text-right price-mark">
+                                    NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="ticket-bottom"></div>
                     </div>
                 </div>
             </ion-tab>
