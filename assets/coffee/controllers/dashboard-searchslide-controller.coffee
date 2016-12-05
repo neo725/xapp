@@ -11,7 +11,8 @@ module.exports = [
             $timeout(->
                 $('.search-slides').show()
                 $ionicSlideBoxDelegate.update()
-            , 1000)
+                $ionicSlideBoxDelegate.$getByHandle('search-slide-box').loop(true)
+            , 500)
 
         onError = (response) ->
             modal.hideLoading()

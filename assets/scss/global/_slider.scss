@@ -2,10 +2,14 @@
 .slides {
     .slider-pager {
         .slider-pager-page {
-            font-size: 10px;
+            font-size: 5px;
+            margin-top: -3px;
 
             &:before {
                 content: '●';
+            }
+            &.active {
+                font-size: 10px;
             }
         }
         i.icon {

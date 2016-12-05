@@ -1,4 +1,4 @@
-<ion-slide-box does-continue="false">
+<ion-slide-box does-continue="false" delegate-handle="studycard-slide-box">
     <ion-slide ng-repeat="card in studyCards">
         <div class="box" ng-init="progress = getPercentage(card.progress)">
             <div class="card-progress">
