@@ -16,14 +16,17 @@
     <ion-content class="has-header" padding="false" scroll="false" ng-class="{ 'pane-content': true }">
         <div class="list header">
             <div class="item item-input-inset">
-                <label class="item-input-wrapper">
+                <div class="item-input-wrapper">
                     <input type="text"
                            placeholder="{{ placeholderKeyword }}"
                            class="item-input-keyword"
                            ng-model="keyword">
-                </label>
-                <button class="button button-icon icon ion-android-search button-search"
-                        ng-click="goSearch(keyword)"></button>
+                    <button class="button button-icon icon ion-android-search button-search"
+                            ng-if="false"
+                            ng-click="goSearch(keyword)"></button>
+                    <span class="search-icon" ng-click="goSearch(keyword)">
+                            <i class="ion-android-search"></i></span>
+                </div>
                 <button class="button button-icon icon sprite-icon button-options"
                         ng-if="option_visible"
                         ng-click="showOptions($event)">
@@ -86,7 +89,7 @@
         <ion-popover-view class="popover-history">
             <ion-content class="popover-history-content" scroll="false">
                 <ion-list>
-                    <ion-item class="row" ng-click="hideHistory()" ng-repeat="history in historyList">
+                    <ion-item class="row" ng-click="goSearchByFilter(history)" ng-repeat="history in historyList">
                         <div class="col-10"><img src="img/history.png" class="item-image" /></div>
                         <div class="col-90 item-content item-text">
                             <span ng-bind="history.query"></span>

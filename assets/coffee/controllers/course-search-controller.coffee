@@ -87,9 +87,6 @@ module.exports = [
         $scope.showHistory = ($event) ->
             $scope.popoverHistory.show($event)
 
-        $scope.hideHistory = ->
-            $scope.popoverHistory.hide()
-
         $scope.setOrder = (value) ->
             $scope.order = value
             $scope.goSearch($stateParams.keyword)
@@ -116,7 +113,7 @@ module.exports = [
                     grid: false
                     grid_num: 10
                     step: 1000
-                )
+                , 500)
             )
 
         $scope.toggleLocation = (value) ->
@@ -180,6 +177,19 @@ module.exports = [
 
             $scope.popover.hide()
 
+        $scope.goSearchByFilter = (filter) ->
+            $scope.page = 1
+            $scope.keyword = filter.query
+            $scope.filter.weekday = filter.wday.split(',')
+            $scope.filter.location = filter.loc.split(',')
+            $scope.order = filter.orderby
+
+            $scope.noMoreItemsAvailable = false
+
+            $scope.popoverHistory.hide()
+
+            goSearch($scope.page, $scope.pageSize, $scope.keyword)
+
         $scope.arrangeLocation = (loc) ->
             if loc is null
                 return ''
@@ -204,6 +214,14 @@ module.exports = [
             if index != -1 and index != 0
                 location = popItem(location, '台北')
                 location.splice(0, 0, '台北')
+
+            location_all = true
+            location_all &= _.indexOf(location, '台北') != -1
+            location_all &= _.indexOf(location, '台中') != -1
+            location_all &= _.indexOf(location, '高雄') != -1
+
+            if location_all
+                return "地點不拘"
 
             return location.join(',')
 
@@ -233,20 +251,13 @@ module.exports = [
                 array.splice(index, 1)
             array
 
-        loadHistory = (success) ->
-            onSuccess = (response) ->
-                modal.hideLoading()
-                max_splice_length = 5
-                list = response.historyList.list
-                if Array.isArray(list)
-                    if max_splice_length > list.length
-                        max_splice_length = list.length
-                    $scope.historyList = list.splice(0, max_splice_length)
-            onError = () ->
-                modal.hideLoading()
-
-            modal.showLoading '', 'message.data_loading'
-            api.searchCourse({ 'page': 1, 'perpage': 20 }, onSuccess, onError)
+        loadHistory = (historyList) ->
+            max_splice_length = 5
+            list = historyList.list
+            if Array.isArray(list)
+                if max_splice_length > list.length
+                    max_splice_length = list.length
+                $scope.historyList = list.splice(0, max_splice_length)
 
         goSearch = (page, pagesize, keyword) ->
             #console.log 'goSearch - ' + page
@@ -260,6 +271,8 @@ module.exports = [
 
                 list = response.resultList.list
                 pagerInfo = response.resultList.pagerInfo
+                historyList = response.historyList
+                loadHistory historyList
 
                 if page == 1
                     $scope.courses = list
