@@ -181,17 +181,43 @@
 
         .range-slider {
             position: relative;
-            height: 65px;
-        }
-        .location {
-            height: 30px;
-            border: 2px solid $stable;
-            border-radius: 20px;
-            text-align: center;
-            padding-top: 2px;
+            height: 50px;
 
-            &.current {
-                border-color: $positive;
+            .irs-line {
+                .irs-line-left, .irs-line-mid, .irs-line-right {
+                    background: #eee;
+                    height: 6px;
+                }
+                .irs-line-left, .irs-line-right {
+                    border-radius: 6px;
+                }
+            }
+            .irs-bar {
+                background: $positive;
+                height: 6px;
+            }
+            .irs-slider {
+                &.from, &.to {
+                    background: $positive;
+                    border-radius: 22px;
+                }
+            }
+        }
+        .row-location {
+            height: 80px;
+
+            .location {
+                width: 60px;
+                height: 60px;
+                border: 2px solid $stable;
+                border-radius: 60px;
+                text-align: center;
+                padding-top: 17px;
+                margin: 0 auto;
+
+                &.current {
+                    border-color: $positive;
+                }
             }
         }
         .weekday {
