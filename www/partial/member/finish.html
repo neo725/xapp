@@ -15,6 +15,12 @@
         <div class="course-container">
             <div class="card course" ng-repeat="course in courses">
                 <div class="item item-text-wrap">
+                    <div class="row no-padding title-row">
+                        <div class="col no-padding">
+                            <span ng-bind="course.Prod_Name"></span>
+                            <span ng-bind="course.Prod_SubName"></span>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col col-40">
                             <div class="progress-wrapper">
@@ -23,14 +29,14 @@
                                     current="course.ques_topics[0].ans_value"
                                     color="#2B61AC"
                                     bgcolor="#F1F1F1"
-                                    radius="{{ radius*1.515 }}"
+                                    radius="{{ radius*1.7 }}"
                                     stroke="{{ stroke*1.6 }}">
                                     <round-progress
                                         max="5"
                                         current="course.ques_topics[1].ans_value"
                                         color="#B63882"
                                         bgcolor="#F1F1F1"
-                                        radius="{{ radius*1.515 }}"
+                                        radius="{{ radius*1.7 }}"
                                         stroke="{{ stroke*1.6 }}"
                                         offset="10">
                                         <round-progress
@@ -38,9 +44,19 @@
                                             current="course.ques_topics[2].ans_value"
                                             color="#F2D000"
                                             bgcolor="#F1F1F1"
-                                            radius="{{ radius*1.515 }}"
+                                            radius="{{ radius*1.7 }}"
                                             stroke="{{ stroke*1.6 }}"
-                                            offset="20"></round-progress>
+                                            offset="20">
+                                            <round-progress
+                                                max="5"
+                                                current="course.ques_topics[3].ans_value"
+                                                color="#00a09a"
+                                                bgcolor="#F1F1F1"
+                                                radius="{{ radius*1.7 }}"
+                                                stroke="{{ stroke*1.6 }}"
+                                                offset="30">
+                                            </round-progress>
+                                        </round-progress>
                                     </round-progress>
                                 </round-progress>
                                 <div class="progress-icon-label-wrapper" ng-hide="false">
@@ -51,40 +67,39 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col no-padding">
-                            <div class="row no-padding">
-                                <div class="col no-padding">
-                                    <span ng-bind="course.Prod_Name"></span>
-                                    <span ng-bind="course.Prod_SubName"></span>
-                                </div>
-                            </div>
+                        <div class="col col-topics no-padding">
                             <div class="row line-star-row no-padding">
-                                <div class="col line-star-col">
+                                <div class="col line-star-col no-padding">
                                     <div class="row no-padding color-1 star-text-row">
-                                        <div class="col">課程滿意度</div>
-                                        <div class="col">
+                                        <div class="col no-padding">{{ course.ques_topics[0].topic_name }}</div>
+                                        <div class="col no-padding">
                                             <div star-rating ng-model="course.ques_topics[0].ans_value"
                                                  readonly="true"
-                                                 max="5"
-                                                 on-rating-select="rateFunction($index, rating)"></div>
+                                                 max="5"></div>
                                         </div>
                                     </div>
                                     <div class="row no-padding color-2 star-text-row">
-                                        <div class="col">老師專業度</div>
-                                        <div class="col">
+                                        <div class="col no-padding">{{ course.ques_topics[1].topic_name }}</div>
+                                        <div class="col no-padding">
                                             <div star-rating ng-model="course.ques_topics[1].ans_value"
                                                  readonly="true"
-                                                 max="5"
-                                                 on-rating-select="rateFunction($index, rating)"></div>
+                                                 max="5"></div>
                                         </div>
                                     </div>
                                     <div class="row no-padding color-3 star-text-row">
-                                        <div class="col">專員滿意度</div>
-                                        <div class="col">
+                                        <div class="col no-padding">{{ course.ques_topics[2].topic_name }}</div>
+                                        <div class="col no-padding">
                                             <div star-rating ng-model="course.ques_topics[2].ans_value"
                                                  readonly="true"
-                                                 max="5"
-                                                 on-rating-select="rateFunction($index, rating)"></div>
+                                                 max="5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row no-padding color-4 star-text-row">
+                                        <div class="col no-padding">{{ course.ques_topics[3].topic_name }}</div>
+                                        <div class="col no-padding">
+                                            <div star-rating ng-model="course.ques_topics[3].ans_value"
+                                                 readonly="true"
+                                                 max="5"></div>
                                         </div>
                                     </div>
                                 </div>

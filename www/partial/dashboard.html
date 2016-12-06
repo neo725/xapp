@@ -86,22 +86,26 @@
                         <h3>{{ currentCard.Prod_Name }}</h3>
                     </div>
                 </div>
-                <div class="row" ng-repeat="topic in topics">
-                    <div class="col col-50 col-item-title">
-                        {{ topic.Topic_Name }}
+                <div class="topic" ng-repeat="topic in topics">
+                    <div class="row" ng-if="topic.Topic_StatType == 'avg'">
+                        <div class="col col-50 col-item-title">
+                            {{ topic.Topic_Name }}
+                        </div>
+                        <div class="col">
+                            <div star-rating ng-model="rating[$index]" max="5" on-rating-select="rateFunction($index, rating)"></div>
+                        </div>
                     </div>
-                    <div class="col">
-                        <div star-rating ng-model="rating[$index]" max="5" on-rating-select="rateFunction($index, rating)"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col col-item-title">
-                        {{ '我感興趣或想繼續進修學習的課程主題' }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <textarea name="commet" class="comment" rows="5" cols="40" ng-model="comment"></textarea>
+                    <div ng-if="topic.Topic_StatType == 'text'">
+                        <div class="row">
+                            <div class="col col-item-title">
+                                {{ topic.Topic_Name }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <textarea name="commet" class="textarea" rows="3" cols="40" ng-model="comment[$index]"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">

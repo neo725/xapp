@@ -453,6 +453,22 @@
         height: 550px !important;
     }
 
+    .topic {
+        .row {
+            padding: 3px;
+
+            .col-item-title {
+                padding-left: 6px;
+                padding-top: 7px;
+            }
+            .textarea {
+                border: 0;
+                background-color: #dcdddc;
+                width: 100%;
+                padding: 8px;
+            }
+        }
+    }
     .col {
         &.title {
             white-space: nowrap;
@@ -463,16 +479,6 @@
 
             padding-top: 20px;
             padding-bottom: 20px;
-        }
-        &.col-item-title {
-            padding-left: 6px;
-            padding-top: 13px;
-        }
-        textarea {
-            border: 0;
-            background-color: #dcdddc;
-            width: 100%;
-            padding: 8px;
         }
     }
 }
@@ -485,9 +491,10 @@
     .star {
         padding: 1px;
         color: #ddd;
-        font-size: 2em;
+        font-size: 1.8em;
         list-style-type: none;
         display: inline-block;
+        margin-right: 5px;
 
         &.filled {
             color: #FCD815;

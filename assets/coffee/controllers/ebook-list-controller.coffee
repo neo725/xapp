@@ -46,7 +46,7 @@ module.exports = [
             api.deleteFavoriteEbook(para.apply, para.catalog_id, onSuccess, onError)
 
         loadEbookIntro = () ->
-            modal.showLoading('', 'message.data.loading')
+            modal.showLoading('', 'message.data_loading')
 
             onSuccess = (response) ->
                 modal.hideLoading()

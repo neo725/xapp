@@ -39,7 +39,8 @@ module.exports = [
             onSuccess = (response) ->
                 if ($rootScope.resetStarFunction)
                     $rootScope.resetStarFunction()
-                $rootScope.topics = response.topics
+                topics = _.orderBy(response.topics, ['Topic_Sort'], ['asc'])
+                $rootScope.topics = topics
                 modal.hideLoading()
                 $scope.modalFeedback.show()
             onError = ->

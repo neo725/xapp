@@ -4,12 +4,22 @@
     }
 
     .course-container {
+        .card {
+            margin: 15px;
+        }
         .item {
+            padding: 20px 10px 10px 25px;
+
             .no-padding {
                 padding: 0;
             }
+            .title-row {
+                font-size: 18px;
+            }
             .line-star-row {
-                margin-top: 0;
+                margin-top: 30px;
+                width: 240px;
+                margin-left: -5px;
             }
             .col-40 {
                 -webkit-box-flex: 0;
@@ -44,6 +54,14 @@
                     }
                 }
             }
+            .color-4 {
+                color: #00a09a;
+                .star-rating {
+                    .star.filled {
+                        color: #00a09a;
+                    }
+                }
+            }
 
             .progress-wrapper {
                 top: 10px;
@@ -53,8 +71,8 @@
                 .progress-icon-label-wrapper {
                     position: absolute;
                     text-align: center;
-                    left: 28px;
-                    top: 32px;
+                    left: 35px;
+                    top: 35px;
 
                     .progress-icon-label {
                         font-size: 0.8em;
@@ -67,6 +85,8 @@
                 }
             }
             .star-text-row {
+                padding-bottom: 5px;
+
                 .col:first-child {
                     font-size: 0.8em;
                 }
@@ -107,6 +127,7 @@
             .star-rating {
                 .star {
                     font-size: 1em;
+                    margin-right: 2px;
                 }
             }
         }

@@ -1,6 +1,7 @@
 module.exports = [
     '$rootScope', '$scope', '$translate', '$ionicSlideBoxDelegate', 'modal', 'plugins', 'api',
     ($rootScope, $scope, $translate, $ionicSlideBoxDelegate, modal, plugins, api) ->
+        $scope.comment = []
 
         resetStar = ->
             $scope.rating = []
@@ -16,7 +17,7 @@ module.exports = [
         $scope.rateFunction = (index, rating) ->
             $scope.rating[index] = rating
 
-            console.log $scope.rating
+            #console.log $scope.rating
 
         $scope.closeSurvey = ->
             $scope.modalFeedback.hide()
@@ -31,10 +32,17 @@ module.exports = [
             i = 0
             max = $rootScope.topics.length
             while i < max
-                topics.push {
-                    'topic_no': $rootScope.topics[i].Topic_No
-                    'answer_value': $scope.rating[i]
-                }
+                topic = $rootScope.topics[i]
+                if topic.Topic_StatType == 'avg'
+                    topics.push {
+                        'topic_no': topic.Topic_No
+                        'answer_value': $scope.rating[i].toString()
+                    }
+                if topic.Topic_StatType == 'text'
+                    topics.push {
+                        'topic_no': topic.Topic_No
+                        'answer_value': $scope.comment[i]
+                    }
                 i++
             data = {
                 'class_id': $scope.currentCard.Prod_Id
@@ -51,7 +59,7 @@ module.exports = [
                     newIndex = index - 1
                     if newIndex == -1
                         newIndex = 0
-                    $ionicSlideBoxDelegate.slide(index - 1)
+                    $ionicSlideBoxDelegate.$getByHandle('studycard-slide-box').slide(index - 1)
                 $ionicSlideBoxDelegate.update()
 
                 $scope.modalFeedback.hide()
