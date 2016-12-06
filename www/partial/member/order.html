@@ -22,11 +22,15 @@
                             <div class="row header-row">
                                 <div class="col col-30 text-s-size">
                                     <span class="bg-stable padding-3">{{ main.No }}</span></div>
-                                <div class="col col-50 text-s-size text-light-gray">
-                                    {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
                                 <div class="col text-right text-s-size">
-                                    <span class="bg-tab-color-1 text-white padding-3 refunds" ng-click="wantRefunds($index, main.No, $event)">
+                                    <span class="bg-tab-color-1 text-white padding-3 action"
+                                          ng-click="wantRefunds($index, main.No, $event)"
+                                          ng-if="checkOrderStatus(main.Payway, 'refund')">
                                         我要退費</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-s-size text-light-gray">
+                                    {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
                             </div>
                             <div class="data-row-container">
                                 <div class="row" ng-repeat="detail in order.orderDetail">
@@ -60,11 +64,23 @@
                             <div class="row header-row">
                                 <div class="col col-30 text-s-size">
                                     <span class="bg-stable padding-3">{{ main.No }}</span></div>
-                                <div class="col col-50 text-s-size text-light-gray">
-                                    {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
                                 <div class="col text-right text-s-size">
-                                    <span class="bg-tab-color-2 text-white padding-3 refunds" ng-click="wantCancel($index, main.No, $event)">
+                                    <span class="bg-tab-color-2-1 text-white padding-3 action"
+                                          ng-click="wantRePay($index, main.No, $event)"
+                                          ng-if="checkOrderStatus(main.Payway, 'repay')">
+                                        重新付款</span>
+                                    <span class="bg-tab-color-2-1 text-white padding-3 action"
+                                          ng-click="wantPayInfo($index, main.No, $event)"
+                                          ng-if="checkOrderStatus(main.Payway, 'info')">
+                                        繳費資訊</span>
+                                    <span class="bg-tab-color-2 text-white padding-3 action"
+                                          ng-click="wantCancel($index, main.No, $event)"
+                                          ng-if="checkOrderStatus(main.Payway, 'cancel')">
                                         取消訂單</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-s-size text-light-gray">
+                                    {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
                             </div>
                             <div class="row" ng-repeat="detail in order.orderDetail">
                                 <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
@@ -96,9 +112,16 @@
                             <div class="row header-row">
                                 <div class="col text-s-size">
                                     <span class="bg-stable padding-3">{{ main.No }}</span></div>
-                                <div class="col col-50 text-s-size text-light-gray">
+                                <div class="col text-right text-s-size">
+                                    <span class="bg-tab-color-2-1 text-white padding-3 action"
+                                          ng-click="wantRePay($index, main.No, $event)"
+                                          ng-if="checkOrderStatus(main.Payway, 'repay')">
+                                        重新付款</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-s-size text-light-gray">
                                     {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
-                                <div class="col text-right text-s-size"></div>
                             </div>
                             <div class="row" ng-repeat="detail in order.orderDetail">
                                 <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
@@ -108,7 +131,11 @@
                         <div class="ticket-mid"></div>
                         <div class="item item-text-wrap">
                             <div class="row price-block">
-                                <div class="col col-66 text-positive">
+                                <div class="col col-66 text-wait" ng-if="main.Payway == '款項退費申請中'">
+                                    <div class="image-mark"><img src="img/order-form-w@2x.png" /></div>
+                                    <div class="payment-mark">{{ main.Payway }}</div>
+                                </div>
+                                <div class="col col-66 text-positive" ng-if="main.Payway != '款項退費申請中'">
                                     <div class="image-mark"><img src="img/order-form-rs@2x.png" /></div>
                                     <div class="payment-mark">{{ main.Payway }}</div>
                                 </div>

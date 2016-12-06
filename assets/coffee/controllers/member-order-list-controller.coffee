@@ -4,6 +4,38 @@ module.exports = [
         $scope.goBack = ->
             navigation.slide 'home.member.dashboard', {}, 'right'
 
+        $scope.checkOrderStatus = (payway, status) ->
+            # refund
+            if status == 'refund' and payway == '信用卡付款-授權成功'
+                return true
+            if status == 'refund' and payway == 'ATM付款-付款完成'
+                return true
+            # cancel
+            if status == 'cancel' and payway == '未選擇付款方式'
+                return true
+            if status == 'cancel' and payway == 'ATM付款'
+                return true
+            if status == 'cancel' and payway == '信用卡付款'
+                return true
+            if status == 'cancel' and payway == 'ATM付款-款項入帳,待確認金額'
+                return true
+            if status == 'cancel' and payway == '信用卡付款-授權失敗'
+                return true
+            if status == 'cancel' and payway == '信用卡付款-不請款'
+                return true
+            # repay
+            if status == 'repay' and payway == '未選擇付款方式'
+                return true
+            if status == 'repay' and payway == '信用卡付款-授權失敗'
+                return true
+            # info
+            if status == 'info' and payway == 'ATM付款'
+                return true
+            if status == 'info' and payway == 'ATM付款-款項入帳,待確認金額'
+                return true
+
+            return false
+
         $scope.wantRefunds = (index, order_no, $event) ->
             $event.stopPropagation()
 

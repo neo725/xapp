@@ -68,9 +68,10 @@
                 margin-top: 10px;
                 margin-bottom: 10px;
             }
-            .refunds {
+            .action {
                 padding-top: 5px;
                 padding-left: 5px;
+                margin-left: 5px;
             }
 
             .prod_title {
@@ -85,6 +86,10 @@
 
                 .col {
                     padding: 0;
+
+                    &.text-wait {
+                        color: #be1621;
+                    }
                 }
                 .image-mark {
                     position: absolute;
@@ -120,6 +125,9 @@
         }
         .bg-tab-color-2 {
             background-color: $tab-color-2 !important;
+        }
+        .bg-tab-color-2-1 {
+            background-color: $tab-color-2-1 !important;
         }
     }
 }
