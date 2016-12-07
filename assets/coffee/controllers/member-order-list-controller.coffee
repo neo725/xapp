@@ -36,6 +36,10 @@ module.exports = [
 
             return false
 
+        $scope.wantPayInfo = (index, order_no, $event) ->
+            $event.stopPropagation()
+            navigation.slide 'home.member.order-info', { 'order_no': order_no }, 'left'
+
         $scope.wantRefunds = (index, order_no, $event) ->
             $event.stopPropagation()
 

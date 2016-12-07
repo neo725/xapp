@@ -324,6 +324,14 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getATMPaymentInfo: (order_no, onSuccess, onError) ->
+            api_url = constants.API_URL.atm
+            data =
+                'orderNo': order_no
+            $http.post("#{api_url}/api/pay", data)
+                .success(onSuccess)
+                .error(onError)
+
         createCreditCardPayment: (order_no, card_no, expire, cvc, onSuccess, onError) ->
             api_url = constants.API_URL.creditcard
             data =

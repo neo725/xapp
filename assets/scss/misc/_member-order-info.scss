@@ -1,0 +1,54 @@
+.member-order-info {
+    .card {
+        background-color: $stable;
+        padding: 10px 5px;
+
+        .cart-logo {
+            margin-right: 10px;
+
+            &.shift-cart-logo {
+                margin-top: 5px;
+            }
+            img {
+                width: 50px;
+            }
+        }
+
+        .title {
+            color: #E8440D;
+        }
+        .sub-title {
+            color: #E8440D;
+        }
+        .col-bank-code {
+            h4 {
+                color: #be1621;
+            }
+        }
+        .col-account {
+            h3 {
+                font-size: 26px;
+            }
+        }
+
+        .text-tips {
+            padding: 0 10px;
+            color: $dark;
+        }
+        .text-block-tips {
+            background-color: $light;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .price-mark {
+            color: $dark;
+
+            .price {
+                color: $assertive;
+                font-style: italic;
+                font-size: 3em;
+            }
+        }
+    }
+}

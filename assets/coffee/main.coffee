@@ -37,6 +37,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('MemberDashboardController', require('./controllers/member-dashboard-controller'))
 .controller('MemberWishListController', require('./controllers/member-wish-list-controller'))
 .controller('MemberOrderListController', require('./controllers/member-order-list-controller'))
+.controller('MemberOrderInfoController', require('./controllers/member-order-info-controller'))
 .controller('MemberFinishListController', require('./controllers/member-finish-list-controller'))
 .controller('MemberCartListController', require('./controllers/member-cart-list-controller'))
 .controller('MemberPaymentListController', require('./controllers/member-payment-list-controller'))
@@ -234,6 +235,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'memberContent': {
                 templateUrl: 'partial/member/order.html'
+            }
+        }
+
+    .state 'home.member.order-info',
+        url: '/order-info/:order_no'
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/order-info.html'
             }
         }
 

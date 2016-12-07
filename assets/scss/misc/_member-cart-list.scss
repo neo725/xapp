@@ -359,23 +359,35 @@
             padding: 10px 5px;
 
             .cart-logo {
+                margin-right: 10px;
+
                 &.shift-cart-logo {
-                    margin-top: 20px;
+                    margin-top: 5px;
                 }
                 img {
-                    width: 32px;
+                    width: 50px;
                 }
             }
 
             .title {
-                color: $tab-color-1;
+                color: #E8440D;
             }
             .sub-title {
-                color: $tab-color-1;
+                color: #E8440D;
+            }
+            .col-bank-code {
+                h4 {
+                    color: #be1621;
+                }
+            }
+            .col-account {
+                h3 {
+                    font-size: 26px;
+                }
             }
 
             .text-tips {
-                padding: 25px 10px;
+                padding: 0 10px;
                 color: $dark;
             }
             .text-block-tips {
