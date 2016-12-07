@@ -36,6 +36,22 @@ module.exports = [
 
             return false
 
+        $scope.wantRePay = (index, details, $event) ->
+            $event.stopPropagation()
+            modal.showLoading '', 'message.processing'
+            onSuccess = ->
+                # addToOrderCart
+                onSuccess = ->
+                    modal.hideLoading()
+                    # navigation
+                    navigation.slide 'home.member.order-cart.step1', {}, 'left'
+                onError = ->
+                    modal.hideLoading()
+                api.addToOrderCart _.map(details, 'ProdId'), onSuccess, onError
+            onError = ->
+                modal.hideLoading()
+            api.clearFromOrderCart onSuccess, onError
+
         $scope.wantPayInfo = (index, order_no, $event) ->
             $event.stopPropagation()
             navigation.slide 'home.member.order-info', { 'order_no': order_no }, 'left'

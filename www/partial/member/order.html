@@ -66,7 +66,7 @@
                                     <span class="bg-stable padding-3">{{ main.No }}</span></div>
                                 <div class="col text-right text-s-size">
                                     <span class="bg-tab-color-2-1 text-white padding-3 action"
-                                          ng-click="wantRePay($index, main.No, $event)"
+                                          ng-click="wantRePay($index, order.orderDetail, $event)"
                                           ng-if="checkOrderStatus(main.Payway, 'repay')">
                                         重新付款</span>
                                     <span class="bg-tab-color-2-1 text-white padding-3 action"

@@ -40,6 +40,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('MemberOrderInfoController', require('./controllers/member-order-info-controller'))
 .controller('MemberFinishListController', require('./controllers/member-finish-list-controller'))
 .controller('MemberCartListController', require('./controllers/member-cart-list-controller'))
+.controller('MemberOrderCartListController', require('./controllers/member-order-cart-list-controller'))
 .controller('MemberPaymentListController', require('./controllers/member-payment-list-controller'))
 .controller('MemberMessageController', require('./controllers/member-message-controller'))
 .controller('MemberMessageInfoController', require('./controllers/member-message-info-controller'))
@@ -356,6 +357,39 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'cartContent': {
                 templateUrl: 'partial/member/cart-3.html'
+            }
+        }
+
+    .state 'home.member.order-cart',
+        url: '/order-cart'
+        abstract: true
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/order-cart.html'
+            }
+        }
+
+    .state 'home.member.order-cart.step1',
+        url: '/1'
+        views: {
+            'cartContent': {
+                templateUrl: 'partial/member/order-cart-1.html'
+            }
+        }
+
+    .state 'home.member.order-cart.step2',
+        url: '/2'
+        views: {
+            'cartContent': {
+                templateUrl: 'partial/member/order-cart-2.html'
+            }
+        }
+
+    .state 'home.member.order-cart.step3',
+        url: '/3'
+        views: {
+            'cartContent': {
+                templateUrl: 'partial/member/order-cart-3.html'
             }
         }
 

@@ -1,0 +1,80 @@
+<ion-view class="step-1-content" ng-class="{ 'empty': checkIsCartEmpty() }">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>購物車</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-minus-circled" ng-click="goShowDelete()" ng-if="false"></button>
+        <button class="button button-icon icon ion-android-delete" ng-click="goClearAll()" ng-if="false">清空</button>
+    </ion-nav-buttons>
+    <ion-content scroll="true" class="content-pane" ng-show="showShowCarts" ng-cloak>
+        <div class="header">
+            <div class="text text-left text-gray" ng-show="carts.length > 0">您有 {{ carts.length }} 樣商品在購物車裡</div>
+            <div class="text text-left text-gray" ng-show="carts.length == 0">您沒有任何商品在購物車裡</div>
+            <div class="link text-right" ng-click="goClearAll()">{{ '清空' }}</div>
+        </div>
+        <div class="content">
+            <ion-list show-delete="shouldShowDelete">
+                <ion-item ng-repeat="cart in carts"
+                          item="cart"
+                          href="#/home/course/info/{{ cart.Shop_Id }}/{{ cart.Prod_Id }}" class="item-remove-animate">
+                    {{ cart.Prod_Name }}
+                    <div class="price-container">
+                        <span class="price">{{ cart.Prod_Price | currency:undefined:0 }}</span>
+                        <i class="ion-ios-arrow-right"></i>
+                    </div>
+                    <ion-option-button class="ion-android-delete"
+                                       ng-click="onItemDelete(cart)">
+                    </ion-option-button>
+                    <ion-delete-button class="ion-minus-circled"
+                                       ng-click="onItemDelete(cart)">
+                    </ion-delete-button>
+                </ion-item>
+            </ion-list>
+            <div class="list-price text-right">
+                應付金額
+                <span class="price">{{ totalPrice | currency:undefined:0 }}</span>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="footer no-bg-color">
+        <div class="footer-container">
+            <div class="row">
+                <div class="col text-gray">請選擇繳費方式</div>
+            </div>
+            <div class="row pay-type-row">
+                <div class="col">
+                    <ion-radio ng-model="choice" ng-value="'CreditCard'" ng-class="{ 'selected': choice == 'CreditCard' }">
+                        <i
+                            ng-class="{ 'ion-android-radio-button-on': choice == 'CreditCard',
+                                        'ion-android-radio-button-off': choice != 'CreditCard' }"></i>
+                        <span class="radio-title">線上刷卡</span>
+                    </ion-radio>
+                </div>
+                <div class="col">
+                    <ion-radio class="no-border" ng-model="choice" ng-value="'ATM'" ng-class="{ 'selected': choice == 'ATM' }">
+                        <i
+                            ng-class="{ 'ion-android-radio-button-on': choice == 'ATM',
+                                        'ion-android-radio-button-off': choice != 'ATM' }"></i>
+                        <span class="radio-title">ATM 轉帳</span>
+                    </ion-radio>
+                </div>
+            </div>
+            <div>
+                <button class="button button-block button-black" ng-disabled="carts.length == 0" ng-click="goStep2(choice)">
+                    {{ '前往結帳' }}
+                </button>
+            </div>
+        </div>
+    </ion-footer-bar>
+    <ion-content scroll="false" padding="true" class="empty-content-pane">
+        <div class="content text-center">
+            <div class="logo">
+                <img src="img/shoppingcar-empty@2x.png" />
+            </div>
+            <div class="text">
+                {{ '購物車目前空空的！' }}
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -61,6 +61,15 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        addToOrderCart: (prodIdList, onSuccess, onError) ->
+            courseList = prodIdList.join(',')
+            data =
+                'shopid': 'MS'
+                'courseList': courseList
+            $http.post('/api/cart/order', data)
+                .success(onSuccess)
+                .error(onError)
+
         removeFromWish: (shop_id, prod_id, onSuccess, onError) ->
 #            data =
 #                'shopid': shop_id
@@ -74,13 +83,18 @@ module.exports = ['$http', ($http) ->
             }).then(onSuccess, onError)
 
         removeFromCart: (shop_id, prod_id, onSuccess, onError) ->
-#            data =
-#                'shopid': shop_id
-#                'courseList': prod_id
             $http({
                 'url': "/api/cart/shop?shopid=#{shop_id}&courseList=#{prod_id}"
                 'method': 'DELETE'
-#                'data': data
+                'headers':
+                    'Content-Type': 'application/json;charset=utf-8'
+            }).then(onSuccess, onError)
+
+        removeFromOrderCart: (prod_id, onSuccess, onError) ->
+            shop_id = 'MS'
+            $http({
+                'url': "/api/cart/order?shopid=#{shop_id}&courseList=#{prod_id}"
+                'method': 'DELETE'
                 'headers':
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)
@@ -89,8 +103,16 @@ module.exports = ['$http', ($http) ->
             data =
                 'shopid': shop_id
                 'courseList': ''
-            $http.put("/api/cart/shop", data)
+            $http.put('/api/cart/shop', data)
                 .success(onSuccess)
+                .error(onError)
+
+        clearFromOrderCart: (onSucess, onError) ->
+            data =
+                'shopid': 'MS'
+                'courseList': ''
+            $http.put('/api/cart/order', data)
+                .success(onSucess)
                 .error(onError)
 
         getCourse: (shop_id, prod_id, onSuccess, onError) ->
@@ -124,6 +146,11 @@ module.exports = ['$http', ($http) ->
 
         getCartList: (page, perpage, onSuccess, onError) ->
             $http.get("/api/cart/shop?page=#{page}&perpage=#{perpage}")
+                .success(onSuccess)
+                .error(onError)
+
+        getOrderCartList: (page, perpage, onSuccess, onError) ->
+            $http.get("/api/cart/order?page=#{page}&perpage=#{perpage}")
                 .success(onSuccess)
                 .error(onError)
 
