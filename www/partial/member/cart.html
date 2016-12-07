@@ -2,7 +2,7 @@
     <ion-nav-bar class="bar-light nav-header" align-title="center">
     </ion-nav-bar>
     <ion-content scroll="false">
-        <ion-header-bar class="cart-step-bar" ng-if="!checkIsCartEmpty()">
+        <ion-header-bar class="cart-step-bar" ng-if="!checkIsCartEmpty() || step.s3.current">
             <div class="line"></div>
             <div class="step step-1" ng-class="{'current': step.s1.current, 'ion-checkmark-round': step.s1.finish, 'finish': step.s1.finish}">
                 <span ng-hide="step.s1.finish">1</span></div>
