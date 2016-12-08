@@ -2,14 +2,15 @@
 .slides {
     .slider-pager {
         .slider-pager-page {
-            font-size: 5px;
+            font-size: 35px;
             margin-top: -3px;
+            line-height: 0;
 
             &:before {
-                content: '●';
+                content: '.';
             }
             &.active {
-                font-size: 10px;
+                font-size: 50px;
             }
         }
         i.icon {
