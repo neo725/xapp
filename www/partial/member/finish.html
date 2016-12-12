@@ -21,7 +21,7 @@
                             <span ng-bind="course.Prod_SubName"></span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row value-row">
                         <div class="col col-40">
                             <div class="progress-wrapper">
                                 <round-progress
@@ -29,32 +29,32 @@
                                     current="course.ques_topics[0].ans_value"
                                     color="#2B61AC"
                                     bgcolor="#F1F1F1"
-                                    radius="{{ radius*1.7 }}"
-                                    stroke="{{ stroke*1.6 }}">
+                                    radius="{{ radius * radius_multiple }}"
+                                    stroke="{{ stroke * stroke_multiple }}">
                                     <round-progress
                                         max="5"
                                         current="course.ques_topics[1].ans_value"
                                         color="#B63882"
                                         bgcolor="#F1F1F1"
-                                        radius="{{ radius*1.7 }}"
-                                        stroke="{{ stroke*1.6 }}"
-                                        offset="10">
+                                        radius="{{ radius * radius_multiple }}"
+                                        stroke="{{ stroke * stroke_multiple }}"
+                                        offset="{{ offset }}">
                                         <round-progress
                                             max="5"
                                             current="course.ques_topics[2].ans_value"
                                             color="#F2D000"
                                             bgcolor="#F1F1F1"
-                                            radius="{{ radius*1.7 }}"
-                                            stroke="{{ stroke*1.6 }}"
-                                            offset="20">
+                                            radius="{{ radius * radius_multiple }}"
+                                            stroke="{{ stroke * stroke_multiple }}"
+                                            offset="{{ offset * 2 }}">
                                             <round-progress
                                                 max="5"
                                                 current="course.ques_topics[3].ans_value"
                                                 color="#00a09a"
                                                 bgcolor="#F1F1F1"
-                                                radius="{{ radius*1.7 }}"
-                                                stroke="{{ stroke*1.6 }}"
-                                                offset="30">
+                                                radius="{{ radius * radius_multiple }}"
+                                                stroke="{{ stroke * stroke_multiple }}"
+                                                offset="{{ offset * 3 }}">
                                             </round-progress>
                                         </round-progress>
                                     </round-progress>

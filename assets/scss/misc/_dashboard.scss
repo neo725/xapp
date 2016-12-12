@@ -450,12 +450,14 @@
 .feedback-box {
 
     &.modal-box {
-        height: 550px !important;
+        height: 530px !important;
     }
 
     .topic {
         .row {
             padding: 3px;
+            padding-top: 0;
+            padding-bottom: 0;
 
             .col-item-title {
                 padding-left: 6px;
@@ -477,8 +479,11 @@
 
             text-align: center;
 
-            padding-top: 20px;
-            padding-bottom: 20px;
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+        &.col-item-sub-title {
+            font-size: 12px;
         }
     }
 }

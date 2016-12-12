@@ -5,10 +5,12 @@ module.exports = [
 
         resetStar = ->
             $scope.rating = []
+            $scope.comment = []
             i = 0
             max = 10
             while i < max
                 $scope.rating[i] = 0
+                $scope.comment[i] = ''
                 i++
 
         $rootScope.resetStarFunction = ->

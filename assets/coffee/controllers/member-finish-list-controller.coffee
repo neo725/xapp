@@ -3,8 +3,11 @@ module.exports = [
     ($scope, navigation, modal, api) ->
         $scope.radius = 35
         $scope.stroke = 1
+        $scope.radius_multiple = 1.65
+        $scope.stroke_multiple = 1.1
+        $scope.offset = 8
 
-        $scope.rating = [5, 4, 3]
+        $scope.rating = [5, 5, 5, 5]
 
 
         $scope.goBack = ->

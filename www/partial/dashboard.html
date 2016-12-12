@@ -86,12 +86,17 @@
                         <h3>{{ currentCard.Prod_Name }}</h3>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col col-50 col-offset-50 col-item-sub-title">
+                        {{ '滿意度' }}
+                    </div>
+                </div>
                 <div class="topic" ng-repeat="topic in topics">
                     <div class="row" ng-if="topic.Topic_StatType == 'avg'">
                         <div class="col col-50 col-item-title">
                             {{ topic.Topic_Name }}
                         </div>
-                        <div class="col">
+                        <div class="col col-star">
                             <div star-rating ng-model="rating[$index]" max="5" on-rating-select="rateFunction($index, rating)"></div>
                         </div>
                     </div>
@@ -103,14 +108,14 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <textarea name="commet" class="textarea" rows="3" cols="40" ng-model="comment[$index]"></textarea>
+                                <textarea name="commet" class="textarea" rows="5" cols="40" ng-model="comment[$index]"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button class="button button-full button-positive" ng-click="submitFeedback()">提交</button>
+                        <button class="button button-full button-small button-positive" ng-click="submitFeedback()">提交</button>
                     </div>
                 </div>
                 <div class="row">
