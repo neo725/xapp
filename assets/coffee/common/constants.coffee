@@ -35,25 +35,31 @@ module.exports =
         {
             'name': '建國'
             'full_name': '大夏館 建國分部'
+            'address': '台北市建國南路二段231號'
         },
         {
             'name': '忠孝'
             'full_name': '忠孝館 忠孝分部'
+            'address': '台北市忠孝東路一段41號'
         },
         {
             'name': '延平'
             'full_name': '大新館 延平分部'
+            'address': '台北市延平南路127號'
         },
         {
             'name': '大安'
             'full_name': '大安中心'
+            'address': '台北市大安區信義路四段1號3樓'
         },
         {
             'name': '台中'
             'full_name': '台中教育中心'
+            'address': '台中市西屯區台灣大道三段658號3樓'
         },
         {
             'name': '高雄'
             'full_name': '高雄教育中心'
+            'address': '高雄市前金區中正四路215號3樓'
         }
     ]

@@ -1,5 +1,15 @@
-module.exports = [
-    '$rootScope', '$scope',
-    ($rootScope, $scope) ->
+constants = require('../common/constants')
 
+module.exports = [
+    '$rootScope', '$scope', '$cordovaLaunchNavigator'
+    ($rootScope, $scope, $cordovaLaunchNavigator) ->
+        $scope.goNavigation = (card) ->
+            if not card
+                return
+
+            item = _.find(constants.LOCATIONS_MAPPING, { name: card.Prod_ClsLocation })
+
+            $cordovaLaunchNavigator.navigate item.address, {}
+
+            $scope.modalCourseLocation.hide()
 ]

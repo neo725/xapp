@@ -68,7 +68,7 @@
                                 下次上課時間
                             </div>
                         </div>
-                        <div class="row text-item class-time" ng-click="openCourseTime()">
+                        <div class="row text-item class-time" ng-click="openCourseTime(card)">
                             <div class="col">
                                 <!--<ion-badge item-center></ion-badge>-->
                                             <span class="badge badge-positive badge-s-size">
@@ -89,7 +89,7 @@
                                 下次上課教室
                             </div>
                         </div>
-                        <div class="row class-location" ng-click="openCourseLocation()">
+                        <div class="row class-location" ng-click="openCourseLocation(card)">
                             <div class="col">
                                 <h2 class="text-positive" ng-if="false">{{ card.RoomId }}</h2>
                                 <h2 class="text-positive">B303</h2>
