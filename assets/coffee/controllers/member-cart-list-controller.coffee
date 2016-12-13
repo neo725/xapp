@@ -4,7 +4,6 @@ module.exports = [
     '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal', 'plugins', 'util',
     ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins, util) ->
         $scope.shouldShowDelete = false
-        $scope.shouldSaveCard = false
         $scope.showShowCarts = false
         $scope.carts = []
         $scope.pay = {}
@@ -47,7 +46,6 @@ module.exports = [
                 saved_card = JSON.parse(window.localStorage.getItem('saved_card')) || {}
                 if saved_card.card
                     $scope.card = saved_card.card
-                    $scope.shouldSaveCard = true
 
             navigation.slide('home.member.cart.step2', {}, 'left')
 
@@ -247,23 +245,6 @@ module.exports = [
                 api.updateMemberData(data, onSuccess, onError)
 
             func = ->
-                if pay_type == 'CreditCard'
-                    shouldSaveCard = form.shouldSaveCard.$modelValue
-
-                    if shouldSaveCard
-                        saved_card =
-                            'card':
-                                'number_part1': pad($scope.card.number_part1, 4)
-                                'number_part2': pad($scope.card.number_part2, 4)
-                                'number_part3': pad($scope.card.number_part3, 4)
-                                'number_part4': pad($scope.card.number_part4, 4)
-                                'expire_month': $scope.card.expire_month
-                                'expire_year': $scope.card.expire_year
-
-                        window.localStorage.setItem('saved_card', JSON.stringify(saved_card))
-                    else
-                        window.localStorage.removeItem('saved_card')
-
                 $translate(['title.submit_cart', 'message.submit_cart_confirm', 'popup.ok', 'popup.cancel']).then (translator) ->
                     plugins.notification.confirm(
                         translator['message.submit_cart_confirm'],

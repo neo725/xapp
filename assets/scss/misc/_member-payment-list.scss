@@ -30,7 +30,18 @@
             }
         }
 
+        .col-show-text {
+            .show-default-text {
+                color: $positive;
+                width: 26%;
+                font-size: 14px;
+                float: right;
+            }
+        }
+
         .list {
+            margin-top: 0;
+
             .item {
                 border-width: 0;
                 border-style: none;
@@ -49,10 +60,6 @@
             }
         }
 
-        .card-logo {
-            width: 40px;
-        }
-
         .card-row {
             .col-card {
                 display: inline-block;
@@ -61,25 +68,28 @@
                 &:first-child {
                     margin-left: 0;
                 }
-                &.col-card-logo {
-                    width: 10%;
-                }
-                &.col-card-type {
-                    width: 10%;
-                }
+
                 &.col-card-number {
-                    width: 70%;
+                    width: 100%;
 
                     i {
                         font-size: 12px;
                         margin-right: 5px;
                     }
+
+                    .card-number {
+                        margin-left: 50px;
+
+                        .type {
+                            margin-right: 10px;
+                        }
+                    }
                 }
                 &.col-card-option {
-                    width: 10%;
+                    width: 26%;
                     position: absolute;
                     top: -4px;
-                    right: 28px;
+                    right: 0;
 
                     .item {
                         font-size: 23px;
@@ -98,6 +108,19 @@
                         i {
                             color: $radio-button-color;
                         }
+                    }
+                }
+
+                .card-logo {
+                    position: absolute;
+                    top: 6px;
+
+                    &.visa-card {
+                        top: 12px;
+                    }
+
+                    img {
+                        width: 40px;
                     }
                 }
             }
@@ -147,16 +170,25 @@
             }
 
             .card-logo {
-                height: 31px;
+                height: 50px;
+
                 img {
-                    width: 80px;
+                    max-width: 50px;
+                    max-height: 30px;
+                }
+
+                .visa-card {
+                    margin-top: 8px;
                 }
             }
 
             input[type="text"], input[type="number"] {
                 float: left;
-                padding: 5px;
+                padding: 0 5px;
                 margin-right: 5px;
+                height: 26px;
+                margin-top: 3px;
+                padding-top: 2px;
 
                 &.number-2 {
                     width: 30px;
@@ -183,6 +215,13 @@
                         top: 1px;
                         color: #C01623;
                     }
+                }
+            }
+        }
+        .ng-submitted {
+            .has-error {
+                input {
+                    background-color: $light-error-color;
                 }
             }
         }

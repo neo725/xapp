@@ -11,6 +11,7 @@ module.exports = ->
     }
     'text': {
         'or': 'or'
+        'pay_list_title': '您的卡片 - 已登記 {{ count }} 張'
     }
     'errors': {
         'login_failed': 'Login Failed'
@@ -22,6 +23,7 @@ module.exports = ->
         'current_password_error': '目前的密碼不正確，無法完成密碼變更'
         'data_save_error': '儲存資料未完成'
         'verify_failed': '驗證失敗'
+        'credit_card_exists': '相同卡號的信用卡已經存在'
     }
     'popup': {
         'ok': 'OK'
@@ -86,4 +88,5 @@ module.exports = ->
         'member_ident_edit': '身分證字號設定'
         'member_mobile_edit': '手機號碼設定'
         'member_password_edit': '密碼設定'
+        'payment_list': '付款設定'
     }
