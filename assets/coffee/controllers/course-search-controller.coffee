@@ -87,6 +87,9 @@ module.exports = [
         $scope.showHistory = ($event) ->
             $scope.popoverHistory.show($event)
 
+        $scope.showWishForm = ($event) ->
+            $scope.popoverWish.show($event)
+
         $scope.setOrder = (value) ->
             $scope.order = value
             $scope.goSearch($stateParams.keyword)
@@ -304,8 +307,10 @@ module.exports = [
                     else
                         item.keep_image_name = 'heart-outline@2x.png'
                 )
+                $scope.loadingSearch = false
 
             onError = () ->
+                $scope.loadingSearch = false
                 modal.hideLoading()
                 modal.showMessage '', 'errors.request_failed'
 
@@ -375,6 +380,11 @@ module.exports = [
             scope: $scope
         ).then((popover) ->
             $scope.popoverHistory = popover
+        )
+        $ionicPopover.fromTemplateUrl('templates/popover-wish.html',
+            scope: $scope
+        ).then((popover) ->
+            $scope.popoverWish = popover
         )
 
         $scope.$on('$ionicView.enter', ->

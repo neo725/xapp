@@ -78,6 +78,19 @@
                     </div>
                 </div>
             </div>
+            <div class="no-course" ng-if="loadingSearch == false && courses.length == 0">
+                <div class="header">
+                    <div class="image">
+                        <img src="img/unsearch@2x.png" /></div>
+                    <div class="text">很抱歉，沒有找到相關的課程</div>
+                </div>
+                <div class="tips">
+                    <div>溫馨提示：</div>
+                    <div>‧請檢查您的輸入是否正確</div>
+                    <div>‧如果這是您想要學習的課程，請及時告知我們</div>
+                </div>
+                <button class="button button-full button-small button-positive" ng-click="showWishForm($event)">我要許願</button>
+            </div>
             <ion-infinite-scroll
                 ng-if="!noMoreItemsAvailable"
                 on-infinite="loadMore()"
@@ -85,6 +98,32 @@
             </ion-infinite-scroll>
         </ion-content>
     </ion-content>
+    <script id="templates/popover-wish.html" type="text/ng-template">
+        <ion-popover-view class="popover-wish">
+            <ion-content class="popover-wish-content" scroll="false">
+                <form name="wishForm" class="wish-form" novalidate ng-submit="submitForm(wishForm)">
+                    <div class="row header">
+                        <div class="col">
+                            許願單
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="required">想上什麼課程呢？</div>
+                            <div>
+                                <label class="item item-input"
+                                        ng-class="{ 'has-error' : wishForm.keyword.$invalid }">
+                                    <input type="text" name="keyword"
+                                            ng-model="wish.keyword"
+                                            required />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </ion-content>
+        </ion-popover-view>
+    </script>
     <script id="templates/popover-history.html" type="text/ng-template">
         <ion-popover-view class="popover-history">
             <ion-content class="popover-history-content" scroll="false">

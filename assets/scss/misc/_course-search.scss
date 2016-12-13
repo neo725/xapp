@@ -121,6 +121,30 @@
             }
         }
     }
+
+    .no-course {
+        padding: 10px 20px;
+        color: #878786;
+
+        .header {
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 30px;
+
+            .image {
+                img {
+                    width: 40px;
+                }
+            }
+            .text {
+                font-size: 20px;
+                margin-top: 25px;
+            }
+        }
+        .tips {
+            padding: 20px 15px;
+        }
+    }
 }
 
 .popover.popover-history {
