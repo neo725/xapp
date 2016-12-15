@@ -1,7 +1,7 @@
 module.exports = [
-    '$rootScope', '$scope', '$stateParams', '$log', '$timeout', '$interpolate', '$translate', '$ionicHistory', '$ionicPopover',
+    '$rootScope', '$scope', '$stateParams', '$log', '$timeout', '$interpolate', '$translate', '$ionicHistory', '$ionicPopover', '$ionicModal', '$q',
     'plugins', 'navigation', 'modal', 'api'
-    ($rootScope, $scope, $stateParams, $log, $timeout, $interpolate, $translate, $ionicHistory, $ionicPopover,
+    ($rootScope, $scope, $stateParams, $log, $timeout, $interpolate, $translate, $ionicHistory, $ionicPopover, $ionicModal, $q,
         plugins, navigation, modal, api) ->
 
         $scope.option_visible = false
@@ -17,6 +17,8 @@ module.exports = [
         $scope.pageSize = 20
         $scope.keyword = $stateParams.keyword
         $scope.loadingSearch = false
+
+        $scope.currentShowDialog = null
 
         backView = $ionicHistory.backView()
         stateName = null
@@ -82,13 +84,47 @@ module.exports = [
                 api.removeFromWish course.Shop_Id, course.Prod_Id, onSuccess, onError
 
         $scope.showOptions = ($event) ->
-            $scope.popover.show($event)
+            initPopover().then ->
+                $scope.popover.show($event)
+                $scope.currentShowDialog =
+                    el: $scope.popover
+                    'tag': 'popover'
 
         $scope.showHistory = ($event) ->
-            $scope.popoverHistory.show($event)
+            initPopoverHistory().then ->
+                $scope.popoverHistory.show($event)
+                $scope.currentShowDialog =
+                    el: $scope.popoverHistory
+                    'tag': 'popoverHistory'
 
-        $scope.showWishForm = ($event) ->
-            $scope.popoverWish.show($event)
+        $scope.showWishForm = () ->
+            initModalWish().then ->
+                $scope.modalWish.show()
+                $scope.currentShowDialog =
+                    el: $scope.modalWish
+                    'tag': 'modalWish'
+
+            $timeout(->
+                # perform rangeSlider
+                values = []
+                i = 0
+                while i < 10001
+                    if i == 10000
+                        values.push i + ' 元以上'
+                    else
+                        values.push i + ' 元'
+                    i += 500
+
+                #range = $('.modal-backdrop.active #wish-price-range')
+                #range.removeData('ionRangeSlider')
+                $('#wish-price-range').ionRangeSlider(
+                    type: 'double'
+                    values: values
+                )
+                #$scope.wish.range = range
+            , 100)
+
+            return true
 
         $scope.setOrder = (value) ->
             $scope.order = value
@@ -103,9 +139,9 @@ module.exports = [
             )
 
         $scope.show_filter_tab = () ->
-            $timeout(->
-                $('.popover-condition').addClass('large')
+            $('.popover-condition').addClass('large')
 
+            $timeout(->
                 $('#price-range').ionRangeSlider(
                     min: 0
                     max: 50000
@@ -116,8 +152,8 @@ module.exports = [
                     grid: false
                     grid_num: 10
                     step: 1000
-                , 500)
-            )
+                )
+            , 100)
 
         $scope.toggleLocation = (value) ->
             index = _.indexOf($scope.filter.location, value)
@@ -147,6 +183,31 @@ module.exports = [
 
         $scope.cancelPopover = ->
             $scope.popover.hide()
+
+        $scope.submitWishForm = (form) ->
+            $scope.form = form
+            if not form.$valid
+                $translate(['title.wish_list', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
+                    plugins.notification.alert(
+                        translator['errors.form_validate_error'],
+                        (->),
+                        translator['title.wish_list'],
+                        translator['popup.ok']
+                    )
+                return
+
+            formatInt = (value) ->
+                regexp = /(\d+)/g
+                match = regexp.exec value
+                if match
+                    return parseInt(match[1])
+                return 0
+
+            price_range = $('#wish-price-range').data('ionRangeSlider')
+            result =
+                min: formatInt(price_range.result.from_value)
+                max: formatInt(price_range.result.to_value)
+            price_range.reset()
 
         $scope.submitPopover = ->
             price_range = $('#price-range').data('ionRangeSlider')
@@ -371,21 +432,34 @@ module.exports = [
         loadHistory(->)
         $scope.goSearch($stateParams.keyword)
 
-        $ionicPopover.fromTemplateUrl('templates/popover.html',
-            scope: $scope
-        ).then((popover) ->
-            $scope.popover = popover
-        )
-        $ionicPopover.fromTemplateUrl('templates/popover-history.html',
-            scope: $scope
-        ).then((popover) ->
-            $scope.popoverHistory = popover
-        )
-        $ionicPopover.fromTemplateUrl('templates/popover-wish.html',
-            scope: $scope
-        ).then((popover) ->
-            $scope.popoverWish = popover
-        )
+        initPopover = ->
+            if $scope.popover
+                $q.when
+            else
+                $ionicPopover.fromTemplateUrl('templates/popover.html',
+                    scope: $scope
+                ).then((popover) ->
+                    $scope.popover = popover
+                )
+        initPopoverHistory = ->
+            if $scope.popoverHistory
+                $q.when()
+            else
+                $ionicPopover.fromTemplateUrl('templates/popover-history.html',
+                    scope: $scope
+                ).then((popover) ->
+                    $scope.popoverHistory = popover
+                )
+        initModalWish = ->
+            if $scope.modalWish
+                $q.when()
+            else
+                $ionicModal.fromTemplateUrl('templates/modal-wish.html',
+                    scope: $scope
+                    animation: 'fade-in'
+                ).then((modal) ->
+                    $scope.modalWish = modal
+                )
 
         $scope.$on('$ionicView.enter', ->
             #$log.info '$ionicView.enter'
@@ -413,4 +487,16 @@ module.exports = [
             else
                 $scope.option_visible = false
         )
+
+        $scope.$on('modal.shown', ->
+            if $scope.form
+                $scope.form.$setPristine()
+                $scope.form.$setUntouched()
+        )
+
+        removeCurrentShowDialog = ->
+            $scope.currentShowDialog.el.remove()
+            delete $scope[$scope.currentShowDialog.tag]
+        $scope.$on('modal.hidden', removeCurrentShowDialog)
+        $scope.$on('popover.hidden', removeCurrentShowDialog)
 ]

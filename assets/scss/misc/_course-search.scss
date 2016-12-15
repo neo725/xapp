@@ -147,6 +147,49 @@
     }
 }
 
+.wish-box {
+    &.modal-box {
+        height: 515px !important;
+        top: 8%;
+    }
+
+    .form {
+        &.ng-submitted {
+            .has-error {
+                input, textarea {
+                    background-color: $light-error-color;
+                }
+            }
+        }
+    }
+
+    .header {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    .range-slider {
+        margin-top: 25px;
+
+        .irs-from, .irs-to {
+            top: -20px;
+        }
+    }
+    .tips {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    input, textarea {
+        border: 1px solid $light-gray-color;
+        width: 100%;
+        margin-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    div {
+        color: #575756;
+    }
+}
 .popover.popover-history {
     height: 220px;
     left: 0 !important;
@@ -203,30 +246,6 @@
             color: $gray-color;
         }
 
-        .range-slider {
-            position: relative;
-            height: 50px;
-
-            .irs-line {
-                .irs-line-left, .irs-line-mid, .irs-line-right {
-                    background: #eee;
-                    height: 6px;
-                }
-                .irs-line-left, .irs-line-right {
-                    border-radius: 6px;
-                }
-            }
-            .irs-bar {
-                background: $positive;
-                height: 6px;
-            }
-            .irs-slider {
-                &.from, &.to {
-                    background: $positive;
-                    border-radius: 22px;
-                }
-            }
-        }
         .row-location {
             height: 80px;
 
@@ -264,6 +283,31 @@
                     position: absolute;
                 }
             }
+        }
+    }
+}
+
+.range-slider {
+    position: relative;
+    height: 50px;
+
+    .irs-line {
+        .irs-line-left, .irs-line-mid, .irs-line-right {
+            background: #eee;
+            height: 6px;
+        }
+        .irs-line-left, .irs-line-right {
+            border-radius: 6px;
+        }
+    }
+    .irs-bar {
+        background: $positive;
+        height: 6px;
+    }
+    .irs-slider {
+        &.from, &.to {
+            background: $positive;
+            border-radius: 22px;
         }
     }
 }

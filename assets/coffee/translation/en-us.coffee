@@ -89,4 +89,5 @@ module.exports = ->
         'member_mobile_edit': '手機號碼設定'
         'member_password_edit': '密碼設定'
         'payment_list': '付款設定'
+        'wish_list': '許願單'
     }
