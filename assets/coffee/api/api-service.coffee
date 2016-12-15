@@ -342,6 +342,18 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        postWishCard: (keyword, teacher, description, min, max, onSuccess, onError) ->
+            data =
+                course: keyword
+                teacher: teacher
+                require: description
+                pay_min: min
+                pay_max: max
+
+            $http.post('/api/wish', data)
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

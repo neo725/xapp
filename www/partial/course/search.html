@@ -112,7 +112,7 @@
                             <div class="required">想上什麼課程呢？</div>
                             <div ng-class="{ 'has-error' : wishForm.keyword.$invalid }">
                                 <input type="text" name="keyword"
-                                       ng-model="wish.keyword"
+                                       ng-model="wishcard.keyword"
                                        required />
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <div class="required">有想請什麼老師嗎？</div>
                             <div ng-class="{ 'has-error' : wishForm.teacher.$invalid }">
                                 <input type="text" name="teacher"
-                                       ng-model="wish.teacher"
+                                       ng-model="wishcard.teacher"
                                        required />
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                             <div class="required">描述一下您的課程需求？</div>
                             <div ng-class="{ 'has-error' : wishForm.description.$invalid }">
                                 <textarea name="description" class="textarea" rows="5" cols="40"
-                                          ng-model="wish.description"
+                                          ng-model="wishcard.description"
                                           required></textarea>
                             </div>
                         </div>

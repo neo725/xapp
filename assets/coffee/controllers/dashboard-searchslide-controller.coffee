@@ -28,7 +28,7 @@ module.exports = [
             window.localStorage.setItem('weekdays', JSON.stringify(weeks))
             window.localStorage.setItem('locations', JSON.stringify(locations))
 
-            navigation.slide 'home.course.search', { keyword: cover.keyword }, 'left'
+            navigation.slide 'home.course.search', { keyword: cover.user_keyword }, 'left'
 
         # modal controller
         # ------------------------------------------------

@@ -98,6 +98,9 @@ module.exports = [
                     'tag': 'popoverHistory'
 
         $scope.showWishForm = () ->
+            $scope.wishcard =
+                keyword: $stateParams.keyword
+
             initModalWish().then ->
                 $scope.modalWish.show()
                 $scope.currentShowDialog =
@@ -207,7 +210,23 @@ module.exports = [
             result =
                 min: formatInt(price_range.result.from_value)
                 max: formatInt(price_range.result.to_value)
-            price_range.reset()
+
+            modal.showLoading('', 'message.processing')
+            onSuccess = (response) ->
+                modal.hideLoading()
+                $scope.modalWish.hide()
+                plugins.toast.show(response.popout, 'long', 'top')
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                modal.showMessage 'errors.request_failed'
+
+            wishcard = $scope.wishcard
+            wishcard.min = result.min
+            wishcard.max = result.max
+
+            api.postWishCard wishcard.keyword, wishcard.teacher, wishcard.description,
+                wishcard.min, wishcard.max,
+                onSuccess, onError
 
         $scope.submitPopover = ->
             price_range = $('#price-range').data('ionRangeSlider')
