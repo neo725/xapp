@@ -67,11 +67,11 @@
                     <img src="img/location-check@2x.png" />
                 </div>
                 <div class="text-center course-location-text">
-                    <p>上課地點：建國分部</p>
-                    <p>地址：台北市建國南路二段231號</p>
+                    <p>{{ '上課地點：' }}{{ full_name }}</p>
+                    <p>{{ '地址：' }}{{ address }}</p>
                 </div>
                 <div class="text-center course-location-button">
-                    <button class="button button-full button-positive" ng-click="goNavigation(currentCard)">
+                    <button class="button button-full button-positive" ng-click="goNavigation(location_name)">
                         前往地圖
                     </button>
                 </div>

@@ -37,7 +37,7 @@ module.exports = [
 #                location = match[1]
 #
 #            window.open("http://maps.google.com/?q=" + location, '_system')
-            navigation.slide 'home.location-map', { location: location }, 'right'
+            navigation.slide 'home.location-map', { location: location }, 'left'
 
         $scope.goPhoneCall = (number) ->
             window.open('tel:' + number, '_system')

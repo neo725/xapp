@@ -54,14 +54,14 @@
                         {{ getLocationFullName(card.Prod_ClsLocation) }}
                     </div>
                 </div>
-                <div class="row" ng-show="progress == 100">
+                <div class="row" ng-if="progress == 100">
                     <div class="col">
                         <button class="button button-block button-small button-positive"
                                 ng-click="openFeedback(card)">填寫課程評價
                         </button>
                     </div>
                 </div>
-                <div class="row text-item" ng-show="progress < 100">
+                <div class="row text-item" ng-if="progress < 100">
                     <div class="col">
                         <div class="row text-item">
                             <div class="col">
