@@ -7,7 +7,7 @@ module.exports = [
             if not card
                 return
 
-            item = _.find(constants.LOCATIONS_MAPPING, { name: card.Prod_ClsLocation })
+            item = _.find(constants.LOCATIONS_MAPPING, { short_name: card.Prod_ClsLocation })
 
             $cordovaLaunchNavigator.navigate item.address, {}
 

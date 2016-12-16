@@ -2,28 +2,50 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
     </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
+            <i class="sprite-icon-shoppingcar-o-2x"></i>
+        </button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
     <ion-nav-title>{{ '交通資訊' }}</ion-nav-title>
     <ion-content>
-        <div class="location-card-container" ng-repeat="location in locations">
+        <div class="location-card-container" ng-repeat="location in locations" ng-init="item = getLocationItem(location.name)">
             <div class="main-map-img"
-                 ng-click="goMap(location.address, location.gps, $event)"><img src="img/main-map-01.png" /></div>
+                 ng-click="goMap(location.address, location.gps, location.name)"><img ng-src="{{ location.location_front }}" /></div>
             <div class="location-card">
                 <div class="title" ng-bind="location.name"></div>
                 <div class="row">
                     <div class="col col-33 col-status text-center">
-                        <div ng-if="getOpenOrClosed($index)" class="open" ng-click="open()">
+                        <div ng-if="checkInTime(location.current_open_times)" class="open" ng-click="open(location.tel)">
                             <div><img src="img/main-map-open.png" /></div>
                             <div>開館中</div>
                         </div>
-                        <div ng-if="!getOpenOrClosed($index)" class="close" ng-click="closed()">
+                        <div ng-if="!checkInTime(location.current_open_times)" class="close" ng-click="closed()">
                             <div><img src="img/main-map-close.png" /></div>
                             <div>閉館中</div>
                         </div>
                     </div>
                     <div class="col col-info">
-                        <div><img src="img/main-map-time.png" />09:00 - 21:00</div>
-                        <div><img src="img/main-map-location.png" />台北市建國南路二段231號</div>
-                        <div><img src="img/main-map-tel.png" />02-2700-5858</div>
+                        <div class="row time-row">
+                            <div class="col col-10"><img src="img/main-map-time.png" /></div>
+                            <div class="col col-time">
+                                <div class="col-time-item" ng-repeat="openItem in location.openList">
+                                    <div class="col-weekday" ng-bind="openItem.open_day"></div>
+                                    <div ng-bind="openItem.open_time"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-10"><img src="img/main-map-location.png" /></div>
+                            <div class="col"><span ng-bind="location.address"></span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-10"><img src="img/main-map-tel.png" /></div>
+                            <div class="col"><span ng-bind="location.tel"></span></div>
+                        </div></div>
                     </div>
                 </div>
             </div>

@@ -58,6 +58,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('EbookListController', require('./controllers/ebook-list-controller'))
 .controller('EbookInfoController', require('./controllers/ebook-info-controller'))
 .controller('LocationController', require('./controllers/location-controller'))
+.controller('LocationMapController', require('./controllers/location-map-controller'))
 .config(['$httpProvider', ($httpProvider) ->
     $httpProvider.defaults.useXDomain = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
@@ -136,6 +137,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'homeContent': {
                 templateUrl: 'partial/location.html'
+            }
+        }
+
+    .state 'home.location-map',
+        url: '/location-map/:location'
+        views: {
+            'homeContent': {
+                templateUrl: 'partial/location-map.html'
             }
         }
 

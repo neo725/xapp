@@ -26,7 +26,7 @@ module.exports = [
             return Math.floor(value)
 
         $scope.getLocationFullName = (value) ->
-            item = _.find(constants.LOCATIONS_MAPPING, { name: value })
+            item = _.find(constants.LOCATIONS_MAPPING, { short_name: value })
             if item
                 return item['full_name']
             return value

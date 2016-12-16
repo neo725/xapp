@@ -8,11 +8,18 @@
         .location-card {
             color: #606060;
             margin-bottom: 10px;
-            padding-left: 20px;
-            padding-right: 20px;
 
+            > .row {
+                padding-left: 20px;
+
+                .col-33 {
+                    flex: 0 0 25.3333%;
+                    max-width: 25.3333%;
+                }
+            }
             .title {
                 font-size: 1.3em;
+                padding: 5px 20px;
             }
 
             .col-status {
@@ -27,9 +34,35 @@
                 }
             }
             .col-info {
+                .row {
+                    padding: 0;
+
+                    &.time-row {
+                        padding-bottom: 5px;
+
+                        img {
+                            top: -3px;
+                            position: relative;
+                        }
+                    }
+                    .col-time {
+                        padding: 0 5px;
+
+                        .col-time-item {
+                            width: 100%;
+
+                            div {
+                                display: inline-block;
+                            }
+                            .col-weekday {
+                                width: 80px;
+                            }
+                        }
+                    }
+                }
                 img {
                     width: 16px;
-                    margin-right: 6px;
+                    //margin-right: 6px;
                 }
             }
         }

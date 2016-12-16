@@ -1,0 +1,43 @@
+<ion-view class="location-map-view" ng-controller="LocationMapController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
+            <i class="sprite-icon-shoppingcar-o-2x"></i>
+        </button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-nav-title>{{ '地圖及周遭' }}</ion-nav-title>
+    <ion-content>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.2411302631363!2d121.5358890154937!3d25.025889683976196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aa29c2124e41%3A0x4c5bf7354c52fabf!2zMTA25Y-w5YyX5biC5aSn5a6J5Y2A5bu65ZyL5Y2X6Lev5LqM5q61MjMx6Jmf!5e0!3m2!1szh-TW!2stw!4v1481873724815"
+                class="googlemap"
+                width="100%" height="99%" frameborder="0" style="border:0" allowfullscreen
+                ng-if="location == '建國本部大夏館'"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.694924316313!2d121.52359791549387!3d25.044425283967527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a97a9e8592bb%3A0x41de6a402fa10fb9!2zMTAw5Y-w5YyX5biC5Lit5q2j5Y2A5b-g5a2d5p2x6Lev5LiA5q61NDHomZ8!5e0!3m2!1szh-TW!2stw!4v1481873817304"
+                class="googlemap"
+                width="100%" height="99%" frameborder="0" style="border:0" allowfullscreen
+                ng-if="location == '忠孝分部'"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.8742843383698!2d121.50645681549368!3d25.038340083970276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9a0b4506777%3A0xd9dacf7d3f4432da!2zMTAw5Y-w5YyX5biC5Lit5q2j5Y2A5bu25bmz5Y2X6LevMTI36Jmf!5e0!3m2!1szh-TW!2stw!4v1481873860960"
+                class="googlemap"
+                width="100%" height="99%" frameborder="0" style="border:0" allowfullscreen
+                ng-if="location == '延平分部'"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0152808080416!2d121.54211001549365!3d25.03355548397265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abd30b06f9fd%3A0x9a5657a88cfda4bd!2zMTA25Y-w5YyX5biC5aSn5a6J5Y2A5L-h576p6Lev5Zub5q61MeiZnw!5e0!3m2!1szh-TW!2stw!4v1481800200242"
+                class="googlemap"
+                width="100%" height="99%" frameborder="0" style="border:0" allowfullscreen
+                ng-if="location == '大安中心'"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.035934852239!2d120.63594301548011!3d24.170472484383975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693df5d1f002bd%3A0xa75c3c2ad64470a9!2zNDA35Y-w5Lit5biC6KW_5bGv5Y2A5Y-w54Gj5aSn6YGT5LiJ5q61NjU46Jmf!5e0!3m2!1szh-TW!2stw!4v1481873907915"
+                class="googlemap"
+                width="100%" height="99%" frameborder="0" style="border:0" allowfullscreen
+                ng-if="location == '台中教育中心'"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.6901445866206!2d120.29088481545718!3d22.62804318515427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e047cb5c455eb%3A0x6319f5920d1c82!2zODAx6auY6ZuE5biC5YmN6YeR5Y2A5Lit5q2j5Zub6LevMjE16Jmf!5e0!3m2!1szh-TW!2stw!4v1481873949718"
+                class="googlemap"
+                width="100%" height="99%" frameborder="0" style="border:0" allowfullscreen
+                ng-if="location == '高雄教育中心'"></iframe>
+    </ion-content>
+    <ion-footer-bar class="footer">
+        <button class="button button-full button-positive" ng-click="goNavigation(item)">{{ '開始導航' }}</button>
+    </ion-footer-bar>
+</ion-view>
