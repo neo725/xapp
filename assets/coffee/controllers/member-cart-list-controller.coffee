@@ -5,30 +5,12 @@ module.exports = [
     ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins, util) ->
         $scope.shouldShowDelete = false
         $scope.showShowCarts = false
+
         $scope.carts = []
         $scope.pay = {}
         $scope.card = {}
         $scope.user = {}
 
-#        fake_card =
-#            number_part1: 5178
-#            number_part2: 1234
-#            number_part3: 1212
-#            number_part4: 4000
-#            expire_month: 8
-#            expire_year: 18
-#            cvc: 123
-#            holder: 'Neo'
-
-#        fake_user =
-#            username: 'Neo'
-#            gender: 'Male'
-#            email: 'thchang@sce.pccu.edu.tw'
-#            phone: '0986716086'
-#            userid: 'A123456789'
-
-#        $scope.card = fake_card
-#        $scope.user = fake_user
 
         $scope.goBack = ->
             backView = $ionicHistory.backView()

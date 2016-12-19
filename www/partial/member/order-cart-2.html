@@ -113,24 +113,6 @@
                         </label>
                     </div>
                 </div>
-                <div class="row" ng-if="false">
-                    <div class="col-25 text-right holder-label">持卡人姓名</div>
-                    <div class="col-75">
-                        <label ng-class="{ 'has-error' : paymentForm.card_holder.$invalid}">
-                            <input type="text" name="card_holder"
-                                   class="card-holder"
-                                   ng-model="card.holder"
-                                   required>
-                        </label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-75 col-offset-25 save-card-check">
-                        <ion-checkbox name="shouldSaveCard"
-                                      ng-check="shouldSaveCard"
-                                      ng-model="shouldSaveCard">記住此張卡片資訊，下次使用</ion-checkbox>
-                    </div>
-                </div>
             </div>
             <div class="list">
                 <div class="item indent-item border-bottom">
@@ -179,7 +161,7 @@
                 </div>
             </div>
             <div>
-                <button class="button button-block button-positive">前往結帳</button>
+                <button class="button button-block button-black">前往結帳</button>
             </div>
         </form>
     </ion-content>
