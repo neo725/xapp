@@ -18,7 +18,6 @@ module.exports = ->
         'request_failed': '向伺服器要求失敗'
         'form_validate_error': '畫面上有欄位未完成輸入或是格式有誤，請檢查標記為紅色的欄位資料是否正確'
         'credit_card_not_acceptable': '目前無法支援您的信用卡卡別，請使用 VISA 或 Master 卡'
-        'payment_create_failed': '付款無法完成，請重新進行結帳'
         'phone_valid_error': '驗證發生錯誤，請確認輸入為正確的驗證碼，或是嘗試重新發送'
         'current_password_error': '目前的密碼不正確，無法完成密碼變更'
         'data_save_error': '儲存資料未完成'

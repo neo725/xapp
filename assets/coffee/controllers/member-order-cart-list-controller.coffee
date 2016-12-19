@@ -169,13 +169,6 @@ module.exports = [
 
                     # go to step 3
                     navigation.slide('home.member.order-cart.step3', {}, 'left')
-#                    $translate(['title.submit_cart', 'errors.payment_create_failed', 'popup.ok']).then (translator) ->
-#                        plugins.notification.alert(
-#                            translator['errors.payment_create_failed'],
-#                            (->),
-#                            translator['title.submit_cart'],
-#                            translator['popup.ok']
-#                        )
 
                 if pay_type == 'ATM'
                     payByATM(order_no, success, (->))
