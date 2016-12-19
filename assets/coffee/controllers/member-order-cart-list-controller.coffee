@@ -233,14 +233,19 @@ module.exports = [
                         [translator['popup.ok'], translator['popup.cancel']]
                     )
 
-            #checkMemberDataUpdate(func)
-            confirmSubmitCart()
+            if $scope.pay.type == 'ATM'
+                checkMemberDataUpdate(func)
+            else
+                confirmSubmitCart()
 
         $scope.returnToDashboard = ->
             navigation.slide('home.dashboard', {}, 'right')
 
         $scope.goOrderList = ->
             navigation.slide 'home.member.order', {}, 'left'
+
+        $scope.goMemberEdit = ->
+            navigation.slide 'home.member.edit', {}, 'up'
 
         $scope.checkIsCartEmpty = ->
             carts = $scope.carts || []

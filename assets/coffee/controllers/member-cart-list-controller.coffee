@@ -166,7 +166,7 @@ module.exports = [
             createPayment = (pay_type, order_no, success) ->
                 error = ->
                     modal.hideLoading()
-                    $scope.pay.success = false
+                    $scope.pay.success = false || ($scope.totalPrice < 5000)
 
                     # go to step 3
                     navigation.slide('home.member.cart.step3', {}, 'left')
@@ -205,6 +205,7 @@ module.exports = [
                         when 'ATM' then pay_way = 10
                         when 'CreditCard' then pay_way = 1
                     modal.showLoading '', 'message.creating_order'
+
                     api.createOrder('MS', courses, pay_way, onSuccess, onError)
 
             checkMemberDataUpdate = (func) ->
@@ -234,14 +235,19 @@ module.exports = [
                         [translator['popup.ok'], translator['popup.cancel']]
                     )
 
-            #checkMemberDataUpdate(confirmSubmitCart)
-            confirmSubmitCart()
+            if $scope.pay.type == 'ATM'
+                checkMemberDataUpdate(confirmSubmitCart)
+            else
+                confirmSubmitCart()
 
         $scope.returnToDashboard = ->
             navigation.slide('home.dashboard', {}, 'right')
 
         $scope.goOrderList = ->
             navigation.slide 'home.member.order', {}, 'left'
+
+        $scope.goMemberEdit = ->
+            navigation.slide 'home.member.edit', {}, 'up'
 
         $scope.checkIsCartEmpty = ->
             carts = $scope.carts || []

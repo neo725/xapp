@@ -6,7 +6,7 @@
     <ion-content padding="true">
         <form name="paymentForm" novalidate ng-submit="submitForm(paymentForm)">
             <div class="title-row" ng-if="checkPayTypeIsCreditCard()">
-                您的信用卡資料
+                您的卡片資料
             </div>
             <div class="card credit-form" ng-if="checkPayTypeIsCreditCard()">
                 <div class="row">
@@ -114,54 +114,84 @@
                     </div>
                 </div>
             </div>
-            <div class="list">
-                <div class="item indent-item border-bottom">
-                    您的聯絡資料
+            <div class="content-list" ng-if="!checkPayTypeIsCreditCard()">
+                <div class="row tip-text-row">
+                    <div class="col col-20">
+                        <img src="img/attention@2x.png" /></div>
+                    <div class="col col-tip-text">
+                        {{ '避免課程異動或詳細課程解說資訊聯繫，會員資料務必填寫清楚' }}</div>
                 </div>
-                <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.username.$invalid }">
-                    <span class="input-label required">姓名</span>
-                    <input type="text" name="username"
-                           ng-model="user.memb_name"
-                           required>
-                </label>
-                <div class="item item-input" ng-if="false">
-                    <span class="input-label required">性別</span>
-                    <div class="row gender-row">
-                        <div class="col col-33">
-                            <ion-radio ng-model="user.gender" ng-value="'Male'" required>男</ion-radio>
-                        </div>
-                        <div class="col col-33">
-                            <ion-radio ng-model="user.gender" ng-value="'Female'" required>女</ion-radio>
-                        </div>
+                <div class="row">
+                    <div class="col col-20 col-title col-padding-top">姓名</div>
+                    <div class="col col-input" ng-class="{ 'has-error' : paymentForm.username.$invalid}">
+                        <input type="text" name="username"
+                               ng-model="user.memb_name"
+                               required>
                     </div>
                 </div>
-                <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.email.$invalid}">
-                    <span class="input-label required">E-Mail</span>
-                    <input type="email" name="email"
-                           ng-model="user.memb_email"
-                           required>
-                </label>
-                <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.phone.$invalid}">
-                    <span class="input-label required">連絡電話</span>
-                    <input type="text" name="phone"
-                           ng-model="user.memb_mobile"
-                           required>
-                </label>
-                <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.userid.$invalid}">
-                    <span class="input-label required">身分證字號</span>
-                    <input type="text" name="userid"
-                           ng-model="user.memb_ident"
-                           required>
-                </label>
-                <div class="item text-m-size tip-text no-border">
-                    <div class="row">
-                        <div class="col col-25"><img src="img/attention@2x.png" /></div>
-                        <div class="col">為本部課程異動或詳細課程解說資訊聯繫，聯絡資料務必填寫清楚，若填寫欄位前方以『*』註記，請務必正確填寫</div>
+                <div class="row row-margin-top">
+                    <div class="col col-title">身份證字號</div>
+                </div>
+                <div class="row">
+                    <div class="col col-ident" ng-class="{ 'has-error' : paymentForm.userident.$invalid}">
+                        <input type="text" name="userident"
+                               ng-model="user.memb_ident"
+                               required>
+                    </div>
+                </div>
+                <div class="row-separater"></div>
+                <div class="row">
+                    <div class="col col-title">聯絡電話</div>
+                </div>
+                <div class="row">
+                    <div class="col col-mobile" ng-class="{ 'has-error' : paymentForm.phone.$invalid}">
+                        <input type="text" name="phone"
+                               ng-model="user.memb_mobile"
+                               required>
+                    </div>
+                </div>
+                <div class="row row-margin-top">
+                    <div class="col col-title">電子信箱</div>
+                </div>
+                <div class="row row-margin-bottom">
+                    <div class="col col-email" ng-class="{ 'has-error' : paymentForm.email.$invalid}">
+                        <input type="email" name="email"
+                               ng-model="user.memb_email"
+                               required>
                     </div>
                 </div>
             </div>
-            <div>
-                <button class="button button-block button-black">前往結帳</button>
+            <div class="info-list" ng-if="checkPayTypeIsCreditCard()">
+                <div class="info-header">
+                    您的聯絡資料
+                </div>
+                <div class="info-data">
+                    <div class="row">
+                        <div class="col col-33">姓名</div>
+                        <div class="col col-value"><span ng-bind="user.memb_name"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-33">E-mail</div>
+                        <div class="col col-value"><span ng-bind="user.memb_email"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-33">手機</div>
+                        <div class="col col-value"><span ng-bind="user.memb_mobile"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-33">身份證字號</div>
+                        <div class="col col-value"><span ng-bind="user.memb_ident"></span></div>
+                    </div>
+                    <div class="tip-text">
+                        為避免本部課程異動或詳細課程解說資訊聯繫，會員資料務必填寫清楚，如需修改會員聯絡資料，請前往<span class="link" ng-click="goMemberEdit()">會員中心</span>修改。
+                    </div>
+                </div>
+            </div>
+            <div ng-if="checkPayTypeIsCreditCard()">
+                <button class="button button-block button-black" ng-bind="'前往結帳'"></button>
+            </div>
+            <div ng-if="!checkPayTypeIsCreditCard()">
+                <button class="button button-block button-black" ng-bind="'確認送出'"></button>
             </div>
         </form>
     </ion-content>

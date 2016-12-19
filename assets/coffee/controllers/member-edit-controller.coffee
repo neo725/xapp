@@ -1,12 +1,17 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$timeout', '$translate', 'navigation', 'modal', 'plugins', 'api',
-    ($rootScope, $scope, $ionicModal, $timeout, $translate, navigation, modal, plugins, api) ->
+    '$rootScope', '$scope', '$ionicModal', '$ionicHistory', '$timeout', '$translate', 'navigation', 'modal', 'plugins', 'api',
+    ($rootScope, $scope, $ionicModal, $ionicHistory, $timeout, $translate, navigation, modal, plugins, api) ->
         $scope.user = {}
 
         $scope.goBack = ->
-            navigation.slide 'home.member.dashboard', {}, 'down'
+            backView = $ionicHistory.backView()
+
+            if backView
+                navigation.slide(backView.stateName, backView.stateParams, 'down')
+            else
+                navigation.slide('home.dashboard', {}, 'down')
 
         $scope.goEditIdent = ->
             navigation.slide 'home.member.edit-ident', {}, 'up'
