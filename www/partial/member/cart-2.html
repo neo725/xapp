@@ -133,6 +133,7 @@
                     <span class="input-label required">姓名</span>
                     <input type="text" name="username"
                            ng-model="user.memb_name"
+                           readonly="readonly"
                            required>
                 </label>
                 <div class="item item-input" ng-if="false">
@@ -149,20 +150,23 @@
                 <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.email.$invalid}">
                     <span class="input-label required">E-Mail</span>
                     <input type="email" name="email"
-                            ng-model="user.memb_email"
-                            required>
+                           ng-model="user.memb_email"
+                           readonly="readonly"
+                           required>
                 </label>
                 <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.phone.$invalid}">
                     <span class="input-label required">連絡電話</span>
                     <input type="text" name="phone"
-                            ng-model="user.memb_mobile"
-                            required>
+                           ng-model="user.memb_mobile"
+                           readonly="readonly"
+                           required>
                 </label>
                 <label class="item item-input no-border" ng-class="{ 'has-error' : paymentForm.userid.$invalid}">
                     <span class="input-label required">身分證字號</span>
                     <input type="text" name="userid"
-                            ng-model="user.memb_ident"
-                            required>
+                           ng-model="user.memb_ident"
+                           readonly="readonly"
+                           required>
                 </label>
                 <div class="item text-m-size tip-text no-border">
                     <div class="row">
@@ -172,7 +176,7 @@
                 </div>
             </div>
             <div>
-                <button class="button button-block button-positive">前往結帳</button>
+                <button class="button button-block button-black">前往結帳</button>
             </div>
         </form>
     </ion-content>

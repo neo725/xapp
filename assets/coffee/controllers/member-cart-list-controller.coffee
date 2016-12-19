@@ -184,16 +184,20 @@ module.exports = [
             createPayment = (pay_type, order_no, success) ->
                 error = ->
                     modal.hideLoading()
-                    $translate(['title.submit_cart', 'errors.payment_create_failed', 'popup.ok']).then (translator) ->
-                        plugins.notification.alert(
-                            translator['errors.payment_create_failed'],
-                            (->),
-                            translator['title.submit_cart'],
-                            translator['popup.ok']
-                        )
+                    $scope.pay.success = false
+
+                    # go to step 3
+                    navigation.slide('home.member.cart.step3', {}, 'left')
+#                    $translate(['title.submit_cart', 'errors.payment_create_failed', 'popup.ok']).then (translator) ->
+#                        plugins.notification.alert(
+#                            translator['errors.payment_create_failed'],
+#                            (->),
+#                            translator['title.submit_cart'],
+#                            translator['popup.ok']
+#                        )
 
                 if pay_type == 'ATM'
-                    payByATM(order_no, success, error)
+                    payByATM(order_no, success, (->))
 
                 if pay_type == 'CreditCard'
                     payByCreditCard(order_no, success, error)
@@ -207,6 +211,8 @@ module.exports = [
                         createPayment(pay_type, order_no, ->
                             modal.hideLoading()
                             clearCart(->
+                                $scope.pay.success = true
+
                                 # go to step 3
                                 navigation.slide('home.member.cart.step3', {}, 'left')
                             )
@@ -244,7 +250,7 @@ module.exports = [
                 modal.showLoading('', 'message.data_updating')
                 api.updateMemberData(data, onSuccess, onError)
 
-            func = ->
+            confirmSubmitCart = ->
                 $translate(['title.submit_cart', 'message.submit_cart_confirm', 'popup.ok', 'popup.cancel']).then (translator) ->
                     plugins.notification.confirm(
                         translator['message.submit_cart_confirm'],
@@ -253,10 +259,14 @@ module.exports = [
                         [translator['popup.ok'], translator['popup.cancel']]
                     )
 
-            checkMemberDataUpdate(func)
+            #checkMemberDataUpdate(confirmSubmitCart)
+            confirmSubmitCart()
 
         $scope.returnToDashboard = ->
             navigation.slide('home.dashboard', {}, 'right')
+
+        $scope.goOrderList = ->
+            navigation.slide 'home.member.order', {}, 'left'
 
         $scope.checkIsCartEmpty = ->
             carts = $scope.carts || []
