@@ -195,7 +195,24 @@ module.exports = [
 
                     onError = (error, status_code) ->
                         modal.hideLoading()
-                        modal.showMessage 'errors.request_failed'
+
+                        if error and error.result and error.result.indexOf('can not buy') > -1
+                            $translate(['title.submit_cart', 'errors.cart_cant_buy', 'popup.ok']).then (translator) ->
+                                plugins.notification.confirm(
+                                    translator['errors.cart_cant_buy'],
+                                    (->),
+                                    translator['title.submit_cart'],
+                                    [translator['popup.ok']]
+                                )
+                            return
+
+                        $translate(['title.submit_cart', 'errors.request_failed', 'popup.ok']).then (translator) ->
+                            plugins.notification.confirm(
+                                translator['errors.request_failed'],
+                                (->),
+                                translator['title.submit_cart'],
+                                [translator['popup.ok']]
+                            )
 
                     courses = _.map($scope.carts, 'Prod_Id')
                     courses = _.join(courses, ',')
@@ -287,6 +304,12 @@ module.exports = [
 
             onSuccess = (response) ->
                 $rootScope.carts = response.list
+#                off_list = _.remove($rootScope.carts, (item) ->
+#                    return item.Status == 'OF';
+#                )
+#                console.log off_list
+#                if off_list and off_list.length > 0
+#                    api.updateCart 'MS', _.map($rootScope.carts, 'Prod_Id'), (->), (->)
                 $scope.carts = $rootScope.carts
                 modal.hideLoading()
                 $timeout(->
@@ -294,6 +317,7 @@ module.exports = [
                 , 500)
             onError = () ->
                 modal.hideLoading()
+
             modal.showLoading('', 'message.data_loading')
             api.getCartList(1, 500, onSuccess, onError)
 
@@ -309,9 +333,9 @@ module.exports = [
             updateTotalPrice()
         $scope.$watch watchCarts, onCartsChanges
 
-        loadCartList()
-
         $scope.$on('$ionicView.enter', (evt, data) ->
+            loadCartList()
+
             stateName = data.stateName
             cartIsEmpty = $scope.carts.length == 0
 

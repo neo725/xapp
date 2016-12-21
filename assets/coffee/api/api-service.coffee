@@ -61,23 +61,19 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        addToOrderCart: (prodIdList, onSuccess, onError) ->
+        addToOrderCart: (shop_id, prodIdList, onSuccess, onError) ->
             courseList = prodIdList.join(',')
             data =
-                'shopid': 'MS'
+                'shopid': shop_id
                 'courseList': courseList
             $http.post('/api/cart/order', data)
                 .success(onSuccess)
                 .error(onError)
 
         removeFromWish: (shop_id, prod_id, onSuccess, onError) ->
-#            data =
-#                'shopid': shop_id
-#                'courseList': prod_id
             $http({
                 'url': "/api/cart/wish?shopid=#{shop_id}&courseList=#{prod_id}"
                 'method': 'DELETE'
-#                'data': data
                 'headers':
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)
@@ -90,8 +86,7 @@ module.exports = ['$http', ($http) ->
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)
 
-        removeFromOrderCart: (prod_id, onSuccess, onError) ->
-            shop_id = 'MS'
+        removeFromOrderCart: (shop_id, prod_id, onSuccess, onError) ->
             $http({
                 'url': "/api/cart/order?shopid=#{shop_id}&courseList=#{prod_id}"
                 'method': 'DELETE'
@@ -107,12 +102,28 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        clearFromOrderCart: (onSucess, onError) ->
+        clearFromOrderCart: (shop_id, onSucess, onError) ->
             data =
-                'shopid': 'MS'
+                'shopid': shop_id
                 'courseList': ''
             $http.put('/api/cart/order', data)
                 .success(onSucess)
+                .error(onError)
+
+        updateCart: (shop_id, courseIdArray, onSuccess, onError) ->
+            data =
+                'shopid': shop_id
+                'courseList': _.join courseIdArray, ','
+            $http.put('/api/cart/shop', data)
+                .success(onSuccess)
+                .error(onError)
+
+        updateOrderCart: (shop_id, courseIdArray, onSuccess, onError) ->
+            data =
+                'shopid': shop_id
+                'courseList': _.join courseIdArray, ','
+            $http.put('/api/cart/order', data)
+                .success(onSuccess)
                 .error(onError)
 
         getCourse: (shop_id, prod_id, onSuccess, onError) ->
@@ -289,7 +300,6 @@ module.exports = ['$http', ($http) ->
             $http({
                 'url': "/api/ebook/my?yearmonth=#{yearmonth}&catalog=#{catalog_id}"
                 'method': 'DELETE'
-#                'data': data
                 'headers':
                     'Content-Type': 'application/json;charset=utf-8'
             }).then(onSuccess, onError)

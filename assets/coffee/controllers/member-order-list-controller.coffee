@@ -47,10 +47,10 @@ module.exports = [
                     navigation.slide 'home.member.order-cart.step1', {}, 'left'
                 onError = ->
                     modal.hideLoading()
-                api.addToOrderCart _.map(details, 'ProdId'), onSuccess, onError
+                api.addToOrderCart 'MS', _.map(details, 'ProdId'), onSuccess, onError
             onError = ->
                 modal.hideLoading()
-            api.clearFromOrderCart onSuccess, onError
+            api.clearFromOrderCart 'MS', onSuccess, onError
 
         $scope.wantPayInfo = (index, order_no, $event) ->
             $event.stopPropagation()
