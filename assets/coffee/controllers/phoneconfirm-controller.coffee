@@ -25,13 +25,8 @@ module.exports = [
                 window.localStorage.setItem("token", $rootScope.token_temp)
                 navigation.slide 'login', {}, 'down'
 
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                switch error
-                    when 'no match valid' then modal.showMessage('errors.phone_valid_error')
-
-                console.log status_code
-                console.log error
 
             data = {
                 'validcode': form.verify_code.$modelValue
@@ -48,10 +43,8 @@ module.exports = [
                 modal.hideLoading()
                 console.log response
 
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                console.log status_code
-                console.log error
 
             api.sendValidPhone(encodeURIComponent(member_email), onSuccess, onError)
 

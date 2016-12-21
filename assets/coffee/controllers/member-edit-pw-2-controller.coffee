@@ -28,10 +28,8 @@ module.exports = [
                 $scope.goBack({ 'preventDefault': (->) })
                 $translate('message.password_saved').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                console.log error
-                console.log status_code
 
             api.updatePassword($rootScope.old_password, $scope.user.new_password, onSuccess, onError)
 

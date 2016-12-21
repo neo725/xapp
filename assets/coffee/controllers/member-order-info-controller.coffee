@@ -27,7 +27,7 @@ module.exports = [
                 $scope.bank =
                     'account': formatAccount(response.account)
                     'amount': response.amount
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getATMPaymentInfo order_no, onSuccess, onError

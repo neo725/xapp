@@ -16,14 +16,11 @@ module.exports = [
             modal.showLoading '', 'message.processing'
 
             onSuccess = (response) ->
-                console.log response
                 modal.hideLoading()
                 $translate('message.success_to_add_favorite_ebook').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                console.log error
-                console.log status_code
 
             api.addEbookFavorite(yearmonth, catalog_id, onSuccess, onError)
 

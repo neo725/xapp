@@ -49,7 +49,7 @@ module.exports = [
                 modal.hideLoading()
                 $scope['list_' + type] = response.list
                 $scope[type + '_count'] = 5
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getMessageList(1, perpage, type, onSuccess, onError)

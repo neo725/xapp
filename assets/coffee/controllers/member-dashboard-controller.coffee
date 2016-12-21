@@ -59,10 +59,7 @@ module.exports = [
 
             onSuccess = (response) ->
                 console.log 'updateSetting.success'
-            onError = (error, status_code) ->
-                console.log 'updateSetting.error'
-                console.log error
-                console.log status_code
+            onError = (->)
 
             api.postUserSetting('notify', "'#{data.notify}'", onSuccess, onError)
 
@@ -97,8 +94,9 @@ module.exports = [
                             #window.localStorage.setItem('avatar', imageData)
                             $scope.avatar_url = response.result
                             modal.hideLoading()
-                        onError = ->
+                        onError = () ->
                             modal.hideLoading()
+
                         api.postImage('avatar', imageData, onSuccess, onError)
                     modal.showLoading('', 'message.data_saving')
                     uploadAvatar()
@@ -145,15 +143,9 @@ module.exports = [
         loadAvatar = ->
             onSuccess = (response) ->
                 if response
-#                    onSuccess = (response) ->
-#                        $scope.avatars = response
-#                    onError = (error, status_code) ->
-#                        delete $scope['avatars']
-#
-#                    api.getImageFromUrl response.para_value, onSuccess, onError
                     $scope.avatar_url = response.para_value
                 modal.hideLoading()
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
 
             modal.showLoading('', 'message.data_loading')
@@ -166,9 +158,7 @@ module.exports = [
                 modal.hideLoading()
                 loadAvatar()
 
-            onError = (error, status_code) ->
-                console.log status_code
-                console.log error
+            onError = () ->
                 modal.hideLoading()
                 loadAvatar()
 

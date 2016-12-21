@@ -45,10 +45,10 @@ module.exports = [
                     modal.hideLoading()
                     # navigation
                     navigation.slide 'home.member.order-cart.step1', {}, 'left'
-                onError = ->
+                onError = () ->
                     modal.hideLoading()
                 api.addToOrderCart 'MS', _.map(details, 'ProdId'), onSuccess, onError
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
             api.clearFromOrderCart 'MS', onSuccess, onError
 
@@ -106,7 +106,7 @@ module.exports = [
                     when '01' then $scope.waiting_list = response.list
                     when '02' then $scope.payed_list = response.list
                     when '03' then $scope.refund_list = response.list
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getOrders(status, 1, 500, onSuccess, onError)

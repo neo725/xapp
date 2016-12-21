@@ -26,16 +26,8 @@ module.exports = [
                 form.$setPristine()
                 form.$setUntouched()
                 navigation.slide 'home.member.edit-pw-2', {}, 'left'
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                if status_code == 405
-                    $translate(['title.member_password_edit', 'errors.verify_failed', 'popup.ok']).then (translator) ->
-                        plugins.notification.alert(
-                            translator['errors.verify_failed'],
-                            (->),
-                            translator['title.member_password_edit'],
-                            translator['popup.ok']
-                        )
 
             api.verifyPassword($scope.user.password, onSuccess, onError)
 

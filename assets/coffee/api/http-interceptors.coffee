@@ -18,6 +18,14 @@ exports.apiInterceptor = ['$rootScope', '$log', '$translate', '$q', 'plugins',
                         '',
                         [translator['popup.ok']]
                     )
+            if rejection.data and rejection.data['popout']
+                $translate(['popup.ok']).then (translator) ->
+                    plugins.notification.confirm(
+                        rejection.data['popout'],
+                        (->),
+                        '',
+                        [translator['popup.ok']]
+                    )
 
             $q.reject rejection
 

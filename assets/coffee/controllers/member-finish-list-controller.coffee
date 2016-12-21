@@ -36,7 +36,7 @@ module.exports = [
                 console.log $scope.courses
 
                 modal.hideLoading()
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getSurveys(onSuccess, onError)
@@ -47,7 +47,7 @@ module.exports = [
                 list = response.list
 
                 ((success_fn) || (->))(list)
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getFinishCourses(1, 500, onSuccess, onError)

@@ -16,9 +16,7 @@ module.exports = ['$rootScope', '$scope', '$stateParams', '$ionicHistory', 'api'
                 $scope.messageTitle = response.m_title
                 $scope.messageInfo = response.m_info
 
-            onError = (error, status_code) ->
-                console.log error
-                console.log status_code
+            onError = (->)
 
             api.getMessage(messageId, onSuccess, onError)
 

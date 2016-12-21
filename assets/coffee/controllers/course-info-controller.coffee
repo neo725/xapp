@@ -35,8 +35,7 @@ module.exports = [
                 #window.localStorage.setItem('favorite_changed', JSON.stringify(data))
                 $rootScope.favorite_changed = data
 
-            onError = (error) ->
-                $log.info error
+            onError = (->)
 
             if course.isFavorite == 0
                 api.addToWish course.Shop_Id, course.Prod_Id, onSuccess, onError
@@ -58,8 +57,7 @@ module.exports = [
                 $rootScope.carts = cart
                 $translate('message.course_add_to_cart_success').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
-            onError = ->
-                $log.info 'error'
+            onError = (->)
 
             if _.find($rootScope.carts, {'Prod_Id': course.Prod_Id})
                 $translate('message.already_exists_in_cart').then (text) ->

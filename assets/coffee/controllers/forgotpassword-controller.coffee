@@ -29,7 +29,7 @@ module.exports = [
                 modal.hideLoading()
                 $scope.modalForgotSended.show()
 
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
 
             data = {

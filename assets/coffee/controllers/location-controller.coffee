@@ -114,7 +114,7 @@ module.exports = [
                                     location.current_open_times = times
                         )
                 )
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getLocations(onSuccess, onError)

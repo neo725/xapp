@@ -38,10 +38,8 @@ module.exports = [
                 index = _.findIndex($scope.favorites, { 'web_url': ebook.web_url })
                 if index > -1
                     $scope.favorites.splice(index, 1)
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                console.log error
-                console.log status_code
 
             api.deleteFavoriteEbook(para.apply, para.catalog_id, onSuccess, onError)
 
@@ -54,10 +52,8 @@ module.exports = [
                     title: response.title
                     imgurl: response.imgurl
                     content: response.content
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                console.log error
-                console.log status_code
 
             api.getEbookIntro(onSuccess, onError)
 
@@ -67,7 +63,7 @@ module.exports = [
             onSuccess = (response) ->
                 modal.hideLoading()
                 $scope.ebooks = response.list
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getCurrentEbooks(onSuccess, onError)
@@ -78,7 +74,7 @@ module.exports = [
             onSuccess = (response) ->
                 modal.hideLoading()
                 $scope.catalogs = response.list
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getCatalogEbooks(page, perpage, onSuccess, onError)
@@ -89,10 +85,8 @@ module.exports = [
             onSuccess = (response) ->
                 modal.hideLoading()
                 $scope.favorites = response.list
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                console.log error
-                console.log status_code
 
             api.getMyFavoriteEbooks(page, perpage, onSuccess, onError)
 

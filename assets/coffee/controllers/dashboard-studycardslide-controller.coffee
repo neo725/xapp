@@ -64,9 +64,8 @@ module.exports = [
 
             $ionicSlideBoxDelegate.update()
 
-        onError = (response) ->
+        onError = () ->
             $rootScope.studyCardVisible = false
-            #modal.showMessage 'message.error'
 
         api.getStudyCards(onSuccess, onError)
 

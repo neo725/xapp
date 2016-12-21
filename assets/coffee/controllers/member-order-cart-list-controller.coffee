@@ -115,7 +115,7 @@ module.exports = [
                     modal.hideLoading()
                     (success or (->))()
 
-                onError = ->
+                onError = () ->
                     modal.hideLoading()
 
                 api.clearFromOrderCart 'MS', onSuccess, onError

@@ -75,8 +75,7 @@ module.exports = [
                     $translate('message.favorite_removed').then (text) ->
                         plugins.toast.show(text, 'long', 'top')
 
-            onError = (error) ->
-                $log.info error
+            onError = (->)
 
             if course.isFavorite == 0
                 api.addToWish course.Shop_Id, course.Prod_Id, onSuccess, onError

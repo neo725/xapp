@@ -46,19 +46,9 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
 
                 $rootScope.getMemberData(onSuccess, (->))
 
-            onError = (response) ->
+            onError = () ->
                 modal.hideLoading()
                 resetLoginButton()
-                if response
-                    $translate(['errors.login_failed', 'popup.ok']).then (translation) ->
-#                       # TODO: move navigator.notification to plugins.notification
-                        if navigator.notification
-                            navigator.notification.alert(
-                                translation['errors.login_failed'],
-                                (->),
-                                '',
-                                translation['pop.ok']
-                            )
 
             $translate('message.logging').then (text) ->
                 $('#login-button').text(text)
@@ -149,18 +139,9 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                     navigation.flip 'home.dashboard', {}, 'left'
 
                 $rootScope.getMemberData(onSuccess, (->))
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
                 resetLoginButton()
-
-                $translate(['errors.login_failed', 'popup.ok']).then (translation) ->
-                    if navigator.notification
-                        navigator.notification.alert(
-                            translation['errors.login_failed'],
-                            (->),
-                            '',
-                            translation['pop.ok']
-                        )
 
             modal.showLoading '', 'message.logging'
             api.postSocialLogin provider, token, onSuccess, onError

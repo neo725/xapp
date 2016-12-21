@@ -25,10 +25,9 @@ module.exports = [
 #                    onSuccess = (response) ->
 #                        $cordovaToast.show('Notification token registered', 'long', 'top')
                     onSuccess = (->)
-                    onError = (error, status) ->
+                    onError = () ->
                         $cordovaToast.show('Error Registering notification token', 'long', 'top')
-                        console.log status
-                        console.log error
+
                     uuid = $cordovaDevice.getUUID()
                     api.registerToken(uuid, token, onSuccess, onError)
                 , ((err) ->)
@@ -38,10 +37,8 @@ module.exports = [
             onSuccess = (response) ->
                 modal.hideLoading()
                 $rootScope.carts = response.list
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                console.log status_code
-                console.log error
 
             modal.showLoading('', 'message.data_loading')
             api.getCartList(1, 500, onSuccess, onError)
@@ -51,10 +48,8 @@ module.exports = [
                 modal.hideLoading()
                 $rootScope.wish = response.list
 
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                console.log status_code
-                console.log error
 
             modal.showLoading('', 'message.data_loading')
             api.getWishList(1, 500, onSuccess, onError)

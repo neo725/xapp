@@ -38,9 +38,7 @@ module.exports = [
 
                     onSuccess = ->
                         navigation.slide 'main.phoneconfirm', {}, 'left'
-                    onError = (error, status_code) ->
-                        console.log status_code
-                        console.log error
+                    onError = (->)
 
                     $rootScope.getMemberData(onSuccess, onError)
 

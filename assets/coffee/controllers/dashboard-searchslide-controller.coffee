@@ -14,9 +14,8 @@ module.exports = [
                 $ionicSlideBoxDelegate.$getByHandle('search-slide-box').loop(true)
             , 500)
 
-        onError = (response) ->
+        onError = () ->
             modal.hideLoading()
-            modal.showMessage 'message.error'
 
         $('.search-slides').hide()
         modal.showLoading '', 'message.loading_cover'

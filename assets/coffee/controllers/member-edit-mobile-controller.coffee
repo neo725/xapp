@@ -29,12 +29,8 @@ module.exports = [
                 $scope.goBack({ 'preventDefault': (->) })
                 $translate('message.data_saved').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                $translate('message.data_save_error').then (text) ->
-                    plugins.toast.show(text, 'long', 'top')
-                console.log error
-                console.log status_code
 
             api.updateMemberData(data, onSuccess, onError)
 
