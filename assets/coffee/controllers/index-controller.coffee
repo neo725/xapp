@@ -5,9 +5,9 @@ constants = require('../common/constants')
 
 module.exports = [
     '$rootScope', '$scope', '$translate', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast',
-    '$cordovaVibration', '$cordovaBadge', 'navigation', 'modal', 'api',
+    '$cordovaLocalNotification', '$cordovaVibration', '$cordovaBadge', 'navigation', 'modal', 'api',
     ($rootScope, $scope, $translate, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast,
-        $cordovaVibration, $cordovaBadge, navigation, modal, api) ->
+        $cordovaLocalNotification, $cordovaVibration, $cordovaBadge, navigation, modal, api) ->
 
         network_offline = false
 
@@ -142,10 +142,16 @@ module.exports = [
             if typeof FCMPlugin != 'undefined'
                 FCMPlugin.onNotification(
                     (data) ->
-                        # Vibrate 100ms
-                        $cordovaVibration.vibrate(100)
-                        $cordovaToast.show('You got new notification', 'long', 'top')
-                        console.log data
+                        $cordovaLocalNotification.schedule(
+                            id: 1,
+                            title: data['title'],
+                            text: data['body'],
+                            icon: 'fcm_push_icon'
+                        ).then () ->
+#                            # Vibrate
+#                            $cordovaVibration.vibrate([500, 500])
+                            $cordovaToast.show(data['title'], 'long', 'top')
+
                         #$cordovaBadge.set 10
 
                     , (msg) ->
