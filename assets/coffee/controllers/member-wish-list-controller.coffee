@@ -1,5 +1,5 @@
 module.exports = [
-    '$scope', '$log', '$translate', 'navigation', 'api', ($scope, $log, $translate, navigation, api) ->
+    '$scope', '$log', '$translate', 'navigation', 'api', 'plugins', ($scope, $log, $translate, navigation, api, plugins) ->
         $scope.courses = []
 
         $scope.goBack = ->
@@ -38,5 +38,7 @@ module.exports = [
 
             api.getWishList(1, 500, onSuccess, onError)
 
-        loadFavoriteCourses()
+        $scope.$on('$ionicView.enter', (evt, data) ->
+            loadFavoriteCourses()
+        )
 ]
