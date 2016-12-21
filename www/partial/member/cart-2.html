@@ -19,7 +19,7 @@
                     <div class="col-33 text-right label">信用卡卡號</div>
                     <div class="col-66">
                         <label ng-class="{ 'has-error' : paymentForm.card_part1.$invalid}">
-                            <input type="text" name="card_part1"
+                            <input type="number" name="card_part1"
                                    class="number-4 card-number"
                                    ng-model="card.number_part1"
                                    ng-next="card_part2" ng-next-length="4"
@@ -29,7 +29,7 @@
                                    required>
                         </label>
                         <label ng-class="{ 'has-error' : paymentForm.card_part2.$invalid}">
-                            <input type="text" name="card_part2"
+                            <input type="number" name="card_part2"
                                    class="number-4 card-number"
                                    ng-model="card.number_part2"
                                    ng-next="card_part3" ng-next-length="4"
@@ -39,7 +39,7 @@
                                    required>
                         </label>
                         <label ng-class="{ 'has-error' : paymentForm.card_part3.$invalid}">
-                            <input type="text" name="card_part3"
+                            <input type="number" name="card_part3"
                                    class="number-4 card-number"
                                    ng-model="card.number_part3"
                                    ng-next="card_part4" ng-next-length="4"
@@ -49,7 +49,7 @@
                                    required>
                         </label>
                         <label ng-class="{ 'has-error' : paymentForm.card_part4.$invalid}">
-                            <input type="text" name="card_part4"
+                            <input type="number" name="card_part4"
                                    class="number-4 card-number"
                                    ng-model="card.number_part4"
                                    ng-next="card_expire_month" ng-next-length="4"
@@ -64,7 +64,7 @@
                     <div class="col-33 text-right label">有效日期<br />(MM/YY)</div>
                     <div class="col-66 expire-date">
                         <label ng-class="{ 'has-error' : paymentForm.card_expire_month.$invalid}">
-                            <input type="text" name="card_expire_month"
+                            <input type="number" name="card_expire_month"
                                    class="number-2 expire-month"
                                    ng-model="card.expire_month"
                                    ng-next="card_expire_year" ng-next-length="2"
@@ -73,25 +73,12 @@
                                    required>
                         </label>
                         <label ng-class="{ 'has-error' : paymentForm.card_expire_year.$invalid}">
-                            <input type="text" name="card_expire_year"
+                            <input type="number" name="card_expire_year"
                                    class="number-2 expire-year"
                                    ng-model="card.expire_year"
                                    ng-next="card_cvc" ng-next-length="2"
                                    maxlength="2" min="16" max="99"
                                    ng-minlength="2" ng-maxlength="2"
-                                   required>
-                        </label>
-                    </div>
-                    <div class="col-33 cvc-label" ng-if="false">卡片背面末 3 碼</div>
-                    <div class="col-25" ng-if="false">
-                        <label ng-class="{ 'has-error' : paymentForm.card_cvc.$invalid}">
-                            <input type="text" name="card_cvc"
-                                   class="number-3 card-cvc"
-                                   ng-model="card.cvc"
-                                   ng-next="card_holder" ng-next-length="3"
-                                   ng-next-autofill="0" ng-next-autofill-length="3"
-                                   maxlength="3" min="1" max="999"
-                                   ng-minlength="3" ng-maxlength="3"
                                    required>
                         </label>
                     </div>
@@ -102,7 +89,7 @@
                     </div>
                     <div class="col-66">
                         <label ng-class="{ 'has-error' : paymentForm.card_cvc.$invalid}">
-                            <input type="text" name="card_cvc"
+                            <input type="number" name="card_cvc"
                                    class="number-3 card-cvc"
                                    ng-model="card.cvc"
                                    ng-next="card_holder" ng-next-length="3"

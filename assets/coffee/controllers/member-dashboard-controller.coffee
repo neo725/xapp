@@ -34,10 +34,11 @@ module.exports = [
             )
 
         $scope.goSuggest = ->
-            $scope.modalFunction.hide()
-            $timeout(->
-                navigation.slide 'home.member.suggestion', {}, 'up'
-            )
+            navigation.slide 'home.member.suggestion', {}, 'left'
+#            $scope.modalFunction.hide()
+#            $timeout(->
+#                navigation.slide 'home.member.suggestion', {}, 'up'
+#            )
 
         $scope.toggleNotification = ($event) ->
             $event.stopPropagation()

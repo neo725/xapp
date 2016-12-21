@@ -90,7 +90,7 @@
         .col-birth {
             select {
                 border: 0 none;
-                padding: 8px;
+                padding: 3px 8px;
                 background-color: $radio-button-color;
             }
             .birth-item {
@@ -206,6 +206,13 @@
             &.col-right {
                 * {
                     float: right;
+                }
+
+                .button {
+                    min-height: 30px;
+                    height: 35px;
+                    line-height: 10px;
+                    font-size: 15px;
                 }
             }
             &.col-ident {

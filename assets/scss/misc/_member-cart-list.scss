@@ -202,6 +202,8 @@
             input[type="text"], input[type="number"] {
                 float: left;
                 padding: 5px;
+                height: 26px;
+                margin-top: 6px;
 
                 &.number-2 {
                     width: 30px;
@@ -222,8 +224,7 @@
                 margin-top: 8px;
             }
             .cvc-label {
-                margin-top: 20px;
-                //margin-left: 5px;
+                margin-top: 10px;
             }
 
             .card-number {

@@ -9,7 +9,7 @@
             margin-bottom: 0;
             color: $positive;
             border-radius: 5px;
-            line-height: 30px;
+            line-height: 22px;
         }
         .list {
             > .item {
@@ -17,6 +17,7 @@
             }
             .item {
                 border: none;
+                padding-top: 0;
 
                 .catalog-image {
                     width: 64px;
@@ -24,6 +25,10 @@
                 .item.item-toggle {
                     font-size: 18px;
                     border: none;
+
+                    .toggle {
+                        top: 5px;
+                    }
                 }
                 .title, .full-title {
                     margin-left: 15px;

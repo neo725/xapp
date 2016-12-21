@@ -13,7 +13,7 @@ module.exports = [
         $scope.suggestion = {}
 
         $scope.goBack = ->
-            navigation.slide 'home.member.dashboard', {}, 'down'
+            navigation.slide 'home.member.dashboard', {}, 'right'
 
         $scope.submitForm = (form) ->
             if not form.$valid
