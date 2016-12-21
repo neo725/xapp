@@ -7,7 +7,7 @@
         <button class="button button-icon icon ion-minus-circled" ng-click="goShowDelete()" ng-if="false"></button>
         <button class="button button-icon icon ion-android-delete" ng-click="goClearAll()" ng-if="false">清空</button>
     </ion-nav-buttons>
-    <ion-content scroll="true" class="content-pane" ng-show="showShowCarts" ng-cloak>
+    <ion-content scroll="true" class="content-pane" ng-show="showCarts" ng-cloak>
         <div class="header">
             <div class="text text-left text-gray" ng-show="carts.length > 0">您有 {{ carts.length }} 樣商品在購物車裡</div>
             <div class="text text-left text-gray" ng-show="carts.length == 0">您沒有任何商品在購物車裡</div>
@@ -67,7 +67,7 @@
             </div>
         </div>
     </ion-footer-bar>
-    <ion-content scroll="false" padding="true" class="empty-content-pane" ng-show="showShowCarts">
+    <ion-content scroll="false" padding="true" class="empty-content-pane" ng-show="showCarts">
         <div class="content text-center">
             <div class="logo">
                 <img src="img/shoppingcar-empty@2x.png" />

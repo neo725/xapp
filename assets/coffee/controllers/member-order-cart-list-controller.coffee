@@ -4,7 +4,7 @@ module.exports = [
     '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal', 'plugins', 'util',
     ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins, util) ->
         $scope.shouldShowDelete = false
-        $scope.showShowCarts = false
+        $scope.showCarts = false
 
         $scope.carts = []
         $scope.pay = {}
@@ -286,7 +286,7 @@ module.exports = [
         $scope.choice = 'CreditCard'
 
         loadCartList = () ->
-            $scope.showShowCarts = false
+            $scope.showCarts = false
             $scope.carts = []
 
             onSuccess = (response) ->
@@ -299,8 +299,8 @@ module.exports = [
 #                    api.updateCart 'MS', _.map($scope.carts, 'Prod_Id'), (->), (->)
                 modal.hideLoading()
                 $timeout(->
-                    $scope.showShowCarts = true
-                , 500)
+                    $scope.showCarts = true
+                , 100)
             onError = () ->
                 modal.hideLoading()
 

@@ -4,7 +4,7 @@ module.exports = [
     '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal', 'plugins', 'util',
     ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins, util) ->
         $scope.shouldShowDelete = false
-        $scope.showShowCarts = false
+        $scope.showCarts = false
 
         $scope.carts = []
         $scope.pay = {}
@@ -289,27 +289,28 @@ module.exports = [
         $scope.choice = 'CreditCard'
 
         loadCartList = () ->
-            $scope.showShowCarts = false
+            $scope.showCarts = false
             $scope.carts = $rootScope.carts || []
 
             onSuccess = (response) ->
                 $rootScope.carts = response.list
-#                off_list = _.remove($rootScope.carts, (item) ->
-#                    return item.Status == 'OF';
-#                )
-#                console.log off_list
-#                if off_list and off_list.length > 0
-#                    api.updateCart 'MS', _.map($rootScope.carts, 'Prod_Id'), (->), (->)
+                off_list = _.remove($rootScope.carts, (item) ->
+                    return item.Status == 'OF';
+                )
+                if off_list and off_list.length > 0
+                    api.updateCart 'MS', _.map($rootScope.carts, 'Prod_Id'), (->), (->)
                 $scope.carts = $rootScope.carts
                 modal.hideLoading()
                 $timeout(->
-                    $scope.showShowCarts = true
-                , 500)
+                    $scope.showCarts = true
+                , 100)
             onError = () ->
                 modal.hideLoading()
 
             modal.showLoading('', 'message.data_loading')
             api.getCartList(1, 500, onSuccess, onError)
+
+        loadCartList()
 
         updateTotalPrice = ->
             totalPrice = 0
@@ -324,7 +325,6 @@ module.exports = [
         $scope.$watch watchCarts, onCartsChanges
 
         $scope.$on('$ionicView.enter', (evt, data) ->
-            loadCartList()
 
             stateName = data.stateName
             cartIsEmpty = $scope.carts.length == 0
