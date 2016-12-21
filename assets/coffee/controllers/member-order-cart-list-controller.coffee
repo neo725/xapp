@@ -42,8 +42,7 @@ module.exports = [
                         $timeout(
                             $scope.carts = []
                         )
-                    onError = () ->
-                        modal.showLongMessage 'errors.request_failed'
+                    onError = (->)
 
                     api.clearFromOrderCart 'MS', onSuccess, onError
 
@@ -62,8 +61,7 @@ module.exports = [
                         $timeout(
                             $scope.carts.splice($scope.carts.indexOf(item), 1)
                         )
-                    onError = () ->
-                        modal.showLongMessage 'errors.request_failed'
+                    onError = (->)
                     api.removeFromOrderCart 'MS', item.Prod_Id, onSuccess, onError
             params =
                 item_name: item.Prod_Name
@@ -117,9 +115,8 @@ module.exports = [
                     modal.hideLoading()
                     (success or (->))()
 
-                onError = (error, status_code) ->
+                onError = ->
                     modal.hideLoading()
-                    modal.showLongMessage 'errors.request_failed'
 
                 api.clearFromOrderCart 'MS', onSuccess, onError
 
@@ -204,14 +201,6 @@ module.exports = [
                                     [translator['popup.ok']]
                                 )
                             return
-
-                        $translate(['title.submit_cart', 'errors.request_failed', 'popup.ok']).then (translator) ->
-                            plugins.notification.confirm(
-                                translator['errors.request_failed'],
-                                (->),
-                                translator['title.submit_cart'],
-                                [translator['popup.ok']]
-                            )
 
                     courses = _.map($scope.carts, 'Prod_Id')
                     courses = _.join(courses, ',')

@@ -44,13 +44,8 @@ module.exports = [
 
                     $rootScope.getMemberData(onSuccess, onError)
 
-                onError = (error, status_code) ->
-                    console.log 'login'
-                    console.log status_code
-                    console.log error
-
+                onError = () ->
                     modal.hideLoading()
-                    modal.showMessage 'errors.request_failed'
 
                 data =
                     id: $scope.user.email
@@ -59,13 +54,8 @@ module.exports = [
 
                 api.login(data, onSuccess, onError)
 
-            onError = (error, status_code) ->
-                console.log 'register'
-                console.log status_code
-                console.log error
-
+            onError = () ->
                 modal.hideLoading()
-                modal.showMessage 'errors.request_failed'
 
             $scope.user.mobile = $scope.user.mobile.replace(new RegExp('-', 'g'), '')
             data = {

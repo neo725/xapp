@@ -31,10 +31,6 @@ module.exports = [
 
             onError = (error, status_code) ->
                 modal.hideLoading()
-                console.log 'info'
-                console.log status_code
-                console.log error
-                modal.showMessage 'errors.request_failed'
 
             data = {
                 email: $scope.user.email

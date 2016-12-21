@@ -70,7 +70,6 @@ module.exports = [
 
             onError = () ->
                 modal.hideLoading()
-                modal.showMessage '', 'errors.request_failed'
 
             data =
                 'page': page

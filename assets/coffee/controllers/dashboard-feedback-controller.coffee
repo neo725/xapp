@@ -67,8 +67,6 @@ module.exports = [
                 $scope.modalFeedback.hide()
             onError = ->
                 modal.hideLoading()
-                $translate('errors.request_failed').then (text) ->
-                    plugins.toast.show(text, 'long', 'top')
                 $scope.modalFeedback.hide()
 
             api.postSurveyFill(data, onSuccess, onError)

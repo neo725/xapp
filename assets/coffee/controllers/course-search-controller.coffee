@@ -216,9 +216,8 @@ module.exports = [
                 modal.hideLoading()
                 $scope.modalWish.hide()
                 plugins.toast.show(response.popout, 'long', 'top')
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                modal.showMessage 'errors.request_failed'
 
             wishcard = $scope.wishcard
             wishcard.min = result.min
@@ -392,7 +391,6 @@ module.exports = [
             onError = () ->
                 $scope.loadingSearch = false
                 modal.hideLoading()
-                modal.showMessage '', 'errors.request_failed'
 
             backView = $ionicHistory.backView()
             data = {}

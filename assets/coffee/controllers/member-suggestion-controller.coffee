@@ -33,9 +33,8 @@ module.exports = [
                 $translate('message.suggestion_sended').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
 
-            onError = (error, status_code) ->
+            onError = () ->
                 modal.hideLoading()
-                modal.showMessage 'errors.request_failed'
 
             data =
                 'name': $scope.suggestion.username

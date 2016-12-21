@@ -1,35 +1,54 @@
 _ = require('lodash')
 constants = require('../common/constants')
 
-exports.apiInterceptor = ['$rootScope', '$log', '$q', ($rootScope, $log, $q) ->
-    request: (config) ->
-        ua = ionic.Platform.ua
+exports.apiInterceptor = ['$rootScope', '$log', '$translate', '$q', 'plugins',
+    ($rootScope, $log, $translate, $q, plugins) ->
+        response: (response) ->
+            #$log.debug "success with status #{response.status}"
+            response || $q.when response
 
-#        check device is real in fake on dev mode only
-        isRealDevice = ua.indexOf('SM-G900P') == -1
+        responseError: (rejection) ->
+            if rejection.status >= 500
+#                $translate('errors.request_failed').then (text) ->
+#                    plugins.toast.show(text, 'long', 'top')
+                $translate(['errors.request_failed', 'popup.ok']).then (translator) ->
+                    plugins.notification.confirm(
+                        translator['errors.request_failed'],
+                        (->),
+                        '',
+                        [translator['popup.ok']]
+                    )
 
-        isPayRequest = /(^http:|https:)\/\/[-a-zA-Z0-9\/.]{2,100}\/api\/pay/gi.test(config.url)
-        isApiRequest = isPayRequest or /^\/api\//.test(config.url)
+            $q.reject rejection
 
-        api_endpoint = "#{constants.API_URL.browser}"
+        request: (config) ->
+            ua = ionic.Platform.ua
 
-        if isRealDevice
-            api_endpoint = "#{constants.API_URL.device}"
+    #        check device is real in fake on dev mode only
+            isRealDevice = ua.indexOf('SM-G900P') == -1
 
-        if isApiRequest
-            if not isPayRequest
-                config.url = "#{api_endpoint}#{config.url}"
-            canceler = $q.defer()
-            config.timeout = canceler.promise
-            # remark under code because Connection is undefined, i don't know why
-#            if (navigator.connection and navigator.connection.type == Connection.NONE)
-#                canceler.resolve('network.none')
-#                $rootScope.$broadcast('network.none')
+            isPayRequest = /(^http:|https:)\/\/[-a-zA-Z0-9\/.]{2,100}\/api\/pay/gi.test(config.url)
+            isApiRequest = isPayRequest or /^\/api\//.test(config.url)
 
-            token = window.localStorage.getItem('token')
-            if token != null
-                config.headers['token'] = token
-            config || $q.when(config)
+            api_endpoint = "#{constants.API_URL.browser}"
 
-        return config
+            if isRealDevice
+                api_endpoint = "#{constants.API_URL.device}"
+
+            if isApiRequest
+                if not isPayRequest
+                    config.url = "#{api_endpoint}#{config.url}"
+                canceler = $q.defer()
+                config.timeout = canceler.promise
+                # remark under code because Connection is undefined, i don't know why
+    #            if (navigator.connection and navigator.connection.type == Connection.NONE)
+    #                canceler.resolve('network.none')
+    #                $rootScope.$broadcast('network.none')
+
+                token = window.localStorage.getItem('token')
+                if token != null
+                    config.headers['token'] = token
+                config || $q.when(config)
+
+            return config
 ]

@@ -63,8 +63,7 @@ module.exports = [
                 if buttonIndex == 1
                     onSuccess = () ->
                         initLoad()
-                    onError = () ->
-                        modal.showLongMessage 'errors.request_failed'
+                    onError = (->)
 
                     api.refundOrder order_no, onSuccess, onError
 
@@ -83,8 +82,7 @@ module.exports = [
                 if buttonIndex == 1
                     onSuccess = () ->
                         initLoad()
-                    onError = () ->
-                        modal.showLongMessage 'errors.request_failed'
+                    onError = (->)
 
                     api.cancelOrder order_no, onSuccess, onError
 

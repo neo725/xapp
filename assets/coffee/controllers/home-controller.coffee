@@ -32,8 +32,7 @@ module.exports = [
                 delete $rootScope['member']
 
                 navigation.flip('login', {}, 'right')
-            onError = ->
-                modal.showMessage 'errors.request_failed'
+            onError = (->)
 
             token = window.localStorage.getItem('token')
             api.logout(token, onSuccess, onError)
