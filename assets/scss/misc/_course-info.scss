@@ -33,6 +33,16 @@ $price-current-item-color: #BE1421;
                     padding: 0;
                 }
 
+                &.row-2 {
+                    .class-date-value, .class-time-value {
+                        margin-top: 2px;
+                    }
+                }
+                &.row-3 {
+                    .class-date-value, .class-time-value {
+                        margin-top: 3px;
+                    }
+                }
                 .class-time {
                     padding: 0;
 
@@ -46,6 +56,36 @@ $price-current-item-color: #BE1421;
                         .class-time-value {
                             position: relative;
                             left: -3px;
+                        }
+                    }
+                    .col-2 {
+                        .badge {
+                            margin-top: 5px;
+                            font-size: 12px;
+                            height: 25px !important;
+                            width: 25px !important;
+                            border-radius: 25px !important;
+                            padding-top: 5px !important;
+                            padding-left: 7px !important;
+                        }
+                    }
+                    .col-3 {
+                        .badge {
+                            margin-top: 0;
+                            font-size: 12px;
+                            height: 25px !important;
+                            border-radius: 25px !important;
+                            width: 25px !important;
+                            padding-left: 6px !important;
+                            padding-top: 5px !important;
+                        }
+                        .rotate-90 {
+                            margin-top: -2px;
+                            margin-left: -1px;
+                        }
+
+                        .badge-2 {
+                            margin-top: -4px;
                         }
                     }
                 }

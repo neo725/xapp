@@ -43,7 +43,7 @@ module.exports = [
                 $rootScope.topics = topics
                 modal.hideLoading()
                 $scope.modalFeedback.show()
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getSurveyFill(onSuccess, onError)

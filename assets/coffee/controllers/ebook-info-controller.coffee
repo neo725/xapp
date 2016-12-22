@@ -50,7 +50,7 @@ module.exports = [
                 autoHeight(5)
 
                 modal.hideLoading()
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             api.getCatalogEbook yearmonth, catalog_id, onSuccess, onError

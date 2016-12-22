@@ -67,11 +67,24 @@ module.exports = [
 
         $scope.getTimePart = (part, time_value) ->
             if time_value
+                #console.log time_value
                 weekday_part = time_value.split(' ')
                 time_part = weekday_part[1].split('~')
                 switch part
                     when 'weekday'
-                        return weekday_part[0]
+                        weekday_part = weekday_part[0]
+                        if weekday_part.indexOf('、') > -1
+                            weekday_part = weekday_part.split('、')
+                            return weekday_part
+                        else if weekday_part.indexOf('~') > -1
+                            weekday_part = weekday_part.split('~')
+                            weekday_part.splice(1, 0, '~')
+                            return weekday_part
+                        else
+                            v = []
+                            v.push weekday_part
+                            return v
+
                     when 'start'
                         return time_part[0]
                     when 'end'
@@ -94,11 +107,13 @@ module.exports = [
                 $scope.desc = $scope.course.xmlDiscription.Discription
                 $rootScope.priceList = $scope.course.priceList
 
+                $scope.course.weekdays = $scope.getTimePart('weekday', $scope.course.Prod_ClsTime)
+
                 if $scope.course.isFavorite == 0
                     $scope.favorite_icon = 'heart-outline@2x.png'
                 else
                     $scope.favorite_icon = 'heart@2x.png'
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
 
             modal.showLoading('', 'message.data_loading')

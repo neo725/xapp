@@ -65,7 +65,7 @@ module.exports = [
                 $ionicSlideBoxDelegate.update()
 
                 $scope.modalFeedback.hide()
-            onError = ->
+            onError = () ->
                 modal.hideLoading()
                 $scope.modalFeedback.hide()
 

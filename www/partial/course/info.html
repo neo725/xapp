@@ -32,7 +32,8 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <div class="row course-detail text-center">
+                    <div class="row course-detail text-center"
+                         ng-class="{ 'row-1': course.weekdays.length == 1, 'row-2': course.weekdays.length == 2, 'row-3': course.weekdays.length == 3 }">
                         <div class="col border-right">
                             <div class="text-gray">上課地點</div>
                             <div class="badge badge-positive badge-m-size">{{ course.Prod_ClsLocation }}</div>
@@ -44,8 +45,17 @@
                         <div class="col border-right">
                             <div class="text-gray">上課時段</div>
                             <div class="row text-item class-time">
-                                <div class="col">
-                                    <span class="badge badge-positive badge-s-size">{{ getTimePart('weekday', course.Prod_ClsTime) }}</span>
+                                <div class="col" ng-if="course.weekdays.length == 1">
+                                    <span class="badge badge-positive badge-s-size">{{ course.weekdays[0] }}</span>
+                                </div>
+                                <div class="col col-2" ng-if="course.weekdays.length == 2">
+                                    <span class="badge badge-positive badge-s-size">{{ course.weekdays[0] }}</span>
+                                    <span class="badge badge-positive badge-s-size">{{ course.weekdays[1] }}</span>
+                                </div>
+                                <div class="col col-3" ng-if="course.weekdays.length == 3">
+                                    <div class="badge badge-positive badge-s-size">{{ course.weekdays[0] }}</div>
+                                    <div class="rotate-90">~</div>
+                                    <div class="badge badge-2 badge-positive badge-s-size">{{ course.weekdays[2] }}</div>
                                 </div>
                                 <div class="col class-time-range">
                                     <div class="class-time-value text-positive">
@@ -60,7 +70,7 @@
                             <div class="text-gray">起訖日期</div>
                             <div class="row no-padding">
                                 <div class="col">
-                                    <div class="text-positive">
+                                    <div class="text-positive class-date-value">
                                         <div>{{ getDatePart(course.Prod_ClsOpenDate) }}</div>
                                         <div class="rotate-90">»</div>
                                         <div>{{ getDatePart(course.Prod_ClsEndDate) }}</div>
