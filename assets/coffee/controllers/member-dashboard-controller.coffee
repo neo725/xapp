@@ -28,17 +28,10 @@ module.exports = [
             navigation.slide 'home.member.payment-list', {}, 'left'
 
         $scope.goEdit = ->
-            $scope.modalFunction.hide()
-            $timeout(->
-                navigation.slide 'home.member.edit', {}, 'up'
-            )
+            navigation.slide 'home.member.edit', {}, 'up'
 
         $scope.goSuggest = ->
             navigation.slide 'home.member.suggestion', {}, 'left'
-#            $scope.modalFunction.hide()
-#            $timeout(->
-#                navigation.slide 'home.member.suggestion', {}, 'up'
-#            )
 
         $scope.toggleNotification = ($event) ->
             $event.stopPropagation()
@@ -64,49 +57,66 @@ module.exports = [
 
             api.postUserSetting('notify', "'#{data.notify}'", onSuccess, onError)
 
-        $scope.takePicture = ->
+        getCamera = (pictureSourceType) ->
             options =
                 quality: 80
                 destinationType: Camera.DestinationType.DATA_URL
-                sourceType: Camera.PictureSourceType.CAMERA
-                allowEdit: true
+                sourceType: pictureSourceType
+                allowEdit: false
                 encodingType: Camera.EncodingType.JPEG
-                targetWidth: 200
-                targetHeight: 200
+                targetWidth: 1000
+                targetHeight: 1000
                 saveToPhotoAlbum: false
                 correctOrientation: true
 
             $cordovaCamera.getPicture(options).then (imageData) ->
-#                    $jrCrop.crop(
-#                        url: 'data:image/jpeg;base64,' + imageData
-#                        width: 200
-#                        height: 200
-#                        circle: true
-#                    ).then (canvas) ->
-#                        image = canvas.toDataURL()
-#                        console.log image
-#                    , (->)
+                fixAvatarImage()
 
-                    #$scope.avatars = imageData
-                    #$('#user-avatars').attr 'src', 'data:image/jpeg;base64,' + $scope.avatars
-                    fixAvatarImage()
-                    uploadAvatar = ->
-                        onSuccess = (response) ->
-                            #window.localStorage.setItem('avatar', imageData)
-                            $scope.avatar_url = response.result
-                            modal.hideLoading()
-                        onError = () ->
-                            modal.hideLoading()
+                uploadAvatar = ->
+                    onSuccess = (response) ->
+                        $scope.avatar_url = response.result
+                        modal.hideLoading()
+                    onError = () ->
+                        modal.hideLoading()
 
-                        api.postImage('avatar', imageData, onSuccess, onError)
-                    modal.showLoading('', 'message.data_saving')
-                    uploadAvatar()
-                , (error) ->
-                    console.log error
+                    api.postImage('avatar', imageData, onSuccess, onError)
 
-        $scope.logout = ->
+                $jrCrop.crop(
+                    url: 'data:image/jpeg;base64,' + imageData
+                    width: 200
+                    height: 200
+                    circle: true
+                ).then (canvas) ->
+                        imageData = canvas.toDataURL()
+                        pos = imageData.indexOf(',')
+                        if pos > -1
+                            imageData = imageData.substr(pos + 1)
+
+                        modal.showLoading('', 'message.data_saving')
+                        uploadAvatar()
+                    , (->)
+            , (error) ->
+                console.log error
+
+        $scope.takePicture = ->
             $scope.modalFunction.hide()
-            $rootScope.logout()
+            getCamera(Camera.PictureSourceType.CAMERA)
+
+        $scope.choicePicture = ->
+            $scope.modalFunction.hide()
+            getCamera(Camera.PictureSourceType.PHOTOLIBRARY)
+
+        $scope.deleteAvatar = ->
+            $scope.modalFunction.hide()
+
+            onSuccess = () ->
+                modal.hideLoading()
+                delete $scope['avatar_url']
+            onError = () ->
+                modal.hideLoading()
+
+            modal.showLoading('', 'message.data_updating')
+            api.deleteUserSetting 'avatar', onSuccess, onError
 
         $scope.getGenderTitle = (gender) ->
             value = ''
@@ -115,6 +125,9 @@ module.exports = [
                 when 'F' or 'f' then value = '小姐'
 
             return value
+
+        $scope.showFunction = () ->
+            $scope.modalFunction.show()
 
         retriveAvatarImageSize = ->
             $avatar = $('.avatar-img');

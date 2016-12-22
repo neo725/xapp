@@ -142,7 +142,7 @@
 .function-box {
     &.modal-box {
         top: 30%;
-        height: 190px !important;
+        height: 170px !important;
 
         .col {
             text-align: center;
@@ -150,6 +150,7 @@
         }
         .list {
             border: 0;
+            margin-top: 0;
 
             .item {
                 text-align: center;

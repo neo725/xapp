@@ -283,6 +283,14 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        deleteUserSetting: (key, onSuccess, onError) ->
+            $http({
+                'url': "/api/usersetting/#{key}"
+                'method': 'DELETE'
+                'headers':
+                    'Content-Type': 'application/json;charset=utf-8'
+            }).then(onSuccess, onError)
+
         getMyFavoriteEbooks: (page, perpage, onSuccess, onError) ->
             $http.get("/api/ebook/my?page=#{page}&perpage=#{perpage}")
                 .success(onSuccess)

@@ -16,21 +16,12 @@
         </ion-nav-title>
     </ion-nav-bar>
     <ion-content class="has-header" ng-class="{ 'pane-content': true }">
-        <div class="bg" ng-if="false">
-            <div class="item-avatar">
-                <img class="img-avatar" src="img/member-pic@2x.png" />
-                <div class="title" ng-click="modalFunction.show()">
-                    <h3>{{ member.memb_name }} <img src="img/edit@2x.png" /></h3>
-                    <p>{{ member.memb_email }}</p>
-                </div>
-            </div>
-        </div>
         <div class="member-info">
             <div class="edit-button" ng-click="goEdit()">
                 編輯
             </div>
             <div class="row">
-                <div class="col col-33 avatars" ng-click="takePicture()">
+                <div class="col col-33 avatars" ng-click="showFunction()" ng-click-x="takePicture()">
                     <div class="crop-mask">
                         <img id="guest-avatars" src="img/member-pic@2x.png" style="width: 100px" ng-if="avatars == undefined && avatars_url == undefined" />
                         <img id="guest-avatars-2" class="avatar-img" src="img/fake-avatars.jpg" ng-if="false" />
@@ -77,12 +68,12 @@
                     <div class="col function-item" ng-click="goMessageList()">
                         <div class="function-image"><img src="img/member-03@2x.png" /></div>
                         <div class="function-title">{{ '學習訊息' }}</div>
-                        <div class="function-count">(<span class="count">3</span>)</div>
+                        <div class="function-count" ng-bind="''">(<span class="count">3</span>)</div>
                     </div>
                     <div class="col col-33 function-item" ng-click="goWishList()">
                         <div class="function-image"><img src="img/member-01@2x.png" /></div>
                         <div class="function-title">{{ '收藏清單' }}</div>
-                        <div class="function-count">(<span class="count">15</span>)</div>
+                        <div class="function-count" ng-bind="''">(<span class="count">15</span>)</div>
                     </div>
                     <div class="col col-33 function-item" ng-click="goOrderList()">
                         <div class="function-image"><img src="img/member-02@2x.png" /></div>
@@ -93,7 +84,7 @@
                     <div class="col function-item" ng-click="goFinishList()">
                         <div class="function-image"><img src="img/member-04@2x.png" /></div>
                         <div class="function-title">{{ '已完成課程' }}</div>
-                        <div class="function-count">(<span class="count">8</span>)</div>
+                        <div class="function-count" ng-bind="''">(<span class="count">8</span>)</div>
                     </div>
                     <div class="col col-33 function-item" ng-click="goSuggest()">
                         <div class="function-image"><img src="img/opinionmail@2X.png" /></div>
@@ -118,14 +109,14 @@
         <ion-modal-view class="modal-box function-box">
             <ion-content class="padding" scroll="false">
                 <div class="list">
-                    <a class="item" ng-click="goEdit()">
-                        <p>編輯帳號</p>
+                    <a class="item" ng-click="takePicture()">
+                        <span>拍攝照片</span>
                     </a>
-                    <a class="item" ng-click="goSuggest()">
-                        <p>意見信箱</p>
+                    <a class="item" ng-click="choicePicture()">
+                        <span>選擇照片</span>
                     </a>
-                    <a class="item" href="#" ng-click="logout()">
-                        <p>帳號登出</p>
+                    <a class="item" ng-click="deleteAvatar()">
+                        <span>刪除</span>
                     </a>
                 </div>
             </ion-content>
