@@ -1,25 +1,31 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', 'api', 'modal', 'navigation',
-    ($scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, api, modal, navigation) ->
-        onSuccess = (response) ->
-            modal.hideLoading()
-            list = response.list
-            $scope.covers = list
+    '$rootScope', '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', 'api', 'modal', 'navigation',
+    ($rootScope, $scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, api, modal, navigation) ->
+        loadSearchSlide = ->
+            onSuccess = (response) ->
+                modal.hideLoading()
+                list = response.list
+                $scope.covers = list
 
-            $timeout(->
-                $('.search-slides').show()
-                $ionicSlideBoxDelegate.update()
-                $ionicSlideBoxDelegate.$getByHandle('search-slide-box').loop(true)
-            , 500)
+                $timeout(->
+                    $('.search-slides').show()
+                    $ionicSlideBoxDelegate.update()
+                    $ionicSlideBoxDelegate.$getByHandle('search-slide-box').loop(true)
+                , 500)
 
-        onError = () ->
-            modal.hideLoading()
+            onError = () ->
+                modal.hideLoading()
+
+            modal.showLoading '', 'message.loading_cover'
+            api.getCover(onSuccess, onError)
 
         $('.search-slides').hide()
-        modal.showLoading '', 'message.loading_cover'
-        api.getCover(onSuccess, onError)
+
+        token = window.localStorage.getItem('token')
+        if $rootScope.member or token
+            loadSearchSlide()
 
         $scope.searchCourse = (cover) ->
             weeks = cover.week.split(',')

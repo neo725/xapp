@@ -99,7 +99,7 @@ module.exports = [
                 token = window.localStorage.getItem('token')
 
             if token == null or token == "null"
-                navigation.flip 'login', {}, 'left'
+                navigation.slide 'login', {}, 'left'
             else
                 onSuccess = () ->
                     $rootScope.loadCart()
@@ -107,7 +107,7 @@ module.exports = [
                     $rootScope.callFCMGetToken()
 
                     if redirectToDashboard
-                        navigation.flip 'home.dashboard', {}, 'left'
+                        navigation.slide 'home.dashboard', {}, 'left'
 
                 $rootScope.getMemberData(onSuccess, (->))
 

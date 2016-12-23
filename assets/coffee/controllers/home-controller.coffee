@@ -9,7 +9,7 @@ module.exports = [
             token = window.localStorage.getItem('token')
 
             if token == null or token == "null"
-                navigation.flip 'login', {}, 'left'
+                navigation.slide 'login', {}, 'left'
 
         $rootScope.goCart = ->
             is_guest = window.localStorage.getItem('is_guest') == 'true'

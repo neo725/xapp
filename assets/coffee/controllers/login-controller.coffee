@@ -42,7 +42,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                     $rootScope.loadWish()
                     $rootScope.callFCMGetToken()
 
-                    navigation.flip 'home.dashboard', {}, 'left'
+                    navigation.slide 'home.dashboard', {}, 'left'
 
                 $rootScope.getMemberData(onSuccess, (->))
 
@@ -74,7 +74,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 delete $rootScope['cart']
                 delete $rootScope['wish']
 
-                navigation.flip 'home.dashboard', {}, 'left'
+                navigation.slide 'home.dashboard', {}, 'left'
                 $rootScope.callFCMGetToken()
 
             onError = () ->
@@ -136,7 +136,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                     $rootScope.loadWish()
                     $rootScope.callFCMGetToken()
 
-                    navigation.flip 'home.dashboard', {}, 'left'
+                    navigation.slide 'home.dashboard', {}, 'left'
 
                 $rootScope.getMemberData(onSuccess, (->))
             onError = () ->
@@ -152,14 +152,14 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             token = window.localStorage.getItem('token')
 
             if token == null or token == "null"
-                navigation.flip 'login', {}, 'left'
+                navigation.slide 'login', {}, 'left'
             else
                 onSuccess = () ->
                     $rootScope.loadCart()
                     $rootScope.loadWish()
                     $rootScope.callFCMGetToken()
 
-                    navigation.flip 'home.dashboard', {}, 'left'
+                    navigation.slide 'home.dashboard', {}, 'left'
 
                 $rootScope.getMemberData(onSuccess, (->))
 

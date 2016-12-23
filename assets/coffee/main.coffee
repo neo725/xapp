@@ -405,7 +405,8 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 
     $ionicNativeTransitionsProvider.enable true
 
-    $urlRouterProvider.otherwise "/login"
+    #$urlRouterProvider.otherwise "/login"
+    $urlRouterProvider.otherwise '/home/dashboard'
 )
 .config(($translateProvider) ->
     for language of resources
