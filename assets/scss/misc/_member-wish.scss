@@ -3,8 +3,80 @@
         background-color: $stable;
 
         .card {
+            padding: 0 !important;
+
+            .list {
+                margin-top: 0;
+
+                .item-complex {
+                    background-color: #000;
+
+                    .item-content {
+                        padding: 0;
+                    }
+                }
+
+                ion-option-button {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-around; /* optional */
+
+                    &.button {
+                        background: #000;
+                    }
+
+                    &.activated {
+                        background-color: #000;
+                    }
+                    .button {
+                        &.button-icon {
+                            color: $light;
+                            font-size: 26px;
+                        }
+                    }
+                }
+
+                .offline-mask {
+                    background-color: rgba(0, 0, 0, 0.5);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+
+                    div {
+                        text-align: center;
+                        height: 50px;
+                    }
+                    .mask-icon {
+
+                        .icon-container {
+                            position: absolute; left: 50%;
+
+                            .icon {
+                                position: relative;
+                                left: -50%;
+                                background-color: #000;
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50px;
+                                padding-top: 14px;
+
+                                img {
+                                    width: 32px;
+                                }
+                            }
+                        }
+                    }
+                    .mask-text {
+                        color: $light;
+                    }
+                }
+            }
+
             .item {
-                padding: 2px;
+                //padding: 2px;
 
                 .row {
                     .course-no {

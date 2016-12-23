@@ -13,7 +13,7 @@
     </ion-nav-buttons>
     <ion-content padding="true">
         <div class="card" prod-id="{{course.Prod_Id}}" ng-repeat="course in courses" ng-click="switchToCourseInfo(course.Shop_Id, course.Prod_Id)">
-            <div class="item item-text-wrap">
+            <div class="item item-text-wrap" ng-if="false">
                 <div class="row">
                     <div class="col course-no">
                         <span class="course-no-span" ng-bind="course.Prod_Id"></span></div>
@@ -50,6 +50,58 @@
                     </div>
                 </div>
             </div>
+            <ion-list>
+                <ion-item class="item-remove-animate item-text-wrap">
+                <div class="row">
+                    <div class="col course-no">
+                        <span class="course-no-span" ng-bind="course.Prod_Id"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="course-date">
+                            <div class="year">{{course.year}}</div>
+                            <div class="date">{{course.date}}</div>
+                            <div class="weekday">{{course.weekday}}</div>
+                        </div>
+                    </div>
+                    <div class="col col-80 course-info">
+                        <div class="course-title">
+                            {{course.Prod_Name}} {{course.Prod_SubName}}
+                        </div>
+                        <div class="course-detail">
+                            <p><img src="img/location@2x.png" class="small-icon" />上課地點： {{course.Prod_ClsLocation}}</p>
+                            <p><img src="img/time@2x.png" class="small-icon" />上課時數： {{course.Prod_ClsHours}}</p>
+                            <p><img src="img/calendar@2x.png" class="small-icon" />上課時段： {{course.Prod_ClsTime}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-20">
+                        <span class="special-price-mark">優惠價</span>
+                    </div>
+                    <div class="col col-70 col-price">
+                        NT<span class="course-price">{{course.Prod_Price | currency:undefined:0}}</span>
+                    </div>
+                    <div class="col text-right">
+                        <img class="course-keep-img" ng-src="img/{{course.keep_image_name}}"
+                             ng-click="removeFromWish(course, $event)" />
+                    </div>
+                </div>
+                <div class="offline-mask">
+                    <div class="mask-icon">
+                        <div class="icon-container">
+                            <div class="icon">
+                                <img src="img/shoppingcar-empty@2x.png" /></div>
+                        </div>
+                    </div>
+                    <div class="mask-text">商品已下架</div>
+                </div>
+                <ion-option-button>
+                    <button class="button button-icon ion-ios-email-outline"></button>
+                    <button class="button button-icon ion-ios-trash-outline"></button>
+                </ion-option-button>
+            </ion-item>
+            </ion-list>
         </div>
     </ion-content>
 </ion-view>
