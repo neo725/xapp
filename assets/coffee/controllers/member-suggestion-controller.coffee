@@ -1,6 +1,6 @@
 module.exports = [
-    '$scope', '$translate', 'navigation', 'modal', 'plugins', 'api',
-    ($scope, $translate, navigation, modal, plugins, api) ->
+    '$scope', '$translate', '$ionicHistory', 'navigation', 'modal', 'plugins', 'api',
+    ($scope, $translate, $ionicHistory, navigation, modal, plugins, api) ->
         $scope.type_opts = [
             '支持與鼓勵 (Encouragement)',
             '意見反應 (Suggestion)'
@@ -13,7 +13,12 @@ module.exports = [
         $scope.suggestion = {}
 
         $scope.goBack = ->
-            navigation.slide 'home.member.dashboard', {}, 'right'
+            backView = $ionicHistory.backView()
+
+            if backView
+                navigation.slide(backView.stateName, backView.stateParams, 'right')
+            else
+                navigation.slide('home.dashboard', {}, 'right')
 
         $scope.submitForm = (form) ->
             if not form.$valid

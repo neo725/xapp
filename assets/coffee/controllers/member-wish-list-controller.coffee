@@ -5,6 +5,9 @@ module.exports = [
         $scope.goBack = ->
             navigation.slide 'home.member.dashboard', {}, 'right'
 
+        $scope.gotoSuggestion = ->
+            navigation.slide 'home.member.suggestion', {}, 'left'
+
         $scope.removeFromWish = (course, $event) ->
             $event.stopPropagation()
             onSuccess = () ->
