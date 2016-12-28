@@ -178,6 +178,7 @@
                     text-align: left;
                     font-size: $text-size-small;
                     //height: 240px;
+                    border-radius: 5px;
 
                     .key {
                         font-size: $text-size-small;
@@ -465,7 +466,7 @@
             }
             .textarea {
                 border: 0;
-                background-color: #dcdddc;
+                background-color: $input-bg-color;
                 width: 100%;
                 padding: 8px;
             }

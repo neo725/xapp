@@ -59,8 +59,8 @@ module.exports = [
             onSuccess = (response) ->
                 modal.hideLoading()
 
-                console.log 'response :'
-                console.log response
+                #console.log 'response :'
+                #console.log response
 
                 data =
                     memb_name: response.Memb_Name
@@ -72,8 +72,8 @@ module.exports = [
                     memb_address: response.Memb_AddHome
                     memb_gender: response.Memb_Gender
 
-                console.log 'getMemberData :'
-                console.log data
+                #console.log 'getMemberData :'
+                #console.log data
 
                 $rootScope.member = data
 
@@ -166,6 +166,18 @@ module.exports = [
             token = window.localStorage.getItem('token')
             if $rootScope.member == undefined and token
                 checkDefaultState(token, false)
+        )
+        $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) ->
+            console.log 'index-controller -> $stateChangeSuccess -> Entered to view'
+            # fix ion-nav-bar apply nav-bar-tabs-top but has no tabs actually
+            navbar = $('ion-nav-bar.nav-bar-tabs-top')
+            tabs = $('div.tabs:not([nav-bar-tabs-top-ignore]):visible')
+
+            console.log navbar
+            console.log tabs
+
+            navbar.removeClass('nav-bar-tabs-top')
+
         )
 
 #        $rootScope.$on('network.none', ->

@@ -2,7 +2,6 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
     </ion-nav-buttons>
-    <ion-nav-title>新識力</ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
             <i class="sprite-icon-shoppingcar-o-2x"></i>
@@ -11,6 +10,9 @@
             <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
         </div>
     </ion-nav-buttons>
+    <ion-nav-title>
+        <h1 class="title">新識力</h1>
+    </ion-nav-title>
     <ion-content has-tabs="true">
         <ion-tabs class="tabs-light">
             <ion-tab class="tab-active-1" title="{{ '最新內容' }}" badge="0" badge-style="badge-assertive">

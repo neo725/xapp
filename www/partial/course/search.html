@@ -7,11 +7,11 @@
             <i class="sprite-icon-shoppingcar-o-2x"></i>
         </button>
         <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
-            <div class="badge badge-assertive badge-s-size cart-badge">{{ carts.length }}</div>
+            <div class="badge badge-assertive badge-s-size cart-badge" ng-bind="carts.length"></div>
         </div>
     </ion-nav-buttons>
     <ion-nav-title>
-        <h1 class="title">{{ pageTitle }}</h1>
+        <h1 class="title" ng-bind="pageTitle"></h1>
     </ion-nav-title>
     <ion-content class="has-header" padding="false" scroll="false" ng-class="{ 'pane-content': true }">
         <div class="list header">

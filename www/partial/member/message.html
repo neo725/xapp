@@ -2,7 +2,6 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
     </ion-nav-buttons>
-    <ion-nav-title>學習訊息</ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
             <i class="sprite-icon-shoppingcar-o-2x"></i>
@@ -11,6 +10,9 @@
             <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
         </div>
     </ion-nav-buttons>
+    <ion-nav-title>
+        <h1 class="title">學習訊息</h1>
+    </ion-nav-title>
     <ion-content padding="true">
         <div class="card">
             <div class="item item-text-wrap">
@@ -21,8 +23,11 @@
                     <div class="column col-title">
                         {{ '優惠訊息' }}
                     </div>
-                    <div class="column col-expand" ng-click="toggleVisible('promo')">
+                    <div class="column col-expand" ng-click="toggleVisible('promo')" ng-if="promo_count == 5">
                         {{ '顯示全部' }}
+                    </div>
+                    <div class="column col-expand" ng-click="toggleVisible('promo')" ng-if="promo_count > 5">
+                        {{ '顯示前 5 筆' }}
                     </div>
                 </div>
                 <div class="content">
@@ -109,8 +114,11 @@
                     <div class="column col-title">
                         {{ '課程異動' }}
                     </div>
-                    <div class="column col-expand" ng-click="toggleVisible('course')">
+                    <div class="column col-expand" ng-click="toggleVisible('course')" ng-if="course_count == 5">
                         {{ '顯示全部' }}
+                    </div>
+                    <div class="column col-expand" ng-click="toggleVisible('course')" ng-if="course_count > 5">
+                        {{ '顯示前 5 筆' }}
                     </div>
                 </div>
                 <div class="content">
@@ -157,8 +165,11 @@
                     <div class="column col-title">
                         {{ '繳費通知' }}
                     </div>
-                    <div class="column col-expand" ng-click="toggleVisible('order')">
+                    <div class="column col-expand" ng-click="toggleVisible('order')" ng-if="order_count == 5">
                         {{ '顯示全部' }}
+                    </div>
+                    <div class="column col-expand" ng-click="toggleVisible('order')" ng-if="order_count > 5">
+                        {{ '顯示前 5 筆' }}
                     </div>
                 </div>
                 <div class="content">

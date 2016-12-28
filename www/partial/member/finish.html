@@ -2,7 +2,9 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
     </ion-nav-buttons>
-    <ion-nav-title>已完成的課程</ion-nav-title>
+    <ion-nav-title>
+        <h1 class="title">已完成的課程</h1>
+    </ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
             <i class="sprite-icon-shoppingcar-o-2x"></i>
@@ -115,7 +117,7 @@
                             </div>
                             <div class="row no-padding">
                                 <div class="col col-td color-1">
-                                    <span ng-bind="course.Prod_ClsSir"></span>
+                                    <span class="teacher-name" ng-bind="course.Prod_ClsSir"></span>
                                 </div>
                             </div>
                         </div>

@@ -31,7 +31,7 @@ module.exports = [
                 delete $rootScope['wish']
                 delete $rootScope['member']
 
-                navigation.flip('login', {}, 'right')
+                navigation.slide('login', {}, 'right')
             onError = (->)
 
             token = window.localStorage.getItem('token')

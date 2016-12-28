@@ -13,11 +13,12 @@ module.exports = ['$ionicPlatform', '$timeout', ($ionicPlatform, $timeout) ->
         if window.plugins and window.plugins.nativepagetransitions
             # nativetransition
             # then override any default you want
-            window.plugins.nativepagetransitions.globalOptions.duration = 300
-            window.plugins.nativepagetransitions.globalOptions.iosdelay = 0
+            window.plugins.nativepagetransitions.globalOptions.duration = 500
+            window.plugins.nativepagetransitions.globalOptions.iosdelay = 100
             window.plugins.nativepagetransitions.globalOptions.androiddelay = 100
-            window.plugins.nativepagetransitions.globalOptions.winphonedelay = 0
-            window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 4
+            window.plugins.nativepagetransitions.globalOptions.winphonedelay = 100
+            window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 1
+            window.plugins.nativepagetransitions.globalOptions.slidePixels = 20
             # these are used for slide left/right only currently
             window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0
             window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0
