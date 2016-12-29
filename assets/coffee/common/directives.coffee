@@ -177,3 +177,22 @@ exports.starRating = ->
             newValue = newValue ? newValue : 0
             if newValue >= 0
                 updateStars()
+
+exports.searchSlideFit = ['$window', ($window) ->
+    restrict: 'A'
+    link: (scope, element, attrs) ->
+        $element = $('.dashboard-pane-content')
+        $guestSlides = $element.find('.guest-slides')
+
+        $tab = $('.tabs')
+        $slider = $element.find('.search-slide-box')
+
+        height = $window.innerHeight - ($element.position().top + $tab.outerHeight())
+        $slider.css('height', height + 'px')
+
+        scope.$watch ->
+                return $element.find('.guest-slides').length
+            , (value) ->
+                if value == 0
+                    $slider.css('height', '')
+]

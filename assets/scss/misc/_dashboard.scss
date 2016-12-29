@@ -130,6 +130,13 @@
         &.guest-slides {
             .slider {
                 height: 505px;
+
+                .search-header-container {
+                    padding-top: 18%;
+                }
+                .search-box {
+                    margin-top: 5% !important;
+                }
             }
         }
         .slider {
@@ -141,6 +148,7 @@
                 //background-attachment: fixed;
                 background-position: center;
                 background-size: cover;
+                background-color: rgba(0, 0, 0, 0.5);
 
                 h3 {
                     color: $white-color;
@@ -153,10 +161,20 @@
                     white-space: nowrap;
                 }
 
+                .box-bg {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.3);
+                }
+                .search-box-container {
+                    position: absolute;
+                    width: 100%;
+                }
                 .search-header-container {
-                    background: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 50%, transparent 100%, transparent 100%); /* FF3.6-15 */
-                    background: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 50%, transparent 100%, transparent 100%); /* Chrome10-25,Safari5.1-6 */
-                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 50%, transparent 100%, transparent 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                    //background: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 50%, transparent 100%, transparent 100%); /* FF3.6-15 */
+                    //background: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 50%, transparent 100%, transparent 100%); /* Chrome10-25,Safari5.1-6 */
+                    //background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 50%, transparent 100%, transparent 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
                     .search-header {
                         margin-top: 10px;

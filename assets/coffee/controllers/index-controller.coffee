@@ -173,9 +173,6 @@ module.exports = [
             navbar = $('ion-nav-bar.nav-bar-tabs-top')
             tabs = $('div.tabs:not([nav-bar-tabs-top-ignore]):visible')
 
-            console.log navbar
-            console.log tabs
-
             navbar.removeClass('nav-bar-tabs-top')
 
         )

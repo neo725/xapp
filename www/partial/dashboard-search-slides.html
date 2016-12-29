@@ -1,70 +1,73 @@
-<ion-slide-box delegate-handle="search-slide-box">
+<ion-slide-box delegate-handle="search-slide-box" class="search-slide-box" search-slide-fit>
     <ion-slide ng-repeat="cover in covers">
         <div class="box cover" ng-style="{'background-image': 'url(' + cover.img + ')', 'height': '100%'}">
-            <div class="search-header-container">
-                <div class="search-header">
-                    <h3 ng-bind="cover.title"></h3>
-                    <p ng-bind="cover.content"></p>
-                </div>
-            </div>
-            <div class="search-box">
-                <div class="row">
-                    <div class="col key">
-                        搜尋 關鍵字
+            <div class="box-bg"></div>
+            <div class="search-box-container">
+                <div class="search-header-container">
+                    <div class="search-header">
+                        <h3 ng-bind="cover.title"></h3>
+                        <p ng-bind="cover.content"></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col value padding-left underline" ng-init="cover.user_keyword = cover.keyword">
-                        <div class="value-col"><img src="img/tag@2x.png" class="small-img" /></div>
-                        <div class="value-col"><input type="text" ng-model="cover.user_keyword" /></div>
-                        <div class="keyword" ng-bind="cover.keyword" ng-if="false"></div>
+                <div class="search-box">
+                    <div class="row">
+                        <div class="col key">
+                            搜尋 關鍵字
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="search-box2">
-                            <div class="row">
-                                <div class="col border-right">
-                                    <div class="row">
-                                        <div class="col key">
-                                            希望上課時間
+                    <div class="row">
+                        <div class="col value padding-left underline" ng-init="cover.user_keyword = cover.keyword">
+                            <div class="value-col"><img src="img/tag@2x.png" class="small-img" /></div>
+                            <div class="value-col"><input type="text" ng-model="cover.user_keyword" /></div>
+                            <div class="keyword" ng-bind="cover.keyword" ng-if="false"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="search-box2">
+                                <div class="row">
+                                    <div class="col border-right">
+                                        <div class="row">
+                                            <div class="col key">
+                                                希望上課時間
+                                            </div>
+                                        </div>
+                                        <div class="row row-weekday">
+                                            <div class="col value" ng-click="modalWeekday.show()" ng-if="false">
+                                                <img src="img/calendar@2x.png" class="small-icon" />
+                                                {{ weekday }}
+                                            </div>
+                                            <div class="col value" ng-click="showWeekdayModal(cover)">
+                                                <img src="img/calendar@2x.png" class="small-icon" />
+                                                {{ parseWeekday(cover.week) }}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row row-weekday">
-                                        <div class="col value" ng-click="modalWeekday.show()" ng-if="false">
-                                            <img src="img/calendar@2x.png" class="small-icon" />
-                                            {{ weekday }}
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col key">
+                                                希望上課地點
+                                            </div>
                                         </div>
-                                        <div class="col value" ng-click="showWeekdayModal(cover)">
-                                            <img src="img/calendar@2x.png" class="small-icon" />
-                                            {{ parseWeekday(cover.week) }}
+                                        <div class="row row-location">
+                                            <div class="col value" ng-click="modalLocation.show()" ng-if="false">
+                                                <img src="img/location-wish@2x.png" class="small-icon" />
+                                                {{ location }}
+                                            </div>
+                                            <div class="col value" ng-click="showLocationModal(cover)">
+                                                <img src="img/location-wish@2x.png" class="small-icon" />
+                                                {{ parseLocation(cover.location) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col key">
-                                            希望上課地點
-                                        </div>
+                                <div class="row row-search">
+                                    <div class="col">
+                                        <button class="button button-block button-blue"
+                                                ng-click="searchCourse(cover)">
+                                            搜出好課
+                                        </button>
                                     </div>
-                                    <div class="row row-location">
-                                        <div class="col value" ng-click="modalLocation.show()" ng-if="false">
-                                            <img src="img/location-wish@2x.png" class="small-icon" />
-                                            {{ location }}
-                                        </div>
-                                        <div class="col value" ng-click="showLocationModal(cover)">
-                                            <img src="img/location-wish@2x.png" class="small-icon" />
-                                            {{ parseLocation(cover.location) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-search">
-                                <div class="col">
-                                    <button class="button button-block button-blue"
-                                            ng-click="searchCourse(cover)">
-                                        搜出好課
-                                    </button>
                                 </div>
                             </div>
                         </div>
