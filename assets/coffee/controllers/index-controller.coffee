@@ -63,6 +63,7 @@ module.exports = [
                 #console.log response
 
                 data =
+                    memb_id: response.Memb_Id
                     memb_name: response.Memb_Name
                     memb_email: response.Memb_EMail
                     memb_mobile: response.Memb_Mobile
@@ -79,6 +80,7 @@ module.exports = [
 
                 if $rootScope.member and $rootScope.member.memb_status == 'wait'
                     $rootScope.token_temp = window.localStorage.getItem("token")
+                    $rootScope.member.from = 'register'
                     window.localStorage.removeItem("token")
 
                     navigation.slide 'main.phoneconfirm', {}, 'left'
@@ -166,6 +168,9 @@ module.exports = [
             token = window.localStorage.getItem('token')
             if $rootScope.member == undefined and token
                 checkDefaultState(token, false)
+
+            if token == undefined or token == 'undefined'
+                navigation.slide('login', {}, 'right')
         )
         $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) ->
             console.log 'index-controller -> $stateChangeSuccess -> Entered to view'

@@ -9,6 +9,15 @@ module.exports = ->
             return 'master'
         return ''
 
+    pad = (numeric, size) ->
+        if numeric.toString().length > size
+            return numeric.toString()
+
+        zero = '0'.repeat size - 1
+        str = zero + numeric.toString()
+        return str.substr(str.length - size)
+
     return {
         checkCardType: checkCardType
+        pad: pad
     }

@@ -104,10 +104,6 @@ module.exports = [
                     )
                 return
 
-            pad = (numeric, size) ->
-                str = '000' + numeric
-                return str.substr(str.length - size)
-
             clearCart = (success) ->
                 onSuccess = () ->
                     # clear cart if success
@@ -141,18 +137,18 @@ module.exports = [
 
             collectCreditCardInfo = ->
                 getCardNumber = () ->
-                    return pad($scope.card.number_part1, 4) +
-                            pad($scope.card.number_part2, 4) +
-                            pad($scope.card.number_part3, 4) +
-                            pad($scope.card.number_part4, 4)
+                    return util.pad($scope.card.number_part1, 4) +
+                            util.pad($scope.card.number_part2, 4) +
+                            util.pad($scope.card.number_part3, 4) +
+                            util.pad($scope.card.number_part4, 4)
 
                 getCardExpire = () ->
-                    return pad($scope.card.expire_year + 2000, 4) +
-                            pad($scope.card.expire_month, 2)
+                    return util.pad($scope.card.expire_year + 2000, 4) +
+                            util.pad($scope.card.expire_month, 2)
                 card = {}
                 card.number = getCardNumber()
                 card.expire = getCardExpire()
-                card.cvc = pad($scope.card.cvc, 3)
+                card.cvc = util.pad($scope.card.cvc, 3)
 
                 return card
 

@@ -4,8 +4,8 @@ module.exports = [
         $scope.user = {
             name: 'Neo Chang'
             account: 'neochang'
-            email: 'thchang@sce.pccu.edu.tw'
-            email_confirm: 'thchang@sce.pccu.edu.tw'
+            email: 'neo725@gmail.com'
+            email_confirm: 'neo725@gmail.com'
             password: '1234'
             password_confirm: '1234'
             mobile: '0986-716-086'
@@ -37,6 +37,7 @@ module.exports = [
                     window.localStorage.setItem('is_guest', false)
 
                     onSuccess = ->
+                        $rootScope.member.from = 'register'
                         navigation.slide 'main.phoneconfirm', {}, 'left'
                     onError = (->)
 
@@ -62,5 +63,7 @@ module.exports = [
                 tel: $scope.user.mobile
                 password: $scope.user.password
             }
+
+            modal.showLoading '', 'message.data_saving'
             api.registerMember(data, onSuccess, onError)
 ]

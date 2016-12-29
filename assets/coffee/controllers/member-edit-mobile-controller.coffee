@@ -1,6 +1,6 @@
 module.exports = [
-    '$scope', '$translate', 'navigation', 'plugins', 'modal', 'api',
-    ($scope, $translate, navigation, plugins, modal, api) ->
+    '$rootScope', '$scope', '$translate', 'navigation', 'plugins', 'modal', 'api', 'util',
+    ($rootScope, $scope, $translate, navigation, plugins, modal, api, util) ->
         $scope.user = {}
 
         $scope.goBack = ($event) ->
@@ -21,14 +21,16 @@ module.exports = [
             modal.showLoading '', 'message.data_saving'
 
             data = {
-                'tel': $scope.user.memb_mobile
+                'tel': util.pad($scope.user.memb_mobile, 10)
             }
 
             onSuccess = (response) ->
                 modal.hideLoading()
-                $scope.goBack({ 'preventDefault': (->) })
-                $translate('message.data_saved').then (text) ->
-                    plugins.toast.show(text, 'long', 'top')
+                $rootScope.member.from = 'edit-mobile'
+                $rootScope.member.new_memb_mobile = data.tel
+                navigation.slide 'main.phoneconfirm', {}, 'left'
+#                $translate('message.data_saved').then (text) ->
+#                    plugins.toast.show(text, 'long', 'top')
             onError = () ->
                 modal.hideLoading()
 

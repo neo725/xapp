@@ -18,7 +18,7 @@
                     <label class="item item-input"
                            ng-class="{ 'has-error' : editMobileForm.mobile.$invalid }">
                         <span class="input-label">{{ '輸入新手機號碼' }}</span>
-                        <input type="text" name="mobile"
+                        <input type="number" name="mobile"
                                ng-model="user.memb_mobile"
                                required>
                         <span class="sprite-icon has-error-icon">

@@ -6,12 +6,13 @@ module.exports = [
         $scope.user = {}
 
         $scope.goBack = ->
-            backView = $ionicHistory.backView()
-
-            if backView
-                navigation.slide(backView.stateName, backView.stateParams, 'down')
-            else
-                navigation.slide('home.dashboard', {}, 'down')
+            navigation.slide 'home.member.dashboard', {}, 'down'
+#            backView = $ionicHistory.backView()
+#
+#            if backView
+#                navigation.slide(backView.stateName, backView.stateParams, 'down')
+#            else
+#                navigation.slide('home.dashboard', {}, 'down')
 
         $scope.goEditIdent = ->
             navigation.slide 'home.member.edit-ident', {}, 'up'
