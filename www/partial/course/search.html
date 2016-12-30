@@ -20,6 +20,7 @@
                     <input type="text"
                            placeholder="{{ placeholderKeyword }}"
                            class="item-input-keyword"
+                           ng-keyup="$event.keyCode == 13 && goSearch(keyword)"
                            ng-model="keyword">
                     <button class="button button-icon icon ion-android-search button-search"
                             ng-if="false"

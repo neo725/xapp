@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col value padding-left underline" ng-init="cover.user_keyword = cover.keyword">
                             <div class="value-col"><img src="img/tag@2x.png" class="small-img" /></div>
-                            <div class="value-col"><input type="text" ng-model="cover.user_keyword" /></div>
+                            <div class="value-col"><input type="text" ng-model="cover.user_keyword" ng-keyup="$event.keyCode == 13 && searchCourse(cover)" /></div>
                             <div class="keyword" ng-bind="cover.keyword" ng-if="false"></div>
                         </div>
                     </div>
