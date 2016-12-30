@@ -7,6 +7,7 @@ module.exports = [
         modal, navigation, api) ->
         #$scope.user = {}
         $scope.gender_title = ''
+        $scope.data_loaded = false
         $scope.notify = constants.DEFAULT_NOTIFICATION_SETTING
 
         $scope.goBack = ->
@@ -171,6 +172,7 @@ module.exports = [
                     $scope.notify = response.para_value
                 modal.hideLoading()
                 loadAvatar()
+                $scope.data_loaded = true
 
             onError = () ->
                 modal.hideLoading()
@@ -180,7 +182,8 @@ module.exports = [
             api.getUserSetting 'notify', onSuccess, onError
 
         #$scope.$on('$ionicView.enter', ->
-        loadData()
+        if $scope.data_loaded == false
+            loadData()
         #)
 
         # version number record in config.xml that under project root

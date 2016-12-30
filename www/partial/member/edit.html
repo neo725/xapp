@@ -75,120 +75,9 @@
                         </div>
                         <button id="submitButton" class="button button-full button-positive" ng-hide="true">確定送出</button>
                     </form>
-                    <form name="editForm" novalidate ng-submit="submitForm(editForm)" ng-if="false">
-                        <div class="row">
-                            <div class="col">
-                                <label class="item item-input item-input-thin"
-                                       ng-class="{ 'has-error' : editForm.username.$invalid}">
-                                    <span class="input-label">暱稱</span>
-                                    <input type="text" name="username"
-                                           ng-model="user.memb_name"
-                                           required>
-                                </label>
-                                <label class="item item-input item-input-thin"
-                                       ng-class="{ 'has-error' : editForm.mobile.$invalid}">
-                                    <span class="input-label">電話</span>
-                                    <input type="text" name="mobile"
-                                           ng-model="user.memb_mobile"
-                                           required>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label class="item item-input item-input-wide">
-                                    <span class="input-label">Email</span>
-                                    <input type="email" name="email"
-                                           ng-model="user.memb_email"
-                                           ng-class="{ 'has-error' : editForm.email.$invalid}"
-                                           required>
-                                </label>
-                                <label class="item item-input item-input-wide">
-                                    <span class="input-label">住址</span>
-                                    <input type="text">
-                                </label>
-                                <ion-list>
-                                    <ion-item class="border-top border-bottom">
-                                        修改目前密碼
-                                    </ion-item>
-                                </ion-list>
-                                <label class="item item-input">
-                                    <span class="input-label">目前密碼</span>
-                                    <input type="password" ng-model="setting.current_password">
-                                </label>
-                                <label class="item item-input">
-                                    <span class="input-label">新密碼</span>
-                                    <input type="password" name="password"
-                                           ng-model="setting.new_password">
-                                </label>
-                                <label class="item item-input"
-                                       ng-class="{ 'has-error' : editForm.password_confirm.$invalid}">
-                                    <span class="input-label">確認新密碼</span>
-                                    <input type="password" name="password_confirm"
-                                           ng-model="setting.confirm_new_password"
-                                           data-custom-verify="setting.new_password">
-                                </label>
-                                <ion-list class="creditcard-list">
-                                    <ion-item class="border-top border-bottom">
-                                        您的卡片
-                                    </ion-item>
-                                    <ion-item class="item-remove-animate creditcard-item" ng-repeat="card in cards">
-                                        <div class="row">
-                                            <div class="col col-25 card-logo">
-                                                <img src="img/visa-card.png" ng-if="checkCardType(card.number_part1) == 'visa'" />
-                                                <img src="img/master-card.png" ng-if="checkCardType(card.number_part1) == 'master'" />
-                                            </div>
-                                            <div class="col card-number">
-                                                <span ng-bind="card.number_part1"></span>
-                                                <span class="mask-card-number">···· ····</span>
-                                                <span ng-bind="card.number_part4"></span>
-                                            </div>
-                                        </div>
-                                        <ion-option-button class="ion-android-delete"
-                                                           ng-click="onItemDelete(card)">
-                                        </ion-option-button>
-                                    </ion-item>
-                                    <ion-item class="item-remove-animate creditcard-item" ng-if="false">
-                                        <div class="row">
-                                            <div class="col col-25 card-logo">
-                                                <img src="img/master-card.png" />
-                                            </div>
-                                            <div class="col card-number">
-                                                <span>5148</span><span class="mask-card-number">···· ····</span><span>1701</span>
-                                            </div>
-                                        </div>
-                                        <ion-option-button class="ion-android-delete"
-                                                           ng-click="onItemDelete()">
-                                        </ion-option-button>
-                                    </ion-item>
-                                    <ion-item ng-if="cards.length == 0">
-                                        <span class="text-gray">尚未設定付款信用卡</span>
-                                    </ion-item>
-                                    <ion-item class="new-item" ng-click="showNewCard()" ng-if="false">
-                                        <i class="ion-plus"></i> 新增付款方式
-                                    </ion-item>
-                                </ion-list>
-                                <ion-list>
-                                    <ion-item class="border-top border-bottom">
-                                        <div class="item-toggle toggle-small"
-                                             toggle-class="toggle-positive"
-                                             ng-click="toggleNotification($event)">
-                                            <div><span>{{ '通知課程學習相關資訊' }}</span></div>
-                                            <label class="toggle toggle-positive disable-user-behavior"
-                                                   ng-click="toggleNotification($event)">
-                                                <input type="checkbox" ng-checked="checkNotificationIsChecked()">
-                                                <div class="track"><div class="handle"></div></div>
-                                            </label>
-                                        </div>
-                                    </ion-item>
-                                </ion-list>
-                            </div>
-                        </div>
-                        <button id="submitButton2" class="button button-full button-positive" ng-hide="true">確定送出</button>
-                    </form>
                 </div>
             </div>
-            <div class="item" ng-if="!user.memb_ident">
+            <div class="item" ng-if="loaded && !user.memb_ident">
                 <div class="row row-ident">
                     <div class="col col-66">
                         <div>身分證字號</div>
@@ -201,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="item" ng-if="user.memb_ident">
+            <div class="item" ng-if="loaded && user.memb_ident">
                 <div class="row row-ident">
                     <div class="col col-ident">
                         <span class="ident-item">身分證字號</span>

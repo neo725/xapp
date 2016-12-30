@@ -28,9 +28,9 @@ module.exports = [
                 modal.hideLoading()
                 $rootScope.member.from = 'edit-mobile'
                 $rootScope.member.new_memb_mobile = data.tel
+                $rootScope.member.phone_valid_expire = response.result
+
                 navigation.slide 'main.phoneconfirm', {}, 'left'
-#                $translate('message.data_saved').then (text) ->
-#                    plugins.toast.show(text, 'long', 'top')
             onError = () ->
                 modal.hideLoading()
 

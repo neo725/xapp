@@ -19,13 +19,21 @@
             margin-bottom: 30px;
         }
 
-        .phone-confirm-form {
-            &.ng-submitted {
-                .item.has-error {
-                    border-bottom: 2px solid $error;
+        .tiptext {
+            color: $error;
+        }
+
+        .resend-row {
+            .col {
+                padding-top: 0;
+
+                .button {
+                    margin-top: 0;
                 }
             }
+        }
 
+        .phone-confirm-form {
             .item {
                 border-left: 0 none;
                 border-right: 0 none;

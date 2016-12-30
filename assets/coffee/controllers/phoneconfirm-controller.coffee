@@ -1,6 +1,9 @@
 module.exports = [
-    '$rootScope', '$scope', '$translate', '$ionicHistory', 'navigation', 'modal', 'api', 'plugins', 'util',
-    ($rootScope, $scope, $translate, $ionicHistory, navigation, modal, api, plugins, util) ->
+    '$rootScope', '$scope', '$translate', '$ionicHistory', '$timeout', 'navigation', 'modal', 'api', 'plugins', 'util',
+    ($rootScope, $scope, $translate, $ionicHistory, $timeout, navigation, modal, api, plugins, util) ->
+        $scope.expire_countdown = ''
+        $scope.showReSend = false
+
         $scope.goBack = ($event) ->
             $event.preventDefault()
             backView = $ionicHistory.backView()
@@ -13,6 +16,9 @@ module.exports = [
                     navigation.slide 'login', {}, 'right'
             else
                 navigation.slide('home.dashboard', {}, 'right')
+
+        $scope.resend = ($event) ->
+            $event.preventDefault()
 
         $scope.submitForm = (form) ->
             if not form.$valid
@@ -61,23 +67,50 @@ module.exports = [
 
 
         $scope.maskNumber = (number) ->
-            return "#{number.substring(0, 4)}***#{number.substring(number.length - 3, number.length)}"
+            if number
+                return "#{number.substring(0, 4)}***#{number.substring(number.length - 3, number.length)}"
+            return
 
         sendVerifyCode = (member_id, number) ->
             onSuccess = (response) ->
                 modal.hideLoading()
-                console.log response
+                $rootScope.member.phone_valid_expire = response.result
 
             onError = () ->
                 modal.hideLoading()
 
             api.sendValidPhone(encodeURIComponent(member_id), onSuccess, onError)
 
+        getExpireCountdown = ->
+            doExpireCountdown = (datetime) ->
+                now = moment()
+                #datetime = '2016/12/30 18:03:30'
+                ms = moment(datetime).diff(now)
+                d = moment.duration(ms)
+                s = (Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss")).toString()
+
+                $scope.showReSend = (ms <= 0)
+                if util.startsWith s, '0:'
+                    s = s.substr 2
+                if $scope.showReSend
+                    s = '00:00'
+
+                $scope.expire_countdown = s
+
+            if $rootScope.member and $rootScope.member.phone_valid_expire
+                doExpireCountdown($rootScope.member.phone_valid_expire)
+
+            if $scope.showReSend == false
+                $timeout getExpireCountdown, 500
+
+        getExpireCountdown()
+
         if $rootScope.member
             #console.log $rootScope.member
             if $rootScope.member.from == 'edit-mobile'
                 $scope.mobile = $rootScope.member.new_memb_mobile
                 return
+            modal.showLoading '', 'message.processing'
             $scope.mobile = $rootScope.member.memb_mobile
             return sendVerifyCode($rootScope.member.memb_id, $scope.mobile)
         else

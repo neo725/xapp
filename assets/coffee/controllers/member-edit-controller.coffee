@@ -3,6 +3,7 @@ constants = require('../common/constants')
 module.exports = [
     '$rootScope', '$scope', '$ionicModal', '$ionicHistory', '$timeout', '$translate', 'navigation', 'modal', 'plugins', 'api',
     ($rootScope, $scope, $ionicModal, $ionicHistory, $timeout, $translate, navigation, modal, plugins, api) ->
+        $scope.loaded = false
         $scope.user = {}
 
         $scope.goBack = ->
@@ -87,9 +88,11 @@ module.exports = [
                 data.birth_day = parseInt(birthday.format('DD'))
 
                 $scope.user = data
+                $scope.loaded = true
 
             onError = (->)
 
+            $scope.loaded = false
             $rootScope.getMemberData(onSuccess, onError)
 
         init = ->

@@ -102,4 +102,10 @@
             position: relative;
         }
     }
+
+    &.item-floating-label {
+        .sprite-icon {
+            margin-top: -94px;
+        }
+    }
 }

@@ -18,11 +18,30 @@
                                placeholder="{{ '請輸入驗證碼' }}"
                                ng-model="verify_code"
                                required>
+                        <span class="sprite-icon has-error-icon">
+                            <i class="sprite-icon-order-form-st-2x"></i>
+                        </span>
                     </label>
+                    <div class="tiptext" ng-if="false">
+                        <span>* 請於</span>
+                        <span ng-bind="member.phone_valid_expire"></span>
+                        <span>前完成驗證</span>
+                    </div>
+                    <div class="tiptext">
+                        <span>* 驗證碼有效時間剩餘 : </span>
+                        <span ng-bind="expire_countdown"></span>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col"><button class="button button-block button-dark" ng-click="goBack($event)">取消</button></div>
                     <div class="col col-67"><button class="button button-block button-positive">送出</button></div>
+                </div>
+                <div class="row resend-row">
+                    <div class="col">
+                        <button class="button button-block button-dark"
+                                ng-if="showReSend"
+                                ng-click="resend($event)">重新發送</button>
+                    </div>
                 </div>
             </form>
         </div>

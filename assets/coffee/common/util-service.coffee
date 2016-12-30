@@ -17,7 +17,12 @@ module.exports = ->
         str = zero + numeric.toString()
         return str.substr(str.length - size)
 
+    startsWith = (string, searchString, position) ->
+        position = position || 0
+        return string.substr(position, searchString.length) == searchString
+
     return {
         checkCardType: checkCardType
         pad: pad
+        startsWith: startsWith
     }
