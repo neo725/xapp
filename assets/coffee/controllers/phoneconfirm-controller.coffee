@@ -8,11 +8,11 @@ module.exports = [
             console.log $rootScope.member.from
             if backView
                 if backView.stateName == 'home.member.edit-mobile'
-                    navigation.slide 'home.member.edit', {}, 'down'
+                    navigation.slide 'home.member.edit', {}, 'right'
                 else
-                    navigation.slide 'login', {}, 'down'
+                    navigation.slide 'login', {}, 'right'
             else
-                navigation.slide('home.dashboard', {}, 'down')
+                navigation.slide('home.dashboard', {}, 'right')
 
         $scope.submitForm = (form) ->
             if not form.$valid
@@ -35,13 +35,13 @@ module.exports = [
                     window.localStorage.setItem("token", $rootScope.token_temp)
                 if $rootScope.member
                     if $rootScope.member.from == 'register'
-                        navigation.slide 'login', {}, 'down'
+                        navigation.slide 'login', {}, 'right'
                         return
                     if $rootScope.member.from == 'edit-mobile'
-                        navigation.slide 'home.member.edit', {}, 'down'
+                        navigation.slide 'home.member.edit', {}, 'right'
                         return
 
-                navigation.slide 'login', {}, 'down'
+                navigation.slide 'login', {}, 'right'
 
             onError = () ->
                 modal.hideLoading()
@@ -81,5 +81,5 @@ module.exports = [
             $scope.mobile = $rootScope.member.memb_mobile
             return sendVerifyCode($rootScope.member.memb_id, $scope.mobile)
         else
-            navigation.slide 'login', {}, 'down'
+            navigation.slide 'login', {}, 'right'
 ]

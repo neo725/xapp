@@ -28,7 +28,7 @@ module.exports = [
             navigation.slide 'home.member.payment-list', {}, 'left'
 
         $scope.goEdit = ->
-            navigation.slide 'home.member.edit', {}, 'up'
+            navigation.slide 'home.member.edit', {}, 'left'
 
         $scope.goSuggest = ->
             navigation.slide 'home.member.suggestion', {}, 'left'

@@ -7,11 +7,11 @@ module.exports = [
         }
 
         $scope.goBack = () ->
-            navigation.slide 'login', {}, 'down'
+            navigation.slide 'login', {}, 'right'
 
         $scope.confirmClick = () ->
             $scope.modalForgotSended.hide()
-            navigation.slide 'login', {}, 'down'
+            navigation.slide 'login', {}, 'right'
 
         $scope.submitForm = (form) ->
             if not form.$valid

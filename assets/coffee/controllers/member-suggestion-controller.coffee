@@ -34,7 +34,7 @@ module.exports = [
 
             onSuccess = (response) ->
                 modal.hideLoading()
-                navigation.slide 'home.member.dashboard', {}, 'down'
+                navigation.slide 'home.member.dashboard', {}, 'right'
                 $translate('message.suggestion_sended').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
 

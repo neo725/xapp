@@ -6,22 +6,16 @@ module.exports = [
         $scope.user = {}
 
         $scope.goBack = ->
-            navigation.slide 'home.member.dashboard', {}, 'down'
-#            backView = $ionicHistory.backView()
-#
-#            if backView
-#                navigation.slide(backView.stateName, backView.stateParams, 'down')
-#            else
-#                navigation.slide('home.dashboard', {}, 'down')
+            navigation.slide 'home.member.dashboard', {}, 'right'
 
         $scope.goEditIdent = ->
-            navigation.slide 'home.member.edit-ident', {}, 'up'
+            navigation.slide 'home.member.edit-ident', {}, 'left'
 
         $scope.goChangePassword = ->
-            navigation.slide 'home.member.edit-pw-1', {}, 'up'
+            navigation.slide 'home.member.edit-pw-1', {}, 'left'
 
         $scope.goChangeMobile = ->
-            navigation.slide 'home.member.edit-mobile', {}, 'up'
+            navigation.slide 'home.member.edit-mobile', {}, 'left'
 
         $scope.doSubmit = ($event) ->
             $event.stopPropagation()

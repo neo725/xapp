@@ -5,7 +5,7 @@ module.exports = [
 
         $scope.goBack = ($event) ->
             $event.preventDefault()
-            navigation.slide('home.member.edit', {}, 'down')
+            navigation.slide('home.member.edit', {}, 'right')
 
         $scope.submitForm = (form) ->
             if not form.$valid

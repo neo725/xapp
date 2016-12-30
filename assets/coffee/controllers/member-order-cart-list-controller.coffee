@@ -251,7 +251,7 @@ module.exports = [
             navigation.slide 'home.member.order', {}, 'left'
 
         $scope.goMemberEdit = ->
-            navigation.slide 'home.member.edit', {}, 'up'
+            navigation.slide 'home.member.edit', {}, 'left'
 
         $scope.checkIsCartEmpty = ->
             carts = $scope.carts || []

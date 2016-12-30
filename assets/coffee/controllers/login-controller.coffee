@@ -17,10 +17,10 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
 #            )
 
         $scope.goForgotPassword = ->
-            navigation.slide 'main.forgotpassword', {}, 'up'
+            navigation.slide 'main.forgotpassword', {}, 'left'
 
         $scope.goRegister = ->
-            navigation.slide 'main.register', {}, 'up'
+            navigation.slide 'main.register', {}, 'left'
 
         resetLoginButton = ->
             $translate('input.login').then (text) ->
