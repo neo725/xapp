@@ -17,9 +17,6 @@ module.exports = [
             else
                 navigation.slide('home.dashboard', {}, 'right')
 
-        $scope.resend = ($event) ->
-            $event.preventDefault()
-
         $scope.submitForm = (form) ->
             if not form.$valid
                 $translate(['title.phone_confirm', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
@@ -71,6 +68,22 @@ module.exports = [
                 return "#{number.substring(0, 4)}***#{number.substring(number.length - 3, number.length)}"
             return
 
+        $scope.resend = ($event) ->
+            $event.preventDefault()
+
+            onSuccess = (response) ->
+                modal.hideLoading()
+                $rootScope.member.phone_valid_expire = response.result
+                $scope.showReSend = false
+
+                getExpireCountdown()
+
+            onError = () ->
+                modal.hideLoading()
+
+            member_id = $rootScope.member.memb_id
+            api.resendVerifyCode(encodeURIComponent(member_id), onSuccess, onError)
+
         sendVerifyCode = (member_id, number) ->
             onSuccess = (response) ->
                 modal.hideLoading()
@@ -81,11 +94,12 @@ module.exports = [
 
             api.sendValidPhone(encodeURIComponent(member_id), onSuccess, onError)
 
-        getExpireCountdown = ->
+        getExpireCountdown = (datetime) ->
+            if datetime and $rootScope.member
+                $rootScope.member.phone_valid_expire = datetime
             doExpireCountdown = (datetime) ->
                 now = moment()
-                #datetime = '2016/12/30 18:03:30'
-                ms = moment(datetime).diff(now)
+                ms = moment(datetime, 'YYYY-MM-DDTHH:mm:ss').diff(now)
                 d = moment.duration(ms)
                 s = (Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss")).toString()
 
@@ -101,7 +115,7 @@ module.exports = [
                 doExpireCountdown($rootScope.member.phone_valid_expire)
 
             if $scope.showReSend == false
-                $timeout getExpireCountdown, 500
+                $timeout getExpireCountdown, 100
 
         getExpireCountdown()
 

@@ -372,6 +372,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        resendVerifyCode: (memberid, onSuccess, onError) ->
+            $http.put('/api/members/validphone', '"' + memberid + '"')
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm
