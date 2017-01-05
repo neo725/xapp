@@ -73,7 +73,8 @@ module.exports = [
 
             onSuccess = (response) ->
                 modal.hideLoading()
-                $rootScope.member.phone_valid_expire = response.result
+                seconds = parseInt(response.result)
+                $rootScope.member.verify_resend_expire = moment().seconds(seconds)
                 $scope.showReSend = false
 
                 getExpireCountdown()
@@ -84,22 +85,34 @@ module.exports = [
             member_id = $rootScope.member.memb_id
             api.resendVerifyCode(encodeURIComponent(member_id), onSuccess, onError)
 
-        sendVerifyCode = (member_id, number) ->
+        sendVerifyCode = (member_id) ->
             onSuccess = (response) ->
                 modal.hideLoading()
-                $rootScope.member.phone_valid_expire = response.result
+                seconds = parseInt(response.result)
+                $rootScope.member.verify_resend_expire = moment().seconds(seconds)
+                getExpireCountdown()
 
-            onError = () ->
+            onError = (error, status_code) ->
                 modal.hideLoading()
+                if status_code == 405
+                    seconds = parseInt(error.result)
+                    $rootScope.member.verify_resend_expire = moment().seconds(seconds)
+                    getExpireCountdown()
 
             api.sendValidPhone(encodeURIComponent(member_id), onSuccess, onError)
 
-        getExpireCountdown = (datetime) ->
-            if datetime and $rootScope.member
-                $rootScope.member.phone_valid_expire = datetime
-            doExpireCountdown = (datetime) ->
+        getExpireCountdown = (expire) ->
+
+            if expire and $rootScope.member
+                $rootScope.member.verify_resend_expire = expire
+
+            doExpireCountdown = (expire) ->
                 now = moment()
-                ms = moment(datetime, 'YYYY-MM-DDTHH:mm:ss').diff(now)
+                #expired = moment().seconds(seconds)
+                ms = expire.diff(now)
+                console.log now.format('YYYY-MM-DD H:mm:ss')
+                #console.log expire.format('YYYY-MM-DD H:mm:ss')
+                #console.log ms
                 d = moment.duration(ms)
                 s = (Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss")).toString()
 
@@ -111,18 +124,21 @@ module.exports = [
 
                 $scope.expire_countdown = s
 
-            if $rootScope.member and $rootScope.member.phone_valid_expire
-                doExpireCountdown($rootScope.member.phone_valid_expire)
+                return ms / 1000
+
+            if $rootScope.member and $rootScope.member.verify_resend_expire
+                doExpireCountdown($rootScope.member.verify_resend_expire)
 
             if $scope.showReSend == false
-                $timeout getExpireCountdown, 100
-
-        getExpireCountdown()
+                $timeout ->
+                    getExpireCountdown()
+                , 1000
 
         if $rootScope.member
             #console.log $rootScope.member
             if $rootScope.member.from == 'edit-mobile'
                 $scope.mobile = $rootScope.member.new_memb_mobile
+                getExpireCountdown()
                 return
             modal.showLoading '', 'message.processing'
             $scope.mobile = $rootScope.member.memb_mobile

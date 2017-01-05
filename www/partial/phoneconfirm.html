@@ -28,8 +28,11 @@
                         <span>前完成驗證</span>
                     </div>
                     <div class="tiptext">
-                        <span>* 驗證碼有效時間剩餘 : </span>
-                        <span ng-bind="expire_countdown"></span>
+                        <span>* 如果還沒收到驗證碼，</span>
+                        <span ng-show="expire_countdown != '00:00'">還有 </span>
+                        <span ng-bind="expire_countdown" ng-show="expire_countdown != '00:00'"></span>
+                        <span ng-show="expire_countdown != '00:00'"> 可以重新發送</span>
+                        <span ng-show="expire_countdown == '00:00'">請點選重新發送</span>
                     </div>
                 </div>
                 <div class="row">

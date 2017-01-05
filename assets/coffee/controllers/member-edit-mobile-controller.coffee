@@ -24,15 +24,23 @@ module.exports = [
                 'tel': util.pad($scope.user.memb_mobile, 10)
             }
 
-            onSuccess = (response) ->
-                modal.hideLoading()
+            redirectToPhoneConfirm = (seconds) ->
                 $rootScope.member.from = 'edit-mobile'
                 $rootScope.member.new_memb_mobile = data.tel
-                $rootScope.member.phone_valid_expire = response.result
+                $rootScope.member.verify_resend_expire = moment().seconds(seconds)
 
                 navigation.slide 'main.phoneconfirm', {}, 'left'
-            onError = () ->
+
+            onSuccess = (response) ->
                 modal.hideLoading()
+                seconds = parseInt(response.result)
+                redirectToPhoneConfirm seconds
+
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                if status_code == 405
+                    seconds = parseInt(error.result)
+                    redirectToPhoneConfirm seconds
 
             api.updateMemberData(data, onSuccess, onError)
 
