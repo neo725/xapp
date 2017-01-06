@@ -113,5 +113,15 @@
                 </ion-list>
             </div>
         </div>
+        <div class="empty-content-pane" ng-show="loading == false && courses.length == 0">
+            <div class="content text-center">
+                <div class="logo">
+                    <img src="img/empty-favorite-course.png" />
+                </div>
+                <div class="text">
+                    {{ '您目前沒有收藏任何課程' }}
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

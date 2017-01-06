@@ -155,4 +155,21 @@
             }
         }
     }
+
+    .empty-content-pane {
+        top: 0;
+        bottom: 0;
+        padding-top: 160px;
+
+        .logo {
+            img {
+                width: 32px;
+            }
+        }
+        .text {
+            color: #5B5B5B;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    }
 }

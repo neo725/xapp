@@ -1,6 +1,11 @@
 module.exports = [
     '$scope', '$cordovaToast', '$translate', 'navigation', 'modal', 'api', 'plugins',
     ($scope, $cordovaToast, $translate, navigation, modal, api, plugins) ->
+        $scope.loading = false
+        $scope.waiting_list = []
+        $scope.payed_list = []
+        $scope.refund_list = []
+
         $scope.goBack = ->
             navigation.slide 'home.member.dashboard', {}, 'right'
 
@@ -112,9 +117,13 @@ module.exports = [
             api.getOrders(status, 1, 500, onSuccess, onError)
 
         initLoad = ->
+            $scope.loading = true
+
             loadOrders('01')
             loadOrders('02')
             loadOrders('03')
+
+            $scope.loading = false
 
         $scope.$on('$ionicView.enter', (evt, data) ->
             initLoad()

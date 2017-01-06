@@ -1,7 +1,9 @@
 module.exports = [
     '$scope', '$ionicHistory', '$translate', 'navigation', 'modal', 'plugins', 'api',
     ($scope, $ionicHistory, $translate, navigation, modal, plugins, api) ->
+        $scope.loading = false
         $scope.intro = {}
+        $scope.favorites = []
 
         $scope.goBack = () ->
             backView = $ionicHistory.backView()
@@ -85,6 +87,7 @@ module.exports = [
             onSuccess = (response) ->
                 modal.hideLoading()
                 $scope.favorites = response.list
+
             onError = () ->
                 modal.hideLoading()
 
@@ -94,6 +97,10 @@ module.exports = [
         loadCurrentEbook()
         loadCatalogEbooks(1, 5)
         $scope.$on('$ionicView.enter', (evt, data) ->
+            $scope.loading = true
+
             loadFavoriteEbooks(1, 500)
+
+            $scope.loading = false
         )
 ]

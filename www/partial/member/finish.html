@@ -149,6 +149,16 @@
                     </div>
                 </div>
             </div>
+            <div class="empty-content-pane" ng-show="loading == false && courses.length == 0">
+                <div class="content text-center">
+                    <div class="logo">
+                        <img src="img/empty-finish-course.png" />
+                    </div>
+                    <div class="text">
+                        {{ '已完成的課程目前沒有資料' }}
+                    </div>
+                </div>
+            </div>
         </div>
     </ion-content>
 </ion-view>

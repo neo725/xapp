@@ -83,6 +83,16 @@
                                                    ng-click="onItemDelete(article)">
                                 </ion-option-button>
                         </ion-list>
+                        <div class="empty-content-pane" ng-show="loading == false && favorites.length == 0">
+                            <div class="content text-center">
+                                <div class="logo">
+                                    <img src="img/empty-ebook.png" />
+                                </div>
+                                <div class="text">
+                                    {{ '沒有任何文章被收藏喔' }}
+                                </div>
+                            </div>
+                        </div>
                     </ion-content>
                 </ion-nav-view>
             </ion-tab>

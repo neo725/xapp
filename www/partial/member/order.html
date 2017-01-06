@@ -13,7 +13,7 @@
             <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
         </div>
     </ion-nav-buttons>
-    <ion-content>
+    <ion-content scroll="false">
         <ion-tabs class="tabs-light">
 
             <ion-tab class="tab-active-1" title="{{'tab.payed' | translate}}" badge="0" badge-style="badge-assertive">
@@ -54,6 +54,16 @@
                             </div>
                         </div>
                         <div class="ticket-bottom"></div>
+                    </div>
+                    <div class="empty-content-pane" ng-show="loading == false && payed_list.length == 0">
+                        <div class="content text-center">
+                            <div class="logo">
+                                <img src="img/empty-order.png" />
+                            </div>
+                            <div class="text">
+                                {{ '目前沒有已繳費的紀錄' }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ion-tab>
@@ -103,6 +113,16 @@
                         </div>
                         <div class="ticket-bottom"></div>
                     </div>
+                    <div class="empty-content-pane" ng-show="loading == false && waiting_list.length == 0">
+                        <div class="content text-center">
+                            <div class="logo">
+                                <img src="img/empty-order.png" />
+                            </div>
+                            <div class="text">
+                                {{ '目前沒有待繳費的紀錄' }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </ion-tab>
 
@@ -147,6 +167,16 @@
                             </div>
                         </div>
                         <div class="ticket-bottom"></div>
+                    </div>
+                    <div class="empty-content-pane" ng-show="loading == false && refund_list.length == 0">
+                        <div class="content text-center">
+                            <div class="logo">
+                                <img src="img/empty-order.png" />
+                            </div>
+                            <div class="text">
+                                {{ '目前沒有退費的紀錄' }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ion-tab>
