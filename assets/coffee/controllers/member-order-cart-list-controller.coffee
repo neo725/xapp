@@ -126,7 +126,7 @@ module.exports = [
                         account.substr(8, 4) + '-' +
                         account.substr(12, 4)
 
-            payByATM = (order_no, success, error) ->
+            payByATM = (order_no, source_order_no, success, error) ->
                 onSuccess = (response) ->
                     bank = {}
                     bank.no = response.bankNo
@@ -135,7 +135,7 @@ module.exports = [
                     $scope.bank = bank
 
                     (success || (->))()
-                api.createATMPayment(order_no, onSuccess, error)
+                api.createATMPayment(order_no, source_order_no, onSuccess, error)
 
             collectCreditCardInfo = ->
                 getCardNumber = () ->
@@ -154,12 +154,12 @@ module.exports = [
 
                 return card
 
-            payByCreditCard = (order_no, success, error) ->
+            payByCreditCard = (order_no, source_order_no, success, error) ->
                 card = collectCreditCardInfo()
 
-                api.createCreditCardPayment(order_no, card.number, card.expire, card.cvc, success, error)
+                api.createCreditCardPayment(order_no, source_order_no, card.number, card.expire, card.cvc, success, error)
 
-            createPayment = (pay_type, order_no, success) ->
+            createPayment = (pay_type, order_no, source_order_no, success) ->
                 error = ->
                     modal.hideLoading()
                     $scope.pay.success = false
@@ -168,10 +168,10 @@ module.exports = [
                     navigation.slide('home.member.order-cart.step3', {}, 'left')
 
                 if pay_type == 'ATM'
-                    payByATM(order_no, success, (->))
+                    payByATM(order_no, source_order_no, success, (->))
 
                 if pay_type == 'CreditCard'
-                    payByCreditCard(order_no, success, error)
+                    payByCreditCard(order_no, source_order_no, success, error)
 
             confirmCallback = (buttonIndex) ->
                 if buttonIndex == 1
@@ -179,7 +179,7 @@ module.exports = [
                     onSuccess = (response) ->
                         order_no = response.result
                         # pay_type = ATM or CreditCard
-                        createPayment(pay_type, order_no, ->
+                        createPayment(pay_type, order_no, $rootScope.repay_order_no, ->
                             modal.hideLoading()
                             clearCart(->
                                 $scope.pay.success = true
@@ -286,24 +286,27 @@ module.exports = [
 
         $scope.choice = 'CreditCard'
 
-        loadCartList = () ->
+        loadCartList = (func) ->
             $scope.showCarts = false
             $scope.carts = []
 
             onSuccess = (response) ->
+                console.log response
                 $scope.carts = response.list
-#                off_list = _.remove($scope.carts, (item) ->
-#                    return item.Status == 'OF';
-#                )
-#                console.log off_list
-#                if off_list and off_list.length > 0
-#                    api.updateCart 'MS', _.map($scope.carts, 'Prod_Id'), (->), (->)
+                off_list = _.remove($scope.carts, (item) ->
+                    return item.Status != 'ON';
+                )
+                console.log off_list
+                if off_list and off_list.length > 0
+                    api.updateOrderCart 'MS', _.map($scope.carts, 'Prod_Id'), (->), (->)
                 modal.hideLoading()
                 $timeout(->
                     $scope.showCarts = true
+                    func()
                 , 100)
             onError = () ->
                 modal.hideLoading()
+                func()
 
             modal.showLoading('', 'message.data_loading')
             api.getOrderCartList(1, 500, onSuccess, onError)
@@ -321,18 +324,18 @@ module.exports = [
         $scope.$watch watchCarts, onCartsChanges
 
         $scope.$on('$ionicView.enter', (evt, data) ->
-            loadCartList()
+            func = ->
+                stateName = data.stateName
+                cartIsEmpty = $scope.carts.length == 0
 
-            stateName = data.stateName
-            cartIsEmpty = $scope.carts.length == 0
+                if stateName == 'home.member.order-cart.step2'
+                    success = (data) ->
+                        $scope.user = data
+                    $rootScope.getMemberData(success, (->))
 
-            if stateName == 'home.member.order-cart.step2'
-                success = (data) ->
-                    $scope.user = data
-                $rootScope.getMemberData(success, (->))
-
-            if cartIsEmpty
-                if stateName not in ['home.member.order-cart.step1', 'home.member.order-cart.step3']
-                    navigation.slide('home.member.order-cart.step1', {}, 'right')
+                if cartIsEmpty
+                    if stateName not in ['home.member.order-cart.step1', 'home.member.order-cart.step3']
+                        navigation.slide('home.member.order-cart.step1', {}, 'right')
+            loadCartList(func)
         )
 ]

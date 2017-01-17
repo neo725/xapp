@@ -1,6 +1,6 @@
 module.exports = [
-    '$scope', '$cordovaToast', '$translate', 'navigation', 'modal', 'api', 'plugins',
-    ($scope, $cordovaToast, $translate, navigation, modal, api, plugins) ->
+    '$rootScope', '$scope', '$cordovaToast', '$translate', 'navigation', 'modal', 'api', 'plugins',
+    ($rootScope, $scope, $cordovaToast, $translate, navigation, modal, api, plugins) ->
         $scope.loading = false
         $scope.waiting_list = []
         $scope.payed_list = []
@@ -41,7 +41,7 @@ module.exports = [
 
             return false
 
-        $scope.wantRePay = (index, details, $event) ->
+        $scope.wantRePay = (index, order_no, details, $event) ->
             $event.stopPropagation()
             modal.showLoading '', 'message.processing'
             onSuccess = ->
@@ -49,6 +49,7 @@ module.exports = [
                 onSuccess = ->
                     modal.hideLoading()
                     # navigation
+                    $rootScope.repay_order_no = order_no
                     navigation.slide 'home.member.order-cart.step1', {}, 'left'
                 onError = () ->
                     modal.hideLoading()

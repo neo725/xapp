@@ -133,7 +133,7 @@ module.exports = [
                     $scope.bank = bank
 
                     (success || (->))()
-                api.createATMPayment(order_no, onSuccess, error)
+                api.createATMPayment(order_no, 0, onSuccess, error)
 
             collectCreditCardInfo = ->
                 getCardNumber = () ->
@@ -155,12 +155,12 @@ module.exports = [
             payByCreditCard = (order_no, success, error) ->
                 card = collectCreditCardInfo()
 
-                api.createCreditCardPayment(order_no, card.number, card.expire, card.cvc, success, error)
+                api.createCreditCardPayment(order_no, 0, card.number, card.expire, card.cvc, success, error)
 
             createPayment = (pay_type, order_no, success) ->
                 error = ->
                     modal.hideLoading()
-                    $scope.pay.success = false || ($scope.totalPrice < 5000)
+                    #$scope.pay.success = false || ($scope.totalPrice < 5000)
 
                     # go to step 3
                     navigation.slide('home.member.cart.step3', {}, 'left')
@@ -285,7 +285,7 @@ module.exports = [
 
         $scope.choice = 'CreditCard'
 
-        loadCartList = () ->
+        loadCartList = (func) ->
             $scope.showCarts = false
             $scope.carts = $rootScope.carts || []
 
@@ -300,14 +300,14 @@ module.exports = [
                 modal.hideLoading()
                 $timeout(->
                     $scope.showCarts = true
+                    func()
                 , 100)
             onError = () ->
                 modal.hideLoading()
+                func()
 
             modal.showLoading('', 'message.data_loading')
             api.getCartList(1, 500, onSuccess, onError)
-
-        loadCartList()
 
         updateTotalPrice = ->
             totalPrice = 0
@@ -322,17 +322,19 @@ module.exports = [
         $scope.$watch watchCarts, onCartsChanges
 
         $scope.$on('$ionicView.enter', (evt, data) ->
+            func = ->
+                stateName = data.stateName
+                cartIsEmpty = $scope.carts.length == 0
 
-            stateName = data.stateName
-            cartIsEmpty = $scope.carts.length == 0
+                if stateName == 'home.member.cart.step2'
+                    success = (data) ->
+                        $scope.user = data
+                    $rootScope.getMemberData(success, (->))
 
-            if stateName == 'home.member.cart.step2'
-                success = (data) ->
-                    $scope.user = data
-                $rootScope.getMemberData(success, (->))
+                if cartIsEmpty
+                    if stateName not in ['home.member.cart.step1', 'home.member.cart.step3']
+                        navigation.slide('home.member.cart.step1', {}, 'right')
 
-            if cartIsEmpty
-                if stateName not in ['home.member.cart.step1', 'home.member.cart.step3']
-                    navigation.slide('home.member.cart.step1', {}, 'right')
+            loadCartList(func)
         )
 ]
