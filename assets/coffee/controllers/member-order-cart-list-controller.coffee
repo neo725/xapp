@@ -239,10 +239,11 @@ module.exports = [
                         [translator['popup.ok'], translator['popup.cancel']]
                     )
 
-            if $scope.pay.type == 'ATM'
-                checkMemberDataUpdate(func)
-            else
-                confirmSubmitCart()
+#            if $scope.pay.type == 'ATM'
+#                checkMemberDataUpdate(confirmSubmitCart)
+#            else
+#                confirmSubmitCart()
+            confirmSubmitCart()
 
         $scope.returnToDashboard = ->
             navigation.slide('home.dashboard', {}, 'right')

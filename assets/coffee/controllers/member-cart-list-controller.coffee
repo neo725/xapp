@@ -238,10 +238,11 @@ module.exports = [
                         [translator['popup.ok'], translator['popup.cancel']]
                     )
 
-            if $scope.pay.type == 'ATM'
-                checkMemberDataUpdate(confirmSubmitCart)
-            else
-                confirmSubmitCart()
+#            if $scope.pay.type == 'ATM'
+#                checkMemberDataUpdate(confirmSubmitCart)
+#            else
+#                confirmSubmitCart()
+            confirmSubmitCart()
 
         $scope.returnToDashboard = ->
             navigation.slide('home.dashboard', {}, 'right')
@@ -291,7 +292,7 @@ module.exports = [
             onSuccess = (response) ->
                 $rootScope.carts = response.list
                 off_list = _.remove($rootScope.carts, (item) ->
-                    return item.Status == 'OF';
+                    return item.Status != 'ON';
                 )
                 if off_list and off_list.length > 0
                     api.updateCart 'MS', _.map($rootScope.carts, 'Prod_Id'), (->), (->)

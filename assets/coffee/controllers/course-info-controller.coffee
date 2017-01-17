@@ -63,6 +63,15 @@ module.exports = [
                 $translate('message.already_exists_in_cart').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
             else
+                if course.isCanBuy == 0
+                    $translate(['message.course_cant_buy', 'popup.ok']).then (translator) ->
+                        plugins.notification.alert(
+                            translator['message.course_cant_buy'],
+                            (->),
+                            '',
+                            translator['popup.ok']
+                        )
+                    return
                 api.addToCart course.Shop_Id, course.Prod_Id, onSuccess, onError
 
         $scope.getTimePart = (part, time_value) ->

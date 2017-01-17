@@ -64,6 +64,7 @@ module.exports = ->
         'current_is_off_duty': '目前為閉館時段'
         'verifying': '驗證中...'
         'password_saved': '密碼設定完成'
+        'course_cant_buy': '此課程目前無法購買'
     }
     'tab': {
         'payed': '已繳費'
