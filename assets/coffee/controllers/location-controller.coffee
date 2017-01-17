@@ -46,8 +46,9 @@ module.exports = [
             confirmCallback = (buttonIndex) ->
                 if buttonIndex == 1
                     $scope.goPhoneCall(phone)
-
-            $translate(['title.location', 'message.current_is_on_duty', 'popup.ok', 'popup.cancel']).then (translator) ->
+            params =
+                phone_number: phone
+            $translate(['title.location', 'message.current_is_on_duty', 'popup.ok', 'popup.cancel'], params).then (translator) ->
                 plugins.notification.confirm(
                     translator['message.current_is_on_duty'],
                     confirmCallback,

@@ -60,7 +60,7 @@ module.exports = ->
         'success_to_delete_favorite_ebook': '刪除文章收藏成功'
         'cancel_order_confirm': '確定要取消訂單?'
         'refund_order_confirm': '確定要執行訂單退費?'
-        'current_is_on_duty': '撥打服務專線 02-2700-5858'
+        'current_is_on_duty': '撥打服務專線 {{ phone_number }}'
         'current_is_off_duty': '目前為閉館時段'
         'verifying': '驗證中...'
         'password_saved': '密碼設定完成'
