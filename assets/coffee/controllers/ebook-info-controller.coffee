@@ -1,10 +1,16 @@
 module.exports = [
-    '$scope', '$stateParams', '$ionicHistory', '$timeout', '$sce', '$translate', 'navigation', 'modal', 'plugins', 'api',
-    ($scope, $stateParams, $ionicHistory, $timeout, $sce, $translate, navigation, modal, plugins, api) ->
+    '$rootScope', '$scope', '$stateParams', '$ionicHistory', '$timeout', '$sce', '$translate', 'navigation', 'modal', 'plugins', 'api',
+    ($rootScope, $scope, $stateParams, $ionicHistory, $timeout, $sce, $translate, navigation, modal, plugins, api) ->
+        $scope.loading = false
+        $scope.alreadyAddFavorites = false
+
         yearmonth = $stateParams.yearmonth
         catalog_id = $stateParams.catalog_id
 
+        alreadyGoBack = false
+
         $scope.goBack = ->
+            alreadyGoBack = true
             backView = $ionicHistory.backView()
 
             if backView
@@ -12,10 +18,17 @@ module.exports = [
             else
                 navigation.slide('home.dashboard', {}, 'right')
 
-        $scope.addToFavorite = (ebook) ->
+        $scope.addToFavorite = ($event, ebook) ->
+            if $scope.alreadyAddFavorites
+                deleteFromFavorites ebook
+                return
+            $button = $($event.currentTarget)
+            $button.find('i').removeClass('sprite-icon-ebook-add-favorite').addClass('sprite-icon-ebook-del-favorite')
+
             modal.showLoading '', 'message.processing'
 
             onSuccess = (response) ->
+                $scope.alreadyAddFavorites = true
                 modal.hideLoading()
                 $translate('message.success_to_add_favorite_ebook').then (text) ->
                     plugins.toast.show(text, 'long', 'top')
@@ -24,7 +37,25 @@ module.exports = [
 
             api.addEbookFavorite(yearmonth, catalog_id, onSuccess, onError)
 
+        deleteFromFavorites = (ebook) ->
+            modal.showLoading '', 'message.processing'
+
+            onSuccess = () ->
+                $scope.alreadyAddFavorites = false
+                modal.hideLoading()
+
+                $translate('message.success_to_delete_favorite_ebook').then (text) ->
+                    plugins.toast.show(text, 'long', 'top')
+
+            onError = () ->
+                modal.hideLoading()
+
+            api.deleteFavoriteEbook(ebook.yearmonth, ebook.catalog, onSuccess, onError)
+
         loadCatalogEbook = (yearmonth, catalog_id) ->
+            # $scope.alreadyAddFavorites
+            index = _.findIndex($rootScope.ebook_favorites, { yearmonth: yearmonth, catalog: catalog_id })
+            $scope.alreadyAddFavorites = (index > -1)
             modal.showLoading '', 'message.data_loading'
 
             onSuccess = (response) ->
@@ -40,6 +71,8 @@ module.exports = [
                 loopTimes = 0
                 autoHeight = (maxLoopSecs) ->
                     $timeout ->
+                        if alreadyGoBack
+                            return
                         loopTimes += 1
                         height = $iframe.contents().find('html').height()
                         $iframe.height(height + 'px')
@@ -56,8 +89,12 @@ module.exports = [
             api.getCatalogEbook yearmonth, catalog_id, onSuccess, onError
 
         $scope.$on('$ionicView.enter', (evt, data) ->
+            $scope.loading = true
+
             loadCatalogEbook(yearmonth, catalog_id)
-            #$('.add-favorite').before($('div.scroll'))
+
+            $scope.loading = false
+
             $('.ebook-info-content').prepend($('.add-favorite'))
         )
 ]

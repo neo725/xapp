@@ -27,15 +27,33 @@
         .add-favorite {
             position: fixed;
             right: 15px;
-            bottom: 10px;
+            bottom: 60px;
             z-index: 99;
 
-            .button {
-                color: $ebook-main-color;
+            //.button {
+            //    color: $ebook-main-color;
+            //
+            //    &:before {
+            //        font-size: 2.5em;
+            //    }
+            //}
 
-                &:before {
-                    font-size: 2.5em;
+            .sprite-icon {
+                overflow: hidden;
+                zoom: 0.15;
+                -moz-transform: scale(0.18);
+                -moz-transform-origin: 0 0;
+                position: absolute;
+                right: 0;
+
+                i {
+                    display: inline-block;
+                    position: relative;
                 }
+            }
+
+            img {
+                width: 41px;
             }
         }
     }

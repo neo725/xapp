@@ -1,16 +1,24 @@
+.ebook-header {
+    border-bottom-width: 0;
+}
 .ebook-list {
-    .tabs-top.tabs-striped.tabs-light {
-        .tab-item {
-            border-color: $ebook-main-color !important;
-            color: $ebook-tab-color;
+    .tabs-top {
+        &.tabs-striped.tabs-light {
+            .tab-item {
+                border-color: $ebook-main-color !important;
+                color: $ebook-tab-color;
 
-            &.tab-item-active, &.activated {
-                border-bottom-width: 4px !important;
+                &.tab-item-active, &.activated {
+                    border-bottom-width: 4px !important;
 
-                .badge {
-                    opacity: 1;
+                    .badge {
+                        opacity: 1;
+                    }
                 }
             }
+        }
+        .tabs {
+            top: 0;
         }
     }
 

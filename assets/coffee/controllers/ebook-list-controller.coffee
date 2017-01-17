@@ -1,6 +1,6 @@
 module.exports = [
-    '$scope', '$ionicHistory', '$translate', 'navigation', 'modal', 'plugins', 'api',
-    ($scope, $ionicHistory, $translate, navigation, modal, plugins, api) ->
+    '$rootScope', '$scope', '$ionicHistory', '$translate', '$timeout', 'navigation', 'modal', 'plugins', 'api',
+    ($rootScope, $scope, $ionicHistory, $translate, $timeout, navigation, modal, plugins, api) ->
         $scope.loading = false
         $scope.intro = {}
         $scope.favorites = []
@@ -85,22 +85,29 @@ module.exports = [
             modal.showLoading '', 'message.data_loading'
 
             onSuccess = (response) ->
+                $timeout ->
+                    $scope.loading = false
+                , 500
                 modal.hideLoading()
                 $scope.favorites = response.list
+
+                $rootScope.ebook_favorites = _.map($scope.favorites, (item) ->
+                    return {
+                        yearmonth: item.yearmonth
+                        catalog: item.catalog
+                    }
+                )
 
             onError = () ->
                 modal.hideLoading()
 
+            $scope.loading = true
             api.getMyFavoriteEbooks(page, perpage, onSuccess, onError)
 
         loadEbookIntro()
         loadCurrentEbook()
         loadCatalogEbooks(1, 5)
         $scope.$on('$ionicView.enter', (evt, data) ->
-            $scope.loading = true
-
             loadFavoriteEbooks(1, 500)
-
-            $scope.loading = false
         )
 ]

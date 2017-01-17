@@ -8,8 +8,12 @@
         </ion-nav-title>
     </ion-nav-bar>
     <ion-content padding="false" class="ebook-info-content">
-        <div class="add-favorite">
-            <button class="button button-icon icon ion-plus-circled" ng-click="addToFavorite(ebook)"></button>
+        <div class="add-favorite" ng-if="loading == false">
+            <button class="button button-icon icon ion-plus-circled" ng-if="false"></button>
+            <button class="button button-icon icon sprite-icon" ng-click="addToFavorite($event, ebook)">
+                <i class="sprite-icon-ebook-add-favorite" ng-if="alreadyAddFavorites == false"></i>
+                <i class="sprite-icon-ebook-del-favorite" ng-if="alreadyAddFavorites == true"></i>
+            </button>
         </div>
         <div ng-if="false">
             <div class="intro" data-ng-bind-html="ebook.safe_intro"></div>
