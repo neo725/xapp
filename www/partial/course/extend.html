@@ -28,14 +28,14 @@
                             <div class="weekday">{{course.weekday}}</div>
                         </div>
                     </div>
-                    <div class="col col-80">
+                    <div class="col col-80 course-info">
                         <div class="course-title">
                             {{course.Prod_Name}} {{course.Prod_SubName}}
                         </div>
                         <div class="course-detail">
-                            <p>上課地點： {{course.Prod_ClsLocation}}</p>
-                            <p>上課時數： {{course.Prod_ClsHours}}</p>
-                            <p>上課時段： {{course.Prod_ClsTime}}</p>
+                            <p><img src="img/location@2x.png" class="small-icon" />上課地點： {{course.Prod_ClsLocation}}</p>
+                            <p><img src="img/time@2x.png" class="small-icon" />上課時數： {{course.Prod_ClsHours}}</p>
+                            <p><img src="img/calendar@2x.png" class="small-icon" />上課時段： {{course.Prod_ClsTime}}</p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="col-20">
                         <span class="special-price-mark">優惠價</span>
                     </div>
-                    <div class="col col-70">
+                    <div class="col col-70 col-price">
                         NT<span class="course-price">{{course.Prod_Price | currency:undefined:0}}</span>
                     </div>
                     <div class="col text-right">
