@@ -61,7 +61,7 @@ module.exports = [
                     newIndex = index - 1
                     if newIndex == -1
                         newIndex = 0
-                    $ionicSlideBoxDelegate.$getByHandle('studycard-slide-box').slide(index - 1)
+                    $ionicSlideBoxDelegate.$getByHandle('studycard-slide-box').slide(newIndex)
                 $ionicSlideBoxDelegate.update()
 
                 $scope.modalFeedback.hide()
