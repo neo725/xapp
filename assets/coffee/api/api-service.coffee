@@ -1,4 +1,4 @@
-_ = require('lodash')
+#_ = require('lodash')
 constants = require('../common/constants')
 
 module.exports = ['$http', ($http) ->

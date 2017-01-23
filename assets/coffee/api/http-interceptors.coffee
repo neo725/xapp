@@ -1,4 +1,4 @@
-_ = require('lodash')
+#_ = require('lodash')
 constants = require('../common/constants')
 
 exports.apiInterceptor = ['$rootScope', '$log', '$translate', '$q', 'plugins',

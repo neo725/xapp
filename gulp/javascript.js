@@ -96,6 +96,6 @@ gulp.task('appjs', ['coffeeifyjs'], function () {
             external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'ion-affix',
                 'lodash', 'moment', 'angular-svg-round-progressbar', 'ion.rangeSlider', 'jr-crop']
         }))
-        .pipe(gif(!debug, uglify()))
+        .pipe(gif(!debug, uglify({mangle: false})))
         .pipe(gulp.dest('www/js'));
 });
