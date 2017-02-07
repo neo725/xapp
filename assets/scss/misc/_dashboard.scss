@@ -152,6 +152,9 @@
 
                 h3 {
                     color: $white-color;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
 
                 p {
@@ -205,20 +208,24 @@
                         font-size: $text-size-medium;
                         padding: 0 5px;
 
-                        .value-col {
-                            display: inline-block;
+                        .row {
+                            padding: 0;
+                            //margin-bottom: 10px;
 
-                            input[type="text"] {
-                                margin-top: -5px;
-                                margin-left: 20px;
-                                background-color: rgba(255, 255, 255, 0);
-                                font-size: 16px;
-                            }
+                            .col {
+                                padding: 0;
 
-                            .small-img {
-                                width: 16px;
-                                margin-top: -15px;
-                                position: absolute;
+                                input[type="text"] {
+                                    margin-top: -5px;
+                                    background-color: rgba(255, 255, 255, 0);
+                                    font-size: 16px;
+                                }
+
+                                .small-img {
+                                    width: 16px;
+                                    margin-top: 4px;
+                                    position: absolute;
+                                }
                             }
                         }
                     }

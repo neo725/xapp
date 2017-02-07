@@ -23,6 +23,9 @@ module.exports = ['$ionicPlatform', '$timeout', ($ionicPlatform, $timeout) ->
             window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0
             window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0
 
+        if window.MobileAccessibility
+            window.MobileAccessibility.usePreferredTextZoom false
+
         if navigator.splashscreen
             $timeout(() ->
                 navigator.splashscreen.hide()
