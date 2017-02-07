@@ -133,7 +133,7 @@
         </div>
         <h1 class="title">
             <span class="price-prefix">NT</span>
-            <span class="price">{{ course.Prod_Price | currency:undefined:0 }}</span>
+            <span class="price">{{ course.Prod_Price | currency:"":0 }}</span>
         </h1>
         <div class="buttons text-center">
             <div class="add-favorite"><img ng-src="img/{{ favorite_icon }}" ng-click="addOrRemoveFromWish(course)"></div>
@@ -167,7 +167,7 @@
                             </div>
                             <div>
                                 <span class="price-label">NT</span>
-                                <span class="price-value">{{ price.Pric_Price | currency:undefined:0 }}</span>
+                                <span class="price-value">{{ price.Pric_Price | currency:"":0 }}</span>
                             </div>
                         </div>
                     </div>

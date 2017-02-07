@@ -37,7 +37,7 @@
                             <div class="data-row-container">
                                 <div class="row" ng-repeat="detail in order.orderDetail">
                                     <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
-                                    <div class="col col-25 text-right">{{ detail.Amount | currency:undefined:0 }}</div>
+                                    <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                     <div class="payment-mark">{{ main.Payway }}</div>
                                 </div>
                                 <div class="col col-34 text-right price-mark">
-                                    NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
+                                    NT<span class="price">{{ main.PayAmount | currency:"":0 }}</span>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="row" ng-repeat="detail in order.orderDetail">
                                 <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
-                                <div class="col col-25 text-right">{{ detail.Amount | currency:undefined:0 }}</div>
+                                <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
                             </div>
                         </div>
                         <div class="ticket-mid"></div>
@@ -107,7 +107,7 @@
                                     <div class="payment-mark">{{ main.Payway }}</div>
                                 </div>
                                 <div class="col col-34 text-right price-mark">
-                                    NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
+                                    NT<span class="price">{{ main.PayAmount | currency:"":0 }}</span>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                             <div class="row header-row">
                                 <div class="col text-s-size">
                                     <span class="bg-stable padding-3">{{ main.No }}</span></div>
-                                <div class="col text-right text-s-size">
+                                <div class="col text-right text-s-size" ng-if="false">
                                     <span class="bg-tab-color-2-1 text-white padding-3 action"
                                           ng-click="wantRePay($index, main.No, $event)"
                                           ng-if="checkOrderStatus(main.Payway, 'repay')">
@@ -147,7 +147,7 @@
                             </div>
                             <div class="row" ng-repeat="detail in order.orderDetail">
                                 <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
-                                <div class="col col-25 text-right">{{ detail.Amount | currency:undefined:0 }}</div>
+                                <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
                             </div>
                         </div>
                         <div class="ticket-mid"></div>
@@ -162,7 +162,7 @@
                                     <div class="payment-mark">{{ main.Payway }}</div>
                                 </div>
                                 <div class="col col-34 text-right price-mark">
-                                    NT<span class="price">{{ main.PayAmount | currency:undefined:0 }}</span>
+                                    NT<span class="price">{{ main.PayAmount | currency:"":0 }}</span>
                                 </div>
                             </div>
                         </div>
