@@ -1,14 +1,16 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal', 'plugins', 'util',
-    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins, util) ->
+    '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal',
+    'plugins', 'util', 'creditcard',
+    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins, util, creditcard) ->
         $scope.shouldShowDelete = false
         $scope.showCarts = false
 
         $scope.carts = []
         $scope.pay = {}
         $scope.card = {}
+        $scope.currentCard = {}
         $scope.user = {}
 
 
@@ -28,6 +30,8 @@ module.exports = [
                 saved_card = JSON.parse(window.localStorage.getItem('saved_card')) || {}
                 if saved_card.card
                     $scope.card = saved_card.card
+                    $scope.currentCard = angular.copy($scope.card)
+                    $scope.card.remember = true
 
             navigation.slide('home.member.cart.step2', {}, 'left')
 
@@ -155,7 +159,16 @@ module.exports = [
             payByCreditCard = (order_no, success, error) ->
                 card = collectCreditCardInfo()
 
-                api.createCreditCardPayment(order_no, 0, card.number, card.expire, card.cvc, success, error)
+                onSuccess = ->
+                    if $scope.card.remember
+                        creditcard.save $scope.card
+                    success()
+                onError = ->
+                    if $scope.card.remember
+                        creditcard.save $scope.card
+                    error()
+
+                api.createCreditCardPayment(order_no, 0, card.number, card.expire, card.cvc, onSuccess, onError)
 
             createPayment = (pay_type, order_no, success) ->
                 error = ->
@@ -279,9 +292,27 @@ module.exports = [
 
             $scope.step = step
 
+        updateCardRemember = (newValue, oldValue) ->
+            $scope.card.remember = oldValue
+
         watchCurrentUrl = ->
             return $state.current.url
         $scope.$watch watchCurrentUrl, updateStepStatus
+
+        watchCurrentCard = ->
+            if $scope.currentCard == {}
+                return false
+            match = false
+            if $scope.currentCard.number_part1 != $scope.card.number_part1
+                match = match or true
+            if $scope.currentCard.number_part2 != $scope.card.number_part2
+                match = match or true
+            if $scope.currentCard.number_part3 != $scope.card.number_part3
+                match = match or true
+            if $scope.currentCard.number_part4 != $scope.card.number_part4
+                match = match or true
+            return match
+        $scope.$watch watchCurrentCard, updateCardRemember
 
         $scope.choice = 'CreditCard'
 

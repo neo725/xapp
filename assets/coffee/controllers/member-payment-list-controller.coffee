@@ -1,6 +1,7 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$timeout', '$translate', '$ionicListDelegate', 'navigation', 'util', 'plugins',
-    ($rootScope, $scope, $ionicModal, $timeout, $translate, $ionicListDelegate, navigation, util, plugins) ->
+    '$rootScope', '$scope', '$ionicModal', '$timeout', '$translate', '$ionicListDelegate', 'navigation', 'util',
+    'plugins', 'creditcard',
+    ($rootScope, $scope, $ionicModal, $timeout, $translate, $ionicListDelegate, navigation, util, plugins, creditcard) ->
         $scope.card = {}
         $scope.pay_list_title = ''
 
@@ -46,7 +47,7 @@ module.exports = [
             if index > -1
                 card = $scope.card_list[index]
                 $scope.card_list.splice(index, 1)
-                updateStorage()
+                creditcard.saveCardList $scope.card_list
                 if card.default
                     window.localStorage.removeItem 'saved_card'
 
@@ -89,18 +90,23 @@ module.exports = [
                 $scope.card.default = true
 
             $scope.card_list.push $scope.card
-            updateStorage()
+            creditcard.saveCardList $scope.card_list
             if $scope.card.default
                 saveDefaultCard $scope.card
 
             $scope.modalNewCard.hide()
 
         $scope.checkCardListIsEmpty = ->
+            if not $scope.card_list
+                return true
             return $scope.card_list.length == 0
 
         $scope.toggleDefaultCard = (card) ->
             _.forEach($scope.card_list, (currentCard) ->
-                isMatch = card.number_part4 == currentCard.number_part4
+                isMatch = card.number_part1 == currentCard.number_part1
+                isMatch &= card.number_part2 == currentCard.number_part2
+                isMatch &= card.number_part3 == currentCard.number_part3
+                isMatch &= card.number_part4 == currentCard.number_part4
                 isMatch &= card.expire_month == currentCard.expire_month
                 isMatch &= card.expire_year == currentCard.expire_year
 
@@ -109,6 +115,8 @@ module.exports = [
                 if isMatch
                     saveDefaultCard currentCard
             )
+
+            creditcard.saveCardList $scope.card_list
 
         saveDefaultCard = (card) ->
             saved_card = {
@@ -129,17 +137,14 @@ module.exports = [
 
             return matchExists
 
-        updateStorage = ->
-            window.localStorage.setItem card_list_name, JSON.stringify($scope.card_list)
-
         loadCardList = ->
             cards = JSON.parse(window.localStorage.getItem(card_list_name)) || []
             $scope.card_list = cards
             $scope.pay_list_title = ''
 
-        loadCardList()
-
         $scope.$watch ->
+                if not $scope.card_list
+                    return 0
                 return $scope.card_list.length
             , (value) ->
                 params =
@@ -152,6 +157,10 @@ module.exports = [
             animation: 'fade-in'
         ).then((modal) ->
             $scope.modalNewCard = modal
+        )
+
+        $scope.$on('$ionicView.enter', (evt, data) ->
+            loadCardList()
         )
 
         $scope.$on('modal.shown', ->

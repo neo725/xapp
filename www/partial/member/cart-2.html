@@ -102,6 +102,15 @@
                         </label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col col-offset-25">
+                        <div class="save-card-check">
+                            <ion-checkbox ng-model="card.remember">
+                                記住此張卡片資訊，下次使用
+                            </ion-checkbox>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="content-list" ng-if="false && !checkPayTypeIsCreditCard()">
                 <div class="row tip-text-row">

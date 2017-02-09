@@ -259,6 +259,8 @@
             }
             .save-card-check {
                 margin-top: 12px;
+                width: 218px;
+                height: 30px;
 
                 * {
                     font-size: 14px;
@@ -266,6 +268,22 @@
                 .item-checkbox {
                     background-color: $stable;
                     padding-left: 45px;
+                    padding-right: 0;
+                    position: absolute;
+                    right: 23px;
+
+                    .checkbox {
+                        .checkbox-icon:before {
+                            border-color: #49A8DD;
+                        }
+
+                        input:checked {
+                            + .checkbox-icon:before {
+                                border-color: #49A8DD;
+                                background-color: #49A8DD;
+                            }
+                        }
+                    }
                 }
             }
         }

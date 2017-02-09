@@ -14,6 +14,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .factory('modal', require('./common/modal'))
 .factory('plugins', require('./common/plugins'))
 .factory('api', require('./api/api-service'))
+.factory('creditcard', require('./common/creditcard-service'))
 .directive('goNative', directives.goNative)
 .directive('ngNext', directives.ngNext)
 .directive('customVerify', directives.customVerify)
