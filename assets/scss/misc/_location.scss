@@ -2,7 +2,25 @@
     background-color: $stable;
 
     .location-card-container {
+        .header-map-img {
+            .row, .col {
+                padding: 0;
+            }
 
+            .building-name {
+                color: #ffffff;
+                text-align: center;
+                font-size: 20px;
+                padding-top: 33px;
+                line-height: 24px;
+            }
+            .building-image {
+                height: 120px;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+        }
         .main-map-img {
             img {
                 width: 100%;

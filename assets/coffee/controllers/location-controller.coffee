@@ -91,7 +91,7 @@ module.exports = [
 
         loadLocation = ->
             today_weekday = moment(moment().valueOf()).locale("zh-TW").format("dd")
-            console.log today_weekday
+            #console.log today_weekday
 
             modal.showLoading('', 'message.data_loading')
 

@@ -15,10 +15,21 @@
     </ion-nav-title>
     <ion-content>
         <div class="card location-card-container" ng-repeat="location in locations" ng-init="item = getLocationItem(location.name)">
+            <div class="header-map-img">
+                <div class="row">
+                    <div class="col col-33 building-name"
+                         ng-style="{'background-color': item.bgcolor}">
+                        <div ng-bind="item.html_name1"></div>
+                        <div ng-bind="item.html_name2"></div>
+                    </div>
+                    <div class="col building-image"
+                         ng-style="{'background-image': 'url(' + location.location_rear + ')'}"></div>
+                </div>
+            </div>
             <div class="main-map-img"
                  ng-click="goMap(location.address, location.gps, location.name)"><img ng-src="{{ location.location_front }}" /></div>
             <div class="location-card">
-                <div class="title" ng-bind="location.name"></div>
+                <div class="title" ng-bind="location.name" ng-if="false"></div>
                 <div class="row">
                     <div class="col col-33 col-status text-center">
                         <div ng-if="checkInTime(location.current_open_times)" class="open" ng-click="open(location.tel)">

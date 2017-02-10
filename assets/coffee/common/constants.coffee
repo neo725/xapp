@@ -55,35 +55,53 @@ module.exports =
             'short_name': '建國'
             'full_name': '大夏館 建國分部'
             'address': '台北市建國南路二段231號'
+            'html_name1': '建國本部'
+            'html_name2': '大夏館'
+            'bgcolor': '#669ccc'
         },
         {
             'location_name': '忠孝分部'
             'short_name': '忠孝'
             'full_name': '忠孝館 忠孝分部'
             'address': '台北市忠孝東路一段41號'
+            'html_name1': '忠孝'
+            'html_name2': '分部'
+            'bgcolor': '#cf4b94'
         },
         {
             'location_name': '延平分部'
             'short_name': '延平'
             'full_name': '大新館 延平分部'
             'address': '台北市延平南路127號'
+            'html_name1': '延平'
+            'html_name2': '分部'
+            'bgcolor': '#f9b233'
         },
         {
             'location_name': '大安中心'
             'short_name': '大安'
             'full_name': '大安中心'
             'address': '台北市大安區信義路四段1號3樓'
+            'html_name1': '大安'
+            'html_name2': '中心'
+            'bgcolor': '#3ebbcf'
         },
         {
             'location_name': '台中教育中心'
             'short_name': '台中'
             'full_name': '台中教育中心'
             'address': '台中市西屯區台灣大道三段658號3樓'
+            'html_name1': '台中'
+            'html_name2': '教育中心'
+            'bgcolor': '#e46272'
         },
         {
             'location_name': '高雄教育中心'
             'short_name': '高雄'
             'full_name': '高雄教育中心'
             'address': '高雄市前金區中正四路215號3樓'
+            'html_name1': '高雄'
+            'html_name2': '教育中心'
+            'bgcolor': '#0097cd'
         }
     ]

@@ -184,45 +184,48 @@ module.exports = [
                 if pay_type == 'CreditCard'
                     payByCreditCard(order_no, success, error)
 
+            createOrder = ->
+                onSuccess = (response) ->
+                    order_no = response.result
+                    # pay_type = ATM or CreditCard
+                    createPayment(pay_type, order_no, ->
+                        modal.hideLoading()
+                        clearCart(->
+                            $scope.pay.success = true
+
+                            # go to step 3
+                            navigation.slide('home.member.cart.step3', {}, 'left')
+                        )
+                    )
+
+                onError = (error, status_code) ->
+                    modal.hideLoading()
+
+                    if error and error.result and error.result.indexOf('can not buy') > -1
+                        $translate(['title.submit_cart', 'errors.cart_cant_buy', 'popup.ok']).then (translator) ->
+                            plugins.notification.confirm(
+                                translator['errors.cart_cant_buy'],
+                                (->),
+                                translator['title.submit_cart'],
+                                [translator['popup.ok']]
+                            )
+                        return
+
+                courses = _.map($scope.carts, 'Prod_Id')
+                courses = _.join(courses, ',')
+
+                pay_way = 10
+                switch pay_type
+                    when 'ATM' then pay_way = 10
+                    when 'CreditCard' then pay_way = 1
+                modal.showLoading '', 'message.creating_order'
+
+                api.createOrder('MS', courses, pay_way, onSuccess, onError)
+
             confirmCallback = (buttonIndex) ->
                 if buttonIndex == 1
                     # create order
-                    onSuccess = (response) ->
-                        order_no = response.result
-                        # pay_type = ATM or CreditCard
-                        createPayment(pay_type, order_no, ->
-                            modal.hideLoading()
-                            clearCart(->
-                                $scope.pay.success = true
-
-                                # go to step 3
-                                navigation.slide('home.member.cart.step3', {}, 'left')
-                            )
-                        )
-
-                    onError = (error, status_code) ->
-                        modal.hideLoading()
-
-                        if error and error.result and error.result.indexOf('can not buy') > -1
-                            $translate(['title.submit_cart', 'errors.cart_cant_buy', 'popup.ok']).then (translator) ->
-                                plugins.notification.confirm(
-                                    translator['errors.cart_cant_buy'],
-                                    (->),
-                                    translator['title.submit_cart'],
-                                    [translator['popup.ok']]
-                                )
-                            return
-
-                    courses = _.map($scope.carts, 'Prod_Id')
-                    courses = _.join(courses, ',')
-
-                    pay_way = 10
-                    switch pay_type
-                        when 'ATM' then pay_way = 10
-                        when 'CreditCard' then pay_way = 1
-                    modal.showLoading '', 'message.creating_order'
-
-                    api.createOrder('MS', courses, pay_way, onSuccess, onError)
+                    createOrder()
 
             checkMemberDataUpdate = (func) ->
                 user = $scope.user
