@@ -86,8 +86,8 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
     $ionicConfigProvider.scrolling.jsScrolling(false)
 )
 .config(($ionicNativeTransitionsProvider) ->
-    #$ionicNativeTransitionsProvider.enable true
-    $ionicNativeTransitionsProvider.enable false
+    $ionicNativeTransitionsProvider.enable true
+    #$ionicNativeTransitionsProvider.enable false
 
     options = {
         "direction"        : "left", # 'left|right|up|down', default 'left' (which is like 'next')
@@ -101,7 +101,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         "fixedPixelsBottom":    0    # the number of pixels of your fixed footer (f.i. a tab bar), default 0 (iOS and Android)
     }
 
-    #$ionicNativeTransitionsProvider.setDefaultOptions options
+    $ionicNativeTransitionsProvider.setDefaultOptions options
 )
 .config(($stateProvider, $urlRouterProvider) ->
 

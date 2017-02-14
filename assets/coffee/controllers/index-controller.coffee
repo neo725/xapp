@@ -144,6 +144,8 @@ module.exports = [
             if typeof FCMPlugin != 'undefined'
                 FCMPlugin.onNotification(
                     (data) ->
+                        console.log 'onNotification DATA received'
+                        console.log data
                         $cordovaLocalNotification.schedule(
                             id: 1,
                             title: data['title'],
