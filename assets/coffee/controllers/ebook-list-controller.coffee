@@ -1,7 +1,7 @@
 module.exports = [
     '$rootScope', '$scope', '$ionicHistory', '$translate', '$timeout', 'navigation', 'modal', 'plugins', 'api',
     ($rootScope, $scope, $ionicHistory, $translate, $timeout, navigation, modal, plugins, api) ->
-        $scope.loading = false
+        $scope.loading = true
         $scope.intro = {}
         $scope.favorites = []
         $scope.active = false
@@ -104,7 +104,6 @@ module.exports = [
             onError = () ->
                 modal.hideLoading()
 
-            $scope.loading = true
             api.getMyFavoriteEbooks(page, perpage, onSuccess, onError)
 
         loadEbookIntro()

@@ -1,7 +1,9 @@
 module.exports = [
     '$rootScope', '$scope', '$cordovaToast', '$translate', 'navigation', 'modal', 'api', 'plugins',
     ($rootScope, $scope, $cordovaToast, $translate, navigation, modal, api, plugins) ->
-        $scope.loading = false
+        $scope.loading_1 = false
+        $scope.loading_2 = false
+        $scope.loading_3 = false
         $scope.waiting_list = []
         $scope.payed_list = []
         $scope.refund_list = []
@@ -103,7 +105,7 @@ module.exports = [
         $scope.formatDateTime = (datetime) ->
             return moment(datetime).format('YYYY/M/DD H:mm')
 
-        loadOrders = (status) ->
+        loadOrders = (status, func) ->
             modal.showLoading('', 'message.data_loading')
 
             onSuccess = (response) ->
@@ -112,17 +114,30 @@ module.exports = [
                     when '01' then $scope.waiting_list = response.list
                     when '02' then $scope.payed_list = response.list
                     when '03' then $scope.refund_list = response.list
+                func()
             onError = () ->
                 modal.hideLoading()
+                func()
 
             api.getOrders(status, 1, 500, onSuccess, onError)
 
         initLoad = ->
-            $scope.loading = true
+            $scope.loading_1 = true
+            $scope.loading_2 = true
+            $scope.loading_3 = true
 
-            loadOrders('01')
-            loadOrders('02')
-            loadOrders('03')
+            loadDone = ->
+                $scope.loading_3 = false
+            loadOrders3 = ->
+                $scope.loading_2 = false
+                loadOrders('02', loadDone)
+            loadOrders2 = ->
+                $scope.loading_1 = false
+                loadOrders('02', loadOrders3)
+
+            loadOrders('01', loadOrders2)
+            #loadOrders('02')
+            #loadOrders('03')
 
             $scope.loading = false
 

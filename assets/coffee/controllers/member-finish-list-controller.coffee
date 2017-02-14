@@ -1,7 +1,7 @@
 module.exports = [
     '$scope', 'navigation', 'modal', 'api'
     ($scope, navigation, modal, api) ->
-        $scope.loading = false
+        $scope.loading = true
 
         $scope.courses = []
 
@@ -39,14 +39,13 @@ module.exports = [
                 $scope.courses = course_list
 
                 modal.hideLoading()
+                $scope.loading = false
             onError = () ->
                 modal.hideLoading()
 
             api.getSurveys(onSuccess, onError)
 
         loadCourseList = (success_fn) ->
-            $scope.loading = true
-
             modal.showLoading('', 'message.data_loading')
             onSuccess = (response) ->
                 list = response.list
@@ -56,9 +55,6 @@ module.exports = [
                 modal.hideLoading()
 
             api.getFinishCourses(1, 500, onSuccess, onError)
-
-            $scope.loading = false
-
 
         loadCourseList(loadSurveyList)
 
