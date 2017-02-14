@@ -1,10 +1,14 @@
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicPlatform', '$window', 'modal', 'navigation',
-    ($rootScope, $scope, $ionicPlatform, $window, modal, navigation) ->
+    '$rootScope', '$scope', '$ionicPlatform', '$window', '$timeout', 'modal', 'navigation',
+    ($rootScope, $scope, $ionicPlatform, $window, $timeout, modal, navigation) ->
         modal.hideLoading()
+        $scope.active = false
 
         $scope.goMemberDashboard = ->
+            if not $scope.active
+                return
+
             is_guest = window.localStorage.getItem('is_guest') == 'true'
 
             if is_guest
@@ -34,6 +38,12 @@ module.exports = [
         )
         $scope.$on('$ionicView.afterEnter', ->
             console.log 'dashboard-controller -> $ionicView.afterEnter'
+            $timeout ->
+                $scope.active = true
+            , 1000
+        )
+        $scope.$on('$ionicView.leave', ->
+            $scope.active = false
         )
 
         $scope.$watch ->

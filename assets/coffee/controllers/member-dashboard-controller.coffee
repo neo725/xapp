@@ -9,8 +9,12 @@ module.exports = [
         $scope.gender_title = ''
         $scope.data_loaded = false
         $scope.notify = constants.DEFAULT_NOTIFICATION_SETTING
+        $scope.active = false
 
         $scope.goBack = ->
+            if not $scope.active
+                return
+
             navigation.slide 'home.dashboard', {}, 'right'
 
         $scope.goWishList = ->
@@ -185,6 +189,15 @@ module.exports = [
         if $scope.data_loaded == false
             loadData()
         #)
+
+        $scope.$on('$ionicView.afterEnter', ->
+            $timeout ->
+                $scope.active = true
+            , 1000
+        )
+        $scope.$on('$ionicView.leave', ->
+            $scope.active = false
+        )
 
         # version number record in config.xml that under project root
         document.addEventListener('deviceready', () ->

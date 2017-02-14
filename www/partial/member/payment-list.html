@@ -25,6 +25,7 @@
                 <button class="button button-full button-positive" ng-click="openNewCardBox()">
                     {{ '立即新增' }}
                 </button>
+                <div class="alert-text">信用卡資料僅會儲存在您個人手機中</div>
             </div>
         </div>
         <div class="content" ng-if="checkCardListIsEmpty() == false">
@@ -83,6 +84,7 @@
             </div>
             <div class="row">
                 <div class="col">
+                    <div class="alert-text">信用卡資料僅會儲存在您個人手機中</div>
                     <div class="new-card-item text-positive" ng-click="openNewCardBox()">
                         <i class="ion-plus"></i>
                         <span>{{ '新增付款方式' }}</span>

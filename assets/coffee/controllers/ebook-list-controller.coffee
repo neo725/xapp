@@ -4,8 +4,11 @@ module.exports = [
         $scope.loading = false
         $scope.intro = {}
         $scope.favorites = []
+        $scope.active = false
 
         $scope.goBack = () ->
+            if not $scope.active
+                return
             backView = $ionicHistory.backView()
 
             if backView
@@ -107,7 +110,15 @@ module.exports = [
         loadEbookIntro()
         loadCurrentEbook()
         loadCatalogEbooks(1, 5)
-        $scope.$on('$ionicView.enter', (evt, data) ->
+        $scope.$on('$ionicView.enter', ->
             loadFavoriteEbooks(1, 500)
+        )
+        $scope.$on('$ionicView.afterEnter', ->
+            $timeout ->
+                $scope.active = true
+            , 1000
+        )
+        $scope.$on('$ionicView.leave', ->
+            $scope.active = false
         )
 ]

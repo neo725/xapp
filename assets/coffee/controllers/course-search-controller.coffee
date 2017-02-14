@@ -1,7 +1,7 @@
 module.exports = [
-    '$rootScope', '$scope', '$stateParams', '$log', '$timeout', '$interpolate', '$translate', '$ionicHistory', '$ionicPopover', '$ionicModal', '$q',
+    '$rootScope', '$scope', '$stateParams', '$window', '$timeout', '$interpolate', '$translate', '$ionicHistory', '$ionicPopover', '$ionicModal', '$q',
     'plugins', 'navigation', 'modal', 'api'
-    ($rootScope, $scope, $stateParams, $log, $timeout, $interpolate, $translate, $ionicHistory, $ionicPopover, $ionicModal, $q,
+    ($rootScope, $scope, $stateParams, $window, $timeout, $interpolate, $translate, $ionicHistory, $ionicPopover, $ionicModal, $q,
         plugins, navigation, modal, api) ->
 
         $scope.option_visible = false
@@ -15,8 +15,11 @@ module.exports = [
         $scope.noMoreItemsAvailable = false
         $scope.page = 1
         $scope.pageSize = 20
-        $scope.keyword = $stateParams.keyword
         $scope.loadingSearch = false
+        $scope.search = {
+            'keyword': $stateParams.keyword
+        }
+        #$scope.keyword = $stateParams.keyword
 
         $scope.currentShowDialog = null
 
@@ -58,7 +61,7 @@ module.exports = [
         $scope.loadMore = () ->
             if not $scope.noMoreItemsAvailable and $scope.page > 1
                 #console.log 'loadMore - ' + $scope.page
-                goSearch($scope.page, $scope.pageSize, $scope.keyword)
+                goSearch($scope.page, $scope.pageSize, $scope.search.keyword)
 
         $scope.addOrRemoveFromWish = (course, $event) ->
             $event.stopPropagation()
@@ -96,9 +99,10 @@ module.exports = [
                     el: $scope.popoverHistory
                     'tag': 'popoverHistory'
 
-        $scope.showWishForm = () ->
+        $scope.showWishForm = (keyword) ->
             $scope.wishcard =
-                keyword: $stateParams.keyword
+                #keyword: $stateParams.keyword
+                keyword: keyword
 
             initModalWish().then ->
                 $scope.modalWish.show()
@@ -128,9 +132,9 @@ module.exports = [
 
             return true
 
-        $scope.setOrder = (value) ->
+        $scope.setOrder = (keyword, value) ->
             $scope.order = value
-            $scope.goSearch($stateParams.keyword)
+            $scope.goSearch(keyword)
             $timeout(->
                 $scope.popover.hide()
             )
@@ -226,7 +230,7 @@ module.exports = [
                 wishcard.min, wishcard.max,
                 onSuccess, onError
 
-        $scope.submitPopover = ->
+        $scope.submitPopover = (keyword) ->
             price_range = $('#price-range').data('ionRangeSlider')
             if price_range.result.from == price_range.result.min
                 delete $scope.filter['lmoney']
@@ -254,13 +258,13 @@ module.exports = [
                 $scope.filter.location = popItem($scope.filter.location, '延平')
                 $scope.filter.location = popItem($scope.filter.location, '大安')
 
-            $scope.goSearch($stateParams.keyword)
+            $scope.goSearch(keyword)
 
             $scope.popover.hide()
 
         $scope.goSearchByFilter = (filter) ->
             $scope.page = 1
-            $scope.keyword = filter.query
+            $scope.search.keyword = filter.query
             $scope.filter.weekday = filter.wday.split(',')
             $scope.filter.location = filter.loc.split(',')
             $scope.order = filter.orderby
@@ -269,7 +273,7 @@ module.exports = [
 
             $scope.popoverHistory.hide()
 
-            goSearch($scope.page, $scope.pageSize, $scope.keyword)
+            goSearch($scope.page, $scope.pageSize, $scope.search.keyword)
 
         $scope.arrangeLocation = (loc) ->
             if loc is null
@@ -427,6 +431,7 @@ module.exports = [
             api.searchCourse(data, onSuccess, onError)
 
         $scope.goSearch = (keyword) ->
+            console.log 'goSearch -- ' + keyword
             $scope.page = 1
 
             goSearch($scope.page, $scope.pageSize, keyword)
@@ -478,7 +483,6 @@ module.exports = [
                 )
 
         $scope.$on('$ionicView.enter', ->
-            #$log.info '$ionicView.enter'
             #data = window.localStorage.getItem('favorite_changed')
 
             #if data

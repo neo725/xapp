@@ -72,6 +72,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 ])
 .config(($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicNativeTransitionsProvider) ->
     ## http://ionicframework.com/docs/api/provider/$ionicConfigProvider/
+    #$ionicConfigProvider.views.maxCache(0)
     ## views.transition(transition)
     ## transition :
     ##      platform

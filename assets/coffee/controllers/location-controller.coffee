@@ -3,8 +3,12 @@ constants = require('../common/constants')
 module.exports = [
     '$scope', '$ionicHistory', '$translate', '$timeout', 'modal', 'navigation', 'plugins', 'api',
     ($scope, $ionicHistory, $translate, $timeout, modal, navigation, plugins, api) ->
+        $scope.active = false
 
         $scope.goBack = ->
+            if not $scope.active
+                return
+
             backView = $ionicHistory.backView()
 
             if backView
@@ -133,4 +137,13 @@ module.exports = [
         tick()
 
         loadLocation()
+
+        $scope.$on('$ionicView.afterEnter', ->
+            $timeout ->
+                $scope.active = true
+            , 1000
+        )
+        $scope.$on('$ionicView.leave', ->
+            $scope.active = false
+        )
 ]

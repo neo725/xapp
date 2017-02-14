@@ -194,6 +194,11 @@
             border-bottom: 1px solid $stable;
         }
 
+        .alert-text {
+            color: $assertive;
+            padding-bottom: 5px;
+        }
+
         .credit-form {
             background-color: $stable;
             padding-bottom: 10px;

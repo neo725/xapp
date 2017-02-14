@@ -28,6 +28,9 @@
             .button-row {
                 margin-top: 40px;
             }
+            .alert-text {
+                text-align: center;
+            }
         }
 
         .col-show-text {
@@ -124,6 +127,11 @@
                     }
                 }
             }
+        }
+
+        .alert-text {
+            color: $assertive;
+            padding-bottom: 5px;
         }
 
         .new-card-item {
