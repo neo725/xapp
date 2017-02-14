@@ -70,7 +70,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 
     $httpProvider.interceptors.push(httpInterceptors.apiInterceptor)
 ])
-.config(($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicNativeTransitionsProvider) ->
+.config(($ionicConfigProvider) ->
     ## http://ionicframework.com/docs/api/provider/$ionicConfigProvider/
     #$ionicConfigProvider.views.maxCache(0)
     ## views.transition(transition)
@@ -79,10 +79,31 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
     ##      android
     ##      ios
     ##      none
-    $ionicConfigProvider.views.transition('none')
+    #$ionicConfigProvider.views.transition('none')
+    $ionicConfigProvider.views.transition('android')
 
     # http://scottbolinger.com/4-ways-to-make-your-ionic-app-feel-native/
     $ionicConfigProvider.scrolling.jsScrolling(false)
+)
+.config(($ionicNativeTransitionsProvider) ->
+    #$ionicNativeTransitionsProvider.enable true
+    $ionicNativeTransitionsProvider.enable false
+
+    options = {
+        "direction"        : "left", # 'left|right|up|down', default 'left' (which is like 'next')
+        "duration"         :  300,   # in milliseconds (ms), default 400
+        "slowdownfactor"   :    3,   # overlap views (higher number is more) or no overlap (1). -1 doesn't slide at all. Default 4
+        #"slidePixels"      :   20,   # optional, works nice with slowdownfactor -1 to create a 'material design'-like effect. Default not set so it slides the entire page.
+        "iosdelay"         :  100,   # ms to wait for the iOS webview to update before animation kicks in, default 60
+        "androiddelay"     :  100,   # same as above but for Android, default 70
+        "winphonedelay"    :  250,   # same as above but for Windows Phone, default 200,
+        "fixedPixelsTop"   :    0,   # the number of pixels of your fixed header, default 0 (iOS and Android)
+        "fixedPixelsBottom":    0    # the number of pixels of your fixed footer (f.i. a tab bar), default 0 (iOS and Android)
+    }
+
+    #$ionicNativeTransitionsProvider.setDefaultOptions options
+)
+.config(($stateProvider, $urlRouterProvider) ->
 
     $stateProvider
 
@@ -406,10 +427,12 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
             }
         }
 
-    $ionicNativeTransitionsProvider.enable true
+    token = window.localStorage.getItem('token')
 
-    #$urlRouterProvider.otherwise "/login"
-    $urlRouterProvider.otherwise '/home/dashboard'
+    if not token or token == null
+        $urlRouterProvider.otherwise "/login"
+    else
+        $urlRouterProvider.otherwise '/home/dashboard'
 )
 .config(($translateProvider) ->
     for language of resources

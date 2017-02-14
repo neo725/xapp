@@ -69,16 +69,25 @@ module.exports = [
                 $iframe.contents().find('html').html($scope.ebook.html)
 
                 loopTimes = 0
+                timeoutInterval = 100
                 autoHeight = (maxLoopSecs) ->
                     $timeout ->
                         if alreadyGoBack
                             return
                         loopTimes += 1
-                        height = $iframe.contents().find('html').height()
-                        $iframe.height(height + 'px')
-                        if loopTimes < (maxLoopSecs * 10)
+
+                        emptyContent = $iframe.contents().length == 0
+
+                        if emptyContent
+                            return
+
+                        if not emptyContent
+                            height = $iframe.contents().find('html').height()
+                            $iframe.height(height + 'px')
+
+                        if loopTimes < (maxLoopSecs * (1000 / timeoutInterval))
                             autoHeight(maxLoopSecs)
-                    , 100
+                    , timeoutInterval
 
                 autoHeight(5)
 

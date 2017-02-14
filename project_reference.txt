@@ -51,3 +51,6 @@ https://www.youtube.com/watch?v=zvrcmOCVKY8
 
 * Ion.RangeSlider
 https://github.com/IonDen/ion.rangeSlider
+
+* Android生成签名文件并用其对apk文件进行签名（Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES]错误完美解决）
+http://blog.csdn.net/aeolus1019/article/details/8121031
