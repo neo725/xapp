@@ -26,8 +26,8 @@ module.exports = [
             )
 
         $scope.submitForm = (form) ->
-            console.log '$scope.user :'
-            console.log $scope.user
+#            console.log '$scope.user :'
+#            console.log $scope.user
             if not form.$valid
                 $translate(['title.member_edit', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
                     plugins.notification.alert(

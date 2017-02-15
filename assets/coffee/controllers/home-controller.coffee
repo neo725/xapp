@@ -21,7 +21,7 @@ module.exports = [
 
         $rootScope.logout = ->
             onSuccess = ->
-                console.log $rootScope.modalFunction
+                #console.log $rootScope.modalFunction
 
                 window.localStorage.removeItem("token")
                 window.localStorage.removeItem("is_guest")
@@ -40,6 +40,6 @@ module.exports = [
         checkLoginState()
 
         $scope.$on('$ionicView.enter', (evt, data) ->
-            console.log 'home-controller -> $ionicView.enter'
+            $log.info 'home-controller -> $ionicView.enter'
         )
 ]

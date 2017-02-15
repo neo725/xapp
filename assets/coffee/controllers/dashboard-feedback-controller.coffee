@@ -19,15 +19,10 @@ module.exports = [
         $scope.rateFunction = (index, rating) ->
             $scope.rating[index] = rating
 
-            #console.log $scope.rating
-
         $scope.closeSurvey = ->
             $scope.modalFeedback.hide()
 
         $scope.submitFeedback = () ->
-#            console.log $scope.currentCard
-#            console.log $rootScope.topics
-#            console.log $scope.rating
             modal.showLoading('', 'message.data_loading')
 
             topics = []

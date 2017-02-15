@@ -76,7 +76,6 @@ module.exports = [
 
         $scope.getTimePart = (part, time_value) ->
             if time_value
-                #console.log time_value
                 weekday_part = time_value.split(' ')
                 time_part = weekday_part[1].split('~')
                 switch part

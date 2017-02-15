@@ -30,17 +30,6 @@ module.exports = [
             return "#{location.n},#{location.e}"
 
         $scope.goMap = (address, gps, location) ->
-#            #$event.stopPropagation()
-#            #console.log gps
-#            # gps = N25.02583 E121.53812 >> chien-kuo
-#            location = $scope.parseGPS(gps)
-#
-#            reg_address = /\([0-9]*\)[\s]?(.+)/g
-#            match = reg_address.exec address
-#            if match
-#                location = match[1]
-#
-#            window.open("http://maps.google.com/?q=" + location, '_system')
             navigation.slide 'home.location-map', { location: location }, 'left'
 
         $scope.goPhoneCall = (number) ->
@@ -95,7 +84,6 @@ module.exports = [
 
         loadLocation = ->
             today_weekday = moment(moment().valueOf()).locale("zh-TW").format("dd")
-            #console.log today_weekday
 
             modal.showLoading('', 'message.data_loading')
 
@@ -104,8 +92,6 @@ module.exports = [
                 $scope.locations = response.list
 
                 _.forEach($scope.locations, (location) ->
-                    #console.log location.name
-                    #console.log location.openList
                     if location.openList
                         _.forEach(location.openList, (openItem) ->
                             mappingIndex = _.findIndex(constants.WEEKDAYS_MAPPING, { 'title': openItem.open_day })
@@ -113,9 +99,7 @@ module.exports = [
                                 items = constants.WEEKDAYS_MAPPING[mappingIndex].weekdays
                                 weekdayIndex = items.indexOf today_weekday
                                 if weekdayIndex > -1
-                                    #console.log openItem.open_time
                                     times = parseTime openItem.open_time
-                                    #console.log times
                                     location.current_open_times = times
                         )
                 )

@@ -1,7 +1,7 @@
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicPlatform', '$window', '$timeout', 'modal', 'navigation',
-    ($rootScope, $scope, $ionicPlatform, $window, $timeout, modal, navigation) ->
+    '$rootScope', '$scope', '$ionicPlatform', '$window', '$timeout', '$log', 'modal', 'navigation',
+    ($rootScope, $scope, $ionicPlatform, $window, $timeout, $log, modal, navigation) ->
         modal.hideLoading()
         $scope.active = false
 
@@ -26,18 +26,18 @@ module.exports = [
             navigation.slide 'home.location', {}, 'left'
 
         document.addEventListener('deviceready', () ->
-            console.log 'dashboard-controller -> device ready...'
+            $log.info 'dashboard-controller -> device ready...'
         , false)
 
         $ionicPlatform.ready(->
-            console.log 'dashboard-controller -> ionicPlatform ready...'
+            $log.info 'dashboard-controller -> ionicPlatform ready...'
         )
 
         $scope.$on('$ionicView.enter', ->
-            console.log 'dashboard-controller -> $ionicView.enter'
+            $log.info 'dashboard-controller -> $ionicView.enter'
         )
         $scope.$on('$ionicView.afterEnter', ->
-            console.log 'dashboard-controller -> $ionicView.afterEnter'
+            $log.info 'dashboard-controller -> $ionicView.afterEnter'
             $timeout ->
                 $scope.active = true
             , 1000
@@ -49,9 +49,9 @@ module.exports = [
         $scope.$watch ->
             return $window.innerWidth
         , (value) ->
-            console.log 'window width : ' + value
+            $log.info 'window width : ' + value
         $scope.$watch ->
             return $window.innerHeight
         , (value) ->
-            console.log 'window height : ' + value
+            $log.info 'window height : ' + value
 ]

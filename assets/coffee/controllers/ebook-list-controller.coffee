@@ -36,7 +36,7 @@ module.exports = [
             modal.showLoading '', 'message.processing'
 
             onSuccess = (response) ->
-                console.log response
+                #console.log response
                 modal.hideLoading()
                 $translate('message.success_to_delete_favorite_ebook').then (text) ->
                     plugins.toast.show(text, 'long', 'top')

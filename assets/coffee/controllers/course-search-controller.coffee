@@ -60,7 +60,6 @@ module.exports = [
 
         $scope.loadMore = () ->
             if not $scope.noMoreItemsAvailable and $scope.page > 1
-                #console.log 'loadMore - ' + $scope.page
                 goSearch($scope.page, $scope.pageSize, $scope.search.keyword)
 
         $scope.addOrRemoveFromWish = (course, $event) ->
@@ -345,7 +344,6 @@ module.exports = [
                 $scope.historyList = list.splice(0, max_splice_length)
 
         goSearch = (page, pagesize, keyword) ->
-            #console.log 'goSearch - ' + page
             $scope.loadingSearch = true
 
             if page == 1
@@ -431,7 +429,7 @@ module.exports = [
             api.searchCourse(data, onSuccess, onError)
 
         $scope.goSearch = (keyword) ->
-            console.log 'goSearch -- ' + keyword
+            #console.log 'goSearch -- ' + keyword
             $scope.page = 1
 
             goSearch($scope.page, $scope.pageSize, keyword)
@@ -449,7 +447,6 @@ module.exports = [
         if location_taipei
             $scope.filter.location.push '台北'
 
-        #console.log $scope.filter
         loadHistory(->)
         $scope.goSearch($stateParams.keyword)
 

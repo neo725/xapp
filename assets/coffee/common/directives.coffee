@@ -138,7 +138,6 @@ exports.fitSize = ->
             height = targetElement.outerHeight()
             return height
         , (value) ->
-            console.log 'watch : ' + value
             if value > 0
                 height = value + fit_size_append
 

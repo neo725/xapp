@@ -5,9 +5,9 @@ constants = require('../common/constants')
 
 module.exports = [
     '$rootScope', '$scope', '$translate', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast',
-    '$cordovaLocalNotification', '$cordovaVibration', '$cordovaBadge', 'navigation', 'modal', 'api',
+    '$cordovaLocalNotification', '$cordovaVibration', '$cordovaBadge', '$log', 'navigation', 'modal', 'api',
     ($rootScope, $scope, $translate, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast,
-        $cordovaLocalNotification, $cordovaVibration, $cordovaBadge, navigation, modal, api) ->
+        $cordovaLocalNotification, $cordovaVibration, $cordovaBadge, $log, navigation, modal, api) ->
 
         network_offline = false
 
@@ -21,9 +21,8 @@ module.exports = [
             # Keep in mind the function will return null if the token has not been established yet.
             FCMPlugin.getToken(
                 (token) ->
-                    console.log 'FCM token : ' + token
-#                    onSuccess = (response) ->
-#                        $cordovaToast.show('Notification token registered', 'long', 'top')
+                    $log.info 'FCM token : ' + token
+
                     onSuccess = (->)
                     onError = () ->
                         $cordovaToast.show('Error Registering notification token', 'long', 'top')
@@ -55,12 +54,9 @@ module.exports = [
             api.getWishList(1, 500, onSuccess, onError)
 
         $rootScope.getMemberData = (successFn, errorFn) ->
-            console.log 'index-controller -> getMemberData'
+            $log.info 'index-controller -> getMemberData'
             onSuccess = (response) ->
                 modal.hideLoading()
-
-                #console.log 'response :'
-                #console.log response
 
                 data =
                     memb_id: response.Memb_Id
@@ -72,9 +68,6 @@ module.exports = [
                     memb_birthday: response.Memb_BirthDay
                     memb_address: response.Memb_AddHome
                     memb_gender: response.Memb_Gender
-
-                #console.log 'getMemberData :'
-                #console.log data
 
                 $rootScope.member = data
 
@@ -95,7 +88,7 @@ module.exports = [
             api.getMemberData(onSuccess, onError)
 
         checkDefaultState = (token, redirectToDashboard = true) ->
-            console.log 'index-controller -> checkDefaultState'
+            $log.info 'index-controller -> checkDefaultState'
 
             if token == undefined
                 token = window.localStorage.getItem('token')
@@ -114,7 +107,7 @@ module.exports = [
                 $rootScope.getMemberData(onSuccess, (->))
 
         $ionicPlatform.ready(->
-            console.log 'index-controller -> $ionicPlatform.ready'
+            $log.info 'index-controller -> $ionicPlatform.ready'
 
             # lock the device orientation
             if window.screen.lockOrientation
@@ -144,29 +137,32 @@ module.exports = [
             if typeof FCMPlugin != 'undefined'
                 FCMPlugin.onNotification(
                     (data) ->
-                        console.log 'onNotification DATA received'
-                        console.log data
-                        $cordovaLocalNotification.schedule(
-                            id: 1,
-                            title: data['title'],
-                            text: data['body'],
-                            icon: 'fcm_push_icon'
-                        ).then () ->
-#                            # Vibrate
-#                            $cordovaVibration.vibrate([500, 500])
-                            $cordovaToast.show(data['title'], 'long', 'top')
+                        $log.info 'onNotification DATA received'
+                        $log.info data
+                        if data.wasTapped
+                            # goto /home/member/message
+                            navigation.slide 'home.member.message'
+                        else
+                            $cordovaLocalNotification.schedule(
+                                id: 1,
+                                title: data['title'],
+                                text: data['body'],
+                                icon: 'fcm_push_icon'
+                            ).then () ->
+    #                            # Vibrate
+    #                            $cordovaVibration.vibrate([500, 500])
+                                $cordovaToast.show(data['title'], 'long', 'top')
 
-                        #$cordovaBadge.set 10
-
+                            #$cordovaBadge.set 10
                     , (msg) ->
-                        console.log 'onNotification callback successfully registered: ' + msg
+                        $log.info 'onNotification callback successfully registered: ' + msg
                     , (err) ->
-                        console.log 'Error registering onNotification callback: ' + err
+                        $log.info 'Error registering onNotification callback: ' + err
                 )
         )
 
         $scope.$on('$ionicView.enter', (evt, data) ->
-            console.log 'index-controller -> $ionicView.enter'
+            $log.info 'index-controller -> $ionicView.enter'
             token = window.localStorage.getItem('token')
             if $rootScope.member == undefined and token
                 checkDefaultState(token, false)
@@ -175,7 +171,7 @@ module.exports = [
                 navigation.slide('login', {}, 'right')
         )
         $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) ->
-            console.log 'index-controller -> $stateChangeSuccess -> Entered to view'
+            $log.info 'index-controller -> $stateChangeSuccess -> Entered to view'
             # fix ion-nav-bar apply nav-bar-tabs-top but has no tabs actually
             navbar = $('ion-nav-bar.nav-bar-tabs-top')
             tabs = $('div.tabs:not([nav-bar-tabs-top-ignore]):visible')
@@ -184,9 +180,6 @@ module.exports = [
 
         )
 
-#        $rootScope.$on('network.none', ->
-#            modal.showMessage('message.no_network')
-#        )
         document.addEventListener('offline', () ->
             modal.showMessage('message.no_network')
             network_offline = true

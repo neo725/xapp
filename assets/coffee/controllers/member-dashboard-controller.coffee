@@ -1,9 +1,9 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$ionicModal', '$cordovaAppVersion', '$cordovaCamera', '$timeout', '$jrCrop',
+    '$rootScope', '$scope', '$ionicHistory', '$ionicModal', '$cordovaAppVersion', '$cordovaCamera', '$timeout', '$jrCrop', '$log',
     'modal', 'navigation', 'api',
-    ($rootScope, $scope, $ionicHistory, $ionicModal, $cordovaAppVersion, $cordovaCamera, $timeout, $jrCrop,
+    ($rootScope, $scope, $ionicHistory, $ionicModal, $cordovaAppVersion, $cordovaCamera, $timeout, $jrCrop, $log,
         modal, navigation, api) ->
         #$scope.user = {}
         $scope.gender_title = ''
@@ -56,8 +56,9 @@ module.exports = [
                 'notify': 't'
             data.notify = 'f' if $scope.checkNotificationIsChecked() == false
 
-            onSuccess = (response) ->
-                console.log 'updateSetting.success'
+#            onSuccess = (response) ->
+#                console.log 'updateSetting.success'
+            onSuccess = (->)
             onError = (->)
 
             api.postUserSetting('notify', "'#{data.notify}'", onSuccess, onError)
@@ -101,7 +102,7 @@ module.exports = [
                         uploadAvatar()
                     , (->)
             , (error) ->
-                console.log error
+                $log.error error
 
         $scope.takePicture = ->
             $scope.modalFunction.hide()

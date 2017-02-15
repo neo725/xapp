@@ -1,5 +1,6 @@
-module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate', '$cordovaOauth', '$state', 'modal', 'api', 'navigation'
-    ($rootScope, $scope, $timeout, $ionicModal, $translate, $cordovaOauth, $state, modal, api, navigation) ->
+module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate', '$cordovaOauth', '$state', '$log',
+    'modal', 'api', 'navigation',
+    ($rootScope, $scope, $timeout, $ionicModal, $translate, $cordovaOauth, $state, $log, modal, api, navigation) ->
         # dev mode
         $scope.user = {
             account: 'sceapp',
@@ -104,7 +105,6 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             api.login(data, onSuccess, onError)
 
         $scope.facebook_login = () ->
-            #console.log 'facebook_login'
             appId = '138411713543'
             redirectUrl = 'http://localhost/callback'
             $cordovaOauth.facebook(appId, ['email'], { redirect_uri: redirectUrl })
@@ -114,7 +114,6 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 )
 
         $scope.google_login = () ->
-            #console.log 'google_login'
             appId = '417861383399-0jqjvm4emqojkv8mtinoaaj0oqm7nd7g.apps.googleusercontent.com'
             redirectUrl = 'http://localhost/callback'
             $cordovaOauth.google(appId, ['email'], { redirect_uri: redirectUrl })
@@ -147,7 +146,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             api.postSocialLogin provider, token, onSuccess, onError
 
         checkDefaultState = ->
-            console.log 'login-controller -> checkDefaultState...'
+            $log.info 'login-controller -> checkDefaultState...'
 
             token = window.localStorage.getItem('token')
 

@@ -30,7 +30,7 @@ module.exports = [
 
         $scope.toggleVisible = (type) ->
             count = $scope[type + '_count']
-            console.log $scope['list_' + type]
+            #console.log $scope['list_' + type]
 
             if count == 5
                 count = $scope['list_' + type].length

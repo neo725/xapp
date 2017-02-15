@@ -79,8 +79,8 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
     ##      android
     ##      ios
     ##      none
-    #$ionicConfigProvider.views.transition('none')
-    $ionicConfigProvider.views.transition('android')
+    $ionicConfigProvider.views.transition('none')
+    #$ionicConfigProvider.views.transition('android')
 
     # http://scottbolinger.com/4-ways-to-make-your-ionic-app-feel-native/
     $ionicConfigProvider.scrolling.jsScrolling(false)

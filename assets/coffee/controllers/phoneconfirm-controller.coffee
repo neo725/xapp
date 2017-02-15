@@ -8,7 +8,6 @@ module.exports = [
             $event.preventDefault()
             backView = $ionicHistory.backView()
 
-            console.log $rootScope.member.from
             if backView
                 if backView.stateName == 'home.member.edit-mobile'
                     navigation.slide 'home.member.edit', {}, 'right'
@@ -30,7 +29,6 @@ module.exports = [
 
             onSuccess = (response) ->
                 modal.hideLoading()
-                #console.log response
 
                 modal.showMessage 'message.phone_valid_pass'
 
@@ -108,11 +106,7 @@ module.exports = [
 
             doExpireCountdown = (expire) ->
                 now = moment()
-                #expired = moment().seconds(seconds)
                 ms = expire.diff(now)
-                console.log now.format('YYYY-MM-DD H:mm:ss')
-                #console.log expire.format('YYYY-MM-DD H:mm:ss')
-                #console.log ms
                 d = moment.duration(ms)
                 s = (Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss")).toString()
 
@@ -135,7 +129,6 @@ module.exports = [
                 , 1000
 
         if $rootScope.member
-            #console.log $rootScope.member
             if $rootScope.member.from == 'edit-mobile'
                 $scope.mobile = $rootScope.member.new_memb_mobile
                 getExpireCountdown()
