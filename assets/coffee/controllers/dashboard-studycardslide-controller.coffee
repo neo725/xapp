@@ -67,7 +67,10 @@ module.exports = [
         onError = () ->
             $rootScope.studyCardVisible = false
 
-        api.getStudyCards(onSuccess, onError)
+        $scope.$on('dashboard-controller.enter', () ->
+            $log.info 'studycardslide >> getStudyCards() ...'
+            api.getStudyCards(onSuccess, onError)
+        )
 
         $ionicModal.fromTemplateUrl('templates/modal-feedback.html',
             scope: $scope

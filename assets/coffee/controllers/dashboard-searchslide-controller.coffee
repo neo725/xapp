@@ -1,8 +1,8 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', 'api', 'modal', 'navigation',
-    ($rootScope, $scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, api, modal, navigation) ->
+    '$rootScope', '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', '$log', 'api', 'modal', 'navigation',
+    ($rootScope, $scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, $log, api, modal, navigation) ->
         loadSearchSlide = ->
             onSuccess = (response) ->
                 modal.hideLoading()
@@ -23,9 +23,14 @@ module.exports = [
 
         $('.search-slides').hide()
 
-        token = window.localStorage.getItem('token')
-        if $rootScope.member or token
+        $scope.$on('dashboard-controller.enter', () ->
+            $log.info 'searchslide >> loadSearchSlide() ...'
+
+            #token = window.localStorage.getItem('token')
+            #if $rootScope.member or token
+            #    loadSearchSlide()
             loadSearchSlide()
+        )
 
         $scope.searchCourse = (cover) ->
             weeks = cover.week.split(',')

@@ -140,6 +140,7 @@ module.exports = [
                         $log.info 'onNotification DATA received'
                         $log.info data
                         if data.wasTapped
+                            $log.warn 'FCMPlugin.onNotification...'
                             # goto /home/member/message
                             navigation.slide 'home.member.message'
                         else
@@ -161,7 +162,7 @@ module.exports = [
                 )
         )
 
-        $scope.$on('$ionicView.enter', (evt, data) ->
+        $scope.$on('$ionicView.enter', () ->
             $log.info 'index-controller -> $ionicView.enter'
             token = window.localStorage.getItem('token')
             if $rootScope.member == undefined and token

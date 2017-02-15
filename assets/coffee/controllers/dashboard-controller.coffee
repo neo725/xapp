@@ -35,6 +35,7 @@ module.exports = [
 
         $scope.$on('$ionicView.enter', ->
             $log.info 'dashboard-controller -> $ionicView.enter'
+            $scope.$broadcast 'dashboard-controller.enter'
         )
         $scope.$on('$ionicView.afterEnter', ->
             $log.info 'dashboard-controller -> $ionicView.afterEnter'
