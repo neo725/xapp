@@ -21,13 +21,13 @@
                         <img src="img/member-03-01@2x.png" />
                     </div>
                     <div class="column col-title">
-                        {{ '優惠訊息' }}
+                        {{ ::'優惠訊息' }}
                     </div>
                     <div class="column col-expand" ng-click="toggleVisible('promo')" ng-if="promo_count == 5">
-                        {{ '顯示全部' }}
+                        {{ ::'顯示全部' }}
                     </div>
                     <div class="column col-expand" ng-click="toggleVisible('promo')" ng-if="promo_count > 5">
-                        {{ '顯示前 5 筆' }}
+                        {{ ::'顯示前 5 筆' }}
                     </div>
                 </div>
                 <div class="content">
@@ -38,19 +38,19 @@
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
                                 <div class="message-dot-mask" ng-class="{ 'show': $last}"></div>
-                                <div class="message-dot-text" ng-class="{ 'show': $last}">{{ '歷史訊息' }}</div>
+                                <div class="message-dot-text" ng-class="{ 'show': $last}">{{ ::'歷史訊息' }}</div>
                             </div>
                             <div class="message-div" ng-click="goMessageInfo(message)">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
                                         <div class="date-text" ng-init="date = formatDate(message.create_time)">
-                                            <div class="year" ng-bind="date.year"></div>
-                                            <div class="date" ng-bind="date.date"></div>
-                                            <div class="weekday" ng-bind="date.weekday"></div>
+                                            <div class="year" ng-bind="::date.year"></div>
+                                            <div class="date" ng-bind="::date.date"></div>
+                                            <div class="weekday" ng-bind="::date.weekday"></div>
                                         </div>
                                     </div>
                                     <div class="col col-right item" ng-class="{ 'col-66': !image_type }">
-                                        <div class="text" ng-bind="message.m_title" ng-hide="image_type"></div>
+                                        <div class="text" ng-bind="::message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"
                                              ng-style="{'background-image': 'url(' + message.back_img + ')'}"></div>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="message image" ng-hide="true">
+                        <div class="message image" ng-if="false">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
                                 <div class="message-dot-mask"></div>
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="message image" ng-hide="true">
+                        <div class="message image" ng-if="false">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
                                 <div class="message-dot-mask show" message-dot-mask="message"></div>
@@ -112,13 +112,13 @@
                         <img src="img/member-03-02@2x.png" />
                     </div>
                     <div class="column col-title">
-                        {{ '課程異動' }}
+                        {{ ::'課程異動' }}
                     </div>
                     <div class="column col-expand" ng-click="toggleVisible('course')" ng-if="course_count == 5">
-                        {{ '顯示全部' }}
+                        {{ ::'顯示全部' }}
                     </div>
                     <div class="column col-expand" ng-click="toggleVisible('course')" ng-if="course_count > 5">
-                        {{ '顯示前 5 筆' }}
+                        {{ ::'顯示前 5 筆' }}
                     </div>
                 </div>
                 <div class="content">
@@ -135,13 +135,13 @@
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
                                         <div class="date-text" ng-init="date = formatDate(message.create_time)">
-                                            <div class="year" ng-bind="date.year"></div>
-                                            <div class="date" ng-bind="date.date"></div>
-                                            <div class="weekday" ng-bind="date.weekday"></div>
+                                            <div class="year" ng-bind="::date.year"></div>
+                                            <div class="date" ng-bind="::date.date"></div>
+                                            <div class="weekday" ng-bind="::date.weekday"></div>
                                         </div>
                                     </div>
                                     <div class="col col-right item" ng-class="{ 'col-66': !image_type }">
-                                        <div class="text" ng-bind="message.m_title" ng-hide="image_type"></div>
+                                        <div class="text" ng-bind="::message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"
                                              ng-style="{'background-image': 'url(' + message.back_img + ')'}"></div>
@@ -163,13 +163,13 @@
                         <img src="img/member-03-03@2x.png" />
                     </div>
                     <div class="column col-title">
-                        {{ '繳費通知' }}
+                        {{ ::'繳費通知' }}
                     </div>
                     <div class="column col-expand" ng-click="toggleVisible('order')" ng-if="order_count == 5">
-                        {{ '顯示全部' }}
+                        {{ ::'顯示全部' }}
                     </div>
                     <div class="column col-expand" ng-click="toggleVisible('order')" ng-if="order_count > 5">
-                        {{ '顯示前 5 筆' }}
+                        {{ ::'顯示前 5 筆' }}
                     </div>
                 </div>
                 <div class="content">
@@ -186,13 +186,13 @@
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
                                         <div class="date-text" ng-init="date = formatDate(message.create_time)">
-                                            <div class="year" ng-bind="date.year"></div>
-                                            <div class="date" ng-bind="date.date"></div>
-                                            <div class="weekday" ng-bind="date.weekday"></div>
+                                            <div class="year" ng-bind="::date.year"></div>
+                                            <div class="date" ng-bind="::date.date"></div>
+                                            <div class="weekday" ng-bind="::date.weekday"></div>
                                         </div>
                                     </div>
                                     <div class="col col-right item" ng-class="{ 'col-66': !image_type }">
-                                        <div class="text" ng-bind="message.m_title" ng-hide="image_type"></div>
+                                        <div class="text" ng-bind="::message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"
                                              ng-style="{'background-image': 'url(' + message.back_img + ')'}"></div>

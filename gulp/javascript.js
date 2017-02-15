@@ -80,6 +80,13 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                 'jr-crop': {
                     path: 'www/lib/jr-crop/dist/jr-crop.js',
                     exports: null
+                },
+                'angular-cache': {
+                    path: 'www/lib/angular-cache/dist/angular-cache.js',
+                    exports: null,
+                    depends: {
+                        angular: 'angular'
+                    }
                 }
             }
         }))
@@ -94,7 +101,7 @@ gulp.task('appjs', ['coffeeifyjs'], function () {
             insertGlobals: false,
             debug: debug,
             external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'ion-affix',
-                'lodash', 'moment', 'angular-svg-round-progressbar', 'ion.rangeSlider', 'jr-crop']
+                'lodash', 'moment', 'angular-svg-round-progressbar', 'ion.rangeSlider', 'jr-crop', 'angular-cache']
         }))
         .pipe(gif(!debug, uglify({mangle: false})))
         .pipe(gulp.dest('www/js'));

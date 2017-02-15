@@ -1,8 +1,12 @@
 module.exports = [
-    '$rootScope', '$scope', '$log', 'navigation', 'api', 'modal',
-    ($rootScope, $scope, $log, navigation, api, modal) ->
+    '$rootScope', '$scope', '$log', 'navigation', 'api', 'modal', 'CacheFactory',
+    ($rootScope, $scope, $log, navigation, api, modal, CacheFactory) ->
         $scope.mode = 'List' # 'Setting', 'List'
         choiceCatalogs = []
+
+        if not CacheFactory.get('catalogsCache')
+            CacheFactory.createCache('catalogsCache')
+        catalogsCache = CacheFactory.get('catalogsCache')
 
         $scope.goBack = ->
             navigation.slide('home.dashboard', {}, 'right')
@@ -50,19 +54,6 @@ module.exports = [
 
             navigation.slide 'home.course.search', {}, 'left'
 
-        loadAllCatalogs = (shop_id) ->
-            #console.log 'course-catalogs-controller -> loadAllCatalogs'
-            modal.showLoading('', 'message.data_loading')
-
-            onSuccess = (response) ->
-                $scope.catalogs = response.list
-                loadUserCatalogs(shop_id)
-
-            onError = () ->
-                modal.hideLoading()
-
-            api.getAllCatalogs(shop_id, onSuccess, onError)
-
         loadUserCatalogs = (shop_id) ->
             onSuccess = (response) ->
                 modal.hideLoading()
@@ -77,7 +68,30 @@ module.exports = [
                     $scope.user_catalogs = []
                     $scope.visibleCatalogs = $scope.catalogs
 
+            modal.showLoading('', 'message.data_loading')
             api.getUserCatalogs(shop_id, onSuccess, onError)
+
+        loadAllCatalogs = (shop_id) ->
+            #console.log 'course-catalogs-controller -> loadAllCatalogs'
+
+            onSuccess = (response) ->
+                $scope.catalogs = response.list
+                catalogsCache.put 'all', $scope.catalogs
+
+                modal.hideLoading()
+                loadUserCatalogs(shop_id)
+
+            onError = () ->
+                modal.hideLoading()
+
+            catalogs_all_in_cache = catalogsCache.get('all')
+            if catalogs_all_in_cache
+                $scope.catalogs = catalogs_all_in_cache
+                loadUserCatalogs(shop_id)
+            else
+                modal.showLoading('', 'message.data_loading')
+                api.getAllCatalogs(shop_id, onSuccess, onError)
+
 
         loadAllCatalogs('MS')
 ]
