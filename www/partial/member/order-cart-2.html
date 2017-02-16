@@ -10,6 +10,7 @@
             <div class="title-row" ng-if="checkPayTypeIsCreditCard()">
                 您的卡片資料
             </div>
+            <div class="alert-text" ng-if="checkPayTypeIsCreditCard()">信用卡資料僅會儲存在您個人手機中</div>
             <div class="card credit-form" ng-if="checkPayTypeIsCreditCard()">
                 <div class="row">
                     <div class="col col-33 col-offset-67 text-right">
@@ -170,19 +171,19 @@
                 <div class="info-data">
                     <div class="row">
                         <div class="col col-33">姓名</div>
-                        <div class="col col-value"><span ng-bind="user.memb_name"></span></div>
+                        <div class="col col-value"><span ng-bind="::user.memb_name"></span></div>
                     </div>
                     <div class="row">
                         <div class="col col-33">E-mail</div>
-                        <div class="col col-value"><span ng-bind="user.memb_email"></span></div>
+                        <div class="col col-value"><span ng-bind="::user.memb_email"></span></div>
                     </div>
                     <div class="row">
                         <div class="col col-33">手機</div>
-                        <div class="col col-value"><span ng-bind="user.memb_mobile"></span></div>
+                        <div class="col col-value"><span ng-bind="::user.memb_mobile"></span></div>
                     </div>
                     <div class="row">
                         <div class="col col-33">身分證字號</div>
-                        <div class="col col-value"><span ng-bind="user.memb_ident"></span></div>
+                        <div class="col col-value"><span ng-bind="::user.memb_ident"></span></div>
                     </div>
                     <div class="tip-text">
                         為避免本部課程異動或詳細課程解說資訊聯繫，會員資料務必填寫清楚，如需修改會員聯絡資料，請前往<span class="link" ng-click="goMemberEdit()">會員中心</span>修改。

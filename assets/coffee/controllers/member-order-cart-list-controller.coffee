@@ -255,6 +255,8 @@ module.exports = [
             navigation.slide 'home.member.edit', {}, 'left'
 
         $scope.checkIsCartEmpty = ->
+            if not $scope.showCarts
+                return false
             carts = $scope.carts || []
             if carts.length == 0
                 return true
@@ -293,7 +295,7 @@ module.exports = [
             onSuccess = (response) ->
                 $scope.carts = response.list
                 off_list = _.remove($scope.carts, (item) ->
-                    return item.Status != 'ON';
+                    return item.Status != 'ON' or item.isCanBuy != 1;
                 )
                 if off_list and off_list.length > 0
                     api.updateOrderCart 'MS', _.map($scope.carts, 'Prod_Id'), (->), (->)
