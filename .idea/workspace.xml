@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9092e5d-513c-4c4f-8273-f73d5c04a967" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/sceapp_node_modules.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sceapp.iml" afterPath="$PROJECT_DIR$/.idea/sceapp.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/api/http-interceptors.coffee" afterPath="$PROJECT_DIR$/assets/coffee/api/http-interceptors.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-controller.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/common/directives.coffee" afterPath="$PROJECT_DIR$/assets/coffee/common/directives.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-studycardslide-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/dashboard-studycardslide-controller.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/home-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/home-controller.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/member-message-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/member-message-controller.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/main.coffee" afterPath="$PROJECT_DIR$/assets/coffee/main.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/coffee/controllers/login-controller.coffee" afterPath="$PROJECT_DIR$/assets/coffee/controllers/login-controller.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/scss/global/_main.scss" afterPath="$PROJECT_DIR$/assets/scss/global/_main.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/partial/dashboard.html" afterPath="$PROJECT_DIR$/www/partial/dashboard.html" />
     </list>
     <ignored path="sceapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,7 +23,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -36,9 +35,131 @@
       <file leaf-file-name="main.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/coffee/main.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-              <folding />
+            <state relative-caret-position="340">
+              <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+              <folding>
+                <marker date="1487253101550" expanded="true" signature="274:445" ph="[...]" />
+                <marker date="1487253101550" expanded="true" signature="4818:5142" ph="[...]" />
+                <marker date="1487253101550" expanded="true" signature="4859:5140" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="5429:5657" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="5709:6889" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="5818:6826" ph="&quot;direction&quot;: &quot;left&quot;..." />
+                <marker date="1487253101550" expanded="true" signature="6945:14742" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="7016:7071" ph="&quot;url&quot;: '/login'..." />
+                <marker date="1487253101550" expanded="true" signature="7127:7210" ph="&quot;url&quot;: '/main'..." />
+                <marker date="1487253101550" expanded="true" signature="7254:7405" ph="&quot;url&quot;: '/forgotpassword'..." />
+                <marker date="1487253101550" expanded="true" signature="7292:7405" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="7321:7395" ph="&quot;templateUrl&quot;: 'partial/forgotpassword.html'..." />
+                <marker date="1487253101550" expanded="true" signature="7443:7582" ph="&quot;url&quot;: '/register'..." />
+                <marker date="1487253101550" expanded="true" signature="7475:7582" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="7504:7572" ph="&quot;templateUrl&quot;: 'partial/register.html'..." />
+                <marker date="1487253101550" expanded="true" signature="7624:7771" ph="&quot;url&quot;: '/phoneconfirm'..." />
+                <marker date="1487253101550" expanded="true" signature="7660:7771" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="7689:7761" ph="&quot;templateUrl&quot;: 'partial/phoneconfirm.html'..." />
+                <marker date="1487253101550" expanded="true" signature="7812:7895" ph="&quot;url&quot;: '/home'..." />
+                <marker date="1487253101550" expanded="true" signature="7934:8075" ph="&quot;url&quot;: '/dashboard'..." />
+                <marker date="1487253101550" expanded="true" signature="7967:8075" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="7996:8065" ph="&quot;templateUrl&quot;: 'partial/dashboard.html'..." />
+                <marker date="1487253101550" expanded="true" signature="8113:8252" ph="&quot;url&quot;: '/location'..." />
+                <marker date="1487253101550" expanded="true" signature="8145:8252" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="8174:8242" ph="&quot;templateUrl&quot;: 'partial/location.html'..." />
+                <marker date="1487253101550" expanded="true" signature="8294:8451" ph="&quot;url&quot;: '/location-map/:location'..." />
+                <marker date="1487253101550" expanded="true" signature="8340:8451" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="8369:8441" ph="&quot;templateUrl&quot;: 'partial/location-map.html'..." />
+                <marker date="1487253101550" expanded="true" signature="8487:8651" ph="&quot;url&quot;: '/course'..." />
+                <marker date="1487253101550" expanded="true" signature="8540:8651" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="8569:8641" ph="&quot;templateUrl&quot;: 'partial/course/index.html'..." />
+                <marker date="1487253101550" expanded="true" signature="8694:8847" ph="&quot;url&quot;: '/search/:keyword'..." />
+                <marker date="1487253101550" expanded="true" signature="8733:8847" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="8764:8837" ph="&quot;templateUrl&quot;: 'partial/course/search.html'..." />
+                <marker date="1487253101550" expanded="true" signature="8888:9046" ph="&quot;url&quot;: '/info/:shop_id/:prod_id'..." />
+                <marker date="1487253101550" expanded="true" signature="8934:9046" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="8965:9036" ph="&quot;templateUrl&quot;: 'partial/course/info.html'..." />
+                <marker date="1487253101550" expanded="true" signature="9091:9239" ph="&quot;url&quot;: '/catalogs'..." />
+                <marker date="1487253101550" expanded="true" signature="9123:9239" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="9154:9229" ph="&quot;templateUrl&quot;: 'partial/course/catalogs.html'..." />
+                <marker date="1487253101550" expanded="true" signature="9282:9437" ph="&quot;url&quot;: '/extend/:course_id'..." />
+                <marker date="1487253101550" expanded="true" signature="9323:9437" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="9354:9427" ph="&quot;templateUrl&quot;: 'partial/course/extend.html'..." />
+                <marker date="1487253101550" expanded="true" signature="9485:9647" ph="&quot;url&quot;: '/ebook'..." />
+                <marker date="1487253101550" expanded="true" signature="9537:9647" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="9566:9637" ph="&quot;templateUrl&quot;: 'partial/ebook/index.html'..." />
+                <marker date="1487253101550" expanded="true" signature="9687:9824" ph="&quot;url&quot;: '/list'..." />
+                <marker date="1487253101550" expanded="true" signature="9715:9824" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="9744:9814" ph="&quot;templateUrl&quot;: 'partial/ebook/list.html'..." />
+                <marker date="1487253101550" expanded="true" signature="9864:10024" ph="&quot;url&quot;: '/info/:yearmonth/:catalog_id'..." />
+                <marker date="1487253101550" expanded="true" signature="9915:10024" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="9944:10014" ph="&quot;templateUrl&quot;: 'partial/ebook/info.html'..." />
+                <marker date="1487253101550" expanded="true" signature="10074:10238" ph="&quot;url&quot;: '/member'..." />
+                <marker date="1487253101550" expanded="true" signature="10127:10238" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="10156:10228" ph="&quot;templateUrl&quot;: 'partial/member/index.html'..." />
+                <marker date="1487253101550" expanded="true" signature="10284:10434" ph="&quot;url&quot;: '/dashboard'..." />
+                <marker date="1487253101550" expanded="true" signature="10317:10434" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="10348:10424" ph="&quot;templateUrl&quot;: 'partial/member/dashboard.html'..." />
+                <marker date="1487253101550" expanded="true" signature="10475:10615" ph="&quot;url&quot;: '/wish'..." />
+                <marker date="1487253101550" expanded="true" signature="10503:10615" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="10534:10605" ph="&quot;templateUrl&quot;: 'partial/member/wish.html'..." />
+                <marker date="1487253101550" expanded="true" signature="10657:10799" ph="&quot;url&quot;: '/order'..." />
+                <marker date="1487253101550" expanded="true" signature="10686:10799" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="10717:10789" ph="&quot;templateUrl&quot;: 'partial/member/order.html'..." />
+                <marker date="1487253101550" expanded="true" signature="10846:11008" ph="&quot;url&quot;: '/order-info/:order_no'..." />
+                <marker date="1487253101550" expanded="true" signature="10890:11008" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="10921:10998" ph="&quot;templateUrl&quot;: 'partial/member/order-info.html'..." />
+                <marker date="1487253101550" expanded="true" signature="11051:11195" ph="&quot;url&quot;: '/finish'..." />
+                <marker date="1487253101550" expanded="true" signature="11081:11195" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="11112:11185" ph="&quot;templateUrl&quot;: 'partial/member/finish.html'..." />
+                <marker date="1487253101550" expanded="true" signature="11239:11385" ph="&quot;url&quot;: '/message'..." />
+                <marker date="1487253101550" expanded="true" signature="11270:11385" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="11301:11375" ph="&quot;templateUrl&quot;: 'partial/member/message.html'..." />
+                <marker date="1487253101550" expanded="true" signature="11434:11603" ph="&quot;url&quot;: '/message/:type/:message_id'..." />
+                <marker date="1487253101550" expanded="true" signature="11483:11603" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="11514:11593" ph="&quot;templateUrl&quot;: 'partial/member/message-info.html'..." />
+                <marker date="1487253101550" expanded="true" signature="11652:11808" ph="&quot;url&quot;: '/payment-list'..." />
+                <marker date="1487253101550" expanded="true" signature="11688:11808" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="11719:11798" ph="&quot;templateUrl&quot;: 'partial/member/payment-list.html'..." />
+                <marker date="1487253101550" expanded="true" signature="11849:11989" ph="&quot;url&quot;: '/edit'..." />
+                <marker date="1487253101550" expanded="true" signature="11877:11989" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="11908:11979" ph="&quot;templateUrl&quot;: 'partial/member/edit.html'..." />
+                <marker date="1487253101550" expanded="true" signature="12036:12188" ph="&quot;url&quot;: '/edit-ident'..." />
+                <marker date="1487253101550" expanded="true" signature="12070:12188" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="12101:12178" ph="&quot;templateUrl&quot;: 'partial/member/edit-ident.html'..." />
+                <marker date="1487253101550" expanded="true" signature="12234:12384" ph="&quot;url&quot;: '/edit-pw/1'..." />
+                <marker date="1487253101550" expanded="true" signature="12267:12384" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="12298:12374" ph="&quot;templateUrl&quot;: 'partial/member/edit-pw-1.html'..." />
+                <marker date="1487253101550" expanded="true" signature="12430:12580" ph="&quot;url&quot;: '/edit-pw/2'..." />
+                <marker date="1487253101550" expanded="true" signature="12463:12580" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="12494:12570" ph="&quot;templateUrl&quot;: 'partial/member/edit-pw-2.html'..." />
+                <marker date="1487253101550" expanded="true" signature="12628:12782" ph="&quot;url&quot;: '/edit-mobile'..." />
+                <marker date="1487253101550" expanded="true" signature="12663:12782" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="12694:12772" ph="&quot;templateUrl&quot;: 'partial/member/edit-mobile.html'..." />
+                <marker date="1487253101550" expanded="true" signature="12829:12981" ph="&quot;url&quot;: '/suggestion'..." />
+                <marker date="1487253101550" expanded="true" signature="12863:12981" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="12894:12971" ph="&quot;templateUrl&quot;: 'partial/member/suggestion.html'..." />
+                <marker date="1487253101550" expanded="true" signature="13022:13185" ph="&quot;url&quot;: '/cart'..." />
+                <marker date="1487253101550" expanded="true" signature="13073:13185" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="13104:13175" ph="&quot;templateUrl&quot;: 'partial/member/cart.html'..." />
+                <marker date="1487253101550" expanded="true" signature="13232:13369" ph="&quot;url&quot;: '/1'..." />
+                <marker date="1487253101550" expanded="true" signature="13257:13369" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="13286:13359" ph="&quot;templateUrl&quot;: 'partial/member/cart-1.html'..." />
+                <marker date="1487253101550" expanded="true" signature="13416:13553" ph="&quot;url&quot;: '/2'..." />
+                <marker date="1487253101550" expanded="true" signature="13441:13553" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="13470:13543" ph="&quot;templateUrl&quot;: 'partial/member/cart-2.html'..." />
+                <marker date="1487253101550" expanded="true" signature="13600:13737" ph="&quot;url&quot;: '/3'..." />
+                <marker date="1487253101550" expanded="true" signature="13625:13737" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="13654:13727" ph="&quot;templateUrl&quot;: 'partial/member/cart-3.html'..." />
+                <marker date="1487253101550" expanded="true" signature="13784:13959" ph="&quot;url&quot;: '/order-cart'..." />
+                <marker date="1487253101550" expanded="true" signature="13841:13959" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="13872:13949" ph="&quot;templateUrl&quot;: 'partial/member/order-cart.html'..." />
+                <marker date="1487253101550" expanded="true" signature="14012:14155" ph="&quot;url&quot;: '/1'..." />
+                <marker date="1487253101550" expanded="true" signature="14037:14155" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="14066:14145" ph="&quot;templateUrl&quot;: 'partial/member/order-cart-1.html'..." />
+                <marker date="1487253101550" expanded="true" signature="14208:14351" ph="&quot;url&quot;: '/2'..." />
+                <marker date="1487253101550" expanded="true" signature="14233:14351" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="14262:14341" ph="&quot;templateUrl&quot;: 'partial/member/order-cart-2.html'..." />
+                <marker date="1487253101550" expanded="true" signature="14404:14547" ph="&quot;url&quot;: '/3'..." />
+                <marker date="1487253101550" expanded="true" signature="14429:14547" ph="..." />
+                <marker date="1487253101550" expanded="true" signature="14458:14537" ph="&quot;templateUrl&quot;: 'partial/member/order-cart-3.html'..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,9 +167,11 @@
       <file leaf-file-name="member-message-controller.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-message-controller.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="560">
               <caret line="28" column="71" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="71" />
-              <folding />
+              <folding>
+                <marker date="1487253101548" expanded="true" signature="17:1917" ph="[...]" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,18 +179,8 @@
       <file leaf-file-name="index-controller.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="101" column="42" selection-start-line="100" selection-start-column="21" selection-end-line="101" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home-controller.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/home-controller.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
+            <state relative-caret-position="20">
+              <caret line="118" column="35" selection-start-line="118" selection-start-column="35" selection-end-line="118" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -76,7 +189,7 @@
       <file leaf-file-name="dashboard-studycardslide-controller.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-studycardslide-controller.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="5.6">
+            <state relative-caret-position="-100">
               <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
               <folding />
             </state>
@@ -86,8 +199,28 @@
       <file leaf-file-name="dashboard-searchslide-controller.coffee" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.22897196">
-              <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+            <state relative-caret-position="-486">
+              <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/partial/dashboard.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="28" column="59" selection-start-line="28" selection-start-column="59" selection-end-line="28" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="directives.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/coffee/common/directives.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="402">
+              <caret line="190" column="71" selection-start-line="190" selection-start-column="71" selection-end-line="190" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -101,8 +234,8 @@
         <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
-        <option value="SCSS File" />
         <option value="CoffeeScript File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
@@ -112,14 +245,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assets/coffee/common/creditcard-service.coffee" />
-        <option value="$PROJECT_DIR$/assets/coffee/common/constants.coffee" />
         <option value="$PROJECT_DIR$/assets/scss/misc/_location.scss" />
         <option value="$PROJECT_DIR$/www/partial/location.html" />
         <option value="$PROJECT_DIR$/assets/scss/misc/_member-cart-list.scss" />
         <option value="$PROJECT_DIR$/www/partial/member/payment-list.html" />
         <option value="$PROJECT_DIR$/www/partial/course/search.html" />
-        <option value="$PROJECT_DIR$/www/partial/dashboard.html" />
         <option value="$PROJECT_DIR$/www/partial/ebook/info.html" />
         <option value="$PROJECT_DIR$/www/partial/ebook/list.html" />
         <option value="$PROJECT_DIR$/www/partial/member/order.html" />
@@ -133,10 +263,8 @@
         <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-feedback-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/course-info-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/location-controller.coffee" />
-        <option value="$PROJECT_DIR$/assets/coffee/common/directives.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/course-search-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/ebook-list-controller.coffee" />
-        <option value="$PROJECT_DIR$/assets/coffee/controllers/login-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/member-dashboard-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/member-edit-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/phoneconfirm-controller.coffee" />
@@ -162,12 +290,17 @@
         <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-studycardslide-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-controller.coffee" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee" />
+        <option value="$PROJECT_DIR$/assets/coffee/controllers/login-controller.coffee" />
+        <option value="$PROJECT_DIR$/assets/coffee/common/directives.coffee" />
+        <option value="$PROJECT_DIR$/assets/scss/global/_fix.scss" />
+        <option value="$PROJECT_DIR$/assets/scss/global/_main.scss" />
         <option value="$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee" />
+        <option value="$PROJECT_DIR$/www/partial/dashboard.html" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <gulpfiles>
@@ -175,6 +308,7 @@
         <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
       </GulpfileState>
     </gulpfiles>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
@@ -259,7 +393,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -320,28 +453,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partial" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="member" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sceapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sceapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -360,7 +471,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="coffee" />
+              <option name="myItemId" value="scss" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -378,16 +489,17 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="coffee" />
+              <option name="myItemId" value="scss" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="global" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -421,7 +533,9 @@
     <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
       <envs />
       <method />
     </configuration>
@@ -438,6 +552,7 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
@@ -448,10 +563,12 @@
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run-script" />
       <scripts />
+      <node-interpreter value="project" />
       <envs />
       <method />
     </configuration>
     <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter />
       <node-options />
       <working-directory>$PROJECT_DIR$</working-directory>
       <pass-parent-env>true</pass-parent-env>
@@ -464,7 +581,9 @@
       <method />
     </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -473,6 +592,7 @@
       <changelist id="a9092e5d-513c-4c4f-8273-f73d5c04a967" name="Default" comment="" />
       <created>1473049951156</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1473049951156</updated>
       <workItem from="1474209617149" duration="10887000" />
       <workItem from="1474551941601" duration="9503000" />
@@ -499,11 +619,12 @@
       <workItem from="1487076482265" duration="5293000" />
       <workItem from="1487083999002" duration="2869000" />
       <workItem from="1487159191788" duration="3054000" />
+      <workItem from="1487253120900" duration="2583000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118193000" />
+    <option name="totallyTimeSpent" value="120776000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -515,15 +636,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2544784" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25680086" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25111607" sideWeight="0.64278185" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25027934" sideWeight="0.6443625" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35825893" sideWeight="0.4536354" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25111607" sideWeight="0.35721812" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25027934" sideWeight="0.35563752" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -559,200 +680,428 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/partial/member/finish.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/ebook/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-wish-list-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hooks/before_prepare/010_increment_build_number.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/scss/misc/_member-payment-list.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="135" column="28" selection-start-line="135" selection-start-column="28" selection-end-line="135" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/common/platform-ready.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="23" selection-end-column="85" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/ebook-info-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="87" column="79" selection-start-line="87" selection-start-column="79" selection-end-line="87" selection-end-column="79" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project_reference.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/course-info-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="77" column="25" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-feedback-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/location-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="101" column="72" selection-start-line="101" selection-start-column="72" selection-end-line="101" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/common/directives.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="139" column="20" selection-start-line="139" selection-start-column="20" selection-end-line="139" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plugins/cordova-plugin-fcm/src/android/MyFirebaseMessagingService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-dashboard-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="104" column="32" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/login-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="148" column="21" selection-start-line="148" selection-start-column="21" selection-end-line="148" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/ebook-list-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/course-search-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="431" column="13" selection-start-line="431" selection-start-column="13" selection-end-line="431" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/phoneconfirm-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="109" column="16" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-edit-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="29" column="36" selection-start-line="28" selection-start-column="13" selection-end-line="29" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/platforms/android/CordovaLib/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="1" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gulp/javascript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="103" column="114" selection-start-line="103" selection-start-column="114" selection-end-line="103" selection-end-column="114" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/vendor.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/course-catalogs-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/www/partial/member/order-cart-2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="63" selection-start-line="0" selection-start-column="63" selection-end-line="0" selection-end-column="63" />
+        <state relative-caret-position="0">
+          <caret line="185" column="68" selection-start-line="185" selection-start-column="68" selection-end-line="185" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partial/member/cart-2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="181" column="68" selection-start-line="181" selection-start-column="68" selection-end-line="181" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-order-list-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="130" column="40" selection-start-line="130" selection-start-column="40" selection-end-line="130" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-cart-list-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="330" column="20" selection-start-line="330" selection-start-column="20" selection-end-line="330" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-order-cart-list-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="297" column="69" selection-start-line="297" selection-start-column="69" selection-end-line="297" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partial/member/cart-1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="58" selection-start-line="0" selection-start-column="54" selection-end-line="0" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partial/member/message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="42" column="76" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-message-info-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-message-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="28" column="71" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="71" />
+          <folding>
+            <marker date="1487253101548" expanded="true" signature="17:1917" ph="[...]" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/common/creditcard-service.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/common/navigation-service.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/common/util-service.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/main.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+          <folding>
+            <marker date="1487253101550" expanded="true" signature="274:445" ph="[...]" />
+            <marker date="1487253101550" expanded="true" signature="4818:5142" ph="[...]" />
+            <marker date="1487253101550" expanded="true" signature="4859:5140" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="5429:5657" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="5709:6889" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="5818:6826" ph="&quot;direction&quot;: &quot;left&quot;..." />
+            <marker date="1487253101550" expanded="true" signature="6945:14742" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="7016:7071" ph="&quot;url&quot;: '/login'..." />
+            <marker date="1487253101550" expanded="true" signature="7127:7210" ph="&quot;url&quot;: '/main'..." />
+            <marker date="1487253101550" expanded="true" signature="7254:7405" ph="&quot;url&quot;: '/forgotpassword'..." />
+            <marker date="1487253101550" expanded="true" signature="7292:7405" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="7321:7395" ph="&quot;templateUrl&quot;: 'partial/forgotpassword.html'..." />
+            <marker date="1487253101550" expanded="true" signature="7443:7582" ph="&quot;url&quot;: '/register'..." />
+            <marker date="1487253101550" expanded="true" signature="7475:7582" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="7504:7572" ph="&quot;templateUrl&quot;: 'partial/register.html'..." />
+            <marker date="1487253101550" expanded="true" signature="7624:7771" ph="&quot;url&quot;: '/phoneconfirm'..." />
+            <marker date="1487253101550" expanded="true" signature="7660:7771" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="7689:7761" ph="&quot;templateUrl&quot;: 'partial/phoneconfirm.html'..." />
+            <marker date="1487253101550" expanded="true" signature="7812:7895" ph="&quot;url&quot;: '/home'..." />
+            <marker date="1487253101550" expanded="true" signature="7934:8075" ph="&quot;url&quot;: '/dashboard'..." />
+            <marker date="1487253101550" expanded="true" signature="7967:8075" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="7996:8065" ph="&quot;templateUrl&quot;: 'partial/dashboard.html'..." />
+            <marker date="1487253101550" expanded="true" signature="8113:8252" ph="&quot;url&quot;: '/location'..." />
+            <marker date="1487253101550" expanded="true" signature="8145:8252" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="8174:8242" ph="&quot;templateUrl&quot;: 'partial/location.html'..." />
+            <marker date="1487253101550" expanded="true" signature="8294:8451" ph="&quot;url&quot;: '/location-map/:location'..." />
+            <marker date="1487253101550" expanded="true" signature="8340:8451" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="8369:8441" ph="&quot;templateUrl&quot;: 'partial/location-map.html'..." />
+            <marker date="1487253101550" expanded="true" signature="8487:8651" ph="&quot;url&quot;: '/course'..." />
+            <marker date="1487253101550" expanded="true" signature="8540:8651" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="8569:8641" ph="&quot;templateUrl&quot;: 'partial/course/index.html'..." />
+            <marker date="1487253101550" expanded="true" signature="8694:8847" ph="&quot;url&quot;: '/search/:keyword'..." />
+            <marker date="1487253101550" expanded="true" signature="8733:8847" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="8764:8837" ph="&quot;templateUrl&quot;: 'partial/course/search.html'..." />
+            <marker date="1487253101550" expanded="true" signature="8888:9046" ph="&quot;url&quot;: '/info/:shop_id/:prod_id'..." />
+            <marker date="1487253101550" expanded="true" signature="8934:9046" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="8965:9036" ph="&quot;templateUrl&quot;: 'partial/course/info.html'..." />
+            <marker date="1487253101550" expanded="true" signature="9091:9239" ph="&quot;url&quot;: '/catalogs'..." />
+            <marker date="1487253101550" expanded="true" signature="9123:9239" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="9154:9229" ph="&quot;templateUrl&quot;: 'partial/course/catalogs.html'..." />
+            <marker date="1487253101550" expanded="true" signature="9282:9437" ph="&quot;url&quot;: '/extend/:course_id'..." />
+            <marker date="1487253101550" expanded="true" signature="9323:9437" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="9354:9427" ph="&quot;templateUrl&quot;: 'partial/course/extend.html'..." />
+            <marker date="1487253101550" expanded="true" signature="9485:9647" ph="&quot;url&quot;: '/ebook'..." />
+            <marker date="1487253101550" expanded="true" signature="9537:9647" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="9566:9637" ph="&quot;templateUrl&quot;: 'partial/ebook/index.html'..." />
+            <marker date="1487253101550" expanded="true" signature="9687:9824" ph="&quot;url&quot;: '/list'..." />
+            <marker date="1487253101550" expanded="true" signature="9715:9824" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="9744:9814" ph="&quot;templateUrl&quot;: 'partial/ebook/list.html'..." />
+            <marker date="1487253101550" expanded="true" signature="9864:10024" ph="&quot;url&quot;: '/info/:yearmonth/:catalog_id'..." />
+            <marker date="1487253101550" expanded="true" signature="9915:10024" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="9944:10014" ph="&quot;templateUrl&quot;: 'partial/ebook/info.html'..." />
+            <marker date="1487253101550" expanded="true" signature="10074:10238" ph="&quot;url&quot;: '/member'..." />
+            <marker date="1487253101550" expanded="true" signature="10127:10238" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="10156:10228" ph="&quot;templateUrl&quot;: 'partial/member/index.html'..." />
+            <marker date="1487253101550" expanded="true" signature="10284:10434" ph="&quot;url&quot;: '/dashboard'..." />
+            <marker date="1487253101550" expanded="true" signature="10317:10434" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="10348:10424" ph="&quot;templateUrl&quot;: 'partial/member/dashboard.html'..." />
+            <marker date="1487253101550" expanded="true" signature="10475:10615" ph="&quot;url&quot;: '/wish'..." />
+            <marker date="1487253101550" expanded="true" signature="10503:10615" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="10534:10605" ph="&quot;templateUrl&quot;: 'partial/member/wish.html'..." />
+            <marker date="1487253101550" expanded="true" signature="10657:10799" ph="&quot;url&quot;: '/order'..." />
+            <marker date="1487253101550" expanded="true" signature="10686:10799" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="10717:10789" ph="&quot;templateUrl&quot;: 'partial/member/order.html'..." />
+            <marker date="1487253101550" expanded="true" signature="10846:11008" ph="&quot;url&quot;: '/order-info/:order_no'..." />
+            <marker date="1487253101550" expanded="true" signature="10890:11008" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="10921:10998" ph="&quot;templateUrl&quot;: 'partial/member/order-info.html'..." />
+            <marker date="1487253101550" expanded="true" signature="11051:11195" ph="&quot;url&quot;: '/finish'..." />
+            <marker date="1487253101550" expanded="true" signature="11081:11195" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="11112:11185" ph="&quot;templateUrl&quot;: 'partial/member/finish.html'..." />
+            <marker date="1487253101550" expanded="true" signature="11239:11385" ph="&quot;url&quot;: '/message'..." />
+            <marker date="1487253101550" expanded="true" signature="11270:11385" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="11301:11375" ph="&quot;templateUrl&quot;: 'partial/member/message.html'..." />
+            <marker date="1487253101550" expanded="true" signature="11434:11603" ph="&quot;url&quot;: '/message/:type/:message_id'..." />
+            <marker date="1487253101550" expanded="true" signature="11483:11603" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="11514:11593" ph="&quot;templateUrl&quot;: 'partial/member/message-info.html'..." />
+            <marker date="1487253101550" expanded="true" signature="11652:11808" ph="&quot;url&quot;: '/payment-list'..." />
+            <marker date="1487253101550" expanded="true" signature="11688:11808" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="11719:11798" ph="&quot;templateUrl&quot;: 'partial/member/payment-list.html'..." />
+            <marker date="1487253101550" expanded="true" signature="11849:11989" ph="&quot;url&quot;: '/edit'..." />
+            <marker date="1487253101550" expanded="true" signature="11877:11989" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="11908:11979" ph="&quot;templateUrl&quot;: 'partial/member/edit.html'..." />
+            <marker date="1487253101550" expanded="true" signature="12036:12188" ph="&quot;url&quot;: '/edit-ident'..." />
+            <marker date="1487253101550" expanded="true" signature="12070:12188" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="12101:12178" ph="&quot;templateUrl&quot;: 'partial/member/edit-ident.html'..." />
+            <marker date="1487253101550" expanded="true" signature="12234:12384" ph="&quot;url&quot;: '/edit-pw/1'..." />
+            <marker date="1487253101550" expanded="true" signature="12267:12384" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="12298:12374" ph="&quot;templateUrl&quot;: 'partial/member/edit-pw-1.html'..." />
+            <marker date="1487253101550" expanded="true" signature="12430:12580" ph="&quot;url&quot;: '/edit-pw/2'..." />
+            <marker date="1487253101550" expanded="true" signature="12463:12580" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="12494:12570" ph="&quot;templateUrl&quot;: 'partial/member/edit-pw-2.html'..." />
+            <marker date="1487253101550" expanded="true" signature="12628:12782" ph="&quot;url&quot;: '/edit-mobile'..." />
+            <marker date="1487253101550" expanded="true" signature="12663:12782" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="12694:12772" ph="&quot;templateUrl&quot;: 'partial/member/edit-mobile.html'..." />
+            <marker date="1487253101550" expanded="true" signature="12829:12981" ph="&quot;url&quot;: '/suggestion'..." />
+            <marker date="1487253101550" expanded="true" signature="12863:12981" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="12894:12971" ph="&quot;templateUrl&quot;: 'partial/member/suggestion.html'..." />
+            <marker date="1487253101550" expanded="true" signature="13022:13185" ph="&quot;url&quot;: '/cart'..." />
+            <marker date="1487253101550" expanded="true" signature="13073:13185" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="13104:13175" ph="&quot;templateUrl&quot;: 'partial/member/cart.html'..." />
+            <marker date="1487253101550" expanded="true" signature="13232:13369" ph="&quot;url&quot;: '/1'..." />
+            <marker date="1487253101550" expanded="true" signature="13257:13369" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="13286:13359" ph="&quot;templateUrl&quot;: 'partial/member/cart-1.html'..." />
+            <marker date="1487253101550" expanded="true" signature="13416:13553" ph="&quot;url&quot;: '/2'..." />
+            <marker date="1487253101550" expanded="true" signature="13441:13553" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="13470:13543" ph="&quot;templateUrl&quot;: 'partial/member/cart-2.html'..." />
+            <marker date="1487253101550" expanded="true" signature="13600:13737" ph="&quot;url&quot;: '/3'..." />
+            <marker date="1487253101550" expanded="true" signature="13625:13737" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="13654:13727" ph="&quot;templateUrl&quot;: 'partial/member/cart-3.html'..." />
+            <marker date="1487253101550" expanded="true" signature="13784:13959" ph="&quot;url&quot;: '/order-cart'..." />
+            <marker date="1487253101550" expanded="true" signature="13841:13959" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="13872:13949" ph="&quot;templateUrl&quot;: 'partial/member/order-cart.html'..." />
+            <marker date="1487253101550" expanded="true" signature="14012:14155" ph="&quot;url&quot;: '/1'..." />
+            <marker date="1487253101550" expanded="true" signature="14037:14155" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="14066:14145" ph="&quot;templateUrl&quot;: 'partial/member/order-cart-1.html'..." />
+            <marker date="1487253101550" expanded="true" signature="14208:14351" ph="&quot;url&quot;: '/2'..." />
+            <marker date="1487253101550" expanded="true" signature="14233:14351" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="14262:14341" ph="&quot;templateUrl&quot;: 'partial/member/order-cart-2.html'..." />
+            <marker date="1487253101550" expanded="true" signature="14404:14547" ph="&quot;url&quot;: '/3'..." />
+            <marker date="1487253101550" expanded="true" signature="14429:14547" ph="..." />
+            <marker date="1487253101550" expanded="true" signature="14458:14537" ph="&quot;templateUrl&quot;: 'partial/member/order-cart-3.html'..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/api/http-interceptors.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="35" column="55" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/common/user-service.coffee" />
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/api/api-service.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/partial/member/wish.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/home-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="118" column="35" selection-start-line="118" selection-start-column="35" selection-end-line="118" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/login-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="157" column="21" selection-start-line="157" selection-start-column="21" selection-end-line="157" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-studycardslide-controller.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-100">
+          <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/partial/dashboard-studycard-slides.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6166395">
+        <state relative-caret-position="1860">
           <caret line="93" column="63" selection-start-line="93" selection-start-column="63" selection-end-line="93" selection-end-column="63" />
           <folding />
         </state>
@@ -760,187 +1109,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/partial/dashboard-search-slides.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27406198">
+        <state relative-caret-position="160">
           <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/member/order-cart-2.html">
+    <entry file="file://$PROJECT_DIR$/assets/coffee/common/directives.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.0">
-          <caret line="185" column="68" selection-start-line="185" selection-start-column="68" selection-end-line="185" selection-end-column="68" />
+        <state relative-caret-position="402">
+          <caret line="190" column="71" selection-start-line="190" selection-start-column="71" selection-end-line="190" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/member/cart-2.html">
+    <entry file="file://$PROJECT_DIR$/assets/ionic/scss/_util.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6508972">
-          <caret line="181" column="68" selection-start-line="181" selection-start-column="68" selection-end-line="181" selection-end-column="68" />
+        <state relative-caret-position="462">
+          <caret line="292" column="14" selection-start-line="292" selection-start-column="14" selection-end-line="292" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-order-list-controller.coffee">
+    <entry file="file://$PROJECT_DIR$/assets/scss/global/_object.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="130" column="40" selection-start-line="130" selection-start-column="40" selection-end-line="130" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-cart-list-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.3">
-          <caret line="330" column="20" selection-start-line="330" selection-start-column="20" selection-end-line="330" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-order-cart-list-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69206846">
-          <caret line="297" column="69" selection-start-line="297" selection-start-column="69" selection-end-line="297" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/member/cart-1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="58" selection-start-line="0" selection-start-column="54" selection-end-line="0" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/member/message.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.1">
-          <caret line="42" column="76" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="76" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-message-info-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/member-message-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="71" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/common/creditcard-service.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="-900">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/common/navigation-service.coffee">
+    <entry file="file://$PROJECT_DIR$/assets/scss/global/_fix.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06542056">
-          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+        <state relative-caret-position="40">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/common/util-service.coffee">
+    <entry file="file://$PROJECT_DIR$/assets/scss/global/_main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="200">
+          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/main.coffee">
+    <entry file="file://$PROJECT_DIR$/www/partial/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/api/http-interceptors.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="55" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/common/user-service.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39252338">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/home-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/api/api-service.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/partial/member/wish.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3496732">
-          <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/index-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="42" selection-start-line="100" selection-start-column="21" selection-end-line="101" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-studycardslide-controller.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.6">
-          <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+        <state relative-caret-position="380">
+          <caret line="28" column="59" selection-start-line="28" selection-start-column="59" selection-end-line="28" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/coffee/controllers/dashboard-searchslide-controller.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.22897196">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        <state relative-caret-position="-486">
+          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
           <folding />
         </state>
       </provider>

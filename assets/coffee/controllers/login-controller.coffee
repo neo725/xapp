@@ -39,8 +39,8 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 onSuccess = () ->
                     modal.hideLoading()
 
-                    $rootScope.loadCart()
-                    $rootScope.loadWish()
+                    #$rootScope.loadCart()
+                    #$rootScope.loadWish()
                     $rootScope.callFCMGetToken()
 
                     navigation.slide 'home.dashboard', {}, 'left'
@@ -131,8 +131,8 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 resetLoginButton()
 
                 onSuccess = () ->
-                    $rootScope.loadCart()
-                    $rootScope.loadWish()
+                    #$rootScope.loadCart()
+                    #$rootScope.loadWish()
                     $rootScope.callFCMGetToken()
 
                     navigation.slide 'home.dashboard', {}, 'left'
@@ -154,8 +154,8 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 navigation.slide 'login', {}, 'left'
             else
                 onSuccess = () ->
-                    $rootScope.loadCart()
-                    $rootScope.loadWish()
+                    #$rootScope.loadCart()
+                    #$rootScope.loadWish()
                     $rootScope.callFCMGetToken()
 
                     navigation.slide 'home.dashboard', {}, 'left'

@@ -13,12 +13,14 @@ module.exports = [
             onSuccess = (response) ->
                 if showLoading
                     modal.hideLoading()
+
+                $('.search-slides').show()
+
                 list = response.list
                 $scope.covers = list
                 $rootScope.loadSearchSlide = false
 
                 $timeout(->
-                    $('.search-slides').show()
                     $ionicSlideBoxDelegate.update()
                     $ionicSlideBoxDelegate.$getByHandle('search-slide-box').loop(true)
                 , 500)
