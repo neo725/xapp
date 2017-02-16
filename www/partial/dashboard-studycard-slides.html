@@ -19,7 +19,7 @@
                             offset="inherit"></round-progress>
                     </div>
                     <div class="progress-value" ng-class="{ 'percent-100': percent == 100, 'percent-2': percent < 100 }">
-                        <div class="progress-text-percent-value" ng-bind="getPercentage(card.progress)"></div>
+                        <div class="progress-text-percent-value" ng-bind="::getPercentage(card.progress)"></div>
                         <div class="progress-text-percent">
                             %
                         </div>
@@ -27,7 +27,7 @@
                             課程完成度
                         </div>
                         <div class="progress-teacher">
-                            {{ card.Prod_ClsSir}}
+                            {{ ::card.Prod_ClsSir }}
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
             <div class="card-info">
                 <div class="row">
                     <div class="col">
-                        <h4>{{ card.Prod_Name }}</h4>
+                        <h4>{{ ::card.Prod_Name }}</h4>
                     </div>
                 </div>
                 <div class="row text-item">
@@ -43,7 +43,7 @@
                         <img src="img/calendar@2x.png"/>
                     </div>
                     <div class="col col-80 col-text-left">
-                        {{ getDatePart(card.Prod_ClsOpenDate) }} ~ {{ getDatePart(card.Prod_ClsEndDate) }}
+                        {{ ::getDatePart(card.Prod_ClsOpenDate) }} ~ {{ ::getDatePart(card.Prod_ClsEndDate) }}
                     </div>
                 </div>
                 <div class="row text-item">
@@ -51,7 +51,7 @@
                         <img src="img/location@2x.png"/>
                     </div>
                     <div class="col col-80 col-text-left">
-                        {{ getLocationFullName(card.Prod_ClsLocation) }}
+                        {{ ::getLocationFullName(card.Prod_ClsLocation) }}
                     </div>
                 </div>
                 <div class="row" ng-if="progress == 100">
@@ -72,13 +72,13 @@
                             <div class="col">
                                 <!--<ion-badge item-center></ion-badge>-->
                                             <span class="badge badge-positive badge-s-size">
-                                                {{ getWeekdayName(card.nextStartTime) }}</span>
+                                                {{ ::getWeekdayName(card.nextStartTime) }}</span>
                             </div>
                             <div class="col class-time-range">
                                 <div class="text-positive">
-                                    <div>{{ getTimePart(card.nextStartTime) }}</div>
+                                    <div>{{ ::getTimePart(card.nextStartTime) }}</div>
                                     <div class="rotate-90">»</div>
-                                    <div>{{ getTimePart(card.nextEndTime) }}</div>
+                                    <div>{{ ::getTimePart(card.nextEndTime) }}</div>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="row class-location" ng-click="openCourseLocation(card)">
                             <div class="col">
-                                <h2 class="text-positive">{{ card.RoomId }}</h2>
+                                <h2 class="text-positive">{{ ::card.RoomId }}</h2>
                                 <h2 class="text-positive" ng-if="false">B303</h2>
                             </div>
                         </div>
