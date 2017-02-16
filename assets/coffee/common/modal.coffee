@@ -1,6 +1,12 @@
 module.exports = ['$ionicPlatform', '$timeout', '$ionicModal', '$ionicLoading', '$ionicPopup', '$translate'
     ($ionicPlatform, $timeout, $ionicModal, $ionicLoading, $ionicPopup, $translate) ->
         showLoadingSpinner = (title, message) ->
+#            #ion-spinner style
+#            opts =
+#                template: '<ion-spinner></ion-spinner>'
+#                noBackdrop: true
+#            $ionicLoading.show opts
+#            return
             $ionicPlatform.ready ->
                 $translate([title, message]).then (translation) ->
                     if window.plugins
