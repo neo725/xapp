@@ -37,8 +37,8 @@
                              ng-class="{ 'image': image_type }">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
-                                <div class="message-dot-mask" ng-class="{ 'show': $last}"></div>
-                                <div class="message-dot-text" ng-class="{ 'show': $last}">{{ ::'歷史訊息' }}</div>
+                                <div class="message-dot-mask" ng-class="{ 'show': $index == promo_count - 1 }"></div>
+                                <div class="message-dot-text" ng-class="{ 'show': $index == promo_count - 1 }">{{ ::'歷史訊息' }}</div>
                             </div>
                             <div class="message-div" ng-click="goMessageInfo(message)">
                                 <div class="row">
@@ -128,8 +128,8 @@
                              ng-class="{ 'image': image_type }">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
-                                <div class="message-dot-mask" ng-class="{ 'show': $index == list_course.length - 1}"></div>
-                                <div class="message-dot-text" ng-class="{ 'show': $index == list_course.length - 1}">{{ '歷史訊息' }}</div>
+                                <div class="message-dot-mask" ng-class="{ 'show': $index == course_count - 1 }"></div>
+                                <div class="message-dot-text" ng-class="{ 'show': $index == course_count - 1 }">{{ '歷史訊息' }}</div>
                             </div>
                             <div class="message-div" ng-click="goMessageInfo(message)">
                                 <div class="row">
@@ -179,8 +179,8 @@
                              ng-class="{ 'image': image_type }">
                             <div class="message-dot color-font">
                                 <i class="ion-record"></i>
-                                <div class="message-dot-mask" ng-class="{ 'show': $index == list_order.length - 1}"></div>
-                                <div class="message-dot-text" ng-class="{ 'show': $index == list_order.length - 1}">{{ '歷史訊息' }}</div>
+                                <div class="message-dot-mask" ng-class="{ 'show': $index == order_count - 1 }"></div>
+                                <div class="message-dot-text" ng-class="{ 'show': $index == order_count - 1 }">{{ '歷史訊息' }}</div>
                             </div>
                             <div class="message-div" ng-click="goMessageInfo(message)">
                                 <div class="row">

@@ -1,5 +1,5 @@
-module.exports = ['$rootScope', '$scope', '$stateParams', '$ionicHistory', 'api', 'navigation',
-    ($rootScope, $scope, $stateParams, $ionicHistory, api, navigation) ->
+module.exports = ['$rootScope', '$scope', '$stateParams', '$ionicHistory', 'api', 'navigation', 'modal',
+    ($rootScope, $scope, $stateParams, $ionicHistory, api, navigation, modal) ->
         $scope.type = $stateParams.type
         messageId = $stateParams.message_id
 
@@ -12,11 +12,16 @@ module.exports = ['$rootScope', '$scope', '$stateParams', '$ionicHistory', 'api'
                 navigation.slide('home.dashboard', {}, 'right')
 
         loadMessage = (messageId) ->
+            modal.showLoading('', 'message.data_loading')
+
             onSuccess = (response) ->
+                modal.hideLoading()
+
                 $scope.messageTitle = response.m_title
                 $scope.messageInfo = response.m_info
 
-            onError = (->)
+            onError = () ->
+                modal.hideLoading()
 
             api.getMessage(messageId, onSuccess, onError)
 
