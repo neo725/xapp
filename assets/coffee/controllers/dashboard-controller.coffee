@@ -3,7 +3,11 @@ module.exports = [
     '$rootScope', '$scope', '$ionicPlatform', '$window', '$timeout', '$log', 'modal', 'navigation',
     ($rootScope, $scope, $ionicPlatform, $window, $timeout, $log, modal, navigation) ->
         modal.hideLoading()
+
+        $rootScope.loadSearchSlide = true
+        $rootScope.loadStudycardSlide = true
         $scope.active = false
+
 
         $scope.goMemberDashboard = ->
             if not $scope.active
@@ -35,6 +39,7 @@ module.exports = [
 
         $scope.$on('$ionicView.enter', ->
             $log.info 'dashboard-controller -> $ionicView.enter'
+
             $scope.$broadcast 'dashboard-controller.enter'
         )
         $scope.$on('$ionicView.afterEnter', ->

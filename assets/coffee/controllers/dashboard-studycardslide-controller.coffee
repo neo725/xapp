@@ -56,21 +56,33 @@ module.exports = [
             $rootScope.currentCard = card
             $scope.modalCourseLocation.show()
 
-        onSuccess = (response) ->
-            list = response.list
+        loadStudycard = () ->
+            onSuccess = (response) ->
+                list = response.list
 
-            $rootScope.studyCards = list
-            $rootScope.studyCardVisible = list.length > 0
+                $rootScope.studyCards = list
+                $rootScope.studyCardVisible = list.length > 0
 
-            $ionicSlideBoxDelegate.update()
+                $ionicSlideBoxDelegate.update()
+                $rootScope.loadStudycardSlide = false
 
-        onError = () ->
-            $rootScope.studyCardVisible = false
+            onError = () ->
+                $rootScope.studyCardVisible = false
+
+            api.getStudyCards(onSuccess, onError)
 
         $scope.$on('dashboard-controller.enter', () ->
             $log.info 'studycardslide >> getStudyCards() ...'
-            api.getStudyCards(onSuccess, onError)
+
+            if $rootScope.fromNotification
+                $rootScope.fromNotification = not ($rootScope.loadSearchSlide and $rootScope.loadStudycardSlide)
+                #$rootScope.loadStydycardSlide = true
+                $ionicSlideBoxDelegate.update()
+
+#            if $rootScope.loadStudycardSlide
+#                loadStudycard()
         )
+        loadStudycard()
 
         $ionicModal.fromTemplateUrl('templates/modal-feedback.html',
             scope: $scope

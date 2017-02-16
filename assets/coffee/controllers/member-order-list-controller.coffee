@@ -130,7 +130,7 @@ module.exports = [
                 $scope.loading_3 = false
             loadOrders3 = ->
                 $scope.loading_2 = false
-                loadOrders('02', loadDone)
+                loadOrders('03', loadDone)
             loadOrders2 = ->
                 $scope.loading_1 = false
                 loadOrders('02', loadOrders3)

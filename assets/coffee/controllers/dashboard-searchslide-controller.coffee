@@ -8,6 +8,7 @@ module.exports = [
                 modal.hideLoading()
                 list = response.list
                 $scope.covers = list
+                $rootScope.loadSearchSlide = false
 
                 $timeout(->
                     $('.search-slides').show()
@@ -26,11 +27,21 @@ module.exports = [
         $scope.$on('dashboard-controller.enter', () ->
             $log.info 'searchslide >> loadSearchSlide() ...'
 
-            #token = window.localStorage.getItem('token')
-            #if $rootScope.member or token
-            #    loadSearchSlide()
-            loadSearchSlide()
+            if $rootScope.fromNotification
+                $rootScope.fromNotification = not ($rootScope.loadSearchSlide and $rootScope.loadStudycardSlide)
+                #$rootScope.loadSearchSlide = true
+                $ionicSlideBoxDelegate.update()
+
+#            if $rootScope.loadSearchSlide
+#                #token = window.localStorage.getItem('token')
+#                #if $rootScope.member or token
+#                #    loadSearchSlide()
+#                loadSearchSlide()
         )
+#        token = window.localStorage.getItem('token')
+#        if $rootScope.member or token
+#            loadSearchSlide()
+        loadSearchSlide()
 
         $scope.searchCourse = (cover) ->
             weeks = cover.week.split(',')

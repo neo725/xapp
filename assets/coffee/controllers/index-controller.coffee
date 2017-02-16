@@ -9,6 +9,7 @@ module.exports = [
     ($rootScope, $scope, $translate, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast,
         $cordovaLocalNotification, $cordovaVibration, $cordovaBadge, $log, navigation, modal, api) ->
 
+        $rootScope.fromNotification = false
         network_offline = false
 
         $translate.use constants.DEFAULT_LOCALE
@@ -141,6 +142,9 @@ module.exports = [
                         $log.info data
                         if data.wasTapped
                             $log.warn 'FCMPlugin.onNotification...'
+
+                            $rootScope.fromNotification = true
+
                             # goto /home/member/message
                             navigation.slide 'home.member.message'
                         else
