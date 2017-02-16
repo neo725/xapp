@@ -1,8 +1,8 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$ionicSlideBoxDelegate', '$log', 'api', 'modal',
-    ($rootScope, $scope, $ionicModal, $ionicSlideBoxDelegate, $log, api, modal) ->
+    '$rootScope', '$scope', '$ionicModal', '$ionicSlideBoxDelegate', '$log', 'api', 'modal', 'user',
+    ($rootScope, $scope, $ionicModal, $ionicSlideBoxDelegate, $log, api, modal, user) ->
         # angular svg round progressbar
         # repo : https://github.com/crisbeto/angular-svg-round-progressbar
         # demo : http://crisbeto.github.io/angular-svg-round-progressbar/
@@ -57,6 +57,8 @@ module.exports = [
             $scope.modalCourseLocation.show()
 
         loadStudycard = () ->
+            $log.info '[** StudycardSlide **] >> loadStudycard()......'
+
             onSuccess = (response) ->
                 list = response.list
 
@@ -72,17 +74,43 @@ module.exports = [
             api.getStudyCards(onSuccess, onError)
 
         $scope.$on('dashboard-controller.enter', () ->
-            $log.info 'studycardslide >> getStudyCards() ...'
+            $log.info '[** StudycardSlide **] >> dashboard-controller.enter  ......'
 
-            if $rootScope.fromNotification
-                $rootScope.fromNotification = not ($rootScope.loadSearchSlide and $rootScope.loadStudycardSlide)
+            $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
+            $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
+            if not user.isGuest() and $rootScope.loadStudycardSlide
+                loadStudycard()
+            else if $rootScope.fromNotification
+                if user.isGuest()
+                    $rootScope.fromNotification = not $rootScope.loadSearchSlide
+                else
+                    $rootScope.fromNotification = not ($rootScope.loadStudycardSlide and $rootScope.loadSearchSlide)
+
                 #$rootScope.loadStydycardSlide = true
                 $ionicSlideBoxDelegate.update()
 
 #            if $rootScope.loadStudycardSlide
 #                loadStudycard()
         )
-        loadStudycard()
+        $scope.$on('index-controller.onNotificationRegistered', () ->
+            $log.info '{** StudycardSlide **} >> index-controller.onNotificationRegistered......'
+#            $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
+#            $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
+#            $log.info '[** StudycardSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
+#            $log.info '[** StudycardSlide **] >> isGuest : ' + user.isGuest()
+#            $log.info '[** StudycardSlide **] >> isRealDevice : ' + user.isRealDevice()
+            if not user.isGuest()
+                loadStudycard()
+        )
+#        $log.info '[** StudycardSlide **] >> loadStudycard()'
+#        $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
+#        $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
+#        $log.info '[** StudycardSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
+#        $log.info '[** StudycardSlide **] >> isGuest : ' + user.isGuest()
+#        $log.info '[** StudycardSlide **] >> isRealDevice : ' + user.isRealDevice()
+
+        if not user.isGuest() and not user.isRealDevice()
+            loadStudycard()
 
         $ionicModal.fromTemplateUrl('templates/modal-feedback.html',
             scope: $scope

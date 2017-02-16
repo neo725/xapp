@@ -1,11 +1,18 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', '$log', 'api', 'modal', 'navigation',
-    ($rootScope, $scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, $log, api, modal, navigation) ->
-        loadSearchSlide = ->
+    '$rootScope', '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', '$log',
+    'api', 'modal', 'navigation', 'user',
+    ($rootScope, $scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, $log, api, modal, navigation, user) ->
+        loadSearchSlide = (showLoading) ->
+            if not showLoading == false
+                showLoading = true
+
+            $log.info '[** SearchSlide **] >> loadSearchSlide()......'
+
             onSuccess = (response) ->
-                modal.hideLoading()
+                if showLoading
+                    modal.hideLoading()
                 list = response.list
                 $scope.covers = list
                 $rootScope.loadSearchSlide = false
@@ -16,19 +23,32 @@ module.exports = [
                     $ionicSlideBoxDelegate.$getByHandle('search-slide-box').loop(true)
                 , 500)
 
-            onError = () ->
-                modal.hideLoading()
+                $rootScope.loadCart()
+                $rootScope.loadWish()
 
-            modal.showLoading '', 'message.loading_cover'
+            onError = () ->
+                if showLoading
+                    modal.hideLoading()
+
+            if showLoading
+                modal.showLoading '', 'message.loading_cover'
             api.getCover(onSuccess, onError)
 
         $('.search-slides').hide()
 
         $scope.$on('dashboard-controller.enter', () ->
-            $log.info 'searchslide >> loadSearchSlide() ...'
+            $log.info '[** SearchSlide **] >> dashboard-controller.enter  ......'
+            $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
+            $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
 
-            if $rootScope.fromNotification
-                $rootScope.fromNotification = not ($rootScope.loadSearchSlide and $rootScope.loadStudycardSlide)
+            if $rootScope.loadSearchSlide
+                loadSearchSlide()
+            else if $rootScope.fromNotification
+                if user.isGuest()
+                    $rootScope.fromNotification = not $rootScope.loadSearchSlide
+                else
+                    $rootScope.fromNotification = not ($rootScope.loadStudycardSlide and $rootScope.loadSearchSlide)
+
                 #$rootScope.loadSearchSlide = true
                 $ionicSlideBoxDelegate.update()
 
@@ -38,10 +58,26 @@ module.exports = [
 #                #    loadSearchSlide()
 #                loadSearchSlide()
         )
+        $scope.$on('index-controller.onNotificationRegistered', () ->
+            $log.info '{** SearchSlide **} >> index-controller.onNotificationRegistered......'
+#            $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
+#            $log.info '[** SearchSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
+#            $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
+#            $log.info '[** SearchSlide **] >> isGuest : ' + user.isGuest()
+#            $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()
+            loadSearchSlide(false)
+        )
 #        token = window.localStorage.getItem('token')
 #        if $rootScope.member or token
 #            loadSearchSlide()
-        loadSearchSlide()
+#        $log.info '[** SearchSlide **] >> loadSearchSlide()'
+#        $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
+#        $log.info '[** SearchSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
+#        $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
+#        $log.info '[** SearchSlide **] >> isGuest : ' + user.isGuest()
+        $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()
+        if user.isGuest() or not user.isRealDevice()
+            loadSearchSlide()
 
         $scope.searchCourse = (cover) ->
             weeks = cover.week.split(',')

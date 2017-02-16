@@ -22,6 +22,8 @@ module.exports = [
         $rootScope.logout = ->
             onSuccess = ->
                 #console.log $rootScope.modalFunction
+                $rootScope.loadStudycardSlide = true
+                $rootScope.loadSearchSlide = true
 
                 window.localStorage.removeItem("token")
                 window.localStorage.removeItem("is_guest")

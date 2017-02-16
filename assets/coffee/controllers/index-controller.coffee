@@ -98,14 +98,30 @@ module.exports = [
                 navigation.slide 'login', {}, 'left'
             else
                 onSuccess = () ->
-                    $rootScope.loadCart()
-                    $rootScope.loadWish()
+#                    $rootScope.loadCart()
+#                    $rootScope.loadWish()
                     $rootScope.callFCMGetToken()
 
                     if redirectToDashboard
                         navigation.slide 'home.dashboard', {}, 'left'
 
                 $rootScope.getMemberData(onSuccess, (->))
+
+        getMessageInfo = (messageId) ->
+            modal.showLoading('', 'message.data_loading')
+
+            goMessageInfo = (message) ->
+                params =
+                    'type': message.m_type
+                    'message_id': message.messageId
+                navigation.slide 'home.member.message-info', params, 'left'
+            onSuccess = (response) ->
+                modal.hideLoading()
+                goMessageInfo response
+            onError = () ->
+                modal.hideLoading()
+
+            api.getMessage messageId, onSuccess, onError
 
         $ionicPlatform.ready(->
             $log.info 'index-controller -> $ionicPlatform.ready'
@@ -145,8 +161,7 @@ module.exports = [
 
                             $rootScope.fromNotification = true
 
-                            # goto /home/member/message
-                            navigation.slide 'home.member.message'
+                            getMessageInfo data.mid
                         else
                             $cordovaLocalNotification.schedule(
                                 id: 1,
@@ -161,8 +176,10 @@ module.exports = [
                             #$cordovaBadge.set 10
                     , (msg) ->
                         $log.info 'onNotification callback successfully registered: ' + msg
+                        $scope.$broadcast 'index-controller.onNotificationRegistered'
                     , (err) ->
                         $log.info 'Error registering onNotification callback: ' + err
+                        $scope.$broadcast 'index-controller.onNotificationRegistered'
                 )
         )
 
@@ -175,6 +192,7 @@ module.exports = [
             if token == undefined or token == 'undefined'
                 navigation.slide('login', {}, 'right')
         )
+
         $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) ->
             $log.info 'index-controller -> $stateChangeSuccess -> Entered to view'
             # fix ion-nav-bar apply nav-bar-tabs-top but has no tabs actually

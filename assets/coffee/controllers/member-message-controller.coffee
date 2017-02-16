@@ -1,6 +1,6 @@
 module.exports = [
-    '$scope', '$ionicHistory', 'navigation', 'modal', 'api'
-    ($scope, $ionicHistory, navigation, modal, api) ->
+    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'modal', 'api'
+    ($rootScope, $scope, $ionicHistory, $log, navigation, modal, api) ->
 
         $scope.goBack = () ->
             backView = $ionicHistory.backView()
@@ -54,7 +54,7 @@ module.exports = [
 
             api.getMessageList(1, perpage, type, onSuccess, onError)
 
-        loadMessageList(500, 'promo')
-        loadMessageList(500, 'course')
-        loadMessageList(500, 'order')
+        loadMessageList 500, 'promo'
+        loadMessageList 500, 'course'
+        loadMessageList 500, 'order'
 ]

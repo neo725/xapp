@@ -48,10 +48,10 @@ exports.apiInterceptor = ['$rootScope', '$log', '$translate', '$q', 'plugins',
                     config.url = "#{api_endpoint}#{config.url}"
                 canceler = $q.defer()
                 config.timeout = canceler.promise
-                # remark under code because Connection is undefined, i don't know why
-    #            if (navigator.connection and navigator.connection.type == Connection.NONE)
-    #                canceler.resolve('network.none')
-    #                $rootScope.$broadcast('network.none')
+#                # remark under code because Connection is undefined, i don't know why
+#                if (navigator.connection and navigator.connection.type == Connection.NONE)
+#                    canceler.resolve('network.none')
+#                    $rootScope.$broadcast('network.none')
 
                 token = window.localStorage.getItem('token')
                 if token != null

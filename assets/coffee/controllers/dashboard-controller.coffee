@@ -4,8 +4,8 @@ module.exports = [
     ($rootScope, $scope, $ionicPlatform, $window, $timeout, $log, modal, navigation) ->
         modal.hideLoading()
 
-        $rootScope.loadSearchSlide = true
-        $rootScope.loadStudycardSlide = true
+        #$rootScope.loadSearchSlide = false
+        #$rootScope.loadStudycardSlide = false
         $scope.active = false
 
 
@@ -44,6 +44,8 @@ module.exports = [
         )
         $scope.$on('$ionicView.afterEnter', ->
             $log.info 'dashboard-controller -> $ionicView.afterEnter'
+            $scope.$broadcast 'dashboard-controller.afterEnter'
+
             $timeout ->
                 $scope.active = true
             , 1000
