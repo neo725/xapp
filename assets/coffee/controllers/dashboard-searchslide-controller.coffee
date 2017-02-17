@@ -13,7 +13,8 @@ module.exports = [
             onSuccess = (response) ->
                 if showLoading
                     modal.hideLoading()
-
+                $log.warn '[** SearchSlide **] >> $(".search-slides").show() ......'
+                $log.info $('.search-slides')
                 $('.search-slides').show()
 
                 list = response.list
@@ -43,9 +44,7 @@ module.exports = [
             $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
             $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
 
-            if $rootScope.loadSearchSlide
-                loadSearchSlide()
-            else if $rootScope.fromNotification
+            if $rootScope.fromNotification
                 if user.isGuest()
                     $rootScope.fromNotification = not $rootScope.loadSearchSlide
                 else
@@ -62,6 +61,7 @@ module.exports = [
         )
         $scope.$on('index-controller.onNotificationRegistered', () ->
             $log.info '{** SearchSlide **} >> index-controller.onNotificationRegistered......'
+            $rootScope.onNotificationRegistered = true
 #            $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
 #            $log.info '[** SearchSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
 #            $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide

@@ -8,13 +8,18 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        registerToken: (uuid, token, onSuccess, onError) ->
+        registerDeviceToken: (uuid, token, onSuccess, onError) ->
             data =
                 'deviceName': uuid,
                 'deviceToken': token,
                 'deviceType': 'android'
 
             $http.post('/api/device', data)
+                .success(onSuccess)
+                .error(onError)
+
+        deleteDeviceToken: (token, onSuccess, onError) ->
+            $http.delete("/api/device?deviceToken=#{token}")
                 .success(onSuccess)
                 .error(onError)
 

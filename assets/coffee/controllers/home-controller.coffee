@@ -20,24 +20,38 @@ module.exports = [
                 navigation.slide 'home.member.cart.step1', {}, 'left'
 
         $rootScope.logout = ->
-            onSuccess = ->
-                #console.log $rootScope.modalFunction
-                $rootScope.loadStudycardSlide = true
-                $rootScope.loadSearchSlide = true
+            logout = () ->
+                onSuccess = ->
+                    #console.log $rootScope.modalFunction
+                    $rootScope.loadStudycardSlide = true
+                    $rootScope.loadSearchSlide = true
 
-                window.localStorage.removeItem("token")
-                window.localStorage.removeItem("is_guest")
-                window.localStorage.removeItem("avatar")
+                    window.localStorage.removeItem("token")
+                    window.localStorage.removeItem("is_guest")
+                    window.localStorage.removeItem("avatar")
 
-                delete $rootScope['cart']
-                delete $rootScope['wish']
-                delete $rootScope['member']
+                    delete $rootScope['cart']
+                    delete $rootScope['wish']
+                    delete $rootScope['member']
 
-                navigation.slide('login', {}, 'right')
-            onError = (->)
+                    navigation.slide('login', {}, 'right')
 
-            token = window.localStorage.getItem('token')
-            api.logout(token, onSuccess, onError)
+                onError = (->)
+
+                token = window.localStorage.getItem('token')
+                api.logout(token, onSuccess, onError)
+
+            deleteDeviceToken = (func) ->
+                onSuccess = () ->
+                    window.localStorage.removeItem("device_token")
+
+                    func()
+                onError = (->)
+
+                token = window.localStorage.getItem('device_token')
+                api.deleteDeviceToken token, onSuccess, onError
+
+            deleteDeviceToken(logout)
 
         checkLoginState()
 

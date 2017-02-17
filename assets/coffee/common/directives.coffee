@@ -177,7 +177,7 @@ exports.starRating = ->
             if newValue >= 0
                 updateStars()
 
-exports.searchSlideFit = ['$window', '$log', ($window, $log) ->
+exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $log) ->
     restrict: 'A'
     link: (scope, element, attrs) ->
         $log.info 'directive >>> searchSlideFit >>> in ......'
@@ -187,9 +187,16 @@ exports.searchSlideFit = ['$window', '$log', ($window, $log) ->
         $tab = $('.tabs')
         $slider = $element.find('.search-slide-box')
 
-        height = $window.innerHeight - ($element.position().top + $tab.outerHeight())
-        $log.info 'directive >>> searchSlideFit >>> height : ' + height
-        $slider.css('height', height + 'px')
+        adjustHeight = () ->
+            height = $window.innerHeight - ($element.position().top + $tab.outerHeight())
+            $log.info 'directive >>> searchSlideFit >>> height : ' + height
+            $slider.css('height', height + 'px')
+            if height < 0
+                $timeout () ->
+                    adjustHeight()
+                , 500
+
+        adjustHeight()
 
         scope.$watch ->
                 return $element.find('.guest-slides').length

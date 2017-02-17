@@ -5,9 +5,11 @@ constants = require('../common/constants')
 
 module.exports = [
     '$rootScope', '$scope', '$translate', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast',
-    '$cordovaLocalNotification', '$cordovaVibration', '$cordovaBadge', '$log', 'navigation', 'modal', 'api',
+    '$cordovaLocalNotification', '$cordovaVibration', '$cordovaBadge', '$log', '$timeout',
+    'navigation', 'modal', 'api',
     ($rootScope, $scope, $translate, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast,
-        $cordovaLocalNotification, $cordovaVibration, $cordovaBadge, $log, navigation, modal, api) ->
+        $cordovaLocalNotification, $cordovaVibration, $cordovaBadge, $log, $timeout,
+        navigation, modal, api) ->
 
         $rootScope.fromNotification = false
         network_offline = false
@@ -17,19 +19,20 @@ module.exports = [
         $rootScope.callFCMGetToken = () ->
             if typeof FCMPlugin == 'undefined'
                 return
-
             # Google FCM
             # Keep in mind the function will return null if the token has not been established yet.
             FCMPlugin.getToken(
-                (token) ->
-                    $log.info 'FCM token : ' + token
+                (fcm_token) ->
+                    $log.info '[[[ FCM ]]] token : ' + fcm_token
 
-                    onSuccess = (->)
+                    onSuccess = () ->
+                        window.localStorage.setItem('device_token', fcm_token)
+                        registeNotification()
                     onError = () ->
                         $cordovaToast.show('Error Registering notification token', 'long', 'top')
 
                     uuid = $cordovaDevice.getUUID()
-                    api.registerToken(uuid, token, onSuccess, onError)
+                    api.registerDeviceToken(uuid, fcm_token, onSuccess, onError)
                 , ((err) ->)
             )
 
@@ -123,6 +126,39 @@ module.exports = [
 
             api.getMessage messageId, onSuccess, onError
 
+        registeNotification = () ->
+            FCMPlugin.onNotification(
+                (data) ->
+                    $log.info 'onNotification DATA received'
+                    $log.info data
+                    if data.wasTapped
+                        $log.warn 'FCMPlugin.onNotification...'
+
+                        $rootScope.fromNotification = true
+
+                        getMessageInfo data.mid
+                    else
+                        $cordovaLocalNotification.schedule(
+                            id: 1,
+                            title: data['title'],
+                            text: data['body'],
+                            icon: 'fcm_push_icon'
+                        ).then () ->
+#                            # Vibrate
+#                            $cordovaVibration.vibrate([500, 500])
+                            $cordovaToast.show(data['title'], 'long', 'top')
+
+#                            $cordovaBadge.set 10
+            , (msg) ->
+                $log.warn '*** onNotification callback successfully registered: ' + msg
+                sendBroadcast = () ->
+                    $scope.$broadcast 'index-controller.onNotificationRegistered'
+                sendBroadcast()
+            , (err) ->
+                $log.error '*** Error registering onNotification callback: ' + err
+                $scope.$broadcast 'index-controller.onNotificationRegistered'
+            )
+
         $ionicPlatform.ready(->
             $log.info 'index-controller -> $ionicPlatform.ready'
 
@@ -149,38 +185,6 @@ module.exports = [
                 )
             else
                 $translate.use(constants.DEFAULT_LOCALE)
-
-
-            if typeof FCMPlugin != 'undefined'
-                FCMPlugin.onNotification(
-                    (data) ->
-                        $log.info 'onNotification DATA received'
-                        $log.info data
-                        if data.wasTapped
-                            $log.warn 'FCMPlugin.onNotification...'
-
-                            $rootScope.fromNotification = true
-
-                            getMessageInfo data.mid
-                        else
-                            $cordovaLocalNotification.schedule(
-                                id: 1,
-                                title: data['title'],
-                                text: data['body'],
-                                icon: 'fcm_push_icon'
-                            ).then () ->
-    #                            # Vibrate
-    #                            $cordovaVibration.vibrate([500, 500])
-                                $cordovaToast.show(data['title'], 'long', 'top')
-
-                            #$cordovaBadge.set 10
-                    , (msg) ->
-                        $log.info 'onNotification callback successfully registered: ' + msg
-                        $scope.$broadcast 'index-controller.onNotificationRegistered'
-                    , (err) ->
-                        $log.info 'Error registering onNotification callback: ' + err
-                        $scope.$broadcast 'index-controller.onNotificationRegistered'
-                )
         )
 
         $scope.$on('$ionicView.enter', () ->

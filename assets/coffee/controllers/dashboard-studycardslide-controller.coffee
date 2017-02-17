@@ -78,9 +78,7 @@ module.exports = [
 
             $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
             $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
-            if not user.isGuest() and $rootScope.loadStudycardSlide
-                loadStudycard()
-            else if $rootScope.fromNotification
+            if $rootScope.fromNotification
                 if user.isGuest()
                     $rootScope.fromNotification = not $rootScope.loadSearchSlide
                 else
