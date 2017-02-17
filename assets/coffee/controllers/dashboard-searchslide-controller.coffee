@@ -4,6 +4,13 @@ module.exports = [
     '$rootScope', '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', '$log',
     'api', 'modal', 'navigation', 'user',
     ($rootScope, $scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, $log, api, modal, navigation, user) ->
+        parseSlideList = (list) ->
+            _.forEach(list, (cover) ->
+                if (cover.location.indexOf('不拘') != -1)
+                    cover.location = _.join(constants.LOCATIONS, ',')
+            )
+            return list
+
         loadSearchSlide = (showLoading) ->
             if not showLoading == false
                 showLoading = true
@@ -17,7 +24,7 @@ module.exports = [
                 $log.info $('.search-slides')
                 $('.search-slides').show()
 
-                list = response.list
+                list = parseSlideList(response.list)
                 $scope.covers = list
                 $rootScope.loadSearchSlide = false
 
@@ -128,7 +135,10 @@ module.exports = [
                 return _.join(weekdays, ', ')
 
         $scope.parseLocation = (locations) ->
-            locations = locations.split(',')
+            if locations.indexOf('不拘') != -1
+                locations = []
+            else
+                locations = locations.split(',')
             if locations.length == 0
                 locations = constants.LOCATIONS
             totalCount = 0

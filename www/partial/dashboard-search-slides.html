@@ -40,11 +40,11 @@
                                         <div class="row row-weekday">
                                             <div class="col value" ng-click="modalWeekday.show()" ng-if="false">
                                                 <img src="img/calendar@2x.png" class="small-icon" />
-                                                {{ ::weekday }}
+                                                {{ weekday }}
                                             </div>
                                             <div class="col value" ng-click="showWeekdayModal(cover)">
                                                 <img src="img/calendar@2x.png" class="small-icon" />
-                                                {{ ::parseWeekday(cover.week) }}
+                                                {{ parseWeekday(cover.week) }}
                                             </div>
                                         </div>
                                     </div>
@@ -57,11 +57,11 @@
                                         <div class="row row-location">
                                             <div class="col value" ng-click="modalLocation.show()" ng-if="false">
                                                 <img src="img/location-wish@2x.png" class="small-icon" />
-                                                {{ ::location }}
+                                                {{ location }}
                                             </div>
                                             <div class="col value" ng-click="showLocationModal(cover)">
                                                 <img src="img/location-wish@2x.png" class="small-icon" />
-                                                {{ ::parseLocation(cover.location) }}
+                                                {{ parseLocation(cover.location) }}
                                             </div>
                                         </div>
                                     </div>
