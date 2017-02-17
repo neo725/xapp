@@ -414,6 +414,10 @@
 
             .title {
                 color: #E8440D;
+
+                &.zero-pay {
+                    margin-top: 16px;
+                }
             }
             .sub-title {
                 color: #E8440D;

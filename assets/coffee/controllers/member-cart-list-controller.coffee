@@ -1,9 +1,9 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', 'api', 'navigation', 'modal',
-    'plugins', 'util', 'creditcard',
-    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, api, navigation, modal, plugins, util, creditcard) ->
+    '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', '$log',
+    'api', 'navigation', 'modal', 'plugins', 'util', 'creditcard',
+    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, $log, api, navigation, modal, plugins, util, creditcard) ->
         $scope.shouldShowDelete = false
         $scope.showCarts = false
 
@@ -185,18 +185,23 @@ module.exports = [
                     payByCreditCard(order_no, success, error)
 
             createOrder = ->
+                clearCartStep = () ->
+                    modal.hideLoading()
+                    clearCart(->
+                        $scope.pay.success = true
+
+                        # go to step 3
+                        navigation.slide('home.member.cart.step3', {}, 'left')
+                    )
                 onSuccess = (response) ->
                     order_no = response.result
-                    # pay_type = ATM or CreditCard
-                    createPayment(pay_type, order_no, ->
-                        modal.hideLoading()
-                        clearCart(->
-                            $scope.pay.success = true
+                    $log.info 'order total price is : ' + $scope.totalPrice
 
-                            # go to step 3
-                            navigation.slide('home.member.cart.step3', {}, 'left')
-                        )
-                    )
+                    if $scope.totalPrice == 0
+                        clearCartStep()
+                    else
+                        # pay_type = ATM or CreditCard
+                        createPayment(pay_type, order_no, clearCartStep)
 
                 onError = (error, status_code) ->
                     modal.hideLoading()
