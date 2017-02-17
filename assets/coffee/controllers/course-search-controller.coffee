@@ -413,7 +413,7 @@ module.exports = [
                     'order': $scope.order
                 if $scope.filter.lmoney
                     data.lmoney = $scope.filter.lmoney
-                if $scope.filter.umoney
+                if $scope.filter.umoney || $scope.filter.umoney == 0
                     data.umoney = $scope.filter.umoney
 
             if backView.stateName == 'home.course.catalogs'
