@@ -10,6 +10,10 @@
         <h1 class="title">課程分類</h1>
     </ion-nav-title>
     <ion-content class="course-catalogs-content">
+        <ion-refresher
+            pulling-text="{{ '下拉更新...' }}"
+            on-refresh="doRefresh()">
+        </ion-refresher>
         <div class="notice-block">
             您可以勾選有興趣的分類，或點選一個分類項目進行指定分類的課程搜尋
         </div>

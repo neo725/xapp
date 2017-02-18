@@ -1,9 +1,13 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$scope', '$ionicHistory', '$translate', '$timeout', 'modal', 'navigation', 'plugins', 'api',
-    ($scope, $ionicHistory, $translate, $timeout, modal, navigation, plugins, api) ->
+    '$scope', '$ionicHistory', '$translate', '$timeout', 'modal', 'navigation', 'plugins', 'api', 'CacheFactory',
+    ($scope, $ionicHistory, $translate, $timeout, modal, navigation, plugins, api, CacheFactory) ->
         $scope.active = false
+
+        if not CacheFactory.get('locationsCache')
+            CacheFactory.createCache('locationsCache')
+        locationsCache = CacheFactory.get('locationsCache')
 
         $scope.goBack = ->
             if not $scope.active
@@ -64,6 +68,9 @@ module.exports = [
         $scope.checkInTime = (times) ->
             return $scope.current_time > times.from and $scope.current_time < times.to
 
+        $scope.doRefresh = () ->
+            loadLocation(true)
+
         toSeconds = (hour, minute, second) ->
             return (hour * 3600) + (minute * 60) + second
 
@@ -82,12 +89,12 @@ module.exports = [
                 to: 0
             }
 
-        loadLocation = ->
+        loadLocation = (forceReload) ->
             today_weekday = moment(moment().valueOf()).locale("zh-TW").format("dd")
-
-            modal.showLoading('', 'message.data_loading')
+            locations_intro_in_cache = locationsCache.get('all')
 
             onSuccess = (response) ->
+                $scope.$broadcast('scroll.refreshComplete')
                 modal.hideLoading()
                 $scope.locations = response.list
 
@@ -103,10 +110,16 @@ module.exports = [
                                     location.current_open_times = times
                         )
                 )
+
+                locationsCache.put 'all', $scope.locations
             onError = () ->
                 modal.hideLoading()
 
-            api.getLocations(onSuccess, onError)
+            if locations_intro_in_cache and not forceReload
+                $scope.locations = locations_intro_in_cache
+            else
+                modal.showLoading('', 'message.data_loading')
+                api.getLocations(onSuccess, onError)
 
         tick = ->
             timeNow = new Date()

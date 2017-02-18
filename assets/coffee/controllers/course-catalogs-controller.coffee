@@ -16,8 +16,19 @@ module.exports = [
             $scope.mode = 'Setting'
 
         $scope.saveSetting = ->
-            onSuccess = (response) ->
+            updateUserCatalogs = (all_catalogs, new_user_catalogs) ->
+                $scope.user_catalogs = []
+                _.forEach(new_user_catalogs, (catalog_id) ->
+                    index = _.findIndex(all_catalogs, { 'Cata_Id': catalog_id })
+                    if index > -1
+                        $scope.user_catalogs.push all_catalogs[index]
+                )
+                $scope.user_catalogs = _.orderBy($scope.user_catalogs, ['order'], ['asc'])
+                catalogsCache.put 'user', $scope.user_catalogs
+
+            onSuccess = () ->
                 $scope.mode = 'List'
+                updateUserCatalogs $scope.catalogs, choiceCatalogs
                 loadAllCatalogs('MS')
             onError = (->)
 
@@ -54,11 +65,17 @@ module.exports = [
 
             navigation.slide 'home.course.search', {}, 'left'
 
-        loadUserCatalogs = (shop_id) ->
+        $scope.doRefresh = () ->
+            loadAllCatalogs 'MS', true
+
+        loadUserCatalogs = (shop_id, forceReload) ->
+            catalogs_user_in_cache = catalogsCache.get('user')
+
             onSuccess = (response) ->
                 modal.hideLoading()
                 $scope.user_catalogs = response.list
                 $scope.visibleCatalogs = $scope.user_catalogs
+                catalogsCache.put 'user', response.list
 
             onError = (error, status_code) ->
                 modal.hideLoading()
@@ -68,24 +85,31 @@ module.exports = [
                     $scope.user_catalogs = []
                     $scope.visibleCatalogs = $scope.catalogs
 
-            modal.showLoading('', 'message.data_loading')
-            api.getUserCatalogs(shop_id, onSuccess, onError)
+            if catalogs_user_in_cache and not forceReload
+                $scope.user_catalogs = catalogs_user_in_cache
+                $scope.visibleCatalogs = $scope.user_catalogs
+            else
+                modal.showLoading('', 'message.data_loading')
+                api.getUserCatalogs(shop_id, onSuccess, onError)
 
-        loadAllCatalogs = (shop_id) ->
-            #console.log 'course-catalogs-controller -> loadAllCatalogs'
+        loadAllCatalogs = (shop_id, forceReload) ->
+            catalogs_all_in_cache = catalogsCache.get('all')
 
             onSuccess = (response) ->
                 $scope.catalogs = response.list
+                i = 0
+                _.forEach($scope.catalogs, (catalog) ->
+                    catalog.order = i++
+                )
                 catalogsCache.put 'all', $scope.catalogs
 
                 modal.hideLoading()
-                loadUserCatalogs(shop_id)
+                loadUserCatalogs(shop_id, forceReload)
 
             onError = () ->
                 modal.hideLoading()
 
-            catalogs_all_in_cache = catalogsCache.get('all')
-            if catalogs_all_in_cache
+            if catalogs_all_in_cache and not forceReload
                 $scope.catalogs = catalogs_all_in_cache
                 loadUserCatalogs(shop_id)
             else

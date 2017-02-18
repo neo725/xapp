@@ -1,8 +1,13 @@
 module.exports = [
-    '$rootScope', '$scope', '$stateParams', '$ionicHistory', '$timeout', '$sce', '$translate', 'navigation', 'modal', 'plugins', 'api',
-    ($rootScope, $scope, $stateParams, $ionicHistory, $timeout, $sce, $translate, navigation, modal, plugins, api) ->
+    '$rootScope', '$scope', '$stateParams', '$ionicHistory', '$timeout', '$sce', '$translate',
+    'navigation', 'modal', 'plugins', 'api', 'CacheFactory',
+    ($rootScope, $scope, $stateParams, $ionicHistory, $timeout, $sce, $translate, navigation, modal, plugins, api, CacheFactory) ->
         $scope.loading = false
         $scope.alreadyAddFavorites = false
+
+        if not CacheFactory.get('ebooksCache')
+            CacheFactory.createCache('ebooksCache')
+        ebooksCache = CacheFactory.get('ebooksCache')
 
         yearmonth = $stateParams.yearmonth
         catalog_id = $stateParams.catalog_id
@@ -28,6 +33,7 @@ module.exports = [
             modal.showLoading '', 'message.processing'
 
             onSuccess = (response) ->
+                addToFavoriteCache ebook
                 $scope.alreadyAddFavorites = true
                 modal.hideLoading()
                 $translate('message.success_to_add_favorite_ebook').then (text) ->
@@ -41,6 +47,7 @@ module.exports = [
             modal.showLoading '', 'message.processing'
 
             onSuccess = () ->
+                deleteFromFavoriteCache ebook
                 $scope.alreadyAddFavorites = false
                 modal.hideLoading()
 
@@ -52,21 +59,31 @@ module.exports = [
 
             api.deleteFavoriteEbook(ebook.yearmonth, ebook.catalog, onSuccess, onError)
 
+        addToFavoriteCache = (ebook) ->
+            ebooks_favorite_in_cache = ebooksCache.get('favorite') || []
+            ebooks_favorite_in_cache.push ebook
+
+            ebooksCache.put 'favorite', ebooks_favorite_in_cache
+
+        deleteFromFavoriteCache = (ebook) ->
+            ebooks_favorite_in_cache = ebooksCache.get('favorite') || []
+            index = _.findIndex(ebooks_favorite_in_cache, { yearmonth: ebook.yearmonth, catalog: ebook.catalog })
+            if index > -1
+                ebooks_favorite_in_cache.splice index, 1
+            ebooksCache.put 'favorite', ebooks_favorite_in_cache
+
         loadCatalogEbook = (yearmonth, catalog_id) ->
-            # $scope.alreadyAddFavorites
+            cache_key = "ebook-#{yearmonth}-#{catalog_id}"
+            ebook_info_in_cache = ebooksCache.get cache_key
+
             index = _.findIndex($rootScope.ebook_favorites, { yearmonth: yearmonth, catalog: catalog_id })
             $scope.alreadyAddFavorites = (index > -1)
-            modal.showLoading '', 'message.data_loading'
 
-            onSuccess = (response) ->
-                $scope.ebook = response
-
-                $scope.ebook.safe_intro = $sce.trustAsHtml($scope.ebook.intro)
-                $scope.ebook.safe_context = $sce.trustAsHtml($scope.ebook.context)
-                $scope.ebook.safe_html = $sce.trustAsHtml($scope.ebook.html)
+            loadEbookInfo = (ebook) ->
+                $scope.ebook = ebook
 
                 $iframe = $(document.getElementById('iframe'))
-                $iframe.contents().find('html').html($scope.ebook.html)
+                $iframe.contents().find('html').html(ebook.html)
 
                 loopTimes = 0
                 timeoutInterval = 100
@@ -91,16 +108,25 @@ module.exports = [
 
                 autoHeight(5)
 
+            onSuccess = (response) ->
+                ebooksCache.put cache_key, response
+                loadEbookInfo response
                 modal.hideLoading()
             onError = () ->
                 modal.hideLoading()
 
-            api.getCatalogEbook yearmonth, catalog_id, onSuccess, onError
+            if ebook_info_in_cache
+                $timeout ->
+                    loadEbookInfo ebook_info_in_cache
+                , 500
+            else
+                modal.showLoading '', 'message.data_loading'
+                api.getCatalogEbook yearmonth, catalog_id, onSuccess, onError
 
         $scope.$on('$ionicView.enter', (evt, data) ->
             $scope.loading = true
 
-            loadCatalogEbook(yearmonth, catalog_id)
+            loadCatalogEbook yearmonth, catalog_id
 
             $scope.loading = false
 

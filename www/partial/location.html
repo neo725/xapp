@@ -14,6 +14,10 @@
         <h1 class="title">交通資訊</h1>
     </ion-nav-title>
     <ion-content>
+        <ion-refresher
+            pulling-text="{{ '下拉更新...' }}"
+            on-refresh="doRefresh()">
+        </ion-refresher>
         <div class="card location-card-container" ng-repeat="location in locations" ng-init="item = getLocationItem(location.name)">
             <div class="header-map-img">
                 <div class="row">

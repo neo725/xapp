@@ -18,6 +18,10 @@
             <ion-tab class="tab-active-1" title="{{ '最新內容' }}" badge="0" badge-style="badge-assertive">
                 <ion-nav-view name="tab-tab1">
                     <ion-content>
+                        <ion-refresher
+                            pulling-text="{{ '下拉更新...' }}"
+                            on-refresh="doRefreshCurrent()">
+                        </ion-refresher>
                         <div class="intro">
                             <div class="image-block" ng-if="intro.imgurl">
                                 <img ng-src="{{ intro.imgurl }}" />
@@ -49,6 +53,10 @@
             <ion-tab class="tab-active-2" title="{{ '專題分類' }}" badge="0" badge-style="badge-assertive">
                 <ion-nav-view name="tab-tab2">
                     <ion-content>
+                        <ion-refresher
+                            pulling-text="{{ '下拉更新...' }}"
+                            on-refresh="doRefreshCatalog()">
+                        </ion-refresher>
                         <div class="group-list" ng-repeat="catalog in catalogs">
                             <div class="item">
                                 <span class="group-title">{{ catalog.catalog_name }}</span>
@@ -71,6 +79,10 @@
             <ion-tab class="tab-active-3" title="{{ '我的收藏' }}" badge="0" badge-style="badge-assertive">
                 <ion-nav-view name="tab-tab3">
                     <ion-content class="tab-tab3">
+                        <ion-refresher
+                            pulling-text="{{ '下拉更新...' }}"
+                            on-refresh="doRefreshFavorite()">
+                        </ion-refresher>
                         <ion-list ng-show="loading == false && favorites.length > 0">
                             <ion-item ng-repeat="article in favorites"
                                       class="item-remove-animate"

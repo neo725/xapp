@@ -1,10 +1,14 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$translate', '$timeout', 'navigation', 'modal', 'plugins', 'api',
-    ($rootScope, $scope, $ionicHistory, $translate, $timeout, navigation, modal, plugins, api) ->
+    '$rootScope', '$scope', '$ionicHistory', '$translate', '$timeout', 'navigation', 'modal', 'plugins', 'api', 'CacheFactory',
+    ($rootScope, $scope, $ionicHistory, $translate, $timeout, navigation, modal, plugins, api, CacheFactory) ->
         $scope.loading = true
         $scope.intro = {}
         $scope.favorites = []
         $scope.active = false
+
+        if not CacheFactory.get('ebooksCache')
+            CacheFactory.createCache('ebooksCache')
+        ebooksCache = CacheFactory.get('ebooksCache')
 
         $scope.goBack = () ->
             if not $scope.active
@@ -48,11 +52,22 @@ module.exports = [
 
             api.deleteFavoriteEbook(para.apply, para.catalog_id, onSuccess, onError)
 
-        loadEbookIntro = () ->
-            modal.showLoading('', 'message.data_loading')
+        $scope.doRefreshCurrent = () ->
+            loadEbookIntro(true)
+            loadCurrentEbooks(true)
+
+        $scope.doRefreshCatalog = () ->
+            loadCatalogEbooks(1, 5, true)
+
+        $scope.doRefreshFavorite = () ->
+            loadFavoriteEbooks(1, 500, true)
+
+        loadEbookIntro = (forceReload) ->
+            ebooks_intro_in_cache = ebooksCache.get('intro')
 
             onSuccess = (response) ->
                 modal.hideLoading()
+                ebooksCache.put 'intro', response
                 $scope.intro =
                     title: response.title
                     imgurl: response.imgurl
@@ -60,32 +75,56 @@ module.exports = [
             onError = () ->
                 modal.hideLoading()
 
-            api.getEbookIntro(onSuccess, onError)
+            if ebooks_intro_in_cache and not forceReload
+                $scope.intro = ebooks_intro_in_cache
+            else
+                modal.showLoading('', 'message.data_loading')
+                api.getEbookIntro(onSuccess, onError)
 
-        loadCurrentEbook = () ->
-            modal.showLoading('', 'message.data_loading')
+        loadCurrentEbooks = (forceReload) ->
+            ebooks_current_in_cache = ebooksCache.get('current')
 
             onSuccess = (response) ->
                 modal.hideLoading()
+                $scope.$broadcast('scroll.refreshComplete')
+                ebooksCache.put 'current', response.list
                 $scope.ebooks = response.list
             onError = () ->
                 modal.hideLoading()
 
-            api.getCurrentEbooks(onSuccess, onError)
+            if ebooks_current_in_cache and not forceReload
+                $scope.ebooks = ebooks_current_in_cache
+            else
+                modal.showLoading('', 'message.data_loading')
+                api.getCurrentEbooks(onSuccess, onError)
 
-        loadCatalogEbooks = (page, perpage) ->
-            modal.showLoading('', 'message.data_loading')
+        loadCatalogEbooks = (page, perpage, forceReload) ->
+            ebooks_catalog_in_cache = ebooksCache.get('catalog')
 
             onSuccess = (response) ->
                 modal.hideLoading()
+                $scope.$broadcast('scroll.refreshComplete')
+                ebooksCache.put 'catalog', response.list
                 $scope.catalogs = response.list
             onError = () ->
                 modal.hideLoading()
 
-            api.getCatalogEbooks(page, perpage, onSuccess, onError)
+            if ebooks_catalog_in_cache and not forceReload
+                $scope.catalogs = ebooks_catalog_in_cache
+            else
+                modal.showLoading('', 'message.data_loading')
+                api.getCatalogEbooks(page, perpage, onSuccess, onError)
 
-        loadFavoriteEbooks = (page, perpage) ->
-            modal.showLoading '', 'message.data_loading'
+        loadFavoriteEbooks = (page, perpage, forceReload) ->
+            ebooks_favorite_in_cache = ebooksCache.get('favorite')
+
+            updateFavoritesMap = (favorites) ->
+                $rootScope.ebook_favorites = _.map(favorites, (item) ->
+                    return {
+                        yearmonth: item.yearmonth
+                        catalog: item.catalog
+                    }
+                )
 
             onSuccess = (response) ->
                 $timeout ->
@@ -93,21 +132,23 @@ module.exports = [
                 , 500
                 modal.hideLoading()
                 $scope.favorites = response.list
+                ebooksCache.put 'favorite', response.list
 
-                $rootScope.ebook_favorites = _.map($scope.favorites, (item) ->
-                    return {
-                        yearmonth: item.yearmonth
-                        catalog: item.catalog
-                    }
-                )
+                updateFavoritesMap $scope.favorites
 
             onError = () ->
                 modal.hideLoading()
 
-            api.getMyFavoriteEbooks(page, perpage, onSuccess, onError)
+            if ebooks_favorite_in_cache and not forceReload
+                $scope.favorites = ebooks_favorite_in_cache
+                updateFavoritesMap ebooks_favorite_in_cache
+                $scope.loading = false
+            else
+                modal.showLoading '', 'message.data_loading'
+                api.getMyFavoriteEbooks(page, perpage, onSuccess, onError)
 
         loadEbookIntro()
-        loadCurrentEbook()
+        loadCurrentEbooks()
         loadCatalogEbooks(1, 5)
         $scope.$on('$ionicView.enter', ->
             loadFavoriteEbooks(1, 500)
