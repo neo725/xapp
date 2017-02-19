@@ -1,13 +1,18 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$translate', '$timeout', 'navigation', 'modal', 'plugins', 'api', 'CacheFactory',
-    ($rootScope, $scope, $ionicHistory, $translate, $timeout, navigation, modal, plugins, api, CacheFactory) ->
+    '$rootScope', '$scope', '$ionicHistory', '$translate', '$timeout',
+    'navigation', 'modal', 'plugins', 'api', 'CacheFactory', 'util',
+    ($rootScope, $scope, $ionicHistory, $translate, $timeout, navigation, modal, plugins, api, CacheFactory, util) ->
         $scope.loading = true
         $scope.intro = {}
         $scope.favorites = []
         $scope.active = false
 
         if not CacheFactory.get('ebooksCache')
-            CacheFactory.createCache('ebooksCache')
+            maxAge = util.getCacheMaxAge 23, 59, 59
+            opts =
+                maxAge: maxAge
+                deleteOnExpire: 'aggressive'
+            CacheFactory.createCache('ebooksCache', opts)
         ebooksCache = CacheFactory.get('ebooksCache')
 
         $scope.goBack = () ->
@@ -39,8 +44,7 @@ module.exports = [
 
             modal.showLoading '', 'message.processing'
 
-            onSuccess = (response) ->
-                #console.log response
+            onSuccess = () ->
                 modal.hideLoading()
                 $translate('message.success_to_delete_favorite_ebook').then (text) ->
                     plugins.toast.show(text, 'long', 'top')

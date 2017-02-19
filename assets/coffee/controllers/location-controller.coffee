@@ -6,7 +6,10 @@ module.exports = [
         $scope.active = false
 
         if not CacheFactory.get('locationsCache')
-            CacheFactory.createCache('locationsCache')
+            opts =
+                maxAge: 24 * 60 * 60 * 1000
+                deleteOnExpire: 'aggressive'
+            CacheFactory.createCache('locationsCache', opts)
         locationsCache = CacheFactory.get('locationsCache')
 
         $scope.goBack = ->
@@ -91,7 +94,7 @@ module.exports = [
 
         loadLocation = (forceReload) ->
             today_weekday = moment(moment().valueOf()).locale("zh-TW").format("dd")
-            locations_intro_in_cache = locationsCache.get('all')
+            locations_all_in_cache = locationsCache.get('all')
 
             onSuccess = (response) ->
                 $scope.$broadcast('scroll.refreshComplete')
@@ -115,8 +118,8 @@ module.exports = [
             onError = () ->
                 modal.hideLoading()
 
-            if locations_intro_in_cache and not forceReload
-                $scope.locations = locations_intro_in_cache
+            if locations_all_in_cache and not forceReload
+                $scope.locations = locations_all_in_cache
             else
                 modal.showLoading('', 'message.data_loading')
                 api.getLocations(onSuccess, onError)

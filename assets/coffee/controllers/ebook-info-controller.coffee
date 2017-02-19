@@ -6,7 +6,11 @@ module.exports = [
         $scope.alreadyAddFavorites = false
 
         if not CacheFactory.get('ebooksCache')
-            CacheFactory.createCache('ebooksCache')
+            maxAge = util.getCacheMaxAge 23, 59, 59
+            opts =
+                maxAge: maxAge
+                deleteOnExpire: 'aggressive'
+            CacheFactory.createCache('ebooksCache', opts)
         ebooksCache = CacheFactory.get('ebooksCache')
 
         yearmonth = $stateParams.yearmonth

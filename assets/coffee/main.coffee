@@ -62,6 +62,11 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('EbookInfoController', require('./controllers/ebook-info-controller'))
 .controller('LocationController', require('./controllers/location-controller'))
 .controller('LocationMapController', require('./controllers/location-map-controller'))
+.run(require('./common/platform-ready'))
+.config(['$translateProvider', ($translateProvider) ->
+    for language of resources
+        $translateProvider.translations(language, resources[language])
+])
 .config(['$httpProvider', ($httpProvider) ->
     $httpProvider.defaults.useXDomain = true
     delete $httpProvider.defaults.headers.common['X-Requested-With']
@@ -71,7 +76,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 
     $httpProvider.interceptors.push(httpInterceptors.apiInterceptor)
 ])
-.config(($ionicConfigProvider) ->
+.config(['$ionicConfigProvider', ($ionicConfigProvider) ->
     ## http://ionicframework.com/docs/api/provider/$ionicConfigProvider/
     #$ionicConfigProvider.views.maxCache(0)
     ## views.transition(transition)
@@ -85,8 +90,8 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 
     # http://scottbolinger.com/4-ways-to-make-your-ionic-app-feel-native/
     $ionicConfigProvider.scrolling.jsScrolling(false)
-)
-.config(($ionicNativeTransitionsProvider) ->
+])
+.config(['$ionicNativeTransitionsProvider', ($ionicNativeTransitionsProvider) ->
     $ionicNativeTransitionsProvider.enable true
     #$ionicNativeTransitionsProvider.enable false
 
@@ -103,8 +108,13 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
     }
 
     $ionicNativeTransitionsProvider.setDefaultOptions options
-)
-.config(($stateProvider, $urlRouterProvider) ->
+])
+.config(['CacheFactoryProvider', (CacheFactoryProvider) ->
+    angular.extend(CacheFactoryProvider.defaults,
+        storageMode: 'localStorage'
+    )
+])
+.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
 
     $stateProvider
 
@@ -434,9 +444,4 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         $urlRouterProvider.otherwise "/login"
     else
         $urlRouterProvider.otherwise '/home/dashboard'
-)
-.config(($translateProvider) ->
-    for language of resources
-        $translateProvider.translations(language, resources[language])
-)
-.run(require('./common/platform-ready'))
+])

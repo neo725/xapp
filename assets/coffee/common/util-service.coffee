@@ -1,4 +1,4 @@
-module.exports = ->
+module.exports = ['$log', ($log) ->
     checkCardType = (number) ->
         patternVisa = /^4\d{0,3}$/g
         patternMaster = /^5[1-5]\d{0,2}$/g
@@ -21,8 +21,26 @@ module.exports = ->
         position = position || 0
         return string.substr(position, searchString.length) == searchString
 
+    getCacheMaxAge = (hour, minute, second = 0) ->
+        getSeconds = (hour, minute, second) ->
+            return (hour * 60 * 60 * 1000) + (minute * 60 * 1000) + (second * 1000)
+        timeEnd = new Date()
+        timeNow = new Date()
+
+        day = timeNow.getDate()
+
+        if getSeconds hour, minute < getSeconds timeNow.getHours(), timeNow.getMinutes()
+            timeEnd.setDate day + 1
+        timeEnd.setHours hour
+        timeEnd.setMinutes minute
+        timeEnd.setSeconds second
+
+        return timeEnd.getTime() - timeNow.getTime()
+
     return {
         checkCardType: checkCardType
         pad: pad
         startsWith: startsWith
+        getCacheMaxAge: getCacheMaxAge
     }
+]

@@ -2,8 +2,17 @@ constants = require('../common/constants')
 
 module.exports = [
     '$rootScope', '$scope', '$ionicSlideBoxDelegate', '$ionicModal', '$timeout', '$log',
-    'api', 'modal', 'navigation', 'user',
-    ($rootScope, $scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, $log, api, modal, navigation, user) ->
+    'api', 'modal', 'navigation', 'user', 'CacheFactory', 'util',
+    ($rootScope, $scope, $ionicSlideBoxDelegate, $ionicModal, $timeout, $log, api, modal, navigation, user, CacheFactory, util) ->
+
+        if not CacheFactory.get('searchslideCache')
+            maxAge = util.getCacheMaxAge 23, 59, 59
+            opts =
+                maxAge: maxAge
+                deleteOnExpire: 'aggressive'
+            CacheFactory.createCache('searchslideCache', opts)
+        searchslideCache = CacheFactory.get('searchslideCache')
+
         parseSlideList = (list) ->
             _.forEach(list, (cover) ->
                 if (cover.location.indexOf('不拘') != -1)
@@ -17,15 +26,12 @@ module.exports = [
 
             $log.info '[** SearchSlide **] >> loadSearchSlide()......'
 
-            onSuccess = (response) ->
-                if showLoading
-                    modal.hideLoading()
-                $log.warn '[** SearchSlide **] >> $(".search-slides").show() ......'
-                $log.info $('.search-slides')
-                $('.search-slides').show()
+            searchslide_in_cache = searchslideCache.get('all')
 
-                list = parseSlideList(response.list)
-                $scope.covers = list
+            load = (list) ->
+                $('.search-slides').show()
+                
+                $scope.covers = parseSlideList(list)
                 $rootScope.loadSearchSlide = false
 
                 $timeout(->
@@ -36,13 +42,22 @@ module.exports = [
                 $rootScope.loadCart()
                 $rootScope.loadWish()
 
+            onSuccess = (response) ->
+                if showLoading
+                    modal.hideLoading()
+                searchslideCache.put 'all', response.list
+                load response.list
+
             onError = () ->
                 if showLoading
                     modal.hideLoading()
 
-            if showLoading
-                modal.showLoading '', 'message.loading_cover'
-            api.getCover(onSuccess, onError)
+            if searchslide_in_cache
+                load searchslide_in_cache
+            else
+                if showLoading
+                    modal.showLoading '', 'message.loading_cover'
+                api.getCover(onSuccess, onError)
 
         $('.search-slides').hide()
 

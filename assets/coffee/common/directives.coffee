@@ -188,6 +188,11 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
         $slider = $element.find('.search-slide-box')
 
         adjustHeight = () ->
+            if $element.length == 0
+                $timeout () ->
+                    adjustHeight()
+                , 1000
+                return
             height = $window.innerHeight - ($element.position().top + $tab.outerHeight())
             $log.info 'directive >>> searchSlideFit >>> height : ' + height
             $slider.css('height', height + 'px')

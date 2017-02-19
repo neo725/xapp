@@ -5,7 +5,10 @@ module.exports = [
         choiceCatalogs = []
 
         if not CacheFactory.get('catalogsCache')
-            CacheFactory.createCache('catalogsCache')
+            opts =
+                maxAge: 7 * 24 * 60 * 60 * 1000
+                deleteOnExpire: 'aggressive'
+            CacheFactory.createCache('catalogsCache', opts)
         catalogsCache = CacheFactory.get('catalogsCache')
 
         $scope.goBack = ->
@@ -16,19 +19,9 @@ module.exports = [
             $scope.mode = 'Setting'
 
         $scope.saveSetting = ->
-            updateUserCatalogs = (all_catalogs, new_user_catalogs) ->
-                $scope.user_catalogs = []
-                _.forEach(new_user_catalogs, (catalog_id) ->
-                    index = _.findIndex(all_catalogs, { 'Cata_Id': catalog_id })
-                    if index > -1
-                        $scope.user_catalogs.push all_catalogs[index]
-                )
-                $scope.user_catalogs = _.orderBy($scope.user_catalogs, ['order'], ['asc'])
-                catalogsCache.put 'user', $scope.user_catalogs
-
             onSuccess = () ->
                 $scope.mode = 'List'
-                updateUserCatalogs $scope.catalogs, choiceCatalogs
+                catalogsCache.removeAll()
                 loadAllCatalogs('MS')
             onError = (->)
 
@@ -97,10 +90,6 @@ module.exports = [
 
             onSuccess = (response) ->
                 $scope.catalogs = response.list
-                i = 0
-                _.forEach($scope.catalogs, (catalog) ->
-                    catalog.order = i++
-                )
                 catalogsCache.put 'all', $scope.catalogs
 
                 modal.hideLoading()
