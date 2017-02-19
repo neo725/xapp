@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'api',
-    ($rootScope, $scope, $ionicHistory, $log, navigation, api) ->
+    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'api', 'CacheFactory',
+    ($rootScope, $scope, $ionicHistory, $log, navigation, api, CacheFactory) ->
         $log.info 'HomeController in'
 
         checkLoginState = () ->
@@ -22,13 +22,10 @@ module.exports = [
         $rootScope.logout = ->
             logout = () ->
                 onSuccess = ->
-                    #console.log $rootScope.modalFunction
                     $rootScope.loadStudycardSlide = true
                     $rootScope.loadSearchSlide = true
 
-                    window.localStorage.removeItem("token")
-                    window.localStorage.removeItem("is_guest")
-                    window.localStorage.removeItem("avatar")
+                    window.localStorage.clear()
 
                     delete $rootScope['cart']
                     delete $rootScope['wish']
@@ -49,7 +46,10 @@ module.exports = [
                 onError = (->)
 
                 token = window.localStorage.getItem('device_token')
-                api.deleteDeviceToken token, onSuccess, onError
+                if token == null
+                    func()
+                else
+                    api.deleteDeviceToken token, onSuccess, onError
 
             deleteDeviceToken(logout)
 
