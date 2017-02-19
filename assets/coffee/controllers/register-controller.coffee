@@ -1,17 +1,19 @@
 module.exports = [
     '$rootScope', '$scope', '$state', '$translate', 'navigation', 'modal', 'api', 'plugins'
     ($rootScope, $scope, $state, $translate, navigation, modal, api, plugins) ->
-        $scope.user = {
-            name: 'Neo Chang'
-            account: 'neochang'
-            email: 'neo725@gmail.com'
-            email_confirm: 'neo725@gmail.com'
-            password: '1234'
-            password_confirm: '1234'
-            mobile: '0986-716-086'
-        }
+#        $scope.user = {
+#            name: 'Neo Chang'
+#            account: 'neochang'
+#            email: 'neo725@gmail.com'
+#            email_confirm: 'neo725@gmail.com'
+#            password: '1234'
+#            password_confirm: '1234'
+#            mobile: '0986-716-086'
+#        }
+        $scope.user = {}
 
-        $scope.goBack = () ->
+        $scope.goBack = ($event) ->
+            $event.preventDefault()
             navigation.slide 'login', {}, 'right'
 
         $scope.submitForm = (form) ->
