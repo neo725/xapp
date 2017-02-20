@@ -65,6 +65,7 @@ module.exports = ->
         'verifying': '驗證中...'
         'password_saved': '密碼設定完成'
         'course_cant_buy': '此課程目前無法購買'
+        'sure_to_exit_app': '確定要離開大學聯網?'
     }
     'tab': {
         'payed': '已繳費'
@@ -91,4 +92,5 @@ module.exports = ->
         'member_password_edit': '密碼設定'
         'payment_list': '付款設定'
         'wish_list': '許願單'
+        'exit_app': '即將離開大學聯網'
     }

@@ -63,6 +63,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('LocationController', require('./controllers/location-controller'))
 .controller('LocationMapController', require('./controllers/location-map-controller'))
 .run(require('./common/platform-ready'))
+.run(require('./common/platform-exit'))
 .config(['$translateProvider', ($translateProvider) ->
     for language of resources
         $translateProvider.translations(language, resources[language])

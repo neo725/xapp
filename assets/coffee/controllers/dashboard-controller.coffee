@@ -1,7 +1,7 @@
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicPlatform', '$window', '$timeout', '$log', 'modal', 'navigation',
-    ($rootScope, $scope, $ionicPlatform, $window, $timeout, $log, modal, navigation) ->
+    '$rootScope', '$scope', '$ionicPlatform', '$window', '$timeout', '$log', '$translate', 'modal', 'navigation', 'plugins',
+    ($rootScope, $scope, $ionicPlatform, $window, $timeout, $log, $translate, modal, navigation, plugins) ->
         modal.hideLoading()
 
         #$rootScope.loadSearchSlide = false
