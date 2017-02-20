@@ -29,15 +29,14 @@ module.exports = [
             navigation.slide 'home.member.message-info', params, 'left'
 
         $scope.toggleVisible = (type) ->
-            count = $scope[type + '_count']
-            #console.log $scope['list_' + type]
+            count = $scope["#{type}_count"]
 
-            if count == 5
-                count = $scope['list_' + type].length
+            if count <= 5
+                count = $scope["list_#{type}"].length
             else
                 count = 5
 
-            $scope[type + '_count'] = count
+            $scope["#{type}_count"] = count
 
         # message type :
         # promo/course/order
@@ -47,8 +46,11 @@ module.exports = [
 
             onSuccess = (response) ->
                 modal.hideLoading()
-                $scope['list_' + type] = response.list
-                $scope[type + '_count'] = 5
+                $scope["list_#{type}"] = response.list
+                if response.list.length < 5
+                    $scope["#{type}_count"] = response.list.length
+                else
+                    $scope["#{type}_count"] = 5
             onError = () ->
                 modal.hideLoading()
 

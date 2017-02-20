@@ -32,15 +32,18 @@
 
                     .progress-value {
                         position: absolute;
-                        left: 28px;
+                        //left: 28px;
+                        //top: 18px;
+                        left: 0;
                         top: 18px;
+                        width: 120px;
 
                         font-size: $text-size-medium + 30;
                         color: $positive;
 
-                        &.percent-100 {
-                            left: 22px;
-                        }
+                        //&.percent-100 {
+                        //    left: 22px;
+                        //}
 
                         .progress-text-percent-value {
                             position: relative;

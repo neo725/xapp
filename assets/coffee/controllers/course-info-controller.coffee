@@ -99,9 +99,12 @@ module.exports = [
                         return time_part[1]
             return ''
 
-        $scope.parseHTML = (str) ->
+        $scope.parseHTML = (str, targetClass) ->
+            $this = $(".card-container > #{targetClass}")
             if str
+                $this.show()
                 return str.replace(/(?:\r\n|\r|\n)/g, '<br />')
+            $this.hide()
             return str
 
         $scope.showPriceModal = () ->

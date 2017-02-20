@@ -82,46 +82,46 @@
                 </div>
             </div>
             <div class="card-container shadow-inline-top">
-                <div class="card">
+                <div class="card intro">
                     <div class="item item-text-wrap">
                         <div class="title">課程介紹</div>
-                        <div class="content" ng-bind-html="parseHTML(desc.Intro)"></div>
+                        <div class="content" ng-bind-html="parseHTML(desc.Intro, '.card.intro')"></div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card content">
                     <div class="item item-text-wrap">
                         <div class="title">教學內容</div>
-                        <div class="content" ng-bind-html="parseHTML(desc.Content)"></div>
+                        <div class="content" ng-bind-html="parseHTML(desc.Content, '.card.content')"></div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card sirmemo">
                     <div class="item item-text-wrap">
                         <div class="title">師資說明</div>
-                        <div class="content" ng-bind-html="parseHTML(desc.SirMemo)"></div>
+                        <div class="content" ng-bind-html="parseHTML(desc.SirMemo, '.card.sirmemo')"></div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card target">
                     <div class="item item-text-wrap">
                         <div class="title">適合對象</div>
-                        <div class="content" ng-bind-html="parseHTML(desc.Target)"></div>
+                        <div class="content" ng-bind-html="parseHTML(desc.Target, '.card.target')"></div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card qualification">
                     <div class="item item-text-wrap">
                         <div class="title">報名資格</div>
-                        <div class="content" ng-bind-html="parseHTML(desc.Qualification)"></div>
+                        <div class="content" ng-bind-html="parseHTML(desc.Qualification, '.card.qualification')"></div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card benefits">
                     <div class="item item-text-wrap">
                         <div class="title">優惠 / 其他</div>
-                        <div class="content" ng-bind-html="parseHTML(desc.Benefits)"></div>
+                        <div class="content" ng-bind-html="parseHTML(desc.Benefits, '.card.benefits')"></div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card memo">
                     <div class="item item-text-wrap">
                         <div class="title">備註說明</div>
-                        <div class="content" ng-bind-html="parseHTML(desc.Memo)"></div>
+                        <div class="content" ng-bind-html="parseHTML(desc.Memo, '.card.memo')"></div>
                     </div>
                 </div>
             </div>

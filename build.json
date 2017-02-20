@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "sceapp.keystore",
+            "storePassword": "27005858",
+            "alias": "sceapp",
+            "password" : "27005858",
+            "keystoreType": ""
+        },
+        "release": {
+            "keystore": "sceapp.keystore",
+            "storePassword": "27005858",
+            "alias": "sceapp",
+            "password" : "27005858",
+            "keystoreType": ""
+        }
+    }
+}

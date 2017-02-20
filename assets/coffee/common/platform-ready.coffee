@@ -1,8 +1,8 @@
 module.exports = ['$ionicPlatform', '$timeout', ($ionicPlatform, $timeout) ->
     $ionicPlatform.ready () ->
         if window.cordova and window.cordova.plugins.Keyboard
-# Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-# for form inputs)
+            # Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+            # for form inputs)
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar true
 
             # Don't remove this line unless you know what you are doing. It stops the viewport
