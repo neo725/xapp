@@ -1,0 +1,21 @@
+.loading-container {
+    .loading {
+        /*background-color: rgba(231, 231, 231, 0.9);*/
+        background-color: rgba(231, 231, 231, 1);
+        padding: 7px;
+        width: 38px;
+        height: 38px;
+        border-radius: 38px;
+        /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+        -webkit-box-shadow: 0 0 15px #000000;
+        -moz-box-shadow: 0 0 15px #000000;
+        box-shadow: 0 0 8px #666666;
+
+        .spinner svg {
+            width: 24px;
+            height: 24px;
+            stroke: #444;
+            fill: #444;
+        }
+    }
+}
