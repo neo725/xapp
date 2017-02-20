@@ -120,13 +120,19 @@ module.exports = [
                         values.push i + ' 元'
                     i += 500
 
-                #range = $('.modal-backdrop.active #wish-price-range')
-                #range.removeData('ionRangeSlider')
-                $('#wish-price-range').ionRangeSlider(
-                    type: 'double'
-                    values: values
-                )
-                #$scope.wish.range = range
+                doSetRangeSlider = (values) ->
+                    $range = $('#wish-price-range')
+                    if $range.length == 0
+                        $timeout(->
+                            doSetRangeSlider values
+                        , 100)
+                        return
+                    $('#wish-price-range').ionRangeSlider(
+                        type: 'double'
+                        values: values
+                    )
+
+                doSetRangeSlider values
             , 100)
 
             return true
@@ -147,17 +153,26 @@ module.exports = [
             $('.popover-condition').addClass('large')
 
             $timeout(->
-                $('#price-range').ionRangeSlider(
-                    min: 0
-                    max: 50000
-                    from: 0
-                    to: 50000
-                    type: 'double'
-                    prefix: "$"
-                    grid: false
-                    grid_num: 10
-                    step: 1000
-                )
+                doSetRangeSlider = () ->
+                    $range = $('#price-range')
+                    if $range.length == 0
+                        $timeout(->
+                            doSetRangeSlider()
+                        , 100)
+                        return
+                    $('#price-range').ionRangeSlider(
+                        min: 0
+                        max: 50000
+                        from: 0
+                        to: 50000
+                        type: 'double'
+                        prefix: "$"
+                        grid: false
+                        grid_num: 10
+                        step: 1000
+                    )
+
+                doSetRangeSlider()
             , 100)
 
         $scope.toggleLocation = (value) ->
@@ -400,30 +415,31 @@ module.exports = [
                 navigation.slide 'home.dashboard', {}, 'right'
                 return
 
-            if backView.stateName == 'home.dashboard'
-                #weekdays = _.join(JSON.parse(window.localStorage.getItem('weekdays'), ','))
-                #locations = _.join(JSON.parse(window.localStorage.getItem('locations'), ','))
+#            if backView.stateName == 'home.dashboard'
+            #weekdays = _.join(JSON.parse(window.localStorage.getItem('weekdays'), ','))
+            #locations = _.join(JSON.parse(window.localStorage.getItem('locations'), ','))
 
-                data =
-                    'page': page
-                    'perpage': pagesize
-                    'query': keyword
-                    'wday': _.join($scope.filter.weekday, ',')
-                    'loc': _.join($scope.filter.location, ',')
-                    'order': $scope.order
-                if $scope.filter.lmoney
-                    data.lmoney = $scope.filter.lmoney
-                if $scope.filter.umoney || $scope.filter.umoney == 0
-                    data.umoney = $scope.filter.umoney
+            data =
+                'page': page
+                'perpage': pagesize
+                'query': keyword
+                'wday': _.join($scope.filter.weekday, ',')
+                'loc': _.join($scope.filter.location, ',')
+                'order': $scope.order
+            if $scope.filter.lmoney
+                data.lmoney = $scope.filter.lmoney
+            if $scope.filter.umoney || $scope.filter.umoney == 0
+                data.umoney = $scope.filter.umoney
 
             if backView.stateName == 'home.course.catalogs'
                 catalog = $rootScope.catalog
-                data =
-                    'page': page
-                    'perpage': pagesize
-                    'query': keyword
-                    'cata': catalog.catalog_id
-                    'order': $scope.order
+                data.cata = catalog.catalog_id
+#                data =
+#                    'page': page
+#                    'perpage': pagesize
+#                    'query': keyword
+#                    'cata': catalog.catalog_id
+#                    'order': $scope.order
 
             modal.showLoading '', 'message.searching'
             api.searchCourse(data, onSuccess, onError)
@@ -499,10 +515,11 @@ module.exports = [
                 delete $rootScope['favorite_changed']
 
             backView = $ionicHistory.backView()
-            if backView.stateName == 'home.dashboard'
-                $scope.option_visible = true
-            else
-                $scope.option_visible = false
+            $scope.option_visible = true
+#            if backView.stateName == 'home.dashboard'
+#                $scope.option_visible = true
+#            else
+#                $scope.option_visible = false
         )
 
         $scope.$on('modal.shown', ->
