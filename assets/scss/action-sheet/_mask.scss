@@ -1,0 +1,42 @@
+// The mask is a overlay that tries to occupy the entire screen
+// We animate the opacity to "dim" the page
+// We use width and height (0 to 100%) to "remove" the div from view as these
+// properties can be transitioned.
+.jbas-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 0%;
+  height: 0%;
+  background: rgba(0,0,0,0.4);
+
+}
+
+.jbas-mask--hidden {
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  // transition out the opacity
+  // transition out the height and width, but wait 0.3s (same time as opacity)
+  -webkit-transition: opacity 0.3s, height 0 0.3s, width 0 0.3s;
+  -moz-transition: opacity 0.3s, height 0 0.3s, width 0 0.3s;
+  -ms-transition: opacity 0.3s, height 0 0.3s, width 0 0.3s;
+  -o-transition: opacity 0.3s, height 0 0.3s, width 0 0.3s;
+  transition: opacity 0.3s, height 0 0.3s, width 0 0.3s;
+}
+
+.jbas-mask--revealed {
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+
+  // transition in the opacity
+  // transition in the height and width immediately
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -ms-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}

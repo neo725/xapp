@@ -1,0 +1,53 @@
+.jbas-sheet {
+  height: 100%;
+  z-index: 1001; 
+  background: #FCFBF0;
+  position:fixed;
+
+  width: 25%;
+
+  top: 0;
+  right: -100%;
+
+  -webkit-transition: right 0.3s;
+  -moz-transition: right 0.3s;
+  -ms-transition: right 0.3s;
+  -o-transition: right 0.3s;
+  transition: right 0.3s;
+}
+
+.jbas-sheet--hidden {
+  // If we set the right to -100% it guarantees sliding it out of view
+  // but may not play nicely with animation easing
+  right: -100%;
+}
+
+.jbas-sheet--revealed {
+  right: 0
+}
+
+.jbas-sheet__restrict-y {
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.jbas-sheet__restrict-x {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.jbas-sheet__close {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: -40px;
+  top: 0;
+}
+
+body.jbas-clipped {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}

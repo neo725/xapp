@@ -152,28 +152,26 @@ module.exports = [
         $scope.show_filter_tab = () ->
             $('.popover-condition').addClass('large')
 
-            $timeout(->
-                doSetRangeSlider = () ->
-                    $range = $('#price-range')
-                    if $range.length == 0
-                        $timeout(->
-                            doSetRangeSlider()
-                        , 100)
-                        return
-                    $('#price-range').ionRangeSlider(
-                        min: 0
-                        max: 50000
-                        from: 0
-                        to: 50000
-                        type: 'double'
-                        prefix: "$"
-                        grid: false
-                        grid_num: 10
-                        step: 1000
-                    )
+            doSetRangeSlider = () ->
+                $range = $('#price-range')
+                if $range.length == 0
+                    $timeout(->
+                        doSetRangeSlider()
+                    , 100)
+                    return
+                $('#price-range').ionRangeSlider(
+                    min: 0
+                    max: 50000
+                    from: 0
+                    to: 50000
+                    type: 'double'
+                    prefix: "$"
+                    grid: false
+                    grid_num: 10
+                    step: 1000
+                )
 
-                doSetRangeSlider()
-            , 100)
+            doSetRangeSlider()
 
         $scope.toggleLocation = (value) ->
             index = _.indexOf($scope.filter.location, value)
