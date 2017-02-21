@@ -180,7 +180,7 @@ exports.starRating = ->
 exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $log) ->
     restrict: 'A'
     link: (scope, element, attrs) ->
-        $log.info 'directive >>> searchSlideFit >>> in ......'
+        #$log.info 'directive >>> searchSlideFit >>> in ......'
         $element = $('.dashboard-pane-content')
         $guestSlides = $element.find('.guest-slides')
 
@@ -194,7 +194,7 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
                 , 1000
                 return
             height = $window.innerHeight - ($element.position().top + $tab.outerHeight())
-            $log.info 'directive >>> searchSlideFit >>> height : ' + height
+            #$log.info 'directive >>> searchSlideFit >>> height : ' + height
             $slider.css('height', height + 'px')
             if height < 0
                 $timeout () ->
@@ -208,4 +208,11 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
             , (value) ->
                 if value == 0
                     $slider.css('height', '')
+]
+
+exports.sceCutHeight = ['$log', ($log) ->
+    restrict: 'A'
+    link: (scope, element, attrs) ->
+        height = element.height() - parseInt(attrs.sceCutHeight)
+        element.height(height)
 ]

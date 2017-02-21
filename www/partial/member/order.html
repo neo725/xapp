@@ -17,167 +17,173 @@
         <ion-tabs class="tabs-light">
 
             <ion-tab class="tab-active-1" title="{{'tab.payed' | translate}}" badge="0" badge-style="badge-assertive">
-                <div class="tab-content">
-                    <div class="ticket" ng-repeat="order in payed_list" ng-init="main = order.orderMain">
-                        <div class="ticket-top"></div>
-                        <div class="item item-text-wrap">
-                            <div class="row header-row">
-                                <div class="col col-30 text-s-size">
-                                    <span class="bg-stable padding-3">{{ main.No }}</span></div>
-                                <div class="col text-right text-s-size">
-                                    <span class="bg-tab-color-1 text-white padding-3 action"
-                                          ng-click="wantRefunds($index, main.No, $event)"
-                                          ng-if="checkOrderStatus(main.Payway, 'refund')">
-                                        我要退費</span></div>
+                <div class="tab-content" sce-cut-height="49">
+                    <ion-scroll>
+                        <div class="ticket" ng-repeat="order in payed_list track by order.orderMain.No" ng-init="main = order.orderMain">
+                            <div class="ticket-top"></div>
+                            <div class="item item-text-wrap">
+                                <div class="row header-row">
+                                    <div class="col col-30 text-s-size">
+                                        <span class="bg-stable padding-3">{{ main.No }}</span></div>
+                                    <div class="col text-right text-s-size">
+                                        <span class="bg-tab-color-1 text-white padding-3 action"
+                                              ng-click="wantRefunds($index, main.No, $event)"
+                                              ng-if="checkOrderStatus(main.Payway, 'refund')">
+                                            我要退費</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-s-size text-light-gray">
+                                        {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
+                                </div>
+                                <div class="data-row-container">
+                                    <div class="row" ng-repeat="detail in order.orderDetail">
+                                        <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
+                                        <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col text-s-size text-light-gray">
-                                    {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
+                            <div class="ticket-mid"></div>
+                            <div class="item item-text-wrap">
+                                <div class="row price-block">
+                                    <div class="col col-66 text-positive">
+                                        <div class="image-mark"><img src="img/order-form-ss@2x.png" /></div>
+                                        <div class="payment-mark">{{ main.Payway }}</div>
+                                    </div>
+                                    <div class="col col-34 text-right price-mark">
+                                        NT<span class="price">{{ main.PayAmount | currency:"":0 }}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="data-row-container">
+                            <div class="ticket-bottom"></div>
+                        </div>
+                        <div class="empty-content-pane" ng-show="loading_1 == false && payed_list.length == 0">
+                            <div class="content text-center">
+                                <div class="logo">
+                                    <img src="img/empty-order.png" />
+                                </div>
+                                <div class="text">
+                                    {{ '目前沒有已繳費的紀錄' }}
+                                </div>
+                            </div>
+                        </div>
+                    </ion-scroll>
+                </div>
+            </ion-tab>
+
+            <ion-tab class="tab-active-2" title="{{'tab.wait_for_pay' | translate}}" badge="0" badge-style="badge-assertive">
+                <div class="tab-content" sce-cut-height="49">
+                    <ion-scroll>
+                        <div class="ticket" ng-repeat="order in waiting_list" ng-init="main = order.orderMain">
+                            <div class="ticket-top"></div>
+                            <div class="item item-text-wrap">
+                                <div class="row header-row">
+                                    <div class="col col-30 text-s-size">
+                                        <span class="bg-stable padding-3">{{ main.No }}</span></div>
+                                    <div class="col text-right text-s-size">
+                                        <span class="bg-tab-color-2-1 text-white padding-3 action"
+                                              ng-click="wantRePay($index, main.No, order.orderDetail, $event)"
+                                              ng-if="checkOrderStatus(main.Payway, 'repay')">
+                                            重新付款</span>
+                                        <span class="bg-tab-color-2-1 text-white padding-3 action"
+                                              ng-click="wantPayInfo($index, main.No, $event)"
+                                              ng-if="checkOrderStatus(main.Payway, 'info')">
+                                            繳費資訊</span>
+                                        <span class="bg-tab-color-2 text-white padding-3 action"
+                                              ng-click="wantCancel($index, main.No, $event)"
+                                              ng-if="checkOrderStatus(main.Payway, 'cancel')">
+                                            取消訂單</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-s-size text-light-gray">
+                                        {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
+                                </div>
                                 <div class="row" ng-repeat="detail in order.orderDetail">
                                     <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
                                     <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="ticket-mid"></div>
-                        <div class="item item-text-wrap">
-                            <div class="row price-block">
-                                <div class="col col-66 text-positive">
-                                    <div class="image-mark"><img src="img/order-form-ss@2x.png" /></div>
-                                    <div class="payment-mark">{{ main.Payway }}</div>
+                            <div class="ticket-mid"></div>
+                            <div class="item item-text-wrap">
+                                <div class="row price-block">
+                                    <div class="col col-66 text-assertive">
+                                        <div class="image-mark"><img src="img/order-form-st@2x.png" /></div>
+                                        <div class="payment-mark">{{ main.Payway }}</div>
+                                    </div>
+                                    <div class="col col-34 text-right price-mark">
+                                        NT<span class="price">{{ main.PayAmount | currency:"":0 }}</span>
+                                    </div>
                                 </div>
-                                <div class="col col-34 text-right price-mark">
-                                    NT<span class="price">{{ main.PayAmount | currency:"":0 }}</span>
+                            </div>
+                            <div class="ticket-bottom"></div>
+                        </div>
+                        <div class="empty-content-pane" ng-show="loading_2 == false && waiting_list.length == 0">
+                            <div class="content text-center">
+                                <div class="logo">
+                                    <img src="img/empty-order.png" />
                                 </div>
-                            </div>
-                        </div>
-                        <div class="ticket-bottom"></div>
-                    </div>
-                    <div class="empty-content-pane" ng-show="loading_1 == false && payed_list.length == 0">
-                        <div class="content text-center">
-                            <div class="logo">
-                                <img src="img/empty-order.png" />
-                            </div>
-                            <div class="text">
-                                {{ '目前沒有已繳費的紀錄' }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ion-tab>
-
-            <ion-tab class="tab-active-2" title="{{'tab.wait_for_pay' | translate}}" badge="0" badge-style="badge-assertive">
-                <div class="tab-content">
-                    <div class="ticket" ng-repeat="order in waiting_list" ng-init="main = order.orderMain">
-                        <div class="ticket-top"></div>
-                        <div class="item item-text-wrap">
-                            <div class="row header-row">
-                                <div class="col col-30 text-s-size">
-                                    <span class="bg-stable padding-3">{{ main.No }}</span></div>
-                                <div class="col text-right text-s-size">
-                                    <span class="bg-tab-color-2-1 text-white padding-3 action"
-                                          ng-click="wantRePay($index, main.No, order.orderDetail, $event)"
-                                          ng-if="checkOrderStatus(main.Payway, 'repay')">
-                                        重新付款</span>
-                                    <span class="bg-tab-color-2-1 text-white padding-3 action"
-                                          ng-click="wantPayInfo($index, main.No, $event)"
-                                          ng-if="checkOrderStatus(main.Payway, 'info')">
-                                        繳費資訊</span>
-                                    <span class="bg-tab-color-2 text-white padding-3 action"
-                                          ng-click="wantCancel($index, main.No, $event)"
-                                          ng-if="checkOrderStatus(main.Payway, 'cancel')">
-                                        取消訂單</span></div>
-                            </div>
-                            <div class="row">
-                                <div class="col text-s-size text-light-gray">
-                                    {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
-                            </div>
-                            <div class="row" ng-repeat="detail in order.orderDetail">
-                                <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
-                                <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
-                            </div>
-                        </div>
-                        <div class="ticket-mid"></div>
-                        <div class="item item-text-wrap">
-                            <div class="row price-block">
-                                <div class="col col-66 text-assertive">
-                                    <div class="image-mark"><img src="img/order-form-st@2x.png" /></div>
-                                    <div class="payment-mark">{{ main.Payway }}</div>
-                                </div>
-                                <div class="col col-34 text-right price-mark">
-                                    NT<span class="price">{{ main.PayAmount | currency:"":0 }}</span>
+                                <div class="text">
+                                    {{ '目前沒有待繳費的紀錄' }}
                                 </div>
                             </div>
                         </div>
-                        <div class="ticket-bottom"></div>
-                    </div>
-                    <div class="empty-content-pane" ng-show="loading_2 == false && waiting_list.length == 0">
-                        <div class="content text-center">
-                            <div class="logo">
-                                <img src="img/empty-order.png" />
-                            </div>
-                            <div class="text">
-                                {{ '目前沒有待繳費的紀錄' }}
-                            </div>
-                        </div>
-                    </div>
+                    </ion-scroll>
                 </div>
             </ion-tab>
 
             <ion-tab class="tab-active-3" title="{{'tab.return_pay' | translate}}" badge="0" badge-style="badge-assertive">
-                <div class="tab-content">
-                    <div class="ticket" ng-repeat="order in refund_list" ng-init="main = order.orderMain">
-                        <div class="ticket-top"></div>
-                        <div class="item item-text-wrap">
-                            <div class="row header-row">
-                                <div class="col text-s-size">
-                                    <span class="bg-stable padding-3">{{ main.No }}</span></div>
-                                <div class="col text-right text-s-size" ng-if="false">
-                                    <span class="bg-tab-color-2-1 text-white padding-3 action"
-                                          ng-click="wantRePay($index, main.No, $event)"
-                                          ng-if="checkOrderStatus(main.Payway, 'repay')">
-                                        重新付款</span>
+                <div class="tab-content" sce-cut-height="49">
+                    <ion-scroll>
+                        <div class="ticket" ng-repeat="order in refund_list" ng-init="main = order.orderMain">
+                            <div class="ticket-top"></div>
+                            <div class="item item-text-wrap">
+                                <div class="row header-row">
+                                    <div class="col text-s-size">
+                                        <span class="bg-stable padding-3">{{ main.No }}</span></div>
+                                    <div class="col text-right text-s-size" ng-if="false">
+                                        <span class="bg-tab-color-2-1 text-white padding-3 action"
+                                              ng-click="wantRePay($index, main.No, $event)"
+                                              ng-if="checkOrderStatus(main.Payway, 'repay')">
+                                            重新付款</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-s-size text-light-gray">
+                                        {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
+                                </div>
+                                <div class="row" ng-repeat="detail in order.orderDetail">
+                                    <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
+                                    <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col text-s-size text-light-gray">
-                                    {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
+                            <div class="ticket-mid"></div>
+                            <div class="item item-text-wrap">
+                                <div class="row price-block">
+                                    <div class="col col-66 text-wait" ng-if="main.Payway == '款項退費申請中'">
+                                        <div class="image-mark"><img src="img/order-form-w@2x.png" /></div>
+                                        <div class="payment-mark">{{ main.Payway }}</div>
+                                    </div>
+                                    <div class="col col-66 text-positive" ng-if="main.Payway != '款項退費申請中'">
+                                        <div class="image-mark"><img src="img/order-form-rs@2x.png" /></div>
+                                        <div class="payment-mark">{{ main.Payway }}</div>
+                                    </div>
+                                    <div class="col col-34 text-right price-mark">
+                                        NT<span class="price">{{ main.PayAmount | currency:"":0 }}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row" ng-repeat="detail in order.orderDetail">
-                                <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
-                                <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
+                            <div class="ticket-bottom"></div>
+                        </div>
+                        <div class="empty-content-pane" ng-show="loading_3 == false && refund_list.length == 0">
+                            <div class="content text-center">
+                                <div class="logo">
+                                    <img src="img/empty-order.png" />
+                                </div>
+                                <div class="text">
+                                    {{ '目前沒有退費的紀錄' }}
+                                </div>
                             </div>
                         </div>
-                        <div class="ticket-mid"></div>
-                        <div class="item item-text-wrap">
-                            <div class="row price-block">
-                                <div class="col col-66 text-wait" ng-if="main.Payway == '款項退費申請中'">
-                                    <div class="image-mark"><img src="img/order-form-w@2x.png" /></div>
-                                    <div class="payment-mark">{{ main.Payway }}</div>
-                                </div>
-                                <div class="col col-66 text-positive" ng-if="main.Payway != '款項退費申請中'">
-                                    <div class="image-mark"><img src="img/order-form-rs@2x.png" /></div>
-                                    <div class="payment-mark">{{ main.Payway }}</div>
-                                </div>
-                                <div class="col col-34 text-right price-mark">
-                                    NT<span class="price">{{ main.PayAmount | currency:"":0 }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ticket-bottom"></div>
-                    </div>
-                    <div class="empty-content-pane" ng-show="loading_3 == false && refund_list.length == 0">
-                        <div class="content text-center">
-                            <div class="logo">
-                                <img src="img/empty-order.png" />
-                            </div>
-                            <div class="text">
-                                {{ '目前沒有退費的紀錄' }}
-                            </div>
-                        </div>
-                    </div>
+                    </ion-scroll>
                 </div>
             </ion-tab>
 
