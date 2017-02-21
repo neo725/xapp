@@ -11,9 +11,6 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             }
             $scope.logging = false
 
-            if $rootScope.modalFunction
-                $rootScope.modalFunction.hide()
-
     #        clearField = (field) ->
     #            $scope.user[field] = ''
     #            $timeout(->

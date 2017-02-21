@@ -84,7 +84,7 @@
                             on-refresh="doRefreshFavorite()">
                         </ion-refresher>
                         <ion-list ng-show="loading == false && favorites.length > 0">
-                            <ion-item ng-repeat="article in favorites"
+                            <ion-item ng-repeat="article in favorites track by $index"
                                       class="item-remove-animate"
                                       item="article"
                                       href="#/home/ebook/info/{{ para.apply }}/{{ para.catalog_id }}"

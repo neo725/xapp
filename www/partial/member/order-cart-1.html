@@ -17,7 +17,7 @@
         </div>
         <div class="content">
             <ion-list show-delete="shouldShowDelete">
-                <ion-item ng-repeat="cart in carts"
+                <ion-item ng-repeat="cart in carts track by cart.Prod_Id"
                           item="cart"
                           href="#/home/course/info/{{ cart.Shop_Id }}/{{ cart.Prod_Id }}" class="item-remove-animate">
                     {{ cart.Prod_Name }} {{ cart.Prod_SubName }}
