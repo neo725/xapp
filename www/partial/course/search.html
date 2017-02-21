@@ -178,7 +178,6 @@
             <ion-content class="popover-condition-content" scroll="false">
                 <ion-tabs class="tabs-light">
                     <ion-tab class="tab-active-1" title="排序" on-select="show_order_tab()">
-                        <ion-nav-view name="tab-tab1">
                             <ion-content class="tab-1" scroll="false" padding="true">
                                 <ion-list>
                                     <ion-item class="item" ng-click="setOrder(search.keyword, 'start')">
@@ -195,10 +194,8 @@
                                     </ion-item>
                                 </ion-list>
                             </ion-content>
-                        </ion-nav-view>
                     </ion-tab>
                     <ion-tab class="tab-active-2" title="篩選" on-select="show_filter_tab()">
-                        <ion-nav-view name="tab-tab2">
                             <ion-content scroll="false" padding="true">
                                 <div class="row">
                                     <div class="col">
@@ -249,7 +246,6 @@
                                         </button></div>
                                 </div>
                             </ion-content>
-                        </ion-nav-view>
                     </ion-tab>
                 </ion-tabs>
             </ion-content>

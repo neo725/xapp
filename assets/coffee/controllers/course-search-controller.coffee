@@ -1,7 +1,9 @@
 module.exports = [
-    '$rootScope', '$scope', '$stateParams', '$window', '$timeout', '$interpolate', '$translate', '$ionicHistory', '$ionicPopover', '$ionicModal', '$q',
+    '$rootScope', '$scope', '$stateParams', '$window', '$timeout', '$interpolate', '$translate', '$ionicHistory',
+    '$ionicPopover', '$ionicModal', '$q', '$log',
     'plugins', 'navigation', 'modal', 'api'
-    ($rootScope, $scope, $stateParams, $window, $timeout, $interpolate, $translate, $ionicHistory, $ionicPopover, $ionicModal, $q,
+    ($rootScope, $scope, $stateParams, $window, $timeout, $interpolate, $translate, $ionicHistory,
+        $ionicPopover, $ionicModal, $q, $log,
         plugins, navigation, modal, api) ->
 
         $scope.option_visible = false
@@ -109,31 +111,29 @@ module.exports = [
                     el: $scope.modalWish
                     'tag': 'modalWish'
 
-            $timeout(->
-                # perform rangeSlider
-                values = []
-                i = 0
-                while i < 10001
-                    if i == 10000
-                        values.push i + ' 元以上'
-                    else
-                        values.push i + ' 元'
-                    i += 500
+            # perform rangeSlider
+            values = []
+            i = 0
+            while i < 10001
+                if i == 10000
+                    values.push i + ' 元以上'
+                else
+                    values.push i + ' 元'
+                i += 500
 
-                doSetRangeSlider = (values) ->
-                    $range = $('#wish-price-range')
-                    if $range.length == 0
-                        $timeout(->
-                            doSetRangeSlider values
-                        , 100)
-                        return
-                    $('#wish-price-range').ionRangeSlider(
-                        type: 'double'
-                        values: values
-                    )
+            doSetRangeSlider = (values) ->
+                $range = $('#wish-price-range')
+                if $range.length == 0
+                    $timeout(->
+                        doSetRangeSlider values
+                    , 100)
+                    return
+                $('#wish-price-range').ionRangeSlider(
+                    type: 'double'
+                    values: values
+                )
 
-                doSetRangeSlider values
-            , 100)
+            doSetRangeSlider values
 
             return true
 
@@ -154,12 +154,32 @@ module.exports = [
 
             doSetRangeSlider = () ->
                 $range = $('#price-range')
+
                 if $range.length == 0
+                    $log.info '*** doSetRangeSlider *** $range.length : '
+                    $log.info $range.length
                     $timeout(->
                         doSetRangeSlider()
                     , 100)
                     return
-                $('#price-range').ionRangeSlider(
+
+                if not $range.is(':visible')
+                    $log.info '*** doSetRangeSlider *** not $range.is(:visible) : '
+                    $log.info $range.is(':visible')
+                    $timeout(->
+                        doSetRangeSlider()
+                    , 100)
+                    return
+
+                if not $range.ionRangeSlider
+                    $log.info '*** doSetRangeSlider *** not $range.ionRangeSlider : '
+                    $log.info $range.ionRangeSlider
+                    $timeout(->
+                        doSetRangeSlider()
+                    , 100)
+                    return
+
+                $range.ionRangeSlider(
                     min: 0
                     max: 50000
                     from: 0
@@ -171,7 +191,16 @@ module.exports = [
                     step: 1000
                 )
 
+                if not $range.data('ionRangeSlider')
+                    $log.info '*** doSetRangeSlider *** not $range.data("ionRangeSlider")'
+                    $log.info $range.data('ionRangeSlider')
+                    $timeout(->
+                        doSetRangeSlider()
+                    , 100)
+                    return
+
             doSetRangeSlider()
+            return
 
         $scope.toggleLocation = (value) ->
             index = _.indexOf($scope.filter.location, value)
