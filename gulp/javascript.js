@@ -73,13 +73,13 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                         angular: 'angular'
                     }
                 },
-                'ion.rangeSlider': {
-                    path: 'www/lib/ion.rangeSlider/js/ion.rangeSlider.js',
-                    exports: null,
-                    depends: {
-                        jquery: '$'
-                    }
-                },
+                //'ion.rangeSlider': {
+                //    path: 'www/lib/ion.rangeSlider/js/ion.rangeSlider.js',
+                //    exports: null,
+                //    depends: {
+                //        jquery: '$'
+                //    }
+                //},
                 'jr-crop': {
                     path: 'www/lib/jr-crop/dist/jr-crop.js',
                     exports: null
@@ -111,7 +111,8 @@ gulp.task('appjs', ['coffeeifyjs'], function () {
             insertGlobals: false,
             debug: debug,
             external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'ion-affix',
-                'lodash', 'moment', 'angular-svg-round-progressbar', 'ion.rangeSlider', 'jr-crop', 'angular-cache',
+                /*'lodash', 'moment', 'angular-svg-round-progressbar', 'ion.rangeSlider', 'jr-crop', 'angular-cache',*/
+                'lodash', 'moment', 'angular-svg-round-progressbar', 'jr-crop', 'angular-cache',
                 'angular-action-sheet']
         }))
         .pipe(gif(!debug, uglify({mangle: false})))
