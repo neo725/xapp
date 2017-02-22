@@ -508,11 +508,20 @@ module.exports = [
                     $scope.modalWish = modal
                 )
 
-        $scope.$on('$ionicView.enter', ->
-            #data = window.localStorage.getItem('favorite_changed')
+        load_js = () ->
+            head = document.getElementsByTagName('head')[0]
+            old_script = $('#ion-rangeslider-script')
+            if old_script.length > 0
+                old_script.remove()
+            script = document.createElement('script')
+            script.id = 'ion-rangeslider-script'
+            script.type = 'text/javascript'
+            script.src = 'lib/ion.rangeSlider/js/ion.rangeSlider.js'
+            head.appendChild(script)
 
-            #if data
-                #data = JSON.parse(data)
+        $scope.$on('$ionicView.enter', ->
+            load_js()
+
             if $rootScope.favorite_changed
                 data = $rootScope.favorite_changed
 

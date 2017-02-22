@@ -73,13 +73,13 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                         angular: 'angular'
                     }
                 },
-                //'ion.rangeSlider': {
+                // 'ion.rangeSlider': {
                 //    path: 'www/lib/ion.rangeSlider/js/ion.rangeSlider.js',
                 //    exports: null,
                 //    depends: {
                 //        jquery: '$'
                 //    }
-                //},
+                // },
                 'jr-crop': {
                     path: 'www/lib/jr-crop/dist/jr-crop.js',
                     exports: null

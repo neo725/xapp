@@ -27,11 +27,11 @@ module.exports = [
                 # Keep in mind the function will return null if the token has not been established yet.
                 FCMPlugin.getToken(
                     (fcm_token) ->
-                        $log.info '[[[ FCM ]]] token : ' + fcm_token
+                        $log.info '[[[ FCM ]]] fcm_token : ' + fcm_token
 
                         onSuccess = () ->
                             window.localStorage.setItem('device_token', fcm_token)
-                            registeNotification()
+                            registerNotification()
                         onError = () ->
                             $cordovaToast.show('Error registering notification token', 'long', 'top')
 
@@ -139,7 +139,7 @@ module.exports = [
 
             api.getMessage messageId, onSuccess, onError
 
-        registeNotification = () ->
+        registerNotification = () ->
             FCMPlugin.onNotification(
                 (data) ->
                     $log.info 'onNotification DATA received'
