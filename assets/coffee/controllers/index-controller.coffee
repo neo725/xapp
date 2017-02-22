@@ -17,6 +17,7 @@ module.exports = [
         $translate.use constants.DEFAULT_LOCALE
 
         $rootScope.callFCMGetToken = () ->
+            $log.info '[[[ FCM ]]] $rootScope.callFCMGetToken()......'
             if typeof FCMPlugin == 'undefined'
                 return
             try_times = 0
@@ -46,7 +47,7 @@ module.exports = [
                     , ((err) ->)
                 )
 
-            $timeout(getTheToken, 1000)
+            getTheToken()
 
         $rootScope.loadCart = ->
             onSuccess = (response) ->

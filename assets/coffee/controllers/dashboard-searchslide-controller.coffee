@@ -100,8 +100,9 @@ module.exports = [
 #        $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
 #        $log.info '[** SearchSlide **] >> isGuest : ' + user.isGuest()
         $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()
-        if user.isGuest() or not user.isRealDevice()
-            loadSearchSlide()
+#        if user.isGuest() or not user.isRealDevice()
+#            loadSearchSlide()
+        loadSearchSlide()
 
         $scope.searchCourse = (cover) ->
             weeks = cover.week.split(',')

@@ -107,8 +107,9 @@ module.exports = [
 #        $log.info '[** StudycardSlide **] >> isGuest : ' + user.isGuest()
 #        $log.info '[** StudycardSlide **] >> isRealDevice : ' + user.isRealDevice()
 
-        if not user.isGuest() and not user.isRealDevice()
-            loadStudycard()
+#        if not user.isGuest() and not user.isRealDevice()
+#            loadStudycard()
+        loadStudycard()
 
         $ionicModal.fromTemplateUrl('templates/modal-feedback.html',
             scope: $scope
