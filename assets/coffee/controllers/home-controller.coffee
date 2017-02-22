@@ -26,6 +26,7 @@ module.exports = [
                     $rootScope.loadSearchSlide = true
 
                     window.localStorage.clear()
+                    window.sessionStorage.clear()
 
                     delete $rootScope['cart']
                     delete $rootScope['wish']

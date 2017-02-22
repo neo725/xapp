@@ -143,6 +143,9 @@ module.exports = [
                         hideSheet()
                 )
 
+            $scope.doRefresh = () ->
+                $scope.$broadcast('scroll.refreshComplete')
+
             retriveAvatarImageSize = ->
                 $avatar = $('.avatar-img');
                 width = $avatar.width()

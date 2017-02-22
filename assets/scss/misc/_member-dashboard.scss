@@ -13,7 +13,8 @@
             margin-top: 10px;
 
             .edit-button {
-                position: absolute;
+                position: relative;
+                float: right;
                 padding: 5px 10px;
                 right: 6px;
                 top: 6px;
@@ -23,41 +24,47 @@
 
                 font-size: 12px;
             }
-            .avatars {
-                text-align: center;
+            .info-row {
+                height: 130px;
 
-                .crop-mask {
-                    width: 100px;
-                    height: 100px;
-                    overflow: hidden;
-                    position: relative;
-                    border-radius: 100px;
+                .avatars {
+                    text-align: center;
 
-                    img {
-                        position: absolute;
-                        margin: auto;
-                        min-height: 100%;
-                        min-width: 100%;
-                        //max-height: 100px;
-                        //max-width: 100px;
-
-                        /* For the following settings we set 100%, but it can be higher if needed
-                        See the answer's update */
-                        left: -100%;
-                        right: -100%;
-                        top: -100%;
-                        bottom: -100%;
+                    .clip-circle {
+                        clip-path: circle(50px at center);
                     }
-                }
+                    .crop-mask {
+                        width: 100px;
+                        height: 100px;
+                        overflow: hidden;
+                        position: relative;
+                        /*border-radius: 100px;*/
 
-                .change-pic {
-                    position: absolute;
-                    padding: 10px 10px 6px 10px;
-                    top: 60px;
-                    left: 70px;
+                        img {
+                            position: absolute;
+                            margin: auto;
+                            min-height: 100%;
+                            min-width: 100%;
+                            //max-height: 100px;
+                            //max-width: 100px;
 
-                    img {
-                        width: 32px;
+                            /* For the following settings we set 100%, but it can be higher if needed
+                            See the answer's update */
+                            left: -100%;
+                            right: -100%;
+                            top: -100%;
+                            bottom: -100%;
+                        }
+                    }
+
+                    .change-pic {
+                        position: relative;
+                        top: -35px;
+                        left: 35px;
+
+                        img {
+                            width: 32px;
+                        }
                     }
                 }
             }

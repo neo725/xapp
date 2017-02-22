@@ -16,13 +16,17 @@
         </ion-nav-title>
     </ion-nav-bar>
     <ion-content class="has-header" ng-class="{ 'pane-content': true }">
+        <ion-refresher
+            pulling-text="{{ '下拉更新...' }}"
+            on-refresh="doRefresh()">
+        </ion-refresher>
         <div class="member-info">
             <div class="edit-button" ng-click="goEdit()">
                 編輯
             </div>
-            <div class="row">
+            <div class="row info-row">
                 <div class="col col-33 avatars" ng-click="showFunction()" ng-click-x="takePicture()">
-                    <div class="crop-mask">
+                    <div class="crop-mask clip-circle">
                         <img id="guest-avatars" src="img/member-pic@2x.png" style="width: 100px" ng-if="avatars == undefined && avatars_url == undefined" />
                         <img id="guest-avatars-2" class="avatar-img" src="img/fake-avatars.jpg" ng-if="false" />
                         <img id="user-avatars" class="avatar-img" ng-src="{{ 'data:image/jpeg;base64,' + avatars }}" ng-if="avatars != undefined" />

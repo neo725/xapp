@@ -5,7 +5,7 @@ module.exports = ['$ionicPlatform', '$timeout', '$ionicModal', '$ionicLoading', 
             opts =
                 template: '<ion-spinner></ion-spinner>'
                 noBackdrop: true
-                duration: 10000
+                duration: 30000
             $ionicLoading.show opts
             return
             $ionicPlatform.ready ->

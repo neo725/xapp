@@ -1,8 +1,8 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$ionicSlideBoxDelegate', '$log', 'api', 'modal', 'user',
-    ($rootScope, $scope, $ionicModal, $ionicSlideBoxDelegate, $log, api, modal, user) ->
+    '$rootScope', '$scope', '$ionicModal', '$ionicSlideBoxDelegate', '$timeout', '$log', 'api', 'modal', 'user', 'CacheFactory',
+    ($rootScope, $scope, $ionicModal, $ionicSlideBoxDelegate, $timeout, $log, api, modal, user, CacheFactory) ->
         # angular svg round progressbar
         # repo : https://github.com/crisbeto/angular-svg-round-progressbar
         # demo : http://crisbeto.github.io/angular-svg-round-progressbar/
@@ -11,6 +11,12 @@ module.exports = [
         $scope.stroke = 4
         $scope.clockwise = false
         $rootScope.studyCardVisible = false
+
+        if not CacheFactory.get('studycardCache')
+            opts =
+                storageMode: 'sessionStorage'
+            CacheFactory.createCache('studycardCache', opts)
+        studycardCache = CacheFactory.get('studycardCache')
 
         $scope.getDatePart = (date) ->
             return moment(date).format('YYYY/M/DD')
@@ -59,19 +65,31 @@ module.exports = [
         loadStudycard = () ->
             $log.info '[** StudycardSlide **] >> loadStudycard()......'
 
-            onSuccess = (response) ->
-                list = response.list
+            studycards_in_cache = studycardCache.get('all')
 
+            load = (list) ->
                 $rootScope.studyCards = list
                 $rootScope.studyCardVisible = list.length > 0
 
-                $ionicSlideBoxDelegate.update()
+                $timeout(->
+                    $ionicSlideBoxDelegate.update()
+                , 500)
+
+            onSuccess = (response) ->
+                load response.list
+                studycardCache.put 'all', response.list
                 $rootScope.loadStudycardSlide = false
+                modal.hideLoading()
 
             onError = () ->
                 $rootScope.studyCardVisible = false
+                modal.hideLoading()
 
-            api.getStudyCards(onSuccess, onError)
+            if studycards_in_cache
+                load studycards_in_cache
+            else
+                modal.showLoading '', 'message.loading_cover'
+                api.getStudyCards(onSuccess, onError)
 
         $scope.$on('dashboard-controller.enter', () ->
             $log.info '[** StudycardSlide **] >> dashboard-controller.enter  ......'
