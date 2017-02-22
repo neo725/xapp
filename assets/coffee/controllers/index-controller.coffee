@@ -35,11 +35,11 @@ module.exports = [
                         onError = () ->
                             $cordovaToast.show('Error registering notification token', 'long', 'top')
 
-                        if token == null and try_times < 3
+                        if fcm_token == null and try_times < 3
                             $timeout(getTheToken, 1000)
                             try_times += 1
                         else
-                            if token == null
+                            if fcm_token == null
                                 $cordovaToast.show('Error get notification token', 'long', 'top')
                             else
                                 uuid = $cordovaDevice.getUUID()
