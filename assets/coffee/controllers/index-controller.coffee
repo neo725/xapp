@@ -19,22 +19,34 @@ module.exports = [
         $rootScope.callFCMGetToken = () ->
             if typeof FCMPlugin == 'undefined'
                 return
-            # Google FCM
-            # Keep in mind the function will return null if the token has not been established yet.
-            FCMPlugin.getToken(
-                (fcm_token) ->
-                    $log.info '[[[ FCM ]]] token : ' + fcm_token
+            try_times = 0
 
-                    onSuccess = () ->
-                        window.localStorage.setItem('device_token', fcm_token)
-                        registeNotification()
-                    onError = () ->
-                        $cordovaToast.show('Error Registering notification token', 'long', 'top')
+            getTheToken = ->
+                # Google FCM
+                # Keep in mind the function will return null if the token has not been established yet.
+                FCMPlugin.getToken(
+                    (fcm_token) ->
+                        $log.info '[[[ FCM ]]] token : ' + fcm_token
 
-                    uuid = $cordovaDevice.getUUID()
-                    api.registerDeviceToken(uuid, fcm_token, onSuccess, onError)
-                , ((err) ->)
-            )
+                        onSuccess = () ->
+                            window.localStorage.setItem('device_token', fcm_token)
+                            registeNotification()
+                        onError = () ->
+                            $cordovaToast.show('Error registering notification token', 'long', 'top')
+
+                        if token == null and try_times < 3
+                            $timeout(getTheToken, 1000)
+                            try_times += 1
+                        else
+                            if token == null
+                                $cordovaToast.show('Error get notification token', 'long', 'top')
+                            else
+                                uuid = $cordovaDevice.getUUID()
+                                api.registerDeviceToken(uuid, fcm_token, onSuccess, onError)
+                    , ((err) ->)
+                )
+
+            $timeout(getTheToken, 1000)
 
         $rootScope.loadCart = ->
             onSuccess = (response) ->
