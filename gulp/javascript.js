@@ -75,7 +75,10 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                 },
                 'ion.rangeSlider': {
                     path: 'www/lib/ion.rangeSlider/js/ion.rangeSlider.js',
-                    exports: null
+                    exports: null,
+                    depends: {
+                        jquery: '$'
+                    }
                 },
                 'jr-crop': {
                     path: 'www/lib/jr-crop/dist/jr-crop.js',
@@ -98,7 +101,7 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
             }
         }))
         //.pipe(gif(!debug, uglify()))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('www/js'));
 });
 

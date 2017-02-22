@@ -163,14 +163,6 @@ module.exports = [
                     , 100)
                     return
 
-                if not $range.is(':visible')
-                    $log.info '*** doSetRangeSlider *** not $range.is(:visible) : '
-                    $log.info $range.is(':visible')
-                    $timeout(->
-                        doSetRangeSlider()
-                    , 100)
-                    return
-
                 if not $range.ionRangeSlider
                     $log.info '*** doSetRangeSlider *** not $range.ionRangeSlider : '
                     $log.info $range.ionRangeSlider
@@ -191,15 +183,9 @@ module.exports = [
                     step: 1000
                 )
 
-                if not $range.data('ionRangeSlider')
-                    $log.info '*** doSetRangeSlider *** not $range.data("ionRangeSlider")'
-                    $log.info $range.data('ionRangeSlider')
-                    $timeout(->
-                        doSetRangeSlider()
-                    , 100)
-                    return
-
-            doSetRangeSlider()
+            $(document).ready(->
+                doSetRangeSlider()
+            )
             return
 
         $scope.toggleLocation = (value) ->
