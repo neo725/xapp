@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "417861383399",
+    "firebase_url": "https://sceapp-2fefe.firebaseio.com",
+    "project_id": "sceapp-2fefe",
+    "storage_bucket": "sceapp-2fefe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417861383399:android:90942f3d3d4d04e1",
+        "android_client_info": {
+          "package_name": "com.ionicframework.sceapp721500"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417861383399-0jqjvm4emqojkv8mtinoaaj0oqm7nd7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJDVz044ThLbkKA-mmdyscAH2ZVmf0TbU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417861383399:android:aad067a0e80f7dd0",
+        "android_client_info": {
+          "package_name": "tw.edu.pccu.sce.sceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417861383399-0jqjvm4emqojkv8mtinoaaj0oqm7nd7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJDVz044ThLbkKA-mmdyscAH2ZVmf0TbU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

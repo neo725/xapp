@@ -31,6 +31,7 @@
                     text-align: center;
 
                     .clip-circle {
+                        -webkit-clip-path: circle(50px at center);
                         clip-path: circle(50px at center);
                     }
                     .crop-mask {

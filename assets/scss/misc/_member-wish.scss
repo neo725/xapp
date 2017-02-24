@@ -96,8 +96,15 @@
                             top: -7px;
                             position: relative;
                             color: $course-title;
+                            border-bottom: 1px solid #ddd;
+                            padding-bottom: 6px;
                         }
                         .course-detail {
+                            color: #999999;
+
+                            p {
+                                color: #999999;
+                            }
                             .small-icon {
                                 width: 16px;
                                 margin-right: 5px;
