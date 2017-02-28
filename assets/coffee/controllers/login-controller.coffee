@@ -1,9 +1,9 @@
 module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate', '$cordovaOauth', '$state', '$log',
     '$cordovaAppVersion',
-    'modal', 'api', 'navigation',
+    'modal', 'api', 'navigation', 'user',
     ($rootScope, $scope, $timeout, $ionicModal, $translate, $cordovaOauth, $state, $log,
         $cordovaAppVersion,
-        modal, api, navigation) ->
+        modal, api, navigation, user) ->
             # dev mode
             $scope.user = {
                 account: 'sceapp',
@@ -32,7 +32,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 onSuccess = (response) ->
                     modal.hideLoading()
                     window.localStorage.setItem("token", response.token_string)
-                    window.localStorage.setItem('is_guest', false)
+                    user.setIsGuest(false)
 
                     resetLoginButton()
 
@@ -69,7 +69,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                     modal.hideLoading()
 
                     window.localStorage.setItem("token", response.token_string)
-                    window.localStorage.setItem('is_guest', true)
+                    user.setIsGuest(true)
                     resetLoginButton()
 
                     delete $rootScope['cart']
@@ -126,7 +126,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 onSuccess = (response) ->
                     modal.hideLoading()
                     window.localStorage.setItem("token", response.token_string)
-                    window.localStorage.setItem('is_guest', false)
+                    user.setIsGuest(false)
 
                     resetLoginButton()
 

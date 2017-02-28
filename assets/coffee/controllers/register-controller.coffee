@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$state', '$translate', 'navigation', 'modal', 'api', 'plugins'
-    ($rootScope, $scope, $state, $translate, navigation, modal, api, plugins) ->
+    '$rootScope', '$scope', '$state', '$translate', 'navigation', 'modal', 'api', 'plugins', 'user',
+    ($rootScope, $scope, $state, $translate, navigation, modal, api, plugins, user) ->
 #        $scope.user = {
 #            name: 'Neo Chang'
 #            account: 'neochang'
@@ -36,7 +36,7 @@ module.exports = [
                 onSuccess = (response) ->
                     modal.hideLoading()
                     window.localStorage.setItem("token", response.token_string)
-                    window.localStorage.setItem('is_guest', false)
+                    user.setIsGuest(false)
 
                     onSuccess = ->
                         $rootScope.member.from = 'register'

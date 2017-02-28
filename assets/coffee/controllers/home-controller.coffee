@@ -1,7 +1,7 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'api', 'CacheFactory',
-    ($rootScope, $scope, $ionicHistory, $log, navigation, api, CacheFactory) ->
-        $log.info 'HomeController in'
+    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'api', 'CacheFactory', 'user',
+    ($rootScope, $scope, $ionicHistory, $log, navigation, api, CacheFactory, user) ->
+        #$log.info 'HomeController in'
 
         checkLoginState = () ->
             $log.info 'home-controller -> checkLoginState'
@@ -12,7 +12,7 @@ module.exports = [
                 navigation.slide 'login', {}, 'left'
 
         $rootScope.goCart = ->
-            is_guest = window.localStorage.getItem('is_guest') == 'true'
+            is_guest = user.isGuest()
 
             if is_guest
                 return $rootScope.logout()

@@ -1,8 +1,11 @@
 module.exports = ['$rootScope',
     ($rootScope) ->
         isGuest = () ->
-            is_guest = window.localStorage.getItem('is_guest') == 'true'
+            is_guest = window.sessionStorage.getItem('is_guest') == 'true'
             return is_guest
+
+        setIsGuest = (value) ->
+            window.sessionStorage.setItem('is_guest', value)
 
         isRealDevice = () ->
             ua = ionic.Platform.ua
@@ -19,5 +22,6 @@ module.exports = ['$rootScope',
             isGuest: isGuest
             isRealDevice: isRealDevice
             isLogin: isLogin
+            setIsGuest: setIsGuest
         }
 ]
