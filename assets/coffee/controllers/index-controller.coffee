@@ -217,8 +217,26 @@ module.exports = [
             tabs = $('div.tabs:not([nav-bar-tabs-top-ignore]):visible')
 
             navbar.removeClass('nav-bar-tabs-top')
-
         )
+
+        loadAvatar = ->
+            onSuccess = (response) ->
+                if response
+                    $rootScope.avatar_url = response.para_value
+            onError = (->)
+
+            api.getUserSetting 'avatar', onSuccess, onError
+
+        loadNotifyData = ->
+            onSuccess = (response) ->
+                if (response != null)
+                    $rootScope.notify = response.para_value
+            onError = (->)
+
+            api.getUserSetting 'notify', onSuccess, onError
+
+        loadNotifyData()
+        loadAvatar()
 
         document.addEventListener('offline', () ->
             modal.showMessage('message.no_network')

@@ -144,7 +144,8 @@ module.exports = [
                 )
 
             $scope.doRefresh = () ->
-                $scope.$broadcast('scroll.refreshComplete')
+                #$scope.$broadcast('scroll.refreshComplete')
+                loadData()
 
             retriveAvatarImageSize = ->
                 $avatar = $('.avatar-img');
@@ -174,7 +175,7 @@ module.exports = [
             loadAvatar = ->
                 onSuccess = (response) ->
                     if response
-                        $scope.avatar_url = response.para_value
+                        $rootScope.avatar_url = response.para_value
                     modal.hideLoading()
                 onError = () ->
                     modal.hideLoading()
@@ -185,7 +186,7 @@ module.exports = [
             loadData = ->
                 onSuccess = (response) ->
                     if (response != null)
-                        $scope.notify = response.para_value
+                        $rootScope.notify = response.para_value
                     modal.hideLoading()
                     loadAvatar()
                     $scope.data_loaded = true
@@ -197,10 +198,12 @@ module.exports = [
                 modal.showLoading('', 'message.data_loading')
                 api.getUserSetting 'notify', onSuccess, onError
 
-            #$scope.$on('$ionicView.enter', ->
+            if $rootScope.notify
+                $scope.data_loaded = true
             if $scope.data_loaded == false
                 loadData()
-            #)
+            else if not $rootScope.avatar_url
+                loadAvatar()
 
             $scope.$on('$ionicView.afterEnter', ->
                 $timeout ->
