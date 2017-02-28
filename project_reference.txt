@@ -1,3 +1,6 @@
+* WebStorm 註冊碼
+http://idea.lanyus.com/
+
 * shprink/ionic-native-transitions
 https://github.com/shprink/ionic-native-transitions
 

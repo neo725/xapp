@@ -1,0 +1,13 @@
+//.toggle-small .toggle-positive input:checked + .track
+.toggle-small {
+    .toggle-positive {
+        input:checked + .track {
+            background-color: #265CAA;
+
+            .handle {
+                background-color: #ffffff;
+                border: 2px solid #265CAA;
+            }
+        }
+    }
+}

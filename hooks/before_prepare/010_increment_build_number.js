@@ -11,7 +11,7 @@ var sequence =  require('run-sequence');
 
 var cmdline = process.env.CORDOVA_CMDLINE;
 
-var is_increment = cmdline.indexOf('-build');
+var is_increment = cmdline.indexOf('-build')  > -1;
 
 /*
 
@@ -23,7 +23,7 @@ var is_increment = cmdline.indexOf('-build');
 
  */
 
-if (is_increment > -1) {
+if (is_increment) {
     // Read config.xml
     fs.readFile('config.xml', 'utf8', function (err, data) {
         console.log('-----------------------------------------');
