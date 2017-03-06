@@ -1,9 +1,9 @@
 
 module.exports = [
     '$rootScope', '$scope', '$ionicPlatform', '$window', '$timeout', '$log', '$translate',
-    'modal', 'navigation', 'plugins', 'user',
+    'api', 'modal', 'navigation', 'plugins', 'user',
     ($rootScope, $scope, $ionicPlatform, $window, $timeout, $log, $translate,
-        modal, navigation, plugins, user) ->
+        api, modal, navigation, plugins, user) ->
             modal.hideLoading()
 
             #$rootScope.loadSearchSlide = false
@@ -30,6 +30,26 @@ module.exports = [
 
             $scope.goLocation = ->
                 navigation.slide 'home.location', {}, 'left'
+
+            loadAvatar = ->
+                onSuccess = (response) ->
+                    if response
+                        $rootScope.avatar_url = response.para_value
+                onError = (->)
+
+                api.getUserSetting 'avatar', onSuccess, onError
+
+            loadNotifyData = ->
+                onSuccess = (response) ->
+                    if (response != null)
+                        $rootScope.notify = response.para_value
+                onError = (->)
+
+                api.getUserSetting 'notify', onSuccess, onError
+
+
+            loadNotifyData()
+            loadAvatar()
 
             document.addEventListener('deviceready', () ->
                 $log.info 'dashboard-controller -> device ready...'

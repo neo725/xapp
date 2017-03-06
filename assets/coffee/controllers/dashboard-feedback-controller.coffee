@@ -46,7 +46,7 @@ module.exports = [
                 'answers': topics
             }
 
-            onSuccess = ->
+            onSuccess = (response) ->
                 modal.hideLoading()
                 index = _($rootScope.studyCards).findIndex({ 'Prod_Id': $scope.currentCard.Prod_Id })
                 if index > -1
@@ -60,6 +60,16 @@ module.exports = [
                 $ionicSlideBoxDelegate.update()
 
                 $scope.modalFeedback.hide()
+
+                if response and response.popout
+                    $translate(['popup.ok']).then (translator) ->
+                        plugins.notification.confirm(
+                            response.popout,
+                            (->),
+                            '',
+                            [translator['popup.ok']]
+                        )
+
             onError = () ->
                 modal.hideLoading()
                 $scope.modalFeedback.hide()

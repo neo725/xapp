@@ -12,11 +12,11 @@ module.exports = [
         $scope.clockwise = false
         $rootScope.studyCardVisible = false
 
-        if not CacheFactory.get('studycardCache')
-            opts =
-                storageMode: 'sessionStorage'
-            CacheFactory.createCache('studycardCache', opts)
-        studycardCache = CacheFactory.get('studycardCache')
+#        if not CacheFactory.get('studycardCache')
+#            opts =
+#                storageMode: 'sessionStorage'
+#            CacheFactory.createCache('studycardCache', opts)
+#        studycardCache = CacheFactory.get('studycardCache')
 
         $scope.getDatePart = (date) ->
             return moment(date).format('YYYY/M/DD')
@@ -65,7 +65,7 @@ module.exports = [
         loadStudycard = () ->
             $log.info '[** StudycardSlide **] >> loadStudycard()......'
 
-            studycards_in_cache = studycardCache.get('all')
+#            studycards_in_cache = studycardCache.get('all')
 
             load = (list) ->
                 $rootScope.studyCards = list
@@ -77,7 +77,7 @@ module.exports = [
 
             onSuccess = (response) ->
                 load response.list
-                studycardCache.put 'all', response.list
+#                studycardCache.put 'all', response.list
                 $rootScope.loadStudycardSlide = false
                 modal.hideLoading()
 
@@ -85,11 +85,13 @@ module.exports = [
                 $rootScope.studyCardVisible = false
                 modal.hideLoading()
 
-            if studycards_in_cache
-                load studycards_in_cache
-            else
-                modal.showLoading '', 'message.loading_cover'
-                api.getStudyCards(onSuccess, onError)
+#            if studycards_in_cache
+#                load studycards_in_cache
+#            else
+#                modal.showLoading '', 'message.loading_cover'
+#                api.getStudyCards(onSuccess, onError)
+            modal.showLoading '', 'message.loading_cover'
+            api.getStudyCards(onSuccess, onError)
 
         $scope.$on('dashboard-controller.enter', () ->
             $log.info '[** StudycardSlide **] >> dashboard-controller.enter  ......'

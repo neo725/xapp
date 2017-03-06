@@ -145,6 +145,9 @@ module.exports = [
                     $log.info 'onNotification DATA received'
                     $log.info data
                     if data.wasTapped
+                        # https://github.com/fechanique/cordova-plugin-fcm/issues/106
+                        # "priority":"high", //If not set, notification won't be delivered on completely closed iOS app and
+                        # "click_action":"FCM_PLUGIN_ACTIVITY", //Must be present for Android
                         $log.warn 'FCMPlugin.onNotification...'
 
                         $rootScope.fromNotification = true
@@ -218,25 +221,6 @@ module.exports = [
 
             navbar.removeClass('nav-bar-tabs-top')
         )
-
-        loadAvatar = ->
-            onSuccess = (response) ->
-                if response
-                    $rootScope.avatar_url = response.para_value
-            onError = (->)
-
-            api.getUserSetting 'avatar', onSuccess, onError
-
-        loadNotifyData = ->
-            onSuccess = (response) ->
-                if (response != null)
-                    $rootScope.notify = response.para_value
-            onError = (->)
-
-            api.getUserSetting 'notify', onSuccess, onError
-
-        loadNotifyData()
-        loadAvatar()
 
         document.addEventListener('offline', () ->
             modal.showMessage('message.no_network')
