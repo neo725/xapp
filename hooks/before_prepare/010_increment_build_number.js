@@ -24,6 +24,30 @@ var is_increment = cmdline.indexOf('-build')  > -1;
  */
 
 if (is_increment) {
+    var calculateVersion = function(versionObj) {
+        var major = versionObj.major;
+        var minor = versionObj.minor;
+        var build = versionObj.build;
+
+        var build_step = Math.floor(build / 100);
+        var build_less = build - (100 * build_step);
+
+        minor += build_step;
+        build = build_less;
+
+        var minor_step = Math.floor(minor / 10000);
+        var minor_less = minor - (10000 * minor_step);
+
+        major += minor_step;
+        minor = minor_less;
+
+        return {
+            major: major,
+            minor: minor,
+            build: build
+        };
+    };
+
     // Read config.xml
     fs.readFile('config.xml', 'utf8', function (err, data) {
         console.log('-----------------------------------------');
@@ -57,6 +81,7 @@ if (is_increment) {
                 console.log('Current Version: ', versionObj);
                 // Increment build numbers
                 versionObj.build += 1;
+                versionObj = calculateVersion(versionObj);
                 console.log('Target Version: ', versionObj);
                 var targetVersion = versionObj.major + '.' + versionObj.minor + '.' + versionObj.build;
                 obj.widget.$.version = targetVersion;
@@ -101,6 +126,7 @@ if (is_increment) {
             console.log('Current Version: ', versionObj);
             // Increment build numbers
             versionObj.build += 1;
+            versionObj = calculateVersion(versionObj);
             console.log('Target Version: ', versionObj);
             var targetVersion = versionObj.major + '.' + versionObj.minor + '.' + versionObj.build;
             json.version = targetVersion;
