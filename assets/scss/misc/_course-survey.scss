@@ -1,0 +1,44 @@
+.course-survey {
+    .course-survey-content {
+        .survey-list {
+            .survey-item {
+                border: 0 none;
+
+                // .item-radio input:checked + .radio-content .item-content
+                .item-radio {
+                    input:checked + .radio-content .item-content {
+                        background-color: #ffffff;
+                    }
+                    .radio-content {
+                        .item-content {
+                            padding: 10px;
+                            padding-left: 20px;
+
+                            i {
+                                font-size: 24px;
+                            }
+                            .radio-title {
+                                position: relative;
+                                top: -3px;
+                                margin-left: 5px;
+                            }
+                        }
+
+                        i.radio-icon {
+                            display: none;
+                        }
+                    }
+                }
+
+                .item-content {
+                    text-overflow: initial;
+                    white-space: initial;
+                }
+            }
+        }
+
+        i.ion-android-radio-button-on {
+            color: $radio-button-selected-color;
+        }
+    }
+}

@@ -214,6 +214,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getSurveyFillByCourse: (course_id, onSuccess, onError) ->
+            $http.get("/api/queses/fillin?courseid=#{course_id}")
+                .success(onSuccess)
+                .error(onError)
+
         postSurveyFill: (data, onSuccess, onError) ->
             $http.post('/api/queses', data)
                 .success(onSuccess)
