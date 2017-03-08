@@ -1,4 +1,4 @@
-<ion-view class="course-survey" ng-controller="CourseSurveyController">
+<ion-view class="course-survey" cache-view="false" ng-controller="CourseSurveyController">
     <ion-nav-bar>
         <ion-nav-buttons side="left">
             <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
@@ -16,60 +16,59 @@
         </ion-nav-title>
     </ion-nav-bar>
     <ion-content class="course-survey-content" padding="true">
-        <h3 ng-bind="course.Prod_Name"></h3>
-        <div class="list" ng-if="false">
-            <div class="survey-item" ng-repeat="topic in topics track by topic.Topic_No">
-                <div class="item item-divider">
-                    {{ topic.Topic_Name }}
-                </div>
-                <ion-radio ng-repeat="item in topic.events"
-                           ng-value="item.Event_Value"
-                           ng-model="topic.event_value"
-                           ng-change="changeTopicEvent(topic)">
-                    {{ item.Event_Value }}
-                </ion-radio>
-                <div class="list checkbox-list" ng-if="false">
-                    <div class="item">
-                        請勾選不滿意的項目(可複選)
+        <h3 class="survey-title" ng-bind="course.Prod_Name"></h3>
+        <form name="surveyForm" class="form survey-form" novalidate ng-submit="submitForm(surveyForm)">
+            <ion-list class="survey-list">
+                <ion-item class="survey-item" ng-repeat="topic in topics track by topic.Topic_No">
+                    <ng-form name="innerForm">
+                        <div class="survey-item-topic" ng-class="{ 'has-error': innerForm.topic.$invalid }">
+                            <input type="hidden" name="topic"
+                                   ng-model="topic.event_value"
+                                   required />
+                            <ion-label>{{ topic.Topic_Name }}</ion-label>
+                            <ion-radio ng-if="topic.Topic_Type == '單選'"
+                                       ng-repeat="item in topic.events"
+                                       ng-model="topic.event_value"
+                                       ng-change="changeTopicEvent(topic, item)"
+                                       ng-value="item.Event_Value">
+                                <i ng-class="{ 'ion-android-radio-button-on': topic.event_value == item.Event_Value,
+                                               'ion-android-radio-button-off': topic.event_value != item.Event_Value }"></i>
+                                <span class="radio-title" ng-bind="item.Event_Value"></span>
+                            </ion-radio>
+                            <ion-checkbox ng-if="topic.Topic_Type == '複選'"
+                                          ng-repeat="item in topic.events"
+                                          ng-model="item.checked"
+                                          ng-value="item.Event_Value"
+                                          sce-checkbox-value-assign="topic.event_value"
+                                          ng-change="changeTopicEvent(topic, item)">
+                                <span class="checkbox-title" ng-bind="item.Event_Value"></span>
+                            </ion-checkbox>
+                        </div>
+                    </ng-form>
+                    <div class="sub-survey-item"
+                         ng-if="topic.sub_topics && topic.sub_topics.length > 0"
+                         ng-repeat="sub_topic in topic.sub_topics track by sub_topic.Topic_No">
+                        <ng-form name="innerForm">
+                            <div class="sub-survey-item-topic" ng-class="{ 'has-error': innerForm.sub_topic.$invalid }">
+                                <input type="hidden" name="sub_topic"
+                                       ng-model="sub_topic.event_value"
+                                       required />
+                                <ion-label>{{ sub_topic.Topic_Name }}</ion-label>
+                                <ion-checkbox ng-repeat="item in sub_topic.events"
+                                              ng-model="item.checked"
+                                              ng-value="item.Event_Value"
+                                              sce-checkbox-value-assign="sub_topic.event_value">
+                                    <span class="checkbox-title" ng-bind="item.Event_Value"></span>
+                                </ion-checkbox>
+                            </div>
+                        </ng-form>
                     </div>
-                    <ion-checkbox ng-repeat="item in devList"
-                                  ng-model="item.checked"
-                                  ng-checked="item.checked">
-                        {{ item.text }}
-                    </ion-checkbox>
-                </div>
+                </ion-item>
+            </ion-list>
+            <div class="row">
+                <div class="col"><input type="button" class="button button-block button-dark" ng-click="goBack()" value="取消" /></div>
+                <div class="col col-67"><button class="button button-block button-positive">確認</button></div>
             </div>
-        </div>
-        <ion-list class="survey-list">
-            <ion-item class="survey-item" ng-repeat="topic in topics track by topic.Topic_No">
-                <ion-label>{{ topic.Topic_Name }}</ion-label>
-                <ion-radio ng-if="topic.Topic_Type == '單選'"
-                           ng-repeat="item in topic.events"
-                           ng-model="topic.event_value"
-                           ng-change="changeTopicEvent(topic, item)"
-                           ng-value="item.Event_Value">
-                    <i ng-class="{ 'ion-android-radio-button-on': topic.event_value == item.Event_Value,
-                                   'ion-android-radio-button-off': topic.event_value != item.Event_Value }"></i>
-                    <span class="radio-title" ng-bind="item.Event_Value"></span>
-                </ion-radio>
-                <ion-checkbox ng-if="topic.Topic_Type == '複選'"
-                              ng-repeat="item in topic.events"
-                              ng-model="item.checked"
-                              ng-change="changeTopicEvent(topic, item)">
-                    <span class="checkbox-title" ng-bind="item.Event_Value"></span>
-                </ion-checkbox>
-                <div class="sub-survey-item"
-                     ng-if="topic.sub_topics && topic.sub_topics.length > 0"
-                     ng-repeat="sub_topic in topic.sub_topics track by sub_topic.Topic_No">
-                    <ion-label>{{ sub_topic.Topic_Name }}</ion-label>
-                    <ion-checkbox ng-repeat="item in sub_topic.events"
-                                  ng-model="item.checked"
-                                  ng-value="item.Event_Value"
-                                  ng-change="changeSubTopicEvent(sub_topic, item)">
-                        <span class="checkbox-title" ng-bind="item.Event_Value"></span>
-                    </ion-checkbox>
-                </div>
-            </ion-item>
-        </ion-list>
+        </form>
     </ion-content>
 </ion-view>

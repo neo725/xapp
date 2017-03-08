@@ -104,6 +104,30 @@ exports.customVerify = () ->
                         ctrl.$setValidity("customVerify", true)
                         return viewValue
 
+exports.sceCheckboxValueAssign = () ->
+    require: 'ngModel'
+    scope:
+        value: '=sceCheckboxValueAssign'
+        checked: '=ngModel'
+    link: (scope, elem, attrs) ->
+        elem.bind('change', ->
+            value = scope.value
+            if not value
+                scope.value = attrs.value
+            else
+                values = value.split(',')
+                if scope.checked
+                    values.push attrs.value
+                    value = values.join(',')
+                else
+                    index = values.indexOf(attrs.value)
+                    if index > -1
+                        values.splice index, 1
+                    value = values.join(',')
+                scope.value = value
+            scope.$apply()
+        )
+
 exports.messageDotMask = ->
     restrict: 'A'
     link: (scope, element, attrs) ->

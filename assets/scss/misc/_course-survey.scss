@@ -1,5 +1,8 @@
 .course-survey {
     .course-survey-content {
+        .survey-title {
+            text-align: center;
+        }
         .survey-list {
             .survey-item {
                 border: 0 none;
@@ -37,8 +40,17 @@
             }
         }
 
+        i.ion-android-radio-button-off {
+            color: #dddddd;
+        }
         i.ion-android-radio-button-on {
             color: $radio-button-selected-color;
+        }
+
+        form.ng-submitted {
+            .survey-item-topic.has-error, .sub-survey-item-topic.has-error {
+                background-color: $light-error-color;
+            }
         }
     }
 }

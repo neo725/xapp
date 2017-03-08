@@ -92,5 +92,6 @@ module.exports = ->
         'member_password_edit': '密碼設定'
         'payment_list': '付款設定'
         'wish_list': '許願單'
+        'survey': '滿意度問卷'
         'exit_app': '即將離開大學聯網'
     }
