@@ -27,7 +27,11 @@ module.exports = [
                 # Keep in mind the function will return null if the token has not been established yet.
                 FCMPlugin.getToken(
                     (fcm_token) ->
-                        $log.info '[[[ FCM ]]] fcm_token : ' + fcm_token
+                        platform = $cordovaDevice.getPlatform().toLowerCase()
+                        uuid = $cordovaDevice.getUUID()
+
+                        $log.info '[[[ FCM.getToken() ]]] fcm_token : ' + fcm_token
+                        $log.info '[[[ FCM.getToken() ]]] platform : ' + platform
 
                         onSuccess = () ->
                             window.localStorage.setItem('device_token', fcm_token)
@@ -42,8 +46,7 @@ module.exports = [
                             if fcm_token == null
                                 $cordovaToast.show('Error get notification token', 'long', 'top')
                             else
-                                uuid = $cordovaDevice.getUUID()
-                                api.registerDeviceToken(uuid, fcm_token, onSuccess, onError)
+                                api.registerDeviceToken(platform, uuid, fcm_token, onSuccess, onError)
                     , ((err) ->)
                 )
 

@@ -8,11 +8,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        registerDeviceToken: (uuid, token, onSuccess, onError) ->
+        registerDeviceToken: (platform, uuid, token, onSuccess, onError) ->
             data =
                 'deviceName': uuid,
                 'deviceToken': token,
-                'deviceType': 'android'
+                'deviceType': platform
 
             $http.post('/api/device', data)
                 .success(onSuccess)
