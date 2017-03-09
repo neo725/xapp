@@ -8,3 +8,4 @@ www/img/*
 www/js/*
 assets/build/*
 www/css
+/config.xml
