@@ -1,0 +1,36 @@
+.platform-ios {
+    .member-cart-list {
+        .cart-step-bar {
+            .line {
+                top: 16px;
+            }
+
+            .step {
+                top: 0;
+
+                &.current {
+                    top: -4px;
+                }
+            }
+        }
+
+        .step-1-content {
+            &.empty {
+                ion-content {
+                    &.empty-content-pane {
+                        top: 0;
+                    }
+                }
+            }
+        }
+
+        .step-1-content, .step-2-content {
+            ion-content {
+                top: 64px;
+            }
+        }
+        .step-3-content {
+            top: 64px;
+        }
+    }
+}

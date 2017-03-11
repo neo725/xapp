@@ -131,8 +131,8 @@ module.exports = [
     #            $log.info '[** StudycardSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
     #            $log.info '[** StudycardSlide **] >> isGuest : ' + user.isGuest()
     #            $log.info '[** StudycardSlide **] >> isRealDevice : ' + user.isRealDevice()
-                if not user.isGuest()
-                    loadStudycard()
+#                if not user.isGuest()
+#                    loadStudycard()
             )
     #        $log.info '[** StudycardSlide **] >> loadStudycard()'
     #        $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification

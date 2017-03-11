@@ -89,7 +89,7 @@ module.exports = [
 #            $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
 #            $log.info '[** SearchSlide **] >> isGuest : ' + user.isGuest()
 #            $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()
-            loadSearchSlide(false)
+#            loadSearchSlide(false)
         )
 #        token = window.localStorage.getItem('token')
 #        if $rootScope.member or token

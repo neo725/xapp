@@ -1,0 +1,7 @@
+.platform-ios.platform-cordova:not(.fullscreen) {
+    .member-order-list {
+        .tabs-top > .tabs {
+            top: 0;
+        }
+    }
+}

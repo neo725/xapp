@@ -210,6 +210,10 @@
             padding-bottom: 10px;
         }
         .row {
+            border: 0;
+            padding-bottom: 5px;
+            padding-top: 5px;
+
             & + .row {
                 margin-top: 5px;
             }
@@ -250,6 +254,11 @@
         }
         .has-tabs-top {
             top: 44px;
+        }
+        .list {
+            .item {
+                border: 0;
+            }
         }
         .label {
             color: $gray-color;
