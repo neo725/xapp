@@ -1,7 +1,18 @@
-.platform-ios.platform-cordova:not(.fullscreen) {
-    .member-order-list {
-        .tabs-top > .tabs {
-            top: 0;
+.platform-ios {
+    &.platform-cordova:not(.fullscreen) {
+        .member-order-list {
+            .tabs-top > .tabs {
+                top: 0;
+            }
+        }
+    }
+    &.platform-ios9 {
+        .member-order-list {
+            .tab-content {
+                .item {
+                    margin-top: -3px;
+                }
+            }
         }
     }
 }
