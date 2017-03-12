@@ -105,3 +105,25 @@ module.exports =
             'bgcolor': '#0097cd'
         }
     ]
+
+    DEVICEMODEL_MAPPING: [
+        { 'model': 'iphone3,1', 'deviceName': 'iphone4' }
+        { 'model': 'iphone3,2', 'deviceName': 'iphone4' }
+        { 'model': 'iphone3,3', 'deviceName': 'iphone4' }
+        { 'model': 'iphone4,1', 'deviceName': 'iphone4s' }
+        { 'model': 'iphone5,1', 'deviceName': 'iphone5' }
+        { 'model': 'iphone5,2', 'deviceName': 'iphone5' }
+        { 'model': 'iphone5,3', 'deviceName': 'iphone5c' }
+        { 'model': 'iphone5,4', 'deviceName': 'iphone5c' }
+        { 'model': 'iphone6,1', 'deviceName': 'iphone5s' }
+        { 'model': 'iphone6,2', 'deviceName': 'iphone5s' }
+        { 'model': 'iphone7,2', 'deviceName': 'iphone6' }
+        { 'model': 'iphone7,1', 'deviceName': 'iphone6-plus' }
+        { 'model': 'iphone8,1', 'deviceName': 'iphone6s' }
+        { 'model': 'iphone8,2', 'deviceName': 'iphone6s-plus' }
+        { 'model': 'iphone8,4', 'deviceName': 'iphone-se' }
+        { 'model': 'iphone9,1', 'deviceName': 'iphone7' }
+        { 'model': 'iphone9,3', 'deviceName': 'iphone7' }
+        { 'model': 'iphone9,2', 'deviceName': 'iphone7-plus' }
+        { 'model': 'iphone9,4', 'deviceName': 'iphone7-plus' }
+    ]
