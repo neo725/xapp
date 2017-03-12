@@ -3,10 +3,11 @@
         .tabs {
             top: 0;
         }
-        &.tabs-striped.tabs-light {
+        &.tabs-light {
             .tab-item {
                 &.tab-item-active, &.activated {
                     border-bottom-width: 4px !important;
+                    border-bottom-style: solid !important;
 
                     &.tab-active-1 {
                         border-color: $tab-color-1 !important;

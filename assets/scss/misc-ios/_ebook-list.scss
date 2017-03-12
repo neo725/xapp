@@ -1,0 +1,8 @@
+//.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs
+.platform-ios {
+    .ebook-list {
+        .tabs-top > .tabs {
+            top: 0 !important;
+        }
+    }
+}

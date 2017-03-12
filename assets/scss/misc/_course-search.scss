@@ -251,6 +251,10 @@
     .popover-condition-content {
         .tabs-top > .tabs {
             top: 0;
+
+            .tab-item.tab-item-active {
+                border-bottom: 4px solid;
+            }
         }
         .has-tabs-top {
             top: 44px;

@@ -3,13 +3,14 @@
 }
 .ebook-list {
     .tabs-top {
-        &.tabs-striped.tabs-light {
+        &.tabs-light {
             .tab-item {
                 border-color: $ebook-main-color !important;
                 color: $ebook-tab-color;
 
                 &.tab-item-active, &.activated {
                     border-bottom-width: 4px !important;
+                    border-bottom-style: solid !important;
 
                     .badge {
                         opacity: 1;
