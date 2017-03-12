@@ -200,9 +200,9 @@
     }
 }
 .popover.popover-history {
-    height: 220px;
+    height: 230px;
     left: 0 !important;
-    top: 124px !important;
+    top: 118px !important;
     width: 100% !important;
 
     .popover-history-content {
@@ -241,11 +241,11 @@
 .popover.popover-condition {
     height: 255px;
     left: 0 !important;
-    top: 124px !important;
+    top: 118px !important;
     width: 100% !important;
 
     &.large {
-        height: 390px;
+        height: 410px;
     }
 
     .popover-condition-content {
@@ -258,6 +258,7 @@
         .list {
             .item {
                 border: 0;
+                background-color: #ffffff;
             }
         }
         .label {
