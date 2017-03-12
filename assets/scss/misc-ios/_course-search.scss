@@ -5,7 +5,9 @@
         }
     }
 
-    .popover-history {
+    .popover.popover-history {
+        top: 94px !important;
+
         .list {
             .row {
                 border:0;
@@ -13,5 +15,8 @@
                 padding-top:5px
             }
         }
+    }
+    .popover.popover-condition {
+        top: 94px !important;
     }
 }
