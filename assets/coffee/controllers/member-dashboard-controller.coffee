@@ -41,16 +41,16 @@ module.exports = [
 
             $scope.toggleNotification = ($event) ->
                 $event.stopPropagation()
-                if $scope.notify == 't'
-                    $scope.notify = 'f'
+                if $rootScope.notify == 't'
+                    $rootScope.notify = 'f'
                 else
-                    $scope.notify = 't'
+                    $rootScope.notify = 't'
                 updateSetting()
 
             $scope.checkNotificationIsChecked = ->
-                if $scope.notify != 'f'
-                    $scope.notify = 't'
-                return $scope.notify == 't'
+                if $rootScope.notify != 'f'
+                    $rootScope.notify = 't'
+                return $rootScope.notify == 't'
 
             updateSetting = () ->
                 data =

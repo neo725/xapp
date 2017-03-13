@@ -1,5 +1,11 @@
 .icon-refreshing {
-    .spinner svg {
+    .spinner {
+        display: none;
+    }
+}
+
+ion-infinite-scroll {
+    .spinner {
         display: none;
     }
 }
