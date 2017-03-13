@@ -58,6 +58,9 @@ module.exports =
             'html_name1': '建國本部'
             'html_name2': '大夏館'
             'bgcolor': '#669ccc'
+            'latlng':
+                'n': 25.026133
+                'e': 121.538099
         },
         {
             'location_name': '忠孝分部'
@@ -67,6 +70,9 @@ module.exports =
             'html_name1': '忠孝'
             'html_name2': '分部'
             'bgcolor': '#cf4b94'
+            'latlng':
+                'n': 25.044707
+                'e': 121.525787
         },
         {
             'location_name': '延平分部'
@@ -76,6 +82,9 @@ module.exports =
             'html_name1': '延平'
             'html_name2': '分部'
             'bgcolor': '#f9b233'
+            'latlng':
+                'n': 25.038641
+                'e': 121.508613
         },
         {
             'location_name': '大安中心'
@@ -85,6 +94,9 @@ module.exports =
             'html_name1': '大安'
             'html_name2': '中心'
             'bgcolor': '#3ebbcf'
+            'latlng':
+                'n': 25.033828
+                'e': 121.544288
         },
         {
             'location_name': '台中教育中心'
@@ -94,6 +106,9 @@ module.exports =
             'html_name1': '台中'
             'html_name2': '教育中心'
             'bgcolor': '#e46272'
+            'latlng':
+                'n': 24.170737
+                'e': 120.638142
         },
         {
             'location_name': '高雄教育中心'
@@ -103,6 +118,9 @@ module.exports =
             'html_name1': '高雄'
             'html_name2': '教育中心'
             'bgcolor': '#0097cd'
+            'latlng':
+                'n': 22.628311
+                'e': 120.293095
         }
     ]
 
