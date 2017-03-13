@@ -19,7 +19,9 @@
         <h3 class="survey-title" ng-bind="course.Prod_Name"></h3>
         <form name="surveyForm" class="form survey-form" novalidate ng-submit="submitForm(surveyForm)">
             <ion-list class="survey-list">
-                <ion-item class="survey-item" ng-repeat="topic in topics track by topic.Topic_No">
+                <ion-item class="survey-item"
+                          ng-class="{ 'survey-item-color-1': $index % 6 == 0, 'survey-item-color-2': $index % 6 == 1, 'survey-item-color-3': $index % 6 == 2, 'survey-item-color-4': $index % 6 == 3, 'survey-item-color-5': $index % 6 == 4, 'survey-item-color-6': $index % 6 == 5 }"
+                          ng-repeat="topic in topics track by topic.Topic_No">
                     <ng-form name="innerForm">
                         <div class="survey-item-topic" ng-class="{ 'has-error': innerForm.topic.$invalid }">
                             <input type="hidden" name="topic"
@@ -35,7 +37,7 @@
                                                'ion-android-radio-button-off': topic.event_value != item.Event_Value }"></i>
                                 <span class="radio-title" ng-bind="item.Event_Value"></span>
                             </ion-radio>
-                            <ion-checkbox ng-if="topic.Topic_Type == '複選'"
+                            <ion-checkbox ng-if="topic.Topic_Type == '複選' && topic.events.length < 6"
                                           ng-repeat="item in topic.events"
                                           ng-model="item.checked"
                                           ng-value="item.Event_Value"
@@ -43,6 +45,16 @@
                                           ng-change="changeTopicEvent(topic, item)">
                                 <span class="checkbox-title" ng-bind="item.Event_Value"></span>
                             </ion-checkbox>
+                            <div class="row wrap-row" ng-if="topic.Topic_Type == '複選' && topic.events.length >= 6">
+                                <div class="col col-33" ng-repeat="item in topic.events">
+                                    <ion-checkbox ng-model="item.checked"
+                                                  ng-value="item.Event_Value"
+                                                  sce-checkbox-value-assign="topic.event_value"
+                                                  ng-change="changeTopicEvent(topic, item)">
+                                        <span class="checkbox-title" ng-bind="item.Event_Value"></span>
+                                    </ion-checkbox>
+                                </div>
+                            </div>
                         </div>
                     </ng-form>
                     <div class="sub-survey-item"

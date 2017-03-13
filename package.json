@@ -1,6 +1,6 @@
 {
     "name": "sceapp",
-    "version": "0.15.23",
+    "version": "0.15.26",
     "description": "scemobile: An Ionic project",
     "dependencies": {
         "angular-action-sheet": "^0.1.4",

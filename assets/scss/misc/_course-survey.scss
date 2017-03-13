@@ -1,4 +1,6 @@
 .course-survey {
+    background-color: $stable;
+
     .course-survey-content {
         .survey-title {
             text-align: center;
@@ -6,6 +8,72 @@
         .survey-list {
             .survey-item {
                 border: 0 none;
+                margin-bottom: 15px;
+
+                $survey-item-color-1: #1d70b7;
+                &.survey-item-color-1 {
+                    .input-label, .item, .ion-android-radio-button-on, .ion-android-radio-button-off {
+                        color: $survey-item-color-1;
+                    }
+                    .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+                        background-color: $survey-item-color-1;
+                        border-color: $survey-item-color-1;
+                    }
+                }
+                $survey-item-color-2: #cf4b94;
+                &.survey-item-color-2 {
+                    .input-label, .item, .ion-android-radio-button-on, .ion-android-radio-button-off {
+                        color: $survey-item-color-2;
+                    }
+                    .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+                        background-color: $survey-item-color-2;
+                        border-color: $survey-item-color-2;
+                    }
+                }
+                $survey-item-color-3: #d2982b;
+                &.survey-item-color-3 {
+                    .input-label, .item, .ion-android-radio-button-on, .ion-android-radio-button-off {
+                        color: $survey-item-color-3;
+                    }
+                    .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+                        background-color: $survey-item-color-3;
+                        border-color: $survey-item-color-3;
+                    }
+                }
+                $survey-item-color-4: #00a09a;
+                &.survey-item-color-4 {
+                    .input-label, .item, .ion-android-radio-button-on, .ion-android-radio-button-off {
+                        color: $survey-item-color-4;
+                    }
+                    .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+                        background-color: $survey-item-color-4;
+                        border-color: $survey-item-color-4;
+                    }
+                }
+                $survey-item-color-5: #575756;
+                &.survey-item-color-5 {
+                    .input-label, .item, .ion-android-radio-button-on, .ion-android-radio-button-off {
+                        color: $survey-item-color-5;
+                    }
+                    .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+                        background-color: $survey-item-color-5;
+                        border-color: $survey-item-color-5;
+                    }
+                }
+                $survey-item-color-6: #575756;
+                &.survey-item-color-6 {
+                    .input-label, .item, .ion-android-radio-button-on, .ion-android-radio-button-off {
+                        color: $survey-item-color-6;
+                    }
+                    .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+                        background-color: $survey-item-color-6;
+                        border-color: $survey-item-color-6;
+                    }
+                }
+
+                .item-radio, .item-checkbox {
+                    border: 0 none;
+                }
 
                 // .item-radio input:checked + .radio-content .item-content
                 .item-radio {
@@ -14,7 +82,7 @@
                     }
                     .radio-content {
                         .item-content {
-                            padding: 10px;
+                            padding: 5px;
                             padding-left: 20px;
 
                             i {
@@ -36,6 +104,61 @@
                 .item-content {
                     text-overflow: initial;
                     white-space: initial;
+                }
+
+                .survey-item-topic {
+                    padding-bottom: 10px;
+
+                    .input-label {
+                        font-size: 19px;
+                    }
+                    .item {
+                        font-size: 17px;
+                    }
+                    .wrap-row {
+                        -webkit-flex-wrap: wrap;
+                        flex-wrap: wrap;
+                        padding: 0;
+
+                        .col {
+                            padding: 0;
+                        }
+                        .item-checkbox {
+                            padding: 10px 0 10px 26px;
+                            font-size: 17px;
+
+                            .checkbox {
+                                left: -10px;
+                            }
+                        }
+                    }
+                }
+
+                .sub-survey-item {
+                    margin-top: 10px;
+                    border-top: 1px solid $separate-line-color;
+
+                    .sub-survey-item-topic {
+                        padding-top: 10px;
+
+                        .input-label {
+                            padding-bottom: 10px;
+                            font-size: 19px;
+                        }
+                        .item {
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            color: #6f6f6e;
+
+                            .item-content {
+                                font-size: 15px;
+                            }
+                            .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+                                background-color: #6f6f6e;
+                                border-color: #6f6f6e;
+                            }
+                        }
+                    }
                 }
             }
         }
