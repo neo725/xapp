@@ -24,98 +24,57 @@
                         </div>
                     </div>
                     <div class="row value-row">
-                        <div class="col col-40">
-                            <div class="progress-wrapper">
-                                <round-progress
-                                    max="5"
-                                    current="course.ques_topics[0].ans_value"
-                                    color="#2B61AC"
-                                    bgcolor="#F1F1F1"
-                                    radius="{{ radius * radius_multiple }}"
-                                    stroke="{{ stroke * stroke_multiple }}">
-                                    <round-progress
-                                        max="5"
-                                        current="course.ques_topics[1].ans_value"
-                                        color="#B63882"
-                                        bgcolor="#F1F1F1"
-                                        radius="{{ radius * radius_multiple }}"
-                                        stroke="{{ stroke * stroke_multiple }}"
-                                        offset="{{ offset }}">
-                                        <round-progress
-                                            max="5"
-                                            current="course.ques_topics[2].ans_value"
-                                            color="#F2D000"
-                                            bgcolor="#F1F1F1"
-                                            radius="{{ radius * radius_multiple }}"
-                                            stroke="{{ stroke * stroke_multiple }}"
-                                            offset="{{ offset * 2 }}">
-                                            <round-progress
-                                                max="5"
-                                                current="course.ques_topics[3].ans_value"
-                                                color="#00a09a"
-                                                bgcolor="#F1F1F1"
-                                                radius="{{ radius * radius_multiple }}"
-                                                stroke="{{ stroke * stroke_multiple }}"
-                                                offset="{{ offset * 3 }}">
-                                            </round-progress>
-                                        </round-progress>
-                                    </round-progress>
-                                </round-progress>
-                                <div class="progress-icon-label-wrapper" ng-hide="false">
-                                    <div class="progress-icon-label">
-                                        <div class="icon"><img src="img/completing-like@2x.png" /></div>
-                                        <div class="label">本次評分</div>
-                                    </div>
+                        <div class="col col-50 col-border-right no-padding">
+                            <div class="row no-padding ticket-count-row">
+                                <div class="col col-33 col-type-img no-padding">
+                                    <img class="type-img" src="img/like.png" />
+                                </div>
+                                <div class="col col-33 no-padding">
+                                    <div class="ticket-label">滿意</div>
+                                </div>
+                                <div class="col no-padding">
+                                    <div class="ticket-count">3</div>
+                                </div>
+                            </div>
+                            <div class="row no-padding">
+                                <div class="col no-padding">
+                                    <span class="type-label">師資</span>
+                                    <span class="type-label">內容</span>
+                                    <span class="type-label">環境</span>
+                                    <span class="type-label">服務</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col col-topics no-padding">
-                            <div class="row line-star-row no-padding">
-                                <div class="col line-star-col no-padding">
-                                    <div class="row no-padding color-1 star-text-row">
-                                        <div class="col no-padding">{{ course.ques_topics[0].topic_name }}</div>
-                                        <div class="col no-padding">
-                                            <div star-rating ng-model="course.ques_topics[0].ans_value"
-                                                 readonly="true"
-                                                 max="5"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-padding color-2 star-text-row">
-                                        <div class="col no-padding">{{ course.ques_topics[1].topic_name }}</div>
-                                        <div class="col no-padding">
-                                            <div star-rating ng-model="course.ques_topics[1].ans_value"
-                                                 readonly="true"
-                                                 max="5"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-padding color-3 star-text-row">
-                                        <div class="col no-padding">{{ course.ques_topics[2].topic_name }}</div>
-                                        <div class="col no-padding">
-                                            <div star-rating ng-model="course.ques_topics[2].ans_value"
-                                                 readonly="true"
-                                                 max="5"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-padding color-4 star-text-row">
-                                        <div class="col no-padding">{{ course.ques_topics[3].topic_name }}</div>
-                                        <div class="col no-padding">
-                                            <div star-rating ng-model="course.ques_topics[3].ans_value"
-                                                 readonly="true"
-                                                 max="5"></div>
-                                        </div>
-                                    </div>
+                        <div class="col no-padding">
+                            <div class="row no-padding ticket-count-row">
+                                <div class="col col-33 col-type-img no-padding">
+                                    <img class="type-img" src="img/illike.png" />
+                                </div>
+                                <div class="col col-33 no-padding">
+                                    <div class="ticket-label">不滿意</div>
+                                </div>
+                                <div class="col no-padding">
+                                    <div class="ticket-count">3</div>
+                                </div>
+                            </div>
+                            <div class="row no-padding">
+                                <div class="col col-indent no-padding">
+                                    <span class="type-label">師資</span>
+                                    <span class="type-label">內容</span>
+                                    <span class="type-label">環境</span>
+                                    <span class="type-label">服務</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row no-padding bottom-table">
+                    <div class="row no-padding bottom-row">
                         <div class="col col-33 no-padding">
                             <div class="row no-padding">
                                 <div class="col col-th">
                                     {{ '本次授課老師' }}
                                 </div>
                             </div>
-                            <div class="row no-padding">
+                            <div class="row no-padding value-row">
                                 <div class="col col-td color-1">
                                     <span class="teacher-name" ng-bind="course.Prod_ClsSir"></span>
                                 </div>
@@ -127,7 +86,7 @@
                                     {{ '本次學習時數' }}
                                 </div>
                             </div>
-                            <div class="row no-padding">
+                            <div class="row no-padding value-row">
                                 <div class="col col-td color-1">
                                     <span ng-bind="course.Prod_ClsHours"></span>
                                     <span class="small">{{ '小時' }}</span>
@@ -140,7 +99,7 @@
                                     {{ '更多延伸學習' }}
                                 </div>
                             </div>
-                            <div class="row no-padding">
+                            <div class="row no-padding value-row">
                                 <div class="col col-td color-1 col-link">
                                     <i class="ion-link" ng-click="goExtend(course.Prod_Id)"></i>
                                 </div>

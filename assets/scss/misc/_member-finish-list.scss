@@ -16,83 +16,46 @@
             .title-row {
                 font-size: 18px;
             }
+
             .value-row {
-                padding: 3px 0 8px 0;
-            }
-            .line-star-row {
-                margin-top: 30px;
-            }
-            .col-40 {
-                -webkit-box-flex: 0;
-                -webkit-flex: 0 0 40%;
-                -moz-box-flex: 0;
-                -moz-flex: 0 0 40%;
-                -ms-flex: 0 0 40%;
-                flex: 0 0 40%;
-                max-width: 40%;
-            }
-            .color-1 {
-                color: #2B61AC;
-                .star-rating {
-                    .star.filled {
-                        color: #2B61AC;
+                margin-top: 5px;
+                margin-bottom: 5px;
+
+                .col-border-right {
+                    border-right: 1px solid $stable;
+                }
+                .col-type-img {
+                    padding-left: 5px;
+
+                    .type-img {
+                        width: 100%;
+                        max-width: 32px;
                     }
                 }
-            }
-            .color-2 {
-                color: #B63882;
-                .star-rating {
-                    .star.filled {
-                        color: #B63882;
+
+                .ticket-count-row {
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+
+                    .ticket-label {
+                        margin-top: 4px;
+                    }
+                    .ticket-count {
+                        font-size: 80px;
                     }
                 }
-            }
-            .color-3 {
-                color: #F2D000;
-                .star-rating {
-                    .star.filled {
-                        color: #F2D000;
-                    }
+
+                .col-indent {
+                    padding-left: 3px;
+                }
+                .type-label {
+                    font-size: 12px;
+                    color: #575756;
+                    border: 1px solid $stable;
+                    padding: 1px 3px;
                 }
             }
-            .color-4 {
-                color: #00a09a;
-                .star-rating {
-                    .star.filled {
-                        color: #00a09a;
-                    }
-                }
-            }
-
-            .progress-wrapper {
-                top: 10px;
-                left: -10px;
-                position: relative;
-
-                .progress-icon-label-wrapper {
-                    position: absolute;
-                    text-align: center;
-                    left: 35px;
-                    top: 35px;
-
-                    .progress-icon-label {
-                        font-size: 12px;
-                        color: $light-gray-color;
-
-                        .icon img {
-                            width: 16px;
-                        }
-                    }
-                }
-            }
-            .star-text-row {
-                padding-bottom: 5px;
-
-                .col:first-child {
-                    font-size: 0.8em;
-                }
-            }
-            .bottom-table {
+            .bottom-row {
 
                 & > .col {
                     border-right: 1px solid $stable;
@@ -106,6 +69,9 @@
                     .col {
                         text-align: center;
                     }
+                }
+                .value-row {
+                    color: $positive;
                 }
                 .col-th {
                     color: $gray-color;
@@ -126,13 +92,6 @@
                 }
                 .small {
                     font-size: 0.5em;
-                }
-            }
-
-            .star-rating {
-                .star {
-                    font-size: 1em;
-                    margin-right: 2px;
                 }
             }
         }

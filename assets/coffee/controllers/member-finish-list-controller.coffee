@@ -46,7 +46,6 @@ module.exports = [
             api.getSurveys(onSuccess, onError)
 
         loadCourseList = (success_fn) ->
-            modal.showLoading('', 'message.data_loading')
             onSuccess = (response) ->
                 list = response.list
 
@@ -56,6 +55,7 @@ module.exports = [
 
             api.getFinishCourses(1, 500, onSuccess, onError)
 
+        modal.showLoading('', 'message.data_loading')
         loadCourseList(loadSurveyList)
 
 ]
