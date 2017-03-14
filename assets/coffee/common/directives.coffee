@@ -104,13 +104,13 @@ exports.customVerify = () ->
                         ctrl.$setValidity("customVerify", true)
                         return viewValue
 
-exports.sceCheckboxValueAssign = () ->
+exports.sceCheckboxValueAssign = ['$timeout', ($timeout) ->
     require: 'ngModel'
     scope:
         value: '=sceCheckboxValueAssign'
         checked: '=ngModel'
     link: (scope, elem, attrs) ->
-        elem.bind('change', ->
+        onChange = ->
             value = scope.value
             if not value
                 scope.value = attrs.value
@@ -129,7 +129,11 @@ exports.sceCheckboxValueAssign = () ->
                         value = values.join(',')
                 scope.value = value
             scope.$apply()
+
+        elem.bind('change', ->
+            $timeout onChange
         )
+]
 
 exports.messageDotMask = ->
     restrict: 'A'
