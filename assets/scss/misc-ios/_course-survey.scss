@@ -1,0 +1,26 @@
+.platform-ios, .platform-macintel {
+    .course-survey .course-survey-content {
+        .survey-list {
+            .survey-item .survey-item-topic {
+                .wrap-row {
+                    .item-checkbox {
+                        .checkbox {
+                            top: 58%;
+                            left: -6px;
+
+                            .checkbox-icon {
+                                width: 20px;
+                                height: 20px;
+
+                                &:after {
+                                    top: 26%;
+                                    left: 20%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
