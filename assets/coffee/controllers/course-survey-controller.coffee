@@ -1,7 +1,8 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$translate', 'api', 'plugins', 'navigation', 'modal', 'CacheFactory',
-    ($rootScope, $scope, $ionicHistory, $translate, api, plugins, navigation, modal, CacheFactory) ->
+    '$rootScope', '$scope', '$ionicHistory', '$timeout', '$translate', 'api', 'plugins', 'navigation', 'modal', 'CacheFactory',
+    ($rootScope, $scope, $ionicHistory, $timeout, $translate, api, plugins, navigation, modal, CacheFactory) ->
         $scope.originTopics = []
+        $scope.topic_loaded = false
 
         if not CacheFactory.get('surveyCache')
             opts =
@@ -75,16 +76,7 @@ module.exports = [
 
             onSuccess = (response) ->
                 modal.hideLoading()
-                index = _($rootScope.studyCards).findIndex({ 'Prod_Id': $scope.course.Prod_Id })
-                if index > -1
-                    $rootScope.studyCards.splice(index, 1)
-
-#                if $rootScope.studyCards.length > 0
-#                    newIndex = index - 1
-#                    if newIndex == -1
-#                        newIndex = 0
-#                    $ionicSlideBoxDelegate.$getByHandle('studycard-slide-box').slide(newIndex)
-#                $ionicSlideBoxDelegate.update()
+                $rootScope.deleteStudyCards $scope.course.Prod_Id
 
                 callGoBack = ->
                     $scope.goBack()
@@ -118,6 +110,7 @@ module.exports = [
 
                 $scope.topics = findRootTopics(response.topics)
                 $scope.originTopics = response.topics
+                $scope.topic_loaded = true
             onError = () ->
                 modal.hideLoading()
 

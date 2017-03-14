@@ -14,6 +14,8 @@ module.exports = [
             $scope.clockwise = false
             $rootScope.studyCardVisible = false
 
+            waitToDeleteStudyCards = []
+
     #        if not CacheFactory.get('studycardCache')
     #            opts =
     #                storageMode: 'sessionStorage'
@@ -123,6 +125,23 @@ module.exports = [
 
     #            if $rootScope.loadStudycardSlide
     #                loadStudycard()
+
+                if waitToDeleteStudyCards.length > 0
+                    _.forEach(waitToDeleteStudyCards, (prod_id) ->
+                        index = _($rootScope.studyCards).findIndex({ 'Prod_Id': prod_id })
+                        if index > -1
+                            $rootScope.studyCards.splice(index, 1)
+
+                        $rootScope.studyCardVisible = ($rootScope.studyCards.length > 0)
+
+                        if $rootScope.studyCards.length > 0 and index > -1
+                            newIndex = index - 1
+                            if newIndex == -1
+                                newIndex = 0
+                            $ionicSlideBoxDelegate.$getByHandle('studycard-slide-box').slide(newIndex)
+                        $ionicSlideBoxDelegate.update()
+                    )
+                    waitToDeleteStudyCards = []
             )
             $scope.$on('index-controller.onNotificationRegistered', () ->
                 $log.info '{** StudycardSlide **} >> index-controller.onNotificationRegistered......'
@@ -145,6 +164,15 @@ module.exports = [
     #            loadStudycard()
             loadStudycard()
 
+            deleteStudyCards = (prod_id) ->
+                waitToDeleteStudyCards.push prod_id
+                $log.info '[** StudycardSlide **] deleteStudyCards : ' + prod_id
+
+            $rootScope.deleteStudyCards = deleteStudyCards
+
+            $scope.$on('$ionicView.enter', ->
+
+            )
             $ionicModal.fromTemplateUrl('templates/modal-feedback.html',
                 scope: $scope
                 animation: 'fade-in'

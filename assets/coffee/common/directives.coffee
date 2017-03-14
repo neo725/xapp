@@ -123,7 +123,10 @@ exports.sceCheckboxValueAssign = () ->
                     index = values.indexOf(attrs.value)
                     if index > -1
                         values.splice index, 1
-                    value = values.join(',')
+                    if values.length == 0
+                        value = undefined
+                    else
+                        value = values.join(',')
                 scope.value = value
             scope.$apply()
         )
@@ -232,6 +235,8 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
             , (value) ->
                 if value == 0
                     $slider.css('height', '')
+                else
+                    adjustHeight()
 ]
 
 exports.sceCutHeight = ['$log', ($log) ->

@@ -15,9 +15,9 @@
             <h1 class="title">滿意度問卷</h1>
         </ion-nav-title>
     </ion-nav-bar>
-    <ion-content class="course-survey-content" padding="true">
-        <h3 class="survey-title" ng-bind="course.Prod_Name"></h3>
-        <form name="surveyForm" class="form survey-form" novalidate ng-submit="submitForm(surveyForm)">
+    <form name="surveyForm" class="form survey-form" novalidate ng-submit="submitForm(surveyForm)">
+        <ion-content class="course-survey-content" padding="true">
+            <h3 class="survey-title" ng-bind="course.Prod_Name"></h3>
             <ion-list class="survey-list">
                 <ion-item class="survey-item"
                           ng-class="{ 'survey-item-color-1': $index % 6 == 0, 'survey-item-color-2': $index % 6 == 1, 'survey-item-color-3': $index % 6 == 2, 'survey-item-color-4': $index % 6 == 3, 'survey-item-color-5': $index % 6 == 4, 'survey-item-color-6': $index % 6 == 5 }"
@@ -77,10 +77,13 @@
                     </div>
                 </ion-item>
             </ion-list>
-            <div class="row">
+            <div class="row" ng-if="false">
                 <div class="col"><input type="button" class="button button-block button-dark" ng-click="goBack()" value="取消" /></div>
                 <div class="col col-67"><button class="button button-block button-positive">確認</button></div>
             </div>
-        </form>
-    </ion-content>
+        </ion-content>
+        <ion-footer-bar class="footer">
+            <button class="button button-full button-positive" ng-disabled="!topic_loaded || surveyForm.$invalid">{{ '確認送出' }}</button>
+        </ion-footer-bar>
+    </form>
 </ion-view>
