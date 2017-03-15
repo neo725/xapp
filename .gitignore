@@ -9,3 +9,4 @@ www/js/*
 assets/build/*
 www/css
 /config.xml
+/package.json

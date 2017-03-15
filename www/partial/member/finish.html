@@ -23,7 +23,7 @@
                             <span ng-bind="course.Prod_SubName"></span>
                         </div>
                     </div>
-                    <div class="row value-row">
+                    <div class="row value-row" ng-init="result = proccessTopics(course.ques_topics)">
                         <div class="col col-50 col-border-right no-padding">
                             <div class="row no-padding ticket-count-row">
                                 <div class="col col-33 col-type-img no-padding">
@@ -33,15 +33,12 @@
                                     <div class="ticket-label">滿意</div>
                                 </div>
                                 <div class="col no-padding">
-                                    <div class="ticket-count">3</div>
+                                    <div class="ticket-count" ng-bind="result.satisfied.count">0</div>
                                 </div>
                             </div>
                             <div class="row no-padding">
                                 <div class="col no-padding">
-                                    <span class="type-label">師資</span>
-                                    <span class="type-label">內容</span>
-                                    <span class="type-label">環境</span>
-                                    <span class="type-label">服務</span>
+                                    <span class="type-label" ng-repeat="item in result.satisfied.items" ng-bind="item">?</span>
                                 </div>
                             </div>
                         </div>
@@ -54,15 +51,12 @@
                                     <div class="ticket-label">不滿意</div>
                                 </div>
                                 <div class="col no-padding">
-                                    <div class="ticket-count">3</div>
+                                    <div class="ticket-count" ng-bind="result.unsatisfied.count">0</div>
                                 </div>
                             </div>
                             <div class="row no-padding">
                                 <div class="col col-indent no-padding">
-                                    <span class="type-label">師資</span>
-                                    <span class="type-label">內容</span>
-                                    <span class="type-label">環境</span>
-                                    <span class="type-label">服務</span>
+                                    <span class="type-label" ng-repeat="item in result.unsatisfied.items" ng-bind="item">?</span>
                                 </div>
                             </div>
                         </div>
