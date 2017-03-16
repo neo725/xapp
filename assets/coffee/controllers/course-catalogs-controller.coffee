@@ -3,6 +3,9 @@ module.exports = [
     ($rootScope, $scope, $timeout, $log, navigation, api, modal, CacheFactory) ->
         $scope.mode = 'List' # 'Setting', 'List'
         $scope.expand = false
+        $scope.catalogs = []
+        $scope.invertCatalogs = []
+
         choiceCatalogs = []
 
         if not CacheFactory.get('catalogsCache')
@@ -65,7 +68,7 @@ module.exports = [
         $scope.switchExpand = () ->
             $scope.expand = not $scope.expand
 
-        $scope.invertItems = (allItems, items) ->
+        invertItems = (allItems, items) ->
             all = angular.copy(allItems)
             _.forEach(items, (item) ->
                 index = _.findIndex(all, { Cata_Id: item.Cata_Id })
@@ -73,6 +76,9 @@ module.exports = [
                     all.splice index, 1
             )
             return all
+
+        updateInvertCatalogs = (catalogs, visibleCatalogs) ->
+            $scope.invertCatalogs = invertItems(catalogs, visibleCatalogs)
 
         loadUserCatalogs = (shop_id, forceReload) ->
             catalogs_user_in_cache = catalogsCache.get('user')
@@ -82,6 +88,7 @@ module.exports = [
                 $scope.user_catalogs = response.list
                 $scope.visibleCatalogs = $scope.user_catalogs
                 catalogsCache.put 'user', response.list
+                updateInvertCatalogs($scope.catalogs, $scope.visibleCatalogs)
 
             onError = (error, status_code) ->
                 modal.hideLoading()
@@ -94,6 +101,7 @@ module.exports = [
             if catalogs_user_in_cache and not forceReload
                 $scope.user_catalogs = catalogs_user_in_cache
                 $scope.visibleCatalogs = $scope.user_catalogs
+                updateInvertCatalogs($scope.catalogs, $scope.visibleCatalogs)
             else
                 modal.showLoading('', 'message.data_loading')
                 api.getUserCatalogs(shop_id, onSuccess, onError)

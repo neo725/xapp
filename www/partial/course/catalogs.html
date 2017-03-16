@@ -60,9 +60,9 @@
             </div>
         </div>
         <div class="off-list-container" ng-if="mode == 'List'" ng-show="expand == true">
-            <ion-list ng-init="items = invertItems(catalogs, visibleCatalogs)">
+            <ion-list>
                 <ion-item class="item"
-                          ng-repeat="catalog in items">
+                          ng-repeat="catalog in invertCatalogs">
                     <div class="row">
                         <div class="col col-10 col-handler" ng-if="false && mode == 'Setting'">
                             <img src="img/sort-handler.png" class="sort-handler-image" />
