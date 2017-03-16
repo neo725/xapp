@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="off-list-container">
+        <div class="off-list-container" ng-if="mode == 'List'" ng-show="expand == true">
             <ion-list ng-init="items = invertItems(catalogs, visibleCatalogs)">
                 <ion-item class="item"
                           ng-repeat="catalog in items">

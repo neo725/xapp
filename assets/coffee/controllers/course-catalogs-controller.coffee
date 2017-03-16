@@ -67,11 +67,11 @@ module.exports = [
 
         $scope.invertItems = (allItems, items) ->
             all = angular.copy(allItems)
-#            _.forEach(items, (item) ->
-#                index = _.findIndex(all, { Cata_Id: item.Cata_Id })
-#                if index > -1
-#                    all.splice index, 1
-#            )
+            _.forEach(items, (item) ->
+                index = _.findIndex(all, { Cata_Id: item.Cata_Id })
+                if index > -1
+                    all.splice index, 1
+            )
             return all
 
         loadUserCatalogs = (shop_id, forceReload) ->
