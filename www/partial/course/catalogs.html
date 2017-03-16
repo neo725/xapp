@@ -10,36 +10,84 @@
         <h1 class="title">課程分類</h1>
     </ion-nav-title>
     <ion-content class="course-catalogs-content">
-        <ion-refresher
-            pulling-text="{{ '下拉更新...' }}"
-            on-refresh="doRefresh()">
-        </ion-refresher>
         <div class="notice-block">
-            您可以勾選有興趣的分類，或點選一個分類項目進行指定分類的課程搜尋
+            您可以勾選你有興趣的分類，也可以變更列表內的課程分類排序
         </div>
-        <ion-list>
-            <ion-item class="item" ng-repeat="catalog in visibleCatalogs" ng-click="goCatalogsSearch(catalog)">
-                <div class="row">
-                    <div class="col col-20">
-                        <img src="img/catalogs/i-c-{{ catalog.Cata_SubDomain }}.png" class="catalog-image" />
+        <div class="header">
+            <div class="line"></div>
+            <div class="label">已關注的分類</div>
+        </div>
+        <div class="list-container">
+            <ion-list>
+                <ion-item class="item"
+                          ng-repeat="catalog in visibleCatalogs"
+                          ng-click="goCatalogsSearch(catalog)">
+                    <div class="row">
+                        <div class="col col-10 col-handler" ng-if="false && mode == 'Setting'">
+                            <img src="img/sort-handler.png" class="sort-handler-image" />
+                        </div>
+                        <div class="col col-10">
+                            <img ng-src="img/catalogs/i-c-{{ catalog.Cata_SubDomain }}.png" class="catalog-image" />
+                        </div>
+                        <div class="col">
+                            <div class="item item-toggle toggle-small"
+                                 toggle-class="toggle-positive">
+                                <div><span>{{catalog.Cata_Name}}</span></div>
+                                <label class="toggle toggle-positive disable-user-behavior"
+                                       ng-show="mode == 'Setting'"
+                                       ng-click="toggleCatalogItem(catalog.Cata_Id, $event)">
+                                    <input type="checkbox" ng-checked="checkCatalogIsChecked(catalog.Cata_Id)">
+                                    <div class="track"><div class="handle"></div></div>
+                                </label>
+                            </div>
+                            <div ng-class="{ 'title': mode == 'Setting', 'full-title': mode == 'List' }">
+                                <span class="sub-item" ng-repeat="subitem in catalog.subCataList">{{subitem.Cata_Name}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col">
-                        <div class="item item-toggle toggle-small"
-                             toggle-class="toggle-positive">
-                            <div><span>{{catalog.Cata_Name}}</span></div>
-                            <label class="toggle toggle-positive disable-user-behavior"
-                                   ng-show="mode == 'Setting'"
-                                   ng-click="toggleCatalogItem(catalog.Cata_Id, $event)">
-                                <input type="checkbox" ng-checked="checkCatalogIsChecked(catalog.Cata_Id)">
-                                <div class="track"><div class="handle"></div></div>
-                            </label>
-                        </div>
-                        <div ng-class="{ 'title': mode == 'Setting', 'full-title': mode == 'List' }">
-                            <span class="sub-item" ng-repeat="subitem in catalog.subCataList">{{subitem.Cata_Name}}</span>
-                        </div>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div class="sub-header" ng-click="switchExpand()" ng-if="mode == 'List'">
+            <div class="label">
+                取消關注的分類
+                <div class="icon-container">
+                    <div class="icon">
+                        <img src="img/icon-expand.png" ng-if="expand == false" />
+                        <img src="img/icon-collapse.png" ng-if="expand == true" />
                     </div>
                 </div>
-            </ion-item>
-        </ion-list>
+            </div>
+        </div>
+        <div class="off-list-container">
+            <ion-list ng-init="items = invertItems(catalogs, visibleCatalogs)">
+                <ion-item class="item"
+                          ng-repeat="catalog in items">
+                    <div class="row">
+                        <div class="col col-10 col-handler" ng-if="false && mode == 'Setting'">
+                            <img src="img/sort-handler.png" class="sort-handler-image" />
+                        </div>
+                        <div class="col col-10">
+                            <img ng-src="img/catalogs/i-c-{{ catalog.Cata_SubDomain }}.png" class="catalog-image" />
+                        </div>
+                        <div class="col">
+                            <div class="item item-toggle toggle-small"
+                                 toggle-class="toggle-positive">
+                                <div><span>{{catalog.Cata_Name}}</span></div>
+                                <label class="toggle toggle-positive disable-user-behavior"
+                                       ng-show="mode == 'Setting'"
+                                       ng-click="toggleCatalogItem(catalog.Cata_Id, $event)">
+                                    <input type="checkbox" ng-checked="checkCatalogIsChecked(catalog.Cata_Id)">
+                                    <div class="track"><div class="handle"></div></div>
+                                </label>
+                            </div>
+                            <div ng-class="{ 'title': mode == 'Setting', 'full-title': mode == 'List' }">
+                                <span class="sub-item" ng-repeat="subitem in catalog.subCataList">{{subitem.Cata_Name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
     </ion-content>
 </ion-view>

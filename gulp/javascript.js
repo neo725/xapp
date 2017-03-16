@@ -97,6 +97,10 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                     depends: {
                         angular: 'angular'
                     }
+                },
+                'Sortable': {
+                    path: 'www/lib/Sortable/Sortable.js',
+                    exports: 'Sortable'
                 }
             }
         }))
@@ -113,7 +117,7 @@ gulp.task('appjs', ['coffeeifyjs'], function () {
             external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'ion-affix',
                 /*'lodash', 'moment', 'angular-svg-round-progressbar', 'ion.rangeSlider', 'jr-crop', 'angular-cache',*/
                 'lodash', 'moment', 'angular-svg-round-progressbar', 'jr-crop', 'angular-cache',
-                'angular-action-sheet']
+                'angular-action-sheet', 'Sortable']
         }))
         .pipe(gif(!debug, uglify({mangle: false})))
         .pipe(gulp.dest('www/js'));

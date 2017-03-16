@@ -4,37 +4,87 @@
         .notice-block {
             //border: $dark-blue-color 1px solid;
             background-color: $light-blue-color;
-            padding: 5px 10px;
-            margin: 20px;
-            margin-bottom: 0;
+            padding: 10px;
+            margin: 15px 20px 0 20px;
             color: $positive;
             border-radius: 5px;
-            line-height: 22px;
+            line-height: 23px;
+            font-size: 15px;
+        }
+        .header {
+            margin-left: 20px;
+            margin-right: 20px;
+
+            .line {
+                border-bottom: 1px solid $stable;
+                height: 20px;
+            }
+            .label {
+                font-size: 15px;
+                position: relative;
+                background-color: #ffffff;
+                top: -10px;
+                width: 100px;
+                color: #777777;
+            }
+        }
+        .list-container {
+            margin-bottom: 10px;
         }
         .list {
+            margin-top: 0;
+
             > .item {
                 white-space: initial;
+
+                &:last-child {
+                    border-bottom: 0 none;
+                }
             }
             .item {
                 border: none;
-                padding-top: 0;
+                padding: 0;
+                margin-left: 16px;
+                margin-right: 16px;
+                border-bottom: 1px solid $stable;
+                margin-bottom: 1px;
 
+                .row {
+                    padding: 15px 5px;
+
+                    .item {
+                        padding-bottom: 8px;
+                    }
+                }
+                .col-handler {
+                    padding-top: 9%;
+
+                    .sort-handler-image {
+                        width: 100%;
+                        max-width: 24px;
+                    }
+                }
                 .catalog-image {
-                    width: 64px;
+                    width: 45px;
+                    margin-top: 10px;
+                    margin-left: -5px;
                 }
                 .item.item-toggle {
                     font-size: 18px;
                     border: none;
+                    margin-right: 0;
 
                     .toggle {
                         top: 5px;
                     }
                 }
                 .title, .full-title {
-                    margin-left: 15px;
+                    margin-top: 5px;
+                    margin-left: 16px;
                     font-size: 15px;
                     width: 240px;
                     word-break: normal;
+                    color: #A4A4A4;
 
                     .sub-item {
 
@@ -47,7 +97,29 @@
                     }
                 }
                 .full-title {
-                    width: 90%;
+                    width: 97%;
+                }
+            }
+        }
+        .sub-header {
+            background-color: $stable;
+            padding: 15px 10px;
+
+            .label {
+                font-size: 15px;
+                padding-left: 10px;
+                color: #777777;
+            }
+            .icon-container {
+                position: absolute;
+                right: 10px;
+
+                .icon {
+                    margin-top: -22px;
+                }
+                img {
+                    width: 100%;
+                    max-width: 26px;
                 }
             }
         }

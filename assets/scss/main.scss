@@ -1,6 +1,10 @@
 @import "global/settings";
+
+/** include 3rd party's css */
 @import "../ionic/scss/ionic";
 @import "../ionic/scss/ionicons/ionicons";
+
+/** project css */
 @import "global/main";
 @import "icon/main";
 @import "misc/main";

@@ -1,7 +1,8 @@
 module.exports = [
-    '$rootScope', '$scope', '$log', 'navigation', 'api', 'modal', 'CacheFactory',
-    ($rootScope, $scope, $log, navigation, api, modal, CacheFactory) ->
+    '$rootScope', '$scope', '$timeout', '$log', 'navigation', 'api', 'modal', 'CacheFactory',
+    ($rootScope, $scope, $timeout, $log, navigation, api, modal, CacheFactory) ->
         $scope.mode = 'List' # 'Setting', 'List'
+        $scope.expand = false
         choiceCatalogs = []
 
         if not CacheFactory.get('catalogsCache')
@@ -60,6 +61,18 @@ module.exports = [
 
         $scope.doRefresh = () ->
             loadAllCatalogs 'MS', true
+
+        $scope.switchExpand = () ->
+            $scope.expand = not $scope.expand
+
+        $scope.invertItems = (allItems, items) ->
+            all = angular.copy(allItems)
+#            _.forEach(items, (item) ->
+#                index = _.findIndex(all, { Cata_Id: item.Cata_Id })
+#                if index > -1
+#                    all.splice index, 1
+#            )
+            return all
 
         loadUserCatalogs = (shop_id, forceReload) ->
             catalogs_user_in_cache = catalogsCache.get('user')
