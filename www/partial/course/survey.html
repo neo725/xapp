@@ -65,7 +65,9 @@
                             <ng-form name="innerSubForm"
                                      ng-value="innerSubForm.$valid"
                                      ng-model="surveyForm.valid_topics"
-                                     sce-form-valid-count="topic.Topic_No">
+                                     sce-form-valid-count="topic.Topic_No"
+                                     sce-form-valid-count-this-id="sub_topic.Topic_No"
+                                     sce-form-valid-count-list="topic.sub_topics">
                                 <div class="sub-survey-item-topic" ng-class="{ 'has-error': innerSubForm.sub_topic.$invalid }">
                                     <input type="hidden" name="sub_topic"
                                            ng-model="sub_topic.event_value"

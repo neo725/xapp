@@ -142,6 +142,8 @@ exports.sceFormValidCount = ['$timeout',
             valid: '=ngValue'
             valid_list: '=ngModel'
             data_id: '=sceFormValidCount'
+            list: '=sceFormValidCountList'
+            this_id: '=sceFormValidCountThisId'
         link: (scope, elem, attrs) ->
             addToList = (list, item) ->
                 index = list.indexOf(item)
@@ -161,7 +163,19 @@ exports.sceFormValidCount = ['$timeout',
                         if scope.valid_list
                             valid_list = scope.valid_list
 
-                        if scope.valid
+                        list = scope.list
+                        this_id = scope.this_id
+
+                        item = _.find(list, { Topic_No: this_id })
+                        if item
+                            item.valid = scope.valid
+
+                        valid = scope.valid
+                        _.forEach(list, (item) ->
+                            valid &= item.valid
+                        )
+
+                        if valid
                             valid_list = addToList(valid_list, scope.data_id)
                         else
                             valid_list = removeFromList(valid_list, scope.data_id)
