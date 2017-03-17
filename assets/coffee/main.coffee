@@ -96,6 +96,9 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 
     # http://scottbolinger.com/4-ways-to-make-your-ionic-app-feel-native/
     $ionicConfigProvider.scrolling.jsScrolling(false)
+
+    # disable swipe effect
+    $ionicConfigProvider.views.swipeBackEnabled(false)
 ])
 .config(['$ionicNativeTransitionsProvider', ($ionicNativeTransitionsProvider) ->
     $ionicNativeTransitionsProvider.enable true
