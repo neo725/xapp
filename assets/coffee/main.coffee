@@ -25,6 +25,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .directive('searchSlideFit', directives.searchSlideFit)
 .directive('sceCutHeight', directives.sceCutHeight)
 .directive('sceCheckboxValueAssign', directives.sceCheckboxValueAssign)
+.directive('sceFormValidCount', directives.sceFormValidCount)
 .controller('IndexController', require('./controllers/index-controller'))
 .controller('LoginController', require('./controllers/login-controller'))
 .controller('MainController', require('./controllers/main-controller'))

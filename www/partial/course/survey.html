@@ -22,7 +22,10 @@
                 <ion-item class="survey-item"
                           ng-class="{ 'survey-item-color-1': $index % 6 == 0, 'survey-item-color-2': $index % 6 == 1, 'survey-item-color-3': $index % 6 == 2, 'survey-item-color-4': $index % 6 == 3, 'survey-item-color-5': $index % 6 == 4, 'survey-item-color-6': $index % 6 == 5 }"
                           ng-repeat="topic in topics track by topic.Topic_No">
-                    <ng-form name="innerForm">
+                    <ng-form name="innerForm"
+                             ng-value="innerForm.$valid"
+                             ng-model="surveyForm.valid_topics"
+                             sce-form-valid-count="topic.Topic_No">
                         <div class="survey-item-topic" ng-class="{ 'has-error': innerForm.topic.$invalid }">
                             <input type="hidden" name="topic"
                                    ng-model="topic.event_value"
@@ -56,25 +59,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="sub-survey-item"
+                             ng-if="topic.sub_topics && topic.sub_topics.length > 0"
+                             ng-repeat="sub_topic in topic.sub_topics track by sub_topic.Topic_No">
+                            <ng-form name="innerSubForm"
+                                     ng-value="innerSubForm.$valid"
+                                     ng-model="surveyForm.valid_topics"
+                                     sce-form-valid-count="topic.Topic_No">
+                                <div class="sub-survey-item-topic" ng-class="{ 'has-error': innerSubForm.sub_topic.$invalid }">
+                                    <input type="hidden" name="sub_topic"
+                                           ng-model="sub_topic.event_value"
+                                           required />
+                                    <ion-label>{{ sub_topic.Topic_Name }}</ion-label>
+                                    <ion-checkbox ng-repeat="item in sub_topic.events"
+                                                  ng-model="item.checked"
+                                                  ng-value="item.Event_Value"
+                                                  sce-checkbox-value-assign="sub_topic.event_value">
+                                        <span class="checkbox-title" ng-bind="item.Event_Value"></span>
+                                    </ion-checkbox>
+                                </div>
+                            </ng-form>
+                        </div>
                     </ng-form>
-                    <div class="sub-survey-item"
-                         ng-if="topic.sub_topics && topic.sub_topics.length > 0"
-                         ng-repeat="sub_topic in topic.sub_topics track by sub_topic.Topic_No">
-                        <ng-form name="innerForm">
-                            <div class="sub-survey-item-topic" ng-class="{ 'has-error': innerForm.sub_topic.$invalid }">
-                                <input type="hidden" name="sub_topic"
-                                       ng-model="sub_topic.event_value"
-                                       required />
-                                <ion-label>{{ sub_topic.Topic_Name }}</ion-label>
-                                <ion-checkbox ng-repeat="item in sub_topic.events"
-                                              ng-model="item.checked"
-                                              ng-value="item.Event_Value"
-                                              sce-checkbox-value-assign="sub_topic.event_value">
-                                    <span class="checkbox-title" ng-bind="item.Event_Value"></span>
-                                </ion-checkbox>
-                            </div>
-                        </ng-form>
-                    </div>
                 </ion-item>
             </ion-list>
             <div class="row" ng-if="false">
@@ -83,7 +89,10 @@
             </div>
         </ion-content>
         <ion-footer-bar class="footer">
-            <button class="button button-full button-positive" ng-disabled="!topic_loaded || surveyForm.$invalid">{{ '確認送出' }}</button>
+            <button class="button button-full button-positive" ng-disabled="!topic_loaded || surveyForm.$invalid">
+                <span>{{ '確認送出' }}</span>
+                <span ng-if="topics && topics.length > 0"> ({{ surveyForm.valid_topics.length }}/{{ topics.length }})</span>
+            </button>
         </ion-footer-bar>
     </form>
 </ion-view>

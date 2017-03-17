@@ -135,6 +135,43 @@ exports.sceCheckboxValueAssign = ['$timeout', ($timeout) ->
         )
 ]
 
+exports.sceFormValidCount = ['$timeout',
+    ($timeout) ->
+        require: 'ngModel'
+        scope:
+            valid: '=ngValue'
+            valid_list: '=ngModel'
+            data_id: '=sceFormValidCount'
+        link: (scope, elem, attrs) ->
+            addToList = (list, item) ->
+                index = list.indexOf(item)
+                if index == -1
+                    list.push item
+                return list
+            removeFromList = (list, item) ->
+                index = list.indexOf(item)
+                if index > -1
+                    list.splice index, 1
+                return list
+            scope.$watch () ->
+                    return scope.valid
+                , () ->
+                    checkValid = () ->
+                        valid_list = []
+                        if scope.valid_list
+                            valid_list = scope.valid_list
+
+                        if scope.valid
+                            valid_list = addToList(valid_list, scope.data_id)
+                        else
+                            valid_list = removeFromList(valid_list, scope.data_id)
+
+                        scope.valid_list = valid_list
+                        scope.$apply()
+                    $timeout checkValid
+
+]
+
 exports.messageDotMask = ->
     restrict: 'A'
     link: (scope, element, attrs) ->
