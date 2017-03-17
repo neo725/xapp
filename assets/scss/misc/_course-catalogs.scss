@@ -65,14 +65,14 @@
                     }
                 }
                 .catalog-image {
-                    width: 45px;
+                    width: 40px;
                     margin-top: 10px;
-                    margin-left: -5px;
                 }
                 .item.item-toggle {
                     font-size: 18px;
                     border: none;
                     margin-right: 0;
+                    margin-left: 0;
 
                     .toggle {
                         top: 5px;
@@ -80,7 +80,6 @@
                 }
                 .title, .full-title {
                     margin-top: 5px;
-                    margin-left: 16px;
                     font-size: 15px;
                     width: 240px;
                     word-break: normal;

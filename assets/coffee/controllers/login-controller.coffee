@@ -5,10 +5,11 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
         $cordovaAppVersion,
         modal, api, navigation, user) ->
             # dev mode
-            $scope.user = {
-                account: 'sceapp',
-                password: '1234'
-            }
+#            $scope.user = {
+#                account: 'sceapp',
+#                password: '1234'
+#            }
+            $scope.user = {}
             $scope.logging = false
 
     #        clearField = (field) ->
