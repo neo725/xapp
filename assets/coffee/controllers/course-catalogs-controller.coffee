@@ -5,6 +5,7 @@ module.exports = [
         $scope.expand = false
         $scope.catalogs = []
         $scope.invertCatalogs = []
+        $scope.showSaveButton = false
 
         choiceCatalogs = []
 
@@ -21,6 +22,9 @@ module.exports = [
         $scope.goSetting = ->
             $scope.visibleCatalogs = $scope.catalogs
             $scope.mode = 'Setting'
+            $timeout () ->
+                    $scope.showSaveButton = true
+                , 1000
 
         $scope.saveSetting = ->
             onSuccess = () ->
