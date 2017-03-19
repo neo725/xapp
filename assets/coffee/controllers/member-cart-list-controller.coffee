@@ -310,8 +310,8 @@ module.exports = [
         $scope.$watch watchCurrentUrl, updateStepStatus
 
         watchCurrentCard = ->
-            if $scope.currentCard == {}
-                return false
+            if _.isEmpty($scope.currentCard)
+                return true
             match = false
             if $scope.currentCard.number_part1 != $scope.card.number_part1
                 match = match or true

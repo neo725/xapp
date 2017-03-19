@@ -105,6 +105,7 @@ exports.customVerify = () ->
                         return viewValue
 
 exports.sceCheckboxValueAssign = ['$timeout', ($timeout) ->
+    restrict: 'A'
     require: 'ngModel'
     scope:
         value: '=sceCheckboxValueAssign'
@@ -137,6 +138,7 @@ exports.sceCheckboxValueAssign = ['$timeout', ($timeout) ->
 
 exports.sceFormValidCount = ['$timeout',
     ($timeout) ->
+        restrict: 'A'
         require: 'ngModel'
         scope:
             valid: '=ngValue'
@@ -185,6 +187,30 @@ exports.sceFormValidCount = ['$timeout',
                     $timeout checkValid
 
 ]
+
+exports.sceStringPad = ['$timeout', 'util', ($timeout, util) ->
+    restrict: 'A'
+    require: 'ngModel'
+    scope:
+        value: '=ngModel'
+        padstring: '=sceStringPad'
+        new_value: '=sceStringPadModel'
+        length: '=sceStringPadLength'
+    link: (scope, elem, attrs) ->
+        updateValue = ->
+            scope.new_value = util.pad(scope.value, scope.length, scope.padstring.toString())
+            scope.$apply()
+
+        scope.$watch 'value', ->
+            $timeout updateValue
+]
+
+exports.sceFocus = ->
+    restrict: 'A'
+    link: (scope, elem, attrs) ->
+        scope.$watch attrs.sceFocus, (value) ->
+            if value
+                elem[0].focus()
 
 exports.messageDotMask = ->
     restrict: 'A'

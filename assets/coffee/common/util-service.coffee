@@ -9,12 +9,18 @@ module.exports = ['$log', ($log) ->
             return 'master'
         return ''
 
-    pad = (numeric, size) ->
+    pad = (numeric, size, pad_string) ->
+        if pad_string == undefined
+            pad_string = '0'
+
+        if numeric == undefined
+            return ''
+
         if numeric.toString().length > size
             return numeric.toString()
 
-        zero = '0'.repeat size - 1
-        str = zero + numeric.toString()
+        front_pad = pad_string.repeat size - 1
+        str = front_pad + numeric.toString()
         return str.substr(str.length - size)
 
     startsWith = (string, searchString, position) ->
