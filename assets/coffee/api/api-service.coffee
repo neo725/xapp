@@ -265,8 +265,8 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
-        forgotPassword: (data, onSuccess, onError) ->
-            $http.post('/api/members/forgot', data)
+        forgotPassword: (para, onSuccess, onError) ->
+            $http.get("/api/members/forgot?para=#{para}")
                 .success(onSuccess)
                 .error(onError)
 

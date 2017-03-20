@@ -1,9 +1,8 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$state', '$translate', 'navigation', 'modal', 'api', 'plugins'
-    ($rootScope, $scope, $ionicModal, $state, $translate, navigation, modal, api, plugins) ->
+    '$rootScope', '$scope', '$ionicModal', '$translate', 'navigation', 'modal', 'api', 'plugins'
+    ($rootScope, $scope, $ionicModal, $translate, navigation, modal, api, plugins) ->
         $scope.user = {
-            name: ''
-            email: ''
+            para: ''
         }
 
         $scope.goBack = ($event) ->
@@ -12,7 +11,8 @@ module.exports = [
 
         $scope.confirmClick = () ->
             $scope.modalForgotSended.hide()
-            navigation.slide 'login', {}, 'right'
+            #navigation.slide 'login', {}, 'right'
+            navigation.slide 'main.resetpassword', {}, 'left'
 
         $scope.submitForm = (form) ->
             if not form.$valid
@@ -30,16 +30,13 @@ module.exports = [
                 modal.hideLoading()
                 $scope.modalForgotSended.show()
 
-            onError = () ->
+            onError = (error, status_code) ->
                 modal.hideLoading()
-
-            data = {
-                email: $scope.user.email
-                name: $scope.user.name
-            }
+                if status_code == 405 and error.popout.indexOf('之內無法傳送簡訊') > -1
+                    $scope.modalForgotSended.show()
 
             modal.showLoading '', 'message.data_loading'
-            api.forgotPassword(data, onSuccess, onError)
+            api.forgotPassword($scope.user.para, onSuccess, onError)
 
         $ionicModal.fromTemplateUrl('templates/modal-forgot-sended.html',
             scope: $scope

@@ -32,6 +32,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('LoginController', require('./controllers/login-controller'))
 .controller('MainController', require('./controllers/main-controller'))
 .controller('ForgotPasswordController', require('./controllers/forgotpassword-controller'))
+.controller('ResetPasswordController', require('./controllers/resetpassword-controller'))
 .controller('RegisterController', require('./controllers/register-controller'))
 .controller('PhoneConfirmController', require('./controllers/phoneconfirm-controller'))
 .controller('HomeController', require('./controllers/home-controller'))
@@ -145,6 +146,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'mainContent': {
                 templateUrl: 'partial/forgotpassword.html'
+            }
+        }
+
+    .state 'main.resetpassword',
+        url: '/resetpassword'
+        views: {
+            'mainContent': {
+                templateUrl: 'partial/resetpassword.html'
             }
         }
 

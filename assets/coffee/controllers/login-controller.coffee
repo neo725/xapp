@@ -32,7 +32,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             $scope.login = ->
                 onSuccess = (response) ->
                     modal.hideLoading()
-                    window.localStorage.setItem("token", response.token_string)
+                    window.localStorage.setItem('token', response.token_string)
                     user.setIsGuest(false)
 
                     resetLoginButton()
@@ -50,6 +50,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
 
                 onError = () ->
                     modal.hideLoading()
+                    window.localStorage.removeItem('token')
                     resetLoginButton()
 
                 $translate('message.logging').then (text) ->
