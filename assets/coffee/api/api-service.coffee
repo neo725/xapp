@@ -270,6 +270,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        resetPassword: (data, onSuccess, onError) ->
+            $http.post('/api/members/forgot', data)
+                .success(onSuccess)
+                .error(onError)
+
         postSuggestion: (data, onSuccess, onError) ->
             $http.post('/api/suggest', data)
                 .success(onSuccess)
