@@ -5,8 +5,7 @@ module.exports = [
             para: ''
         }
 
-        $scope.goBack = ($event) ->
-            $event.preventDefault()
+        $scope.goBack = () ->
             navigation.slide 'login', {}, 'right'
 
         $scope.confirmClick = () ->

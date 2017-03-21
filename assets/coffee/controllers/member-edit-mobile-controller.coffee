@@ -3,8 +3,7 @@ module.exports = [
     ($rootScope, $scope, $translate, navigation, plugins, modal, api, util) ->
         $scope.user = {}
 
-        $scope.goBack = ($event) ->
-            $event.preventDefault()
+        $scope.goBack = () ->
             navigation.slide('home.member.edit', {}, 'right')
 
         $scope.submitForm = (form) ->

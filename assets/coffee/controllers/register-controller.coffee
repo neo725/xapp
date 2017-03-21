@@ -12,8 +12,7 @@ module.exports = [
 #        }
         $scope.user = {}
 
-        $scope.goBack = ($event) ->
-            $event.preventDefault()
+        $scope.goBack = () ->
             navigation.slide 'login', {}, 'right'
 
         $scope.submitForm = (form) ->

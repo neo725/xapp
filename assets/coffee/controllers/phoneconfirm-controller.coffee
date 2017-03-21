@@ -4,8 +4,7 @@ module.exports = [
         $scope.expire_countdown = ''
         $scope.showReSend = false
 
-        $scope.goBack = ($event) ->
-            $event.preventDefault()
+        $scope.goBack = () ->
             backView = $ionicHistory.backView()
 
             if backView
