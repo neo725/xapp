@@ -26,7 +26,7 @@ module.exports = [
             redirectToPhoneConfirm = (seconds) ->
                 $rootScope.member.from = 'edit-mobile'
                 $rootScope.member.new_memb_mobile = data.tel
-                $rootScope.member.verify_resend_expire = moment().seconds(seconds)
+                $rootScope.member.verify_resend_expire = util.getMomentNowAddSeconds(seconds)
 
                 navigation.slide 'main.phoneconfirm', {}, 'left'
 

@@ -27,6 +27,8 @@ module.exports = [
                 , 1000
 
         $scope.saveSetting = ->
+            $scope.showSaveButton = false
+
             onSuccess = () ->
                 $scope.mode = 'List'
                 catalogsCache.removeAll()

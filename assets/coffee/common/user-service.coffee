@@ -7,6 +7,9 @@ module.exports = ['$rootScope',
         setIsGuest = (value) ->
             window.sessionStorage.setItem('is_guest', value)
 
+        clearIsGuest = () ->
+            window.sessionStorage.removeItem('is_guest')
+
         isRealDevice = () ->
             ua = ionic.Platform.ua
             isRealDevice = ua.indexOf('SM-G900P') == -1
@@ -23,5 +26,6 @@ module.exports = ['$rootScope',
             isRealDevice: isRealDevice
             isLogin: isLogin
             setIsGuest: setIsGuest
+            clearIsGuest: clearIsGuest
         }
 ]

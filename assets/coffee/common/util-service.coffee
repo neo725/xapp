@@ -43,10 +43,21 @@ module.exports = ['$log', ($log) ->
 
         return timeEnd.getTime() - timeNow.getTime()
 
+    getMomentNow = () ->
+        d = new Date()
+        return moment(d)
+
+    getMomentNowAddSeconds = (seconds) ->
+        d = new Date()
+        d.setSeconds(d.getSeconds() + seconds)
+        return moment(d)
+
     return {
         checkCardType: checkCardType
         pad: pad
         startsWith: startsWith
         getCacheMaxAge: getCacheMaxAge
+        getMomentNow: getMomentNow
+        getMomentNowAddSeconds: getMomentNowAddSeconds
     }
 ]

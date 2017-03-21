@@ -57,6 +57,10 @@ exports.apiInterceptor = ['$rootScope', '$log', '$translate', '$q', 'plugins',
                 token = window.localStorage.getItem('token')
                 if token != null
                     config.headers['token'] = token
+                token = window.sessionStorage.getItem('token')
+                if token != null
+                    config.headers['token'] = token
+
                 config || $q.when(config)
 
             return config

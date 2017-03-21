@@ -16,7 +16,7 @@
                         <span class="input-label">{{ '驗證碼' }}</span>
                         <input type="number" name="verify_code"
                                placeholder="{{ '請輸入驗證碼' }}"
-                               ng-model="verify_code"
+                               ng-model="input_data.verify_code"
                                required>
                         <span class="sprite-icon has-error-icon">
                             <i class="sprite-icon-order-form-st-2x"></i>
@@ -41,9 +41,10 @@
                 </div>
                 <div class="row resend-row">
                     <div class="col">
-                        <button class="button button-block button-dark"
-                                ng-if="showReSend"
-                                ng-click="resend($event)">重新發送</button>
+                        <input type="button" class="button button-block button-dark"
+                               value="重新發送"
+                               ng-if="showReSend"
+                               ng-click="resend()" />
                     </div>
                 </div>
             </form>

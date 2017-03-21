@@ -1,11 +1,15 @@
 module.exports = [
-    '$rootScope', '$scope', '$translate', '$ionicHistory', '$timeout', 'navigation', 'modal', 'api', 'plugins', 'util',
-    ($rootScope, $scope, $translate, $ionicHistory, $timeout, navigation, modal, api, plugins, util) ->
+    '$rootScope', '$scope', '$translate', '$ionicHistory', '$log', '$timeout', 'navigation', 'modal', 'api', 'plugins', 'util',
+    ($rootScope, $scope, $translate, $ionicHistory, $log, $timeout, navigation, modal, api, plugins, util) ->
         $scope.expire_countdown = ''
         $scope.showReSend = false
+        $scope.input_data =
+            verify_code = ''
 
         $scope.goBack = () ->
             backView = $ionicHistory.backView()
+
+            window.sessionStorage.removeItem('token')
 
             if backView
                 if backView.stateName == 'home.member.edit-mobile'
@@ -13,7 +17,7 @@ module.exports = [
                 else
                     navigation.slide 'login', {}, 'right'
             else
-                navigation.slide('home.dashboard', {}, 'right')
+                navigation.slide('login', {}, 'right')
 
         $scope.submitForm = (form) ->
             if not form.$valid
@@ -31,8 +35,13 @@ module.exports = [
 
                 modal.showMessage 'message.phone_valid_pass'
 
-                if $rootScope.token_temp
-                    window.localStorage.setItem("token", $rootScope.token_temp)
+                #if $rootScope.token_temp
+                #    window.localStorage.setItem("token", $rootScope.token_temp)
+                token = window.sessionStorage.getItem('token')
+                if token != null
+                    window.localStorage.setItem('token', token)
+                    window.sessionStorage.removeItem('token')
+
                 if $rootScope.member
                     if $rootScope.member.from == 'register'
                         navigation.slide 'login', {}, 'right'
@@ -65,36 +74,34 @@ module.exports = [
                 return "#{number.substring(0, 4)}***#{number.substring(number.length - 3, number.length)}"
             return
 
-        $scope.resend = ($event) ->
-            $event.preventDefault()
-
-            onSuccess = (response) ->
-                modal.hideLoading()
-                seconds = parseInt(response.result)
-                $rootScope.member.verify_resend_expire = moment().seconds(seconds)
-                $scope.showReSend = false
-
-                getExpireCountdown()
-
-            onError = () ->
-                modal.hideLoading()
-
+        $scope.resend = () ->
             member_id = $rootScope.member.memb_id
-            api.resendVerifyCode(encodeURIComponent(member_id), onSuccess, onError)
+            return sendVerifyCode(member_id)
 
         sendVerifyCode = (member_id) ->
+            $scope.input_data.verify_code = ''
+
+            callGetExpireCountdown = (seconds) ->
+                $rootScope.member.verify_resend_expire = util.getMomentNowAddSeconds(seconds)
+                $scope.showReSend = false
+                $log.info 'seconds : ' + seconds
+                $log.info 'verify_resend_expire :'
+                $log.info $rootScope.member.verify_resend_expire
+
+                getExpireCountdown()
+
             onSuccess = (response) ->
                 modal.hideLoading()
                 seconds = parseInt(response.result)
-                $rootScope.member.verify_resend_expire = moment().seconds(seconds)
-                getExpireCountdown()
+
+                callGetExpireCountdown(seconds)
 
             onError = (error, status_code) ->
                 modal.hideLoading()
                 if status_code == 405
                     seconds = parseInt(error.result)
-                    $rootScope.member.verify_resend_expire = moment().seconds(seconds)
-                    getExpireCountdown()
+
+                    callGetExpireCountdown(seconds)
 
             api.sendValidPhone(encodeURIComponent(member_id), onSuccess, onError)
 
@@ -104,12 +111,12 @@ module.exports = [
                 $rootScope.member.verify_resend_expire = expire
 
             doExpireCountdown = (expire) ->
-                now = moment()
+                now = util.getMomentNow()
                 ms = expire.diff(now)
                 d = moment.duration(ms)
                 s = (Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss")).toString()
 
-                $scope.showReSend = (ms <= 0)
+                $scope.showReSend = (ms < 1000)
                 if util.startsWith s, '0:'
                     s = s.substr 2
                 if $scope.showReSend

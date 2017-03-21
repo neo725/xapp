@@ -40,7 +40,9 @@ module.exports = [
                     onSuccess = ->
                         $rootScope.member.from = 'register'
                         navigation.slide 'main.phoneconfirm', {}, 'left'
-                    onError = (->)
+                    onError = ->
+                        window.localStorage.removeItem('token')
+                        user.clearIsGuest()
 
                     $rootScope.getMemberData(onSuccess, onError)
 

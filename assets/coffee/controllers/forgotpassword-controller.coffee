@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$translate', 'navigation', 'modal', 'api', 'plugins'
-    ($rootScope, $scope, $ionicModal, $translate, navigation, modal, api, plugins) ->
+    '$rootScope', '$scope', '$ionicModal', '$translate', '$log', 'navigation', 'modal', 'api', 'plugins'
+    ($rootScope, $scope, $ionicModal, $translate, $log, navigation, modal, api, plugins) ->
         $scope.user = {
             para: ''
         }
@@ -36,7 +36,7 @@ module.exports = [
                     $scope.modalForgotSended.show()
 
             modal.showLoading '', 'message.data_loading'
-            api.forgotPassword($scope.user.para, onSuccess, onError)
+            api.forgotPassword(encodeURIComponent($scope.user.para), onSuccess, onError)
 
         $ionicModal.fromTemplateUrl('templates/modal-forgot-sended.html',
             scope: $scope

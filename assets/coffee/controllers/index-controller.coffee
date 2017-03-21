@@ -92,7 +92,8 @@ module.exports = [
                 $rootScope.member = data
 
                 if $rootScope.member and $rootScope.member.memb_status == 'wait'
-                    $rootScope.token_temp = window.localStorage.getItem("token")
+                    #$rootScope.token_temp = window.localStorage.getItem("token")
+                    window.sessionStorage.setItem('token', window.localStorage.getItem('token'))
                     $rootScope.member.from = 'register'
                     window.localStorage.removeItem("token")
 
