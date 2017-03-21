@@ -1,7 +1,7 @@
 module.exports = [
     '$rootScope', '$scope', '$translate', '$log', 'navigation', 'modal', 'api', 'plugins'
     ($rootScope, $scope, $translate, $log, navigation, modal, api, plugins) ->
-        $scope.receive_data = 'thchang@sce.pccu.edu.tw'
+        #$scope.forgot_password_data = 'thchang@sce.pccu.edu.tw'
         $scope.user =
             email: ''
             valid_code: ''
@@ -22,6 +22,7 @@ module.exports = [
                 return
 
             onSuccess = (response) ->
+                delete $rootScope['forgot_password_data']
                 modal.hideLoading()
                 onCallback = ->
                     navigation.slide 'login', {}, 'right'

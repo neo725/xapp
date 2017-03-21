@@ -27,6 +27,7 @@ module.exports = [
 
             onSuccess = (response) ->
                 modal.hideLoading()
+                $rootScope.forgot_password_data = $scope.user.para
                 $scope.modalForgotSended.show()
 
             onError = (error, status_code) ->
