@@ -260,6 +260,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        resendVerifyCode: (memberid, onSuccess, onError) ->
+            $http.put('/api/members/validphone', '"' + memberid + '"')
+            .success(onSuccess)
+            .error(onError)
+
         registerMember: (data, onSuccess, onError) ->
             $http.post('/api/members', data)
                 .success(onSuccess)
@@ -384,11 +389,6 @@ module.exports = ['$http', ($http) ->
                 pay_max: max
 
             $http.post('/api/wish', data)
-                .success(onSuccess)
-                .error(onError)
-
-        resendVerifyCode: (memberid, onSuccess, onError) ->
-            $http.put('/api/members/validphone', '"' + memberid + '"')
                 .success(onSuccess)
                 .error(onError)
 

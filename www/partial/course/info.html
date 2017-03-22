@@ -162,8 +162,10 @@
                     <div class="row" ng-repeat="price in priceList">
                         <div class="col price-item" ng-class="{ 'current': course.isCanBuy }">
                             <div class="price-item-name">
-                                <span class="label" ng-bind="price.Pric_Name"></span>
-                                <span ng-bind="price.Pric_Discription"></span>
+                                <div>
+                                    <span class="label" ng-bind="price.Pric_Name"></span>
+                                </div>
+                                <div class="label-desc" ng-bind="price.Pric_Discription"></div>
                             </div>
                             <div>
                                 <span class="price-label">NT</span>

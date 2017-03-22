@@ -76,9 +76,9 @@ module.exports = [
 
         $scope.resend = () ->
             member_id = $rootScope.member.memb_id
-            return sendVerifyCode(member_id)
+            return sendVerifyCode(member_id, true)
 
-        sendVerifyCode = (member_id) ->
+        sendVerifyCode = (member_id, resend = false) ->
             $scope.input_data.verify_code = ''
 
             callGetExpireCountdown = (seconds) ->
@@ -103,7 +103,10 @@ module.exports = [
 
                     callGetExpireCountdown(seconds)
 
-            api.sendValidPhone(encodeURIComponent(member_id), onSuccess, onError)
+            if resend
+                api.resendVerifyCode(member_id, onSuccess, onError)
+            else
+                api.sendValidPhone(encodeURIComponent(member_id), onSuccess, onError)
 
         getExpireCountdown = (expire) ->
 
@@ -141,7 +144,8 @@ module.exports = [
                 return
             modal.showLoading '', 'message.processing'
             $scope.mobile = $rootScope.member.memb_mobile
-            return sendVerifyCode($rootScope.member.memb_id, $scope.mobile)
+            #return sendVerifyCode($rootScope.member.memb_id, $scope.mobile)
+            return sendVerifyCode($rootScope.member.memb_id)
         else
             navigation.slide 'login', {}, 'right'
 ]

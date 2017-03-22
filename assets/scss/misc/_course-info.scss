@@ -215,13 +215,21 @@ $price-current-item-color: #BE1421;
             }
         }
         .price-item-name {
+            display: flex;
             margin-bottom: 8px;
 
+            > div {
+                display: inline-flex;
+            }
             .label {
                 background-color: $price-item-color;
                 color: $light;
                 padding: 3px 5px;
-                display: inline-block;
+                white-space: nowrap;
+                display: table;
+            }
+            .label-desc {
+                margin-left: 10px;
             }
         }
 

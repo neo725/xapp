@@ -100,9 +100,8 @@ module.exports = [
                 modal.hideLoading()
                 if status_code == 404
                     # no saved data
-                    $scope.mode = 'Setting'
                     $scope.user_catalogs = []
-                    $scope.visibleCatalogs = $scope.catalogs
+                    $scope.goSetting()
 
             if catalogs_user_in_cache and not forceReload
                 $scope.user_catalogs = catalogs_user_in_cache
