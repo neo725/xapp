@@ -3,7 +3,7 @@
         <h1 class="title">購物車</h1>
     </ion-nav-title>
     <ion-content class="step-3-content" padding="true">
-        <div class="card" ng-if="checkPayTypeIsCreditCard() && totalPrice > 0 && pay.success">
+        <div class="card" ng-if="checkPayTypeIsCreditCard() && checkout_total_price > 0 && pay.success">
             <div class="row">
                 <div class="col-20 text-center cart-logo">
                     <img src="img/cart-order@2x.png" />
@@ -23,12 +23,12 @@
                 <div class="col text-right price-mark">
                     總金額
                     <span class="price">
-                        {{ totalPrice | currency:"NT":0 }}
+                        {{ checkout_total_price | currency:"NT":0 }}
                     </span>
                 </div>
             </div>
         </div>
-        <div class="card" ng-if="checkPayTypeIsCreditCard() && totalPrice > 0 && !pay.success">
+        <div class="card" ng-if="checkPayTypeIsCreditCard() && checkout_total_price > 0 && !pay.success">
             <div class="row">
                 <div class="col-20 text-center cart-logo">
                     <img src="img/attention@2x.png" />
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="card" ng-if="!checkPayTypeIsCreditCard() && totalPrice > 0">
+        <div class="card" ng-if="!checkPayTypeIsCreditCard() && checkout_total_price > 0">
             <div class="row">
                 <div class="col-20 text-center cart-logo shift-cart-logo">
                     <img src="img/cart-order@2x.png" />
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="card" ng-if="pay.success && totalPrice == 0">
+        <div class="card" ng-if="pay.success && checkout_total_price == 0">
             <div class="row">
                 <div class="col-20 text-center cart-logo shift-cart-logo">
                     <img src="img/cart-order@2x.png" />

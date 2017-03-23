@@ -6,6 +6,14 @@
     {
       "path": "/SceAppApi/api",
       "proxyUrl": "http://sceapi.sce.pccu.edu.tw/SceAppApi/api"
+    },
+    {
+      "path": "/AtmWebApi/api",
+      "proxyUrl": "http://140.137.200.233/AtmWebApi/api"
+    },
+    {
+      "path": "/CCardWebAPI/api",
+      "proxyUrl": "http://140.137.200.233/CCardWebAPI/api"
     }
   ]
 }

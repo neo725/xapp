@@ -52,6 +52,10 @@ module.exports = ['$log', ($log) ->
         d.setSeconds(d.getSeconds() + seconds)
         return moment(d)
 
+    validateTaiwanId = (value) ->
+        pattern = /^[A-Z]{1}[1-2]{1}[0-9]{8}$/
+        return pattern.exec(value)
+
     return {
         checkCardType: checkCardType
         pad: pad
@@ -59,5 +63,6 @@ module.exports = ['$log', ($log) ->
         getCacheMaxAge: getCacheMaxAge
         getMomentNow: getMomentNow
         getMomentNowAddSeconds: getMomentNowAddSeconds
+        validateTaiwanId: validateTaiwanId
     }
 ]

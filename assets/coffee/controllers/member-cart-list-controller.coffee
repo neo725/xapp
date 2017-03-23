@@ -111,6 +111,7 @@ module.exports = [
             clearCart = (success) ->
                 onSuccess = () ->
                     # clear cart if success
+                    $scope.checkout_total_price = $scope.totalPrice
                     $scope.carts = []
                     $rootScope.carts = []
 

@@ -26,6 +26,9 @@ module.exports = ->
         if navigator and navigator.notification
             plugins.notification = navigator.notification
 
+        if not window.cordova
+            plugins.notification.confirm = (message, callback, title, buttons) ->
+                callback 1
         #  plugins.transitions = nativetransitions
 
         #  plugins.device = device

@@ -395,6 +395,8 @@ module.exports = ['$http', ($http) ->
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, source_order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm
+            if not window.cordova
+                api_url = constants.API_URL.atm_browser
             data =
                 'orderNo': order_no
                 'sourceNo': source_order_no
@@ -404,6 +406,8 @@ module.exports = ['$http', ($http) ->
 
         getATMPaymentInfo: (order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm
+            if not window.cordova
+                api_url = constants.API_URL.atm_browser
             data =
                 'orderNo': order_no
             $http.post("#{api_url}/api/pay", data)
@@ -412,6 +416,8 @@ module.exports = ['$http', ($http) ->
 
         createCreditCardPayment: (order_no, source_order_no, card_no, expire, cvc, onSuccess, onError) ->
             api_url = constants.API_URL.creditcard
+            if not window.cordova
+                api_url = constants.API_URL.creditcard_browser
             data =
                 'orderNo': order_no
                 'cardNo': card_no

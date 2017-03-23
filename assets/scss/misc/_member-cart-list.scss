@@ -376,6 +376,11 @@
                     }
                 }
 
+                .alert-text {
+                    color: $error;
+                    font-size: 12px;
+                }
+
                 .tip-text {
                     margin-bottom: 30px;
                     font-size: 12px;
