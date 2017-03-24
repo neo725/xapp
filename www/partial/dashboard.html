@@ -3,6 +3,9 @@
         <button class="button button-icon icon sprite-icon" ng-click="goMemberDashboard()">
             <i class="sprite-icon-member"></i>
         </button>
+        <div class="has-unread-message" ng-if="unread_message_count > 0">
+            <i class="ion-record"></i>
+        </div>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <button class="button button-icon icon sprite-icon shoppingcar-icon"

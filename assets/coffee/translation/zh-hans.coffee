@@ -1,11 +1,12 @@
 module.exports = ->
     'input': {
         'account': '用户帐户'
-        'email': '使用者電子郵件'
+        'email': '电子邮件信箱'
         'password': '密码'
         'login': '登 录'
         'pass': '略 過'
         'pass_login': '略過登入'
+        'confirm_email': '确认电子邮件信箱'
         'input_keyword': '請輸入搜尋關鍵字'
         'input_keyword_in_catalogs': '在 {{ catalog_name }} 中搜尋'
     }

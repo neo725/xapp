@@ -47,9 +47,19 @@ module.exports = [
 
                 api.getUserSetting 'notify', onSuccess, onError
 
+            loadUnreadMessageCount = ->
+                onSuccess = (response) ->
+                    $rootScope.unread_message_count = 0
+                    if response
+                        $rootScope.unread_message_count = parseInt(response)
+                onError = ->
+                    $rootScope.unread_message_count = 0
+
+                api.getUnreadMessageCount onSuccess, onError
 
             loadNotifyData()
             loadAvatar()
+            loadUnreadMessageCount()
 
             document.addEventListener('deviceready', () ->
                 $log.info 'dashboard-controller -> device ready...'

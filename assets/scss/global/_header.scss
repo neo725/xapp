@@ -2,4 +2,16 @@
     .title {
         padding-top: 3px;
     }
+
+    .buttons {
+        .has-unread-message {
+            color: red;
+            position: absolute;
+            z-index: 99;
+            left: 30px;
+            top: 2px;
+            height: 17px;
+            width: 17px;
+        }
+    }
 }

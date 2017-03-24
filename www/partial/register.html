@@ -28,17 +28,17 @@
                     </label>
                     <label class="item item-input item-floating-label"
                            ng-class="{ 'has-error' : registerForm.email.$invalid }">
-                        <span class="input-label">Email</span>
+                        <span class="input-label">{{ 'input.email' | translate }}</span>
                         <input type="email" name="email"
-                               placeholder="Email"
+                               placeholder="{{ 'input.email' | translate }}"
                                ng-model="user.email"
                                required>
                     </label>
                     <label class="item item-input item-floating-label"
                            ng-class="{ 'has-error' : registerForm.email_confirm.$invalid }">
-                        <span class="input-label">確認 Email</span>
+                        <span class="input-label">{{ 'input.confirm_email' | translate }}</span>
                         <input type="email" name="email_confirm"
-                               placeholder="確認 Email"
+                               placeholder="{{ 'input.confirm_email' | translate }}"
                                ng-model="user.email_confirm"
                                data-custom-verify="user.email"
                                required>

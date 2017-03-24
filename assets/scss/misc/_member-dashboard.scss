@@ -146,6 +146,17 @@
                             font-size: 13px;
                         }
                     }
+
+                    .has-unread-message-container {
+                        position: absolute;
+
+                        .has-unread-message {
+                            position: relative;
+                            top: -59px;
+                            left: 66px;
+                            color: red;
+                        }
+                    }
                 }
             }
         }

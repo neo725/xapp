@@ -250,6 +250,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        getUnreadMessageCount: (onSuccess, onError) ->
+            $http.get('/api/message/unread')
+                .success(onSuccess)
+                .error(onError)
+
         sendValidPhone: (membid, onSuccess, onError) ->
             $http.get("/api/members/validphone?membid=#{membid}")
                 .success(onSuccess)

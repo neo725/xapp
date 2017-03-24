@@ -123,8 +123,15 @@
                             border: 1px solid $stable;
 
                             .item {
+                                color: #999999;
+                                font-weight: 300;
                                 border-bottom-style: none;
                                 border-bottom-width: 0;
+
+                                &.unread {
+                                    color: #000000;
+                                    font-weight: 900;
+                                }
                             }
 
                             .row {

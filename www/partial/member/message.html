@@ -49,7 +49,8 @@
                                             <div class="weekday" ng-bind="::date.weekday"></div>
                                         </div>
                                     </div>
-                                    <div class="col col-right item" ng-class="{ 'col-66': !image_type }">
+                                    <div class="col col-right item"
+                                         ng-class="{ 'col-66': !image_type, 'unread': !message.read_time }">
                                         <div class="text" ng-bind="::message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"
