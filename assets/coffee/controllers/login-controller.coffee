@@ -109,7 +109,11 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             $scope.facebook_login = () ->
                 appId = '138411713543'
                 redirectUrl = 'http://localhost/callback'
-                $cordovaOauth.facebook(appId, ['email'], { redirect_uri: redirectUrl })
+                appScope = [
+                    'email'
+                    'public_profile'
+                ]
+                $cordovaOauth.facebook(appId, appScope, { redirect_uri: redirectUrl })
                     .then((result) ->
                         token = result.access_token
                         loginBySocial 'facebook', token
@@ -118,7 +122,11 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             $scope.google_login = () ->
                 appId = '417861383399-0jqjvm4emqojkv8mtinoaaj0oqm7nd7g.apps.googleusercontent.com'
                 redirectUrl = 'http://localhost/callback'
-                $cordovaOauth.google(appId, ['email'], { redirect_uri: redirectUrl })
+                appScope = [
+                    'https://www.googleapis.com/auth/userinfo.email'
+                    'https://www.googleapis.com/auth/userinfo.profile'
+                ]
+                $cordovaOauth.google(appId, appScope, { redirect_uri: redirectUrl })
                     .then((result) ->
                         token = result.access_token
                         loginBySocial 'google', token

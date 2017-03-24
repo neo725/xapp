@@ -1,0 +1,21 @@
+.platform-ios {
+
+    .modal-box {
+        .modal-header {
+            height: 54px !important;
+
+            .row {
+                margin-top: 5px !important;
+            }
+        }
+        .scroll-content {
+            &.has-header {
+                top: 54px !important;
+            }
+        }
+    }
+
+    .location-box.modal-box {
+        height: 505px !important;
+    }
+}
