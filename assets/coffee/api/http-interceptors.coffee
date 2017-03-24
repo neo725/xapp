@@ -35,6 +35,7 @@ exports.apiInterceptor = ['$rootScope', '$log', '$translate', '$q', 'plugins',
 #            check device is real in fake on dev mode only
             isRealDevice = ua.indexOf('SM-G900P') == -1
             isRealDevice &= ua.indexOf('Macintosh') == -1
+            isRealDevice &= window.cordova
 
             isPayRequest = /(^http:|https:)\/\/[-a-zA-Z0-9:\/.]{2,100}\/api\/pay/gi.test(config.url)
             isApiRequest = isPayRequest or /^\/api\//.test(config.url)

@@ -288,9 +288,11 @@ exports.starRating = ->
 exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $log) ->
     restrict: 'A'
     link: (scope, element, attrs) ->
-        #$log.info 'directive >>> searchSlideFit >>> in ......'
+        plusHeight = 0
+        if attrs.searchSlideFitIos
+            plusHeight += parseInt(attrs.searchSlideFitIos)
+        isIOS = ionic.Platform.isIOS()
         $element = $('.dashboard-pane-content')
-        $guestSlides = $element.find('.guest-slides')
 
         $tab = $('.tabs')
         $slider = $element.find('.search-slide-box')
@@ -302,7 +304,6 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
                 , 1000
                 return
             height = $window.innerHeight - ($element.position().top + $tab.outerHeight())
-            #$log.info 'directive >>> searchSlideFit >>> height : ' + height
             $slider.css('height', height + 'px')
             if height < 0
                 $timeout () ->
@@ -314,8 +315,11 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
         scope.$watch ->
                 return $element.find('.guest-slides').length
             , (value) ->
+                $log.info 'searchSlideFit >> watch >> value : ' + value
                 if value == 0
                     $slider.css('height', '')
+                    if isIOS and plusHeight > 0
+                        $slider.css('height', $slider.outerHeight() + plusHeight + 'px')
                 else
                     adjustHeight()
 ]
