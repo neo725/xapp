@@ -96,8 +96,7 @@
     <script id="templates/modal-new-card.html" type="text/ng-template">
         <ion-modal-view class="modal-box new-card-box">
             <ion-content class="padding" scroll="false">
-                <form name="newCardForm" novalidate
-                      ng-submit="submitForm(newCardForm)">
+                <form name="newCardForm" novalidate ng-submit="submitForm(newCardForm)">
                     <div class="card">
                         <div class="card-logo text-right">
                             <img src="img/visa-card.png" class="visa-card" ng-show="checkCardType(card.number_part1) == 'visa'" />
@@ -108,43 +107,52 @@
                             <div class="col col-31 col-padding-top-10">{{ '信用卡卡號' }}</div>
                             <div class="col col-value">
                                 <label ng-class="{ 'has-error' : newCardForm.card_part1.$invalid}">
-                                    <input type="number" name="card_part1"
+                                    <input type="tel" name="card_part1" inputmode="numeric" pattern="[0-9]*"
                                            class="number-4 card-number"
                                            ng-model="card.number_part1"
-                                           ng-next="card_part2" ng-next-length="4"
-                                           ng-next-autofill="0" ng-next-autofill-length="4"
+                                           sce-string-pad="0"
+                                           sce-string-pad-model="card.number_part1_string"
+                                           sce-string-pad-length="4"
+                                           z-ng-next="card_part2" z-ng-next-length="4"
+                                           z-ng-next-autofill="0" z-ng-next-autofill-length="4"
                                            maxlength="4" min="1" max="9999"
-                                           ng-minlength="4" ng-maxlength="4"
+                                           z-ng-minlength="4" z-ng-maxlength="4"
                                            required>
                                 </label>
                                 <label ng-class="{ 'has-error' : newCardForm.card_part2.$invalid}">
-                                    <input type="number" name="card_part2"
+                                    <input type="tel" name="card_part2" inputmode="numeric" pattern="[0-9]*"
                                            class="number-4 card-number"
                                            ng-model="card.number_part2"
-                                           ng-next="card_part3" ng-next-length="4"
-                                           ng-next-autofill="0" ng-next-autofill-length="4"
+                                           sce-string-pad="0"
+                                           sce-string-pad-model="card.number_part2_string"
+                                           sce-string-pad-length="4"
+                                           sce-focus="card.number_part1.length == 4"
+                                           z-ng-next="card_part3" z-ng-next-length="4"
+                                           z-ng-next-autofill="0" z-ng-next-autofill-length="4"
                                            maxlength="4" min="1" max="9999"
-                                           ng-minlength="4" ng-maxlength="4"
+                                           z-ng-minlength="4" z-ng-maxlength="4"
                                            required>
                                 </label>
                                 <label ng-class="{ 'has-error' : newCardForm.card_part3.$invalid}">
-                                    <input type="number" name="card_part3"
+                                    <input type="tel" name="card_part3" inputmode="numeric" pattern="[0-9]*"
                                            class="number-4 card-number"
                                            ng-model="card.number_part3"
-                                           ng-next="card_part4" ng-next-length="4"
-                                           ng-next-autofill="0" ng-next-autofill-length="4"
+                                           sce-focus="card.number_part2.length == 4"
+                                           z-ng-next="card_part4" z-ng-next-length="4"
+                                           z-ng-next-autofill="0" z-ng-next-autofill-length="4"
                                            maxlength="4" min="1" max="9999"
-                                           ng-minlength="4" ng-maxlength="4"
+                                           z-ng-minlength="4" z-ng-maxlength="4"
                                            required>
                                 </label>
                                 <label ng-class="{ 'has-error' : newCardForm.card_part4.$invalid}">
-                                    <input type="number" name="card_part4"
+                                    <input type="tel" name="card_part4" inputmode="numeric" pattern="[0-9]*"
                                            class="number-4 card-number"
                                            ng-model="card.number_part4"
-                                           ng-next="card_expire_month" ng-next-length="4"
-                                           ng-next-autofill="0" ng-next-autofill-length="4"
+                                           sce-focus="card.number_part3.length == 4"
+                                           z-ng-next="card_expire_month" z-ng-next-length="4"
+                                           z-ng-next-autofill="0" z-ng-next-autofill-length="4"
                                            maxlength="4" min="1" max="9999"
-                                           ng-minlength="4" ng-maxlength="4"
+                                           z-ng-minlength="4" z-ng-maxlength="4"
                                            required>
                                 </label>
                             </div>
@@ -153,21 +161,23 @@
                             <div class="col col-31">{{ '有效日期 (MM/YY)' }}</div>
                             <div class="col col-value col-padding-top-10">
                                 <label ng-class="{ 'has-error' : newCardForm.card_expire_month.$invalid}">
-                                    <input type="number" name="card_expire_month"
+                                    <input type="tel" name="card_expire_month" inputmode="numeric" pattern="[0-9]*"
                                            class="number-2 expire-month"
                                            ng-model="card.expire_month"
-                                           ng-next="card_expire_year" ng-next-length="2"
-                                           ng-next-autofill="0" ng-next-autofill-length="2"
+                                           sce-focus="card.number_part4.length == 4"
+                                           z-ng-next="card_expire_year" z-ng-next-length="2"
                                            maxlength="2" min="1" max="12"
-                                           ng-minlength="2" ng-maxlength="2"
+                                           z-ng-minlength="2" z-ng-maxlength="2"
                                            required>
                                 </label>
                                 <label ng-class="{ 'has-error' : newCardForm.card_expire_year.$invalid}">
-                                    <input type="number" name="card_expire_year"
+                                    <input type="tel" name="card_expire_year" inputmode="numeric" pattern="[0-9]*"
                                            class="number-2 expire-year"
                                            ng-model="card.expire_year"
+                                           sce-focus="card.expire_month.length == 2"
+                                           z-ng-next="card_cvc" z-ng-next-length="2"
                                            maxlength="2" min="16" max="99"
-                                           ng-minlength="2" ng-maxlength="2"
+                                           z-ng-minlength="2" z-ng-maxlength="2"
                                            required>
                                 </label>
                             </div>
