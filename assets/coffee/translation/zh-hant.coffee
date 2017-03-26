@@ -67,6 +67,7 @@ module.exports = ->
         'password_saved': '密碼設定完成'
         'course_cant_buy': '此課程目前無法購買'
         'sure_to_exit_app': '確定要離開大學聯網?'
+        'notification_received': '您有新的學習訊息通知'
     }
     'tab': {
         'payed': '已繳費'
@@ -95,4 +96,5 @@ module.exports = ->
         'wish_list': '許願單'
         'survey': '滿意度問卷'
         'exit_app': '即將離開大學聯網'
+        'notification': '大學聯網'
     }

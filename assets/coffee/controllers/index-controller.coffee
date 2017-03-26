@@ -158,17 +158,26 @@ module.exports = [
 
                         getMessageInfo data.mid
                     else
-                        $cordovaLocalNotification.schedule(
-                            id: 1,
-                            title: data['title'],
-                            text: data['body'],
-                            icon: 'fcm_push_icon'
-                        ).then () ->
-#                            # Vibrate
-#                            $cordovaVibration.vibrate([500, 500])
-                            $cordovaToast.show(data['title'], 'long', 'top')
+                        $translate(['title.notification', 'message.notification_received']).then (translator) ->
+                            title = translator['title.notification']
+                            body = translator['message.notification_received']
 
-#                            $cordovaBadge.set 10
+                            $cordovaLocalNotification.schedule(
+                                id: 1,
+                                title: title,
+                                text: body,
+                                icon: 'fcm_push_icon'
+                            ).then () ->
+                                # Vibrate
+                                $cordovaVibration.vibrate([500, 500])
+                                $cordovaToast.show(body, 'long', 'top')
+                    badge = 0
+                    if data['badge']
+                        badge = parseInt(data['badge'])
+                        if badge == 0
+                            $cordovaBadge.clear()
+                        else
+                            $cordovaBadge.set(badge)
             , (msg) ->
                 $log.warn '*** onNotification callback successfully registered: ' + msg
                 sendBroadcast = () ->
