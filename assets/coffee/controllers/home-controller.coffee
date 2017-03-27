@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'api', 'CacheFactory', 'user', 'modal',
-    ($rootScope, $scope, $ionicHistory, $log, navigation, api, CacheFactory, user, modal) ->
+    '$rootScope', '$scope', '$ionicHistory', '$cordovaBadge', '$log', 'navigation', 'api', 'CacheFactory', 'user', 'modal',
+    ($rootScope, $scope, $ionicHistory, $cordovaBadge, $log, navigation, api, CacheFactory, user, modal) ->
         #$log.info 'HomeController in'
 
         checkLoginState = () ->
@@ -27,6 +27,8 @@ module.exports = [
 
                     window.localStorage.clear()
                     window.sessionStorage.clear()
+
+                    $cordovaBadge.clear()
 
                     delete $rootScope['cart']
                     delete $rootScope['wish']

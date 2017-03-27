@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'modal', 'api'
-    ($rootScope, $scope, $ionicHistory, $log, navigation, modal, api) ->
+    '$rootScope', '$scope', '$ionicHistory', '$cordovaBadge', '$log', 'navigation', 'modal', 'api'
+    ($rootScope, $scope, $ionicHistory, $cordovaBadge, $log, navigation, modal, api) ->
 
         $scope.goBack = () ->
             backView = $ionicHistory.backView()
@@ -23,6 +23,10 @@ module.exports = [
             return item
 
         $scope.goMessageInfo = (message) ->
+            message.read_time = new Date()
+            $rootScope.unread_message_count -= 1
+            $cordovaBadge.set($rootScope.unread_message_count)
+
             params =
                 'type': message.m_type
                 'message_id': message.messageId

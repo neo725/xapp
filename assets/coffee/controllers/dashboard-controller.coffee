@@ -1,8 +1,8 @@
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicPlatform', '$window', '$timeout', '$log', '$translate',
+    '$rootScope', '$scope', '$ionicPlatform', '$cordovaBadge', '$window', '$timeout', '$log', '$translate',
     'api', 'modal', 'navigation', 'plugins', 'user',
-    ($rootScope, $scope, $ionicPlatform, $window, $timeout, $log, $translate,
+    ($rootScope, $scope, $ionicPlatform, $cordovaBadge, $window, $timeout, $log, $translate,
         api, modal, navigation, plugins, user) ->
             modal.hideLoading()
 
@@ -52,8 +52,10 @@ module.exports = [
                     $rootScope.unread_message_count = 0
                     if response
                         $rootScope.unread_message_count = parseInt(response)
+                        $cordovaBadge.set $rootScope.unread_message_count
                 onError = ->
                     $rootScope.unread_message_count = 0
+                    $cordovaBadge.clear()
 
                 api.getUnreadMessageCount onSuccess, onError
 
