@@ -33,23 +33,29 @@ module.exports = [
                     delete $rootScope['member']
 
                     navigation.slide('login', {}, 'right')
+                    modal.hideLoading()
 
-                onError = (->)
+                onError = ->
+                    modal.hideLoading()
 
+                modal.showLoading '', 'message.logging'
                 token = window.localStorage.getItem('token')
                 api.logout(token, onSuccess, onError)
 
             deleteDeviceToken = (func) ->
                 onSuccess = () ->
+                    modal.hideLoading()
                     window.localStorage.removeItem("device_token")
 
                     func()
-                onError = (->)
+                onError = ->
+                    modal.hideLoading()
 
                 token = window.localStorage.getItem('device_token')
                 if token == null
                     func()
                 else
+                    modal.showLoading '', 'message.logging'
                     api.deleteDeviceToken token, onSuccess, onError
 
             deleteDeviceToken(logout)
