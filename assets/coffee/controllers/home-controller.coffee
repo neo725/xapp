@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'api', 'CacheFactory', 'user',
-    ($rootScope, $scope, $ionicHistory, $log, navigation, api, CacheFactory, user) ->
+    '$rootScope', '$scope', '$ionicHistory', '$log', 'navigation', 'api', 'CacheFactory', 'user', 'modal',
+    ($rootScope, $scope, $ionicHistory, $log, navigation, api, CacheFactory, user, modal) ->
         #$log.info 'HomeController in'
 
         checkLoginState = () ->
