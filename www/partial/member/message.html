@@ -40,7 +40,7 @@
                                 <div class="message-dot-mask" ng-class="{ 'show': $index == promo_count - 1 }"></div>
                                 <div class="message-dot-text" ng-class="{ 'show': $index == promo_count - 1 }">{{ ::'歷史訊息' }}</div>
                             </div>
-                            <div class="message-div" ng-click="goMessageInfo(message)">
+                            <div class="message-div" ng-click="goMessageInfo(message)" ng-class="{ 'unread': !message.read_time }">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
                                         <div class="date-text" ng-init="date = formatDate(message.create_time)">
@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
                                     <div class="col col-right item"
-                                         ng-class="{ 'col-66': !image_type, 'unread': !message.read_time }">
+                                         ng-class="{ 'col-66': !image_type }">
                                         <div class="text" ng-bind="::message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"
@@ -132,7 +132,7 @@
                                 <div class="message-dot-mask" ng-class="{ 'show': $index == course_count - 1 }"></div>
                                 <div class="message-dot-text" ng-class="{ 'show': $index == course_count - 1 }">{{ '歷史訊息' }}</div>
                             </div>
-                            <div class="message-div" ng-click="goMessageInfo(message)">
+                            <div class="message-div" ng-click="goMessageInfo(message)" ng-class="{ 'unread': !message.read_time }">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
                                         <div class="date-text" ng-init="date = formatDate(message.create_time)">
@@ -141,7 +141,8 @@
                                             <div class="weekday" ng-bind="::date.weekday"></div>
                                         </div>
                                     </div>
-                                    <div class="col col-right item" ng-class="{ 'col-66': !image_type }">
+                                    <div class="col col-right item"
+                                         ng-class="{ 'col-66': !image_type }">
                                         <div class="text" ng-bind="::message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"
@@ -183,7 +184,7 @@
                                 <div class="message-dot-mask" ng-class="{ 'show': $index == order_count - 1 }"></div>
                                 <div class="message-dot-text" ng-class="{ 'show': $index == order_count - 1 }">{{ '歷史訊息' }}</div>
                             </div>
-                            <div class="message-div" ng-click="goMessageInfo(message)">
+                            <div class="message-div" ng-click="goMessageInfo(message)" ng-class="{ 'unread': !message.read_time }">
                                 <div class="row">
                                     <div class="col col-25 color-bg col-left">
                                         <div class="date-text" ng-init="date = formatDate(message.create_time)">
@@ -192,7 +193,8 @@
                                             <div class="weekday" ng-bind="::date.weekday"></div>
                                         </div>
                                     </div>
-                                    <div class="col col-right item" ng-class="{ 'col-66': !image_type }">
+                                    <div class="col col-right item"
+                                         ng-class="{ 'col-66': !image_type }">
                                         <div class="text" ng-bind="::message.m_title" ng-hide="image_type"></div>
                                         <div class="image"
                                              ng-if="image_type"

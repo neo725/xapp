@@ -121,14 +121,20 @@
                             height: 60px;
                             line-height: 60px;
                             border: 1px solid $stable;
+                            background-color: #eeeeee;
 
                             .item {
+                                background-color: #eeeeee;
                                 color: #999999;
                                 font-weight: 300;
                                 border-bottom-style: none;
                                 border-bottom-width: 0;
+                            }
+                            &.unread {
+                                background-color: #ffffff;
 
-                                &.unread {
+                                .item {
+                                    background-color: #ffffff;
                                     color: #000000;
                                     font-weight: 900;
                                 }
