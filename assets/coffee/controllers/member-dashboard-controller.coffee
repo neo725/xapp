@@ -2,10 +2,10 @@ constants = require('../common/constants')
 
 module.exports = [
     '$rootScope', '$scope', '$ionicHistory', '$ionicModal', '$cordovaAppVersion', '$cordovaCamera', '$timeout', '$jrCrop', '$log',
-    '$ionicActionSheet',
+    '$ionicActionSheet', '$ionicPopover',
     'modal', 'navigation', 'api',
     ($rootScope, $scope, $ionicHistory, $ionicModal, $cordovaAppVersion, $cordovaCamera, $timeout, $jrCrop, $log,
-        $ionicActionSheet,
+        $ionicActionSheet, $ionicPopover,
         modal, navigation, api) ->
             $scope.gender_title = ''
             $scope.data_loaded = false
@@ -205,6 +205,31 @@ module.exports = [
             else if not $rootScope.avatar_url
                 loadAvatar()
 
+            initPopoverUnlogin = ->
+                if $scope.popoverUnlogin
+                    $q.when
+                else
+                    $ionicPopover.fromTemplateUrl('templates/popover-unlogin.html',
+                        scope: $scope
+                        backdropClickToClose :false
+                    ).then((popover) ->
+                        $scope.popoverUnlogin = popover
+                    )
+
+            showUnlogin = ->
+                initPopoverUnlogin().then ->
+                    $scope.popoverUnlogin.show('.function-list')
+                    $scope.currentShowDialog =
+                        el: $scope.popoverUnlogin
+                        'tag': 'popoverUnlogin'
+
+            showUnlogin()
+
+            removeCurrentShowDialog = ->
+                $scope.currentShowDialog.el.remove()
+                delete $scope[$scope.currentShowDialog.tag]
+            $scope.$on('popover.hidden', removeCurrentShowDialog)
+
             $scope.$on('$ionicView.afterEnter', ->
                 $timeout ->
                     $scope.active = true
@@ -212,6 +237,10 @@ module.exports = [
             )
             $scope.$on('$ionicView.leave', ->
                 $scope.active = false
+
+                $timeout(->
+                    $scope.popoverUnlogin.hide()
+                )
             )
 
             # version number record in config.xml that under project root

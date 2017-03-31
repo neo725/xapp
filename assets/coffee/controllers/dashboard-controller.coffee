@@ -1,9 +1,9 @@
 
 module.exports = [
     '$rootScope', '$scope', '$ionicPlatform', '$cordovaBadge', '$window', '$timeout', '$log', '$translate',
-    'api', 'modal', 'navigation', 'plugins', 'user',
+    'api', 'modal', 'navigation', 'user',
     ($rootScope, $scope, $ionicPlatform, $cordovaBadge, $window, $timeout, $log, $translate,
-        api, modal, navigation, plugins, user) ->
+        api, modal, navigation, user) ->
             modal.hideLoading()
 
             #$rootScope.loadSearchSlide = false
@@ -60,9 +60,10 @@ module.exports = [
 
                 api.getUnreadMessageCount onSuccess, onError
 
-            loadNotifyData()
-            loadAvatar()
-            loadUnreadMessageCount()
+            if user.isGuest() == false
+                loadNotifyData()
+                loadAvatar()
+                loadUnreadMessageCount()
 
             document.addEventListener('deviceready', () ->
                 $log.info 'dashboard-controller -> device ready...'
