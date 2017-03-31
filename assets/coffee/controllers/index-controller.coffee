@@ -6,10 +6,10 @@ constants = require('../common/constants')
 module.exports = [
     '$rootScope', '$scope', '$translate', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast',
     '$cordovaLocalNotification', '$cordovaVibration', '$cordovaBadge', '$log', '$timeout',
-    'navigation', 'modal', 'api',
+    'navigation', 'modal', 'api', 'user',
     ($rootScope, $scope, $translate, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast,
         $cordovaLocalNotification, $cordovaVibration, $cordovaBadge, $log, $timeout,
-        navigation, modal, api) ->
+        navigation, modal, api, user) ->
 
         $rootScope.fromNotification = false
         network_offline = false
@@ -105,8 +105,9 @@ module.exports = [
                 modal.hideLoading()
                 errorFn(error, status_code)
 
-            modal.showLoading('', 'message.data_loading')
-            api.getMemberData(onSuccess, onError)
+            if user.isGuest() == false
+                modal.showLoading('', 'message.data_loading')
+                api.getMemberData(onSuccess, onError)
 
         checkDefaultState = (token, redirectToDashboard = true) ->
             $log.info 'index-controller -> checkDefaultState'

@@ -15,12 +15,13 @@ module.exports = [
                 if not $scope.active
                     return
 
-                is_guest = user.isGuest()
-
-                if is_guest
-                    return $rootScope.logout()
-                else
-                    navigation.slide 'home.member.dashboard', {}, 'left'
+#                is_guest = user.isGuest()
+#
+#                if is_guest
+#                    return $rootScope.logout()
+#                else
+#                    navigation.slide 'home.member.dashboard', {}, 'left'
+                navigation.slide 'home.member.dashboard', {}, 'left'
 
             $scope.goCatalogs = ->
                 navigation.slide 'home.course.catalogs', {}, 'left'
