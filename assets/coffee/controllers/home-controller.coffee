@@ -28,7 +28,8 @@ module.exports = [
                     window.localStorage.clear()
                     window.sessionStorage.clear()
 
-                    $cordovaBadge.clear()
+                    if window.cordova
+                        $cordovaBadge.clear()
 
                     delete $rootScope['cart']
                     delete $rootScope['wish']

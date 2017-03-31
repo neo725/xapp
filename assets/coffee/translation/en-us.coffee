@@ -1,6 +1,6 @@
 module.exports = ->
     'input': {
-        'account': 'Account'
+        'account': 'Email address'
         'email': 'Email address'
         'password': 'Password'
         'login': 'Login'
