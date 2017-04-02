@@ -2,10 +2,12 @@ constants = require('../common/constants')
 
 module.exports = [
     '$rootScope', '$scope', '$ionicHistory', '$state', '$timeout', '$translate', '$log',
-    'api', 'navigation', 'modal', 'plugins', 'util', 'creditcard',
-    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, $log, api, navigation, modal, plugins, util, creditcard) ->
+    'api', 'navigation', 'modal', 'plugins', 'util', 'creditcard', 'user',
+    ($rootScope, $scope, $ionicHistory, $state, $timeout, $translate, $log, api, navigation, modal, plugins, util, creditcard, user) ->
         $scope.shouldShowDelete = false
         $scope.showCarts = false
+
+        $scope.is_guest = user.getIsGuest()
 
         $scope.carts = []
         $scope.pay = {}

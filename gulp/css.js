@@ -26,7 +26,7 @@ gulp.task("css:tocss", function () {
 
 gulp.task("css:minify", function () {
     return gulp.src('assets/build/css/*.css')
-        .pipe(sourcemaps.init())
+        //.pipe(sourcemaps.init())
         .pipe(gif(!debug, cleanCSS({compatibility: 'ie9'})))
         .pipe(rename(function (path) {
             if (!debug)
@@ -34,6 +34,6 @@ gulp.task("css:minify", function () {
             path.extname = ".css";
         }))
         .pipe(concat('site.css'))
-        .pipe(sourcemaps.write())
+        //.pipe(sourcemaps.write())
         .pipe(gulp.dest('www/css'));
 });

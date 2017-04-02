@@ -557,4 +557,8 @@
         background-color: #000000;
         color: $light;
     }
+
+    .backdrop.unlogin {
+        position: absolute;
+    }
 }

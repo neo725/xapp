@@ -14,6 +14,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .factory('modal', require('./common/modal'))
 .factory('plugins', require('./common/plugins'))
 .factory('api', require('./api/api-service'))
+.factory('apiInterceptor', require('./api/http-interceptors'))
 .factory('creditcard', require('./common/creditcard-service'))
 .factory('user', require('./common/user-service'))
 .directive('goNative', directives.goNative)
@@ -83,7 +84,8 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
     $httpProvider.defaults.headers.patch =
         'Content-Type': 'application/json; charset=utf-8'
 
-    $httpProvider.interceptors.push(httpInterceptors.apiInterceptor)
+    #$httpProvider.interceptors.push(httpInterceptors.apiInterceptor)
+    $httpProvider.interceptors.push('apiInterceptor')
 ])
 .config(['$ionicConfigProvider', ($ionicConfigProvider) ->
     ## http://ionicframework.com/docs/api/provider/$ionicConfigProvider/

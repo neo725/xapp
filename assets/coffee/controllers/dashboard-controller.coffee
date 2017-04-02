@@ -15,7 +15,7 @@ module.exports = [
                 if not $scope.active
                     return
 
-#                is_guest = user.isGuest()
+#                is_guest = user.getIsGuest()
 #
 #                if is_guest
 #                    return $rootScope.logout()
@@ -56,14 +56,18 @@ module.exports = [
                         $cordovaBadge.set $rootScope.unread_message_count
                 onError = ->
                     $rootScope.unread_message_count = 0
-                    $cordovaBadge.clear()
+                    if window.cordova
+                        $cordovaBadge.clear()
 
                 api.getUnreadMessageCount onSuccess, onError
 
-            if user.isGuest() == false
+            if user.getIsGuest() == false
                 loadNotifyData()
                 loadAvatar()
                 loadUnreadMessageCount()
+
+            $rootScope.loadCart()
+            $rootScope.loadWish()
 
             document.addEventListener('deviceready', () ->
                 $log.info 'dashboard-controller -> device ready...'

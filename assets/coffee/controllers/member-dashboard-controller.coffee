@@ -2,15 +2,17 @@ constants = require('../common/constants')
 
 module.exports = [
     '$rootScope', '$scope', '$ionicHistory', '$ionicModal', '$cordovaAppVersion', '$cordovaCamera', '$timeout', '$jrCrop', '$log',
-    '$ionicActionSheet', '$ionicPopover',
-    'modal', 'navigation', 'api',
+    '$ionicActionSheet', '$ionicPopover', '$translate',
+    'modal', 'navigation', 'api', 'user',
     ($rootScope, $scope, $ionicHistory, $ionicModal, $cordovaAppVersion, $cordovaCamera, $timeout, $jrCrop, $log,
-        $ionicActionSheet, $ionicPopover,
-        modal, navigation, api) ->
+        $ionicActionSheet, $ionicPopover, $translate,
+        modal, navigation, api, user) ->
             $scope.gender_title = ''
             $scope.data_loaded = false
             $scope.notify = constants.DEFAULT_NOTIFICATION_SETTING
             $scope.active = false
+            $scope.is_guest = user.getIsGuest()
+            $scope.canRefresher = not $scope.is_guest
 
             $scope.goBack = ->
                 if not $scope.active
@@ -200,10 +202,16 @@ module.exports = [
 
             if $rootScope.notify
                 $scope.data_loaded = true
-            if $scope.data_loaded == false
-                loadData()
-            else if not $rootScope.avatar_url
-                loadAvatar()
+
+            if $scope.is_guest
+                $translate(['text.guest_name']).then (translator) ->
+                    $scope.member =
+                        memb_name: translator['text.guest_name']
+            else
+                if $scope.data_loaded == false
+                    loadData()
+                else if not $rootScope.avatar_url
+                    loadAvatar()
 
             initPopoverUnlogin = ->
                 if $scope.popoverUnlogin
@@ -211,7 +219,8 @@ module.exports = [
                 else
                     $ionicPopover.fromTemplateUrl('templates/popover-unlogin.html',
                         scope: $scope
-                        backdropClickToClose :false
+                        backdropClickToClose: false
+                        hardwareBackButtonClose: false
                     ).then((popover) ->
                         $scope.popoverUnlogin = popover
                     )
@@ -223,7 +232,7 @@ module.exports = [
                         el: $scope.popoverUnlogin
                         'tag': 'popoverUnlogin'
 
-            showUnlogin()
+            #showUnlogin()
 
             removeCurrentShowDialog = ->
                 $scope.currentShowDialog.el.remove()
@@ -238,9 +247,10 @@ module.exports = [
             $scope.$on('$ionicView.leave', ->
                 $scope.active = false
 
-                $timeout(->
-                    $scope.popoverUnlogin.hide()
-                )
+                if $scope.popoverUnlogin
+                    $timeout(->
+                        $scope.popoverUnlogin.hide()
+                    )
             )
 
             # version number record in config.xml that under project root

@@ -17,6 +17,7 @@
     </ion-nav-bar>
     <ion-content class="has-header" ng-class="{ 'pane-content': true }">
         <ion-refresher
+            ng-if="canRefresher"
             pulling-text="{{ '下拉更新...' }}"
             on-refresh="doRefresh()">
         </ion-refresher>
@@ -113,6 +114,12 @@
                 <div class="col text-center">
                     App version: {{ app_version }}
                 </div>
+            </div>
+        </div>
+        <div class="backdrop unlogin" ng-if="is_guest">
+            <div class="container">
+                <div>Oops, 你尚未登入喔</div>
+                <div>趕快 <a href ng-click="goGuestLogin()">登入</a> 或 <a href ng-click="goGuestRegister()">加入會員</a></div>
             </div>
         </div>
     </ion-content>

@@ -79,6 +79,9 @@ module.exports = [
                 $scope.modalCourseLocation.show()
 
             loadStudycard = () ->
+                if user.getIsGuest()
+                    return
+
                 $log.info '[** StudycardSlide **] >> loadStudycard()......'
 
     #            studycards_in_cache = studycardCache.get('all')
@@ -115,7 +118,7 @@ module.exports = [
                 $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
                 $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
                 if $rootScope.fromNotification
-                    if user.isGuest()
+                    if user.getIsGuest()
                         $rootScope.fromNotification = not $rootScope.loadSearchSlide
                     else
                         $rootScope.fromNotification = not ($rootScope.loadStudycardSlide and $rootScope.loadSearchSlide)
@@ -148,19 +151,19 @@ module.exports = [
     #            $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
     #            $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
     #            $log.info '[** StudycardSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
-    #            $log.info '[** StudycardSlide **] >> isGuest : ' + user.isGuest()
+    #            $log.info '[** StudycardSlide **] >> isGuest : ' + user.getIsGuest()
     #            $log.info '[** StudycardSlide **] >> isRealDevice : ' + user.isRealDevice()
-#                if not user.isGuest()
+#                if not user.getIsGuest()
 #                    loadStudycard()
             )
     #        $log.info '[** StudycardSlide **] >> loadStudycard()'
     #        $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
     #        $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
     #        $log.info '[** StudycardSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
-    #        $log.info '[** StudycardSlide **] >> isGuest : ' + user.isGuest()
+    #        $log.info '[** StudycardSlide **] >> getIsGuest : ' + user.getIsGuest()
     #        $log.info '[** StudycardSlide **] >> isRealDevice : ' + user.isRealDevice()
 
-    #        if not user.isGuest() and not user.isRealDevice()
+    #        if not user.getIsGuest() and not user.isRealDevice()
     #            loadStudycard()
             loadStudycard()
 

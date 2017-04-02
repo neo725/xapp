@@ -12,15 +12,37 @@ module.exports = [
                 navigation.slide 'login', {}, 'left'
 
         $rootScope.goCart = ->
-            is_guest = user.isGuest()
+#            is_guest = user.getIsGuest()
+#
+#            if is_guest
+#                return $rootScope.logout()
+#            else
+#                navigation.slide 'home.member.cart.step1', {}, 'left'
+            navigation.slide 'home.member.cart.step1', {}, 'left'
 
-            if is_guest
-                return $rootScope.logout()
-            else
-                navigation.slide 'home.member.cart.step1', {}, 'left'
+        $rootScope.goGuestLogin = ->
+            token = user.getToken()
 
-        $rootScope.logout = ->
-            logout = () ->
+            func = (token) ->
+                user.setGuestToken(token)
+
+            $rootScope.logout(() ->
+                func(token)
+            )
+
+        $rootScope.goGuestRegister = ->
+            token = user.getToken()
+
+            func = (token) ->
+                user.setGuestToken(token)
+
+            $rootScope.logout(() ->
+                    func(token)
+                , 'main.register'
+            )
+
+        $rootScope.logout = (func, next_state = 'login') ->
+            logout = ->
                 onSuccess = ->
                     $rootScope.loadStudycardSlide = true
                     $rootScope.loadSearchSlide = true
@@ -35,11 +57,17 @@ module.exports = [
                     delete $rootScope['wish']
                     delete $rootScope['member']
 
-                    navigation.slide('login', {}, 'right')
+                    if func
+                        func()
+
+                    navigation.slide(next_state, {}, 'right')
                     modal.hideLoading()
 
                 onError = ->
                     modal.hideLoading()
+
+                if func
+                    return onSuccess()
 
                 modal.showLoading '', 'message.logging'
                 token = window.localStorage.getItem('token')

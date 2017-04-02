@@ -34,13 +34,17 @@ module.exports = [
                 $scope.covers = parseSlideList(list)
                 $rootScope.loadSearchSlide = false
 
-                $timeout(->
+                searchSlideAndLoop = ->
+                    if $('.search-slide-box').length == 0
+                        $timeout searchSlideAndLoop
+                        return
                     $ionicSlideBoxDelegate.update()
                     $ionicSlideBoxDelegate.$getByHandle('search-slide-box').loop(true)
-                , 500)
 
-                $rootScope.loadCart()
-                $rootScope.loadWish()
+                $timeout searchSlideAndLoop
+
+#                $rootScope.loadCart()
+#                $rootScope.loadWish()
 
             onSuccess = (response) ->
                 if showLoading
@@ -67,7 +71,7 @@ module.exports = [
             $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
 
             if $rootScope.fromNotification
-                if user.isGuest()
+                if user.getIsGuest()
                     $rootScope.fromNotification = not $rootScope.loadSearchSlide
                 else
                     $rootScope.fromNotification = not ($rootScope.loadStudycardSlide and $rootScope.loadSearchSlide)
@@ -87,7 +91,7 @@ module.exports = [
 #            $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
 #            $log.info '[** SearchSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
 #            $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
-#            $log.info '[** SearchSlide **] >> isGuest : ' + user.isGuest()
+#            $log.info '[** SearchSlide **] >> isGuest : ' + user.getIsGuest()
 #            $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()
 #            loadSearchSlide(false)
         )
@@ -98,9 +102,9 @@ module.exports = [
 #        $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
 #        $log.info '[** SearchSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
 #        $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
-#        $log.info '[** SearchSlide **] >> isGuest : ' + user.isGuest()
+#        $log.info '[** SearchSlide **] >> isGuest : ' + user.getIsGuest()
         $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()
-#        if user.isGuest() or not user.isRealDevice()
+#        if user.getIsGuest() or not user.isRealDevice()
 #            loadSearchSlide()
         loadSearchSlide()
 

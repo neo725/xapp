@@ -27,21 +27,24 @@ module.exports = [
                     )
                 return
 
+            guest_token = user.getGuestToken()
+
             # register
             onSuccess = (response) ->
-                modal.hideLoading()
+                user.clearGuestToken()
+                user.clearToken()
 
                 # login
                 onSuccess = (response) ->
                     modal.hideLoading()
-                    window.localStorage.setItem("token", response.token_string)
+                    user.setToken(response.token_string)
                     user.setIsGuest(false)
 
                     onSuccess = ->
                         $rootScope.member.from = 'register'
                         navigation.slide 'main.phoneconfirm', {}, 'left'
                     onError = ->
-                        window.localStorage.removeItem('token')
+                        user.clearToken()
                         user.clearIsGuest()
 
                     $rootScope.getMemberData(onSuccess, onError)
@@ -57,6 +60,7 @@ module.exports = [
                 api.login(data, onSuccess, onError)
 
             onError = () ->
+                user.clearToken()
                 modal.hideLoading()
 
             $scope.user.mobile = $scope.user.mobile.replace(new RegExp('-', 'g'), '')
@@ -68,5 +72,10 @@ module.exports = [
             }
 
             modal.showLoading '', 'message.data_saving'
-            api.registerMember(data, onSuccess, onError)
+
+            if not guest_token
+                return api.registerMember(data, onSuccess, onError)
+
+            user.setToken(guest_token)
+            api.upgradeMember(data, onSuccess, onError)
 ]

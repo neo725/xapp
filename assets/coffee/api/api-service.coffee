@@ -275,6 +275,11 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        upgradeMember: (data, onSuccess, onError) ->
+            $http.post('/api/members/upgrade', data)
+                .success(onSuccess)
+                .error(onError)
+
         forgotPassword: (para, onSuccess, onError) ->
             $http.get("/api/members/forgot?para=#{para}")
                 .success(onSuccess)
@@ -396,6 +401,11 @@ module.exports = ['$http', ($http) ->
             $http.post('/api/wish', data)
                 .success(onSuccess)
                 .error(onError)
+
+        mergeToken: (guestToken, onSuccess, onError) ->
+            $http.post('/api/members/merge', '"' + guestToken + '"')
+            .success(onSuccess)
+            .error(onError)
 
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, source_order_no, onSuccess, onError) ->

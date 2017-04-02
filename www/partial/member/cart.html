@@ -11,6 +11,14 @@
             <div class="step step-3" ng-class="{'current': step.s3.current, 'ion-checkmark-round': step.s3.finish, 'finish': step.s3.finish}">
                 <span ng-hide="step.s3.finish">3</span></div>
         </ion-header-bar>
-        <ion-nav-view name="cartContent"></ion-nav-view>
+        <ion-nav-view>
+            <ion-nav-view name="cartContent"></ion-nav-view>
+            <div class="backdrop unlogin" ng-if="is_guest">
+                <div class="container">
+                    <div>Oops, 你尚未登入喔</div>
+                    <div>趕快 <a href ng-click="goGuestLogin()">登入</a> 或 <a href ng-click="goGuestRegister()">加入會員</a></div>
+                </div>
+            </div>
+        </ion-nav-view>
     </ion-content>
 </ion-view>

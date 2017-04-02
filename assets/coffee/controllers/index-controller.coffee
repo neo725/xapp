@@ -105,7 +105,7 @@ module.exports = [
                 modal.hideLoading()
                 errorFn(error, status_code)
 
-            if user.isGuest() == false
+            if user.getIsGuest() == false
                 modal.showLoading('', 'message.data_loading')
                 api.getMemberData(onSuccess, onError)
 

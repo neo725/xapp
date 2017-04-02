@@ -13,6 +13,7 @@ module.exports = ->
     'text': {
         'or': '或'
         'pay_list_title': '您的卡片 - 已登記 {{ count }} 張'
+        'guest_name': '訪客'
     }
     'errors': {
         'login_failed': '登入失敗'

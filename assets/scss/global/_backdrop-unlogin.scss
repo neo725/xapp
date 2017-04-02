@@ -1,0 +1,20 @@
+.backdrop.unlogin {
+    visibility: visible;
+    opacity: 1.0;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    .container {
+        color: #ffffff;
+        text-align: center;
+        font-size: 16px;
+        margin-top: 220px;
+
+        a {
+            color: #00CCFF;
+            line-height: 25px;
+            border-bottom: 1px solid #00CCFF;
+            text-decoration: none;
+            padding-bottom: 3px;
+        }
+    }
+}

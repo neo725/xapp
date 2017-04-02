@@ -24,27 +24,25 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             $scope.goRegister = ->
                 navigation.slide 'main.register', {}, 'left'
 
-            resetLoginButton = ->
-                $translate('input.login').then (text) ->
-                    $('#login-button').text(text)
-                $scope.logging = false
-
             $scope.login = ->
                 onSuccess = (response) ->
                     modal.hideLoading()
-                    window.localStorage.setItem('token', response.token_string)
+                    user.setToken(response.token_string)
                     user.setIsGuest(false)
 
-                    resetLoginButton()
-
                     onSuccess = () ->
-                        modal.hideLoading()
+                        func = () ->
+                            modal.hideLoading()
+                            resetLoginButton()
+                            $rootScope.callFCMGetToken()
+                            navigation.slide 'home.dashboard', {}, 'left'
 
-                        #$rootScope.loadCart()
-                        #$rootScope.loadWish()
-                        $rootScope.callFCMGetToken()
+                        guest_token = user.getGuestToken()
 
-                        navigation.slide 'home.dashboard', {}, 'left'
+                        if not guest_token
+                            return func()
+
+                        mergeToken(guest_token, func)
 
                     $rootScope.getMemberData(onSuccess, (->))
 
@@ -70,7 +68,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                 onSuccess = (response) ->
                     modal.hideLoading()
 
-                    window.localStorage.setItem("token", response.token_string)
+                    user.setToken(response.token_string)
                     user.setIsGuest(true)
                     resetLoginButton()
 
@@ -92,6 +90,13 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                                 '',
                                 translation['pop.ok']
                             )
+
+                guest_token = user.getGuestToken()
+                if guest_token
+                    response =
+                        token_string: guest_token
+                    user.clearGuestToken()
+                    return onSuccess(response)
 
                 $translate('message.logging').then (text) ->
                     $('#pass-button').text(text)
@@ -132,17 +137,29 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                         loginBySocial 'google', token
                     )
 
+            mergeToken = (guest_token, func) ->
+                onSuccess = ->
+                    user.clearGuestToken()
+                    func()
+                onError = (->)
+
+                api.mergeToken guest_token, onSuccess, onError
+
+            resetLoginButton = ->
+                $translate('input.login').then (text) ->
+                    $('#login-button').text(text)
+                $scope.logging = false
+
             loginBySocial = (provider, token) ->
                 onSuccess = (response) ->
-                    modal.hideLoading()
-                    window.localStorage.setItem("token", response.token_string)
+                    user.setToken(response.token_string)
                     user.setIsGuest(false)
 
-                    resetLoginButton()
-
                     onSuccess = () ->
-                        #$rootScope.loadCart()
-                        #$rootScope.loadWish()
+                        modal.hideLoading()
+
+                        resetLoginButton()
+
                         $rootScope.callFCMGetToken()
 
                         navigation.slide 'home.dashboard', {}, 'left'
@@ -160,12 +177,10 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
 
                 token = window.localStorage.getItem('token')
 
-                if token == null or token == "null"
+                if token == null
                     navigation.slide 'login', {}, 'left'
                 else
                     onSuccess = () ->
-                        #$rootScope.loadCart()
-                        #$rootScope.loadWish()
                         $rootScope.callFCMGetToken()
 
                         navigation.slide 'home.dashboard', {}, 'left'
