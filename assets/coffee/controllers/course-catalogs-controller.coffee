@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$timeout', '$log', 'navigation', 'api', 'modal', 'CacheFactory',
-    ($rootScope, $scope, $timeout, $log, navigation, api, modal, CacheFactory) ->
+    '$rootScope', '$scope', '$timeout', '$log', 'navigation', 'api', 'modal', 'CacheFactory', 'user',
+    ($rootScope, $scope, $timeout, $log, navigation, api, modal, CacheFactory, user) ->
         $scope.mode = 'List' # 'Setting', 'List'
         $scope.expand = false
         $scope.catalogs = []
@@ -9,9 +9,12 @@ module.exports = [
 
         choiceCatalogs = []
 
+        if user.getIsGuest()
+            $scope.mode = 'Guest'
+
         if not CacheFactory.get('catalogsCache')
             opts =
-                maxAge: 7 * 24 * 60 * 60 * 1000
+                maxAge: 7 * 24 * 60 * 60 * 1000 # a week
                 deleteOnExpire: 'aggressive'
             CacheFactory.createCache('catalogsCache', opts)
         catalogsCache = CacheFactory.get('catalogsCache')
@@ -27,6 +30,9 @@ module.exports = [
                 , 1000
 
         $scope.saveSetting = ->
+            if $scope.mode = 'Guest'
+                return
+            
             $scope.showSaveButton = false
 
             onSuccess = () ->
@@ -87,6 +93,9 @@ module.exports = [
             $scope.invertCatalogs = invertItems(catalogs, visibleCatalogs)
 
         loadUserCatalogs = (shop_id, forceReload) ->
+            if $scope.mode = 'Guest'
+                $scope.visibleCatalogs = $scope.catalogs
+                return
             catalogs_user_in_cache = catalogsCache.get('user')
 
             onSuccess = (response) ->

@@ -10,8 +10,11 @@
         <h1 class="title">課程分類</h1>
     </ion-nav-title>
     <ion-content class="course-catalogs-content">
-        <div class="notice-block">
+        <div class="notice-block" ng-if="mode != 'Guest'">
             您可以編輯想要關注的課程分類頁面，或點選指定項目進入課程搜尋
+        </div>
+        <div class="notice-block" ng-if="mode == 'Guest'">
+            您可以點選指定項目進入課程搜尋
         </div>
         <div class="header">
             <div class="line"></div>
