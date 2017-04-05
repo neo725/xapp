@@ -1,7 +1,9 @@
-module.exports = ['$rootScope', '$ionicPlatform', '$ionicHistory', '$translate', 'plugins', 'navigation',
-    ($rootScope, $ionicPlatform, $ionicHistory, $translate, plugins, navigation) ->
+module.exports = ['$rootScope', '$state', '$ionicPlatform', '$ionicHistory', '$translate', 'plugins', 'navigation',
+    ($rootScope, $state, $ionicPlatform, $ionicHistory, $translate, plugins, navigation) ->
         $ionicPlatform.registerBackButtonAction (e) ->
             e.preventDefault()
+
+            currentStateName = $state.current.name
 
             confirmCallback = (buttonIndex) ->
                 if buttonIndex == 1
@@ -16,6 +18,12 @@ module.exports = ['$rootScope', '$ionicPlatform', '$ionicHistory', '$translate',
                         translator['title.exit_app'],
                         [translator['popup.ok'], translator['popup.cancel']]
                     )
+
+            if currentStateName in ['login', 'home.dashboard']
+                return confirmToExitApp()
+
+            if currentStateName = 'main.register'
+                return navigation.slide('login', {}, 'right')
 
             # Is there a page to go back to ?
             backView = $ionicHistory.backView()

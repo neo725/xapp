@@ -32,7 +32,7 @@ module.exports = [
         $scope.saveSetting = ->
             if $scope.mode = 'Guest'
                 return
-            
+
             $scope.showSaveButton = false
 
             onSuccess = () ->
