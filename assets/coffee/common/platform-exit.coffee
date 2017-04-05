@@ -22,7 +22,7 @@ module.exports = ['$rootScope', '$state', '$ionicPlatform', '$ionicHistory', '$t
             if currentStateName in ['login', 'home.dashboard']
                 return confirmToExitApp()
 
-            if currentStateName = 'main.register'
+            if currentStateName in ['main.forgotpassword', 'main.register']
                 return navigation.slide('login', {}, 'right')
 
             # Is there a page to go back to ?
