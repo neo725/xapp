@@ -2,6 +2,11 @@
     ion-content {
         background-color: #005C73;
     }
+
+    .scroll, .login-pane {
+        min-height: 600px;
+    }
+
     .login-pane {
         background-image: url('../img/openning@2x.png');
         background-size: cover;
