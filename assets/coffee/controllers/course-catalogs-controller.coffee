@@ -30,7 +30,7 @@ module.exports = [
                 , 1000
 
         $scope.saveSetting = ->
-            if $scope.mode = 'Guest'
+            if $scope.mode == 'Guest'
                 return
 
             $scope.showSaveButton = false
@@ -93,7 +93,7 @@ module.exports = [
             $scope.invertCatalogs = invertItems(catalogs, visibleCatalogs)
 
         loadUserCatalogs = (shop_id, forceReload) ->
-            if $scope.mode = 'Guest'
+            if $scope.mode == 'Guest'
                 $scope.visibleCatalogs = $scope.catalogs
                 return
             catalogs_user_in_cache = catalogsCache.get('user')

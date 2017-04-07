@@ -110,7 +110,6 @@ module.exports = [
             clearCart = (success) ->
                 onSuccess = () ->
                     # clear cart if success
-                    $scope.checkout_total_price = $scope.totalPrice
                     $scope.carts = []
 
                     modal.hideLoading()
@@ -178,6 +177,7 @@ module.exports = [
                 if buttonIndex == 1
                     # create order
                     onSuccess = (response) ->
+                        $scope.checkout_total_price = $scope.totalPrice
                         order_no = response.result
                         # pay_type = ATM or CreditCard
                         createPayment(pay_type, order_no, $rootScope.repay_order_no, ->

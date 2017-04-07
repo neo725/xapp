@@ -81,7 +81,7 @@ module.exports = [
 
                     uploadAvatar = ->
                         onSuccess = (response) ->
-                            $scope.avatar_url = response.result
+                            $rootScope.avatar_url = response.result
                             modal.hideLoading()
                         onError = () ->
                             modal.hideLoading()
@@ -114,7 +114,7 @@ module.exports = [
             $scope.deleteAvatar = ->
                 onSuccess = () ->
                     modal.hideLoading()
-                    delete $scope['avatar_url']
+                    delete $rootScope['avatar_url']
                 onError = () ->
                     modal.hideLoading()
 
@@ -131,12 +131,15 @@ module.exports = [
 
             $scope.showFunction = () ->
                 #$scope.modalFunction.show()
+                buttons = [
+                    { text: '<i class="icon ion-camera"></i> 拍攝照片' }
+                    { text: '<i class="icon ion-images"></i> 選擇照片' }
+                ]
+                if $rootScope.avatar_url
+                    buttons.push { text: '<i class="icon ion-android-delete"></i> 刪除' }
+
                 hideSheet = $ionicActionSheet.show(
-                    buttons: [
-                        { text: '<i class="icon ion-camera"></i> 拍攝照片' }
-                        { text: '<i class="icon ion-images"></i> 選擇照片' }
-                        { text: '<i class="icon ion-android-delete"></i> 刪除' }
-                    ]
+                    buttons: buttons
                     buttonClicked: (buttonIndex) ->
                         switch buttonIndex
                             when 0 then $scope.takePicture()

@@ -3,6 +3,12 @@
         <h1 class="title">購物車</h1>
     </ion-nav-title>
     <ion-content class="step-3-content" padding="true">
+        <div ng-if="false">
+            <div>debug info</div>
+            <div>checkPayTypeIsCreditCard() = <span ng-bind="checkPayTypeIsCreditCard()"></span></div>
+            <div>checkout_total_price = <span ng-bind="checkout_total_price"></span></div>
+            <div>pay.success = <span ng-bind="pay.success"></span></div>
+        </div>
         <div class="card" ng-if="checkPayTypeIsCreditCard() && checkout_total_price > 0 && pay.success">
             <div class="row">
                 <div class="col-20 text-center cart-logo">

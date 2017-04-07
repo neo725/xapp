@@ -113,7 +113,6 @@ module.exports = [
             clearCart = (success) ->
                 onSuccess = () ->
                     # clear cart if success
-                    $scope.checkout_total_price = $scope.totalPrice
                     $scope.carts = []
                     $rootScope.carts = []
 
@@ -160,8 +159,6 @@ module.exports = [
                 return card
 
             payByCreditCard = (order_no, success, error) ->
-                card = collectCreditCardInfo()
-
                 onSuccess = ->
                     if $scope.card.remember
                         creditcard.save $scope.card
@@ -171,12 +168,14 @@ module.exports = [
                         creditcard.save $scope.card
                     error()
 
+                card = collectCreditCardInfo()
                 api.createCreditCardPayment(order_no, 0, card.number, card.expire, card.cvc, onSuccess, onError)
 
             createPayment = (pay_type, order_no, success) ->
                 error = ->
                     modal.hideLoading()
-                    #$scope.pay.success = false || ($scope.totalPrice < 5000)
+                    $scope.pay.success = false
+                    #$scope.pay.success |= $scope.totalPrice < 5000
 
                     # go to step 3
                     navigation.slide('home.member.cart.step3', {}, 'left')
@@ -197,6 +196,8 @@ module.exports = [
                         navigation.slide('home.member.cart.step3', {}, 'left')
                     )
                 onSuccess = (response) ->
+                    $scope.checkout_total_price = $scope.totalPrice
+
                     order_no = response.result
                     $log.info 'order total price is : ' + $scope.totalPrice
 
