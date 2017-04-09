@@ -43,7 +43,7 @@
                                     <div class="track"><div class="handle"></div></div>
                                 </label>
                             </div>
-                            <div ng-class="{ 'title': mode == 'Setting', 'full-title': mode == 'List' }">
+                            <div ng-class="{ 'title': mode == 'Setting', 'full-title': mode == 'List' || mode == 'Guest' }">
                                 <span class="sub-item" ng-repeat="subitem in catalog.subCataList">{{subitem.Cata_Name}}</span>
                             </div>
                         </div>

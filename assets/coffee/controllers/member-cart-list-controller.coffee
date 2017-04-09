@@ -149,7 +149,7 @@ module.exports = [
                             util.pad($scope.card.number_part4, 4)
 
                 getCardExpire = () ->
-                    return util.pad($scope.card.expire_year + 2000, 4) +
+                    return util.pad(parseInt($scope.card.expire_year) + 2000, 4) +
                             util.pad($scope.card.expire_month, 2)
                 card = {}
                 card.number = getCardNumber()
