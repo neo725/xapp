@@ -1,9 +1,9 @@
 
 module.exports = [
     '$rootScope', '$scope', '$ionicPlatform', '$cordovaBadge', '$window', '$timeout', '$log', '$translate',
-    'api', 'modal', 'navigation', 'user',
+    'api', 'modal', 'navigation', 'plugins', 'user',
     ($rootScope, $scope, $ionicPlatform, $cordovaBadge, $window, $timeout, $log, $translate,
-        api, modal, navigation, user) ->
+        api, modal, navigation, plugins, user) ->
             modal.hideLoading()
 
             #$rootScope.loadSearchSlide = false
@@ -60,6 +60,16 @@ module.exports = [
                         $cordovaBadge.clear()
 
                 api.getUnreadMessageCount onSuccess, onError
+
+
+            window.handleOpenURL = (url) ->
+                setTimeout(() ->
+                    plugins.toast.show url, 'long', 'top'
+                , 0)
+
+            url_open = window.sessionStorage.getItem('url-open')
+            if (url_open)
+                plugins.toast.show url_open, 'long', 'top'
 
             if user.getIsGuest() == false
                 loadNotifyData()
