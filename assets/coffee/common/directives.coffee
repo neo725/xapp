@@ -310,7 +310,7 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
                     adjustHeight()
                 , 500
             else
-                height = 442 if height < 442
+                height = 424 if height < 424
                 $slider.css('height', height + 'px')
 
         adjustHeight()
