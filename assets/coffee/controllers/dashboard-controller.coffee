@@ -32,6 +32,10 @@ module.exports = [
             $scope.goLocation = ->
                 navigation.slide 'home.location', {}, 'left'
 
+            $scope.doRefresh = () ->
+                $scope.$broadcast('dashboard.doRefresh')
+                $scope.$broadcast('scroll.refreshComplete')
+
             loadAvatar = ->
                 onSuccess = (response) ->
                     if response

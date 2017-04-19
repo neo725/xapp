@@ -21,6 +21,10 @@
         <h1 class="title">大學聯網</h1>
     </ion-nav-title>
     <ion-content class="has-header" padding="false" ng-class="{'dashboard-pane-content': true}">
+        <ion-refresher
+            pulling-text="{{ '下拉更新...' }}"
+            on-refresh="doRefresh()">
+        </ion-refresher>
         <div class="studycard-slides slides padding"
              ng-controller="StudyCardSlideController"
              ng-show="studyCardVisible"

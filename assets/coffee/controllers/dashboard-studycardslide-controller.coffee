@@ -27,6 +27,7 @@ module.exports = [
                 CacheFactory.createCache('surveyCache', opts)
             surveyCache = CacheFactory.get('surveyCache')
 
+
             $scope.getDatePart = (date) ->
                 return moment(date).format('YYYY/M/DD')
 
@@ -155,6 +156,10 @@ module.exports = [
     #            $log.info '[** StudycardSlide **] >> isRealDevice : ' + user.isRealDevice()
 #                if not user.getIsGuest()
 #                    loadStudycard()
+            )
+            $scope.$on('dashboard.doRefresh', () ->
+                $log.info '{** StudycardSlide **} >> doRefresh......'
+                loadStudycard()
             )
     #        $log.info '[** StudycardSlide **] >> loadStudycard()'
     #        $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
