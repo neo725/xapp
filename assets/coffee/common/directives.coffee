@@ -289,8 +289,8 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
     restrict: 'A'
     link: (scope, element, attrs) ->
         plusHeight = 0
-#        if attrs.searchSlideFitIos
-#            plusHeight += parseInt(attrs.searchSlideFitIos)
+        if attrs.searchSlideFitIos
+            plusHeight += parseInt(attrs.searchSlideFitIos)
         isIOS = ionic.Platform.isIOS()
         $element = $('.dashboard-pane-content')
 
