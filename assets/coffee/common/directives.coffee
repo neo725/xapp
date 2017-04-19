@@ -289,8 +289,8 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
     restrict: 'A'
     link: (scope, element, attrs) ->
         plusHeight = 0
-        if attrs.searchSlideFitIos
-            plusHeight += parseInt(attrs.searchSlideFitIos)
+#        if attrs.searchSlideFitIos
+#            plusHeight += parseInt(attrs.searchSlideFitIos)
         isIOS = ionic.Platform.isIOS()
         $element = $('.dashboard-pane-content')
 
@@ -304,11 +304,14 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
                 , 1000
                 return
             height = $window.innerHeight - ($element.position().top + $tab.outerHeight())
-            $slider.css('height', height + 'px')
+
             if height < 0
                 $timeout () ->
                     adjustHeight()
                 , 500
+            else
+                height = 442 if height < 442
+                $slider.css('height', height + 'px')
 
         adjustHeight()
 
@@ -317,7 +320,7 @@ exports.searchSlideFit = ['$window', '$timeout', '$log', ($window, $timeout, $lo
             , (value) ->
                 $log.info 'searchSlideFit >> watch >> value : ' + value
                 if value == 0
-                    $slider.css('height', '')
+                    $slider.css('height', '375px')
                     if isIOS and plusHeight > 0
                         $slider.css('height', $slider.outerHeight() + plusHeight + 'px')
                 else
