@@ -1,0 +1,45 @@
+<ion-view class="member-edit-name" ng-controller="MemberEditNameController">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <h1 class="title">姓名修改</h1>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
+            <i class="sprite-icon-shoppingcar-o-2x"></i>
+        </button>
+        <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
+            <div class="badge badge-assertive badge-s-size cart-badge">{{carts.length}}</div>
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="has-header" padding="true">
+        <div class="pane-content">
+            <div>
+                <img class="pane-logo" src="img/registered01@2x.png">
+            </div>
+            <div class="text-line-1 text-center">
+                <p>請確認姓名為真實資料</p>
+                <p>切勿使用暱稱或綽號</p>
+            </div>
+            <form name="editNameForm" class="form edit-password-form" novalidate ng-submit="submitForm(editNameForm)">
+                <div class="list">
+                    <label class="item item-input"
+                           ng-class="{ 'has-error' : editNameForm.name.$invalid }">
+                        <span class="input-label">{{ '姓名' }}</span>
+                        <input type="number" name="name"
+                               ng-model="user.memb_name"
+                               required>
+                        <span class="sprite-icon has-error-icon">
+                            <i class="sprite-icon-order-form-st-2x"></i>
+                        </span>
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col"><input type="button" class="button button-block button-dark" ng-click="goBack()" value="取消" /></div>
+                    <div class="col col-67"><button class="button button-block button-positive">送出</button></div>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

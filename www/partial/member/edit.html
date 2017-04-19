@@ -18,20 +18,30 @@
                                 <span class="name-item">姓名</span>
                                 <span class="name-item-value" ng-bind="user.memb_name"></span>
                             </div>
-                            <div class="col col-33 col-gender">
-                                <div class="gender-item">
-                                    <ion-radio ng-model="user.memb_gender" ng-value="'M'" ng-class="{ 'selected': user.memb_gender == 'M' }">
-                                        <i ng-class="{ 'ion-android-radio-button-on': user.memb_gender == 'M',
-                                               'ion-android-radio-button-off': user.memb_gender != 'M' }"></i>
-                                        <span class="radio-title">男</span>
-                                    </ion-radio>
-                                </div>
-                                <div class="gender-item">
-                                    <ion-radio ng-model="user.memb_gender" ng-value="'F'" ng-class="{ 'selected': user.memb_gender == 'F' }">
-                                        <i ng-class="{ 'ion-android-radio-button-on': user.memb_gender == 'F',
-                                               'ion-android-radio-button-off': user.memb_gender != 'F' }"></i>
-                                        <span class="radio-title">女</span>
-                                    </ion-radio>
+                            <div class="col col-right">
+                                <button class="button" ng-click="goChangeName()">
+                                    修改
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-gender">
+                                <div class="gender-item">性別</div>
+                                <div class="gender-item-value">
+                                    <div class="gender-item">
+                                        <ion-radio ng-model="user.memb_gender" ng-value="'M'" ng-class="{ 'selected': user.memb_gender == 'M' }">
+                                            <i ng-class="{ 'ion-android-radio-button-on': user.memb_gender == 'M',
+                                                   'ion-android-radio-button-off': user.memb_gender != 'M' }"></i>
+                                            <span class="radio-title">男</span>
+                                        </ion-radio>
+                                    </div>
+                                    <div class="gender-item">
+                                        <ion-radio ng-model="user.memb_gender" ng-value="'F'" ng-class="{ 'selected': user.memb_gender == 'F' }">
+                                            <i ng-class="{ 'ion-android-radio-button-on': user.memb_gender == 'F',
+                                                   'ion-android-radio-button-off': user.memb_gender != 'F' }"></i>
+                                            <span class="radio-title">女</span>
+                                        </ion-radio>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +64,10 @@
                         <div class="row">
                             <div class="col col-email">
                                 <div class="email-item">
-                                    電子信箱
+                                    <div>電子信箱</div>
+                                    <button class="button" ng-click="goEditEmail()">
+                                        修改
+                                    </button>
                                 </div>
                                 <div class="email-item-value" ng-bind="user.memb_email">
                                 </div>

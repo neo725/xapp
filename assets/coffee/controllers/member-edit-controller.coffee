@@ -9,6 +9,12 @@ module.exports = [
         $scope.goBack = ->
             navigation.slide 'home.member.dashboard', {}, 'right'
 
+        $scope.goChangeName = ->
+            navigation.slide 'home.member.edit-name', {}, 'left'
+
+        $scope.goEditEmail = ->
+            navigation.slide 'home.member.edit-email', {}, 'left'
+
         $scope.goEditIdent = ->
             navigation.slide 'home.member.edit-ident', {}, 'left'
 

@@ -42,46 +42,51 @@
         }
 
         .col-name {
-            padding-top: 16px;
+            padding-top: 13px;
 
             .name-item {
                 margin-right: 10px;
             }
         }
         .col-gender {
-            flex: 0 0 40%;
-            max-width: 40%;
-
-            .gender-item {
+            > .gender-item {
                 float: left;
+                padding-top: 10px;
+                padding-right: 10px;
+            }
 
-                &:first-child {
-                    padding-right: 10px;
-                }
-                .item {
-                    i {
-                        color: $radio-button-color;
+            .gender-item-value {
+                .gender-item {
+                    float: left;
+
+                    &:first-child {
+                        padding-right: 10px;
                     }
-                    &.selected {
+                    .item {
                         i {
-                            color: $radio-button-selected-color;
+                            color: $radio-button-color;
+                        }
+                        &.selected {
+                            i {
+                                color: $radio-button-selected-color;
+                            }
                         }
                     }
-                }
-                .radio-content {
-                    .ion-checkmark {
-                        display: none;
-                    }
-                    .item-content {
-                        padding: 5px;
-                        background-color: $light;
-
-                        i {
-                            font-size: 24px;
+                    .radio-content {
+                        .ion-checkmark {
+                            display: none;
                         }
-                        .radio-title {
-                            position: relative;
-                            top: -4px;
+                        .item-content {
+                            padding: 5px;
+                            background-color: $light;
+
+                            i {
+                                font-size: 24px;
+                            }
+                            .radio-title {
+                                position: relative;
+                                top: -4px;
+                            }
                         }
                     }
                 }
@@ -98,8 +103,24 @@
             }
         }
         .col-email {
+            .email-item {
+                display: block;
+
+                > div {
+                    float: left;
+                    padding-top: 8px;
+                }
+                > .button {
+                    min-height: 30px;
+                    height: 35px;
+                    line-height: 10px;
+                    font-size: 15px;
+                    float: right;
+                }
+            }
             .email-item-value {
                 margin-top: 10px;
+                display: inline-block;
             }
         }
         .col-address {

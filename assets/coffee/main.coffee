@@ -56,6 +56,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('MemberMessageController', require('./controllers/member-message-controller'))
 .controller('MemberMessageInfoController', require('./controllers/member-message-info-controller'))
 .controller('MemberEditController', require('./controllers/member-edit-controller'))
+.controller('MemberEditNameController', require('./controllers/member-edit-name-controller'))
 .controller('MemberEditIdentController', require('./controllers/member-edit-ident-controller'))
 .controller('MemberEditPassword1Controller', require('./controllers/member-edit-pw-1-controller'))
 .controller('MemberEditPassword2Controller', require('./controllers/member-edit-pw-2-controller'))
@@ -359,6 +360,22 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'memberContent': {
                 templateUrl: 'partial/member/edit.html'
+            }
+        }
+
+    .state 'home.member.edit-name',
+        url: '/edit-name'
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/edit-name.html'
+            }
+        }
+
+    .state 'home.member.edit-email',
+        url: '/edit-email'
+        views: {
+            'memberContent': {
+                templateUrl: 'partial/member/edit-email.html'
             }
         }
 

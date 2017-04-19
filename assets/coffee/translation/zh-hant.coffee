@@ -90,6 +90,8 @@ module.exports = ->
         'cancel_order': '取消訂單'
         'refund_order': '訂單退費'
         'location': '交通資訊'
+        'member_name_edit': '姓名修改'
+        'member_email_edit': '電子郵件修改'
         'member_ident_edit': '身分證字號設定'
         'member_mobile_edit': '手機號碼設定'
         'member_password_edit': '密碼設定'
