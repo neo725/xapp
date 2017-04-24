@@ -8,7 +8,7 @@
                 <img class="pane-logo" src="img/registered04@2x.png">
             </div>
             <div class="text-line-1 text-center">
-                <p>{{ 'ATM 付款需確認身分證字號' }}</p>
+                <p>{{ '繳費需確認身分證字號' }}</p>
                 <p>{{ '請正確填寫，感謝您的支持' }}</p>
             </div>
             <form name="editIdentForm" class="form edit-ident-form" novalidate ng-submit="submitForm(editIdentForm)">
@@ -18,6 +18,7 @@
                         <span class="input-label">{{ '身分證字號' }}</span>
                         <input type="text" name="ident"
                                ng-model="user.ident"
+                               ng-pattern="/^[A-Z]{1}[1-2]{1}[0-9]{8}$/"
                                required>
                         <span class="sprite-icon has-error-icon">
                             <i class="sprite-icon-order-form-st-2x"></i>
@@ -28,12 +29,13 @@
                         <span class="input-label">{{ '請再輸入一次' }}</span>
                         <input type="text" name="ident_confirm"
                                ng-model="user.ident_confirm"
+                               ng-pattern="/^[A-Z]{1}[1-2]{1}[0-9]{8}$/"
                                required>
                         <span class="sprite-icon has-error-icon">
                             <i class="sprite-icon-order-form-st-2x"></i>
                         </span>
                     </label>
-                    <div class="tip tip-assertive">{{ '* ATM 轉帳時必要資訊，儲存後將無法更改。' }}</div>
+                    <div class="tip tip-assertive">{{ '* 繳費時必要資訊，儲存後將無法更改。' }}</div>
                 </div>
                 <div class="row">
                     <div class="col"><input type="button" class="button button-block button-dark" ng-click="goBack()" value="取消" /></div>

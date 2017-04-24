@@ -126,10 +126,10 @@ module.exports = [
                 day++
             $scope.birth_day_opts = birth_day_opts
 
-        #$scope.$on('$ionicView.enter', ->
-        #    init()
-        #    loadData()
-        #)
+        $scope.$on('$ionicView.enter', ->
+            if not $rootScope.member
+                loadData()
+        )
         init()
         loadData()
 

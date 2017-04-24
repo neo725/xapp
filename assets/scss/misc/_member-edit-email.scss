@@ -1,0 +1,54 @@
+.member-edit-email {
+
+    .pane-content {
+        margin: 0 auto;
+        width: 80%;
+
+        img.pane-logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+            width: 50%;
+        }
+
+        .text-line-1 {
+            color: #88bce7;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form {
+            //&.ng-submitted {
+            //    .item.has-error {
+            //        border-bottom: 2px solid $error;
+            //    }
+            //}
+            .item-input {
+                border-bottom-color: #dddddd;
+                margin-top: 10px;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+                .input-label {
+                    color: #88bce7;
+                    width: 20%;
+                }
+                input[name="confirm_email"] {
+                    padding-right: 80px;
+                }
+            }
+        }
+
+        .tip {
+            font-size: 12px;
+            color: #9C9C9C;
+        }
+        .tip-assertive {
+            color: $assertive;
+        }
+    }
+}

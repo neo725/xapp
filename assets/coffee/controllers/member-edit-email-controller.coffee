@@ -3,18 +3,16 @@ module.exports = [
     ($rootScope, $scope, $translate, navigation, plugins, modal, api) ->
         $scope.user = {}
 
-        $scope.user.memb_name = $rootScope.member.memb_name
-
         $scope.goBack = () ->
             navigation.slide('home.member.edit', {}, 'right')
 
         $scope.submitForm = (form) ->
             if not form.$valid
-                $translate(['title.member_name_edit', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
+                $translate(['title.member_email_edit', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
                     plugins.notification.alert(
                         translator['errors.form_validate_error'],
                         (->),
-                        translator['title.member_name_edit'],
+                        translator['title.member_email_edit'],
                         translator['popup.ok']
                     )
                 return
@@ -24,15 +22,15 @@ module.exports = [
         updateMember = () ->
 
             data = {
-                'name': $scope.user.memb_name
+                'mail': $scope.user.confirm_email
             }
 
             onSuccess = (response) ->
                 modal.hideLoading()
-                $translate('message.data_saved').then (text) ->
-                    plugins.toast.show(text, 'long', 'top')
-                    $rootScope.member = null
-                    $scope.goBack()
+                $rootScope.member.from = 'edit-email'
+                $rootScope.member.new_memb_email = data.mail
+
+                navigation.slide 'main.emailconfirm', {}, 'left'
             onError = () ->
                 modal.hideLoading()
 

@@ -1,0 +1,49 @@
+.email-confirm-pane {
+    .pane-content {
+        margin: 0 auto;
+        width: 80%;
+
+        h3 {
+            font-size: 18px;
+        }
+        
+        img.pane-logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+            width: 50%;
+        }
+
+        .text-line-1 {
+            color: $positive;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .tiptext {
+            color: $error;
+        }
+
+        .resend-row {
+            .col {
+                padding-top: 0;
+
+                .button {
+                    margin-top: 0;
+                }
+            }
+        }
+
+        .phone-confirm-form {
+            .item {
+                border-left: 0 none;
+                border-right: 0 none;
+                border-top: 0;
+                border-bottom: 1px solid $stable;
+            }
+        }
+    }
+}

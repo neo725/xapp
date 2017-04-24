@@ -1,9 +1,9 @@
-<ion-view class="member-edit-name" ng-controller="MemberEditNameController">
+<ion-view class="member-edit-email" ng-controller="MemberEditEmailController">
     <ion-nav-buttons side="left">
         <button class="button button-icon icon ion-ios-arrow-left" ng-click="goBack()"></button>
     </ion-nav-buttons>
     <ion-nav-title>
-        <h1 class="title">姓名修改</h1>
+        <h1 class="title">電子郵件修改</h1>
     </ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-click="goCart()">
@@ -19,16 +19,27 @@
                 <img class="pane-logo" src="img/registered04@2x.png">
             </div>
             <div class="text-line-1 text-center">
-                <p>請確認姓名為真實資料</p>
-                <p>切勿使用暱稱或綽號</p>
+                <p>電子郵件欄位將會是您的會員帳號</p>
+                <p>請正確填寫，感謝您的支持</p>
             </div>
-            <form name="editNameForm" class="form edit-password-form" novalidate ng-submit="submitForm(editNameForm)">
+            <form name="editEmailForm" class="form edit-password-form" novalidate ng-submit="submitForm(editEmailForm)">
                 <div class="list">
                     <label class="item item-input"
-                           ng-class="{ 'has-error' : editNameForm.name.$invalid }">
-                        <span class="input-label">{{ '姓名' }}</span>
-                        <input type="text" name="name"
-                               ng-model="user.memb_name"
+                           ng-class="{ 'has-error' : editEmailForm.email.$invalid }">
+                        <span class="input-label">{{ 'Email' }}</span>
+                        <input type="email" name="email"
+                               ng-model="user.email"
+                               required>
+                        <span class="sprite-icon has-error-icon">
+                            <i class="sprite-icon-order-form-st-2x"></i>
+                        </span>
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{ 'has-error' : editEmailForm.confirm_email.$invalid }">
+                        <span class="input-label">{{ '請再輸入一次' }}</span>
+                        <input type="email" name="confirm_email"
+                               ng-model="user.confirm_email"
+                               data-custom-verify="user.email"
                                required>
                         <span class="sprite-icon has-error-icon">
                             <i class="sprite-icon-order-form-st-2x"></i>

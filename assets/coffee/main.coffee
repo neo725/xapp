@@ -36,6 +36,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('ResetPasswordController', require('./controllers/resetpassword-controller'))
 .controller('RegisterController', require('./controllers/register-controller'))
 .controller('PhoneConfirmController', require('./controllers/phoneconfirm-controller'))
+.controller('EmailConfirmController', require('./controllers/emailconfirm-controller'))
 .controller('HomeController', require('./controllers/home-controller'))
 .controller('DashboardController', require('./controllers/dashboard-controller'))
 .controller('StudyCardSlideController', require('./controllers/dashboard-studycardslide-controller'))
@@ -57,6 +58,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('MemberMessageInfoController', require('./controllers/member-message-info-controller'))
 .controller('MemberEditController', require('./controllers/member-edit-controller'))
 .controller('MemberEditNameController', require('./controllers/member-edit-name-controller'))
+.controller('MemberEditEmailController', require('./controllers/member-edit-email-controller'))
 .controller('MemberEditIdentController', require('./controllers/member-edit-ident-controller'))
 .controller('MemberEditPassword1Controller', require('./controllers/member-edit-pw-1-controller'))
 .controller('MemberEditPassword2Controller', require('./controllers/member-edit-pw-2-controller'))
@@ -173,6 +175,14 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'mainContent': {
                 templateUrl: 'partial/phoneconfirm.html'
+            }
+        }
+
+    .state 'main.emailconfirm',
+        url: '/emailconfirm'
+        views: {
+            'mainContent': {
+                templateUrl: 'partial/emailconfirm.html'
             }
         }
 

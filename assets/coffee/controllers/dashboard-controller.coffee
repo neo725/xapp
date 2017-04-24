@@ -38,7 +38,9 @@ module.exports = [
 
             loadAvatar = ->
                 onSuccess = (response) ->
-                    if response
+                    if not response
+                        $rootScope.avatar_url = null
+                    else
                         $rootScope.avatar_url = response.para_value
                 onError = (->)
 
