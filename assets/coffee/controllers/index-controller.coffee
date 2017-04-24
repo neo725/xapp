@@ -27,6 +27,8 @@ module.exports = [
                 # Keep in mind the function will return null if the token has not been established yet.
                 FCMPlugin.getToken(
                     (fcm_token) ->
+                        fcm_token = fcm_token.token if fcm_token.token
+
                         platform = $cordovaDevice.getPlatform().toLowerCase()
                         uuid = $cordovaDevice.getUUID()
 
