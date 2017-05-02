@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$translate', 'navigation', 'plugins', 'modal', 'api',
-    ($rootScope, $scope, $translate, navigation, plugins, modal, api) ->
+    '$rootScope', '$scope', '$translate', 'navigation', 'plugins', 'modal', 'api', 'util',
+    ($rootScope, $scope, $translate, navigation, plugins, modal, api, util) ->
         $scope.user = {}
 
         $scope.goBack = () ->
@@ -25,14 +25,24 @@ module.exports = [
                 'mail': $scope.user.confirm_email
             }
 
-            onSuccess = (response) ->
-                modal.hideLoading()
+            redirectToEmailConfirm = (seconds) ->
                 $rootScope.member.from = 'edit-email'
                 $rootScope.member.new_memb_email = data.mail
+                $rootScope.member.verify_resend_expire = util.getMomentNowAddSeconds(seconds)
 
                 navigation.slide 'main.emailconfirm', {}, 'left'
-            onError = () ->
+
+            onSuccess = (response) ->
                 modal.hideLoading()
+
+                seconds = parseInt(response.result)
+                redirectToEmailConfirm seconds
+
+            onError = (error, status_code) ->
+                modal.hideLoading()
+                if status_code == 405
+                    seconds = parseInt(error.result)
+                    redirectToEmailConfirm seconds
 
             modal.showLoading '', 'message.data_saving'
             api.updateMemberData(data, onSuccess, onError)
