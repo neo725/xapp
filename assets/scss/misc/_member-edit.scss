@@ -31,6 +31,13 @@
                     }
                 }
             }
+            .col-birth {
+                select {
+                    &.ng-invalid {
+                        background-color: $light-error-color;
+                    }
+                }
+            }
         }
 
         input[type="text"] {

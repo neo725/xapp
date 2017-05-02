@@ -29,7 +29,7 @@ module.exports = ['$rootScope', '$log', '$translate', '$q', '$injector', 'plugin
                     apiId = response.headers('apiid')
                     if apiId and time > 3000
                         $log.warn 'request over 3000 ms...'
-                        logApi -1, time.toString(), 'api-timeout'
+                        logApi apiId, time.toString(), 'api-timeout'
 
                 if response.status >= 500
     #                $translate('errors.request_failed').then (text) ->
