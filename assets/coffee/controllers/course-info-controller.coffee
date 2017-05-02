@@ -14,11 +14,11 @@ module.exports = [
                 else
                     navigation.slide('home.dashboard', {}, 'right')
 
-            $scope.socialSharing = () ->
-                message = 'this is message'
-                subject = 'this is subject'
+            $scope.socialSharing = (course) ->
+                message = "#{course.Prod_Name} #{course.Prod_SubName}"
+                subject = null
                 file = null
-                link = 'http://www.sce.pccu.edu.tw'
+                link = course.murl
 
                 success = (result) ->
                     $log.info result

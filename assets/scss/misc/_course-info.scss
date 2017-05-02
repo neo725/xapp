@@ -1,6 +1,34 @@
 $price-item-color: #868687;
 $price-current-item-color: #BE1421;
 
+.platform-android {
+    .course-info {
+        .course-info-detail {
+            .social-sharing {
+                .img-ios {
+                    display: none !important;
+                }
+                .img-android {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+.platform-ios {
+    .course-info {
+        .course-info-detail {
+            .social-sharing {
+                .img-android {
+                    display: none !important;
+                }
+                .img-ios {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
 .course-info {
     .course-info-content {
         // header image
@@ -22,6 +50,25 @@ $price-current-item-color: #BE1421;
                 background-color: $stable;
                 padding: 2px 5px 2px 5px;
                 display: inline-table;
+            }
+
+            .social-sharing {
+                float: right;
+                width: 38px;
+
+                .img {
+                    text-align: center;
+                    display: block;
+
+                    img {
+                        width: 100%;
+                        max-width: 24px;
+                    }
+                }
+                .text {
+                    color: $positive;
+                    text-align: center;
+                }
             }
 
             .title {

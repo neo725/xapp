@@ -22,7 +22,12 @@
         <div class="course-info-detail">
             <div class="row">
                 <div class="col">
-                    <span class="prod-id" z-ng-click="socialSharing()">{{ course.Prod_Id }}</span>
+                    <span class="prod-id">{{ course.Prod_Id }}</span>
+                    <div class="social-sharing" ng-click="socialSharing(course)">
+                        <div class="img img-android"><img src="img/share-A.png" /></div>
+                        <div class="img img-ios"><img src="img/share-IOS.png" /></div>
+                        <div class="text">分享</div>
+                    </div>
                 </div>
             </div>
             <div class="row">
