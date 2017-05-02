@@ -47,7 +47,7 @@ module.exports = [
 
                 action = ''
                 if $rootScope.member.from == 'edit-email'
-                    action = 'updatetel'
+                    action = 'updateemail'
 
                 data = {
                     'validcode': util.pad(form.verify_code.$modelValue, 4)
