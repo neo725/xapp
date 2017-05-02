@@ -128,6 +128,10 @@ module.exports = [
                 if $scope.course.priceList
                     $scope.modalPriceList.show()
 
+            $scope.onlyForBuyInService = (course) ->
+                $translate('message.course_only_for_buy_in_service').then (text) ->
+                    plugins.toast.show(text, 'long', 'top')
+
             getCourse = (shop_id, prod_id) ->
                 onSuccess = (response) ->
                     modal.hideLoading()

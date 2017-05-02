@@ -70,6 +70,7 @@ module.exports = ->
         'course_cant_buy': '此课程目前无法购买'
         'sure_to_exit_app': '确定要离开大学联网?'
         'notification_received': '您有新的學習訊息通知'
+        'course_only_for_buy_in_service': '此課程僅限臨櫃報名'
     }
     'tab': {
         'payed': '已繳費'

@@ -104,7 +104,8 @@ $price-current-item-color: #BE1421;
             .card-container {
                 background-color: $stable;
                 padding-top: 8px;
-                padding-bottom: 8px;
+                //padding-bottom: 8px;
+                padding-bottom: 45px;
 
                 &:last-child {
                     margin-bottom: 10px;
@@ -135,6 +136,21 @@ $price-current-item-color: #BE1421;
     .footer {
         height: 60px;
         padding: 0;
+
+        &.buy-online-false {
+            .price-help {
+                background-color: $positive;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+
+            .cart-button {
+                &.not-buy-online {
+                    background-color: #dadad9;
+                    color: $positive;
+                }
+            }
+        }
 
         .price-help {
             background-color: $assertive;

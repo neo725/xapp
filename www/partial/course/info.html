@@ -127,7 +127,7 @@
             </div>
         </div>
     </ion-content>
-    <ion-footer-bar align-title="left" class="footer bar-light shadow-outline-top">
+    <ion-footer-bar align-title="left" class="footer bar-light shadow-outline-top" ng-if="course.Prod_BuyOnline == 1">
         <div class="price-help-container" ng-click="showPriceModal()">
             <div class="price-help">最惠價<br />說　明</div>
         </div>
@@ -151,6 +151,26 @@
                 </div>
                 <div>
                     <div class="text">已放入購物車</div>
+                </div>
+            </div>
+        </div>
+    </ion-footer-bar>
+    <ion-footer-bar align-title="left" class="footer bar-light shadow-outline-top buy-online-false" ng-if="course.Prod_BuyOnline == 0">
+        <div class="price-help-container">
+            <div class="price-help">參考<br />價格</div>
+        </div>
+        <h1 class="title">
+            <span class="price-prefix">NT</span>
+            <span class="price">{{ course.Prod_Price | currency:"":0 }}</span>
+        </h1>
+        <div class="buttons text-center">
+            <div class="add-favorite"><img ng-src="img/{{ favorite_icon }}" ng-click="addOrRemoveFromWish(course)"></div>
+            <div class="cart-button not-buy-online" ng-click="onlyForBuyInService(course)">
+                <div>
+                    <img src="img/cart-add-not-online@2x.png">
+                </div>
+                <div>
+                    <div class="text">僅臨櫃報名</div>
                 </div>
             </div>
         </div>
