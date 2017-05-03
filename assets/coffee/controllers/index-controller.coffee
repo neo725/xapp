@@ -11,7 +11,7 @@ module.exports = [
         $cordovaLocalNotification, $cordovaVibration, $cordovaBadge, $log, $timeout,
         navigation, modal, api, user, CacheFactory) ->
 
-        fcm_topics_member_registered = false
+        $rootScope.fcm_topics_member_registered = false
 
         $rootScope.fromNotification = false
         network_offline = false
@@ -87,12 +87,23 @@ module.exports = [
             if typeof FCMPlugin == 'undefined'
                 return
 
-            success = (response) ->
+            success = () ->
                 if successFn
                     successFn()
             error = (->)
 
             FCMPlugin.subscribeToTopic(topic_name, success, error)
+
+        $rootScope.unregisterFCMTopics = (topic_name, successFn) ->
+            if typeof FCMPlugin == 'undefined'
+                return
+
+            success = () ->
+                if successFn
+                    successFn()
+            error = (->)
+
+            FCMPlugin.unsubscribeFromTopic(topic_name, success, error)
 
         $rootScope.getMemberData = (successFn, errorFn) ->
             $log.info 'index-controller -> getMemberData'
@@ -100,9 +111,9 @@ module.exports = [
                 modal.hideLoading()
 
                 # register fcm topics
-                if fcm_topics_member_registered == false
+                if $rootScope.fcm_topics_member_registered == false
                     success = () ->
-                        fcm_topics_member_registered = true
+                        $rootScope.fcm_topics_member_registered = true
                     $rootScope.registerFCMTopics 'member', success
 
                 # proccess member data

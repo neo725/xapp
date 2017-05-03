@@ -36,10 +36,10 @@ module.exports = [
             func = (token) ->
                 user.setGuestToken(token)
 
-            $rootScope.logout(() ->
-                    func(token)
-                , 'main.register'
-            )
+            successFn = () ->
+                func(token)
+
+            $rootScope.logout successFn, 'main.register'
 
         $rootScope.logout = (func, next_state = 'login') ->
             logout = ->
@@ -56,6 +56,11 @@ module.exports = [
                     delete $rootScope['cart']
                     delete $rootScope['wish']
                     delete $rootScope['member']
+
+                    if $rootScope.fcm_topics_member_registered == true
+                        success = () ->
+                            $rootScope.fcm_topics_member_registered = false
+                        $rootScope.unregisterFCMTopics('member', success, (->))
 
                     if func
                         func()
