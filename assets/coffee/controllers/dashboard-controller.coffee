@@ -1,9 +1,11 @@
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicPlatform', '$cordovaBadge', '$window', '$timeout', '$log', '$translate',
+    '$rootScope', '$scope', '$ionicPlatform', '$cordovaBadge', '$window', '$timeout', '$log', '$translate', '$q',
     'api', 'modal', 'navigation', 'plugins', 'user',
-    ($rootScope, $scope, $ionicPlatform, $cordovaBadge, $window, $timeout, $log, $translate,
+    ($rootScope, $scope, $ionicPlatform, $cordovaBadge, $window, $timeout, $log, $translate, $q,
         api, modal, navigation, plugins, user) ->
+            deferred = $q.defer()
+
             modal.hideLoading()
 
             #$rootScope.loadSearchSlide = false
@@ -54,16 +56,25 @@ module.exports = [
 
                 api.getUserSetting 'notify', onSuccess, onError
 
+            detectWhenPlatformReady = () ->
+                return deferred.promise
+
             loadUnreadMessageCount = ->
                 onSuccess = (response) ->
                     $rootScope.unread_message_count = 0
-                    if response and window.cordova
+                    if response
                         $rootScope.unread_message_count = parseInt(response)
-                        $cordovaBadge.set $rootScope.unread_message_count
+                        success = () ->
+                            if window.cordova and cordova.plugins
+                                $cordovaBadge.set $rootScope.unread_message_count
+                        detectWhenPlatformReady().then(success, (->))
+
                 onError = ->
                     $rootScope.unread_message_count = 0
-                    if window.cordova
-                        $cordovaBadge.clear()
+                    success = () ->
+                        if window.cordova and cordova.plugins
+                            $cordovaBadge.clear()
+                    detectWhenPlatformReady().then(success, (->))
 
                 api.getUnreadMessageCount onSuccess, onError
 
@@ -73,9 +84,9 @@ module.exports = [
                     plugins.toast.show url, 'long', 'top'
                 , 0)
 
-            url_open = window.sessionStorage.getItem('url-open')
-            if (url_open)
-                plugins.toast.show url_open, 'long', 'top'
+#            url_open = window.sessionStorage.getItem('url-open')
+#            if (url_open)
+#                plugins.toast.show url_open, 'long', 'top'
 
             if user.getIsGuest() == false
                 loadNotifyData()
@@ -91,6 +102,7 @@ module.exports = [
 
             $ionicPlatform.ready(->
                 $log.info 'dashboard-controller -> ionicPlatform ready...'
+                deferred.resolve()
             )
 
             $scope.$on('$ionicView.enter', ->
