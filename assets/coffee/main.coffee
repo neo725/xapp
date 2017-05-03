@@ -350,7 +350,7 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         }
 
     .state 'home.member.message-info',
-        url: '/message/:type/:message_id'
+        url: '/message/:type/:group_id'
         views: {
             'memberContent': {
                 templateUrl: 'partial/member/message-info.html'

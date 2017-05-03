@@ -1,7 +1,13 @@
-module.exports = ['$rootScope', '$scope', '$stateParams', '$ionicHistory', 'api', 'navigation', 'modal',
-    ($rootScope, $scope, $stateParams, $ionicHistory, api, navigation, modal) ->
+module.exports = ['$rootScope', '$scope', '$stateParams', '$ionicHistory', 'api', 'navigation', 'modal', 'CacheFactory',
+    ($rootScope, $scope, $stateParams, $ionicHistory, api, navigation, modal, CacheFactory) ->
         $scope.type = $stateParams.type
-        messageId = $stateParams.message_id
+        groupId = $stateParams.group_id
+
+        if not CacheFactory.get('messageCache')
+            opts =
+                storageMode: 'sessionStorage'
+            CacheFactory.createCache('messageCache', opts)
+        messageCache = CacheFactory.get('messageCache')
 
         $scope.goBack = () ->
             backView = $ionicHistory.backView()
@@ -11,19 +17,24 @@ module.exports = ['$rootScope', '$scope', '$stateParams', '$ionicHistory', 'api'
             else
                 navigation.slide('home.dashboard', {}, 'right')
 
-        loadMessage = (messageId) ->
-            modal.showLoading('', 'message.data_loading')
+        loadMessage = (groupId) ->
+            loadMessage = (message) ->
+                $scope.type = message.m_type
+                $scope.messageTitle = message.m_title
+                $scope.messageInfo = message.m_info
 
             onSuccess = (response) ->
                 modal.hideLoading()
-
-                $scope.messageTitle = response.m_title
-                $scope.messageInfo = response.m_info
-
+                loadMessage response
             onError = () ->
                 modal.hideLoading()
 
-            api.getMessage(messageId, onSuccess, onError)
+            message_in_cache = messageCache.get "g-#{groupId}"
+            if message_in_cache
+                loadMessage message_in_cache
+            else
+                modal.showLoading('', 'message.data_loading')
+                api.getMessage(groupId, onSuccess, onError)
 
-        loadMessage(messageId)
+        loadMessage(groupId)
 ]

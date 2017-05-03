@@ -6,10 +6,10 @@ constants = require('../common/constants')
 module.exports = [
     '$rootScope', '$scope', '$translate', '$ionicPlatform', '$cordovaDevice', '$cordovaGlobalization', '$cordovaToast',
     '$cordovaLocalNotification', '$cordovaVibration', '$cordovaBadge', '$log', '$timeout',
-    'navigation', 'modal', 'api', 'user',
+    'navigation', 'modal', 'api', 'user', 'CacheFactory',
     ($rootScope, $scope, $translate, $ionicPlatform, $cordovaDevice, $cordovaGlobalization, $cordovaToast,
         $cordovaLocalNotification, $cordovaVibration, $cordovaBadge, $log, $timeout,
-        navigation, modal, api, user) ->
+        navigation, modal, api, user, CacheFactory) ->
 
         fcm_topics_member_registered = false
 
@@ -17,6 +17,12 @@ module.exports = [
         network_offline = false
 
         $translate.use constants.DEFAULT_LOCALE
+
+        if not CacheFactory.get('messageCache')
+            opts =
+                storageMode: 'sessionStorage'
+            CacheFactory.createCache('messageCache', opts)
+        messageCache = CacheFactory.get('messageCache')
 
         $rootScope.callFCMGetToken = () ->
             $log.info '[[[ FCM ]]] $rootScope.callFCMGetToken()......'
@@ -150,13 +156,14 @@ module.exports = [
 
                 $rootScope.getMemberData(onSuccess, (->))
 
-        getMessageInfo = (messageId) ->
+        getMessageInfo = (groupId) ->
             modal.showLoading('', 'message.data_loading')
 
             goMessageInfo = (message) ->
+                messageCache.put "g-#{message.group_id}", message
                 params =
                     'type': message.m_type
-                    'message_id': message.messageId
+                    'group_id': message.group_id
                 navigation.slide 'home.member.message-info', params, 'left'
             onSuccess = (response) ->
                 modal.hideLoading()
@@ -164,7 +171,7 @@ module.exports = [
             onError = () ->
                 modal.hideLoading()
 
-            api.getMessage messageId, onSuccess, onError
+            api.getMessage groupId, onSuccess, onError
 
         registerNotification = () ->
             FCMPlugin.onNotification(
