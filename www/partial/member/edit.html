@@ -63,7 +63,7 @@
                             <div class="col col-email">
                                 <div class="email-item">
                                     <div>電子信箱</div>
-                                    <input type="button" class="button" value="修改" ng-click="goEditEmail()" />
+                                    <input type="button" class="button" value="新增" ng-click="goEditEmail()" ng-if="checkIsEmailEmpty()" />
                                 </div>
                                 <div class="email-item-value" ng-bind="user.memb_email">
                                 </div>

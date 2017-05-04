@@ -1,9 +1,9 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$ionicHistory', '$timeout', '$translate',
+    '$rootScope', '$scope', '$ionicModal', '$ionicHistory', '$timeout', '$translate', '$log',
     'navigation', 'modal', 'plugins', 'api', 'user',
-    ($rootScope, $scope, $ionicModal, $ionicHistory, $timeout, $translate,
+    ($rootScope, $scope, $ionicModal, $ionicHistory, $timeout, $translate, $log,
         navigation, modal, plugins, api, user) ->
             $scope.loaded = false
             $scope.user = {}
@@ -15,7 +15,12 @@ module.exports = [
                 navigation.slide 'home.member.edit-name', {}, 'left'
 
             $scope.goEditEmail = ->
+                if $rootScope.member.memb_email
+                    return
                 navigation.slide 'home.member.edit-email', {}, 'left'
+
+            $scope.checkIsEmailEmpty = ->
+                return not $rootScope.member.memb_email
 
             $scope.goEditIdent = ->
                 navigation.slide 'home.member.edit-ident', {}, 'left'
