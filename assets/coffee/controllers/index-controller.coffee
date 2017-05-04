@@ -260,7 +260,7 @@ module.exports = [
         $scope.$on('$ionicView.enter', () ->
             $log.info 'index-controller -> $ionicView.enter'
             token = window.localStorage.getItem('token')
-            if $rootScope.member == undefined and token
+            if not $rootScope.member and token
                 checkDefaultState(token, false)
 
             if token == undefined or token == 'undefined'
