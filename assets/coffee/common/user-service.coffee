@@ -13,11 +13,19 @@ module.exports = ['$rootScope',
         getToken = () ->
             return window.localStorage.getItem('token')
 
-        setToken = (token) ->
+        setToken = (token, social_platform) ->
             window.localStorage.setItem('token', token)
+            if social_platform
+                window.localStorage.setItem('social_platform', social_platform)
+            else
+                window.localStorage.removeItem('social_platform')
 
         clearToken = () ->
             window.localStorage.removeItem('token')
+            window.localStorage.removeItem('social_platform')
+
+        getSocialPlatform = () ->
+            return window.localStorage.getItem('social_platform')
 
         setGuestToken = (token) ->
             if token
@@ -49,6 +57,7 @@ module.exports = ['$rootScope',
             getToken: getToken
             setToken: setToken
             clearToken: clearToken
+            getSocialPlatform: getSocialPlatform
             setGuestToken: setGuestToken
             getGuestToken: getGuestToken
             clearGuestToken: clearGuestToken

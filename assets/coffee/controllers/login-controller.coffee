@@ -152,7 +152,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
 
             loginBySocial = (provider, token) ->
                 onSuccess = (response) ->
-                    user.setToken(response.token_string)
+                    user.setToken(response.token_string, provider)
                     user.setIsGuest(false)
 
                     onSuccess = () ->

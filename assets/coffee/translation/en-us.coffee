@@ -71,6 +71,7 @@ module.exports = ->
         'sure_to_exit_app': '確定要離開大學聯網?'
         'notification_received': '您有新的學習訊息通知'
         'course_only_for_buy_in_service': '此課程僅限臨櫃報名'
+        'password_cant_edit_with_social_login': '使用 {{ social_platform_name }} 登入，請至 {{ social_platform_name }} 平台登錄修改'
     }
     'tab': {
         'payed': '已繳費'
