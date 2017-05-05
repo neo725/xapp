@@ -1,6 +1,6 @@
 module.exports = [
-    '$rootScope', '$scope', '$translate', 'navigation', 'plugins', 'modal', 'api', 'util',
-    ($rootScope, $scope, $translate, navigation, plugins, modal, api, util) ->
+    '$rootScope', '$scope', '$translate', '$log', 'navigation', 'plugins', 'modal', 'api', 'util',
+    ($rootScope, $scope, $translate, $log, navigation, plugins, modal, api, util) ->
         $scope.user = {}
 
         $scope.goBack = () ->
@@ -43,5 +43,27 @@ module.exports = [
 
             api.updateMemberData(data, onSuccess, onError)
 
-        return
+        trimStart = (character, string) ->
+            startIndex = 0
+            while string[startIndex] == character
+                startIndex++
+            return string.substr(startIndex)
+
+        proccessPhoneNumber = (number) ->
+            return parseInt(trimStart('+', number))
+
+        readSimInfo = () ->
+            successCallback = (info) ->
+                if info and info.phoneNumber
+                    $scope.user.memb_mobile = proccessPhoneNumber(info.phoneNumber)
+            window.plugins.sim.getSimInfo successCallback, (->)
+
+        requestReadPermission = (successCallback) ->
+            window.plugins.sim.requestReadPermission(successCallback, (->))
+
+        onDeviceReady = () ->
+            if window.plugins and window.plugins.sim
+                requestReadPermission readSimInfo
+
+        document.addEventListener('deviceready', onDeviceReady, false)
 ]
