@@ -50,7 +50,11 @@ module.exports = [
             return string.substr(startIndex)
 
         proccessPhoneNumber = (number) ->
-            return parseInt(trimStart('+', number))
+            number = trimStart('+', number)
+            number = trimStart('8', number)
+            number = trimStart('6', number)
+            number = '0' + number
+            return number
 
         readSimInfo = () ->
             successCallback = (info) ->
@@ -59,7 +63,9 @@ module.exports = [
             window.plugins.sim.getSimInfo successCallback, (->)
 
         requestReadPermission = (successCallback) ->
-            window.plugins.sim.requestReadPermission(successCallback, (->))
+            if window.plugins.sim.requestReadPermission
+                return window.plugins.sim.requestReadPermission(successCallback, (->))
+            successCallback()
 
         onDeviceReady = () ->
             if window.plugins and window.plugins.sim
