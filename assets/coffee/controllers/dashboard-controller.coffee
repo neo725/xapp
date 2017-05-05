@@ -78,15 +78,28 @@ module.exports = [
 
                 api.getUnreadMessageCount onSuccess, onError
 
+            switchToCourseInfo = (shop_id, prod_id) ->
+                navigation.slide 'home.course.info', {shop_id: shop_id, prod_id: prod_id}, 'left'
+
+            parseCourseNo = (data) ->
+                regex = /sceapp:\/\/course\/(.+)/g
+                if data and data.match
+                    matches = regex.exec data
+                    if matches.length == 2
+                        return matches[1]
+                return null
 
             window.handleOpenURL = (url) ->
+                # url maybe like sceapp://course/8HI5_A6050
+                # redirect state is : home.course.info
                 setTimeout(() ->
-                    plugins.toast.show url, 'long', 'top'
+                    #plugins.toast.show url, 'long', 'top'
+                    course_no = parseCourseNo url
+                    if course_no
+                        switchToCourseInfo 'MS', course_no
                 , 0)
 
-#            url_open = window.sessionStorage.getItem('url-open')
-#            if (url_open)
-#                plugins.toast.show url_open, 'long', 'top'
+            #handleOpenURL('sceapp://course/8HI5_A6050')
 
             if user.getIsGuest() == false
                 loadNotifyData()

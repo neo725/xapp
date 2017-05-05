@@ -82,7 +82,7 @@ module.exports = [
 
             if value.match
                 matches = value.match reg_number
-                if matches && matches.length == 4
+                if matches and matches.length == 4
                     return {
                         from: toSeconds(parseInt(matches[0]), matches[1], 0)
                         to: toSeconds(parseInt(matches[2]), matches[3], 0)

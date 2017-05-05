@@ -179,7 +179,9 @@ module.exports = [
             $rootScope.deleteStudyCards = deleteStudyCards
 
             $scope.$on('$ionicView.enter', ->
-
+            )
+            $scope.$on('dashboard-controller.afterEnter', ->
+                $ionicSlideBoxDelegate.update()
             )
             $ionicModal.fromTemplateUrl('templates/modal-feedback.html',
                 scope: $scope
