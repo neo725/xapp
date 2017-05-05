@@ -62,7 +62,7 @@ module.exports = [
             loadUnreadMessageCount = ->
                 onSuccess = (response) ->
                     $rootScope.unread_message_count = 0
-                    if response
+                    if response or response == 0
                         $rootScope.unread_message_count = parseInt(response)
                         success = () ->
                             if window.cordova and cordova.plugins
