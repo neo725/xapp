@@ -8,8 +8,6 @@ module.exports = [
 
             modal.hideLoading()
 
-            #$rootScope.loadSearchSlide = false
-            #$rootScope.loadStudycardSlide = false
             $scope.active = false
 
 
@@ -17,12 +15,6 @@ module.exports = [
                 if not $scope.active
                     return
 
-#                is_guest = user.getIsGuest()
-#
-#                if is_guest
-#                    return $rootScope.logout()
-#                else
-#                    navigation.slide 'home.member.dashboard', {}, 'left'
                 navigation.slide 'home.member.dashboard', {}, 'left'
 
             $scope.goCatalogs = ->

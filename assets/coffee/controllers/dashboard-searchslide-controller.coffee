@@ -31,7 +31,6 @@ module.exports = [
                     $('.search-slides').show()
 
                     $scope.covers = parseSlideList(list)
-                    $rootScope.loadSearchSlide = false
 
                     searchSlideAndLoop = ->
                         if $('.search-slide-box').length == 0
@@ -66,48 +65,20 @@ module.exports = [
 
             $scope.$on('dashboard-controller.enter', () ->
                 $log.info '[** SearchSlide **] >> dashboard-controller.enter  ......'
-                $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
-                $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
 
-                if $rootScope.fromNotification
-                    if user.getIsGuest()
-                        $rootScope.fromNotification = not $rootScope.loadSearchSlide
-                    else
-                        $rootScope.fromNotification = not ($rootScope.loadStudycardSlide and $rootScope.loadSearchSlide)
+                $ionicSlideBoxDelegate.update()
 
-                    #$rootScope.loadSearchSlide = true
-                    $ionicSlideBoxDelegate.update()
-
-#                if $rootScope.loadSearchSlide
-#                    #token = window.localStorage.getItem('token')
-#                    #if $rootScope.member or token
-#                    #    loadSearchSlide()
-#                    loadSearchSlide()
             )
             $scope.$on('index-controller.onNotificationRegistered', () ->
                 $log.info '{** SearchSlide **} >> index-controller.onNotificationRegistered......'
                 $rootScope.onNotificationRegistered = true
-#                $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
-#                $log.info '[** SearchSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
-#                $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
-#                $log.info '[** SearchSlide **] >> isGuest : ' + user.getIsGuest()
-#                $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()
-#                loadSearchSlide(false)
             )
             $scope.$on('dashboard.doRefresh', () ->
                 $log.info '{** SearchSlide **} >> doRefresh......'
             )
-#            token = window.localStorage.getItem('token')
-#            if $rootScope.member or token
-#                loadSearchSlide()
-#            $log.info '[** SearchSlide **] >> loadSearchSlide()'
-#            $log.info '[** SearchSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
-#            $log.info '[** SearchSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
-#            $log.info '[** SearchSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
-#            $log.info '[** SearchSlide **] >> isGuest : ' + user.getIsGuest()
+
             $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()
-#            if user.getIsGuest() or not user.isRealDevice()
-#                loadSearchSlide()
+
             loadSearchSlide()
 
 

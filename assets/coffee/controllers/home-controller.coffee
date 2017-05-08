@@ -44,9 +44,6 @@ module.exports = [
         $rootScope.logout = (func, next_state = 'login') ->
             logout = ->
                 onSuccess = ->
-                    $rootScope.loadStudycardSlide = true
-                    $rootScope.loadSearchSlide = true
-
                     window.localStorage.clear()
                     window.sessionStorage.clear()
 

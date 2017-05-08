@@ -13,7 +13,6 @@ module.exports = [
 
         $rootScope.fcm_topics_member_registered = false
 
-        $rootScope.fromNotification = false
         network_offline = false
 
         $translate.use constants.DEFAULT_LOCALE
@@ -194,8 +193,6 @@ module.exports = [
                         # "priority":"high", //If not set, notification won't be delivered on completely closed iOS app and
                         # "click_action":"FCM_PLUGIN_ACTIVITY", //Must be present for Android
                         $log.warn 'FCMPlugin.onNotification...'
-
-                        $rootScope.fromNotification = true
 
                         getMessageInfo data.mid
                     else

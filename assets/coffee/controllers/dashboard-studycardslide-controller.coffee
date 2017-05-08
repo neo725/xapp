@@ -98,7 +98,6 @@ module.exports = [
                 onSuccess = (response) ->
                     load response.list
     #                studycardCache.put 'all', response.list
-                    $rootScope.loadStudycardSlide = false
                     modal.hideLoading()
 
                 onError = () ->
@@ -116,19 +115,7 @@ module.exports = [
             $scope.$on('dashboard-controller.enter', () ->
                 $log.info '[** StudycardSlide **] >> dashboard-controller.enter  ......'
 
-                $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
-                $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
-                if $rootScope.fromNotification
-                    if user.getIsGuest()
-                        $rootScope.fromNotification = not $rootScope.loadSearchSlide
-                    else
-                        $rootScope.fromNotification = not ($rootScope.loadStudycardSlide and $rootScope.loadSearchSlide)
-
-                    #$rootScope.loadStydycardSlide = true
-                    $ionicSlideBoxDelegate.update()
-
-    #            if $rootScope.loadStudycardSlide
-    #                loadStudycard()
+                $ionicSlideBoxDelegate.update()
 
                 if waitToDeleteStudyCards.length > 0
                     _.forEach(waitToDeleteStudyCards, (prod_id) ->
@@ -149,27 +136,12 @@ module.exports = [
             )
             $scope.$on('index-controller.onNotificationRegistered', () ->
                 $log.info '{** StudycardSlide **} >> index-controller.onNotificationRegistered......'
-    #            $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
-    #            $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
-    #            $log.info '[** StudycardSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
-    #            $log.info '[** StudycardSlide **] >> isGuest : ' + user.getIsGuest()
-    #            $log.info '[** StudycardSlide **] >> isRealDevice : ' + user.isRealDevice()
-#                if not user.getIsGuest()
-#                    loadStudycard()
             )
             $scope.$on('dashboard.doRefresh', () ->
                 $log.info '{** StudycardSlide **} >> doRefresh......'
                 loadStudycard()
             )
-    #        $log.info '[** StudycardSlide **] >> loadStudycard()'
-    #        $log.info '[** StudycardSlide **] >> $rootScope.fromNotification : ' + $rootScope.fromNotification
-    #        $log.info '[** StudycardSlide **] >> $rootScope.loadStudycardSlide : ' + $rootScope.loadStudycardSlide
-    #        $log.info '[** StudycardSlide **] >> $rootScope.loadSearchSlide : ' + $rootScope.loadSearchSlide
-    #        $log.info '[** StudycardSlide **] >> getIsGuest : ' + user.getIsGuest()
-    #        $log.info '[** StudycardSlide **] >> isRealDevice : ' + user.isRealDevice()
 
-    #        if not user.getIsGuest() and not user.isRealDevice()
-    #            loadStudycard()
             loadStudycard()
 
             deleteStudyCards = (prod_id) ->
