@@ -333,3 +333,102 @@ exports.sceCutHeight = ['$log', ($log) ->
         height = element.height() - parseInt(attrs.sceCutHeight)
         element.height(height)
 ]
+
+exports.sceRefresher = ['$log', '$ionicScrollDelegate',
+    ($log, $ionicScrollDelegate) ->
+        restrict: 'A'
+        link: (scope, element, attrs) ->
+            $log.info 'sceRefresher......'
+
+            opacity_offset_min = 20
+            opacity_offset_max = 80
+            handler_drag_css = 'drag'
+            handler_refresh_css = 'refresh'
+            arrow_down_css = 'ion-arrow-down-c'
+            arrow_up_css = 'ion-refresh'
+
+            getPercentage = (input, min, max) ->
+                return ((input - min) / (max - min))
+
+            removeClass = ($obj, classes) ->
+                for css in classes
+                    $obj.removeClass(css)
+
+            setIcon = ($icon, css, drag = true) ->
+                removeClass($icon, [arrow_down_css, arrow_up_css])
+                $icon.addClass(css)
+
+                removeClass($icon, [handler_drag_css, handler_refresh_css])
+                if drag
+                    $icon.addClass(handler_drag_css)
+                else
+                    $icon.addClass(handler_refresh_css)
+
+            $holder = $(attrs.sceRefresher)
+            $handler = $holder.find('.handler')
+            $icon = $handler.find('i')
+
+            isTouchZone = false
+            eventStart = false
+            eventTouched = false
+            startY = 0
+
+            $element = $(element)
+            $element.bind('touchstart', (e) ->
+                $log.info 'refresher touchstart...'
+                startY = e.originalEvent.touches[0].pageY
+                top = $ionicScrollDelegate.getScrollPosition().top
+                $log.info 'startY : ' + startY
+                $log.info 'top : ' + top
+                eventStart = false
+                eventTouched = false
+                isTouchZone = (startY < 100) and (top == 0)
+                if isTouchZone
+                    setIcon($icon, arrow_down_css, true)
+                return true
+            )
+            $element.bind('touchmove', (e) ->
+                offsetY = e.originalEvent.touches[0].pageY - startY
+                if offsetY > 20
+                    eventStart = true
+                #$log.info 'offsetY : ' + offsetY
+                #$log.info 'eventStart : ' + eventStart
+                #$log.info 'isTouchZone : ' + isTouchZone
+
+                if eventStart and isTouchZone
+                    handlerOffsetY = if offsetY < 0 then 0 else offsetY
+                    handlerOffsetY = if handlerOffsetY > 100 then 100 else handlerOffsetY
+
+                    opacity = getPercentage(handlerOffsetY, opacity_offset_min, opacity_offset_max)
+                    opacity = if opacity < 0 then 0 else opacity
+                    opacity = if opacity > 1 then 1 else opacity
+
+                    eventTouched = (opacity == 1)
+                    if opacity == 1
+                        setIcon($icon, arrow_up_css, false)
+                    else
+                        setIcon($icon, arrow_down_css, true)
+                    #$log.info 'handlerOffsetY : ' + handlerOffsetY
+                    #$log.info 'opacity : ' + opacity
+
+                    $handler.css({
+                        'transform': 'translate(0, ' + handlerOffsetY + 'px)',
+                        'opacity': opacity
+                     })
+                    return false
+                return true
+            )
+            $element.bind('touchend', (e) ->
+                $log.info 'refresher touchend...'
+                eventStart = false
+                $handler.css({
+                    'transform': '',
+                    'opacity': ''
+                })
+                setIcon($icon, arrow_down_css, true)
+                if eventTouched
+                    eventTouched = false
+                    $log.info 'doRefresh()...'
+                    scope.$eval(attrs.sceRefresherEvent)
+            )
+]
