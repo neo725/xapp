@@ -382,7 +382,7 @@ exports.sceRefresher = ['$log', '$ionicScrollDelegate',
                 $log.info 'top : ' + top
                 eventStart = false
                 eventTouched = false
-                isTouchZone = (startY < 100) and (top == 0)
+                isTouchZone = (startY < 130) and (top == 0)
                 if isTouchZone
                     setIcon($icon, arrow_down_css, true)
                 return true
@@ -397,7 +397,7 @@ exports.sceRefresher = ['$log', '$ionicScrollDelegate',
 
                 if eventStart and isTouchZone
                     handlerOffsetY = if offsetY < 0 then 0 else offsetY
-                    handlerOffsetY = if handlerOffsetY > 100 then 100 else handlerOffsetY
+                    #handlerOffsetY = if handlerOffsetY > 100 then 100 else handlerOffsetY
 
                     opacity = getPercentage(handlerOffsetY, opacity_offset_min, opacity_offset_max)
                     opacity = if opacity < 0 then 0 else opacity
