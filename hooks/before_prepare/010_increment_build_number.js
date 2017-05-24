@@ -23,6 +23,59 @@ var is_increment = cmdline.indexOf('-build')  > -1;
 
  */
 
+// ios build number
+// Read config.xml
+fs.readFile('config.xml', 'utf8', function (err, data) {
+    console.log('-----------------------------------------');
+    console.log('Increment config.xml build number for ios');
+    if (err) {
+        return console.log(err);
+    }
+
+    // Get XML
+    var xml = data;
+
+    // Parse XML to JS Obj
+    xml2js.parseString(xml, function (err, result) {
+        if (err) {
+            return console.warn(err);
+        }
+
+        // Get JS Obj
+        var obj = result;
+
+        if (typeof obj.widget.$['ios-CFBundleVersion'] === 'undefined') {
+            return console.log('no ios build number setting found.');
+        } else {
+            var currentBuild = parseInt(obj.widget.$['ios-CFBundleVersion']);
+
+            console.log('Current Build: ', currentBuild);
+
+            // Increment build number
+            var targetBuild = currentBuild + 1;
+
+            console.log('Target Build: ', targetBuild);
+
+            obj.widget.$['ios-CFBundleVersion'] = targetBuild;
+            console.log(currentBuild + ' -> ' + targetBuild);
+        }
+
+        // Build XML from JS Obj
+        var builder = new xml2js.Builder();
+        var xml = builder.buildObject(obj);
+
+        // Write config.xml
+        fs.writeFile('config.xml', xml, function (err) {
+            if (err) {
+                return console.warn(err);
+            }
+            console.log('config.xml build number for ios successfully incremented');
+        });
+
+    });
+});
+
+// common version code
 if (is_increment) {
     var calculateVersion = function(versionObj) {
         var major = versionObj.major;
