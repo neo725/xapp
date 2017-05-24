@@ -33,11 +33,13 @@ $price-current-item-color: #BE1421;
     .course-info-content {
         // header image
         .header-image-container {
-            height: 140px;
+            //height: 140px;
+            width: 100%;
 
             .header-image {
                 height: 100%;
-                width:100%;
+                width: 100%;
+                max-width: 100%;
                 background-position: center;
                 background-size: cover;
             }

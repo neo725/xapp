@@ -16,8 +16,9 @@
         </ion-nav-title>
     </ion-nav-bar>
     <ion-content class="course-info-content" padding="false">
-        <div class="header-image-container">
-            <div class="header-image"  ng-style="{'background-image': 'url(' + course.Prod_ImgUrl + ')', 'height': '100%'}"></div>
+        <div class="header-image-container" ng-hide="course && course.Prod_ImgUrl == ''">
+            <div class="header-image" ng-hide="true" ng-style="{'background-image': 'url(' + course.Prod_ImgUrl + ')', 'height': '100%'}"></div>
+            <img class="header-image" ng-src="{{ course.Prod_ImgUrl }}" />
         </div>
         <div class="course-info-detail">
             <div class="row">
