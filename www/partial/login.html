@@ -53,13 +53,20 @@
         </div>
     </ion-content>
     <ion-footer-bar id="login-footer" align-title="left" class="bar-stable">
-        <div class="row">
-            <div class="col">
-                <button ng-click="goForgotPassword()">忘記密碼</button>
-            </div>
-            <div class="col">
-                <button ng-click="goRegister()">註冊新帳號</button>
-            </div>
+        <div class="footer-container">
+            <section class="agree-text">
+                登入則表示您同意遵守大學聯網的<a class="link" ng-click="goServiceRule()">服務條款</a>和<a class="link" ng-click="goPrivacyRule()">隱私協定</a>
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col">
+                        <button ng-click="goForgotPassword()">忘記密碼</button>
+                    </div>
+                    <div class="col">
+                        <button ng-click="goRegister()">註冊新帳號</button>
+                    </div>
+                </div>
+            </section>
         </div>
     </ion-footer-bar>
 </ion-view>

@@ -18,6 +18,7 @@
             position: relative;
             color: #ffffff;
             top: 255px;
+            padding-bottom: 60px;
 
             .col {
                 padding: 0;
@@ -102,6 +103,29 @@
     }
 
     #login-footer {
+
+        &.bar-footer {
+            height: 70px;
+            background: none;
+
+            .footer-container {
+                width: 100%;
+
+                .agree-text {
+                    font-size: 14px;
+                    text-align: center;
+                    color: #ffffff;
+                    background-color: #005C73;
+                    padding-bottom: 3px;
+                    padding-top: 2px;
+
+                    a.link {
+                        color: #ffffff;
+                        border-bottom: 1px solid #ffffff;
+                    }
+                }
+            }
+        }
 
         &.bar {
             padding: 0;

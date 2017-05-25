@@ -407,6 +407,16 @@ module.exports = ['$http', ($http) ->
             .success(onSuccess)
             .error(onError)
 
+        getServiceRule: (onSuccess, onError) ->
+            $http.get('/api/terms/member')
+                .success(onSuccess)
+                .error(onError)
+
+        getPrivacyRule: (onSuccess, onError) ->
+            $http.get('/api/terms/privacy')
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, source_order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm

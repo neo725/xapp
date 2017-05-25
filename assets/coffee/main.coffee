@@ -38,6 +38,8 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
 .controller('RegisterController', require('./controllers/register-controller'))
 .controller('PhoneConfirmController', require('./controllers/phoneconfirm-controller'))
 .controller('EmailConfirmController', require('./controllers/emailconfirm-controller'))
+.controller('ServiceRuleController', require('./controllers/service-rule-controller'))
+.controller('PrivacyRuleController', require('./controllers/privacy-rule-controller'))
 .controller('HomeController', require('./controllers/home-controller'))
 .controller('DashboardController', require('./controllers/dashboard-controller'))
 .controller('StudyCardSlideController', require('./controllers/dashboard-studycardslide-controller'))
@@ -184,6 +186,22 @@ angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.tra
         views: {
             'mainContent': {
                 templateUrl: 'partial/emailconfirm.html'
+            }
+        }
+
+    .state 'main.service-rule',
+        url: '/service-rule'
+        views: {
+            'mainContent': {
+                templateUrl: 'partial/service-rule.html'
+            }
+        }
+
+    .state 'main.privacy-rule',
+        url: '/privacy-rule'
+        views: {
+            'mainContent': {
+                templateUrl: 'partial/privacy-rule.html'
             }
         }
 

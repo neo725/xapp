@@ -24,6 +24,12 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
             $scope.goRegister = ->
                 navigation.slide 'main.register', {}, 'left'
 
+            $scope.goServiceRule = ->
+                navigation.slide 'main.service-rule', {}, 'left'
+
+            $scope.goPrivacyRule = ->
+                navigation.slide 'main.privacy-rule', {}, 'left'
+
             $scope.login = ->
                 onSuccess = (response) ->
                     modal.hideLoading()
