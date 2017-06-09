@@ -26,6 +26,7 @@ module.exports = ->
         'verify_failed': '驗證失敗'
         'credit_card_exists': '相同卡號的信用卡已經存在'
         'cart_cant_buy': '購物車中有目前無法購買的項目，請重新結帳'
+        'coming_soon': '此功能即將推出'
     }
     'popup': {
         'ok': 'OK'

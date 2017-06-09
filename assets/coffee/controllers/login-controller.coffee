@@ -1,9 +1,12 @@
 module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate', '$cordovaOauth', '$state', '$log',
-    '$cordovaAppVersion',
-    'modal', 'api', 'navigation', 'user',
+    '$cordovaAppVersion', '$q',
+    'plugins', 'modal', 'api', 'navigation', 'user',
     ($rootScope, $scope, $timeout, $ionicModal, $translate, $cordovaOauth, $state, $log,
-        $cordovaAppVersion,
-        modal, api, navigation, user) ->
+        $cordovaAppVersion, $q,
+        plugins, modal, api, navigation, user) ->
+
+            deferred = $q.defer()
+
             # dev mode
 #            $scope.user = {
 #                account: 'sceapp',
@@ -131,16 +134,43 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
                     )
 
             $scope.google_login = () ->
-                appId = '417861383399-0jqjvm4emqojkv8mtinoaaj0oqm7nd7g.apps.googleusercontent.com'
-                redirectUrl = 'http://localhost/callback'
+#                appId = '417861383399-0jqjvm4emqojkv8mtinoaaj0oqm7nd7g.apps.googleusercontent.com'
+#                redirectUrl = 'http://localhost/callback'
+#                appScope = [
+#                    'https://www.googleapis.com/auth/userinfo.email'
+#                    'https://www.googleapis.com/auth/userinfo.profile'
+#                ]
+#                $cordovaOauth.google(appId, appScope, { redirect_uri: redirectUrl })
+#                    .then((result) ->
+#                        token = result.access_token
+#                        loginBySocial 'google', token
+#                    )
                 appScope = [
                     'https://www.googleapis.com/auth/userinfo.email'
                     'https://www.googleapis.com/auth/userinfo.profile'
                 ]
-                $cordovaOauth.google(appId, appScope, { redirect_uri: redirectUrl })
-                    .then((result) ->
-                        token = result.access_token
-                        loginBySocial 'google', token
+
+                detectWhenDeviceReady = () ->
+                    return deferred.promise
+                success = () ->
+                    if window.plugins and window.plugins.googleplus
+                        window.plugins.googleplus.login(
+                            {
+                                'scopes': appScope
+                            },
+                            (obj) ->
+                                $log.info obj
+                            ,
+                            (msg) ->
+                                $log.info 'googleplus login error : ' + msg
+                        )
+                #detectWhenDeviceReady().then(success, (->))
+                $translate(['title.notification', 'errors.coming_soon', 'popup.ok']).then (translator) ->
+                    plugins.notification.alert(
+                        translator['errors.coming_soon'],
+                        (->),
+                        translator['title.notification'],
+                        translator['popup.ok']
                     )
 
             mergeToken = (guest_token, func) ->
@@ -198,6 +228,7 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
 
             # version number record in config.xml that under project root
             document.addEventListener('deviceready', () ->
+                deferred.resolve()
                 $cordovaAppVersion.getVersionNumber().then (version)->
                     $scope.app_version = version
             , false)
