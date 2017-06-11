@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>417861383399-jc0cs6ms28dsj1e7tmkmuomgpfshbdgg.apps.googleusercontent.com</string>
+	<string>417861383399-qftp73gk1bnbb4n07bk4o1f6d0rrh5dd.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.417861383399-jc0cs6ms28dsj1e7tmkmuomgpfshbdgg</string>
+	<string>com.googleusercontent.apps.417861383399-qftp73gk1bnbb4n07bk4o1f6d0rrh5dd</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDOrICFcHkou5tBZil48upvQ9d2zuiGyw0</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>tw.edu.pccu.sce.sceapp</string>
+	<string>tw.edu.pccu.sce.sceapp-prod</string>
 	<key>PROJECT_ID</key>
 	<string>sceapp-2fefe</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:417861383399:ios:aad067a0e80f7dd0</string>
+	<string>1:417861383399:ios:5cae1774cc225fe4</string>
 	<key>DATABASE_URL</key>
 	<string>https://sceapp-2fefe.firebaseio.com</string>
 </dict>
