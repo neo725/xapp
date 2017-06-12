@@ -59,32 +59,32 @@ module.exports = [
                                 $cordovaToast.show('Error get notification token', 'long', 'top')
                             else
 
-                                window.FirebasePlugin.onTokenRefresh(
-                                    (fcm_token) ->
-                                        fcm_token = fcm_token.token if fcm_token.token
-
-                                        deleteDeviceToken = (func) ->
-                                            onSuccess = () ->
-                                                modal.hideLoading()
-                                                window.localStorage.removeItem("device_token")
-
-                                                func()
-                                            onError = ->
-                                                modal.hideLoading()
-
-                                            token = window.localStorage.getItem('device_token')
-                                            if token == null
-                                                func()
-                                            else
-                                                modal.showLoading '', 'message.logging'
-                                                api.deleteDeviceToken token, onSuccess, onError
-
-                                        deleteDeviceToken(() ->
-                                            callRegisterDeviceToken(fcm_token)
-                                        )
-                                , (err) ->
-                                    $log.info 'window.FirebasePlugin.onTokenRefresh() error : ' + err
-                                )
+#                                window.FirebasePlugin.onTokenRefresh(
+#                                    (fcm_token) ->
+#                                        fcm_token = fcm_token.token if fcm_token.token
+#
+#                                        deleteDeviceToken = (func) ->
+#                                            onSuccess = () ->
+#                                                modal.hideLoading()
+#                                                window.localStorage.removeItem("device_token")
+#
+#                                                func()
+#                                            onError = ->
+#                                                modal.hideLoading()
+#
+#                                            token = window.localStorage.getItem('device_token')
+#                                            if token == null
+#                                                func()
+#                                            else
+#                                                modal.showLoading '', 'message.logging'
+#                                                api.deleteDeviceToken token, onSuccess, onError
+#
+#                                        deleteDeviceToken(->
+#                                            callRegisterDeviceToken(fcm_token)
+#                                        )
+#                                , (err) ->
+#                                    $log.info 'window.FirebasePlugin.onTokenRefresh() error : ' + err
+#                                )
 
                                 #api.registerDeviceToken(platform, uuid, fcm_token, onSuccess, onError)
                                 callRegisterDeviceToken(fcm_token)
