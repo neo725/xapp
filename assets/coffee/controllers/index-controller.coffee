@@ -25,14 +25,14 @@ module.exports = [
 
         $rootScope.callFCMGetToken = () ->
             $log.info '[[[ FCM ]]] $rootScope.callFCMGetToken()......'
-            if typeof FCMPlugin == 'undefined'
+            if typeof window.FirebasePlugin == 'undefined'
                 return
             try_times = 0
 
             getTheToken = ->
                 # Google FCM
                 # Keep in mind the function will return null if the token has not been established yet.
-                FCMPlugin.getToken(
+                window.FirebasePlugin.getToken(
                     (fcm_token) ->
                         fcm_token = fcm_token.token if fcm_token.token
 
@@ -44,9 +44,12 @@ module.exports = [
 
                         onSuccess = () ->
                             window.localStorage.setItem('device_token', fcm_token)
-                            registerNotification()
+                            registerFirebaseNotification()
                         onError = () ->
                             $cordovaToast.show('Error registering notification token', 'long', 'top')
+
+                        callRegisterDeviceToken = (fcm_token) ->
+                            api.registerDeviceToken platform, uuid, fcm_token, onSuccess, onError
 
                         if fcm_token == null and try_times < 3
                             $timeout(getTheToken, 1000)
@@ -55,8 +58,38 @@ module.exports = [
                             if fcm_token == null
                                 $cordovaToast.show('Error get notification token', 'long', 'top')
                             else
-                                api.registerDeviceToken(platform, uuid, fcm_token, onSuccess, onError)
-                    , ((err) ->)
+
+                                window.FirebasePlugin.onTokenRefresh(
+                                    (fcm_token) ->
+                                        fcm_token = fcm_token.token if fcm_token.token
+
+                                        deleteDeviceToken = (func) ->
+                                            onSuccess = () ->
+                                                modal.hideLoading()
+                                                window.localStorage.removeItem("device_token")
+
+                                                func()
+                                            onError = ->
+                                                modal.hideLoading()
+
+                                            token = window.localStorage.getItem('device_token')
+                                            if token == null
+                                                func()
+                                            else
+                                                modal.showLoading '', 'message.logging'
+                                                api.deleteDeviceToken token, onSuccess, onError
+
+                                        deleteDeviceToken(() ->
+                                            callRegisterDeviceToken(fcm_token)
+                                        )
+                                , (err) ->
+                                    $log.info 'window.FirebasePlugin.onTokenRefresh() error : ' + err
+                                )
+
+                                #api.registerDeviceToken(platform, uuid, fcm_token, onSuccess, onError)
+                                callRegisterDeviceToken(fcm_token)
+                    , (err) ->
+                        $log.info 'window.FirebasePlugin.getToken() error : ' + err
                 )
 
             getTheToken()
@@ -83,18 +116,21 @@ module.exports = [
             api.getWishList(1, 500, onSuccess, onError)
 
         $rootScope.registerFCMTopics = (topic_name, successFn) ->
-            if typeof FCMPlugin == 'undefined'
+            if typeof window.FirebasePlugin == 'undefined'
                 return
 
+            $log.info "prepare to window.FirebasePlugin.subscribe('#{topic_name}')"
             success = () ->
+                $log.info "window.FirebasePlugin.subscribe('#{topic_name}') successed!"
                 if successFn
                     successFn()
             error = (->)
 
-            FCMPlugin.subscribeToTopic(topic_name, success, error)
+            #FCMPlugin.subscribeToTopic(topic_name, success, error)
+            window.FirebasePlugin.subscribe(topic_name, success, error)
 
         $rootScope.unregisterFCMTopics = (topic_name, successFn) ->
-            if typeof FCMPlugin == 'undefined'
+            if typeof window.FirebasePlugin == 'undefined'
                 return
 
             success = () ->
@@ -102,7 +138,8 @@ module.exports = [
                     successFn()
             error = (->)
 
-            FCMPlugin.unsubscribeFromTopic(topic_name, success, error)
+            #FCMPlugin.unsubscribeFromTopic(topic_name, success, error)
+            window.FirebasePlugin.unsubscribe(topic_name, success, error)
 
         $rootScope.getMemberData = (successFn, errorFn) ->
             $log.info 'index-controller -> getMemberData'
@@ -182,6 +219,40 @@ module.exports = [
                 modal.hideLoading()
 
             api.getMessage groupId, onSuccess, onError
+
+        registerFirebaseNotification = () ->
+            window.FirebasePlugin.onNotificationOpen(
+                (data) ->
+                    $log.info 'window.FirebasePlugin.onNotificationOpen'
+                    $log.info 'notification :'
+                    $log.info data
+
+                    if data.tap
+                        $log.warn 'window.FirebasePlugin.onNotificationOpen...goto...' + data.mid
+
+                        getMessageInfo data.mid
+                    else
+                        $translate(['title.notification', 'message.notification_received']).then (translator) ->
+                            title = translator['title.notification']
+                            body = translator['message.notification_received']
+
+                            $cordovaLocalNotification.schedule(
+                                id: 1,
+                                title: title,
+                                text: body,
+                                icon: 'fcm_push_icon'
+                            ).then () ->
+                                # Vibrate
+                                $cordovaVibration.vibrate([500, 500])
+                                $cordovaToast.show(body, 'long', 'top')
+                    badge = 0
+                    if data['badge']
+                        badge = parseInt(data['badge'])
+                        if badge == 0
+                            $cordovaBadge.clear()
+                        else
+                            $cordovaBadge.set(badge)
+            )
 
         registerNotification = () ->
             FCMPlugin.onNotification(
