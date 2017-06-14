@@ -145,33 +145,35 @@ module.exports = ['$rootScope', '$scope', '$timeout', '$ionicModal', '$translate
 #                        token = result.access_token
 #                        loginBySocial 'google', token
 #                    )
-                appScope = [
-                    'https://www.googleapis.com/auth/userinfo.email'
-                    'https://www.googleapis.com/auth/userinfo.profile'
-                ]
+#                appScope = [
+#                    'https://www.googleapis.com/auth/userinfo.email'
+#                    'https://www.googleapis.com/auth/userinfo.profile'
+#                ]
 
                 detectWhenDeviceReady = () ->
                     return deferred.promise
                 success = () ->
                     if window.plugins and window.plugins.googleplus
+                        window.plugins.googleplus.getSigningCertificateFingerprint((data) ->
+                            $log.info data
+                        )
                         window.plugins.googleplus.login(
-                            {
-                                'scopes': appScope
-                            },
+                            {},
                             (obj) ->
-                                $log.info obj
+                                token = obj.accessToken
+                                loginBySocial 'google', token
                             ,
                             (msg) ->
                                 $log.info 'googleplus login error : ' + msg
                         )
-                #detectWhenDeviceReady().then(success, (->))
-                $translate(['title.notification', 'errors.coming_soon', 'popup.ok']).then (translator) ->
-                    plugins.notification.alert(
-                        translator['errors.coming_soon'],
-                        (->),
-                        translator['title.notification'],
-                        translator['popup.ok']
-                    )
+                detectWhenDeviceReady().then(success, (->))
+#                $translate(['title.notification', 'errors.coming_soon', 'popup.ok']).then (translator) ->
+#                    plugins.notification.alert(
+#                        translator['errors.coming_soon'],
+#                        (->),
+#                        translator['title.notification'],
+#                        translator['popup.ok']
+#                    )
 
             mergeToken = (guest_token, func) ->
                 onSuccess = ->
