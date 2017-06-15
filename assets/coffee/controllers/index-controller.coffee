@@ -92,7 +92,12 @@ module.exports = [
                         $log.info 'window.FirebasePlugin.getToken() error : ' + err
                 )
 
-            getTheToken()
+            if ionic.Platform.isAndroid()
+                getTheToken()
+            else
+                window.FirebasePlugin.grantPermission(()->
+                    getTheToken()
+                )
 
         $rootScope.loadCart = ->
             onSuccess = (response) ->
