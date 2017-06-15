@@ -28,6 +28,15 @@ module.exports = [
                     topic.sub_topics.push(findItem)
                 )
 
+        $scope.testIsAllAlphaBetsOnly = (text) ->
+            regex = /^[a-zA-Z0-9 \(\)\.]*/g
+
+            match = regex.exec text
+            if match
+                return match.length == 1 and match[0] == match.input
+
+            return false
+
         $scope.submitForm = (form) ->
             if not form.$valid
                 $translate(['title.survey', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
@@ -108,6 +117,7 @@ module.exports = [
             onSuccess = (response) ->
                 modal.hideLoading()
 
+                $scope.ques_no = response.Quest_No
                 $scope.topics = findRootTopics(response.topics)
                 $scope.originTopics = response.topics
                 $scope.topic_loaded = true

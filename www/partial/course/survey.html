@@ -26,7 +26,9 @@
                              ng-value="innerForm.$valid"
                              ng-model="surveyForm.valid_topics"
                              sce-form-valid-count="topic.Topic_No">
-                        <div class="survey-item-topic" ng-class="{ 'has-error': innerForm.topic.$invalid }">
+                        <div class="survey-item-topic"
+                             ng-init="topic_is_english = testIsAllAlphaBetsOnly(topic.Topic_Name)"
+                             ng-class="{ 'has-error': innerForm.topic.$invalid }">
                             <input type="hidden" name="topic"
                                    ng-model="topic.event_value"
                                    required />
@@ -48,8 +50,20 @@
                                           ng-change="changeTopicEvent(topic, item)">
                                 <span class="checkbox-title" ng-bind="item.Event_Value"></span>
                             </ion-checkbox>
-                            <div class="row wrap-row" ng-if="topic.Topic_Type == '複選' && topic.events.length >= 6">
+                            <div class="row wrap-row"
+                                 ng-if="topic.Topic_Type == '複選' && topic.events.length >= 6 && topic_is_english == false">
                                 <div class="col col-33" ng-repeat="item in topic.events">
+                                    <ion-checkbox ng-model="item.checked"
+                                                  ng-value="item.Event_Value"
+                                                  sce-checkbox-value-assign="topic.event_value"
+                                                  ng-change="changeTopicEvent(topic, item)">
+                                        <span class="checkbox-title" ng-bind="item.Event_Value"></span>
+                                    </ion-checkbox>
+                                </div>
+                            </div>
+                            <div class="row wrap-row"
+                                 ng-if="topic.Topic_Type == '複選' && topic.events.length >= 6 && topic_is_english == true">
+                                <div class="col col-90" ng-repeat="item in topic.events">
                                     <ion-checkbox ng-model="item.checked"
                                                   ng-value="item.Event_Value"
                                                   sce-checkbox-value-assign="topic.event_value"
