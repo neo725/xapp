@@ -72,6 +72,8 @@ module.exports = [
             return $scope.current_time > times.from and $scope.current_time < times.to
 
         $scope.doRefresh = () ->
+            if window.cache
+                window.cache.clear()
             loadLocation(true)
 
         toSeconds = (hour, minute, second) ->

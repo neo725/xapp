@@ -150,6 +150,8 @@ module.exports = [
 
             $scope.doRefresh = () ->
                 #$scope.$broadcast('scroll.refreshComplete')
+                if window.cache
+                    window.cache.clear()
                 loadData()
 
             retriveAvatarImageSize = ->

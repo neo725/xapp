@@ -15,5 +15,6 @@
       "path": "/CCardWebAPI/api",
       "proxyUrl": "http://140.137.200.233/CCardWebAPI/api"
     }
-  ]
+  ],
+  "type": "ionic1"
 }

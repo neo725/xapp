@@ -75,6 +75,9 @@ module.exports = [
             )
             $scope.$on('dashboard.doRefresh', () ->
                 $log.info '{** SearchSlide **} >> doRefresh......'
+                if window.cache
+                    window.cache.clear()
+                loadSearchSlide()
             )
 
             $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()

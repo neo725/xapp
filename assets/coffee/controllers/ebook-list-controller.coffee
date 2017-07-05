@@ -57,13 +57,19 @@ module.exports = [
             api.deleteFavoriteEbook(para.apply, para.catalog_id, onSuccess, onError)
 
         $scope.doRefreshCurrent = () ->
+            if window.cache
+                window.cache.clear()
             loadEbookIntro(true)
             loadCurrentEbooks(true)
 
         $scope.doRefreshCatalog = () ->
+            if window.cache
+                window.cache.clear()
             loadCatalogEbooks(1, 5, true)
 
         $scope.doRefreshFavorite = () ->
+            if window.cache
+                window.cache.clear()
             loadFavoriteEbooks(1, 500, true)
 
         loadEbookIntro = (forceReload) ->
