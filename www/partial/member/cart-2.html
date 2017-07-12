@@ -188,7 +188,7 @@
                     <div class="row">
                         <div class="col col-33">手機</div>
                         <div class="col col-value">
-                            <span class="alert-text" ng-if="user.memb_mobile == ''">
+                            <span class="alert-text" ng-if="!user.memb_mobile || user.memb_mobile == ''">
                                 必須設定手機才能結帳，請前往 <a href class="link" ng-click="goMemberEdit()">會員中心</a> 設定
                             </span>
                             <span ng-bind="::user.memb_mobile"></span>
@@ -211,12 +211,12 @@
             <div ng-if="checkPayTypeIsCreditCard()">
                 <button class="button button-block button-black"
                         ng-bind="'前往結帳'"
-                        ng-disabled="user.memb_mobile == '' || user.memb_ident == ''"></button>
+                        ng-disabled="!user.memb_mobile || user.memb_mobile == '' || user.memb_ident == ''"></button>
             </div>
             <div ng-if="!checkPayTypeIsCreditCard()">
                 <button class="button button-block button-black"
                         ng-bind="'確認送出'"
-                        ng-disabled="user.memb_mobile == '' || user.memb_ident == ''"></button>
+                        ng-disabled="!user.memb_mobile || user.memb_mobile == '' || user.memb_ident == ''"></button>
             </div>
         </form>
     </ion-content>
