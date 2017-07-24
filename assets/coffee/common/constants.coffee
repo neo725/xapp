@@ -11,9 +11,9 @@ module.exports =
         'device': 'https://sceapi.sce.pccu.edu.tw/SceAppApi'
         'device_ssl': 'https://sceapi.sce.pccu.edu.tw/SceAppApi'
         'atm_browser': 'http://localhost:8100/AtmWebApi'
-        'atm': 'https://140.137.200.233/AtmWebApi'
+        'atm': 'https://scepayment.sce.pccu.edu.tw/AtmWebApi'
         'creditcard_browser': 'http://localhost:8100/CCardWebAPI'
-        'creditcard': 'https://140.137.200.233/CCardWebAPI'
+        'creditcard': 'https://scepayment.sce.pccu.edu.tw/CCardWebAPI'
     }
 
     DEFAULT_LOCALE: 'zh-Hant'
