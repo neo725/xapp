@@ -1,0 +1,83 @@
+<ion-list class="survey-list">
+  <ion-item class="survey-item"
+            ng-repeat="topic in filterTeacher(topics, teacher, teachers) track by $index"
+            ng-class="{ 'survey-item-color-1': topic.index % 6 == 0, 'survey-item-color-2': topic.index % 6 == 1, 'survey-item-color-3': topic.index % 6 == 2, 'survey-item-color-4': topic.index % 6 == 3, 'survey-item-color-5': topic.index % 6 == 4, 'survey-item-color-6': topic.index % 6 == 5 }">
+    <ng-form name="innerForm"
+             ng-value="innerForm.$valid"
+             ng-model="surveyForm.valid_topics"
+             sce-form-valid-count="topic"
+             sce-form-valid-count-teacher="teacher">
+      <div class="survey-item-topic"
+           ng-init="topic_is_english = testIsAllAlphaBetsOnly(topic.Topic_Name)"
+           ng-class="{ 'has-error': innerForm.topic.$invalid }">
+        <input type="hidden" name="topic"
+               ng-model="topic.event_value"
+               required />
+        <ion-label>{{ topic.Topic_Name }}</ion-label>
+        <ion-radio ng-if="topic.Topic_Type == '單選'"
+                   ng-repeat="item in topic.events"
+                   ng-model="topic.event_value"
+                   ng-change="changeTopicEvent(topic, item, teacher)"
+                   ng-value="item.Event_Value">
+          <i ng-class="{ 'ion-android-radio-button-on': topic.event_value == item.Event_Value,
+              'ion-android-radio-button-off': topic.event_value != item.Event_Value }"></i>
+          <span class="radio-title" ng-bind="item.Event_Value"></span>
+        </ion-radio>
+        <ion-checkbox ng-if="topic.Topic_Type == '複選' && topic.events.length < 6"
+                      ng-repeat="item in topic.events"
+                      ng-model="item.checked"
+                      ng-value="item.Event_Value"
+                      sce-checkbox-value-assign="topic.event_value"
+                      ng-change="changeTopicEvent(topic, item)">
+          <span class="checkbox-title" ng-bind="item.Event_Value"></span>
+        </ion-checkbox>
+        <div class="row wrap-row"
+             ng-if="topic.Topic_Type == '複選' && topic.events.length >= 6 && topic_is_english == false">
+          <div class="col col-33" ng-repeat="item in topic.events">
+            <ion-checkbox ng-model="item.checked"
+                          ng-value="item.Event_Value"
+                          sce-checkbox-value-assign="topic.event_value"
+                          ng-change="changeTopicEvent(topic, item)">
+              <span class="checkbox-title" ng-bind="item.Event_Value"></span>
+            </ion-checkbox>
+          </div>
+        </div>
+        <div class="row wrap-row"
+             ng-if="topic.Topic_Type == '複選' && topic.events.length >= 6 && topic_is_english == true">
+          <div class="col col-90" ng-repeat="item in topic.events">
+            <ion-checkbox ng-model="item.checked"
+                          ng-value="item.Event_Value"
+                          sce-checkbox-value-assign="topic.event_value"
+                          ng-change="changeTopicEvent(topic, item)">
+              <span class="checkbox-title" ng-bind="item.Event_Value"></span>
+            </ion-checkbox>
+          </div>
+        </div>
+      </div>
+      <div class="sub-survey-item"
+           ng-if="topic.sub_topics && topic.sub_topics.length > 0"
+           ng-repeat="sub_topic in topic.sub_topics track by sub_topic.Topic_No">
+        <ng-form name="innerSubForm"
+                 ng-value="innerSubForm.$valid"
+                 ng-model="surveyForm.valid_topics"
+                 sce-form-valid-count="topic"
+                 sce-form-valid-count-teacher="teacher"
+                 sce-form-valid-count-this-id="sub_topic.Topic_No"
+                 sce-form-valid-count-list="topic.sub_topics">
+          <div class="sub-survey-item-topic" ng-class="{ 'has-error': innerSubForm.sub_topic.$invalid }">
+            <input type="hidden" name="sub_topic"
+                   ng-model="sub_topic.event_value"
+                   required />
+            <ion-label>{{ sub_topic.Topic_Name }}</ion-label>
+            <ion-checkbox ng-repeat="item in sub_topic.events"
+                          ng-model="item.checked"
+                          ng-value="item.Event_Value"
+                          sce-checkbox-value-assign="sub_topic.event_value">
+              <span class="checkbox-title" ng-bind="item.Event_Value"></span>
+            </ion-checkbox>
+          </div>
+        </ng-form>
+      </div>
+    </ng-form>
+  </ion-item>
+</ion-list>

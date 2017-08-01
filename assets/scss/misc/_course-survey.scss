@@ -205,4 +205,51 @@
             }
         }
     }
+
+    .survey-teacher-list {
+      .list {
+        .list {
+          margin-top: 0;
+        }
+      }
+      .survey-teacher-item {
+        border: 0 none;
+        margin-bottom: 20px;
+        padding: 0;
+        background-color: transparent;
+
+        &.item {
+          margin-bottom: 10px;
+          border-bottom: 1px solid #878786;
+          padding: 10px;
+
+          &:last-child {
+            border-bottom: 0 none;
+          }
+          .survey-item:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        .item-title {
+          background-color: #ffffff;
+          padding: 10px 15px;
+          margin-bottom: 1px;
+        }
+        .item-div {
+          display: inline-block;
+          vertical-align: middle;
+          color: #5d5d5d;
+
+          .icon {
+            max-width: 32px;
+          }
+        }
+      }
+    }
+
+    .survey-common-list {
+        background-color: #c6c6c5;
+        padding: 10px;
+    }
 }

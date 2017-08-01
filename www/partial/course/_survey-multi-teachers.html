@@ -1,0 +1,12 @@
+<ion-list class="survey-teacher-list">
+    <ion-item class="survey-teacher-item" ng-repeat="teacher in teachers track by teacher.sir_id">
+        <div class="item-title">
+            <div class="item-div"><img src="img/survey-teacher-item.png" class="icon" /></div>
+            <div class="item-div">授課老師：{{ teacher.sir_name }} 老師</div>
+        </div>
+        <ng-include src="'partial/course/_survey-default.html'"></ng-include>
+    </ion-item>
+</ion-list>
+<div class="survey-common-list" ng-init="teacher = undefined">
+    <ng-include src="'partial/course/_survey-default.html'"></ng-include>
+</div>
