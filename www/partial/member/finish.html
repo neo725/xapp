@@ -15,7 +15,7 @@
     </ion-nav-buttons>
     <ion-content class="has-header">
         <div class="course-container">
-            <div class="card course" ng-repeat="course in courses">
+            <div class="card course" ng-repeat="course in courses" ng-init="result = proccessTopics(course.ques_topics)">
                 <div class="item item-text-wrap">
                     <div class="row no-padding title-row">
                         <div class="col no-padding">
@@ -23,7 +23,7 @@
                             <span ng-bind="course.Prod_SubName"></span>
                         </div>
                     </div>
-                    <div class="row value-row" ng-init="result = proccessTopics(course.ques_topics)">
+                    <div class="row value-row">
                         <div class="col col-50 col-border-right no-padding">
                             <div class="row no-padding ticket-count-row">
                                 <div class="col col-33 col-type-img no-padding">
@@ -36,7 +36,7 @@
                                     <div class="ticket-count" ng-bind="result.satisfied.count">0</div>
                                 </div>
                             </div>
-                            <div class="row no-padding">
+                            <div class="row no-padding" ng-show="result.is_multi_teacher == false">
                                 <div class="col no-padding">
                                     <span class="type-label" ng-repeat="item in result.satisfied.items" ng-bind="item">?</span>
                                 </div>
@@ -54,10 +54,40 @@
                                     <div class="ticket-count" ng-bind="result.unsatisfied.count">0</div>
                                 </div>
                             </div>
-                            <div class="row no-padding">
+                            <div class="row no-padding" ng-show="result.is_multi_teacher == false">
                                 <div class="col col-indent no-padding">
                                     <span class="type-label" ng-repeat="item in result.unsatisfied.items" ng-bind="item">?</span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row content-row" ng-show="result.is_multi_teacher">
+                        <div class="content-row-item">
+                            <div>服務</div>
+                            <div><img src="img/icon-checked.png" ng-show="result.item_service" /><img src="img/icon-unchecked.png" ng-hide="result.item_service" />滿意</div>
+                            <div><img src="img/icon-checked.png" ng-hide="result.item_service" /><img src="img/icon-unchecked.png" ng-show="result.item_service" />不滿意</div>
+                        </div>
+                        <div class="content-row-item">
+                            <div>環境</div>
+                          <div><img src="img/icon-checked.png" ng-show="result.item_environment" /><img src="img/icon-unchecked.png" ng-hide="result.item_environment" />滿意</div>
+                          <div><img src="img/icon-checked.png" ng-hide="result.item_environment" /><img src="img/icon-unchecked.png" ng-show="result.item_environment" />不滿意</div>
+                        </div>
+                    </div>
+                    <div class="row teacher-content-row" ng-show="result.is_multi_teacher">
+                        <div class="content-row-item">
+                            <div class="col-1">授課老師</div>
+                            <div class="col-2">師資</div>
+                            <div class="col-2">內容</div>
+                        </div>
+                        <div class="content-row-item content-value-row-item" ng-repeat="teacher in result.teachers">
+                            <div class="col-1">{{ teacher.teacher_name }}</div>
+                            <div class="col-2">
+                                <div ng-show="teacher.item_teacher">滿意</div>
+                                <div ng-hide="teacher.item_teacher">不滿意</div>
+                            </div>
+                            <div class="col-2">
+                                <div ng-show="teacher.item_content">滿意</div>
+                                <div ng-hide="teacher.item_content">不滿意</div>
                             </div>
                         </div>
                     </div>
@@ -70,7 +100,8 @@
                             </div>
                             <div class="row no-padding value-row">
                                 <div class="col col-td color-1">
-                                    <span class="teacher-name" ng-bind="course.Prod_ClsSir"></span>
+                                    <span class="teacher-name" ng-show="result.is_multi_teacher">專業師資群</span>
+                                    <span class="teacher-name" ng-bind="course.Prod_ClsSir" ng-hide="result.is_multi_teacher"></span>
                                 </div>
                             </div>
                         </div>

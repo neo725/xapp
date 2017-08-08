@@ -1,6 +1,6 @@
 module.exports = [
-    '$scope', 'navigation', 'modal', 'api'
-    ($scope, navigation, modal, api) ->
+    '$scope', '$log', 'navigation', 'modal', 'api'
+    ($scope, $log, navigation, modal, api) ->
         $scope.loading = true
 
         $scope.courses = []
@@ -22,6 +22,7 @@ module.exports = [
 
         $scope.proccessTopics = (topics) ->
             data =
+                is_multi_teacher: false
                 satisfied:
                     count: 0
                     items: []
@@ -43,7 +44,36 @@ module.exports = [
                 else if unsatisfied == true
                     data.unsatisfied.count += 1
                     data.unsatisfied.items.push topic.topic_subname
+
+                if topic.topic_subname
+                    title = switch
+                        when topic.topic_subname == '內容' then 'content'
+                        when topic.topic_subname == '服務' then 'service'
+                        when topic.topic_subname == '師資' then 'teacher'
+                        when topic.topic_subname == '環境' then 'environment'
+                        else 'unknown'
+                    data["item_#{title}"] = satisfied
+
+                    if topic.topic_Correlation == 'teacher' and topic.teacher_id
+                        data.is_multi_teacher = true
+
+                        if not data['teachers']
+                            data.teachers = []
+
+                        index = _.findIndex(data.teachers, { teacher_id: topic.teacher_id })
+                        if index == -1
+                            teacher = {
+                                teacher_id: topic.teacher_id
+                                teacher_name: topic.teacher_name
+                            }
+                            teacher["item_#{title}"] = satisfied
+                            data.teachers.push teacher
+                        else
+                            data.teachers[index]["item_#{title}"] = satisfied
+                    return
             )
+
+            $log.info data
 
             return data
 
