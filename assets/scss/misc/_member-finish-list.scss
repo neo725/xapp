@@ -106,6 +106,7 @@
                     display: block;
                     padding-bottom: 10px;
                     padding-top: 10px;
+                    padding-left: 10px;
 
                     &:first-child {
                         padding-top: 0;
@@ -130,15 +131,20 @@
 
                 .content-row-item {
                     display: block;
-                    //padding-top: 10px;
+                    padding-left: 10px;
                     padding-bottom: 10px;
 
                     &:first-child {
                         padding-top: 10px;
                     }
 
-                    &.content-value-row-item:nth-child(even) {
-                        background-color: #f5f5f5;
+                    &.content-value-row-item {
+                        &:nth-child(even) {
+                            background-color: #f5f5f5;
+                        }
+                        .col-2 {
+                            color: #265CAA;
+                        }
                     }
 
                     div {
@@ -150,7 +156,7 @@
                             text-overflow: ellipsis;
                             white-space: nowrap;
                             position: relative;
-                            top: 4px;
+                            top: 5px;
                         }
                         &.col-2 {
                             width: 35%;
