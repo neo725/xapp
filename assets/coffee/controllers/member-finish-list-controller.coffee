@@ -73,8 +73,6 @@ module.exports = [
                     return
             )
 
-            $log.info data
-
             return data
 
         loadSurveyList = (course_list) ->

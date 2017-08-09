@@ -27,7 +27,8 @@
                             課程完成度
                         </div>
                         <div class="progress-teacher">
-                            {{ ::card.Prod_ClsSir }}
+                            <span ng-show="card.teacherList.length > 1">專業師資群</span>
+                            <span ng-hide="card.teacherList.length > 1" ng-bind="card.Prod_ClsSir"></span>
                         </div>
                     </div>
                 </div>
