@@ -16,5 +16,9 @@
       "proxyUrl": "http://140.137.200.233/CCardWebAPI/api"
     }
   ],
-  "type": "ionic1"
+  "type": "ionic1",
+  "integrations": {
+    "gulp": {},
+    "cordova": {}
+  }
 }

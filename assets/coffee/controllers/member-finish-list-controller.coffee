@@ -83,8 +83,10 @@ module.exports = [
                     prod_id = course_list[i].Prod_Id
                     class_index = _.findIndex(list, { 'classId': prod_id })
                     if class_index == -1
+                        i++
                         continue
                     if list[class_index].quesList == undefined or list[class_index].quesList.length == 0
+                        i++
                         continue
                     ques = list[class_index].quesList[0]
                     topics = ques.topics

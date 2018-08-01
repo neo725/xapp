@@ -140,6 +140,8 @@ module.exports = [
                     $rootScope.priceList = $scope.course.priceList
 
                     $scope.course.weekdays = $scope.getTimePart('weekday', $scope.course.Prod_ClsTime)
+                    # $scope.course.weekdays = ['一', '三', '四']
+                    # $log.info $scope.course.weekdays
 
                     if $scope.course.isFavorite == 0
                         $scope.favorite_icon = 'heart-outline@2x.png'

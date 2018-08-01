@@ -91,11 +91,12 @@ module.exports = [
                     modal.showLoading '', 'message.logging'
                     api.deleteDeviceToken token, onSuccess, onError
 
-            window.plugins.googleplus.disconnect(
-                (() ->),
-                (msg) ->
-                    $log.info msg
-            )
+            if window.plugins and window.plugins.googleplus
+                window.plugins.googleplus.disconnect(
+                    (() ->),
+                    (msg) ->
+                        $log.info msg
+                )
             deleteDeviceToken(logout)
 
         checkLoginState()
