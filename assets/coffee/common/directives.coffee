@@ -136,8 +136,8 @@ exports.sceCheckboxValueAssign = ['$timeout', ($timeout) ->
         )
 ]
 
-exports.sceFormValidCount = ['$timeout',
-    ($timeout) ->
+exports.sceFormValidCount = ['$timeout', '$log',
+    ($timeout, $log) ->
         restrict: 'A'
         require: 'ngModel'
         scope:
@@ -162,6 +162,8 @@ exports.sceFormValidCount = ['$timeout',
                     return scope.valid
                 , () ->
                     checkValid = () ->
+                        topic = scope.topic
+
                         valid_list = []
                         if scope.valid_list
                             valid_list = scope.valid_list
@@ -179,7 +181,8 @@ exports.sceFormValidCount = ['$timeout',
                         )
 
                         push_data =
-                            topic_no: scope.topic.Topic_No
+                            topic_no: topic.Topic_No
+                            Topic_Type: topic.Topic_Type
 
                         if scope.teacher
                             push_data.sir_id = scope.teacher.sir_id

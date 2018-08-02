@@ -12,8 +12,12 @@
            ng-class="{ 'has-error': innerForm.topic.$invalid }">
         <input type="hidden" name="topic"
                ng-model="topic.event_value"
-               required />
+               ng-required="topic.Topic_Type != '開放式'" />
         <ion-label>{{ topic.Topic_Name }}</ion-label>
+        <textarea ng-if="topic.Topic_Type == '開放式'"
+                  rows="6"
+                  ng-model="topic.event_value">
+        </textarea>
         <ion-radio ng-if="topic.Topic_Type == '單選'"
                    ng-repeat="item in topic.events"
                    ng-model="topic.event_value"

@@ -59,6 +59,17 @@ module.exports = [
             )
             return filtered_topics
 
+        $scope.getRequiredTopics = (topics) ->
+            exclude_topic_types = ['開放式']
+
+            filtered_topics = []
+            _.forEach(topics, (topic) ->
+                if topic.Topic_Type not in exclude_topic_types
+                    filtered_topics.push topic
+            )
+
+            return filtered_topics
+
         $scope.submitForm = (form) ->
             if not form.$valid
                 $translate(['title.survey', 'errors.form_validate_error', 'popup.ok']).then (translator) ->
@@ -156,7 +167,7 @@ module.exports = [
                             topics_map.push(topic_copy)
                         )
             )
-            $log.info topics_map
+            # $log.info topics_map
             return topics_map
 
         loadSurveyTopics = (course_id) ->

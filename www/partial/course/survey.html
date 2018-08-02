@@ -29,9 +29,10 @@
             </div>
         </ion-content>
         <ion-footer-bar class="footer">
-            <button class="button button-full button-positive" ng-disabled="!topic_loaded || surveyForm.$invalid">
+            <button class="button button-full button-positive"
+                    ng-disabled="!topic_loaded || surveyForm.$invalid || !(surveyForm.valid_topics.length > 0)">
                 <span>{{ '確認送出' }}</span>
-                <span ng-if="topics && topics.length > 0"> ({{ surveyForm.valid_topics.length }}/{{ topics.length }})</span>
+                <span ng-if="topics && topics.length > 0"> ({{ getRequiredTopics(surveyForm.valid_topics).length }}/{{ getRequiredTopics(topics).length }})</span>
             </button>
         </ion-footer-bar>
     </form>
