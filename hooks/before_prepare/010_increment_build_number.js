@@ -13,6 +13,9 @@ var cmdline = process.env.CORDOVA_CMDLINE;
 
 var is_increment = cmdline.indexOf('-build')  > -1;
 
+console.log(cmdline);
+
+console.log('is_increment : ' + is_increment);
 /*
 
  versionCode = MAJOR * 10000 + MINOR * 100 + PATCH

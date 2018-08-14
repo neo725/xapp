@@ -55,10 +55,20 @@ module.exports = ['$rootScope', '$log', '$translate', '$q', '$injector', 'plugin
             request: (config) ->
                 ua = ionic.Platform.ua
 
-                #            check device is real in fake on dev mode only
+                # check device is real in fake on dev mode only
+                # 檢測是否在實機裝置上運作，如果否，那表示在開發模式上運作
+                # 如果在開發模式運作，那 api 的呼叫要改叫 proxy，也就是路徑掛載在同個 domain 下的配置 (ionic.config.json 中設定的)
+                # 開發模式的 API 改用 proxy 路徑，是為了避免 CORS 的問題
                 isRealDevice = ua.indexOf('SM-G900P') == -1
                 isRealDevice &= ua.indexOf('Macintosh') == -1
                 isRealDevice |= window.cordova
+
+                # determine current device is app mode, ver 2
+                # 前面做實機裝置檢測的方法是以前寫的，後來發現如果在實機上運作
+                # 那文件網址會是 file:/// 開頭，因此如果開頭是 http 的，那應該會是由開發模式運作
+                # 也就是在電腦瀏覽器中執行
+                if document.URL.startsWith('http')
+                    isRealDevice = false
 
                 isPayRequest = /(^http:|https:)\/\/[-a-zA-Z0-9:\/.]{2,100}\/api\/pay/gi.test(config.url)
                 isApiRequest = isPayRequest or /^\/api\//.test(config.url)

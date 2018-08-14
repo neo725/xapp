@@ -439,6 +439,12 @@ module.exports = [
                 'wday': _.join($scope.filter.weekday, ',')
                 'loc': _.join($scope.filter.location, ',')
                 'order': $scope.order
+            # 2018-8-14 added by thchang
+            # 搜尋條件中的地點 (loc) 一律加上 "其他"，但不在介面上有這個 "其他" 的地點選項
+            _location = $scope.filter.location
+            _location.push('其他')
+            data.loc = _.join(_location, ',')
+
             if $scope.filter.lmoney
                 data.lmoney = $scope.filter.lmoney
             if $scope.filter.umoney || $scope.filter.umoney == 0
