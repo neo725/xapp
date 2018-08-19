@@ -1,5 +1,27 @@
-module.exports = ['$ionicPlatform', '$timeout', ($ionicPlatform, $timeout) ->
+module.exports = ['$ionicPlatform', '$timeout', '$log', '$translate', 'plugins', ($ionicPlatform, $timeout, $log, $translate, plugins) ->
     $ionicPlatform.ready () ->
+        prev_network_state = 'none'
+
+        offline = () ->
+            prev_network_state = 'offline'
+            $translate(['errors.network_offline', 'popup.ok']).then (translator) ->
+                plugins.notification.alert(
+                    translator['errors.network_offline'],
+                    (->),
+                    '',
+                    translator['popup.ok']
+                )
+
+        online = () ->
+            serve_prev_network_state = prev_network_state
+            prev_network_state = 'online'
+
+            if serve_prev_network_state = 'offline'
+                window.location.reload(true)
+
+        document.addEventListener 'offline', offline, false
+        document.addEventListener 'online', online, false
+
         if window.cordova and window.cordova.plugins.Keyboard
             # Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             # for form inputs)

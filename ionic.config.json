@@ -1,6 +1,9 @@
 {
   "name": "sceapp",
-  "app_id": "",
+  "integrations": {
+    "gulp": {},
+    "cordova": {}
+  },
   "defaultBrowser": "chrome",
   "proxies": [
     {
@@ -17,10 +20,6 @@
     }
   ],
   "type": "ionic1",
-  "integrations": {
-    "gulp": {},
-    "cordova": {}
-  },
   "watchPatterns": [
     "scss/**/*",
     "www/**/*",
