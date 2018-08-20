@@ -1,8 +1,8 @@
 * google firebase 的註冊資訊寫在 firebase-register-readme.txt
+
 * 開發模式運行：
   1. 跑 gulp 做持續建置 (會停在 watch，如果原始碼有改，就會持續做建置)
   2. 執行 ionic serve 跑 chrome 做模擬測試 (不用加 browser platform)
-======================================
 
 2018-8-19
 ======================================
@@ -22,3 +22,7 @@ ionic cordova build android --build
 // 建置發行版本
 ionic cordova build android --release
 ======================================
+  
+* 在建置的時候，如果要加版號，建置指令參數加 -build
+  (ionic cordova build android -build)
+  (相關的流程，寫在 /hooks/010_increment_build_number.js )
