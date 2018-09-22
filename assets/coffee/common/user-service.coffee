@@ -1,5 +1,5 @@
-module.exports = ['$rootScope',
-    ($rootScope) ->
+module.exports = ['$rootScope', 'plugins'
+    ($rootScope, plugins) ->
         getIsGuest = () ->
             is_guest = window.localStorage.getItem('is_guest') == 'true'
             return is_guest
@@ -11,10 +11,15 @@ module.exports = ['$rootScope',
             window.localStorage.removeItem('is_guest')
 
         getToken = () ->
-            return window.localStorage.getItem('token')
+            token = window.localStorage.getItem('token')
+            if plugins && plugins.clipboard
+                plugins.clipboard.copy(token)
+            
+            return token
 
         setToken = (token, social_platform) ->
             window.localStorage.setItem('token', token)
+            
             if social_platform
                 window.localStorage.setItem('social_platform', social_platform)
             else

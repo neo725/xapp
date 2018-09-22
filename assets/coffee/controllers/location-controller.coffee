@@ -1,8 +1,8 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$scope', '$ionicHistory', '$translate', '$timeout', 'modal', 'navigation', 'plugins', 'api', 'CacheFactory',
-    ($scope, $ionicHistory, $translate, $timeout, modal, navigation, plugins, api, CacheFactory) ->
+    '$scope', '$ionicHistory', '$translate', '$timeout', 'modal', 'navigation', 'plugins', 'api', 'CacheFactory', 'user',
+    ($scope, $ionicHistory, $translate, $timeout, modal, navigation, plugins, api, CacheFactory, User) ->
         $scope.active = false
 
         if not CacheFactory.get('locationsCache')
@@ -139,6 +139,8 @@ module.exports = [
         tick()
 
         loadLocation()
+
+        User.getToken()
 
         $scope.$on('$ionicView.afterEnter', ->
             $timeout ->

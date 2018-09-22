@@ -13,6 +13,8 @@ module.exports = ->
         notification:
             'alert': (->)
             'confirm': (->)
+
+        clipboard: null
     }
 
     ionic.Platform.ready(->
@@ -22,6 +24,9 @@ module.exports = ->
                 plugins.statusBar = StatusBar
 
             plugins.toast = window.plugins.toast
+
+        if window.cordova and window.cordova.plugins
+            plugins.clipboard = window.cordova.plugins.clipboard
 
         if navigator and navigator.notification
             plugins.notification = navigator.notification
