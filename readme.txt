@@ -8,12 +8,16 @@
   (ionic cordova build android -build)
   (相關的流程，寫在 /hooks/010_increment_build_number.js )
 
+* 常常在新增完套件後，或是某些情況，在建置 android 版本出現 java 相關錯誤
+  可以先嘗試把 android platform 移除重加
+
 ## [[ 2018-8-19 ]] ##
 ======================================
 把 ionic-cli 更新到最新版，然後有提示安裝 ionic-cli v1
 都裝好之後，platform + android 最新版本
 可以建置
 
+// == 以下是 Android 版本的操作 ==
 // 先開一個 bash 進行打包資源 (css, js, images...)
 gulp
 
@@ -26,6 +30,17 @@ ionic cordova build android --build
 // 建置發行版本
 ionic cordova build android --release
 
+// == 以下是 iOS 版本的操作 ==
+// 用 VSCode 開 bash 進行資源打包
+gulp
+
+// 另外開一個 bash 執行 cordova 建置
+ionic build ios
+
+// build 完之後，用 XCode 開專案，確認一下 General / Signing / Team 是選在 Chinese Culture University (Company)
+// 選單 > Product > Build 進行專案建置
+
+
 // @ 2018-9-22
 // 紀錄一下這個時候我的建置環境
 // Android 版本 :
@@ -34,11 +49,25 @@ ionic cordova build android --release
 // ionic cli 4.1.0
 // cordova 8.0.0
 // android platform : 7.0
+//
+// iOS 版本 :
+// OS : macOS High Sierra (10.13.5)
+// IDE : VSCode + XCode
+// ionic cli 2.1.4
+// cordova 6.5.0
+// ios platform : 4.3.1
+
+// @ 2018-9-22
+// Google 登入用 cordova-plugin-googleplus 做的
+// #google #sso
+// https://github.com/EddyVerbruggen/cordova-plugin-googleplus
+cordova plugin add cordova-plugin-googleplus --save --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.417861383399-r7rtkqljs87ffbubtkrtah4liktvucu1 --variable WEB_APPLICATION_CLIENT_ID=417861383399-r7rtkqljs87ffbubtkrtah4liktvucu1.apps.googleusercontent.com
+ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.417861383399-r7rtkqljs87ffbubtkrtah4liktvucu1
 ======================================
 
 ## [[ 2018-9-22 ]] ##
 ======================================
-@ 問題:
+@ 建置問題:
 cordova-plugin-firebase 發生 ENOENT: no such file or directory, open '...........\platforms\android\res\values\strings.xml'
 
   solve ref:
@@ -49,17 +78,45 @@ cordova-plugin-firebase 發生 ENOENT: no such file or directory, open '........
   //var ANDROID_DIR = 'platforms/android';
   var ANDROID_DIR = 'platforms/android/app/src/main';
 
-@ 問題:
+  !! 補充 !!
+  後來把這段修正寫到 hooks/before_build/011_fix_firebase_plugin.js 了
+  建置時會自動修正，不用手動處理了
+
+@ 建置問題:
 No toolchains found in the NDK toolchains folder for ABI with prefix: mips64el-linux-android
 
   solve:
   確認是否有在 SDK Manager \ SDK Tools 裡面勾選安裝 "NDK"，如有，移除即可
 
-@ 問題:
+@ 建置問題:
 java.lang.RuntimeException: java.lang.RuntimeException: com.android.builder.dexing.DexArchiveMergerException: Unable to merge dex
 
   solve:
   移除 android platform 重新加，可以用 rm -rf ./platforms/android 來移除，
   用 cordova platform rm android 是正規的方式，但不知為何會在 removing android from ...... in package.json 停了很久很久
   然後用 cordova platform add android 重新加
+
+@ 套件問題:
+Google SSO 登入無法使用
+  點了 Google 登入之後，程式有 googleplus，也叫了 login
+  但是沒有反應，也沒切登入畫面
+  
+  solve:
+  可能是 google gms play-service 相關套件的版本問題
+  參考 https://github.com/EddyVerbruggen/cordova-plugin-googleplus/issues/484
+
+  已經有寫了 before_build 的 hook : 011_fix_firebase_plugin.js
+  主要是複製專案根目錄下的 build-extra.grade 到 platforms/android/app
+  強制指定版本 1.18
+
+@ 套件問題:
+安裝 cordova-plugin-firebase 出現錯誤
+Uh oh!
+"......" already exists!
+
+  solve:
+  移除掉 android platform，重新再加
+  rm -rf ./platforms/android
+  ionic cordova platform add android
+  ionic cordova build android
 ======================================

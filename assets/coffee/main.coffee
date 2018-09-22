@@ -6,8 +6,11 @@ directives = require('./common/directives')
 # ngCordova install and setup
 # http://ngcordova.com/docs/install/
 
-angular.module('sce', ['ionic', 'ngCordova', 'ngCordovaOauth', 'pascalprecht.translate', 'ionic-native-transitions', 'ion-affix',
-    'angular-svg-round-progressbar', 'jrCrop', 'angular-cache'])
+angular.module('sce', ['ionic', 
+    'ionic-native-transitions', 
+    'ngCordova', 'ngCordovaOauth', 
+    'pascalprecht.translate', 'ion-affix', 'jrCrop',
+    'angular-svg-round-progressbar', 'angular-cache'])
 .service('$cordovaLaunchNavigator', require('./common/launchnavigation-service'))
 .service('navigation', require('./common/navigation-service'))
 .service('util', require('./common/util-service'))

@@ -34,6 +34,9 @@ module.exports = [
                 # Keep in mind the function will return null if the token has not been established yet.
                 window.FirebasePlugin.getToken(
                     (fcm_token) ->
+                        if fcm_token and fcm_token == ''
+                            return $cordovaToast.show('firebase 套件發生問題, 將無法接收推播', 'long', 'top')
+                        
                         fcm_token = fcm_token.token if fcm_token.token
 
                         platform = $cordovaDevice.getPlatform().toLowerCase()
