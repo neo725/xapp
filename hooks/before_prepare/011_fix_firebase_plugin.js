@@ -5,6 +5,14 @@ var path = require('path');
 
 console.log('*** 011_fix_firebase_plugin.js ***');
 
+var platformName = '';
+if (process.env && process.env.CORDOVA_PLATFORMS)
+    platformName = process.env.CORDOVA_PLATFORMS;
+
+if (platformName.toLowerCase() != 'android') {
+    console.log('[fix_firebase_plugin] not android platform. skip this hook.')
+    return;
+}
 // part 1 : 修復 gradle 版本問題
 console.log('[fix_firebase_plugin] fix part 1 for gradle...');
 
