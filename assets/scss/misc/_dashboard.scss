@@ -109,6 +109,12 @@
                                 text-align: left;
                                 white-space: nowrap;
                             }
+
+                            .not-set {
+                                margin-top: 13px;
+                                font-size: 20px !important;
+                                color: $gray-color;
+                            }
                         }
                     }
                     &.class-time {

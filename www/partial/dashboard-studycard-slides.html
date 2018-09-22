@@ -87,13 +87,13 @@
                     <div class="col">
                         <div class="row">
                             <div class="col">
-                                上課教室
+                                {{ ::getShortDatePart(card.nextStartTime) }} 上課教室
                             </div>
                         </div>
                         <div class="row class-location" ng-click="openCourseLocation(card)">
                             <div class="col">
-                                <h2 class="text-positive">{{ ::card.RoomId }}</h2>
-                                <h2 class="text-positive" ng-if="false">B303</h2>
+                                <h2 class="text-positive" ng-if="card.RoomId != null">{{ ::card.RoomId }}</h2>
+                                <h2 class="text-light-gray not-set" ng-if="card.RoomId == null">尚未提供</h2>
                             </div>
                         </div>
                     </div>

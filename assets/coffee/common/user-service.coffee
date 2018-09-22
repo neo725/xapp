@@ -12,8 +12,8 @@ module.exports = ['$rootScope', 'plugins'
 
         getToken = () ->
             token = window.localStorage.getItem('token')
-            if plugins && plugins.clipboard
-                plugins.clipboard.copy(token)
+            # if plugins && plugins.clipboard
+            #     plugins.clipboard.copy(token)
             
             return token
 

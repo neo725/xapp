@@ -31,6 +31,9 @@ module.exports = [
             $scope.getDatePart = (date) ->
                 return moment(date).format('YYYY/M/DD')
 
+            $scope.getShortDatePart = (date) ->
+                return moment(date).format('M/DD')
+
             $scope.getTimePart = (date) ->
                 return moment(date).format('H:mm')
 

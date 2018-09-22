@@ -140,7 +140,7 @@ module.exports = [
 
         loadLocation()
 
-        User.getToken()
+        #User.getToken()
 
         $scope.$on('$ionicView.afterEnter', ->
             $timeout ->
