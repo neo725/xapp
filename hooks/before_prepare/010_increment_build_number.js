@@ -9,8 +9,14 @@ var fs = require('fs');
 var xml2js = require('xml2js');
 var sequence = require('run-sequence');
 var Confirm = require('prompt-confirm');
+var clc = require("cli-color");
 
-console.log('*** 010_increment_build_number.js ***');
+var notice = clc.yellow;
+var warning = clc.xterm(13);
+var info = clc.xterm(33);
+var success = clc.green;
+
+console.log(notice('*** 010_increment_build_number.js ***'));
 
 var func_increment = function (is_increment) {
   console.log('[increment_build_number] is_increment = ' + is_increment);
@@ -76,7 +82,7 @@ var func_increment = function (is_increment) {
         if (err) {
           return console.warn(err);
         }
-        console.log('config.xml build number for ios successfully incremented');
+        console.log(success('config.xml build number for ios successfully incremented'));
       });
 
     });
@@ -157,7 +163,7 @@ var func_increment = function (is_increment) {
           if (err) {
             return console.warn(err);
           }
-          console.log('config.xml build number successfully incremented');
+          console.log(success('config.xml build number successfully incremented'));
         });
 
       });
@@ -208,12 +214,13 @@ if (process && process.env) {
   var cmdline = process.env.CORDOVA_CMDLINE;
 
   // console.log('[increment_build_number] cmdline :');
-  // console.log(cmdline);
+  // console.log(process);
   var is_increment = cmdline.indexOf('-build') > -1;
 
   if (!is_increment) {
-      console.log('[increment_build_number] if you want to increment version');
-      console.log('ionic cordova build android -build');
+    console.log(info('[increment_build_number] if you want to increment version'));
+    console.log(info('cordova build android -build'));
+    console.log(warning('not "ionic cordova build android -build"'));
     // new Confirm('Do you want to increment version?')
     //   .ask(function (answer) {
     //     var _is_increment = false;
@@ -224,8 +231,7 @@ if (process && process.env) {
 
     //     func_increment(_is_increment);
     //   });
-  }
-  else {
+  } else {
     func_increment(is_increment);
   }
 }

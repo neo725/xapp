@@ -2,19 +2,24 @@
 
 var fs = require('fs');
 var path = require('path');
+var clc = require("cli-color");
 
-console.log('*** 011_fix_firebase_plugin.js ***');
+var notice = clc.yellow;
+var warning = clc.xterm(13);
+var info = clc.xterm(33);
+
+console.log(notice('*** 011_fix_firebase_plugin.js ***'));
 
 var platformName = '';
 if (process.env && process.env.CORDOVA_PLATFORMS)
     platformName = process.env.CORDOVA_PLATFORMS;
 
 if (platformName.toLowerCase() != 'android') {
-    console.log('[fix_firebase_plugin] not android platform. skip this hook.')
+    console.log(warning('[fix_firebase_plugin] not android platform. skip this hook.'))
     return;
 }
 // part 1 : 修復 gradle 版本問題
-console.log('[fix_firebase_plugin] fix part 1 for gradle...');
+console.log(info('[fix_firebase_plugin] fix part 1 for gradle...'));
 
 //var rootdir = context.opts.projectRoot;
 var rootdir = process.argv[process.argv.length - 1];
@@ -28,7 +33,7 @@ console.log("copying " + srcFile + " to " + destFile);
 fs.createReadStream(srcFile).pipe(fs.createWriteStream(destFile));
 
 // part 2 : 修復 cordova-plugin-firebase 套件新安裝之後，ANDROID_DIR 的問題
-console.log('[fix_firebase_plugin] now fix part 2 for scripts...');
+console.log(info('[fix_firebase_plugin] now fix part 2 for scripts...'));
 
 var scriptDir = 'plugins/cordova-plugin-firebase/scripts/after_prepare.js';
 

@@ -14,6 +14,10 @@ module.exports = [
             $scope.clockwise = false
             $rootScope.studyCardVisible = false
 
+            # if studycards has today's course and RoomId still is null
+            # auto refresh every 10 mins
+            refreshIntervalForStudyCards = 1000 * 60 * 10 # 10 mins (1000ms * 60 * 10)
+
             waitToDeleteStudyCards = []
 
     #        if not CacheFactory.get('studycardCache')
@@ -82,6 +86,25 @@ module.exports = [
                 $rootScope.currentCard = card
                 $scope.modalCourseLocation.show()
 
+            detectAutoRefresh = () ->
+                isNeedAutoRefresh = false
+                _.each $rootScope.studyCards, (card) ->
+                    try
+                        nextDate = moment(card.nextStartTime)
+                        # for debug test
+                        #nextDate = moment()
+                        # end for debug test
+
+                        diffDay = nextDate.diff(moment(), 'day')
+
+                        if diffDay == 0 and card.RoomId == null
+                            isNeedAutoRefresh = true
+                    catch
+                        $log.info card
+
+                if isNeedAutoRefresh
+                    $timeout loadStudycard, refreshIntervalForStudyCards
+
             loadStudycard = () ->
                 if user.getIsGuest()
                     return
@@ -96,6 +119,7 @@ module.exports = [
 
                     $timeout(->
                         $ionicSlideBoxDelegate.update()
+                        detectAutoRefresh()
                     , 500)
 
                 onSuccess = (response) ->
