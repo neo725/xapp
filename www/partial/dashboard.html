@@ -197,7 +197,7 @@
                     <ion-checkbox ng-model="locations.loc1"><div class="text-item">建國本部 (大夏館)</div></ion-checkbox>
                     <ion-checkbox ng-model="locations.loc2"><div class="text-item">忠孝分部 (忠孝館)</div></ion-checkbox>
                     <ion-checkbox ng-model="locations.loc3"><div class="text-item">延平分部 (大新館)</div></ion-checkbox>
-                    <ion-checkbox ng-model="locations.loc4"><div class="text-item">大安中心</div></ion-checkbox>
+                    <ion-checkbox ng-model="locations.loc4" ng-hide="isFilterOff('大安')"><div class="text-item">大安中心</div></ion-checkbox>
                 </ion-list>
                 <ion-list>
                     <ion-checkbox ng-model="locations.loc5"><div class="icon-image"><img src="img/location-wish@2x.png" /></div><div class="icon-text">台中</div></ion-checkbox>

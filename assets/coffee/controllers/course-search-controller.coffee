@@ -278,12 +278,12 @@ module.exports = [
                 $scope.filter.location = pushItem($scope.filter.location, '建國')
                 $scope.filter.location = pushItem($scope.filter.location, '忠孝')
                 $scope.filter.location = pushItem($scope.filter.location, '延平')
-                $scope.filter.location = pushItem($scope.filter.location, '大安')
+                #$scope.filter.location = pushItem($scope.filter.location, '大安')
             else
                 $scope.filter.location = popItem($scope.filter.location, '建國')
                 $scope.filter.location = popItem($scope.filter.location, '忠孝')
                 $scope.filter.location = popItem($scope.filter.location, '延平')
-                $scope.filter.location = popItem($scope.filter.location, '大安')
+                #$scope.filter.location = popItem($scope.filter.location, '大安')
 
             $scope.goSearch(keyword)
 
@@ -312,13 +312,13 @@ module.exports = [
             location_taipei &= _.indexOf(location, '建國') != -1
             location_taipei &= _.indexOf(location, '忠孝') != -1
             location_taipei &= _.indexOf(location, '延平') != -1
-            location_taipei &= _.indexOf(location, '大安') != -1
+            #location_taipei &= _.indexOf(location, '大安') != -1
 
             if location_taipei
                 location = popItem(location, '建國')
                 location = popItem(location, '忠孝')
                 location = popItem(location, '延平')
-                location = popItem(location, '大安')
+                #location = popItem(location, '大安')
                 if _.indexOf(location, '台北') == -1
                     location.splice(0, 0, '台北')
 
@@ -477,7 +477,7 @@ module.exports = [
         location_taipei &= _.indexOf($scope.filter.location, '建國') != -1
         location_taipei &= _.indexOf($scope.filter.location, '忠孝') != -1
         location_taipei &= _.indexOf($scope.filter.location, '延平') != -1
-        location_taipei &= _.indexOf($scope.filter.location, '大安') != -1
+        #location_taipei &= _.indexOf($scope.filter.location, '大安') != -1
 
         if location_taipei
             $scope.filter.location.push '台北'

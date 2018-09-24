@@ -1,8 +1,13 @@
 constants = require('../common/constants')
 
+# 2018-9-24 added by thchang
+# asking to filter off name = '大安中心'
+
 module.exports = [
-    '$scope', '$ionicHistory', '$translate', '$timeout', 'modal', 'navigation', 'plugins', 'api', 'CacheFactory', 'user',
-    ($scope, $ionicHistory, $translate, $timeout, modal, navigation, plugins, api, CacheFactory, User) ->
+    '$scope', '$ionicHistory', '$translate', '$timeout', '$log', 'modal', 'navigation', 'plugins', 'api', 'CacheFactory', 'user',
+    ($scope, $ionicHistory, $translate, $timeout, $log, modal, navigation, plugins, api, CacheFactory, User) ->
+        filter_off_list = constants.FILTER_OFF_LOCATIONS
+
         $scope.active = false
 
         if not CacheFactory.get('locationsCache')
@@ -11,6 +16,9 @@ module.exports = [
                 deleteOnExpire: 'aggressive'
             CacheFactory.createCache('locationsCache', opts)
         locationsCache = CacheFactory.get('locationsCache')
+
+        $scope.isFilterOff = (name) ->
+            return name in filter_off_list
 
         $scope.goBack = ->
             if not $scope.active
@@ -119,6 +127,8 @@ module.exports = [
                 locationsCache.put 'all', $scope.locations
             onError = () ->
                 modal.hideLoading()
+
+            $log.info locations_all_in_cache
 
             if locations_all_in_cache and not forceReload
                 $scope.locations = locations_all_in_cache

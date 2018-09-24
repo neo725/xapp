@@ -18,7 +18,10 @@
             pulling-text="{{ '下拉更新...' }}"
             on-refresh="doRefresh()">
         </ion-refresher>
-        <div class="card location-card-container" ng-repeat="location in locations" ng-init="item = getLocationItem(location.name)">
+        <div class="card location-card-container"
+             ng-repeat="location in locations"
+             ng-init="item = getLocationItem(location.name)"
+             ng-if="isFilterOff(location.name) == false">
             <div class="header-map-img">
                 <div class="row">
                     <div class="col col-33 building-name"

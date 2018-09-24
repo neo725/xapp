@@ -29,6 +29,8 @@ module.exports =
             'expire_month': ''
             'expire_year': ''
 
+    FILTER_OFF_LOCATIONS: [ '大安', '大安中心' ]
+
     WEEKDAYS: ['一', '二', '三', '四', '五', '六', '日']
     WEEKDAYS_MAPPING: [
         {

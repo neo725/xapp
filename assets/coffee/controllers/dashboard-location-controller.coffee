@@ -1,7 +1,13 @@
 constants = require('../common/constants')
 
+# 2018-9-24 added by thchang
+# asking for filter off location : '大安中心'
+
+# loc4 = '大安', so in the follow of codes, will filter by hard code
+
 module.exports = ['$scope', ($scope) ->
     def_locations = constants.LOCATIONS
+
     $scope.locations = {
         loc1: false,
         loc2: false,
@@ -11,12 +17,15 @@ module.exports = ['$scope', ($scope) ->
         loc6: false
     }
 
+    $scope.isFilterOff = (item) ->
+        return item in constants.FILTER_OFF_LOCATIONS
+
     $scope.checkIsTaipeiChecked = () ->
         checked = true
         checked &= $scope.locations.loc1
         checked &= $scope.locations.loc2
         checked &= $scope.locations.loc3
-        checked &= $scope.locations.loc4
+        #checked &= $scope.locations.loc4
 
         return checked
 
@@ -25,7 +34,7 @@ module.exports = ['$scope', ($scope) ->
         checked &= $scope.locations.loc1
         checked &= $scope.locations.loc2
         checked &= $scope.locations.loc3
-        checked &= $scope.locations.loc4
+        #checked &= $scope.locations.loc4
         checked &= $scope.locations.loc5
         checked &= $scope.locations.loc6
 
@@ -37,7 +46,7 @@ module.exports = ['$scope', ($scope) ->
             loc1: val,
             loc2: val,
             loc3: val,
-            loc4: val,
+            #loc4: val,
             loc5: $scope.locations.loc5,
             loc6: $scope.locations.loc6
         }
@@ -47,7 +56,7 @@ module.exports = ['$scope', ($scope) ->
             loc1: val,
             loc2: val,
             loc3: val,
-            loc4: val,
+            #loc4: val,
             loc5: val,
             loc6: val
         }
@@ -61,8 +70,8 @@ module.exports = ['$scope', ($scope) ->
             locations.push def_locations[1]
         if $scope.locations.loc3
             locations.push def_locations[2]
-        if $scope.locations.loc4
-            locations.push def_locations[3]
+        # if $scope.locations.loc4
+        #     locations.push def_locations[3]
         if $scope.locations.loc5
             locations.push def_locations[4]
         if $scope.locations.loc6
@@ -82,8 +91,8 @@ module.exports = ['$scope', ($scope) ->
             $scope.locations.loc2 = true
         if _.indexOf(locations, def_locations[2]) > -1
             $scope.locations.loc3 = true
-        if _.indexOf(locations, def_locations[3]) > -1
-            $scope.locations.loc4 = true
+        # if _.indexOf(locations, def_locations[3]) > -1
+        #     $scope.locations.loc4 = true
         if _.indexOf(locations, def_locations[4]) > -1
             $scope.locations.loc5 = true
         if _.indexOf(locations, def_locations[5]) > -1

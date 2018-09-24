@@ -132,6 +132,8 @@ module.exports = [
                     return _.join(weekdays, ', ')
 
             $scope.parseLocation = (locations) ->
+                total_count = 5
+
                 if locations.indexOf('不拘') != -1
                     locations = []
                 else
@@ -142,11 +144,11 @@ module.exports = [
                 totalCount += 1 if _.indexOf(locations, '建國') != -1
                 totalCount += 1 if _.indexOf(locations, '忠孝') != -1
                 totalCount += 1 if _.indexOf(locations, '延平') != -1
-                totalCount += 1 if _.indexOf(locations, '大安') != -1
+                #totalCount += 1 if _.indexOf(locations, '大安') != -1
                 totalCount += 1 if _.indexOf(locations, '台中') != -1
                 totalCount += 1 if _.indexOf(locations, '高雄') != -1
 
-                if totalCount == 6
+                if totalCount == total_count
                     return '地點不拘'
                 else if totalCount > 2
                     new_locations = []
