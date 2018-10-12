@@ -86,6 +86,13 @@ module.exports = [
                 $rootScope.currentCard = card
                 $scope.modalCourseLocation.show()
 
+            $scope.doManualRefresh = ($event) ->
+                debugger
+                $event.stopPropagation()
+                $event.preventDefault()
+
+                $log.info '123'
+
             detectAutoRefresh = () ->
                 isNeedAutoRefresh = false
                 _.each $rootScope.studyCards, (card) ->

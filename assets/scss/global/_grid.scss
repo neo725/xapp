@@ -1,4 +1,13 @@
 .row {
+    @mixin col($percent) {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 $percent * 1% !important;
+        -moz-box-flex: 0;
+        -moz-flex: 0 0 $percent * 1% !important;
+        -ms-flex: 0 0 $percent * 1% !important;
+        flex: 0 0 $percent * 1% !important;
+        max-width: $percent * 1% !important;
+    }
     .col-30 {
         -webkit-box-flex: 0;
         -webkit-flex: 0 0 30%;
@@ -17,4 +26,12 @@
         flex: 0 0 31%;
         max-width: 31%;
     }
+
+    .col-45 {
+        @include col(45);
+    }
+
+    .col-55 {
+        @include col(55);
+  }
 }

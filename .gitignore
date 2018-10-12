@@ -10,3 +10,5 @@ assets/build/*
 www/css
 /config.xml
 /package.json
+.vscode/arduino.json
+.vscode/c_cpp_properties.json
