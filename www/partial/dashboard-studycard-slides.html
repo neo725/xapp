@@ -84,16 +84,33 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col col-55" ng-click="doManualRefresh()">
+                    <div class="col col-55">
                         <div class="row">
                             <div class="col">
                                 {{ ::getShortDatePart(card.nextStartTime) }} 上課教室
                             </div>
                         </div>
-                        <div class="row class-location" ng-click="openCourseLocation(card)">
+                        <div class="row class-location" ng-click="openCourseLocation(card)" ng-if="card.RoomId != null">
                             <div class="col">
                                 <h2 class="text-positive" ng-if="card.RoomId != null">{{ ::card.RoomId }}</h2>
-                                <h2 class="text-light-gray not-set" ng-if="card.RoomId == null">尚未提供</h2>
+                            </div>
+                        </div>
+                        <div class="row class-location" ng-click="doManualRefresh()" ng-if="studycard_loading_status != 'loading' && card.RoomId == null">
+                            <div class="col">
+                                <div class="text-light-gray not-set">
+                                    <span>尚未提供</span>
+                                    <img class="research" src="img/app_class_research.png" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row class-location" ng-if="studycard_loading_status == 'loading'">
+                            <div class="col col-loading">
+                                <div class="loading-text">
+                                    讀取中
+                                </div>
+                                <!-- <img src="img/svgs/loading-70px.svg" /> -->
+                                <!-- <ng-include src="'partial/component/_ellipsis-loading.html'"></ng-include> -->
+                                <img class="loading" src="img/ellipsis-200px.gif" />
                             </div>
                         </div>
                     </div>

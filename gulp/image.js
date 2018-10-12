@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 var debug = (yargs.debug == 'false') ? false : true;
 
 gulp.task('image', function(){
-    sequence(['image:assets', 'sprite']);
+    sequence(['image:assets', 'image:svgs', 'sprite']);
 });
 
 gulp.task('image:assets', function () {
@@ -18,6 +18,13 @@ gulp.task('image:assets', function () {
 
     return gulp.src('assets/images/assets/**/*')
         .pipe(gulp.dest('www/img'));
+});
+gulp.task('image:svgs', function () {
+    // fav icon
+    /*gulp.src(['assets/images/favicon.ico']).pipe(gulp.dest('www/img'));*/
+
+    return gulp.src('assets/images/svgs/**/*')
+        .pipe(gulp.dest('www/img/svgs'));
 });
 
 gulp.task('sprite', function () {

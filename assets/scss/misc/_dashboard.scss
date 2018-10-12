@@ -110,10 +110,38 @@
                                 white-space: nowrap;
                             }
 
-                            .not-set {
-                                margin-top: 13px;
-                                font-size: 20px !important;
-                                color: $gray-color;
+                            .class-location {
+
+                                > .col-loading {
+                                    padding-top: 7px;
+                                }
+
+                                img.research {
+                                    max-width: 32px;
+                                    position: absolute;
+                                    margin-top: -7px;
+                                    margin-left: 2px;
+                                }
+
+                                img.loading {
+                                    max-width: 70px;
+                                    margin-top: -5px;
+                                }
+
+                                .loading-text {
+                                    color: #aaa !important;
+                                    position: absolute;
+                                    transform: translate(-100%, 0);
+                                    right: 0;
+                                }
+
+                                .not-set {
+                                    margin-top: 16px;
+                                    margin-bottom: 16px;
+                                    margin-left: -25px;
+                                    font-size: 14px !important;
+                                    color: #aaa !important;
+                                }
                             }
                         }
                     }

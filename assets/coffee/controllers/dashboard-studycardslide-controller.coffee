@@ -12,6 +12,7 @@ module.exports = [
             $scope.radius = 43
             $scope.stroke = 4
             $scope.clockwise = false
+            $rootScope.studycard_loading_status = ''
             $rootScope.studyCardVisible = false
 
             # if studycards has today's course and RoomId still is null
@@ -87,11 +88,7 @@ module.exports = [
                 $scope.modalCourseLocation.show()
 
             $scope.doManualRefresh = ($event) ->
-                debugger
-                $event.stopPropagation()
-                $event.preventDefault()
-
-                $log.info '123'
+                loadStudycard()
 
             detectAutoRefresh = () ->
                 isNeedAutoRefresh = false
@@ -112,6 +109,8 @@ module.exports = [
                 if isNeedAutoRefresh
                     $timeout loadStudycard, refreshIntervalForStudyCards
 
+                return
+
             loadStudycard = () ->
                 if user.getIsGuest()
                     return
@@ -120,21 +119,29 @@ module.exports = [
 
     #            studycards_in_cache = studycardCache.get('all')
 
+                delayForLoadDone = () ->
+                    $timeout(->
+                        $rootScope.studycard_loading_status = ''
+                    , 3000)
+
                 load = (list) ->
                     $rootScope.studyCards = list
                     $rootScope.studyCardVisible = list.length > 0
+                    $rootScope.studycard_loading_status = ''
 
                     $timeout(->
                         $ionicSlideBoxDelegate.update()
                         detectAutoRefresh()
-                    , 500)
+                    , 200)
 
                 onSuccess = (response) ->
+                    delayForLoadDone()
                     load response.list
     #                studycardCache.put 'all', response.list
                     modal.hideLoading()
 
                 onError = () ->
+                    delayForLoadDone()
                     $rootScope.studyCardVisible = false
                     modal.hideLoading()
 
@@ -143,6 +150,7 @@ module.exports = [
     #            else
     #                modal.showLoading '', 'message.loading_cover'
     #                api.getStudyCards(onSuccess, onError)
+                $rootScope.studycard_loading_status = 'loading'
                 modal.showLoading '', 'message.loading_cover'
                 api.getStudyCards(onSuccess, onError)
 
