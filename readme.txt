@@ -100,7 +100,7 @@ java.lang.RuntimeException: java.lang.RuntimeException: com.android.builder.dexi
 Google SSO 登入無法使用
   點了 Google 登入之後，程式有 googleplus，也叫了 login
   但是沒有反應，也沒切登入畫面
-  
+
   solve:
   可能是 google gms play-service 相關套件的版本問題
   參考 https://github.com/EddyVerbruggen/cordova-plugin-googleplus/issues/484
@@ -119,4 +119,13 @@ Uh oh!
   rm -rf ./platforms/android
   ionic cordova platform add android
   ionic cordova build android
+======================================
+
+## [[ 2018-10-15 ]] ##
+======================================
+@ mobile-pull-to-refresh 套件會用到的指令
+  npm uninstall mobile-pull-to-refresh --save-dev
+  npm i git+https://github.com/neo725/pull-to-refresh --save-dev
+
+  ionic cordova run android
 ======================================

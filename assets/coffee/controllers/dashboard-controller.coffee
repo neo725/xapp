@@ -10,6 +10,27 @@ module.exports = [
 
             $scope.active = false
 
+            $log.info('===============================')
+            #$log.info(pullToRefresh)
+            $log.info(window)
+            $log.info($window)
+            $log.info('===============================')
+
+            #ptrContainer = document.querySelector('.pull-to-refresh-container .scroll')
+            ptrContainer = document.querySelector('.ptr-container')
+            ptrWrapper = document.querySelector('.ptr-container .ptr-wrapper')
+
+            pullToRefresh {
+                container: ptrContainer
+                wrapper: ptrWrapper
+                animates: ptrAnimatesMaterial2
+                threshold: 250
+                fixTopWhenRefreshing: 60
+                refresh: () ->
+                    $log.info 'refresh'
+                    return new Promise (resolve) ->
+                        $timeout(resolve, 1000 * 5) # mock 5 secs
+            }
 
             $scope.goMemberDashboard = ->
                 if not $scope.active

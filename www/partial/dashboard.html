@@ -8,9 +8,8 @@
         </div>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon sprite-icon shoppingcar-icon"
-                ng-class="{ 'shopping-cart-has-item': carts.length > 0 }"
-                ng-click="goCart()">
+        <button class="button button-icon icon sprite-icon shoppingcar-icon" ng-class="{ 'shopping-cart-has-item': carts.length > 0 }"
+            ng-click="goCart()">
             <i class="sprite-icon-shoppingcar-o-2x"></i>
         </button>
         <div class="cart-badge-container" ng-show="carts.length > 0" ng-click="goCart()">
@@ -20,40 +19,60 @@
     <ion-nav-title>
         <h1 class="title">大學聯網</h1>
     </ion-nav-title>
-    <ion-content class="has-header" padding="false"
-                 overflow-scroll="false"
-                 has-bouncing="false"
-                 ng-class="{'dashboard-pane-content': true}"
-                 sce-refresher="sce-refresher-holder.refresher"
-                 sce-refresher-event="doRefresh()">
-        <sce-refresher-holder class="refresher">
+    <ion-content class="has-header pull-to-refresh-container" padding="false" overflow-scroll="false" has-bouncing="false"
+        ng-class="{'dashboard-pane-content': true}">
+        <!-- <sce-refresher-holder class="refresher">
             <div class="handler"><i class="ion-refresh"></i></div>
-        </sce-refresher-holder>
-        <div class="studycard-slides slides padding"
-             ng-controller="StudyCardSlideController"
-             ng-show="studyCardVisible"
-             ng-cloak>
-            <ng-include src="'partial/dashboard-studycard-slides.html'"></ng-include>
-        </div>
-        <div class="search-slides slides"
-             ng-controller="SearchSlideController"
-             ng-class="{ 'guest-slides': !studyCardVisible }"
-             ng-cloak>
-            <ng-include src="'partial/dashboard-search-slides.html'"></ng-include>
-        </div>
-        <div class="tabs tabs-light tabs-icon-top icon-tabs-bar">
-            <a class="tab-item" ng-click="goCatalogs()">
-                <img ng-src="img/class@2x.png" />
-                <span>課程分類</span>
-            </a>
-            <a class="tab-item" ng-click="goEbookList()">
-                <img ng-src="img/ebook@2x.png" />
-                <span>新識力</span>
-            </a>
-            <a class="tab-item" ng-click="goLocation()">
-                <img ng-src="img/map@2x.png" />
-                <span>交通資訊</span>
-            </a>
+        </sce-refresher-holder> -->
+        <!-- <ion-refresher on-refresh="doRefresh()"></ion-refresher> -->
+        <div id="ptr_container" class="ptr-container">
+            <div class="ptr__wrapper">
+                <div class="pull-to-refresh-material2__control">
+                    <svg class="pull-to-refresh-material2__icon" fill="#4285f4" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                    </svg>
+
+                    <svg class="pull-to-refresh-material2__spinner" width="24" height="24" viewBox="25 25 50 50">
+                        <circle class="pull-to-refresh-material2__path pull-to-refresh-material2__path--colorful" cx="50"
+                            cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10" />
+                    </svg>
+                </div>
+                <div class="ptr__tip-container">
+                    <div class="ptr__tip ptr__visible_pulling">
+                        繼續下拉以確認要重新整理資料
+                    </div>
+                    <div class="ptr__tip ptr__visible_reached">
+                        放開以開始重新整理資料
+                    </div>
+                    <div class="ptr__tip ptr__visible_refreshing">
+                        資料重新整理中...
+                    </div>
+                </div>
+            </div>
+
+            <div class="studycard-slides slides padding" ng-controller="StudyCardSlideController" ng-show="studyCardVisible"
+                ng-cloak>
+                <ng-include src="'partial/dashboard-studycard-slides.html'"></ng-include>
+            </div>
+            <div class="search-slides slides" ng-controller="SearchSlideController" ng-class="{ 'guest-slides': !studyCardVisible }"
+                ng-cloak>
+                <ng-include src="'partial/dashboard-search-slides.html'"></ng-include>
+            </div>
+            <div class="tabs tabs-light tabs-icon-top icon-tabs-bar">
+                <a class="tab-item" ng-click="goCatalogs()">
+                    <img ng-src="img/class@2x.png" />
+                    <span>課程分類</span>
+                </a>
+                <a class="tab-item" ng-click="goEbookList()">
+                    <img ng-src="img/ebook@2x.png" />
+                    <span>新識力</span>
+                </a>
+                <a class="tab-item" ng-click="goLocation()">
+                    <img ng-src="img/map@2x.png" />
+                    <span>交通資訊</span>
+                </a>
+            </div>
         </div>
     </ion-content>
     <script id="templates/modal-course-time.html" type="text/ng-template">

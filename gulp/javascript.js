@@ -101,6 +101,14 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                 'Sortable': {
                     path: 'www/lib/Sortable/Sortable.js',
                     exports: 'Sortable'
+                },
+                'PullToRefresh': {
+                    path: 'node_modules/mobile-pull-to-refresh/dist/pullToRefresh.js',
+                    exports: 'pullToRefresh'
+                },
+                'PullToRefreshAnimate': {
+                    path: 'node_modules/mobile-pull-to-refresh/dist/styles/material2/animates.js',
+                    exports: 'ptrAnimatesMaterial2'
                 }
             }
         }))
@@ -117,7 +125,7 @@ gulp.task('appjs', ['coffeeifyjs'], function () {
             external: ['jquery', 'angular', 'angular-translate', 'ionic', 'ionic-native-transitions', 'ion-affix',
                 /*'lodash', 'moment', 'angular-svg-round-progressbar', 'ion.rangeSlider', 'jr-crop', 'angular-cache',*/
                 'lodash', 'moment', 'angular-svg-round-progressbar', 'jr-crop', 'angular-cache',
-                'angular-action-sheet', 'Sortable']
+                'angular-action-sheet', 'Sortable', 'PullToRefresh', 'PullToRefreshAnimate']
         }))
         .pipe(gif(!debug, uglify({mangle: false})))
         .pipe(gulp.dest('www/js'));
