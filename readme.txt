@@ -39,11 +39,23 @@ ionic cordova build android --release
 // 用 VSCode 開 bash 進行資源打包
 gulp
 
-// 另外開一個 bash 執行 cordova 建置
-ionic build ios
+// 另外開一個 bash 執行 cordova 以及 XCode 建置，也可以選擇下面 prepare 把 cordova 所需檔案複製到 platform 中
+ionic cordova build ios
+// 如果出現 Code Signing Error 導致失敗，先跑下面 XCode 確認 Signing 是否正確
+// 如果有成功完成，最後會出現 ** ARCHIVE SUCCEEDED ** 或 ** EXPORT SUCCEEDED ** 的訊息
 
 // build 完之後，用 XCode 開專案，確認一下 General / Signing / Team 是選在 Chinese Culture University (Company)
 // 選單 > Product > Build 進行專案建置
+
+// 如果只想跑 cordova 建置，再轉到 XCode 去執行 App 到手機，可以不用跑上面 build ios 的指令，這樣操作會比較快
+cordova prepare
+
+// 如果在跑上面建置的指令
+// 沒有跑到 Discovered plugin，在前面的 hook 跑完後就發生 Error: spawn EACCES 之類的錯誤訊息
+// 原因：sceapp 資料夾權限問題，將 sceapp 這個專案資料夾用 chmod 修改權限
+// 解決：sudo chmod -R a+rwx sceapp
+
+// iOS 版本的 Bundle identifier 是 tw.edu.pccu.sce.sceapp-prod
 
 
 // @ 2018-9-22
@@ -137,3 +149,8 @@ Uh oh!
 
   ionic cordova run android
 ======================================
+
+@ iOS platform 重新安裝後，遇到的一些問題
+  1. 有問題無法正常安裝的 cordova plugin
+     cordova plugin add cordova-plugin-x-socialsharing@5.1.8
+     cordova plugin add https://github.com/phonegap/phonegap-mobile-accessibility.git

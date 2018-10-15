@@ -1,8 +1,8 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$scope', '$ionicHistory', '$translate', '$timeout', '$stateParams', '$cordovaLaunchNavigator', 'modal', 'navigation', 'plugins', 'api',
-    ($scope, $ionicHistory, $translate, $timeout, $stateParams, $cordovaLaunchNavigator, modal, navigation, plugins, api) ->
+    '$scope', '$ionicHistory', '$translate', '$timeout', '$log', '$stateParams', '$cordovaLaunchNavigator', 'modal', 'navigation', 'plugins', 'api',
+    ($scope, $ionicHistory, $translate, $timeout, $log, $stateParams, $cordovaLaunchNavigator, modal, navigation, plugins, api) ->
 
         $scope.goBack = ->
             backView = $ionicHistory.backView()
@@ -35,6 +35,10 @@ module.exports = [
                     position: latLng
                 )
 
-        $timeout ->
-            initializeMap()
+        $scope.$on('$ionicView.enter', () ->
+            $log.info 'location-map-controller -> $ionicView.enter'
+            
+            $timeout ->
+                initializeMap()
+        )
 ]

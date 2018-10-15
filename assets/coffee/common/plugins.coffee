@@ -22,6 +22,8 @@ module.exports = ->
 
             if StatusBar
                 plugins.statusBar = StatusBar
+                # StatusBar.styleDefault()
+                # StatusBar.overlaysWebView(true)
 
             plugins.toast = window.plugins.toast
 

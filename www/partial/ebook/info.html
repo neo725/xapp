@@ -7,7 +7,7 @@
             <h1 class="title">新識力</h1>
         </ion-nav-title>
     </ion-nav-bar>
-    <ion-content padding="false" class="ebook-info-content">
+    <ion-content padding="false" class="ebook-info-content" overflow-scroll="true" has-bouncing="false">
         <div class="add-favorite" ng-if="loading == false">
             <button class="button button-icon icon sprite-icon" ng-click="addToFavorite($event, ebook)">
                 <i class="sprite-icon-ebook-add-favorite" ng-if="alreadyAddFavorites == false"></i>
