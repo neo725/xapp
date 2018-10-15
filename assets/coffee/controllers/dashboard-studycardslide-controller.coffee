@@ -111,7 +111,7 @@ module.exports = [
 
                 return
 
-            loadStudycard = () ->
+            loadStudycard = (callback = () -> {}) ->
                 if user.getIsGuest()
                     return
 
@@ -132,6 +132,8 @@ module.exports = [
                     $timeout(->
                         $ionicSlideBoxDelegate.update()
                         detectAutoRefresh()
+
+                        callback()
                     , 200)
 
                 onSuccess = (response) ->
@@ -181,7 +183,12 @@ module.exports = [
             )
             $scope.$on('dashboard.doRefresh', () ->
                 $log.info '{** StudycardSlide **} >> doRefresh......'
-                loadStudycard()
+                $rootScope.RefreshPool().Add 'studycard'
+
+                loadStudycard(->
+                    debugger;
+                    $rootScope.RefreshPool().Remove 'studycard'
+                )
             )
 
             loadStudycard()

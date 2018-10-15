@@ -21,7 +21,14 @@ module.exports = [
                 )
                 return list
 
-            loadSearchSlide = (showLoading = true) ->
+            loadSearchSlide = (args = true) ->
+                showLoading = true
+                callback = () -> {}
+
+                if typeof args == 'boolean'
+                    showLoading = args
+                else if typeof args == 'function'
+                    callback = args
 
                 $log.info '[** SearchSlide **] >> loadSearchSlide()......'
 
@@ -38,6 +45,8 @@ module.exports = [
                             return
                         $ionicSlideBoxDelegate.update()
                         $ionicSlideBoxDelegate.$getByHandle('search-slide-box').loop(true)
+
+                        callback()
 
                     $timeout searchSlideAndLoop
 
@@ -75,9 +84,17 @@ module.exports = [
             )
             $scope.$on('dashboard.doRefresh', () ->
                 $log.info '{** SearchSlide **} >> doRefresh......'
-                if window.cache
-                    window.cache.clear()
-                loadSearchSlide()
+
+                $rootScope.RefreshPool().Add 'search-slide'
+
+                # if window.cache
+                #     window.cache.clear()
+                searchslideCache.remove 'all'
+
+                loadSearchSlide(->
+                    debugger;
+                    $rootScope.RefreshPool().Remove 'search-slide'
+                )
             )
 
             $log.info '[** SearchSlide **] >> isRealDevice : ' + user.isRealDevice()

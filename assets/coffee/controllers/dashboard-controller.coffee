@@ -22,7 +22,7 @@ module.exports = [
             ptrContainer = document.querySelector('.ptr-container')
             ptrWrapper = document.querySelector('.ptr-container .ptr-wrapper')
             elScroll = document.querySelector('.pull-to-refresh-container > .scroll')
-            
+
             pullToRefresh {
                 container: ptrContainer
                 wrapper: ptrWrapper
@@ -34,7 +34,8 @@ module.exports = [
                 refresh: () ->
                     $log.info 'refresh'
                     return new Promise (resolve) ->
-                        $timeout(resolve, 1000 * 5) # mock 5 secs
+                        $scope.doRefresh(resolve)
+                        #$timeout(resolve, 1000 * 5) # mock 5 secs
 
                 restore: () ->
                     # $log.info 'restore'
@@ -46,6 +47,36 @@ module.exports = [
                     if top != 0
                         $ionicScrollDelegate.scrollTop()
             }
+
+            _RefreshPool = (callback) ->
+                _pool = []
+                _empty_check = 0
+                _callback = callback
+
+                return {
+                    Add: (pool_name) ->
+                        _pool.push(pool_name)
+
+                    Remove: (pool_name) ->
+                        index = _pool.indexOf pool_name
+                        if index != -1
+                            _pool.splice(index, 1)
+
+                        checkAndCallback = () ->
+                            if _pool.length == 0 and _callback
+                                _callback()
+                        $timeout checkAndCallback, 1000
+
+                    SetCallback: (callback) ->
+                        _callback = callback
+                }
+
+            $rootScope.RefreshPool = (callback) ->
+                if not $rootScope.RefreshPoolInstance
+                    $rootScope.RefreshPoolInstance = _RefreshPool callback
+                if callback
+                    $rootScope.RefreshPoolInstance.SetCallback callback
+                return $rootScope.RefreshPoolInstance
 
             $scope.goMemberDashboard = ->
                 if not $scope.active
@@ -62,9 +93,14 @@ module.exports = [
             $scope.goLocation = ->
                 navigation.slide 'home.location', {}, 'left'
 
-            $scope.doRefresh = () ->
+            $scope.doRefresh = (resolve) ->
+                $rootScope.RefreshPool(() ->
+                    if resolve
+                        resolve()
+
+                    $scope.$broadcast('scroll.refreshComplete')
+                )
                 $scope.$broadcast('dashboard.doRefresh')
-                $scope.$broadcast('scroll.refreshComplete')
 
             loadAvatar = ->
                 onSuccess = (response) ->
