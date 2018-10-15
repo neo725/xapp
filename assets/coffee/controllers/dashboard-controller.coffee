@@ -43,7 +43,6 @@ module.exports = [
                 pulling: () ->
                     # $log.info 'pulling'
                     top = $ionicScrollDelegate.getScrollPosition().top
-                    $log.info top
                     if top != 0
                         $ionicScrollDelegate.scrollTop()
             }
