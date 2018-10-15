@@ -114,7 +114,12 @@ angular.module('sce', ['ionic',
     #$ionicConfigProvider.views.transition('android')
 
     # http://scottbolinger.com/4-ways-to-make-your-ionic-app-feel-native/
-    $ionicConfigProvider.scrolling.jsScrolling(false)
+    #$ionicConfigProvider.scrolling.jsScrolling(false)
+    # updated by thchang @ 2018-10-15
+    # https://timonweb.com/posts/improve-ionics-performance-in-android-with-native-scrolls/
+    # only use native scroll in android
+    if ionic.Platform.isAndroid()
+        $ionicConfigProvider.scrolling.jsScrolling(false)
 
     # disable swipe effect
     $ionicConfigProvider.views.swipeBackEnabled(false)

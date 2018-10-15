@@ -127,5 +127,8 @@ Uh oh!
   npm uninstall mobile-pull-to-refresh --save-dev
   npm i git+https://github.com/neo725/pull-to-refresh --save-dev
 
+  (gulp 要重 run)
+  (等到出現 Finished 'image:assets'...... 才跑下面的指令)
+
   ionic cordova run android
 ======================================

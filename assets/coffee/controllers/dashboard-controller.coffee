@@ -1,8 +1,10 @@
 
 module.exports = [
     '$rootScope', '$scope', '$ionicPlatform', '$cordovaBadge', '$window', '$timeout', '$log', '$translate', '$q',
+    '$ionicScrollDelegate',
     'api', 'modal', 'navigation', 'plugins', 'user',
     ($rootScope, $scope, $ionicPlatform, $cordovaBadge, $window, $timeout, $log, $translate, $q,
+        $ionicScrollDelegate,
         api, modal, navigation, plugins, user) ->
             deferred = $q.defer()
 
@@ -19,17 +21,31 @@ module.exports = [
             #ptrContainer = document.querySelector('.pull-to-refresh-container .scroll')
             ptrContainer = document.querySelector('.ptr-container')
             ptrWrapper = document.querySelector('.ptr-container .ptr-wrapper')
-
+            elScroll = document.querySelector('.pull-to-refresh-container > .scroll')
+            
             pullToRefresh {
                 container: ptrContainer
                 wrapper: ptrWrapper
                 animates: ptrAnimatesMaterial2
                 threshold: 250
                 fixTopWhenRefreshing: 60
+                resetTopWhenPulling: elScroll
+
                 refresh: () ->
                     $log.info 'refresh'
                     return new Promise (resolve) ->
                         $timeout(resolve, 1000 * 5) # mock 5 secs
+
+                restore: () ->
+                    # $log.info 'restore'
+                    $ionicScrollDelegate.scrollTop()
+
+                pulling: () ->
+                    # $log.info 'pulling'
+                    top = $ionicScrollDelegate.getScrollPosition().top
+                    $log.info top
+                    if top != 0
+                        $ionicScrollDelegate.scrollTop()
             }
 
             $scope.goMemberDashboard = ->
