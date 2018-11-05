@@ -1,4 +1,47 @@
 * google firebase 的註冊資訊寫在 firebase-register-readme.txt
+https://console.firebase.google.com/u/0/?hl=zh-TW
+
+* 第一次拉下專案，在 Windows 及 Mac 分別作下面兩件事情
+[Android]
+1. 將 /assets/config/android 的 config.xml 以及 package.json 複製到專案根目錄下
+
+[iOS]
+1. 將 /assets/config/ios 的 config.xml 以及 package.json 複製到專案根目錄下
+
+[Android + iOS]
+2. 將終端機視窗開兩個分割，最好是左右分割
+3. 左邊先運行 npm i，安裝 node components
+
+[Android]
+4. ionic cordova platform add android
+5. cordova build android
+6. 如果成功，要跑測試安裝到手機上的話，運行 cordova run android
+
+[ios]
+4. ionic cordova platform add ios
+5. cordova prepare
+6. 切換到 XCode，開啟 /platforms/ios/大學聯網.xcodeproj
+7. 先跑建置，確定可以完成後，連接手機到 Mac 上，選擇裝置到手機，按執行按紐 (撥放三角形)
+
+如果運行測試沒問題，要做發布的話
+
+[Android]
+1. 增加版本號，執行 cordova build android --build
+2. 執行 cordova build android --release
+3. 完成後，將提示的 apk 上傳到 Google Play Console
+https://developer.android.com/distribute/console/
+(登入帳號密碼在下面找 上架)
+
+[ios]
+1. 增加版本號，執行 cordova build ios --build
+2. 執行 cordova prepare
+3. 到 Xcode 跑 ARCHIVE
+4. 完成後，到 Window\Organizer，剛才 archive 跑出來的版號應該要出現在第一筆
+5. 點要上傳的版本，點 Upload to App Store
+6. 到 iTunes Connect 發布版號
+https://itunesconnect.apple.com/login
+(登入帳號密碼在下面找 上架)
+
 
 * 開發模式運行：
   1. 跑 gulp 做持續建置 (會停在 watch，如果原始碼有改，就會持續做建置)
@@ -16,6 +59,9 @@
   密碼：可以問 [博安] 或 [琮華]
   登入後，如果出現 "您的帳戶已變更" 的畫面，並要您選擇哪一種類型的帳號，點 "稍後再進行"
 
+* Apple 上架 (iTunes Connect)
+  帳號密碼同 Google Play
+
 ## [[ 2018-8-19 ]] ##
 ======================================
 把 ionic-cli 更新到最新版，然後有提示安裝 ionic-cli v1
@@ -30,7 +76,7 @@ gulp
 ionic cordova run android
 
 // 建置並增加版號
-ionic cordova build android --build
+cordova build android --build
 
 // 建置發行版本
 ionic cordova build android --release
@@ -108,7 +154,12 @@ No toolchains found in the NDK toolchains folder for ABI with prefix: mips64el-l
 @ 建置問題:
 java.lang.RuntimeException: java.lang.RuntimeException: com.android.builder.dexing.DexArchiveMergerException: Unable to merge dex
 
-  solve:
+  找到一個新方法處理，先試底下的 solve 1，如果還是不行，在試 solve 2
+
+  solve 1:
+  執行 cordova clean，然後重新跑一次 cordova build android
+
+  solve 2:
   移除 android platform 重新加，可以用 rm -rf ./platforms/android 來移除，
   用 cordova platform rm android 是正規的方式，但不知為何會在 removing android from ...... in package.json 停了很久很久
   然後用 cordova platform add android 重新加
