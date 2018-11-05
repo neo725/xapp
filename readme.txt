@@ -33,7 +33,7 @@ https://developer.android.com/distribute/console/
 (登入帳號密碼在下面找 上架)
 
 [ios]
-1. 增加版本號，執行 cordova build ios --build
+1. 增加版本號，執行 cordova build ios --build (如果有發生問題，參考下面找 ionic cordova build ios)
 2. 執行 cordova prepare
 3. 到 Xcode 跑 ARCHIVE
 4. 完成後，到 Window\Organizer，剛才 archive 跑出來的版號應該要出現在第一筆
