@@ -100,6 +100,11 @@ cordova prepare
 // 沒有跑到 Discovered plugin，在前面的 hook 跑完後就發生 Error: spawn EACCES 之類的錯誤訊息
 // 原因：sceapp 資料夾權限問題，將 sceapp 這個專案資料夾用 chmod 修改權限
 // 解決：sudo chmod -R a+rwx sceapp
+//
+// 如果有做上面權限的操作 (chmod)，記得設定讓 git 忽略檔案權限的異動
+// 不然全部的檔案都會變成異動狀態
+// 指令如下：(要回到 sceapp 資料夾下)
+// git config core.fileMode false
 
 // iOS 版本的 Bundle identifier 是 tw.edu.pccu.sce.sceapp-prod
 
