@@ -6,6 +6,7 @@ module.exports = [
             email: ''
             valid_code: ''
             password: ''
+            password_confirm: ''
 
         $scope.goBack = () ->
             navigation.slide 'login', {}, 'right'
@@ -41,6 +42,6 @@ module.exports = [
             data =
                 mail: $scope.user.email
                 valid: $scope.user.valid_code
-                newPW: $scope.user.password
+                newPW: $scope.user.password_confirm
             api.resetPassword(data, onSuccess, onError)
 ]
