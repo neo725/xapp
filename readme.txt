@@ -26,7 +26,7 @@ https://console.firebase.google.com/u/0/?hl=zh-TW
 如果運行測試沒問題，要做發布的話
 
 [Android]
-1. 增加版本號，執行 cordova build android --build
+1. 增加版本號，執行 cordova prepare --build
 2. 執行 cordova build android --release
 3. 完成後，將提示的 apk 上傳到 Google Play Console
 https://developer.android.com/distribute/console/
@@ -48,7 +48,7 @@ https://itunesconnect.apple.com/login
   2. 執行 ionic serve 跑 chrome 做模擬測試 (不用加 browser platform)
 
 * 在建置的時候，如果要加版號，建置指令參數加 -build
-  (ionic cordova build android -build)
+  (cordova prepare --build)
   (相關的流程，寫在 /hooks/010_increment_build_number.js )
 
 * 常常在新增完套件後，或是某些情況，在建置 android 版本出現 java 相關錯誤
@@ -61,6 +61,9 @@ https://itunesconnect.apple.com/login
 
 * Apple 上架 (iTunes Connect)
   帳號密碼同 Google Play
+
+* Android SDK 版本清單 #version #sdk
+https://source.android.com/setup/start/build-numbers
 
 ## [[ 2018-8-19 ]] ##
 ======================================

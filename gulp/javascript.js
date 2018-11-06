@@ -47,6 +47,14 @@ gulp.task('vendorjs', ['coffeeifyjs'], function () {
                     path: 'www/lib/ionic/js/ionic.bundle.js',
                     exports: 'ionic'
                 },
+                'ionic-angular': {
+                    path: 'www/lib/ionic/js/ionic-angular.js',
+                    exports: null,
+                    depends: {
+                        angular: 'angular',
+                        ionic: 'ionic'
+                    }
+                },
                 'ionic-native-transitions': {
                     path: 'node_modules/ionic-native-transitions/dist/ionic-native-transitions.js',
                     exports: null

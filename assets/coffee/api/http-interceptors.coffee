@@ -53,6 +53,9 @@ module.exports = ['$rootScope', '$log', '$translate', '$q', '$injector', 'plugin
                 $q.reject response
 
             request: (config) ->
+                if not ionic.isReady
+                    return config || $q.when config
+
                 ua = ionic.Platform.ua
 
                 # check device is real in fake on dev mode only
@@ -67,7 +70,11 @@ module.exports = ['$rootScope', '$log', '$translate', '$q', '$injector', 'plugin
                 # 前面做實機裝置檢測的方法是以前寫的，後來發現如果在實機上運作
                 # 那文件網址會是 file:/// 開頭，因此如果開頭是 http 的，那應該會是由開發模式運作
                 # 也就是在電腦瀏覽器中執行
-                if document.URL.startsWith('http')
+                url = ''
+                
+                if location.protocol
+                    url = location.protocol
+                if url.startsWith('http')
                     isRealDevice = false
 
                 isPayRequest = /(^http:|https:)\/\/[-a-zA-Z0-9:\/.]{2,100}\/api\/pay/gi.test(config.url)

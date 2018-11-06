@@ -8,8 +8,10 @@ module.exports =
     API_URL: {
         'browser': 'http://localhost:8100/SceAppApi'
         'browser_ssl': 'http://localhost:8100/SceAppApi'
-        'device': 'https://sceapi.sce.pccu.edu.tw/SceAppApi'
-        'device_ssl': 'https://sceapi.sce.pccu.edu.tw/SceAppApi'
+        #'device': 'https://sceapi.sce.pccu.edu.tw/SceAppApi'
+        #'device_ssl': 'https://sceapi.sce.pccu.edu.tw/SceAppApi'
+        'device': 'http://sceapi.sce.pccu.edu.tw/sceappapibeta'
+        'device_ssl': 'https://sceapi.sce.pccu.edu.tw/sceappapibeta'
         'atm_browser': 'http://localhost:8100/AtmWebApi'
         'atm': 'https://scepayment.sce.pccu.edu.tw/AtmWebApi'
         'creditcard_browser': 'http://localhost:8100/CCardWebAPI'
