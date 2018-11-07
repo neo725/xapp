@@ -1,9 +1,11 @@
 constants = require('../common/constants')
 
 module.exports = [
-    '$rootScope', '$scope', '$ionicModal', '$ionicSlideBoxDelegate', '$timeout', '$log', 'api', 'modal', 'user', 'CacheFactory',
+    '$rootScope', '$scope', '$ionicPlatform', '$ionicModal', '$ionicSlideBoxDelegate', '$timeout', '$log', 
+    'api', 'modal', 'user', 'CacheFactory',
     'navigation',
-    ($rootScope, $scope, $ionicModal, $ionicSlideBoxDelegate, $timeout, $log, api, modal, user, CacheFactory,
+    ($rootScope, $scope, $ionicPlatform, $ionicModal, $ionicSlideBoxDelegate, $timeout, $log, 
+        api, modal, user, CacheFactory,
         navigation) ->
             # angular svg round progressbar
             # repo : https://github.com/crisbeto/angular-svg-round-progressbar
@@ -191,8 +193,6 @@ module.exports = [
                 )
             )
 
-            loadStudycard()
-
             deleteStudyCards = (prod_id) ->
                 waitToDeleteStudyCards.push prod_id
                 $log.info '[** StudycardSlide **] deleteStudyCards : ' + prod_id
@@ -224,4 +224,7 @@ module.exports = [
             ).then((modal) ->
                 $scope.modalCourseLocation = modal
             )
+
+            $ionicPlatform.ready () ->
+                loadStudycard()
 ]

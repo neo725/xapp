@@ -23,6 +23,26 @@ module.exports = ['$rootScope', '$log', '$translate', '$q', '$injector', 'plugin
                 response || $q.when response
 
             responseError: (response) ->
+                $ionicNativeTransitions = $injector.get('$ionicNativeTransitions') or {}
+                $cordovaBadge = $injector.get('$cordovaBadge')
+
+                if response.data and response.data.result
+                    if response.data.result == 'no match token'
+                        # 有發生 token 無效的錯誤時，將本機儲存清空，跳轉登入頁
+                        # 等同 token 無效就登出
+                        window.localStorage.clear()
+                        window.sessionStorage.clear()
+
+                        if window.cordova and $cordovaBadge
+                            $cordovaBadge.clear()
+
+                        options =
+                            'direction': 'right'
+                        $ionicNativeTransitions.stateGo 'login', {}, {}, options
+
+                        $q.reject response
+                        return
+                        
                 if response.config.requestTimestamp
                     currentTimestamp = new Date().getTime()
                     time = currentTimestamp - response.config.requestTimestamp
@@ -53,7 +73,10 @@ module.exports = ['$rootScope', '$log', '$translate', '$q', '$injector', 'plugin
                 $q.reject response
 
             request: (config) ->
-                if not ionic.isReady
+                # $log.info ionic.Platform.isReady
+                if not ionic.Platform.isReady
+                    # $log.info config.url
+                    # $log.info ionic
                     return config || $q.when config
 
                 ua = ionic.Platform.ua

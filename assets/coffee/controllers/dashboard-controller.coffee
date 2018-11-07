@@ -165,20 +165,21 @@ module.exports = [
 
             #handleOpenURL('sceapp://course/8HI5_A6050')
 
-            if user.getIsGuest() == false
-                loadNotifyData()
-                loadAvatar()
-                loadUnreadMessageCount()
-
-            $rootScope.loadCart()
-            $rootScope.loadWish()
-
             document.addEventListener('deviceready', () ->
                 $log.info 'dashboard-controller -> device ready...'
             , false)
 
             $ionicPlatform.ready(->
                 $log.info 'dashboard-controller -> ionicPlatform ready...'
+                
+                if user.getIsGuest() == false
+                    loadNotifyData()
+                    loadAvatar()
+                    loadUnreadMessageCount()
+
+                $rootScope.loadCart()
+                $rootScope.loadWish()
+
                 deferred.resolve()
             )
 
