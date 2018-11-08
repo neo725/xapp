@@ -13,7 +13,7 @@ https://console.firebase.google.com/u/0/?hl=zh-TW
 3. 左邊先運行 npm i，安裝 node components
 
 [Android]
-4. ionic cordova platform add android
+4. ionic cordova platform add android@6.4.0
 5. cordova build android
 6. 如果成功，要跑測試安裝到手機上的話，運行 cordova run android
 
@@ -170,7 +170,7 @@ java.lang.RuntimeException: java.lang.RuntimeException: com.android.builder.dexi
   solve 2:
   移除 android platform 重新加，可以用 rm -rf ./platforms/android 來移除，
   用 cordova platform rm android 是正規的方式，但不知為何會在 removing android from ...... in package.json 停了很久很久
-  然後用 cordova platform add android 重新加
+  然後用 cordova platform add android@6.4.0 重新加
 
 @ 套件問題:
 Google SSO 登入無法使用
@@ -193,7 +193,7 @@ Uh oh!
   solve:
   移除掉 android platform，重新再加
   rm -rf ./platforms/android
-  ionic cordova platform add android
+  ionic cordova platform add android@6.4.0
   ionic cordova build android
 ======================================
 

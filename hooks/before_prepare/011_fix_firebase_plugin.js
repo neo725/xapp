@@ -27,9 +27,13 @@ var rootdir = process.argv[process.argv.length - 1];
 var platformDir = 'platforms/android/app';
 //change the path to your external gradle file
 var srcFile = path.join(rootdir, 'build-extras.gradle');
-var destFile = path.join(rootdir, platformDir, 'build-extras.gradle');
+var destPath = path.join(rootdir, platformDir);
+var destFile = path.join(destPath, 'build-extras.gradle');
 
 console.log("copying " + srcFile + " to " + destFile);
+if (!fs.existsSync(destPath)) {
+    fs.mkdirSync(destPath);
+}
 fs.createReadStream(srcFile).pipe(fs.createWriteStream(destFile));
 
 // part 2 : 修復 cordova-plugin-firebase 套件新安裝之後，ANDROID_DIR 的問題
