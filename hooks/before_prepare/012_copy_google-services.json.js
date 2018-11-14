@@ -3,6 +3,7 @@
 var fs = require('fs');
 var path = require('path');
 var clc = require("cli-color");
+var env = require('../_env')
 
 var notice = clc.yellow;
 var warning = clc.xterm(13);
