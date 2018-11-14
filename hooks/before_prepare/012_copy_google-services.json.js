@@ -11,8 +11,6 @@ var info = clc.xterm(33);
 
 console.log(notice('*** 012_copy_google-services.json.js ***'));
 
-console.log(env.currentPath);
-
 if (env.isMac) {
 
     console.log(warning('[012_copy_google-services.json] not android platform. skip this hook.'))

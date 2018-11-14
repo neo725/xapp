@@ -3,6 +3,7 @@
 var fs = require('fs');
 var path = require('path');
 var clc = require("cli-color");
+var env = require('../_env')
 
 var notice = clc.yellow;
 var warning = clc.xterm(13);
@@ -10,11 +11,7 @@ var info = clc.xterm(33);
 
 console.log(notice('*** 011_fix_firebase_plugin.js ***'));
 
-var platformName = '';
-if (process.env && process.env.CORDOVA_PLATFORMS)
-    platformName = process.env.CORDOVA_PLATFORMS;
-
-if (platformName.toLowerCase() != 'android') {
+if (env.isMac) {
     console.log(warning('[fix_firebase_plugin] not android platform. skip this hook.'))
     return;
 }
@@ -22,7 +19,7 @@ if (platformName.toLowerCase() != 'android') {
 console.log(info('[fix_firebase_plugin] fix part 1 for gradle...'));
 
 //var rootdir = context.opts.projectRoot;
-var rootdir = process.argv[process.argv.length - 1];
+var rootdir = env.root;
 
 var platformDir = 'platforms/android/app';
 //change the path to your external gradle file
