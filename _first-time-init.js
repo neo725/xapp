@@ -1,8 +1,12 @@
 var fs = require('fs')
 var path = require('path')
-var clc = require("cli-color")
+
 var exec = require('child_process').exec
 var env = require('./hooks/_env')
+
+require('child_process').execSync('npm i cli-color --save-dev', {stdio: [0, 1, 2]})
+
+var clc = require("cli-color")
 
 var error = clc.red;
 var notice = clc.yellow;
@@ -28,7 +32,7 @@ console.log(notice('*** first time init ***'))
 
 var pluginsDir = path.join(env.root, 'plugins')
 
-if (false && fs.existsSync(pluginsDir)) {
+if (fs.existsSync(pluginsDir)) {
     console.log(info('\'plugins\' is already exists in project, maybe this is not your first time to run this script?'))
     return
 }
