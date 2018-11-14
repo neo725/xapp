@@ -10,21 +10,30 @@ var info = clc.xterm(33);
 
 console.log(notice('*** 012_copy_google-services.json.js ***'));
 
-var platformName = '';
-if (process.env && process.env.CORDOVA_PLATFORMS)
-    platformName = process.env.CORDOVA_PLATFORMS;
+console.log(env.currentPath);
 
-if (platformName.toLowerCase() != 'android') {
-    console.log(warning('[copy_google-service.json] not android platform. skip this hook.'))
+if (env.isMac) {
+
+    console.log(warning('[012_copy_google-services.json] not android platform. skip this hook.'))
     return;
 }
 
-var rootdir = process.argv[process.argv.length - 1];
+var rootdir = env.root;
 
-var platformDir = 'platforms/android/';
+var platformDir = 'platforms/android/app';
+
 //change the path to your external gradle file
 var srcFile = path.join(rootdir, 'assets', 'google-services.json');
-var destFile = path.join(rootdir, platformDir, 'google-services.json');
+
+var platformDir = path.join(rootdir, 'platforms/android/app');
+var destFile = path.join(platformDir, 'google-services.json');
+
+console.log(platformDir);
+console.log(destFile);
+
+if (fs.existsSync(rootdir, platformDir) == false) {
+    fs.mkdirSync(rootdir, platformDir);
+}
 
 console.log("copying " + srcFile + " to " + destFile);
 fs.createReadStream(srcFile).pipe(fs.createWriteStream(destFile));
