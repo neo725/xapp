@@ -30,7 +30,7 @@ var _scripts = [
 
     'mkdir plugins',
 
-    'cordova platform add android@latest',
+    'cordova platform add android@7.1.2',
 ]
 
 console.log(notice('*** first time init ***'))
@@ -42,26 +42,37 @@ if (fs.existsSync(pluginsDir)) {
     return
 }
 
+var _run = (script, next) => {
+    dir = exec(script, function(err, stdout, stderr) {
+        console.log('call finished !')
+        if (err) {
+            return console.log(error(err))
+        }
+
+        console.log(stdout)
+    })
+
+    dir.on('exit', function(code) {
+        console.log('exit !')
+
+        if (next) {
+            next(code)
+        }
+    })
+}
+
 _scripts.forEach((script) => {
-    var _run = (script, next) => {
-        dir = exec(script, function(err, stdout, stderr) {
-            console.log('call finished !')
-            if (err) {
-                return console.log(error(err))
-            }
-
-            console.log(stdout)
-        })
-
-        dir.on('exit', function(code) {
-            console.log('exit !')
-
-            if (next) {
-                next(code)
-            }
-        })
+    try
+    {
+        console.log(`prepare to run [${info(script)}] ...`)
+        require('child_process').execSync(script, {stdio: [0, 1, 2]})
     }
-
-    console.log(`prepare to run [${info(script)}] ...`)
-    require('child_process').execSync(script, {stdio: [0, 1, 2]})
+    catch (err) {
+        console.log(error('error maybe happen :'))
+        console.log(err.status)
+        console.log(err.message)
+        console.log(err.stderr)
+        console.log(err.stdout)
+        console.log('')
+    }
 })
