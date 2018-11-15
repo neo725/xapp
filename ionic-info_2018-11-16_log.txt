@@ -1,0 +1,21 @@
+√ Gathering environment info - done!
+
+Ionic:
+
+   ionic (Ionic CLI) : 4.1.2 (C:\Users\Neo\AppData\Roaming\npm\node_modules\ionic)
+   Ionic Framework   : ionic1 1.3.1
+   @ionic/v1-toolkit : 1.0.6
+
+Cordova:
+
+   cordova (Cordova CLI) : 8.1.2 (cordova-lib@8.1.1)
+   Cordova Platforms     : android 7.1.2
+   Cordova Plugins       : no whitelisted plugins (27 plugins total)
+
+System:
+
+   Android SDK Tools : 26.1.1 (F:\Android\android-sdk-windows)
+   NodeJS            : v8.9.4 (C:\Program Files (x86)\nodejs\node.exe)
+   npm               : 5.6.0
+   OS                : Windows 10
+
