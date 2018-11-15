@@ -11,10 +11,15 @@ var info = clc.xterm(33);
 
 console.log(notice('*** 011_fix_firebase_plugin.js ***'));
 
-if (env.isMac) {
+// platforms/android 這時候應該要已經安裝好
+// 否則後面的作業沒有意義
+// 因此條件為判斷是否已經準備好 android 平台
+
+if (!env.isAndroid) {
     console.log(warning('[fix_firebase_plugin] not android platform. skip this hook.'))
     return;
 }
+
 // part 1 : 修復 gradle 版本問題
 console.log(info('[fix_firebase_plugin] fix part 1 for gradle...'));
 

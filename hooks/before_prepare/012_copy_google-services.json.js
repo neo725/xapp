@@ -11,8 +11,11 @@ var info = clc.xterm(33);
 
 console.log(notice('*** 012_copy_google-services.json.js ***'));
 
-if (env.isMac) {
+// platforms/android 這時候應該要已經安裝好
+// 否則後面的作業沒有意義
+// 因此條件為判斷是否已經準備好 android 平台
 
+if (!env.isAndroid) {
     console.log(warning('[012_copy_google-services.json] not android platform. skip this hook.'))
     return;
 }

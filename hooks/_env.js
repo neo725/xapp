@@ -1,5 +1,8 @@
 var fs = require('fs');
 var path = require('path');
+var clc = require("cli-color");
+
+var notice = clc.yellow;
 
 var _this = {
     getPlatform: function() {
@@ -13,7 +16,11 @@ var _this = {
                 process.env.OS ? process.env.OS.toLowerCase() : undefined;
         }
 
-        return platformName || os;
+        var _platform = platformName || os;
+
+        console.log(`platform is : ${notice(_platform)}`);
+
+        return _platform;
     },
 
     getCurrentPath: function() {
@@ -32,7 +39,9 @@ var _this = {
 
 module.exports = {
     'platform': _this.getPlatform(),
-    'isMac': _this.getPlatform().indexOf('window') == -1,
+    'isMac': _this.getPlatform().indexOf('mac') != -1,
+    'isWindow': _this.getPlatform().indexOf('window') != -1,
+    'isAndroid': _this.getPlatform().indexOf('android') != -1,
     'root': _this.getRootDir(),
     'currentPath': _this.getCurrentPath(),
 }

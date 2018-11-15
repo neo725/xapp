@@ -19,10 +19,10 @@ var success = clc.green;
 console.log(notice('*** 010_increment_build_number.js ***'));
 
 var func_increment = function (is_increment) {
-  console.log('[increment_build_number] is_increment = ' + is_increment);
+  console.log('[increment_build_number] is_increment = ' + notice(is_increment));
 
   if (is_increment == false) {
-    console.log('[increment_build_number] skip this hook.');
+    console.log(warning('[increment_build_number] skip this hook.'));
 
     return;
   }

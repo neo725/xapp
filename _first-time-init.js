@@ -2,16 +2,21 @@ var fs = require('fs')
 var path = require('path')
 
 var exec = require('child_process').exec
-var env = require('./hooks/_env')
 
 require('child_process').execSync('npm i cli-color --save-dev', {stdio: [0, 1, 2]})
 
 var clc = require("cli-color")
+var env = require('./hooks/_env')
 
 var error = clc.red;
 var notice = clc.yellow;
 var warning = clc.xterm(13);
 var info = clc.xterm(33);
+
+var env = require('./hooks/_env')
+
+console.log(`env.platform : ${notice(env.platform)}`)
+console.log(`env.isMac : ${notice(env.isMac)}`)
 
 // remark all line in build-extra.gradle about com.google....
 // add this line : force 'com.android.support:support-v4:27.+'

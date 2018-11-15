@@ -134,9 +134,6 @@
                 "OKHTTP_VERSION": "3.+"
             },
             "cordova-plugin-splashscreen": {}
-        },
-        "platforms": [
-            "android"
-        ]
+        }
     }
 }
