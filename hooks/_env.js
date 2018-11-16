@@ -16,6 +16,19 @@ var _this = {
                 process.env.OS ? process.env.OS.toLowerCase() : undefined;
         }
 
+        console.log(notice('** process.env **'))
+        console.log(process.argv)
+        console.log('.')
+        console.log('.')
+        console.log('.')
+        console.log('.')
+
+        var _root = this.getRootDir();
+        if (fs.existsSync(path.join(_root, '/platforms/android'))) {
+            // project has already install android platform
+            platformName = 'android'
+        }
+
         var _platform = platformName || os;
 
         console.log(`platform is : ${notice(_platform)}`);

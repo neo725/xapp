@@ -1,3 +1,14 @@
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+ 首次執行
+
+ 可以先對一下 ionic-info_2018-mm-dd_log.txt 的內容
+ 然後執行下列指令
+
+ node _first-time-init.js
+
+ 跑完之後，回到提示字元時，接著執行 cordova build android
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
 * google firebase 的註冊資訊寫在 firebase-register-readme.txt
 https://console.firebase.google.com/u/0/?hl=zh-TW
 
@@ -52,7 +63,7 @@ https://itunesconnect.apple.com/login
   (相關的流程，寫在 /hooks/010_increment_build_number.js )
 
 * 常常在新增完套件後，或是某些情況，在建置 android 版本出現 java 相關錯誤
-  可以先嘗試把 android platform 移除重加
+  可以先嘗試把 android platform 移除重加 (常常是因為 google firebase 或 service 套件版本問題)
 
 * Google Play 上架
   帳號：developer@sce.pccu.edu.tw

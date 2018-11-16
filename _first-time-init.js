@@ -15,6 +15,12 @@ var info = clc.xterm(33);
 
 var env = require('./hooks/_env')
 
+if (process.argv.filter(v => v == '--reset').length > 0) {
+    require('child_process').execSync('rm -rf platforms', {stdio: [0, 1, 2]})
+    require('child_process').execSync('rm -rf plugins', {stdio: [0, 1, 2]})
+    
+}
+
 console.log(`env.platform : ${notice(env.platform)}`)
 console.log(`env.isMac : ${notice(env.isMac)}`)
 
