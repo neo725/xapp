@@ -26,6 +26,7 @@
                         <i class="ion-ios-arrow-right"></i>
                     </div>
                     <ion-option-button class="ion-android-delete"
+                                       ng-if="cart.Prod_Id != 'FirstTime'"
                                        ng-click="onItemDelete(cart)">
                     </ion-option-button>
                     <ion-delete-button class="ion-minus-circled"
