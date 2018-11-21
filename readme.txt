@@ -8,6 +8,20 @@
 
  跑完之後，回到提示字元時，接著執行 cordova build android
 ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+ 建置時發生錯誤，進入偵錯模式排查錯誤可能原因的指令
+ (for android on windows)
+
+ cordova -d --stacktrace build android
+
+(相關訊息會以暗灰色顯示)
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+在 cordova 套件回復安裝時，出現 cordova-plugin-compat 的錯誤
+這是因為 compat 應該只用在 cordova-android 6.3.0 以前的版本
+但這個訊息僅為警示訊息，不會對結果造成影響
+
+其他的套件出現錯誤，常常會發生提示訊息為 Failed to fetch ... Probably this is either a connection problem...
+這種錯誤則有可能是暫時的錯誤，執行 cordova prepare 會將未完成回復的套件再裝一次
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 
 * google firebase 的註冊資訊寫在 firebase-register-readme.txt
 https://console.firebase.google.com/u/0/?hl=zh-TW
@@ -173,7 +187,9 @@ No toolchains found in the NDK toolchains folder for ABI with prefix: mips64el-l
 @ 建置問題:
 java.lang.RuntimeException: java.lang.RuntimeException: com.android.builder.dexing.DexArchiveMergerException: Unable to merge dex
 
-  找到一個新方法處理，先試底下的 solve 1，如果還是不行，在試 solve 2
+  找到一個新方法處理，先試底下的 solve 1，如果還是不行，在試 solve 2，再不行就要手動排錯了，
+  可能原因通常為某一個套件所使用的 google service 或 play service 版本不相容造成
+  因此要去找出正確的設置，過程可以參考 ./build-debug-logs/2018-11-unable-to-merge-dex.txt
 
   solve 1:
   執行 cordova clean，然後重新跑一次 cordova build android
@@ -182,6 +198,9 @@ java.lang.RuntimeException: java.lang.RuntimeException: com.android.builder.dexi
   移除 android platform 重新加，可以用 rm -rf ./platforms/android 來移除，
   用 cordova platform rm android 是正規的方式，但不知為何會在 removing android from ...... in package.json 停了很久很久
   然後用 cordova platform add android@6.4.0 重新加
+
+  solve 3:
+  參考 build-debug-logs 下的相關除錯紀錄，手動排錯
 
 @ 套件問題:
 Google SSO 登入無法使用

@@ -1,0 +1,51 @@
+(
+    firstable:
+
+    remark all version force setting in build-extras.gradle, just only left com.android.support:support-v4:27.+
+    i want customize setting as less and less is better
+)
+
+1. rm cordova-plugin-firebase
+2. add cordova-android-play-services-gradle-release, it's recommend by original package author on github
+3. still build failed with unable to merge dex
+4. use AndroidStudio to open project and run rebuild, get error message in com.google.android.gms...
+5. rm cordova-android-support-gradle-release
+6. rm cordova-plugin-googleplus
+   plugin setting in package.json :
+
+   "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.417861383399-r7rtkqljs87ffbubtkrtah4liktvucu1",
+        "PLAY_SERVICES_VERSION": "11.8.0"
+    },
+7. build success
+8. after check original package readme, re-add cordova-plugin-googleplus again and try to specific PLAY_SERVICES_VERSION
+
+   > ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=com.googleusercontent.apps.417861383399-r7rtkqljs87ffbubtkrtah4liktvucu1 --variable PLAY_SERVICES_VERSION=15.+
+
+9.
+   (sync config.xml and package.json that under project root to ./assets/config/android)
+   > node _first-time-init.js --reset
+
+10. got failed for build again
+11. change PLAY_SERVICES_VERSION to 15.+ in plugin.xml under cordova-plugin-googleplus
+12. not working, got build failed with unable to merge dex, watch message in AndroidStudio by run rebuild project
+13. try to rm cordova-android-play-services-gradle-release
+14. sync config.xml and package.json for run _first-time-init.js (as like step.9)
+15. build success (it should be, because there is only one package use com.google.android.gms, and that is cordova-plugin-googleplus)
+15. try to add plugin : cordova-plugin-firebase
+    > cordova plugin add cordova-plugin-firebase --save
+16. try to build android again, success !!
+17. check plugin list that we remove before, re-add back. excpet cordova-android-play-services-gradle-release and cordova-android-support-gradle-release
+    or you can compare by git diff in cordova/plugins section in ./assets/config/android/package.json
+    (17.1, 17.2 should be exists currently, just for sure)
+    (17.1) cordova-plugin-firebase
+    (17.2) cordova-plugin-googleplus
+    (17.3) cordova-plugin-badge
+18. all setup done, repeat step 9.
+    (sync config.xml and package.json)
+    > node _first-time-init-.js --reset
+19. build android
+    > cordova prepare
+    > cordova build android
+20. build work and success, but still run on device and test google single-sign-on
+21. if run on device and login by google are workable, then case close

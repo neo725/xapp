@@ -1,24 +1,33 @@
 configurations.all {
     resolutionStrategy {
-        force "com.google.android.gms:play-services-auth:16.0.2"
-        force "com.google.android.gms:play-services-identity:16.0.2"
-        force "com.google.android.gms:play-services-ads:16.0.2"
-        force "com.google.android.gms:play-services-base:16.0.2"
-        force "com.google.android.gms:play-services-gcm:16.0.2"
-        force "com.google.android.gms:play-services-analytics:16.0.2"
-        force "com.google.android.gms:play-services-location:16.0.2"
-        force "com.google.android.gms:play-services-basement:16.0.2"
-        force "com.google.android.gms:play-services-tagmanager:16.0.2"
+        // 2018-11-22 updated by neo
+        // 把下面兩段 com.google.android.gms 以及 firebase 的版本指定註解
+        // 希望盡可能不要有額外流程指定介入
+        // 但還是保留 com.android.support:support-v4:27.+ 的指定
 
-        force 'com.google.firebase:firebase-core:16.0.2'
-        force 'com.google.firebase:firebase-crash:16.0.2'
-        force 'com.google.firebase:firebase-auth:16.0.2'
-        force 'com.google.firebase:firebase-common:16.0.2'
-        force 'com.google.firebase:firebase-config:16.0.2'
-        force 'com.google.firebase:firebase-messaging:16.0.2'
+        // https://developers.google.com/android/guides/setup
+        // force "com.google.android.gms:play-services-auth:16.0.1"
+        // force "com.google.android.gms:play-services-identity:16.0.0"
+        // force "com.google.android.gms:play-services-ads:16.0.0"
+        // force "com.google.android.gms:play-services-base:15.0.1"
+        // force "com.google.android.gms:play-services-gcm:16.0.0"
+        // force "com.google.android.gms:play-services-analytics:16.0.4"
+        // force "com.google.android.gms:play-services-location:16.0.0"
+        // // force "com.google.android.gms:play-services-basement:16.0.2"
+        // // force "com.google.android.gms:play-services-tagmanager:16.0.2"
+
+        // https://firebase.google.com/support/release-notes/android
+        // https://mvnrepository.com/artifact/com.google.firebase
+        // force 'com.google.firebase:firebase-core:16.0.4'
+        // force 'com.google.firebase:firebase-crash:16.2.1'
+        // force 'com.google.firebase:firebase-auth:16.0.1'
+        // force 'com.google.firebase:firebase-common:16.0.3'
+        // force 'com.google.firebase:firebase-config:16.1.0'
+        // force 'com.google.firebase:firebase-messaging:17.1.0'
+        // force 'com.google.firebase:firebase-iid:17.0.3'
 
         //force 'com.android.support:support-v4:27.1.0'
-       force 'com.android.support:support-v4:27.+'
+        force 'com.android.support:support-v4:27.+'
 
         println("XXXXXXXX ***************** resolutionStrategy !!")
     }
