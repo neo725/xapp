@@ -39,6 +39,8 @@
         <splash density="port-xhdpi" src="resources\android\splash\drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources\android\splash\drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources\android\splash\drawable-port-xxxhdpi-screen.png" />
+
+        <icon src="resources\android\icon.png" />
     </platform>
     <platform name="ios">
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -66,8 +68,20 @@
         <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
+
+        <icon src="resources/ios/icon.png"/>
+
+        <config-file mode="replace" parent="NSLocationWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
+            <string>Allows to get your location to show your position on map.</string>
+        </config-file>
+        <config-file mode="replace" parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
+            <string>Allows to attach new images from camera for avatar.</string>
+        </config-file>
+        <config-file mode="replace" parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
+            <string>Allows to attach images from library for avatar.</string>
+        </config-file>
     </platform>
-    <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
+    
     <allow-navigation href="http://192.168.31.31:8100" />
     <allow-navigation href="http://*.sce.pccu.edu.tw" />
     <allow-navigation href="https://*.sce.pccu.edu.tw" />

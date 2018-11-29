@@ -4,15 +4,25 @@
             "keystore": "sceapp.keystore",
             "storePassword": "27005858",
             "alias": "sceapp",
-            "password" : "27005858",
+            "password": "27005858",
             "keystoreType": ""
         },
         "release": {
             "keystore": "sceapp.keystore",
             "storePassword": "27005858",
             "alias": "sceapp",
-            "password" : "27005858",
+            "password": "27005858",
             "keystoreType": ""
+        }
+    },
+    "ios": {
+        "debug": {
+            "buildFlag": [
+                "-UseModernBuildSystem=0"
+            ]
+        },
+        "release": {
+
         }
     }
 }

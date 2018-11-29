@@ -23,6 +23,10 @@
 這種錯誤則有可能是暫時的錯誤，執行 cordova prepare 會將未完成回復的套件再裝一次
 ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 
+* icon resource generator 所使用的套件：
+https://www.npmjs.com/package/cordova-res-generator
+
+
 * google firebase 的註冊資訊寫在 firebase-register-readme.txt
 https://console.firebase.google.com/u/0/?hl=zh-TW
 
@@ -127,7 +131,7 @@ cordova prepare
 // 如果在跑上面建置的指令
 // 沒有跑到 Discovered plugin，在前面的 hook 跑完後就發生 Error: spawn EACCES 之類的錯誤訊息
 // 原因：sceapp 資料夾權限問題，將 sceapp 這個專案資料夾用 chmod 修改權限
-// 解決：sudo chmod -R a+rwx sceapp
+// 解決：sudo chmod -R a+rwx sceapp (這個指令不是在 sceapp 底下執行，是要在上一層，也就是看得到 sceapp 的那一層執行)
 //
 // 如果有做上面權限的操作 (chmod)，記得設定讓 git 忽略檔案權限的異動
 // 不然全部的檔案都會變成異動狀態
@@ -135,6 +139,7 @@ cordova prepare
 // git config core.fileMode false
 
 // iOS 版本的 Bundle identifier 是 tw.edu.pccu.sce.sceapp-prod
+// #widget #id #package id
 
 
 // @ 2018-9-22
@@ -243,3 +248,19 @@ Uh oh!
   1. 有問題無法正常安裝的 cordova plugin
      cordova plugin add cordova-plugin-x-socialsharing@5.1.8
      cordova plugin add https://github.com/phonegap/phonegap-mobile-accessibility.git
+
+## [[ 2018-11-22 ]] ##
+======================================
+在跑完 cordova prepare 後，有時會發生 phonegap-plugin-mobile-accessibility 這個套件無法回復
+
+Failed to restore plugin "phonegap-plugin-mobile-accessibility" from config.xml. You might need to try adding it again.
+
+可以再重跑一次 cordova prepare 看看有沒有成功
+
+如果還是一樣，那就手動跑 cordova plugin 的 add
+
+看是哪一個套件，去找那個套件的 github，通常都會說明安裝指令
+
+例如：phonegap-plugin-mobile-accessibility 的安裝指令為
+
+cordova plugin add https://github.com/phonegap/phonegap-mobile-accessibility.git

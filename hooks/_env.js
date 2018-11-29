@@ -16,7 +16,22 @@ var _this = {
                 process.env.OS ? process.env.OS.toLowerCase() : undefined;
         }
 
+        if (process.platform && os == undefined) {
+            // if platform is darwin that means user os is mac
+            // in other case i don't think about it to run this process
+            // so in last if not darwin then throw a undefined back.
+            os = process.platform == 'darwin' ? 'ios' : undefined;
+        }
+
+        console.log(notice('** process.platform **'))
+        console.log(process.platform)
+        console.log('.')
+        console.log('.')
         console.log(notice('** process.env **'))
+        console.log(process.env)
+        console.log('.')
+        console.log('.')
+        console.log(notice('** process.argv **'))
         console.log(process.argv)
         console.log('.')
         console.log('.')
