@@ -29,7 +29,11 @@ var _scripts = [
     { android: 'cp ./assets/config/android/package.json ./package.json', ios: 'cp ./assets/config/ios/package.json ./package.json' },
     { android: 'cp ./assets/config/android/config.xml ./config.xml', ios: 'cp ./assets/config/ios/config.xml ./config.xml' },
 
-    { mac: '_prepare_for_ios.js' },
+    { ios: '_prepare_for_ios.js' },
+
+    // 'npm install sudo-js',
+
+    { ios: 'sudo chmod +x ./hooks/before_prepare/*.js' },
 
     'npm install cordova-res-generator -g',
     'npm i --save-dev xml2js chalk run-sequence prompt-confirm cli-color',
@@ -93,7 +97,7 @@ _scripts.forEach((script) => {
         if (!scriptUnavailable) {
             console.log(`prepare to run [${info(script)}] ...`)
 
-            if (script.endsWith('.js')) {
+            if (script.startsWith('sudo') == false && script.endsWith('.js')) {
                 script = `node ${script}`
             }
             require('child_process').execSync(script, {stdio: [0, 1, 2]})
