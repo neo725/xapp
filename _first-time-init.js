@@ -90,9 +90,6 @@ _scripts.forEach((script) => {
 
         let scriptUnavailable = (!script || script == undefined || script == '')
 
-        // if (scriptUnavailable) {
-        //     console.log(error(`script defined in scripts (index = ${_index}) has not available setting !`))
-        // }
         if (!scriptUnavailable) {
             console.log(`prepare to run [${info(script)}] ...`)
 
@@ -101,8 +98,6 @@ _scripts.forEach((script) => {
             }
             require('child_process').execSync(script, {stdio: [0, 1, 2]})
         }
-
-        _index++
     }
     catch (err) {
         console.log(error('error maybe happen :'))

@@ -19,9 +19,11 @@ var _this = {
         if (process.platform && os == undefined) {
             // if platform is darwin that means user os is mac
             // in other case i don't think about it to run this process
-            // so in last if not darwin then throw a undefined back.
-            os = process.platform == 'darwin' ? 'ios' : undefined;
+            // so in last if not darwin then throw a undefined back.    
         }
+
+        os = process.platform == 'darwin' ? 'ios' : os;
+        os = os.indexOf('window') != -1 ? 'android' : os;
 
         console.log(notice('** process.platform **'))
         console.log(process.platform)
