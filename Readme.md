@@ -54,13 +54,23 @@ cordova 如果成功完成，會出現 success 的訊息，並提示 apk 的位�
 
 # for ios (on mac) :
 
-	cordova prepare
+先用 Xcode 開啟 platforms/ios/大學聯網.xcworkspace
 
-如果在 mac 上要打包 ios app，在跑完 cordova prepare 後，
+然後在左邊檔案結構的視窗，選擇第一層的 “大學聯網"
 
-接著要切換到 Xcode 開啟專案資料夾下的 platforms/ios/大學臉網.xcworkspace
+中間的 Signing 	會出現紅色警示
 
-並進行 Product > Build 進行專案建置
+把 Team 選在 Chinese Culture University (Company)
+
+然後回到 Terminal，執行指令建置測試
+
+	ionic cordova build ios --device
+
+OK 的話，會出現 ** ARCHIVE SUCCEEDED **
+
+回到 Xcode 做 Archive 打包
+
+在 Xcode 先進行 Product > Build 進行專案建置
 
 > ios 不能直接使用 ipa 安裝，除非有 root，以現在的 ios 版本 10+ 還沒有 root 的狀態，因此不考慮此安裝可能性
 
