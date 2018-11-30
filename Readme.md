@@ -4,6 +4,8 @@
 在完成 repo clone 之後，切換到專案路徑下，執行下列指令
 
 	node _first-time-init.js
+	// 如果已經跑過此步驟，後面要再重做，可以加參數 --reset
+	// node _first-time-init.js --reset
 
 	gulp
 
