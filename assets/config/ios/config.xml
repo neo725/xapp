@@ -107,5 +107,5 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.417861383399-r7rtkqljs87ffbubtkrtah4liktvucu1" />
     </plugin>
     <plugin name="cordova-plugin-firebase" spec="^1.0.0" />
-    <engine name="ios" spec="4.4.0" />
+    <engine name="ios" spec="^4.4.0" />
 </widget>
