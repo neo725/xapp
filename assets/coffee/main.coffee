@@ -323,6 +323,14 @@ angular.module('sce', ['ionic',
             }
         }
 
+    .state 'home.ebook.edm',
+        url: '/edm'
+        views: {
+            'bookContent': {
+                templateUrl: 'partial/ebook/edm.html'
+            }
+        }
+
     ## Member
     .state 'home.member',
         url: '/member'

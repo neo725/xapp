@@ -89,6 +89,9 @@ module.exports = [
 
             $scope.goEbookList = ->
                 navigation.slide 'home.ebook.list', {}, 'left'
+            
+            $scope.goEbookEdm = ->
+                navigation.slide 'home.ebook.edm', {}, 'left'
 
             $scope.goLocation = ->
                 navigation.slide 'home.location', {}, 'left'
