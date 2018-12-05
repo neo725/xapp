@@ -37,7 +37,8 @@
                                 </div>
                                 <div class="data-row-container">
                                     <div class="row" ng-repeat="detail in order.orderDetail">
-                                        <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
+                                        <!--<div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>-->
+                                        <div class="col col-75 title prod_title">{{ detail.Prod_Name}} {{ detail.Prod_SubName?detail.Prod_SubName:"" }}</div>
                                         <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
                                     </div>
                                 </div>
@@ -98,7 +99,8 @@
                                         {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
                                 </div>
                                 <div class="row" ng-repeat="detail in order.orderDetail">
-                                    <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
+                                    <!--<div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>-->
+                                    <div class="col col-75 title prod_title">{{ detail.Prod_Name}} {{ detail.Prod_SubName?detail.Prod_SubName:"" }}</div>
                                     <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
                                 </div>
                             </div>
@@ -151,7 +153,8 @@
                                         {{ formatDateTime(main.RegiDate) }} 訂單成立</div>
                                 </div>
                                 <div class="row" ng-repeat="detail in order.orderDetail">
-                                    <div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>
+                                    <!--<div class="col col-75 title prod_title" ng-bind="detail.Prod_Name + detail.Prod_SubName"></div>-->
+                                    <div class="col col-75 title prod_title">{{ detail.Prod_Name}} {{ detail.Prod_SubName?detail.Prod_SubName:"" }}</div>
                                     <div class="col col-25 text-right">{{ detail.Amount | currency:"NT":0 }}</div>
                                 </div>
                             </div>
