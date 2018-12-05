@@ -12,11 +12,11 @@ module.exports = [
             navigation.slide 'home.member.dashboard', {}, 'right'
 
         $scope.checkOrderStatus = (payway, status) ->
-            # refund
+            # refund (目前關閉 我要退費狀態20181205)
             if status == 'refund' and payway == '信用卡付款-授權成功'
-                return true
+                return false
             if status == 'refund' and payway == 'ATM付款-付款完成'
-                return true
+                return false
             # cancel
             if status == 'cancel' and payway == 'ATM付款'
                 return true
