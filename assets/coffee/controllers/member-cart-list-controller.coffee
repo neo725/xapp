@@ -337,7 +337,9 @@ module.exports = [
             onSuccess = (response) ->
                 $rootScope.carts = response.list
                 off_list = _.remove($rootScope.carts, (item) ->
-                    return item.Status != 'ON' or item.isCanBuy != 1;
+                    # return item.Status != 'ON' or item.isCanBuy != 1;
+                    # 首次報名費 FirstTime Status = null
+                    return (item.Status != 'ON' and item.Prod_Id != 'FirstTime') or item.isCanBuy != 1;
                 )
                 if off_list and off_list.length > 0
                     api.updateCart 'MS', _.map($rootScope.carts, 'Prod_Id'), (->), (->)

@@ -296,7 +296,8 @@ module.exports = [
             onSuccess = (response) ->
                 $scope.carts = response.list
                 off_list = _.remove($scope.carts, (item) ->
-                    return item.Status != 'ON' or item.isCanBuy != 1;
+                    # 首次報名費 FirstTime Status = null
+                    return (item.Status != 'ON' and item.Prod_Id != 'FirstTime') or item.isCanBuy != 1;
                 )
                 if off_list and off_list.length > 0
                     api.updateOrderCart 'MS', _.map($scope.carts, 'Prod_Id'), (->), (->)
