@@ -53,7 +53,7 @@ module.exports =
         }
     ]
 
-    LOCATIONS: ['建國', '忠孝', '延平', '大安', '台中', '高雄']
+    LOCATIONS: ['建國', '忠孝', '延平', '台中', '高雄']
 
     LOCATIONS_MAPPING: [
         {
@@ -92,18 +92,18 @@ module.exports =
                 'n': 25.038641
                 'e': 121.508613
         },
-        {
-            'location_name': '大安中心'
-            'short_name': '大安'
-            'full_name': '大安中心'
-            'address': '台北市大安區信義路四段1號3樓'
-            'html_name1': '大安'
-            'html_name2': '中心'
-            'bgcolor': '#3ebbcf'
-            'latlng':
-                'n': 25.033828
-                'e': 121.544288
-        },
+        # {
+        #     'location_name': '大安中心'
+        #     'short_name': '大安'
+        #     'full_name': '大安中心'
+        #     'address': '台北市大安區信義路四段1號3樓'
+        #     'html_name1': '大安'
+        #     'html_name2': '中心'
+        #     'bgcolor': '#3ebbcf'
+        #     'latlng':
+        #         'n': 25.033828
+        #         'e': 121.544288
+        # },
         {
             'location_name': '台中教育中心'
             'short_name': '台中'

@@ -335,6 +335,16 @@ module.exports = [
 
         $scope.$on('$ionicView.enter', () ->
             $log.info 'index-controller -> $ionicView.enter'
+            window.localStorage.setItem('weekdays', JSON.stringify(constants.WEEKDAYS))
+            window.localStorage.setItem('locations', JSON.stringify(constants.LOCATIONS))
+
+            #$scope.filter.location = window.localStorage.getItem('locations')
+            # if window.localStorage.getItem('weekdays') == null
+            #     window.localStorage.setItem('weekdays', JSON.stringify(WEEKDAYS))
+        
+            # if window.localStorage.getItem('locations') == null
+            #     window.localStorage.setItem('locations', JSON.stringify(LOCATIONS))
+
             token = window.localStorage.getItem('token')
             if not $rootScope.member and token
                 checkDefaultState(token, false)
