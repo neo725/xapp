@@ -15,7 +15,9 @@ module.exports = [
         $scope.currentCard = {}
         $scope.user = {}
 
-
+        $scope.goRefundRule = ->
+            navigation.slide 'main.refund', {}, 'left'
+            
         $scope.goBack = ->
             backView = $ionicHistory.backView()
 

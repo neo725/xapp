@@ -43,6 +43,7 @@ angular.module('sce', ['ionic',
 .controller('EmailConfirmController', require('./controllers/emailconfirm-controller'))
 .controller('ServiceRuleController', require('./controllers/service-rule-controller'))
 .controller('PrivacyRuleController', require('./controllers/privacy-rule-controller'))
+.controller('RefundController', require('./controllers/refund-controller'))
 .controller('HomeController', require('./controllers/home-controller'))
 .controller('DashboardController', require('./controllers/dashboard-controller'))
 .controller('StudyCardSlideController', require('./controllers/dashboard-studycardslide-controller'))
@@ -215,6 +216,14 @@ angular.module('sce', ['ionic',
         views: {
             'mainContent': {
                 templateUrl: 'partial/privacy-rule.html'
+            }
+        }
+    
+    .state 'main.refund',
+        url: '/refund'
+        views: {
+            'mainContent': {
+                templateUrl: 'partial/refund.html'
             }
         }
 

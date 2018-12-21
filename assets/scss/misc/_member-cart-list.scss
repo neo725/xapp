@@ -539,6 +539,41 @@
                 padding-top: 3px;
             }
         }
+
+        .read_refund{
+            display: inherit;
+            overflow: hidden;
+            margin-left: 20px;
+            label {
+                padding: 1px 5px 5px 35px;
+                font-size: 14px;
+                color: #444;
+                outline: none;
+                border: none;
+                .checkbox{
+                    padding: 0px;
+                    top: 86%;
+                }
+                .checkbox input, .checkbox-icon {
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 3px;
+                }
+            }
+            label::before{
+                content: '*';
+                color: #ff0000;
+                position: absolute;
+                font-size: 19px;
+                left: 0px;
+            }
+            >span{
+                float: left;
+                font-size: 14px;
+                color: #7BB5E3;
+                text-decoration:underline;
+            }
+        }
     }
 
     .bar {

@@ -417,6 +417,12 @@ module.exports = ['$http', ($http) ->
                 .success(onSuccess)
                 .error(onError)
 
+        #20181221 add
+        getRefund: (onSuccess, onError) ->
+            $http.get('/api/terms/signup')
+                .success(onSuccess)
+                .error(onError)
+
         # Payment (please always stay code below in bottom of this file)
         createATMPayment: (order_no, source_order_no, onSuccess, onError) ->
             api_url = constants.API_URL.atm
